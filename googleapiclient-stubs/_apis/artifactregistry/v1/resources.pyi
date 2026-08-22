@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -291,7 +290,7 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             name: str,
-                            view: typing_extensions.Literal[
+                            view: typing.Literal[
                                 "VERSION_VIEW_UNSPECIFIED", "BASIC", "FULL"
                             ]
                             | None = ...,
@@ -305,7 +304,7 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                             orderBy: str | None = ...,
                             pageSize: int | None = ...,
                             pageToken: str | None = ...,
-                            view: typing_extensions.Literal[
+                            view: typing.Literal[
                                 "VERSION_VIEW_UNSPECIFIED", "BASIC", "FULL"
                             ]
                             | None = ...,

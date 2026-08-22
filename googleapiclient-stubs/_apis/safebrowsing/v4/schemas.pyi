@@ -1,24 +1,22 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class GoogleProtobufEmpty(typing_extensions.TypedDict, total=False): ...
+class GoogleProtobufEmpty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class GoogleSecuritySafebrowsingV4Checksum(typing_extensions.TypedDict, total=False):
+class GoogleSecuritySafebrowsingV4Checksum(typing.TypedDict, total=False):
     sha256: str
 
 @typing.type_check_only
-class GoogleSecuritySafebrowsingV4ClientInfo(typing_extensions.TypedDict, total=False):
+class GoogleSecuritySafebrowsingV4ClientInfo(typing.TypedDict, total=False):
     clientId: str
     clientVersion: str
 
 @typing.type_check_only
 class GoogleSecuritySafebrowsingV4FetchThreatListUpdatesRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     client: GoogleSecuritySafebrowsingV4ClientInfo
     listUpdateRequests: _list[
@@ -27,10 +25,10 @@ class GoogleSecuritySafebrowsingV4FetchThreatListUpdatesRequest(
 
 @typing.type_check_only
 class GoogleSecuritySafebrowsingV4FetchThreatListUpdatesRequestListUpdateRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     constraints: GoogleSecuritySafebrowsingV4FetchThreatListUpdatesRequestListUpdateRequestConstraints
-    platformType: typing_extensions.Literal[
+    platformType: typing.Literal[
         "PLATFORM_TYPE_UNSPECIFIED",
         "WINDOWS",
         "LINUX",
@@ -42,7 +40,7 @@ class GoogleSecuritySafebrowsingV4FetchThreatListUpdatesRequestListUpdateRequest
         "CHROME",
     ]
     state: str
-    threatEntryType: typing_extensions.Literal[
+    threatEntryType: typing.Literal[
         "THREAT_ENTRY_TYPE_UNSPECIFIED",
         "URL",
         "EXECUTABLE",
@@ -51,7 +49,7 @@ class GoogleSecuritySafebrowsingV4FetchThreatListUpdatesRequestListUpdateRequest
         "FILENAME",
         "CERT",
     ]
-    threatType: typing_extensions.Literal[
+    threatType: typing.Literal[
         "THREAT_TYPE_UNSPECIFIED",
         "MALWARE",
         "SOCIAL_ENGINEERING",
@@ -74,7 +72,7 @@ class GoogleSecuritySafebrowsingV4FetchThreatListUpdatesRequestListUpdateRequest
 
 @typing.type_check_only
 class GoogleSecuritySafebrowsingV4FetchThreatListUpdatesRequestListUpdateRequestConstraints(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     deviceLocation: str
     language: str
@@ -82,12 +80,12 @@ class GoogleSecuritySafebrowsingV4FetchThreatListUpdatesRequestListUpdateRequest
     maxUpdateEntries: int
     region: str
     supportedCompressions: _list[
-        typing_extensions.Literal["COMPRESSION_TYPE_UNSPECIFIED", "RAW", "RICE"]
+        typing.Literal["COMPRESSION_TYPE_UNSPECIFIED", "RAW", "RICE"]
     ]
 
 @typing.type_check_only
 class GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     listUpdateResponses: _list[
         GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponseListUpdateResponse
@@ -96,12 +94,12 @@ class GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponse(
 
 @typing.type_check_only
 class GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponseListUpdateResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     additions: _list[GoogleSecuritySafebrowsingV4ThreatEntrySet]
     checksum: GoogleSecuritySafebrowsingV4Checksum
     newClientState: str
-    platformType: typing_extensions.Literal[
+    platformType: typing.Literal[
         "PLATFORM_TYPE_UNSPECIFIED",
         "WINDOWS",
         "LINUX",
@@ -113,10 +111,10 @@ class GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponseListUpdateRespon
         "CHROME",
     ]
     removals: _list[GoogleSecuritySafebrowsingV4ThreatEntrySet]
-    responseType: typing_extensions.Literal[
+    responseType: typing.Literal[
         "RESPONSE_TYPE_UNSPECIFIED", "PARTIAL_UPDATE", "FULL_UPDATE"
     ]
-    threatEntryType: typing_extensions.Literal[
+    threatEntryType: typing.Literal[
         "THREAT_ENTRY_TYPE_UNSPECIFIED",
         "URL",
         "EXECUTABLE",
@@ -125,7 +123,7 @@ class GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponseListUpdateRespon
         "FILENAME",
         "CERT",
     ]
-    threatType: typing_extensions.Literal[
+    threatType: typing.Literal[
         "THREAT_TYPE_UNSPECIFIED",
         "MALWARE",
         "SOCIAL_ENGINEERING",
@@ -147,95 +145,83 @@ class GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponseListUpdateRespon
     ]
 
 @typing.type_check_only
-class GoogleSecuritySafebrowsingV4FindFullHashesRequest(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleSecuritySafebrowsingV4FindFullHashesRequest(typing.TypedDict, total=False):
     apiClient: GoogleSecuritySafebrowsingV4ClientInfo
     client: GoogleSecuritySafebrowsingV4ClientInfo
     clientStates: _list[str]
     threatInfo: GoogleSecuritySafebrowsingV4ThreatInfo
 
 @typing.type_check_only
-class GoogleSecuritySafebrowsingV4FindFullHashesResponse(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleSecuritySafebrowsingV4FindFullHashesResponse(typing.TypedDict, total=False):
     matches: _list[GoogleSecuritySafebrowsingV4ThreatMatch]
     minimumWaitDuration: str
     negativeCacheDuration: str
 
 @typing.type_check_only
 class GoogleSecuritySafebrowsingV4FindThreatMatchesRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     client: GoogleSecuritySafebrowsingV4ClientInfo
     threatInfo: GoogleSecuritySafebrowsingV4ThreatInfo
 
 @typing.type_check_only
 class GoogleSecuritySafebrowsingV4FindThreatMatchesResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     matches: _list[GoogleSecuritySafebrowsingV4ThreatMatch]
 
 @typing.type_check_only
 class GoogleSecuritySafebrowsingV4ListThreatListsResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     threatLists: _list[GoogleSecuritySafebrowsingV4ThreatListDescriptor]
 
 @typing.type_check_only
-class GoogleSecuritySafebrowsingV4RawHashes(typing_extensions.TypedDict, total=False):
+class GoogleSecuritySafebrowsingV4RawHashes(typing.TypedDict, total=False):
     prefixSize: int
     rawHashes: str
 
 @typing.type_check_only
-class GoogleSecuritySafebrowsingV4RawIndices(typing_extensions.TypedDict, total=False):
+class GoogleSecuritySafebrowsingV4RawIndices(typing.TypedDict, total=False):
     indices: _list[int]
 
 @typing.type_check_only
-class GoogleSecuritySafebrowsingV4RiceDeltaEncoding(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleSecuritySafebrowsingV4RiceDeltaEncoding(typing.TypedDict, total=False):
     encodedData: str
     firstValue: str
     numEntries: int
     riceParameter: int
 
 @typing.type_check_only
-class GoogleSecuritySafebrowsingV4ThreatEntry(typing_extensions.TypedDict, total=False):
+class GoogleSecuritySafebrowsingV4ThreatEntry(typing.TypedDict, total=False):
     digest: str
     hash: str
     url: str
 
 @typing.type_check_only
-class GoogleSecuritySafebrowsingV4ThreatEntryMetadata(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleSecuritySafebrowsingV4ThreatEntryMetadata(typing.TypedDict, total=False):
     entries: _list[GoogleSecuritySafebrowsingV4ThreatEntryMetadataMetadataEntry]
 
 @typing.type_check_only
 class GoogleSecuritySafebrowsingV4ThreatEntryMetadataMetadataEntry(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     key: str
     value: str
 
 @typing.type_check_only
-class GoogleSecuritySafebrowsingV4ThreatEntrySet(
-    typing_extensions.TypedDict, total=False
-):
-    compressionType: typing_extensions.Literal[
-        "COMPRESSION_TYPE_UNSPECIFIED", "RAW", "RICE"
-    ]
+class GoogleSecuritySafebrowsingV4ThreatEntrySet(typing.TypedDict, total=False):
+    compressionType: typing.Literal["COMPRESSION_TYPE_UNSPECIFIED", "RAW", "RICE"]
     rawHashes: GoogleSecuritySafebrowsingV4RawHashes
     rawIndices: GoogleSecuritySafebrowsingV4RawIndices
     riceHashes: GoogleSecuritySafebrowsingV4RiceDeltaEncoding
     riceIndices: GoogleSecuritySafebrowsingV4RiceDeltaEncoding
 
 @typing.type_check_only
-class GoogleSecuritySafebrowsingV4ThreatHit(typing_extensions.TypedDict, total=False):
+class GoogleSecuritySafebrowsingV4ThreatHit(typing.TypedDict, total=False):
     clientInfo: GoogleSecuritySafebrowsingV4ClientInfo
     entry: GoogleSecuritySafebrowsingV4ThreatEntry
-    platformType: typing_extensions.Literal[
+    platformType: typing.Literal[
         "PLATFORM_TYPE_UNSPECIFIED",
         "WINDOWS",
         "LINUX",
@@ -247,7 +233,7 @@ class GoogleSecuritySafebrowsingV4ThreatHit(typing_extensions.TypedDict, total=F
         "CHROME",
     ]
     resources: _list[GoogleSecuritySafebrowsingV4ThreatHitThreatSource]
-    threatType: typing_extensions.Literal[
+    threatType: typing.Literal[
         "THREAT_TYPE_UNSPECIFIED",
         "MALWARE",
         "SOCIAL_ENGINEERING",
@@ -270,12 +256,10 @@ class GoogleSecuritySafebrowsingV4ThreatHit(typing_extensions.TypedDict, total=F
     userInfo: GoogleSecuritySafebrowsingV4ThreatHitUserInfo
 
 @typing.type_check_only
-class GoogleSecuritySafebrowsingV4ThreatHitThreatSource(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleSecuritySafebrowsingV4ThreatHitThreatSource(typing.TypedDict, total=False):
     referrer: str
     remoteIp: str
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "THREAT_SOURCE_TYPE_UNSPECIFIED",
         "MATCHING_URL",
         "TAB_URL",
@@ -285,16 +269,14 @@ class GoogleSecuritySafebrowsingV4ThreatHitThreatSource(
     url: str
 
 @typing.type_check_only
-class GoogleSecuritySafebrowsingV4ThreatHitUserInfo(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleSecuritySafebrowsingV4ThreatHitUserInfo(typing.TypedDict, total=False):
     regionCode: str
     userId: str
 
 @typing.type_check_only
-class GoogleSecuritySafebrowsingV4ThreatInfo(typing_extensions.TypedDict, total=False):
+class GoogleSecuritySafebrowsingV4ThreatInfo(typing.TypedDict, total=False):
     platformTypes: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "PLATFORM_TYPE_UNSPECIFIED",
             "WINDOWS",
             "LINUX",
@@ -308,7 +290,7 @@ class GoogleSecuritySafebrowsingV4ThreatInfo(typing_extensions.TypedDict, total=
     ]
     threatEntries: _list[GoogleSecuritySafebrowsingV4ThreatEntry]
     threatEntryTypes: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "THREAT_ENTRY_TYPE_UNSPECIFIED",
             "URL",
             "EXECUTABLE",
@@ -319,7 +301,7 @@ class GoogleSecuritySafebrowsingV4ThreatInfo(typing_extensions.TypedDict, total=
         ]
     ]
     threatTypes: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "THREAT_TYPE_UNSPECIFIED",
             "MALWARE",
             "SOCIAL_ENGINEERING",
@@ -342,10 +324,8 @@ class GoogleSecuritySafebrowsingV4ThreatInfo(typing_extensions.TypedDict, total=
     ]
 
 @typing.type_check_only
-class GoogleSecuritySafebrowsingV4ThreatListDescriptor(
-    typing_extensions.TypedDict, total=False
-):
-    platformType: typing_extensions.Literal[
+class GoogleSecuritySafebrowsingV4ThreatListDescriptor(typing.TypedDict, total=False):
+    platformType: typing.Literal[
         "PLATFORM_TYPE_UNSPECIFIED",
         "WINDOWS",
         "LINUX",
@@ -356,7 +336,7 @@ class GoogleSecuritySafebrowsingV4ThreatListDescriptor(
         "ALL_PLATFORMS",
         "CHROME",
     ]
-    threatEntryType: typing_extensions.Literal[
+    threatEntryType: typing.Literal[
         "THREAT_ENTRY_TYPE_UNSPECIFIED",
         "URL",
         "EXECUTABLE",
@@ -365,7 +345,7 @@ class GoogleSecuritySafebrowsingV4ThreatListDescriptor(
         "FILENAME",
         "CERT",
     ]
-    threatType: typing_extensions.Literal[
+    threatType: typing.Literal[
         "THREAT_TYPE_UNSPECIFIED",
         "MALWARE",
         "SOCIAL_ENGINEERING",
@@ -387,9 +367,9 @@ class GoogleSecuritySafebrowsingV4ThreatListDescriptor(
     ]
 
 @typing.type_check_only
-class GoogleSecuritySafebrowsingV4ThreatMatch(typing_extensions.TypedDict, total=False):
+class GoogleSecuritySafebrowsingV4ThreatMatch(typing.TypedDict, total=False):
     cacheDuration: str
-    platformType: typing_extensions.Literal[
+    platformType: typing.Literal[
         "PLATFORM_TYPE_UNSPECIFIED",
         "WINDOWS",
         "LINUX",
@@ -402,7 +382,7 @@ class GoogleSecuritySafebrowsingV4ThreatMatch(typing_extensions.TypedDict, total
     ]
     threat: GoogleSecuritySafebrowsingV4ThreatEntry
     threatEntryMetadata: GoogleSecuritySafebrowsingV4ThreatEntryMetadata
-    threatEntryType: typing_extensions.Literal[
+    threatEntryType: typing.Literal[
         "THREAT_ENTRY_TYPE_UNSPECIFIED",
         "URL",
         "EXECUTABLE",
@@ -411,7 +391,7 @@ class GoogleSecuritySafebrowsingV4ThreatMatch(typing_extensions.TypedDict, total
         "FILENAME",
         "CERT",
     ]
-    threatType: typing_extensions.Literal[
+    threatType: typing.Literal[
         "THREAT_TYPE_UNSPECIFIED",
         "MALWARE",
         "SOCIAL_ENGINEERING",

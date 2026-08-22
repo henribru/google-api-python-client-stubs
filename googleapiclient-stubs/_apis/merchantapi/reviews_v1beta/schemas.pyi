@@ -1,30 +1,28 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class CustomAttribute(typing_extensions.TypedDict, total=False):
+class CustomAttribute(typing.TypedDict, total=False):
     groupValues: _list[CustomAttribute]
     name: str
     value: str
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class ListMerchantReviewsResponse(typing_extensions.TypedDict, total=False):
+class ListMerchantReviewsResponse(typing.TypedDict, total=False):
     merchantReviews: _list[MerchantReview]
     nextPageToken: str
 
 @typing.type_check_only
-class ListProductReviewsResponse(typing_extensions.TypedDict, total=False):
+class ListProductReviewsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     productReviews: _list[ProductReview]
 
 @typing.type_check_only
-class MerchantReview(typing_extensions.TypedDict, total=False):
+class MerchantReview(typing.TypedDict, total=False):
     customAttributes: _list[CustomAttribute]
     dataSource: str
     merchantReviewAttributes: MerchantReviewAttributes
@@ -33,8 +31,8 @@ class MerchantReview(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class MerchantReviewAttributes(typing_extensions.TypedDict, total=False):
-    collectionMethod: typing_extensions.Literal[
+class MerchantReviewAttributes(typing.TypedDict, total=False):
+    collectionMethod: typing.Literal[
         "COLLECTION_METHOD_UNSPECIFIED",
         "MERCHANT_UNSOLICITED",
         "POINT_OF_SALE",
@@ -57,8 +55,8 @@ class MerchantReviewAttributes(typing_extensions.TypedDict, total=False):
     title: str
 
 @typing.type_check_only
-class MerchantReviewDestinationStatus(typing_extensions.TypedDict, total=False):
-    reportingContext: typing_extensions.Literal[
+class MerchantReviewDestinationStatus(typing.TypedDict, total=False):
+    reportingContext: typing.Literal[
         "REPORTING_CONTEXT_ENUM_UNSPECIFIED",
         "SHOPPING_ADS",
         "DISCOVERY_ADS",
@@ -82,13 +80,13 @@ class MerchantReviewDestinationStatus(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class MerchantReviewItemLevelIssue(typing_extensions.TypedDict, total=False):
+class MerchantReviewItemLevelIssue(typing.TypedDict, total=False):
     attribute: str
     code: str
     description: str
     detail: str
     documentation: str
-    reportingContext: typing_extensions.Literal[
+    reportingContext: typing.Literal[
         "REPORTING_CONTEXT_ENUM_UNSPECIFIED",
         "SHOPPING_ADS",
         "DISCOVERY_ADS",
@@ -111,23 +109,21 @@ class MerchantReviewItemLevelIssue(typing_extensions.TypedDict, total=False):
         "YOUTUBE_CHECKOUT",
     ]
     resolution: str
-    severity: typing_extensions.Literal[
-        "SEVERITY_UNSPECIFIED", "NOT_IMPACTED", "DISAPPROVED"
-    ]
+    severity: typing.Literal["SEVERITY_UNSPECIFIED", "NOT_IMPACTED", "DISAPPROVED"]
 
 @typing.type_check_only
-class MerchantReviewStatus(typing_extensions.TypedDict, total=False):
+class MerchantReviewStatus(typing.TypedDict, total=False):
     createTime: str
     destinationStatuses: _list[MerchantReviewDestinationStatus]
     itemLevelIssues: _list[MerchantReviewItemLevelIssue]
     lastUpdateTime: str
 
 @typing.type_check_only
-class ProductChange(typing_extensions.TypedDict, total=False):
+class ProductChange(typing.TypedDict, total=False):
     newValue: str
     oldValue: str
     regionCode: str
-    reportingContext: typing_extensions.Literal[
+    reportingContext: typing.Literal[
         "REPORTING_CONTEXT_ENUM_UNSPECIFIED",
         "SHOPPING_ADS",
         "DISCOVERY_ADS",
@@ -151,7 +147,7 @@ class ProductChange(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class ProductReview(typing_extensions.TypedDict, total=False):
+class ProductReview(typing.TypedDict, total=False):
     customAttributes: _list[CustomAttribute]
     dataSource: str
     name: str
@@ -160,11 +156,11 @@ class ProductReview(typing_extensions.TypedDict, total=False):
     productReviewStatus: ProductReviewStatus
 
 @typing.type_check_only
-class ProductReviewAttributes(typing_extensions.TypedDict, total=False):
+class ProductReviewAttributes(typing.TypedDict, total=False):
     aggregatorName: str
     asins: _list[str]
     brands: _list[str]
-    collectionMethod: typing_extensions.Literal[
+    collectionMethod: typing.Literal[
         "COLLECTION_METHOD_UNSPECIFIED", "UNSOLICITED", "POST_FULFILLMENT"
     ]
     cons: _list[str]
@@ -196,8 +192,8 @@ class ProductReviewAttributes(typing_extensions.TypedDict, total=False):
     transactionId: str
 
 @typing.type_check_only
-class ProductReviewDestinationStatus(typing_extensions.TypedDict, total=False):
-    reportingContext: typing_extensions.Literal[
+class ProductReviewDestinationStatus(typing.TypedDict, total=False):
+    reportingContext: typing.Literal[
         "REPORTING_CONTEXT_ENUM_UNSPECIFIED",
         "SHOPPING_ADS",
         "DISCOVERY_ADS",
@@ -221,13 +217,13 @@ class ProductReviewDestinationStatus(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class ProductReviewItemLevelIssue(typing_extensions.TypedDict, total=False):
+class ProductReviewItemLevelIssue(typing.TypedDict, total=False):
     attribute: str
     code: str
     description: str
     detail: str
     documentation: str
-    reportingContext: typing_extensions.Literal[
+    reportingContext: typing.Literal[
         "REPORTING_CONTEXT_ENUM_UNSPECIFIED",
         "SHOPPING_ADS",
         "DISCOVERY_ADS",
@@ -250,32 +246,28 @@ class ProductReviewItemLevelIssue(typing_extensions.TypedDict, total=False):
         "YOUTUBE_CHECKOUT",
     ]
     resolution: str
-    severity: typing_extensions.Literal[
-        "SEVERITY_UNSPECIFIED", "NOT_IMPACTED", "DISAPPROVED"
-    ]
+    severity: typing.Literal["SEVERITY_UNSPECIFIED", "NOT_IMPACTED", "DISAPPROVED"]
 
 @typing.type_check_only
-class ProductReviewStatus(typing_extensions.TypedDict, total=False):
+class ProductReviewStatus(typing.TypedDict, total=False):
     createTime: str
     destinationStatuses: _list[ProductReviewDestinationStatus]
     itemLevelIssues: _list[ProductReviewItemLevelIssue]
     lastUpdateTime: str
 
 @typing.type_check_only
-class ProductStatusChangeMessage(typing_extensions.TypedDict, total=False):
+class ProductStatusChangeMessage(typing.TypedDict, total=False):
     account: str
-    attribute: typing_extensions.Literal["ATTRIBUTE_UNSPECIFIED", "STATUS"]
+    attribute: typing.Literal["ATTRIBUTE_UNSPECIFIED", "STATUS"]
     changes: _list[ProductChange]
     eventTime: str
     expirationTime: str
     managingAccount: str
     resource: str
     resourceId: str
-    resourceType: typing_extensions.Literal[
-        "RESOURCE_UNSPECIFIED", "PRODUCT", "ACCOUNT_SERVICE"
-    ]
+    resourceType: typing.Literal["RESOURCE_UNSPECIFIED", "PRODUCT", "ACCOUNT_SERVICE"]
 
 @typing.type_check_only
-class ReviewLink(typing_extensions.TypedDict, total=False):
+class ReviewLink(typing.TypedDict, total=False):
     link: str
-    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "SINGLETON", "GROUP"]
+    type: typing.Literal["TYPE_UNSPECIFIED", "SINGLETON", "GROUP"]

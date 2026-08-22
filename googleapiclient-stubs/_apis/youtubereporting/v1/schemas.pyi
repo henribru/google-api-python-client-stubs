@@ -1,14 +1,12 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class GdataBlobstore2Info(typing_extensions.TypedDict, total=False):
+class GdataBlobstore2Info(typing.TypedDict, total=False):
     blobGeneration: str
     blobId: str
     downloadExternalReadToken: str
@@ -18,7 +16,7 @@ class GdataBlobstore2Info(typing_extensions.TypedDict, total=False):
     uploadMetadataContainer: str
 
 @typing.type_check_only
-class GdataCompositeMedia(typing_extensions.TypedDict, total=False):
+class GdataCompositeMedia(typing.TypedDict, total=False):
     blobRef: str
     blobstore2Info: GdataBlobstore2Info
     cosmoBinaryReference: str
@@ -28,13 +26,13 @@ class GdataCompositeMedia(typing_extensions.TypedDict, total=False):
     md5Hash: str
     objectId: GdataObjectId
     path: str
-    referenceType: typing_extensions.Literal[
+    referenceType: typing.Literal[
         "PATH", "BLOB_REF", "INLINE", "BIGSTORE_REF", "COSMO_BINARY_REFERENCE"
     ]
     sha1Hash: str
 
 @typing.type_check_only
-class GdataContentTypeInfo(typing_extensions.TypedDict, total=False):
+class GdataContentTypeInfo(typing.TypedDict, total=False):
     bestGuess: str
     fromBytes: str
     fromFileName: str
@@ -44,7 +42,7 @@ class GdataContentTypeInfo(typing_extensions.TypedDict, total=False):
     fusionIdDetectionMetadata: str
 
 @typing.type_check_only
-class GdataDiffChecksumsResponse(typing_extensions.TypedDict, total=False):
+class GdataDiffChecksumsResponse(typing.TypedDict, total=False):
     checksumsLocation: GdataCompositeMedia
     chunkSizeBytes: str
     objectLocation: GdataCompositeMedia
@@ -52,32 +50,32 @@ class GdataDiffChecksumsResponse(typing_extensions.TypedDict, total=False):
     objectVersion: str
 
 @typing.type_check_only
-class GdataDiffDownloadResponse(typing_extensions.TypedDict, total=False):
+class GdataDiffDownloadResponse(typing.TypedDict, total=False):
     objectLocation: GdataCompositeMedia
 
 @typing.type_check_only
-class GdataDiffUploadRequest(typing_extensions.TypedDict, total=False):
+class GdataDiffUploadRequest(typing.TypedDict, total=False):
     checksumsInfo: GdataCompositeMedia
     objectInfo: GdataCompositeMedia
     objectVersion: str
 
 @typing.type_check_only
-class GdataDiffUploadResponse(typing_extensions.TypedDict, total=False):
+class GdataDiffUploadResponse(typing.TypedDict, total=False):
     objectVersion: str
     originalObject: GdataCompositeMedia
 
 @typing.type_check_only
-class GdataDiffVersionResponse(typing_extensions.TypedDict, total=False):
+class GdataDiffVersionResponse(typing.TypedDict, total=False):
     objectSizeBytes: str
     objectVersion: str
 
 @typing.type_check_only
-class GdataDownloadParameters(typing_extensions.TypedDict, total=False):
+class GdataDownloadParameters(typing.TypedDict, total=False):
     allowGzipCompression: bool
     ignoreRange: bool
 
 @typing.type_check_only
-class GdataMedia(typing_extensions.TypedDict, total=False):
+class GdataMedia(typing.TypedDict, total=False):
     algorithm: str
     bigstoreObjectRef: str
     blobRef: str
@@ -103,7 +101,7 @@ class GdataMedia(typing_extensions.TypedDict, total=False):
     mediaId: str
     objectId: GdataObjectId
     path: str
-    referenceType: typing_extensions.Literal[
+    referenceType: typing.Literal[
         "PATH",
         "BLOB_REF",
         "INLINE",
@@ -125,13 +123,13 @@ class GdataMedia(typing_extensions.TypedDict, total=False):
     token: str
 
 @typing.type_check_only
-class GdataObjectId(typing_extensions.TypedDict, total=False):
+class GdataObjectId(typing.TypedDict, total=False):
     bucketName: str
     generation: str
     objectName: str
 
 @typing.type_check_only
-class Job(typing_extensions.TypedDict, total=False):
+class Job(typing.TypedDict, total=False):
     createTime: str
     expireTime: str
     id: str
@@ -140,22 +138,22 @@ class Job(typing_extensions.TypedDict, total=False):
     systemManaged: bool
 
 @typing.type_check_only
-class ListJobsResponse(typing_extensions.TypedDict, total=False):
+class ListJobsResponse(typing.TypedDict, total=False):
     jobs: _list[Job]
     nextPageToken: str
 
 @typing.type_check_only
-class ListReportTypesResponse(typing_extensions.TypedDict, total=False):
+class ListReportTypesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     reportTypes: _list[ReportType]
 
 @typing.type_check_only
-class ListReportsResponse(typing_extensions.TypedDict, total=False):
+class ListReportsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     reports: _list[Report]
 
 @typing.type_check_only
-class Report(typing_extensions.TypedDict, total=False):
+class Report(typing.TypedDict, total=False):
     createTime: str
     downloadUrl: str
     endTime: str
@@ -165,7 +163,7 @@ class Report(typing_extensions.TypedDict, total=False):
     startTime: str
 
 @typing.type_check_only
-class ReportType(typing_extensions.TypedDict, total=False):
+class ReportType(typing.TypedDict, total=False):
     deprecateTime: str
     id: str
     name: str

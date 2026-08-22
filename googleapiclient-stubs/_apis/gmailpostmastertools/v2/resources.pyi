@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -79,7 +78,7 @@ class PostmasterToolsResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            verificationMethod: typing_extensions.Literal[
+            verificationMethod: typing.Literal[
                 "DOMAIN_VERIFICATION_METHOD_UNSPECIFIED", "TXT", "CNAME"
             ]
             | None = ...,

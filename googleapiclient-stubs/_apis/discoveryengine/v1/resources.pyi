@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -841,7 +840,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                             getWidgetConfigRequestOption_turnOffCollectionComponents: bool
                             | None = ...,
                             languageCode: str | None = ...,
-                            modelInfoView: typing_extensions.Literal[
+                            modelInfoView: typing.Literal[
                                 "MODEL_INFO_VIEW_UNSPECIFIED", "END_USER_WEB", "ADMIN"
                             ]
                             | None = ...,
@@ -1411,7 +1410,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                             getWidgetConfigRequestOption_turnOffCollectionComponents: bool
                             | None = ...,
                             languageCode: str | None = ...,
-                            modelInfoView: typing_extensions.Literal[
+                            modelInfoView: typing.Literal[
                                 "MODEL_INFO_VIEW_UNSPECIFIED", "END_USER_WEB", "ADMIN"
                             ]
                             | None = ...,
@@ -2147,7 +2146,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                         getWidgetConfigRequestOption_turnOffCollectionComponents: bool
                         | None = ...,
                         languageCode: str | None = ...,
-                        modelInfoView: typing_extensions.Literal[
+                        modelInfoView: typing.Literal[
                             "MODEL_INFO_VIEW_UNSPECIFIED", "END_USER_WEB", "ADMIN"
                         ]
                         | None = ...,

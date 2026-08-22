@@ -1,27 +1,25 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class ListLogicalProductVariantsResponse(typing_extensions.TypedDict, total=False):
+class ListLogicalProductVariantsResponse(typing.TypedDict, total=False):
     logicalProductVariants: _list[LogicalProductVariant]
     nextPageToken: str
 
 @typing.type_check_only
-class ListLogicalProductsResponse(typing_extensions.TypedDict, total=False):
+class ListLogicalProductsResponse(typing.TypedDict, total=False):
     logicalProducts: _list[LogicalProduct]
     nextPageToken: str
 
 @typing.type_check_only
-class ListProductSuitesResponse(typing_extensions.TypedDict, total=False):
+class ListProductSuitesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     productSuites: _list[ProductSuite]
 
 @typing.type_check_only
-class LogicalProduct(typing_extensions.TypedDict, total=False):
-    lifecycleState: typing_extensions.Literal[
+class LogicalProduct(typing.TypedDict, total=False):
+    lifecycleState: typing.Literal[
         "LIFECYCLE_STATE_UNSPECIFIED",
         "LIFECYCLE_STATE_PUBLIC_PREVIEW",
         "LIFECYCLE_STATE_PRIVATE_GA",
@@ -36,8 +34,8 @@ class LogicalProduct(typing_extensions.TypedDict, total=False):
     variants: _list[str]
 
 @typing.type_check_only
-class LogicalProductVariant(typing_extensions.TypedDict, total=False):
-    lifecycleState: typing_extensions.Literal[
+class LogicalProductVariant(typing.TypedDict, total=False):
+    lifecycleState: typing.Literal[
         "LIFECYCLE_STATE_UNSPECIFIED",
         "LIFECYCLE_STATE_PUBLIC_PREVIEW",
         "LIFECYCLE_STATE_PRIVATE_GA",
@@ -50,13 +48,13 @@ class LogicalProductVariant(typing_extensions.TypedDict, total=False):
     title: str
 
 @typing.type_check_only
-class LookupEntityResponse(typing_extensions.TypedDict, total=False):
+class LookupEntityResponse(typing.TypedDict, total=False):
     logicalProduct: LogicalProduct
     logicalProductVariant: LogicalProductVariant
     productSuite: ProductSuite
 
 @typing.type_check_only
-class ProductSuite(typing_extensions.TypedDict, total=False):
+class ProductSuite(typing.TypedDict, total=False):
     logicalProducts: _list[str]
     name: str
     replaced: bool

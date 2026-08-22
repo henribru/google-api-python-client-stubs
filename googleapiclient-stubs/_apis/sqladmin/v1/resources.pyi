@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -134,7 +133,7 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
             self,
             *,
             databaseVersion: str | None = ...,
-            flagScope: typing_extensions.Literal[
+            flagScope: typing.Literal[
                 "SQL_FLAG_SCOPE_UNSPECIFIED",
                 "SQL_FLAG_SCOPE_DATABASE",
                 "SQL_FLAG_SCOPE_CONNECTION_POOL",
@@ -319,7 +318,7 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             instance: str,
-            mode: typing_extensions.Literal[
+            mode: typing.Literal[
                 "RESET_SSL_MODE_UNSPECIFIED", "ALL", "SYNC_FROM_PRIMARY"
             ]
             | None = ...,

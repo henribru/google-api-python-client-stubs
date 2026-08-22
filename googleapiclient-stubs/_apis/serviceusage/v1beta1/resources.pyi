@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -46,13 +45,13 @@ class ServiceUsageResource(googleapiclient.discovery.Resource):
                         parent: str,
                         body: QuotaOverride,
                         force: bool | None = ...,
-                        forceOnly: typing_extensions.Literal[
+                        forceOnly: typing.Literal[
                             "QUOTA_SAFETY_CHECK_UNSPECIFIED",
                             "LIMIT_DECREASE_BELOW_USAGE",
                             "LIMIT_DECREASE_PERCENTAGE_TOO_HIGH",
                         ]
                         | _list[
-                            typing_extensions.Literal[
+                            typing.Literal[
                                 "QUOTA_SAFETY_CHECK_UNSPECIFIED",
                                 "LIMIT_DECREASE_BELOW_USAGE",
                                 "LIMIT_DECREASE_PERCENTAGE_TOO_HIGH",
@@ -66,13 +65,13 @@ class ServiceUsageResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         force: bool | None = ...,
-                        forceOnly: typing_extensions.Literal[
+                        forceOnly: typing.Literal[
                             "QUOTA_SAFETY_CHECK_UNSPECIFIED",
                             "LIMIT_DECREASE_BELOW_USAGE",
                             "LIMIT_DECREASE_PERCENTAGE_TOO_HIGH",
                         ]
                         | _list[
-                            typing_extensions.Literal[
+                            typing.Literal[
                                 "QUOTA_SAFETY_CHECK_UNSPECIFIED",
                                 "LIMIT_DECREASE_BELOW_USAGE",
                                 "LIMIT_DECREASE_PERCENTAGE_TOO_HIGH",
@@ -100,13 +99,13 @@ class ServiceUsageResource(googleapiclient.discovery.Resource):
                         name: str,
                         body: QuotaOverride,
                         force: bool | None = ...,
-                        forceOnly: typing_extensions.Literal[
+                        forceOnly: typing.Literal[
                             "QUOTA_SAFETY_CHECK_UNSPECIFIED",
                             "LIMIT_DECREASE_BELOW_USAGE",
                             "LIMIT_DECREASE_PERCENTAGE_TOO_HIGH",
                         ]
                         | _list[
-                            typing_extensions.Literal[
+                            typing.Literal[
                                 "QUOTA_SAFETY_CHECK_UNSPECIFIED",
                                 "LIMIT_DECREASE_BELOW_USAGE",
                                 "LIMIT_DECREASE_PERCENTAGE_TOO_HIGH",
@@ -125,13 +124,13 @@ class ServiceUsageResource(googleapiclient.discovery.Resource):
                         parent: str,
                         body: QuotaOverride,
                         force: bool | None = ...,
-                        forceOnly: typing_extensions.Literal[
+                        forceOnly: typing.Literal[
                             "QUOTA_SAFETY_CHECK_UNSPECIFIED",
                             "LIMIT_DECREASE_BELOW_USAGE",
                             "LIMIT_DECREASE_PERCENTAGE_TOO_HIGH",
                         ]
                         | _list[
-                            typing_extensions.Literal[
+                            typing.Literal[
                                 "QUOTA_SAFETY_CHECK_UNSPECIFIED",
                                 "LIMIT_DECREASE_BELOW_USAGE",
                                 "LIMIT_DECREASE_PERCENTAGE_TOO_HIGH",
@@ -145,13 +144,13 @@ class ServiceUsageResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         force: bool | None = ...,
-                        forceOnly: typing_extensions.Literal[
+                        forceOnly: typing.Literal[
                             "QUOTA_SAFETY_CHECK_UNSPECIFIED",
                             "LIMIT_DECREASE_BELOW_USAGE",
                             "LIMIT_DECREASE_PERCENTAGE_TOO_HIGH",
                         ]
                         | _list[
-                            typing_extensions.Literal[
+                            typing.Literal[
                                 "QUOTA_SAFETY_CHECK_UNSPECIFIED",
                                 "LIMIT_DECREASE_BELOW_USAGE",
                                 "LIMIT_DECREASE_PERCENTAGE_TOO_HIGH",
@@ -179,13 +178,13 @@ class ServiceUsageResource(googleapiclient.discovery.Resource):
                         name: str,
                         body: QuotaOverride,
                         force: bool | None = ...,
-                        forceOnly: typing_extensions.Literal[
+                        forceOnly: typing.Literal[
                             "QUOTA_SAFETY_CHECK_UNSPECIFIED",
                             "LIMIT_DECREASE_BELOW_USAGE",
                             "LIMIT_DECREASE_PERCENTAGE_TOO_HIGH",
                         ]
                         | _list[
-                            typing_extensions.Literal[
+                            typing.Literal[
                                 "QUOTA_SAFETY_CHECK_UNSPECIFIED",
                                 "LIMIT_DECREASE_BELOW_USAGE",
                                 "LIMIT_DECREASE_PERCENTAGE_TOO_HIGH",
@@ -200,9 +199,7 @@ class ServiceUsageResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    view: typing_extensions.Literal[
-                        "QUOTA_VIEW_UNSPECIFIED", "BASIC", "FULL"
-                    ]
+                    view: typing.Literal["QUOTA_VIEW_UNSPECIFIED", "BASIC", "FULL"]
                     | None = ...,
                     **kwargs: typing.Any,
                 ) -> ConsumerQuotaLimitHttpRequest: ...
@@ -213,9 +210,7 @@ class ServiceUsageResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                view: typing_extensions.Literal[
-                    "QUOTA_VIEW_UNSPECIFIED", "BASIC", "FULL"
-                ]
+                view: typing.Literal["QUOTA_VIEW_UNSPECIFIED", "BASIC", "FULL"]
                 | None = ...,
                 **kwargs: typing.Any,
             ) -> ConsumerQuotaMetricHttpRequest: ...
@@ -239,9 +234,7 @@ class ServiceUsageResource(googleapiclient.discovery.Resource):
                 parent: str,
                 pageSize: int | None = ...,
                 pageToken: str | None = ...,
-                view: typing_extensions.Literal[
-                    "QUOTA_VIEW_UNSPECIFIED", "BASIC", "FULL"
-                ]
+                view: typing.Literal["QUOTA_VIEW_UNSPECIFIED", "BASIC", "FULL"]
                 | None = ...,
                 **kwargs: typing.Any,
             ) -> ListConsumerQuotaMetricsResponseHttpRequest: ...

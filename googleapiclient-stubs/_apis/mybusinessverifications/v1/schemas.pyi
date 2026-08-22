@@ -1,64 +1,60 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class AddressVerificationData(typing_extensions.TypedDict, total=False):
+class AddressVerificationData(typing.TypedDict, total=False):
     address: PostalAddress
     business: str
     expectedDeliveryDaysRegion: int
 
 @typing.type_check_only
-class CompleteVerificationRequest(typing_extensions.TypedDict, total=False):
+class CompleteVerificationRequest(typing.TypedDict, total=False):
     pin: str
 
 @typing.type_check_only
-class CompleteVerificationResponse(typing_extensions.TypedDict, total=False):
+class CompleteVerificationResponse(typing.TypedDict, total=False):
     verification: Verification
 
 @typing.type_check_only
-class ComplyWithGuidelines(typing_extensions.TypedDict, total=False):
-    recommendationReason: typing_extensions.Literal[
+class ComplyWithGuidelines(typing.TypedDict, total=False):
+    recommendationReason: typing.Literal[
         "RECOMMENDATION_REASON_UNSPECIFIED",
         "BUSINESS_LOCATION_SUSPENDED",
         "BUSINESS_LOCATION_DISABLED",
     ]
 
 @typing.type_check_only
-class EmailVerificationData(typing_extensions.TypedDict, total=False):
+class EmailVerificationData(typing.TypedDict, total=False):
     domain: str
     isUserNameEditable: bool
     user: str
 
 @typing.type_check_only
-class FetchVerificationOptionsRequest(typing_extensions.TypedDict, total=False):
+class FetchVerificationOptionsRequest(typing.TypedDict, total=False):
     context: ServiceBusinessContext
     languageCode: str
 
 @typing.type_check_only
-class FetchVerificationOptionsResponse(typing_extensions.TypedDict, total=False):
+class FetchVerificationOptionsResponse(typing.TypedDict, total=False):
     options: _list[VerificationOption]
 
 @typing.type_check_only
-class GenerateInstantVerificationTokenRequest(typing_extensions.TypedDict, total=False):
+class GenerateInstantVerificationTokenRequest(typing.TypedDict, total=False):
     locationId: str
 
 @typing.type_check_only
-class GenerateInstantVerificationTokenResponse(
-    typing_extensions.TypedDict, total=False
-):
+class GenerateInstantVerificationTokenResponse(typing.TypedDict, total=False):
     instantVerificationToken: str
-    result: typing_extensions.Literal["RESULT_UNSPECIFIED", "SUCCEEDED", "FAILED"]
+    result: typing.Literal["RESULT_UNSPECIFIED", "SUCCEEDED", "FAILED"]
 
 @typing.type_check_only
-class ListVerificationsResponse(typing_extensions.TypedDict, total=False):
+class ListVerificationsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     verifications: _list[Verification]
 
 @typing.type_check_only
-class PostalAddress(typing_extensions.TypedDict, total=False):
+class PostalAddress(typing.TypedDict, total=False):
     addressLines: _list[str]
     administrativeArea: str
     languageCode: str
@@ -72,17 +68,17 @@ class PostalAddress(typing_extensions.TypedDict, total=False):
     sublocality: str
 
 @typing.type_check_only
-class ResolveOwnershipConflict(typing_extensions.TypedDict, total=False): ...
+class ResolveOwnershipConflict(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class ServiceBusinessContext(typing_extensions.TypedDict, total=False):
+class ServiceBusinessContext(typing.TypedDict, total=False):
     address: PostalAddress
 
 @typing.type_check_only
-class Verification(typing_extensions.TypedDict, total=False):
+class Verification(typing.TypedDict, total=False):
     announcement: str
     createTime: str
-    method: typing_extensions.Literal[
+    method: typing.Literal[
         "VERIFICATION_METHOD_UNSPECIFIED",
         "ADDRESS",
         "EMAIL",
@@ -92,17 +88,15 @@ class Verification(typing_extensions.TypedDict, total=False):
         "TRUSTED_PARTNER",
     ]
     name: str
-    state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "PENDING", "COMPLETED", "FAILED"
-    ]
+    state: typing.Literal["STATE_UNSPECIFIED", "PENDING", "COMPLETED", "FAILED"]
 
 @typing.type_check_only
-class VerificationOption(typing_extensions.TypedDict, total=False):
+class VerificationOption(typing.TypedDict, total=False):
     addressData: AddressVerificationData
     announcement: str
     emailData: EmailVerificationData
     phoneNumber: str
-    verificationMethod: typing_extensions.Literal[
+    verificationMethod: typing.Literal[
         "VERIFICATION_METHOD_UNSPECIFIED",
         "ADDRESS",
         "EMAIL",
@@ -113,20 +107,20 @@ class VerificationOption(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class VerificationToken(typing_extensions.TypedDict, total=False):
+class VerificationToken(typing.TypedDict, total=False):
     tokenString: str
 
 @typing.type_check_only
-class Verify(typing_extensions.TypedDict, total=False):
+class Verify(typing.TypedDict, total=False):
     hasPendingVerification: bool
 
 @typing.type_check_only
-class VerifyLocationRequest(typing_extensions.TypedDict, total=False):
+class VerifyLocationRequest(typing.TypedDict, total=False):
     context: ServiceBusinessContext
     emailAddress: str
     languageCode: str
     mailerContact: str
-    method: typing_extensions.Literal[
+    method: typing.Literal[
         "VERIFICATION_METHOD_UNSPECIFIED",
         "ADDRESS",
         "EMAIL",
@@ -140,11 +134,11 @@ class VerifyLocationRequest(typing_extensions.TypedDict, total=False):
     trustedPartnerToken: str
 
 @typing.type_check_only
-class VerifyLocationResponse(typing_extensions.TypedDict, total=False):
+class VerifyLocationResponse(typing.TypedDict, total=False):
     verification: Verification
 
 @typing.type_check_only
-class VoiceOfMerchantState(typing_extensions.TypedDict, total=False):
+class VoiceOfMerchantState(typing.TypedDict, total=False):
     complyWithGuidelines: ComplyWithGuidelines
     hasBusinessAuthority: bool
     hasVoiceOfMerchant: bool
@@ -153,4 +147,4 @@ class VoiceOfMerchantState(typing_extensions.TypedDict, total=False):
     waitForVoiceOfMerchant: WaitForVoiceOfMerchant
 
 @typing.type_check_only
-class WaitForVoiceOfMerchant(typing_extensions.TypedDict, total=False): ...
+class WaitForVoiceOfMerchant(typing.TypedDict, total=False): ...

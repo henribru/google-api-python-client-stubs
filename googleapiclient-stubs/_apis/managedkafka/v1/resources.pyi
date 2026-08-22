@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -78,7 +77,7 @@ class ManagedKafkaResource(googleapiclient.discovery.Resource):
                         filter: str | None = ...,
                         pageSize: int | None = ...,
                         pageToken: str | None = ...,
-                        view: typing_extensions.Literal[
+                        view: typing.Literal[
                             "CONSUMER_GROUP_VIEW_UNSPECIFIED",
                             "CONSUMER_GROUP_VIEW_BASIC",
                             "CONSUMER_GROUP_VIEW_FULL",
@@ -158,7 +157,7 @@ class ManagedKafkaResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    view: typing_extensions.Literal[
+                    view: typing.Literal[
                         "CLUSTER_VIEW_UNSPECIFIED",
                         "CLUSTER_VIEW_BASIC",
                         "CLUSTER_VIEW_FULL",
@@ -703,7 +702,7 @@ class ManagedKafkaResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    view: typing_extensions.Literal[
+                    view: typing.Literal[
                         "SCHEMA_REGISTRY_VIEW_UNSPECIFIED",
                         "SCHEMA_REGISTRY_VIEW_BASIC",
                         "SCHEMA_REGISTRY_VIEW_FULL",

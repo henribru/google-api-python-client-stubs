@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -118,7 +117,7 @@ class StorageResource(googleapiclient.discovery.Resource):
             generation: str | None = ...,
             ifMetagenerationMatch: str | None = ...,
             ifMetagenerationNotMatch: str | None = ...,
-            projection: typing_extensions.Literal["full", "noAcl"] | None = ...,
+            projection: typing.Literal["full", "noAcl"] | None = ...,
             softDeleted: bool | None = ...,
             userProject: str | None = ...,
             **kwargs: typing.Any,
@@ -140,7 +139,7 @@ class StorageResource(googleapiclient.discovery.Resource):
             project: str,
             body: Bucket,
             enableObjectRetention: bool | None = ...,
-            predefinedAcl: typing_extensions.Literal[
+            predefinedAcl: typing.Literal[
                 "authenticatedRead",
                 "private",
                 "projectPrivate",
@@ -148,7 +147,7 @@ class StorageResource(googleapiclient.discovery.Resource):
                 "publicReadWrite",
             ]
             | None = ...,
-            predefinedDefaultObjectAcl: typing_extensions.Literal[
+            predefinedDefaultObjectAcl: typing.Literal[
                 "authenticatedRead",
                 "bucketOwnerFullControl",
                 "bucketOwnerRead",
@@ -157,7 +156,7 @@ class StorageResource(googleapiclient.discovery.Resource):
                 "publicRead",
             ]
             | None = ...,
-            projection: typing_extensions.Literal["full", "noAcl"] | None = ...,
+            projection: typing.Literal["full", "noAcl"] | None = ...,
             userProject: str | None = ...,
             **kwargs: typing.Any,
         ) -> BucketHttpRequest: ...
@@ -168,7 +167,7 @@ class StorageResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             pageToken: str | None = ...,
             prefix: str | None = ...,
-            projection: typing_extensions.Literal["full", "noAcl"] | None = ...,
+            projection: typing.Literal["full", "noAcl"] | None = ...,
             returnPartialSuccess: bool | None = ...,
             softDeleted: bool | None = ...,
             userProject: str | None = ...,
@@ -192,7 +191,7 @@ class StorageResource(googleapiclient.discovery.Resource):
             body: Bucket,
             ifMetagenerationMatch: str | None = ...,
             ifMetagenerationNotMatch: str | None = ...,
-            predefinedAcl: typing_extensions.Literal[
+            predefinedAcl: typing.Literal[
                 "authenticatedRead",
                 "private",
                 "projectPrivate",
@@ -200,7 +199,7 @@ class StorageResource(googleapiclient.discovery.Resource):
                 "publicReadWrite",
             ]
             | None = ...,
-            predefinedDefaultObjectAcl: typing_extensions.Literal[
+            predefinedDefaultObjectAcl: typing.Literal[
                 "authenticatedRead",
                 "bucketOwnerFullControl",
                 "bucketOwnerRead",
@@ -209,7 +208,7 @@ class StorageResource(googleapiclient.discovery.Resource):
                 "publicRead",
             ]
             | None = ...,
-            projection: typing_extensions.Literal["full", "noAcl"] | None = ...,
+            projection: typing.Literal["full", "noAcl"] | None = ...,
             userProject: str | None = ...,
             **kwargs: typing.Any,
         ) -> BucketHttpRequest: ...
@@ -221,7 +220,7 @@ class StorageResource(googleapiclient.discovery.Resource):
             *,
             bucket: str,
             generation: str,
-            projection: typing_extensions.Literal["full", "noAcl"] | None = ...,
+            projection: typing.Literal["full", "noAcl"] | None = ...,
             userProject: str | None = ...,
             **kwargs: typing.Any,
         ) -> BucketHttpRequest: ...
@@ -248,7 +247,7 @@ class StorageResource(googleapiclient.discovery.Resource):
             body: Bucket,
             ifMetagenerationMatch: str | None = ...,
             ifMetagenerationNotMatch: str | None = ...,
-            predefinedAcl: typing_extensions.Literal[
+            predefinedAcl: typing.Literal[
                 "authenticatedRead",
                 "private",
                 "projectPrivate",
@@ -256,7 +255,7 @@ class StorageResource(googleapiclient.discovery.Resource):
                 "publicReadWrite",
             ]
             | None = ...,
-            predefinedDefaultObjectAcl: typing_extensions.Literal[
+            predefinedDefaultObjectAcl: typing.Literal[
                 "authenticatedRead",
                 "bucketOwnerFullControl",
                 "bucketOwnerRead",
@@ -265,7 +264,7 @@ class StorageResource(googleapiclient.discovery.Resource):
                 "publicRead",
             ]
             | None = ...,
-            projection: typing_extensions.Literal["full", "noAcl"] | None = ...,
+            projection: typing.Literal["full", "noAcl"] | None = ...,
             userProject: str | None = ...,
             **kwargs: typing.Any,
         ) -> BucketHttpRequest: ...
@@ -574,7 +573,7 @@ class StorageResource(googleapiclient.discovery.Resource):
             destinationBucket: str,
             destinationObject: str,
             body: ComposeRequest,
-            destinationPredefinedAcl: typing_extensions.Literal[
+            destinationPredefinedAcl: typing.Literal[
                 "authenticatedRead",
                 "bucketOwnerFullControl",
                 "bucketOwnerRead",
@@ -599,7 +598,7 @@ class StorageResource(googleapiclient.discovery.Resource):
             destinationObject: str,
             body: Object,
             destinationKmsKeyName: str | None = ...,
-            destinationPredefinedAcl: typing_extensions.Literal[
+            destinationPredefinedAcl: typing.Literal[
                 "authenticatedRead",
                 "bucketOwnerFullControl",
                 "bucketOwnerRead",
@@ -616,7 +615,7 @@ class StorageResource(googleapiclient.discovery.Resource):
             ifSourceGenerationNotMatch: str | None = ...,
             ifSourceMetagenerationMatch: str | None = ...,
             ifSourceMetagenerationNotMatch: str | None = ...,
-            projection: typing_extensions.Literal["full", "noAcl"] | None = ...,
+            projection: typing.Literal["full", "noAcl"] | None = ...,
             sourceGeneration: str | None = ...,
             userProject: str | None = ...,
             **kwargs: typing.Any,
@@ -644,7 +643,7 @@ class StorageResource(googleapiclient.discovery.Resource):
             ifGenerationNotMatch: str | None = ...,
             ifMetagenerationMatch: str | None = ...,
             ifMetagenerationNotMatch: str | None = ...,
-            projection: typing_extensions.Literal["full", "noAcl"] | None = ...,
+            projection: typing.Literal["full", "noAcl"] | None = ...,
             restoreToken: str | None = ...,
             softDeleted: bool | None = ...,
             userProject: str | None = ...,
@@ -660,7 +659,7 @@ class StorageResource(googleapiclient.discovery.Resource):
             ifGenerationNotMatch: str | None = ...,
             ifMetagenerationMatch: str | None = ...,
             ifMetagenerationNotMatch: str | None = ...,
-            projection: typing_extensions.Literal["full", "noAcl"] | None = ...,
+            projection: typing.Literal["full", "noAcl"] | None = ...,
             restoreToken: str | None = ...,
             softDeleted: bool | None = ...,
             userProject: str | None = ...,
@@ -687,7 +686,7 @@ class StorageResource(googleapiclient.discovery.Resource):
             ifMetagenerationNotMatch: str | None = ...,
             kmsKeyName: str | None = ...,
             name: str | None = ...,
-            predefinedAcl: typing_extensions.Literal[
+            predefinedAcl: typing.Literal[
                 "authenticatedRead",
                 "bucketOwnerFullControl",
                 "bucketOwnerRead",
@@ -696,7 +695,7 @@ class StorageResource(googleapiclient.discovery.Resource):
                 "publicRead",
             ]
             | None = ...,
-            projection: typing_extensions.Literal["full", "noAcl"] | None = ...,
+            projection: typing.Literal["full", "noAcl"] | None = ...,
             userProject: str | None = ...,
             **kwargs: typing.Any,
         ) -> ObjectHttpRequest: ...
@@ -713,7 +712,7 @@ class StorageResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             pageToken: str | None = ...,
             prefix: str | None = ...,
-            projection: typing_extensions.Literal["full", "noAcl"] | None = ...,
+            projection: typing.Literal["full", "noAcl"] | None = ...,
             softDeleted: bool | None = ...,
             startOffset: str | None = ...,
             userProject: str | None = ...,
@@ -737,7 +736,7 @@ class StorageResource(googleapiclient.discovery.Resource):
             ifSourceGenerationNotMatch: str | None = ...,
             ifSourceMetagenerationMatch: str | None = ...,
             ifSourceMetagenerationNotMatch: str | None = ...,
-            projection: typing_extensions.Literal["full", "noAcl"] | None = ...,
+            projection: typing.Literal["full", "noAcl"] | None = ...,
             userProject: str | None = ...,
             **kwargs: typing.Any,
         ) -> ObjectHttpRequest: ...
@@ -753,7 +752,7 @@ class StorageResource(googleapiclient.discovery.Resource):
             ifMetagenerationMatch: str | None = ...,
             ifMetagenerationNotMatch: str | None = ...,
             overrideUnlockedRetention: bool | None = ...,
-            predefinedAcl: typing_extensions.Literal[
+            predefinedAcl: typing.Literal[
                 "authenticatedRead",
                 "bucketOwnerFullControl",
                 "bucketOwnerRead",
@@ -762,7 +761,7 @@ class StorageResource(googleapiclient.discovery.Resource):
                 "publicRead",
             ]
             | None = ...,
-            projection: typing_extensions.Literal["full", "noAcl"] | None = ...,
+            projection: typing.Literal["full", "noAcl"] | None = ...,
             userProject: str | None = ...,
             **kwargs: typing.Any,
         ) -> ObjectHttpRequest: ...
@@ -777,7 +776,7 @@ class StorageResource(googleapiclient.discovery.Resource):
             ifGenerationNotMatch: str | None = ...,
             ifMetagenerationMatch: str | None = ...,
             ifMetagenerationNotMatch: str | None = ...,
-            projection: typing_extensions.Literal["full", "noAcl"] | None = ...,
+            projection: typing.Literal["full", "noAcl"] | None = ...,
             restoreToken: str | None = ...,
             userProject: str | None = ...,
             **kwargs: typing.Any,
@@ -791,7 +790,7 @@ class StorageResource(googleapiclient.discovery.Resource):
             destinationObject: str,
             body: Object,
             destinationKmsKeyName: str | None = ...,
-            destinationPredefinedAcl: typing_extensions.Literal[
+            destinationPredefinedAcl: typing.Literal[
                 "authenticatedRead",
                 "bucketOwnerFullControl",
                 "bucketOwnerRead",
@@ -810,7 +809,7 @@ class StorageResource(googleapiclient.discovery.Resource):
             ifSourceMetagenerationMatch: str | None = ...,
             ifSourceMetagenerationNotMatch: str | None = ...,
             maxBytesRewrittenPerCall: str | None = ...,
-            projection: typing_extensions.Literal["full", "noAcl"] | None = ...,
+            projection: typing.Literal["full", "noAcl"] | None = ...,
             rewriteToken: str | None = ...,
             sourceGeneration: str | None = ...,
             userProject: str | None = ...,
@@ -848,7 +847,7 @@ class StorageResource(googleapiclient.discovery.Resource):
             ifMetagenerationMatch: str | None = ...,
             ifMetagenerationNotMatch: str | None = ...,
             overrideUnlockedRetention: bool | None = ...,
-            predefinedAcl: typing_extensions.Literal[
+            predefinedAcl: typing.Literal[
                 "authenticatedRead",
                 "bucketOwnerFullControl",
                 "bucketOwnerRead",
@@ -857,7 +856,7 @@ class StorageResource(googleapiclient.discovery.Resource):
                 "publicRead",
             ]
             | None = ...,
-            projection: typing_extensions.Literal["full", "noAcl"] | None = ...,
+            projection: typing.Literal["full", "noAcl"] | None = ...,
             userProject: str | None = ...,
             **kwargs: typing.Any,
         ) -> ObjectHttpRequest: ...

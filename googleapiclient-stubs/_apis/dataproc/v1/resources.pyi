@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -158,7 +157,7 @@ class DataprocResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        applicationStatus: typing_extensions.Literal[
+                        applicationStatus: typing.Literal[
                             "APPLICATION_STATUS_UNSPECIFIED",
                             "APPLICATION_STATUS_RUNNING",
                             "APPLICATION_STATUS_COMPLETED",
@@ -202,7 +201,7 @@ class DataprocResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        executorStatus: typing_extensions.Literal[
+                        executorStatus: typing.Literal[
                             "EXECUTOR_STATUS_UNSPECIFIED",
                             "EXECUTOR_STATUS_ACTIVE",
                             "EXECUTOR_STATUS_DEAD",
@@ -222,7 +221,7 @@ class DataprocResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        jobStatus: typing_extensions.Literal[
+                        jobStatus: typing.Literal[
                             "JOB_EXECUTION_STATUS_UNSPECIFIED",
                             "JOB_EXECUTION_STATUS_RUNNING",
                             "JOB_EXECUTION_STATUS_SUCCEEDED",
@@ -282,7 +281,7 @@ class DataprocResource(googleapiclient.discovery.Resource):
                         sortRuntime: bool | None = ...,
                         stageAttemptId: int | None = ...,
                         stageId: str | None = ...,
-                        taskStatus: typing_extensions.Literal[
+                        taskStatus: typing.Literal[
                             "TASK_STATUS_UNSPECIFIED",
                             "TASK_STATUS_RUNNING",
                             "TASK_STATUS_SUCCESS",
@@ -326,7 +325,7 @@ class DataprocResource(googleapiclient.discovery.Resource):
                         pageSize: int | None = ...,
                         pageToken: str | None = ...,
                         parent: str | None = ...,
-                        stageStatus: typing_extensions.Literal[
+                        stageStatus: typing.Literal[
                             "STAGE_STATUS_UNSPECIFIED",
                             "STAGE_STATUS_ACTIVE",
                             "STAGE_STATUS_COMPLETE",
@@ -563,7 +562,7 @@ class DataprocResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        applicationStatus: typing_extensions.Literal[
+                        applicationStatus: typing.Literal[
                             "APPLICATION_STATUS_UNSPECIFIED",
                             "APPLICATION_STATUS_RUNNING",
                             "APPLICATION_STATUS_COMPLETED",
@@ -605,7 +604,7 @@ class DataprocResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        executorStatus: typing_extensions.Literal[
+                        executorStatus: typing.Literal[
                             "EXECUTOR_STATUS_UNSPECIFIED",
                             "EXECUTOR_STATUS_ACTIVE",
                             "EXECUTOR_STATUS_DEAD",
@@ -628,7 +627,7 @@ class DataprocResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         jobIds: str | _list[str] | None = ...,
-                        jobStatus: typing_extensions.Literal[
+                        jobStatus: typing.Literal[
                             "JOB_EXECUTION_STATUS_UNSPECIFIED",
                             "JOB_EXECUTION_STATUS_RUNNING",
                             "JOB_EXECUTION_STATUS_SUCCEEDED",
@@ -697,7 +696,7 @@ class DataprocResource(googleapiclient.discovery.Resource):
                         sortRuntime: bool | None = ...,
                         stageAttemptId: int | None = ...,
                         stageId: str | None = ...,
-                        taskStatus: typing_extensions.Literal[
+                        taskStatus: typing.Literal[
                             "TASK_STATUS_UNSPECIFIED",
                             "TASK_STATUS_RUNNING",
                             "TASK_STATUS_SUCCESS",
@@ -745,7 +744,7 @@ class DataprocResource(googleapiclient.discovery.Resource):
                         pageToken: str | None = ...,
                         parent: str | None = ...,
                         stageIds: str | _list[str] | None = ...,
-                        stageStatus: typing_extensions.Literal[
+                        stageStatus: typing.Literal[
                             "STAGE_STATUS_UNSPECIFIED",
                             "STAGE_STATUS_ACTIVE",
                             "STAGE_STATUS_COMPLETE",
@@ -1008,7 +1007,7 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     projectId: str,
                     region: str,
                     body: Cluster,
-                    actionOnFailedPrimaryWorkers: typing_extensions.Literal[
+                    actionOnFailedPrimaryWorkers: typing.Literal[
                         "FAILURE_ACTION_UNSPECIFIED", "NO_ACTION", "DELETE"
                     ]
                     | None = ...,
@@ -1170,9 +1169,7 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     region: str,
                     clusterName: str | None = ...,
                     filter: str | None = ...,
-                    jobStateMatcher: typing_extensions.Literal[
-                        "ALL", "ACTIVE", "NON_ACTIVE"
-                    ]
+                    jobStateMatcher: typing.Literal["ALL", "ACTIVE", "NON_ACTIVE"]
                     | None = ...,
                     pageSize: int | None = ...,
                     pageToken: str | None = ...,

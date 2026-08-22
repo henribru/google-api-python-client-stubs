@@ -1,15 +1,13 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class AppEngineHttpTarget(typing_extensions.TypedDict, total=False):
+class AppEngineHttpTarget(typing.TypedDict, total=False):
     appEngineRouting: AppEngineRouting
     body: str
     headers: dict[str, typing.Any]
-    httpMethod: typing_extensions.Literal[
+    httpMethod: typing.Literal[
         "HTTP_METHOD_UNSPECIFIED",
         "POST",
         "GET",
@@ -22,23 +20,23 @@ class AppEngineHttpTarget(typing_extensions.TypedDict, total=False):
     relativeUri: str
 
 @typing.type_check_only
-class AppEngineRouting(typing_extensions.TypedDict, total=False):
+class AppEngineRouting(typing.TypedDict, total=False):
     host: str
     instance: str
     service: str
     version: str
 
 @typing.type_check_only
-class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
+class CancelOperationRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class HttpTarget(typing_extensions.TypedDict, total=False):
+class HttpTarget(typing.TypedDict, total=False):
     body: str
     headers: dict[str, typing.Any]
-    httpMethod: typing_extensions.Literal[
+    httpMethod: typing.Literal[
         "HTTP_METHOD_UNSPECIFIED",
         "POST",
         "GET",
@@ -53,7 +51,7 @@ class HttpTarget(typing_extensions.TypedDict, total=False):
     uri: str
 
 @typing.type_check_only
-class Job(typing_extensions.TypedDict, total=False):
+class Job(typing.TypedDict, total=False):
     appEngineHttpTarget: AppEngineHttpTarget
     attemptDeadline: str
     description: str
@@ -66,7 +64,7 @@ class Job(typing_extensions.TypedDict, total=False):
     satisfiesPzs: bool
     schedule: str
     scheduleTime: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED", "ENABLED", "PAUSED", "DISABLED", "UPDATE_FAILED"
     ]
     status: Status
@@ -74,23 +72,23 @@ class Job(typing_extensions.TypedDict, total=False):
     userUpdateTime: str
 
 @typing.type_check_only
-class ListJobsResponse(typing_extensions.TypedDict, total=False):
+class ListJobsResponse(typing.TypedDict, total=False):
     jobs: _list[Job]
     nextPageToken: str
 
 @typing.type_check_only
-class ListLocationsResponse(typing_extensions.TypedDict, total=False):
+class ListLocationsResponse(typing.TypedDict, total=False):
     locations: _list[Location]
     nextPageToken: str
 
 @typing.type_check_only
-class ListOperationsResponse(typing_extensions.TypedDict, total=False):
+class ListOperationsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
     unreachable: _list[str]
 
 @typing.type_check_only
-class Location(typing_extensions.TypedDict, total=False):
+class Location(typing.TypedDict, total=False):
     displayName: str
     labels: dict[str, typing.Any]
     locationId: str
@@ -98,17 +96,17 @@ class Location(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class OAuthToken(typing_extensions.TypedDict, total=False):
+class OAuthToken(typing.TypedDict, total=False):
     scope: str
     serviceAccountEmail: str
 
 @typing.type_check_only
-class OidcToken(typing_extensions.TypedDict, total=False):
+class OidcToken(typing.TypedDict, total=False):
     audience: str
     serviceAccountEmail: str
 
 @typing.type_check_only
-class Operation(typing_extensions.TypedDict, total=False):
+class Operation(typing.TypedDict, total=False):
     done: bool
     error: Status
     metadata: dict[str, typing.Any]
@@ -116,7 +114,7 @@ class Operation(typing_extensions.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
-class OperationMetadata(typing_extensions.TypedDict, total=False):
+class OperationMetadata(typing.TypedDict, total=False):
     apiVersion: str
     cancelRequested: bool
     createTime: str
@@ -126,10 +124,10 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     verb: str
 
 @typing.type_check_only
-class PauseJobRequest(typing_extensions.TypedDict, total=False): ...
+class PauseJobRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class PubsubMessage(typing_extensions.TypedDict, total=False):
+class PubsubMessage(typing.TypedDict, total=False):
     attributes: dict[str, typing.Any]
     data: str
     messageId: str
@@ -137,16 +135,16 @@ class PubsubMessage(typing_extensions.TypedDict, total=False):
     publishTime: str
 
 @typing.type_check_only
-class PubsubTarget(typing_extensions.TypedDict, total=False):
+class PubsubTarget(typing.TypedDict, total=False):
     attributes: dict[str, typing.Any]
     data: str
     topicName: str
 
 @typing.type_check_only
-class ResumeJobRequest(typing_extensions.TypedDict, total=False): ...
+class ResumeJobRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class RetryConfig(typing_extensions.TypedDict, total=False):
+class RetryConfig(typing.TypedDict, total=False):
     maxBackoffDuration: str
     maxDoublings: int
     maxRetryDuration: str
@@ -154,11 +152,11 @@ class RetryConfig(typing_extensions.TypedDict, total=False):
     retryCount: int
 
 @typing.type_check_only
-class RunJobRequest(typing_extensions.TypedDict, total=False):
+class RunJobRequest(typing.TypedDict, total=False):
     legacyAppEngineCron: bool
 
 @typing.type_check_only
-class Status(typing_extensions.TypedDict, total=False):
+class Status(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str

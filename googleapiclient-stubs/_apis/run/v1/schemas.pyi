@@ -1,67 +1,65 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class Addressable(typing_extensions.TypedDict, total=False):
+class Addressable(typing.TypedDict, total=False):
     url: str
 
 @typing.type_check_only
-class AuditConfig(typing_extensions.TypedDict, total=False):
+class AuditConfig(typing.TypedDict, total=False):
     auditLogConfigs: _list[AuditLogConfig]
     service: str
 
 @typing.type_check_only
-class AuditLogConfig(typing_extensions.TypedDict, total=False):
+class AuditLogConfig(typing.TypedDict, total=False):
     exemptedMembers: _list[str]
-    logType: typing_extensions.Literal[
+    logType: typing.Literal[
         "LOG_TYPE_UNSPECIFIED", "ADMIN_READ", "DATA_WRITE", "DATA_READ"
     ]
 
 @typing.type_check_only
-class AuthorizedDomain(typing_extensions.TypedDict, total=False):
+class AuthorizedDomain(typing.TypedDict, total=False):
     id: str
     name: str
 
 @typing.type_check_only
-class Binding(typing_extensions.TypedDict, total=False):
+class Binding(typing.TypedDict, total=False):
     condition: Expr
     members: _list[str]
     role: str
 
 @typing.type_check_only
-class CSIVolumeSource(typing_extensions.TypedDict, total=False):
+class CSIVolumeSource(typing.TypedDict, total=False):
     driver: str
     readOnly: bool
     volumeAttributes: dict[str, typing.Any]
 
 @typing.type_check_only
-class CancelExecutionRequest(typing_extensions.TypedDict, total=False): ...
+class CancelExecutionRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class ConfigMapEnvSource(typing_extensions.TypedDict, total=False):
+class ConfigMapEnvSource(typing.TypedDict, total=False):
     localObjectReference: LocalObjectReference
     name: str
     optional: bool
 
 @typing.type_check_only
-class ConfigMapKeySelector(typing_extensions.TypedDict, total=False):
+class ConfigMapKeySelector(typing.TypedDict, total=False):
     key: str
     localObjectReference: LocalObjectReference
     name: str
     optional: bool
 
 @typing.type_check_only
-class ConfigMapVolumeSource(typing_extensions.TypedDict, total=False):
+class ConfigMapVolumeSource(typing.TypedDict, total=False):
     defaultMode: int
     items: _list[KeyToPath]
     name: str
     optional: bool
 
 @typing.type_check_only
-class Configuration(typing_extensions.TypedDict, total=False):
+class Configuration(typing.TypedDict, total=False):
     apiVersion: str
     kind: str
     metadata: ObjectMeta
@@ -69,18 +67,18 @@ class Configuration(typing_extensions.TypedDict, total=False):
     status: ConfigurationStatus
 
 @typing.type_check_only
-class ConfigurationSpec(typing_extensions.TypedDict, total=False):
+class ConfigurationSpec(typing.TypedDict, total=False):
     template: RevisionTemplate
 
 @typing.type_check_only
-class ConfigurationStatus(typing_extensions.TypedDict, total=False):
+class ConfigurationStatus(typing.TypedDict, total=False):
     conditions: _list[GoogleCloudRunV1Condition]
     latestCreatedRevisionName: str
     latestReadyRevisionName: str
     observedGeneration: int
 
 @typing.type_check_only
-class Container(typing_extensions.TypedDict, total=False):
+class Container(typing.TypedDict, total=False):
     args: _list[str]
     command: _list[str]
     env: _list[EnvVar]
@@ -101,20 +99,20 @@ class Container(typing_extensions.TypedDict, total=False):
     workingDir: str
 
 @typing.type_check_only
-class ContainerOverride(typing_extensions.TypedDict, total=False):
+class ContainerOverride(typing.TypedDict, total=False):
     args: _list[str]
     clearArgs: bool
     env: _list[EnvVar]
     name: str
 
 @typing.type_check_only
-class ContainerPort(typing_extensions.TypedDict, total=False):
+class ContainerPort(typing.TypedDict, total=False):
     containerPort: int
     name: str
     protocol: str
 
 @typing.type_check_only
-class DomainMapping(typing_extensions.TypedDict, total=False):
+class DomainMapping(typing.TypedDict, total=False):
     apiVersion: str
     kind: str
     metadata: ObjectMeta
@@ -122,15 +120,13 @@ class DomainMapping(typing_extensions.TypedDict, total=False):
     status: DomainMappingStatus
 
 @typing.type_check_only
-class DomainMappingSpec(typing_extensions.TypedDict, total=False):
-    certificateMode: typing_extensions.Literal[
-        "CERTIFICATE_MODE_UNSPECIFIED", "NONE", "AUTOMATIC"
-    ]
+class DomainMappingSpec(typing.TypedDict, total=False):
+    certificateMode: typing.Literal["CERTIFICATE_MODE_UNSPECIFIED", "NONE", "AUTOMATIC"]
     forceOverride: bool
     routeName: str
 
 @typing.type_check_only
-class DomainMappingStatus(typing_extensions.TypedDict, total=False):
+class DomainMappingStatus(typing.TypedDict, total=False):
     conditions: _list[GoogleCloudRunV1Condition]
     mappedRouteName: str
     observedGeneration: int
@@ -138,36 +134,36 @@ class DomainMappingStatus(typing_extensions.TypedDict, total=False):
     url: str
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class EmptyDirVolumeSource(typing_extensions.TypedDict, total=False):
+class EmptyDirVolumeSource(typing.TypedDict, total=False):
     medium: str
     sizeLimit: str
 
 @typing.type_check_only
-class EnvFromSource(typing_extensions.TypedDict, total=False):
+class EnvFromSource(typing.TypedDict, total=False):
     configMapRef: ConfigMapEnvSource
     prefix: str
     secretRef: SecretEnvSource
 
 @typing.type_check_only
-class EnvVar(typing_extensions.TypedDict, total=False):
+class EnvVar(typing.TypedDict, total=False):
     name: str
     value: str
     valueFrom: EnvVarSource
 
 @typing.type_check_only
-class EnvVarSource(typing_extensions.TypedDict, total=False):
+class EnvVarSource(typing.TypedDict, total=False):
     configMapKeyRef: ConfigMapKeySelector
     secretKeyRef: SecretKeySelector
 
 @typing.type_check_only
-class ExecAction(typing_extensions.TypedDict, total=False):
+class ExecAction(typing.TypedDict, total=False):
     command: _list[str]
 
 @typing.type_check_only
-class Execution(typing_extensions.TypedDict, total=False):
+class Execution(typing.TypedDict, total=False):
     apiVersion: str
     kind: str
     metadata: ObjectMeta
@@ -175,8 +171,8 @@ class Execution(typing_extensions.TypedDict, total=False):
     status: ExecutionStatus
 
 @typing.type_check_only
-class ExecutionReference(typing_extensions.TypedDict, total=False):
-    completionStatus: typing_extensions.Literal[
+class ExecutionReference(typing.TypedDict, total=False):
+    completionStatus: typing.Literal[
         "COMPLETION_STATUS_UNSPECIFIED",
         "EXECUTION_SUCCEEDED",
         "EXECUTION_FAILED",
@@ -190,13 +186,13 @@ class ExecutionReference(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class ExecutionSpec(typing_extensions.TypedDict, total=False):
+class ExecutionSpec(typing.TypedDict, total=False):
     parallelism: int
     taskCount: int
     template: TaskTemplateSpec
 
 @typing.type_check_only
-class ExecutionStatus(typing_extensions.TypedDict, total=False):
+class ExecutionStatus(typing.TypedDict, total=False):
     cancelledCount: int
     completionTime: str
     conditions: _list[GoogleCloudRunV1Condition]
@@ -209,24 +205,24 @@ class ExecutionStatus(typing_extensions.TypedDict, total=False):
     succeededCount: int
 
 @typing.type_check_only
-class ExecutionTemplateSpec(typing_extensions.TypedDict, total=False):
+class ExecutionTemplateSpec(typing.TypedDict, total=False):
     metadata: ObjectMeta
     spec: ExecutionSpec
 
 @typing.type_check_only
-class Expr(typing_extensions.TypedDict, total=False):
+class Expr(typing.TypedDict, total=False):
     description: str
     expression: str
     location: str
     title: str
 
 @typing.type_check_only
-class GRPCAction(typing_extensions.TypedDict, total=False):
+class GRPCAction(typing.TypedDict, total=False):
     port: int
     service: str
 
 @typing.type_check_only
-class GoogleCloudRunV1Condition(typing_extensions.TypedDict, total=False):
+class GoogleCloudRunV1Condition(typing.TypedDict, total=False):
     lastTransitionTime: str
     message: str
     reason: str
@@ -235,31 +231,25 @@ class GoogleCloudRunV1Condition(typing_extensions.TypedDict, total=False):
     type: str
 
 @typing.type_check_only
-class GoogleDevtoolsCloudbuildV1ApprovalConfig(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleDevtoolsCloudbuildV1ApprovalConfig(typing.TypedDict, total=False):
     approvalRequired: bool
 
 @typing.type_check_only
-class GoogleDevtoolsCloudbuildV1ApprovalResult(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleDevtoolsCloudbuildV1ApprovalResult(typing.TypedDict, total=False):
     approvalTime: str
     approverAccount: str
     comment: str
-    decision: typing_extensions.Literal["DECISION_UNSPECIFIED", "APPROVED", "REJECTED"]
+    decision: typing.Literal["DECISION_UNSPECIFIED", "APPROVED", "REJECTED"]
     url: str
 
 @typing.type_check_only
-class GoogleDevtoolsCloudbuildV1ArtifactObjects(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleDevtoolsCloudbuildV1ArtifactObjects(typing.TypedDict, total=False):
     location: str
     paths: _list[str]
     timing: GoogleDevtoolsCloudbuildV1TimeSpan
 
 @typing.type_check_only
-class GoogleDevtoolsCloudbuildV1Artifacts(typing_extensions.TypedDict, total=False):
+class GoogleDevtoolsCloudbuildV1Artifacts(typing.TypedDict, total=False):
     genericArtifacts: _list[GoogleDevtoolsCloudbuildV1GenericArtifact]
     goModules: _list[GoogleDevtoolsCloudbuildV1GoModule]
     images: _list[str]
@@ -270,7 +260,7 @@ class GoogleDevtoolsCloudbuildV1Artifacts(typing_extensions.TypedDict, total=Fal
     pythonPackages: _list[GoogleDevtoolsCloudbuildV1PythonPackage]
 
 @typing.type_check_only
-class GoogleDevtoolsCloudbuildV1Build(typing_extensions.TypedDict, total=False):
+class GoogleDevtoolsCloudbuildV1Build(typing.TypedDict, total=False):
     approval: GoogleDevtoolsCloudbuildV1BuildApproval
     artifacts: GoogleDevtoolsCloudbuildV1Artifacts
     availableSecrets: GoogleDevtoolsCloudbuildV1Secrets
@@ -294,7 +284,7 @@ class GoogleDevtoolsCloudbuildV1Build(typing_extensions.TypedDict, total=False):
     source: GoogleDevtoolsCloudbuildV1Source
     sourceProvenance: GoogleDevtoolsCloudbuildV1SourceProvenance
     startTime: str
-    status: typing_extensions.Literal[
+    status: typing.Literal[
         "STATUS_UNKNOWN",
         "PENDING",
         "QUEUED",
@@ -315,23 +305,21 @@ class GoogleDevtoolsCloudbuildV1Build(typing_extensions.TypedDict, total=False):
     warnings: _list[GoogleDevtoolsCloudbuildV1Warning]
 
 @typing.type_check_only
-class GoogleDevtoolsCloudbuildV1BuildApproval(typing_extensions.TypedDict, total=False):
+class GoogleDevtoolsCloudbuildV1BuildApproval(typing.TypedDict, total=False):
     config: GoogleDevtoolsCloudbuildV1ApprovalConfig
     result: GoogleDevtoolsCloudbuildV1ApprovalResult
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED", "PENDING", "APPROVED", "REJECTED", "CANCELLED"
     ]
 
 @typing.type_check_only
-class GoogleDevtoolsCloudbuildV1BuildOperationMetadata(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleDevtoolsCloudbuildV1BuildOperationMetadata(typing.TypedDict, total=False):
     build: GoogleDevtoolsCloudbuildV1Build
 
 @typing.type_check_only
-class GoogleDevtoolsCloudbuildV1BuildOptions(typing_extensions.TypedDict, total=False):
+class GoogleDevtoolsCloudbuildV1BuildOptions(typing.TypedDict, total=False):
     automapSubstitutions: bool
-    defaultLogsBucketBehavior: typing_extensions.Literal[
+    defaultLogsBucketBehavior: typing.Literal[
         "DEFAULT_LOGS_BUCKET_BEHAVIOR_UNSPECIFIED",
         "REGIONAL_USER_OWNED_BUCKET",
         "LEGACY_BUCKET",
@@ -340,10 +328,8 @@ class GoogleDevtoolsCloudbuildV1BuildOptions(typing_extensions.TypedDict, total=
     dynamicSubstitutions: bool
     enableStructuredLogging: bool
     env: _list[str]
-    logStreamingOption: typing_extensions.Literal[
-        "STREAM_DEFAULT", "STREAM_ON", "STREAM_OFF"
-    ]
-    logging: typing_extensions.Literal[
+    logStreamingOption: typing.Literal["STREAM_DEFAULT", "STREAM_ON", "STREAM_OFF"]
+    logging: typing.Literal[
         "LOGGING_UNSPECIFIED",
         "LEGACY",
         "GCS_ONLY",
@@ -351,7 +337,7 @@ class GoogleDevtoolsCloudbuildV1BuildOptions(typing_extensions.TypedDict, total=
         "CLOUD_LOGGING_ONLY",
         "NONE",
     ]
-    machineType: typing_extensions.Literal[
+    machineType: typing.Literal[
         "UNSPECIFIED",
         "N1_HIGHCPU_8",
         "N1_HIGHCPU_32",
@@ -362,19 +348,19 @@ class GoogleDevtoolsCloudbuildV1BuildOptions(typing_extensions.TypedDict, total=
     ]
     pool: GoogleDevtoolsCloudbuildV1PoolOption
     pubsubTopic: str
-    requestedVerifyOption: typing_extensions.Literal["NOT_VERIFIED", "VERIFIED"]
+    requestedVerifyOption: typing.Literal["NOT_VERIFIED", "VERIFIED"]
     secretEnv: _list[str]
     sourceProvenanceHash: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "NONE", "SHA256", "MD5", "GO_MODULE_H1", "SHA512", "DIRSUM_SHA256"
         ]
     ]
-    substitutionOption: typing_extensions.Literal["MUST_MATCH", "ALLOW_LOOSE"]
+    substitutionOption: typing.Literal["MUST_MATCH", "ALLOW_LOOSE"]
     volumes: _list[GoogleDevtoolsCloudbuildV1Volume]
     workerPool: str
 
 @typing.type_check_only
-class GoogleDevtoolsCloudbuildV1BuildStep(typing_extensions.TypedDict, total=False):
+class GoogleDevtoolsCloudbuildV1BuildStep(typing.TypedDict, total=False):
     allowExitCodes: _list[int]
     allowFailure: bool
     args: _list[str]
@@ -389,7 +375,7 @@ class GoogleDevtoolsCloudbuildV1BuildStep(typing_extensions.TypedDict, total=Fal
     results: _list[GoogleDevtoolsCloudbuildV1StepResult]
     script: str
     secretEnv: _list[str]
-    status: typing_extensions.Literal[
+    status: typing.Literal[
         "STATUS_UNKNOWN",
         "PENDING",
         "QUEUED",
@@ -407,47 +393,41 @@ class GoogleDevtoolsCloudbuildV1BuildStep(typing_extensions.TypedDict, total=Fal
     waitFor: _list[str]
 
 @typing.type_check_only
-class GoogleDevtoolsCloudbuildV1BuildStepResults(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleDevtoolsCloudbuildV1BuildStepResults(typing.TypedDict, total=False):
     results: dict[str, typing.Any]
 
 @typing.type_check_only
-class GoogleDevtoolsCloudbuildV1BuiltImage(typing_extensions.TypedDict, total=False):
+class GoogleDevtoolsCloudbuildV1BuiltImage(typing.TypedDict, total=False):
     artifactRegistryPackage: str
     digest: str
     name: str
-    ociMediaType: typing_extensions.Literal[
+    ociMediaType: typing.Literal[
         "OCI_MEDIA_TYPE_UNSPECIFIED", "IMAGE_MANIFEST", "IMAGE_INDEX"
     ]
     pushTiming: GoogleDevtoolsCloudbuildV1TimeSpan
 
 @typing.type_check_only
-class GoogleDevtoolsCloudbuildV1ConnectedRepository(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleDevtoolsCloudbuildV1ConnectedRepository(typing.TypedDict, total=False):
     dir: str
     repository: str
     revision: str
 
 @typing.type_check_only
-class GoogleDevtoolsCloudbuildV1Dependency(typing_extensions.TypedDict, total=False):
+class GoogleDevtoolsCloudbuildV1Dependency(typing.TypedDict, total=False):
     empty: bool
     genericArtifact: GoogleDevtoolsCloudbuildV1GenericArtifactDependency
     gitSource: GoogleDevtoolsCloudbuildV1GitSourceDependency
 
 @typing.type_check_only
-class GoogleDevtoolsCloudbuildV1DeveloperConnectConfig(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleDevtoolsCloudbuildV1DeveloperConnectConfig(typing.TypedDict, total=False):
     dir: str
     gitRepositoryLink: str
     revision: str
 
 @typing.type_check_only
-class GoogleDevtoolsCloudbuildV1FailureInfo(typing_extensions.TypedDict, total=False):
+class GoogleDevtoolsCloudbuildV1FailureInfo(typing.TypedDict, total=False):
     detail: str
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "FAILURE_TYPE_UNSPECIFIED",
         "PUSH_FAILED",
         "PUSH_IMAGE_NOT_FOUND",
@@ -458,37 +438,33 @@ class GoogleDevtoolsCloudbuildV1FailureInfo(typing_extensions.TypedDict, total=F
     ]
 
 @typing.type_check_only
-class GoogleDevtoolsCloudbuildV1FileHashes(typing_extensions.TypedDict, total=False):
+class GoogleDevtoolsCloudbuildV1FileHashes(typing.TypedDict, total=False):
     fileHash: _list[GoogleDevtoolsCloudbuildV1Hash]
 
 @typing.type_check_only
-class GoogleDevtoolsCloudbuildV1GenericArtifact(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleDevtoolsCloudbuildV1GenericArtifact(typing.TypedDict, total=False):
     folder: str
     registryPath: str
 
 @typing.type_check_only
 class GoogleDevtoolsCloudbuildV1GenericArtifactDependency(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     destPath: str
     resource: str
 
 @typing.type_check_only
-class GoogleDevtoolsCloudbuildV1GitConfig(typing_extensions.TypedDict, total=False):
+class GoogleDevtoolsCloudbuildV1GitConfig(typing.TypedDict, total=False):
     http: GoogleDevtoolsCloudbuildV1HttpConfig
 
 @typing.type_check_only
-class GoogleDevtoolsCloudbuildV1GitSource(typing_extensions.TypedDict, total=False):
+class GoogleDevtoolsCloudbuildV1GitSource(typing.TypedDict, total=False):
     dir: str
     revision: str
     url: str
 
 @typing.type_check_only
-class GoogleDevtoolsCloudbuildV1GitSourceDependency(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleDevtoolsCloudbuildV1GitSourceDependency(typing.TypedDict, total=False):
     depth: str
     destPath: str
     recurseSubmodules: bool
@@ -496,14 +472,12 @@ class GoogleDevtoolsCloudbuildV1GitSourceDependency(
     revision: str
 
 @typing.type_check_only
-class GoogleDevtoolsCloudbuildV1GitSourceRepository(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleDevtoolsCloudbuildV1GitSourceRepository(typing.TypedDict, total=False):
     developerConnect: str
     url: str
 
 @typing.type_check_only
-class GoogleDevtoolsCloudbuildV1GoModule(typing_extensions.TypedDict, total=False):
+class GoogleDevtoolsCloudbuildV1GoModule(typing.TypedDict, total=False):
     modulePath: str
     moduleVersion: str
     repositoryLocation: str
@@ -512,23 +486,23 @@ class GoogleDevtoolsCloudbuildV1GoModule(typing_extensions.TypedDict, total=Fals
     sourcePath: str
 
 @typing.type_check_only
-class GoogleDevtoolsCloudbuildV1Hash(typing_extensions.TypedDict, total=False):
-    type: typing_extensions.Literal[
+class GoogleDevtoolsCloudbuildV1Hash(typing.TypedDict, total=False):
+    type: typing.Literal[
         "NONE", "SHA256", "MD5", "GO_MODULE_H1", "SHA512", "DIRSUM_SHA256"
     ]
     value: str
 
 @typing.type_check_only
-class GoogleDevtoolsCloudbuildV1HttpConfig(typing_extensions.TypedDict, total=False):
+class GoogleDevtoolsCloudbuildV1HttpConfig(typing.TypedDict, total=False):
     proxySecretVersionName: str
 
 @typing.type_check_only
-class GoogleDevtoolsCloudbuildV1InlineSecret(typing_extensions.TypedDict, total=False):
+class GoogleDevtoolsCloudbuildV1InlineSecret(typing.TypedDict, total=False):
     envMap: dict[str, typing.Any]
     kmsKeyName: str
 
 @typing.type_check_only
-class GoogleDevtoolsCloudbuildV1MavenArtifact(typing_extensions.TypedDict, total=False):
+class GoogleDevtoolsCloudbuildV1MavenArtifact(typing.TypedDict, total=False):
     artifactId: str
     deployFolder: str
     groupId: str
@@ -537,27 +511,27 @@ class GoogleDevtoolsCloudbuildV1MavenArtifact(typing_extensions.TypedDict, total
     version: str
 
 @typing.type_check_only
-class GoogleDevtoolsCloudbuildV1NpmPackage(typing_extensions.TypedDict, total=False):
+class GoogleDevtoolsCloudbuildV1NpmPackage(typing.TypedDict, total=False):
     packagePath: str
     repository: str
 
 @typing.type_check_only
-class GoogleDevtoolsCloudbuildV1Oci(typing_extensions.TypedDict, total=False):
+class GoogleDevtoolsCloudbuildV1Oci(typing.TypedDict, total=False):
     file: str
     registryPath: str
     tags: _list[str]
 
 @typing.type_check_only
-class GoogleDevtoolsCloudbuildV1PoolOption(typing_extensions.TypedDict, total=False):
+class GoogleDevtoolsCloudbuildV1PoolOption(typing.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class GoogleDevtoolsCloudbuildV1PythonPackage(typing_extensions.TypedDict, total=False):
+class GoogleDevtoolsCloudbuildV1PythonPackage(typing.TypedDict, total=False):
     paths: _list[str]
     repository: str
 
 @typing.type_check_only
-class GoogleDevtoolsCloudbuildV1RepoSource(typing_extensions.TypedDict, total=False):
+class GoogleDevtoolsCloudbuildV1RepoSource(typing.TypedDict, total=False):
     branchName: str
     commitSha: str
     dir: str
@@ -568,7 +542,7 @@ class GoogleDevtoolsCloudbuildV1RepoSource(typing_extensions.TypedDict, total=Fa
     tagName: str
 
 @typing.type_check_only
-class GoogleDevtoolsCloudbuildV1Results(typing_extensions.TypedDict, total=False):
+class GoogleDevtoolsCloudbuildV1Results(typing.TypedDict, total=False):
     artifactManifest: str
     artifactTiming: GoogleDevtoolsCloudbuildV1TimeSpan
     buildStepImages: _list[str]
@@ -583,24 +557,22 @@ class GoogleDevtoolsCloudbuildV1Results(typing_extensions.TypedDict, total=False
     pythonPackages: _list[GoogleDevtoolsCloudbuildV1UploadedPythonPackage]
 
 @typing.type_check_only
-class GoogleDevtoolsCloudbuildV1Secret(typing_extensions.TypedDict, total=False):
+class GoogleDevtoolsCloudbuildV1Secret(typing.TypedDict, total=False):
     kmsKeyName: str
     secretEnv: dict[str, typing.Any]
 
 @typing.type_check_only
-class GoogleDevtoolsCloudbuildV1SecretManagerSecret(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleDevtoolsCloudbuildV1SecretManagerSecret(typing.TypedDict, total=False):
     env: str
     versionName: str
 
 @typing.type_check_only
-class GoogleDevtoolsCloudbuildV1Secrets(typing_extensions.TypedDict, total=False):
+class GoogleDevtoolsCloudbuildV1Secrets(typing.TypedDict, total=False):
     inline: _list[GoogleDevtoolsCloudbuildV1InlineSecret]
     secretManager: _list[GoogleDevtoolsCloudbuildV1SecretManagerSecret]
 
 @typing.type_check_only
-class GoogleDevtoolsCloudbuildV1Source(typing_extensions.TypedDict, total=False):
+class GoogleDevtoolsCloudbuildV1Source(typing.TypedDict, total=False):
     connectedRepository: GoogleDevtoolsCloudbuildV1ConnectedRepository
     developerConnectConfig: GoogleDevtoolsCloudbuildV1DeveloperConnectConfig
     gitSource: GoogleDevtoolsCloudbuildV1GitSource
@@ -609,9 +581,7 @@ class GoogleDevtoolsCloudbuildV1Source(typing_extensions.TypedDict, total=False)
     storageSourceManifest: GoogleDevtoolsCloudbuildV1StorageSourceManifest
 
 @typing.type_check_only
-class GoogleDevtoolsCloudbuildV1SourceProvenance(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleDevtoolsCloudbuildV1SourceProvenance(typing.TypedDict, total=False):
     fileHashes: dict[str, typing.Any]
     resolvedConnectedRepository: GoogleDevtoolsCloudbuildV1ConnectedRepository
     resolvedGitSource: GoogleDevtoolsCloudbuildV1GitSource
@@ -620,37 +590,31 @@ class GoogleDevtoolsCloudbuildV1SourceProvenance(
     resolvedStorageSourceManifest: GoogleDevtoolsCloudbuildV1StorageSourceManifest
 
 @typing.type_check_only
-class GoogleDevtoolsCloudbuildV1StepResult(typing_extensions.TypedDict, total=False):
+class GoogleDevtoolsCloudbuildV1StepResult(typing.TypedDict, total=False):
     attestationContent: str
     attestationType: str
     name: str
 
 @typing.type_check_only
-class GoogleDevtoolsCloudbuildV1StorageSource(typing_extensions.TypedDict, total=False):
+class GoogleDevtoolsCloudbuildV1StorageSource(typing.TypedDict, total=False):
     bucket: str
     generation: str
     object: str
-    sourceFetcher: typing_extensions.Literal[
-        "SOURCE_FETCHER_UNSPECIFIED", "GSUTIL", "GCS_FETCHER"
-    ]
+    sourceFetcher: typing.Literal["SOURCE_FETCHER_UNSPECIFIED", "GSUTIL", "GCS_FETCHER"]
 
 @typing.type_check_only
-class GoogleDevtoolsCloudbuildV1StorageSourceManifest(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleDevtoolsCloudbuildV1StorageSourceManifest(typing.TypedDict, total=False):
     bucket: str
     generation: str
     object: str
 
 @typing.type_check_only
-class GoogleDevtoolsCloudbuildV1TimeSpan(typing_extensions.TypedDict, total=False):
+class GoogleDevtoolsCloudbuildV1TimeSpan(typing.TypedDict, total=False):
     endTime: str
     startTime: str
 
 @typing.type_check_only
-class GoogleDevtoolsCloudbuildV1UploadedGenericArtifact(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleDevtoolsCloudbuildV1UploadedGenericArtifact(typing.TypedDict, total=False):
     artifactFingerprint: GoogleDevtoolsCloudbuildV1FileHashes
     artifactRegistryPackage: str
     fileHashes: dict[str, typing.Any]
@@ -658,61 +622,51 @@ class GoogleDevtoolsCloudbuildV1UploadedGenericArtifact(
     uri: str
 
 @typing.type_check_only
-class GoogleDevtoolsCloudbuildV1UploadedGoModule(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleDevtoolsCloudbuildV1UploadedGoModule(typing.TypedDict, total=False):
     artifactRegistryPackage: str
     fileHashes: GoogleDevtoolsCloudbuildV1FileHashes
     pushTiming: GoogleDevtoolsCloudbuildV1TimeSpan
     uri: str
 
 @typing.type_check_only
-class GoogleDevtoolsCloudbuildV1UploadedMavenArtifact(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleDevtoolsCloudbuildV1UploadedMavenArtifact(typing.TypedDict, total=False):
     artifactRegistryPackage: str
     fileHashes: GoogleDevtoolsCloudbuildV1FileHashes
     pushTiming: GoogleDevtoolsCloudbuildV1TimeSpan
     uri: str
 
 @typing.type_check_only
-class GoogleDevtoolsCloudbuildV1UploadedNpmPackage(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleDevtoolsCloudbuildV1UploadedNpmPackage(typing.TypedDict, total=False):
     artifactRegistryPackage: str
     fileHashes: GoogleDevtoolsCloudbuildV1FileHashes
     pushTiming: GoogleDevtoolsCloudbuildV1TimeSpan
     uri: str
 
 @typing.type_check_only
-class GoogleDevtoolsCloudbuildV1UploadedPythonPackage(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleDevtoolsCloudbuildV1UploadedPythonPackage(typing.TypedDict, total=False):
     artifactRegistryPackage: str
     fileHashes: GoogleDevtoolsCloudbuildV1FileHashes
     pushTiming: GoogleDevtoolsCloudbuildV1TimeSpan
     uri: str
 
 @typing.type_check_only
-class GoogleDevtoolsCloudbuildV1Volume(typing_extensions.TypedDict, total=False):
+class GoogleDevtoolsCloudbuildV1Volume(typing.TypedDict, total=False):
     name: str
     path: str
 
 @typing.type_check_only
-class GoogleDevtoolsCloudbuildV1Warning(typing_extensions.TypedDict, total=False):
-    priority: typing_extensions.Literal[
-        "PRIORITY_UNSPECIFIED", "INFO", "WARNING", "ALERT"
-    ]
+class GoogleDevtoolsCloudbuildV1Warning(typing.TypedDict, total=False):
+    priority: typing.Literal["PRIORITY_UNSPECIFIED", "INFO", "WARNING", "ALERT"]
     text: str
 
 @typing.type_check_only
-class GoogleLongrunningListOperationsResponse(typing_extensions.TypedDict, total=False):
+class GoogleLongrunningListOperationsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     operations: _list[GoogleLongrunningOperation]
     unreachable: _list[str]
 
 @typing.type_check_only
-class GoogleLongrunningOperation(typing_extensions.TypedDict, total=False):
+class GoogleLongrunningOperation(typing.TypedDict, total=False):
     done: bool
     error: GoogleRpcStatus
     metadata: dict[str, typing.Any]
@@ -720,17 +674,17 @@ class GoogleLongrunningOperation(typing_extensions.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
-class GoogleLongrunningWaitOperationRequest(typing_extensions.TypedDict, total=False):
+class GoogleLongrunningWaitOperationRequest(typing.TypedDict, total=False):
     timeout: str
 
 @typing.type_check_only
-class GoogleRpcStatus(typing_extensions.TypedDict, total=False):
+class GoogleRpcStatus(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
-class HTTPGetAction(typing_extensions.TypedDict, total=False):
+class HTTPGetAction(typing.TypedDict, total=False):
     host: str
     httpHeaders: _list[HTTPHeader]
     path: str
@@ -738,12 +692,12 @@ class HTTPGetAction(typing_extensions.TypedDict, total=False):
     scheme: str
 
 @typing.type_check_only
-class HTTPHeader(typing_extensions.TypedDict, total=False):
+class HTTPHeader(typing.TypedDict, total=False):
     name: str
     value: str
 
 @typing.type_check_only
-class Instance(typing_extensions.TypedDict, total=False):
+class Instance(typing.TypedDict, total=False):
     apiVersion: str
     kind: str
     metadata: ObjectMeta
@@ -751,7 +705,7 @@ class Instance(typing_extensions.TypedDict, total=False):
     status: InstanceStatus
 
 @typing.type_check_only
-class InstanceSpec(typing_extensions.TypedDict, total=False):
+class InstanceSpec(typing.TypedDict, total=False):
     containers: _list[Container]
     nodeSelector: dict[str, typing.Any]
     restartPolicy: str
@@ -759,20 +713,20 @@ class InstanceSpec(typing_extensions.TypedDict, total=False):
     volumes: _list[Volume]
 
 @typing.type_check_only
-class InstanceSplit(typing_extensions.TypedDict, total=False):
+class InstanceSplit(typing.TypedDict, total=False):
     latestRevision: bool
     percent: int
     revisionName: str
 
 @typing.type_check_only
-class InstanceStatus(typing_extensions.TypedDict, total=False):
+class InstanceStatus(typing.TypedDict, total=False):
     conditions: _list[GoogleCloudRunV1Condition]
     logUri: str
     observedGeneration: int
     urls: _list[str]
 
 @typing.type_check_only
-class Job(typing_extensions.TypedDict, total=False):
+class Job(typing.TypedDict, total=False):
     apiVersion: str
     kind: str
     metadata: ObjectMeta
@@ -780,31 +734,31 @@ class Job(typing_extensions.TypedDict, total=False):
     status: JobStatus
 
 @typing.type_check_only
-class JobSpec(typing_extensions.TypedDict, total=False):
+class JobSpec(typing.TypedDict, total=False):
     runExecutionToken: str
     startExecutionToken: str
     template: ExecutionTemplateSpec
 
 @typing.type_check_only
-class JobStatus(typing_extensions.TypedDict, total=False):
+class JobStatus(typing.TypedDict, total=False):
     conditions: _list[GoogleCloudRunV1Condition]
     executionCount: int
     latestCreatedExecution: ExecutionReference
     observedGeneration: int
 
 @typing.type_check_only
-class KeyToPath(typing_extensions.TypedDict, total=False):
+class KeyToPath(typing.TypedDict, total=False):
     key: str
     mode: int
     path: str
 
 @typing.type_check_only
-class ListAuthorizedDomainsResponse(typing_extensions.TypedDict, total=False):
+class ListAuthorizedDomainsResponse(typing.TypedDict, total=False):
     domains: _list[AuthorizedDomain]
     nextPageToken: str
 
 @typing.type_check_only
-class ListConfigurationsResponse(typing_extensions.TypedDict, total=False):
+class ListConfigurationsResponse(typing.TypedDict, total=False):
     apiVersion: str
     items: _list[Configuration]
     kind: str
@@ -812,7 +766,7 @@ class ListConfigurationsResponse(typing_extensions.TypedDict, total=False):
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListDomainMappingsResponse(typing_extensions.TypedDict, total=False):
+class ListDomainMappingsResponse(typing.TypedDict, total=False):
     apiVersion: str
     items: _list[DomainMapping]
     kind: str
@@ -820,7 +774,7 @@ class ListDomainMappingsResponse(typing_extensions.TypedDict, total=False):
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListExecutionsResponse(typing_extensions.TypedDict, total=False):
+class ListExecutionsResponse(typing.TypedDict, total=False):
     apiVersion: str
     items: _list[Execution]
     kind: str
@@ -828,7 +782,7 @@ class ListExecutionsResponse(typing_extensions.TypedDict, total=False):
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListInstancesResponse(typing_extensions.TypedDict, total=False):
+class ListInstancesResponse(typing.TypedDict, total=False):
     apiVersion: str
     items: _list[Instance]
     kind: str
@@ -836,7 +790,7 @@ class ListInstancesResponse(typing_extensions.TypedDict, total=False):
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListJobsResponse(typing_extensions.TypedDict, total=False):
+class ListJobsResponse(typing.TypedDict, total=False):
     apiVersion: str
     items: _list[Job]
     kind: str
@@ -844,11 +798,11 @@ class ListJobsResponse(typing_extensions.TypedDict, total=False):
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListLocationsResponse(typing_extensions.TypedDict, total=False):
+class ListLocationsResponse(typing.TypedDict, total=False):
     locations: _list[Location]
     nextPageToken: str
 
-AlternativeListMeta = typing_extensions.TypedDict(
+AlternativeListMeta = typing.TypedDict(
     "AlternativeListMeta",
     {
         "continue": str,
@@ -862,7 +816,7 @@ AlternativeListMeta = typing_extensions.TypedDict(
 class ListMeta(AlternativeListMeta): ...
 
 @typing.type_check_only
-class ListRevisionsResponse(typing_extensions.TypedDict, total=False):
+class ListRevisionsResponse(typing.TypedDict, total=False):
     apiVersion: str
     items: _list[Revision]
     kind: str
@@ -870,7 +824,7 @@ class ListRevisionsResponse(typing_extensions.TypedDict, total=False):
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListRoutesResponse(typing_extensions.TypedDict, total=False):
+class ListRoutesResponse(typing.TypedDict, total=False):
     apiVersion: str
     items: _list[Route]
     kind: str
@@ -878,7 +832,7 @@ class ListRoutesResponse(typing_extensions.TypedDict, total=False):
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListServicesResponse(typing_extensions.TypedDict, total=False):
+class ListServicesResponse(typing.TypedDict, total=False):
     apiVersion: str
     items: _list[Service]
     kind: str
@@ -886,7 +840,7 @@ class ListServicesResponse(typing_extensions.TypedDict, total=False):
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListTasksResponse(typing_extensions.TypedDict, total=False):
+class ListTasksResponse(typing.TypedDict, total=False):
     apiVersion: str
     items: _list[Task]
     kind: str
@@ -894,7 +848,7 @@ class ListTasksResponse(typing_extensions.TypedDict, total=False):
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListWorkerPoolsResponse(typing_extensions.TypedDict, total=False):
+class ListWorkerPoolsResponse(typing.TypedDict, total=False):
     apiVersion: str
     items: _list[WorkerPool]
     kind: str
@@ -902,11 +856,11 @@ class ListWorkerPoolsResponse(typing_extensions.TypedDict, total=False):
     unreachable: _list[str]
 
 @typing.type_check_only
-class LocalObjectReference(typing_extensions.TypedDict, total=False):
+class LocalObjectReference(typing.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class Location(typing_extensions.TypedDict, total=False):
+class Location(typing.TypedDict, total=False):
     displayName: str
     labels: dict[str, typing.Any]
     locationId: str
@@ -914,13 +868,13 @@ class Location(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class NFSVolumeSource(typing_extensions.TypedDict, total=False):
+class NFSVolumeSource(typing.TypedDict, total=False):
     path: str
     readOnly: bool
     server: str
 
 @typing.type_check_only
-class ObjectMeta(typing_extensions.TypedDict, total=False):
+class ObjectMeta(typing.TypedDict, total=False):
     annotations: dict[str, typing.Any]
     clusterName: str
     creationTimestamp: str
@@ -938,13 +892,13 @@ class ObjectMeta(typing_extensions.TypedDict, total=False):
     uid: str
 
 @typing.type_check_only
-class Overrides(typing_extensions.TypedDict, total=False):
+class Overrides(typing.TypedDict, total=False):
     containerOverrides: _list[ContainerOverride]
     taskCount: int
     timeoutSeconds: int
 
 @typing.type_check_only
-class OwnerReference(typing_extensions.TypedDict, total=False):
+class OwnerReference(typing.TypedDict, total=False):
     apiVersion: str
     blockOwnerDeletion: bool
     controller: bool
@@ -953,14 +907,14 @@ class OwnerReference(typing_extensions.TypedDict, total=False):
     uid: str
 
 @typing.type_check_only
-class Policy(typing_extensions.TypedDict, total=False):
+class Policy(typing.TypedDict, total=False):
     auditConfigs: _list[AuditConfig]
     bindings: _list[Binding]
     etag: str
     version: int
 
 @typing.type_check_only
-class Probe(typing_extensions.TypedDict, total=False):
+class Probe(typing.TypedDict, total=False):
     exec: ExecAction
     failureThreshold: int
     grpc: GRPCAction
@@ -972,18 +926,18 @@ class Probe(typing_extensions.TypedDict, total=False):
     timeoutSeconds: int
 
 @typing.type_check_only
-class ResourceRecord(typing_extensions.TypedDict, total=False):
+class ResourceRecord(typing.TypedDict, total=False):
     name: str
     rrdata: str
-    type: typing_extensions.Literal["RECORD_TYPE_UNSPECIFIED", "A", "AAAA", "CNAME"]
+    type: typing.Literal["RECORD_TYPE_UNSPECIFIED", "A", "AAAA", "CNAME"]
 
 @typing.type_check_only
-class ResourceRequirements(typing_extensions.TypedDict, total=False):
+class ResourceRequirements(typing.TypedDict, total=False):
     limits: dict[str, typing.Any]
     requests: dict[str, typing.Any]
 
 @typing.type_check_only
-class Revision(typing_extensions.TypedDict, total=False):
+class Revision(typing.TypedDict, total=False):
     apiVersion: str
     kind: str
     metadata: ObjectMeta
@@ -991,7 +945,7 @@ class Revision(typing_extensions.TypedDict, total=False):
     status: RevisionStatus
 
 @typing.type_check_only
-class RevisionSpec(typing_extensions.TypedDict, total=False):
+class RevisionSpec(typing.TypedDict, total=False):
     containerConcurrency: int
     containers: _list[Container]
     enableServiceLinks: bool
@@ -1003,7 +957,7 @@ class RevisionSpec(typing_extensions.TypedDict, total=False):
     volumes: _list[Volume]
 
 @typing.type_check_only
-class RevisionStatus(typing_extensions.TypedDict, total=False):
+class RevisionStatus(typing.TypedDict, total=False):
     conditions: _list[GoogleCloudRunV1Condition]
     desiredReplicas: int
     imageDigest: str
@@ -1012,12 +966,12 @@ class RevisionStatus(typing_extensions.TypedDict, total=False):
     serviceName: str
 
 @typing.type_check_only
-class RevisionTemplate(typing_extensions.TypedDict, total=False):
+class RevisionTemplate(typing.TypedDict, total=False):
     metadata: ObjectMeta
     spec: RevisionSpec
 
 @typing.type_check_only
-class Route(typing_extensions.TypedDict, total=False):
+class Route(typing.TypedDict, total=False):
     apiVersion: str
     kind: str
     metadata: ObjectMeta
@@ -1025,11 +979,11 @@ class Route(typing_extensions.TypedDict, total=False):
     status: RouteStatus
 
 @typing.type_check_only
-class RouteSpec(typing_extensions.TypedDict, total=False):
+class RouteSpec(typing.TypedDict, total=False):
     traffic: _list[TrafficTarget]
 
 @typing.type_check_only
-class RouteStatus(typing_extensions.TypedDict, total=False):
+class RouteStatus(typing.TypedDict, total=False):
     address: Addressable
     conditions: _list[GoogleCloudRunV1Condition]
     observedGeneration: int
@@ -1037,35 +991,35 @@ class RouteStatus(typing_extensions.TypedDict, total=False):
     url: str
 
 @typing.type_check_only
-class RunJobRequest(typing_extensions.TypedDict, total=False):
+class RunJobRequest(typing.TypedDict, total=False):
     overrides: Overrides
 
 @typing.type_check_only
-class SecretEnvSource(typing_extensions.TypedDict, total=False):
+class SecretEnvSource(typing.TypedDict, total=False):
     localObjectReference: LocalObjectReference
     name: str
     optional: bool
 
 @typing.type_check_only
-class SecretKeySelector(typing_extensions.TypedDict, total=False):
+class SecretKeySelector(typing.TypedDict, total=False):
     key: str
     localObjectReference: LocalObjectReference
     name: str
     optional: bool
 
 @typing.type_check_only
-class SecretVolumeSource(typing_extensions.TypedDict, total=False):
+class SecretVolumeSource(typing.TypedDict, total=False):
     defaultMode: int
     items: _list[KeyToPath]
     optional: bool
     secretName: str
 
 @typing.type_check_only
-class SecurityContext(typing_extensions.TypedDict, total=False):
+class SecurityContext(typing.TypedDict, total=False):
     runAsUser: int
 
 @typing.type_check_only
-class Service(typing_extensions.TypedDict, total=False):
+class Service(typing.TypedDict, total=False):
     apiVersion: str
     kind: str
     metadata: ObjectMeta
@@ -1073,12 +1027,12 @@ class Service(typing_extensions.TypedDict, total=False):
     status: ServiceStatus
 
 @typing.type_check_only
-class ServiceSpec(typing_extensions.TypedDict, total=False):
+class ServiceSpec(typing.TypedDict, total=False):
     template: RevisionTemplate
     traffic: _list[TrafficTarget]
 
 @typing.type_check_only
-class ServiceStatus(typing_extensions.TypedDict, total=False):
+class ServiceStatus(typing.TypedDict, total=False):
     address: Addressable
     conditions: _list[GoogleCloudRunV1Condition]
     latestCreatedRevisionName: str
@@ -1088,16 +1042,16 @@ class ServiceStatus(typing_extensions.TypedDict, total=False):
     url: str
 
 @typing.type_check_only
-class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
+class SetIamPolicyRequest(typing.TypedDict, total=False):
     policy: Policy
     updateMask: str
 
 @typing.type_check_only
-class StartInstanceRequest(typing_extensions.TypedDict, total=False):
+class StartInstanceRequest(typing.TypedDict, total=False):
     dryRun: str
 
 @typing.type_check_only
-class Status(typing_extensions.TypedDict, total=False):
+class Status(typing.TypedDict, total=False):
     code: int
     details: StatusDetails
     message: str
@@ -1106,13 +1060,13 @@ class Status(typing_extensions.TypedDict, total=False):
     status: str
 
 @typing.type_check_only
-class StatusCause(typing_extensions.TypedDict, total=False):
+class StatusCause(typing.TypedDict, total=False):
     field: str
     message: str
     reason: str
 
 @typing.type_check_only
-class StatusDetails(typing_extensions.TypedDict, total=False):
+class StatusDetails(typing.TypedDict, total=False):
     causes: _list[StatusCause]
     group: str
     kind: str
@@ -1121,16 +1075,16 @@ class StatusDetails(typing_extensions.TypedDict, total=False):
     uid: str
 
 @typing.type_check_only
-class StopInstanceRequest(typing_extensions.TypedDict, total=False):
+class StopInstanceRequest(typing.TypedDict, total=False):
     dryRun: str
 
 @typing.type_check_only
-class TCPSocketAction(typing_extensions.TypedDict, total=False):
+class TCPSocketAction(typing.TypedDict, total=False):
     host: str
     port: int
 
 @typing.type_check_only
-class Task(typing_extensions.TypedDict, total=False):
+class Task(typing.TypedDict, total=False):
     apiVersion: str
     kind: str
     metadata: ObjectMeta
@@ -1138,13 +1092,13 @@ class Task(typing_extensions.TypedDict, total=False):
     status: TaskStatus
 
 @typing.type_check_only
-class TaskAttemptResult(typing_extensions.TypedDict, total=False):
+class TaskAttemptResult(typing.TypedDict, total=False):
     exitCode: int
     status: GoogleRpcStatus
     termSignal: int
 
 @typing.type_check_only
-class TaskSpec(typing_extensions.TypedDict, total=False):
+class TaskSpec(typing.TypedDict, total=False):
     containers: _list[Container]
     maxRetries: int
     nodeSelector: dict[str, typing.Any]
@@ -1153,7 +1107,7 @@ class TaskSpec(typing_extensions.TypedDict, total=False):
     volumes: _list[Volume]
 
 @typing.type_check_only
-class TaskStatus(typing_extensions.TypedDict, total=False):
+class TaskStatus(typing.TypedDict, total=False):
     completionTime: str
     conditions: _list[GoogleCloudRunV1Condition]
     index: int
@@ -1164,19 +1118,19 @@ class TaskStatus(typing_extensions.TypedDict, total=False):
     startTime: str
 
 @typing.type_check_only
-class TaskTemplateSpec(typing_extensions.TypedDict, total=False):
+class TaskTemplateSpec(typing.TypedDict, total=False):
     spec: TaskSpec
 
 @typing.type_check_only
-class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
+class TestIamPermissionsRequest(typing.TypedDict, total=False):
     permissions: _list[str]
 
 @typing.type_check_only
-class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
+class TestIamPermissionsResponse(typing.TypedDict, total=False):
     permissions: _list[str]
 
 @typing.type_check_only
-class TrafficTarget(typing_extensions.TypedDict, total=False):
+class TrafficTarget(typing.TypedDict, total=False):
     configurationName: str
     latestRevision: bool
     percent: int
@@ -1185,7 +1139,7 @@ class TrafficTarget(typing_extensions.TypedDict, total=False):
     url: str
 
 @typing.type_check_only
-class Volume(typing_extensions.TypedDict, total=False):
+class Volume(typing.TypedDict, total=False):
     configMap: ConfigMapVolumeSource
     csi: CSIVolumeSource
     emptyDir: EmptyDirVolumeSource
@@ -1194,14 +1148,14 @@ class Volume(typing_extensions.TypedDict, total=False):
     secret: SecretVolumeSource
 
 @typing.type_check_only
-class VolumeMount(typing_extensions.TypedDict, total=False):
+class VolumeMount(typing.TypedDict, total=False):
     mountPath: str
     name: str
     readOnly: bool
     subPath: str
 
 @typing.type_check_only
-class WorkerPool(typing_extensions.TypedDict, total=False):
+class WorkerPool(typing.TypedDict, total=False):
     apiVersion: str
     kind: str
     metadata: ObjectMeta
@@ -1209,12 +1163,12 @@ class WorkerPool(typing_extensions.TypedDict, total=False):
     status: WorkerPoolStatus
 
 @typing.type_check_only
-class WorkerPoolSpec(typing_extensions.TypedDict, total=False):
+class WorkerPoolSpec(typing.TypedDict, total=False):
     instanceSplits: _list[InstanceSplit]
     template: RevisionTemplate
 
 @typing.type_check_only
-class WorkerPoolStatus(typing_extensions.TypedDict, total=False):
+class WorkerPoolStatus(typing.TypedDict, total=False):
     conditions: _list[GoogleCloudRunV1Condition]
     instanceSplits: _list[InstanceSplit]
     latestCreatedRevisionName: str

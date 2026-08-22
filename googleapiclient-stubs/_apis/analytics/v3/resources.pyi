@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -28,10 +27,8 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
                 filters: str | None = ...,
                 include_empty_rows: bool | None = ...,
                 max_results: int | None = ...,
-                output: typing_extensions.Literal["dataTable", "json"] | None = ...,
-                samplingLevel: typing_extensions.Literal[
-                    "DEFAULT", "FASTER", "HIGHER_PRECISION"
-                ]
+                output: typing.Literal["dataTable", "json"] | None = ...,
+                samplingLevel: typing.Literal["DEFAULT", "FASTER", "HIGHER_PRECISION"]
                 | None = ...,
                 segment: str | None = ...,
                 sort: str | None = ...,
@@ -51,9 +48,7 @@ class AnalyticsResource(googleapiclient.discovery.Resource):
                 dimensions: str | None = ...,
                 filters: str | None = ...,
                 max_results: int | None = ...,
-                samplingLevel: typing_extensions.Literal[
-                    "DEFAULT", "FASTER", "HIGHER_PRECISION"
-                ]
+                samplingLevel: typing.Literal["DEFAULT", "FASTER", "HIGHER_PRECISION"]
                 | None = ...,
                 sort: str | None = ...,
                 start_index: int | None = ...,

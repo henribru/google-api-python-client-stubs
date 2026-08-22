@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -212,7 +211,7 @@ class BooksResource(googleapiclient.discovery.Resource):
             nonce: str,
             source: str,
             volumeId: str,
-            licenseTypes: typing_extensions.Literal[
+            licenseTypes: typing.Literal[
                 "LICENSE_TYPES_UNDEFINED", "BOTH", "CONCURRENT", "DOWNLOAD"
             ]
             | None = ...,
@@ -225,8 +224,8 @@ class BooksResource(googleapiclient.discovery.Resource):
             cpksver: str,
             nonce: str,
             source: str,
-            features: typing_extensions.Literal["FEATURES_UNDEFINED", "RENTALS"]
-            | _list[typing_extensions.Literal["FEATURES_UNDEFINED", "RENTALS"]]
+            features: typing.Literal["FEATURES_UNDEFINED", "RENTALS"]
+            | _list[typing.Literal["FEATURES_UNDEFINED", "RENTALS"]]
             | None = ...,
             includeNonComicsSeries: bool | None = ...,
             locale: str | None = ...,
@@ -306,9 +305,7 @@ class BooksResource(googleapiclient.discovery.Resource):
                     shelf: str,
                     country: str | None = ...,
                     maxResults: int | None = ...,
-                    projection: typing_extensions.Literal[
-                        "PROJECTION_UNDEFINED", "FULL", "LITE"
-                    ]
+                    projection: typing.Literal["PROJECTION_UNDEFINED", "FULL", "LITE"]
                     | None = ...,
                     q: str | None = ...,
                     showPreorders: bool | None = ...,
@@ -322,7 +319,7 @@ class BooksResource(googleapiclient.discovery.Resource):
                 *,
                 shelf: str,
                 volumeId: str,
-                reason: typing_extensions.Literal[
+                reason: typing.Literal[
                     "REASON_UNDEFINED", "IOS_PREX", "IOS_SEARCH", "ONBOARDING"
                 ]
                 | None = ...,
@@ -352,8 +349,7 @@ class BooksResource(googleapiclient.discovery.Resource):
                 *,
                 shelf: str,
                 volumeId: str,
-                reason: typing_extensions.Literal["REASON_UNDEFINED", "ONBOARDING"]
-                | None = ...,
+                reason: typing.Literal["REASON_UNDEFINED", "ONBOARDING"] | None = ...,
                 source: str | None = ...,
                 **kwargs: typing.Any,
             ) -> EmptyHttpRequest: ...
@@ -375,7 +371,7 @@ class BooksResource(googleapiclient.discovery.Resource):
                 volumeId: str,
                 position: str,
                 timestamp: str,
-                action: typing_extensions.Literal[
+                action: typing.Literal[
                     "ACTION_UNDEFINED",
                     "bookmark",
                     "chapter",
@@ -416,7 +412,7 @@ class BooksResource(googleapiclient.discovery.Resource):
             *,
             categoryId: str | _list[str] | None = ...,
             locale: str | None = ...,
-            maxAllowedMaturityRating: typing_extensions.Literal[
+            maxAllowedMaturityRating: typing.Literal[
                 "MAX_ALLOWED_MATURITY_RATING_UNDEFINED", "MATURE", "not-mature"
             ]
             | None = ...,
@@ -434,7 +430,7 @@ class BooksResource(googleapiclient.discovery.Resource):
             self,
             *,
             locale: str | None = ...,
-            maxAllowedMaturityRating: typing_extensions.Literal[
+            maxAllowedMaturityRating: typing.Literal[
                 "MAX_ALLOWED_MATURITY_RATING_UNDEFINED", "MATURE", "not-mature"
             ]
             | None = ...,
@@ -507,7 +503,7 @@ class BooksResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 volumeId: str,
-                association: typing_extensions.Literal[
+                association: typing.Literal[
                     "ASSOCIATION_UNDEFINED",
                     "end-of-sample",
                     "end-of-volume",
@@ -515,7 +511,7 @@ class BooksResource(googleapiclient.discovery.Resource):
                 ]
                 | None = ...,
                 locale: str | None = ...,
-                maxAllowedMaturityRating: typing_extensions.Literal[
+                maxAllowedMaturityRating: typing.Literal[
                     "MAX_ALLOWED_MATURITY_RATING_UNDEFINED", "MATURE", "not-mature"
                 ]
                 | None = ...,
@@ -528,7 +524,7 @@ class BooksResource(googleapiclient.discovery.Resource):
             def list(
                 self,
                 *,
-                acquireMethod: typing_extensions.Literal[
+                acquireMethod: typing.Literal[
                     "ACQUIRE_METHOD_UNDEFINED",
                     "FAMILY_SHARED",
                     "PREORDERED",
@@ -540,7 +536,7 @@ class BooksResource(googleapiclient.discovery.Resource):
                     "UPLOADED",
                 ]
                 | _list[
-                    typing_extensions.Literal[
+                    typing.Literal[
                         "ACQUIRE_METHOD_UNDEFINED",
                         "FAMILY_SHARED",
                         "PREORDERED",
@@ -556,14 +552,14 @@ class BooksResource(googleapiclient.discovery.Resource):
                 country: str | None = ...,
                 locale: str | None = ...,
                 maxResults: int | None = ...,
-                processingState: typing_extensions.Literal[
+                processingState: typing.Literal[
                     "PROCESSING_STATE_UNDEFINED",
                     "COMPLETED_FAILED",
                     "COMPLETED_SUCCESS",
                     "RUNNING",
                 ]
                 | _list[
-                    typing_extensions.Literal[
+                    typing.Literal[
                         "PROCESSING_STATE_UNDEFINED",
                         "COMPLETED_FAILED",
                         "COMPLETED_SUCCESS",
@@ -582,7 +578,7 @@ class BooksResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 locale: str | None = ...,
-                maxAllowedMaturityRating: typing_extensions.Literal[
+                maxAllowedMaturityRating: typing.Literal[
                     "MAX_ALLOWED_MATURITY_RATING_UNDEFINED", "MATURE", "not-mature"
                 ]
                 | None = ...,
@@ -592,9 +588,7 @@ class BooksResource(googleapiclient.discovery.Resource):
             def rate(
                 self,
                 *,
-                rating: typing_extensions.Literal[
-                    "RATING_UNDEFINED", "HAVE_IT", "NOT_INTERESTED"
-                ],
+                rating: typing.Literal["RATING_UNDEFINED", "HAVE_IT", "NOT_INTERESTED"],
                 volumeId: str,
                 locale: str | None = ...,
                 source: str | None = ...,
@@ -608,14 +602,14 @@ class BooksResource(googleapiclient.discovery.Resource):
                 *,
                 locale: str | None = ...,
                 maxResults: int | None = ...,
-                processingState: typing_extensions.Literal[
+                processingState: typing.Literal[
                     "PROCESSING_STATE_UNDEFINED",
                     "COMPLETED_FAILED",
                     "COMPLETED_SUCCESS",
                     "RUNNING",
                 ]
                 | _list[
-                    typing_extensions.Literal[
+                    typing.Literal[
                         "PROCESSING_STATE_UNDEFINED",
                         "COMPLETED_FAILED",
                         "COMPLETED_SUCCESS",
@@ -636,9 +630,7 @@ class BooksResource(googleapiclient.discovery.Resource):
             country: str | None = ...,
             includeNonComicsSeries: bool | None = ...,
             partner: str | None = ...,
-            projection: typing_extensions.Literal[
-                "PROJECTION_UNDEFINED", "FULL", "LITE"
-            ]
+            projection: typing.Literal["PROJECTION_UNDEFINED", "FULL", "LITE"]
             | None = ...,
             source: str | None = ...,
             user_library_consistent_read: bool | None = ...,
@@ -648,9 +640,8 @@ class BooksResource(googleapiclient.discovery.Resource):
             self,
             *,
             q: str,
-            download: typing_extensions.Literal["DOWNLOAD_UNDEFINED", "EPUB"]
-            | None = ...,
-            filter: typing_extensions.Literal[
+            download: typing.Literal["DOWNLOAD_UNDEFINED", "EPUB"] | None = ...,
+            filter: typing.Literal[
                 "FILTER_UNDEFINED",
                 "ebooks",
                 "free-ebooks",
@@ -660,27 +651,23 @@ class BooksResource(googleapiclient.discovery.Resource):
             ]
             | None = ...,
             langRestrict: str | None = ...,
-            libraryRestrict: typing_extensions.Literal[
+            libraryRestrict: typing.Literal[
                 "LIBRARY_RESTRICT_UNDEFINED", "my-library", "no-restrict"
             ]
             | None = ...,
-            maxAllowedMaturityRating: typing_extensions.Literal[
+            maxAllowedMaturityRating: typing.Literal[
                 "MAX_ALLOWED_MATURITY_RATING_UNDEFINED", "MATURE", "not-mature"
             ]
             | None = ...,
             maxResults: int | None = ...,
-            orderBy: typing_extensions.Literal[
-                "ORDER_BY_UNDEFINED", "newest", "relevance"
-            ]
+            orderBy: typing.Literal["ORDER_BY_UNDEFINED", "newest", "relevance"]
             | None = ...,
             partner: str | None = ...,
-            printType: typing_extensions.Literal[
+            printType: typing.Literal[
                 "PRINT_TYPE_UNDEFINED", "ALL", "BOOKS", "MAGAZINES"
             ]
             | None = ...,
-            projection: typing_extensions.Literal[
-                "PROJECTION_UNDEFINED", "FULL", "LITE"
-            ]
+            projection: typing.Literal["PROJECTION_UNDEFINED", "FULL", "LITE"]
             | None = ...,
             showPreorders: bool | None = ...,
             source: str | None = ...,

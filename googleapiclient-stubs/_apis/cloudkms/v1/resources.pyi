@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -232,7 +231,7 @@ class CloudKMSResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             name: str,
-                            publicKeyFormat: typing_extensions.Literal[
+                            publicKeyFormat: typing.Literal[
                                 "PUBLIC_KEY_FORMAT_UNSPECIFIED",
                                 "PEM",
                                 "DER",
@@ -264,7 +263,7 @@ class CloudKMSResource(googleapiclient.discovery.Resource):
                             orderBy: str | None = ...,
                             pageSize: int | None = ...,
                             pageToken: str | None = ...,
-                            view: typing_extensions.Literal[
+                            view: typing.Literal[
                                 "CRYPTO_KEY_VERSION_VIEW_UNSPECIFIED", "FULL"
                             ]
                             | None = ...,
@@ -356,7 +355,7 @@ class CloudKMSResource(googleapiclient.discovery.Resource):
                         orderBy: str | None = ...,
                         pageSize: int | None = ...,
                         pageToken: str | None = ...,
-                        versionView: typing_extensions.Literal[
+                        versionView: typing.Literal[
                             "CRYPTO_KEY_VERSION_VIEW_UNSPECIFIED", "FULL"
                         ]
                         | None = ...,
@@ -412,7 +411,7 @@ class CloudKMSResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        publicKeyFormat: typing_extensions.Literal[
+                        publicKeyFormat: typing.Literal[
                             "PUBLIC_KEY_FORMAT_UNSPECIFIED",
                             "PEM",
                             "DER",

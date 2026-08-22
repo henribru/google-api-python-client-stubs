@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -33,7 +32,7 @@ class FirebaseCrashlyticsResource(googleapiclient.discovery.Resource):
                     parent: str,
                     filter_browser_displayNames: str | _list[str] | None = ...,
                     filter_device_displayNames: str | _list[str] | None = ...,
-                    filter_device_formFactors: typing_extensions.Literal[
+                    filter_device_formFactors: typing.Literal[
                         "FORM_FACTOR_UNSPECIFIED",
                         "PHONE",
                         "TABLET",
@@ -42,7 +41,7 @@ class FirebaseCrashlyticsResource(googleapiclient.discovery.Resource):
                         "WATCH",
                     ]
                     | _list[
-                        typing_extensions.Literal[
+                        typing.Literal[
                             "FORM_FACTOR_UNSPECIFIED",
                             "PHONE",
                             "TABLET",
@@ -55,17 +54,17 @@ class FirebaseCrashlyticsResource(googleapiclient.discovery.Resource):
                     filter_interval_endTime: str | None = ...,
                     filter_interval_startTime: str | None = ...,
                     filter_issue_content: str | None = ...,
-                    filter_issue_errorTypes: typing_extensions.Literal[
+                    filter_issue_errorTypes: typing.Literal[
                         "ERROR_TYPE_UNSPECIFIED", "FATAL", "NON_FATAL", "ANR"
                     ]
                     | _list[
-                        typing_extensions.Literal[
+                        typing.Literal[
                             "ERROR_TYPE_UNSPECIFIED", "FATAL", "NON_FATAL", "ANR"
                         ]
                     ]
                     | None = ...,
                     filter_issue_id: str | None = ...,
-                    filter_issue_signals: typing_extensions.Literal[
+                    filter_issue_signals: typing.Literal[
                         "SIGNAL_UNSPECIFIED",
                         "SIGNAL_EARLY",
                         "SIGNAL_FRESH",
@@ -73,7 +72,7 @@ class FirebaseCrashlyticsResource(googleapiclient.discovery.Resource):
                         "SIGNAL_REPETITIVE",
                     ]
                     | _list[
-                        typing_extensions.Literal[
+                        typing.Literal[
                             "SIGNAL_UNSPECIFIED",
                             "SIGNAL_EARLY",
                             "SIGNAL_FRESH",
@@ -82,17 +81,15 @@ class FirebaseCrashlyticsResource(googleapiclient.discovery.Resource):
                         ]
                     ]
                     | None = ...,
-                    filter_issue_state: typing_extensions.Literal[
+                    filter_issue_state: typing.Literal[
                         "STATE_UNSPECIFIED", "OPEN", "CLOSED", "MUTED"
                     ]
                     | None = ...,
-                    filter_issue_states: typing_extensions.Literal[
+                    filter_issue_states: typing.Literal[
                         "STATE_UNSPECIFIED", "OPEN", "CLOSED", "MUTED"
                     ]
                     | _list[
-                        typing_extensions.Literal[
-                            "STATE_UNSPECIFIED", "OPEN", "CLOSED", "MUTED"
-                        ]
+                        typing.Literal["STATE_UNSPECIFIED", "OPEN", "CLOSED", "MUTED"]
                     ]
                     | None = ...,
                     filter_issue_variantId: str | None = ...,
@@ -161,7 +158,7 @@ class FirebaseCrashlyticsResource(googleapiclient.discovery.Resource):
                     name: str,
                     filter_browser_displayNames: str | _list[str] | None = ...,
                     filter_device_displayNames: str | _list[str] | None = ...,
-                    filter_device_formFactors: typing_extensions.Literal[
+                    filter_device_formFactors: typing.Literal[
                         "FORM_FACTOR_UNSPECIFIED",
                         "PHONE",
                         "TABLET",
@@ -170,7 +167,7 @@ class FirebaseCrashlyticsResource(googleapiclient.discovery.Resource):
                         "WATCH",
                     ]
                     | _list[
-                        typing_extensions.Literal[
+                        typing.Literal[
                             "FORM_FACTOR_UNSPECIFIED",
                             "PHONE",
                             "TABLET",
@@ -183,17 +180,17 @@ class FirebaseCrashlyticsResource(googleapiclient.discovery.Resource):
                     filter_interval_endTime: str | None = ...,
                     filter_interval_startTime: str | None = ...,
                     filter_issue_content: str | None = ...,
-                    filter_issue_errorTypes: typing_extensions.Literal[
+                    filter_issue_errorTypes: typing.Literal[
                         "ERROR_TYPE_UNSPECIFIED", "FATAL", "NON_FATAL", "ANR"
                     ]
                     | _list[
-                        typing_extensions.Literal[
+                        typing.Literal[
                             "ERROR_TYPE_UNSPECIFIED", "FATAL", "NON_FATAL", "ANR"
                         ]
                     ]
                     | None = ...,
                     filter_issue_id: str | None = ...,
-                    filter_issue_signals: typing_extensions.Literal[
+                    filter_issue_signals: typing.Literal[
                         "SIGNAL_UNSPECIFIED",
                         "SIGNAL_EARLY",
                         "SIGNAL_FRESH",
@@ -201,7 +198,7 @@ class FirebaseCrashlyticsResource(googleapiclient.discovery.Resource):
                         "SIGNAL_REPETITIVE",
                     ]
                     | _list[
-                        typing_extensions.Literal[
+                        typing.Literal[
                             "SIGNAL_UNSPECIFIED",
                             "SIGNAL_EARLY",
                             "SIGNAL_FRESH",
@@ -210,23 +207,21 @@ class FirebaseCrashlyticsResource(googleapiclient.discovery.Resource):
                         ]
                     ]
                     | None = ...,
-                    filter_issue_state: typing_extensions.Literal[
+                    filter_issue_state: typing.Literal[
                         "STATE_UNSPECIFIED", "OPEN", "CLOSED", "MUTED"
                     ]
                     | None = ...,
-                    filter_issue_states: typing_extensions.Literal[
+                    filter_issue_states: typing.Literal[
                         "STATE_UNSPECIFIED", "OPEN", "CLOSED", "MUTED"
                     ]
                     | _list[
-                        typing_extensions.Literal[
-                            "STATE_UNSPECIFIED", "OPEN", "CLOSED", "MUTED"
-                        ]
+                        typing.Literal["STATE_UNSPECIFIED", "OPEN", "CLOSED", "MUTED"]
                     ]
                     | None = ...,
                     filter_issue_variantId: str | None = ...,
                     filter_operatingSystem_displayNames: str | _list[str] | None = ...,
                     filter_version_displayNames: str | _list[str] | None = ...,
-                    granularity: typing_extensions.Literal[
+                    granularity: typing.Literal[
                         "TIME_GRANULARITY_UNSPECIFIED",
                         "TIME_GRANULARITY_NONE",
                         "TIME_GRANULARITY_HOUR",

@@ -1,11 +1,9 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class DateTime(typing_extensions.TypedDict, total=False):
+class DateTime(typing.TypedDict, total=False):
     day: int
     hours: int
     minutes: int
@@ -17,7 +15,7 @@ class DateTime(typing_extensions.TypedDict, total=False):
     year: int
 
 @typing.type_check_only
-class LineItemDetails(typing_extensions.TypedDict, total=False):
+class LineItemDetails(typing.TypedDict, total=False):
     brand: str
     gtin: str
     gtins: _list[str]
@@ -28,7 +26,7 @@ class LineItemDetails(typing_extensions.TypedDict, total=False):
     quantity: str
 
 @typing.type_check_only
-class OrderTrackingSignal(typing_extensions.TypedDict, total=False):
+class OrderTrackingSignal(typing.TypedDict, total=False):
     customerShippingFee: Price
     deliveryPostalCode: str
     deliveryRegionCode: str
@@ -41,16 +39,16 @@ class OrderTrackingSignal(typing_extensions.TypedDict, total=False):
     shippingInfo: _list[ShippingInfo]
 
 @typing.type_check_only
-class Price(typing_extensions.TypedDict, total=False):
+class Price(typing.TypedDict, total=False):
     amountMicros: str
     currencyCode: str
 
 @typing.type_check_only
-class ProductChange(typing_extensions.TypedDict, total=False):
+class ProductChange(typing.TypedDict, total=False):
     newValue: str
     oldValue: str
     regionCode: str
-    reportingContext: typing_extensions.Literal[
+    reportingContext: typing.Literal[
         "REPORTING_CONTEXT_ENUM_UNSPECIFIED",
         "SHOPPING_ADS",
         "DISCOVERY_ADS",
@@ -74,27 +72,25 @@ class ProductChange(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class ProductStatusChangeMessage(typing_extensions.TypedDict, total=False):
+class ProductStatusChangeMessage(typing.TypedDict, total=False):
     account: str
-    attribute: typing_extensions.Literal["ATTRIBUTE_UNSPECIFIED", "STATUS"]
+    attribute: typing.Literal["ATTRIBUTE_UNSPECIFIED", "STATUS"]
     changes: _list[ProductChange]
     eventTime: str
     expirationTime: str
     managingAccount: str
     resource: str
     resourceId: str
-    resourceType: typing_extensions.Literal[
-        "RESOURCE_UNSPECIFIED", "PRODUCT", "ACCOUNT_SERVICE"
-    ]
+    resourceType: typing.Literal["RESOURCE_UNSPECIFIED", "PRODUCT", "ACCOUNT_SERVICE"]
 
 @typing.type_check_only
-class ShipmentLineItemMapping(typing_extensions.TypedDict, total=False):
+class ShipmentLineItemMapping(typing.TypedDict, total=False):
     lineItemId: str
     quantity: str
     shipmentId: str
 
 @typing.type_check_only
-class ShippingInfo(typing_extensions.TypedDict, total=False):
+class ShippingInfo(typing.TypedDict, total=False):
     actualDeliveryTime: DateTime
     carrier: str
     carrierService: str
@@ -104,12 +100,10 @@ class ShippingInfo(typing_extensions.TypedDict, total=False):
     originRegionCode: str
     shipmentId: str
     shippedTime: DateTime
-    shippingStatus: typing_extensions.Literal[
-        "SHIPPING_STATE_UNSPECIFIED", "SHIPPED", "DELIVERED"
-    ]
+    shippingStatus: typing.Literal["SHIPPING_STATE_UNSPECIFIED", "SHIPPED", "DELIVERED"]
     trackingId: str
 
 @typing.type_check_only
-class TimeZone(typing_extensions.TypedDict, total=False):
+class TimeZone(typing.TypedDict, total=False):
     id: str
     version: str

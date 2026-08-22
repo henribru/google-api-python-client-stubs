@@ -1,38 +1,36 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class AIInference(typing_extensions.TypedDict, total=False):
+class AIInference(typing.TypedDict, total=False):
     endpoint: str
     serviceAccountEmail: str
     unstructuredInference: UnstructuredInference
 
 @typing.type_check_only
-class AcknowledgeRequest(typing_extensions.TypedDict, total=False):
+class AcknowledgeRequest(typing.TypedDict, total=False):
     ackIds: _list[str]
 
 @typing.type_check_only
-class AnalyticsHubSubscriptionInfo(typing_extensions.TypedDict, total=False):
+class AnalyticsHubSubscriptionInfo(typing.TypedDict, total=False):
     listing: str
     subscription: str
 
 @typing.type_check_only
-class AvroConfig(typing_extensions.TypedDict, total=False):
+class AvroConfig(typing.TypedDict, total=False):
     useTopicSchema: bool
     writeMetadata: bool
 
 @typing.type_check_only
-class AvroFormat(typing_extensions.TypedDict, total=False): ...
+class AvroFormat(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class AwsKinesis(typing_extensions.TypedDict, total=False):
+class AwsKinesis(typing.TypedDict, total=False):
     awsRoleArn: str
     consumerArn: str
     gcpServiceAccount: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "ACTIVE",
         "KINESIS_PERMISSION_DENIED",
@@ -44,11 +42,11 @@ class AwsKinesis(typing_extensions.TypedDict, total=False):
     streamArn: str
 
 @typing.type_check_only
-class AwsMsk(typing_extensions.TypedDict, total=False):
+class AwsMsk(typing.TypedDict, total=False):
     awsRoleArn: str
     clusterArn: str
     gcpServiceAccount: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "ACTIVE",
         "MSK_PERMISSION_DENIED",
@@ -60,13 +58,13 @@ class AwsMsk(typing_extensions.TypedDict, total=False):
     topic: str
 
 @typing.type_check_only
-class AzureEventHubs(typing_extensions.TypedDict, total=False):
+class AzureEventHubs(typing.TypedDict, total=False):
     clientId: str
     eventHub: str
     gcpServiceAccount: str
     namespace: str
     resourceGroup: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "ACTIVE",
         "EVENT_HUBS_PERMISSION_DENIED",
@@ -81,10 +79,10 @@ class AzureEventHubs(typing_extensions.TypedDict, total=False):
     tenantId: str
 
 @typing.type_check_only
-class BigQueryConfig(typing_extensions.TypedDict, total=False):
+class BigQueryConfig(typing.TypedDict, total=False):
     dropUnknownFields: bool
     serviceAccountEmail: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "ACTIVE",
         "PERMISSION_DENIED",
@@ -99,10 +97,10 @@ class BigQueryConfig(typing_extensions.TypedDict, total=False):
     writeMetadata: bool
 
 @typing.type_check_only
-class BigtableConfig(typing_extensions.TypedDict, total=False):
+class BigtableConfig(typing.TypedDict, total=False):
     appProfileId: str
     serviceAccountEmail: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "ACTIVE",
         "NOT_FOUND",
@@ -116,19 +114,19 @@ class BigtableConfig(typing_extensions.TypedDict, total=False):
     writeMetadata: bool
 
 @typing.type_check_only
-class Binding(typing_extensions.TypedDict, total=False):
+class Binding(typing.TypedDict, total=False):
     condition: Expr
     members: _list[str]
     role: str
 
 @typing.type_check_only
-class CloudStorage(typing_extensions.TypedDict, total=False):
+class CloudStorage(typing.TypedDict, total=False):
     avroFormat: AvroFormat
     bucket: str
     matchGlob: str
     minimumObjectCreateTime: str
     pubsubAvroFormat: PubSubAvroFormat
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "ACTIVE",
         "CLOUD_STORAGE_PERMISSION_DENIED",
@@ -140,7 +138,7 @@ class CloudStorage(typing_extensions.TypedDict, total=False):
     textFormat: TextFormat
 
 @typing.type_check_only
-class CloudStorageConfig(typing_extensions.TypedDict, total=False):
+class CloudStorageConfig(typing.TypedDict, total=False):
     avroConfig: AvroConfig
     bucket: str
     filenameDatetimeFormat: str
@@ -150,7 +148,7 @@ class CloudStorageConfig(typing_extensions.TypedDict, total=False):
     maxDuration: str
     maxMessages: str
     serviceAccountEmail: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "ACTIVE",
         "PERMISSION_DENIED",
@@ -162,25 +160,23 @@ class CloudStorageConfig(typing_extensions.TypedDict, total=False):
     textConfig: TextConfig
 
 @typing.type_check_only
-class CommitSchemaRequest(typing_extensions.TypedDict, total=False):
+class CommitSchemaRequest(typing.TypedDict, total=False):
     schema: Schema
 
 @typing.type_check_only
-class Compression(typing_extensions.TypedDict, total=False):
-    compressionAlgorithm: typing_extensions.Literal[
-        "COMPRESSION_ALGORITHM_UNSPECIFIED", "ZLIB"
-    ]
-    compressionMode: typing_extensions.Literal[
+class Compression(typing.TypedDict, total=False):
+    compressionAlgorithm: typing.Literal["COMPRESSION_ALGORITHM_UNSPECIFIED", "ZLIB"]
+    compressionMode: typing.Literal[
         "COMPRESSION_MODE_UNSPECIFIED", "COMPRESS", "DECOMPRESS"
     ]
 
 @typing.type_check_only
-class ConfluentCloud(typing_extensions.TypedDict, total=False):
+class ConfluentCloud(typing.TypedDict, total=False):
     bootstrapServer: str
     clusterId: str
     gcpServiceAccount: str
     identityPoolId: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "ACTIVE",
         "CONFLUENT_CLOUD_PERMISSION_DENIED",
@@ -193,35 +189,35 @@ class ConfluentCloud(typing_extensions.TypedDict, total=False):
     topic: str
 
 @typing.type_check_only
-class CreateSnapshotRequest(typing_extensions.TypedDict, total=False):
+class CreateSnapshotRequest(typing.TypedDict, total=False):
     labels: dict[str, typing.Any]
     subscription: str
     tags: dict[str, typing.Any]
 
 @typing.type_check_only
-class DeadLetterPolicy(typing_extensions.TypedDict, total=False):
+class DeadLetterPolicy(typing.TypedDict, total=False):
     deadLetterTopic: str
     maxDeliveryAttempts: int
 
 @typing.type_check_only
-class DetachSubscriptionResponse(typing_extensions.TypedDict, total=False): ...
+class DetachSubscriptionResponse(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class ExpirationPolicy(typing_extensions.TypedDict, total=False):
+class ExpirationPolicy(typing.TypedDict, total=False):
     ttl: str
 
 @typing.type_check_only
-class Expr(typing_extensions.TypedDict, total=False):
+class Expr(typing.TypedDict, total=False):
     description: str
     expression: str
     location: str
     title: str
 
 @typing.type_check_only
-class IngestionDataSourceSettings(typing_extensions.TypedDict, total=False):
+class IngestionDataSourceSettings(typing.TypedDict, total=False):
     awsKinesis: AwsKinesis
     awsMsk: AwsMsk
     azureEventHubs: AzureEventHubs
@@ -230,52 +226,52 @@ class IngestionDataSourceSettings(typing_extensions.TypedDict, total=False):
     platformLogsSettings: PlatformLogsSettings
 
 @typing.type_check_only
-class JavaScriptUDF(typing_extensions.TypedDict, total=False):
+class JavaScriptUDF(typing.TypedDict, total=False):
     code: str
     functionName: str
 
 @typing.type_check_only
-class ListSchemaRevisionsResponse(typing_extensions.TypedDict, total=False):
+class ListSchemaRevisionsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     schemas: _list[Schema]
 
 @typing.type_check_only
-class ListSchemasResponse(typing_extensions.TypedDict, total=False):
+class ListSchemasResponse(typing.TypedDict, total=False):
     nextPageToken: str
     schemas: _list[Schema]
 
 @typing.type_check_only
-class ListSnapshotsResponse(typing_extensions.TypedDict, total=False):
+class ListSnapshotsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     snapshots: _list[Snapshot]
 
 @typing.type_check_only
-class ListSubscriptionsResponse(typing_extensions.TypedDict, total=False):
+class ListSubscriptionsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     subscriptions: _list[Subscription]
 
 @typing.type_check_only
-class ListTopicSnapshotsResponse(typing_extensions.TypedDict, total=False):
+class ListTopicSnapshotsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     snapshots: _list[str]
 
 @typing.type_check_only
-class ListTopicSubscriptionsResponse(typing_extensions.TypedDict, total=False):
+class ListTopicSubscriptionsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     subscriptions: _list[str]
 
 @typing.type_check_only
-class ListTopicsResponse(typing_extensions.TypedDict, total=False):
+class ListTopicsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     topics: _list[Topic]
 
 @typing.type_check_only
-class MessageStoragePolicy(typing_extensions.TypedDict, total=False):
+class MessageStoragePolicy(typing.TypedDict, total=False):
     allowedPersistenceRegions: _list[str]
     enforceInTransit: bool
 
 @typing.type_check_only
-class MessageTransform(typing_extensions.TypedDict, total=False):
+class MessageTransform(typing.TypedDict, total=False):
     aiInference: AIInference
     compression: Compression
     disabled: bool
@@ -283,48 +279,48 @@ class MessageTransform(typing_extensions.TypedDict, total=False):
     javascriptUdf: JavaScriptUDF
 
 @typing.type_check_only
-class ModifyAckDeadlineRequest(typing_extensions.TypedDict, total=False):
+class ModifyAckDeadlineRequest(typing.TypedDict, total=False):
     ackDeadlineSeconds: int
     ackIds: _list[str]
 
 @typing.type_check_only
-class ModifyPushConfigRequest(typing_extensions.TypedDict, total=False):
+class ModifyPushConfigRequest(typing.TypedDict, total=False):
     pushConfig: PushConfig
 
 @typing.type_check_only
-class NoWrapper(typing_extensions.TypedDict, total=False):
+class NoWrapper(typing.TypedDict, total=False):
     writeMetadata: bool
 
 @typing.type_check_only
-class OidcToken(typing_extensions.TypedDict, total=False):
+class OidcToken(typing.TypedDict, total=False):
     audience: str
     serviceAccountEmail: str
 
 @typing.type_check_only
-class PlatformLogsSettings(typing_extensions.TypedDict, total=False):
-    severity: typing_extensions.Literal[
+class PlatformLogsSettings(typing.TypedDict, total=False):
+    severity: typing.Literal[
         "SEVERITY_UNSPECIFIED", "DISABLED", "DEBUG", "INFO", "WARNING", "ERROR"
     ]
 
 @typing.type_check_only
-class Policy(typing_extensions.TypedDict, total=False):
+class Policy(typing.TypedDict, total=False):
     bindings: _list[Binding]
     etag: str
     version: int
 
 @typing.type_check_only
-class PubSubAvroFormat(typing_extensions.TypedDict, total=False): ...
+class PubSubAvroFormat(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class PublishRequest(typing_extensions.TypedDict, total=False):
+class PublishRequest(typing.TypedDict, total=False):
     messages: _list[PubsubMessage]
 
 @typing.type_check_only
-class PublishResponse(typing_extensions.TypedDict, total=False):
+class PublishResponse(typing.TypedDict, total=False):
     messageIds: _list[str]
 
 @typing.type_check_only
-class PubsubMessage(typing_extensions.TypedDict, total=False):
+class PubsubMessage(typing.TypedDict, total=False):
     attributes: dict[str, typing.Any]
     data: str
     messageId: str
@@ -332,19 +328,19 @@ class PubsubMessage(typing_extensions.TypedDict, total=False):
     publishTime: str
 
 @typing.type_check_only
-class PubsubWrapper(typing_extensions.TypedDict, total=False): ...
+class PubsubWrapper(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class PullRequest(typing_extensions.TypedDict, total=False):
+class PullRequest(typing.TypedDict, total=False):
     maxMessages: int
     returnImmediately: bool
 
 @typing.type_check_only
-class PullResponse(typing_extensions.TypedDict, total=False):
+class PullResponse(typing.TypedDict, total=False):
     receivedMessages: _list[ReceivedMessage]
 
 @typing.type_check_only
-class PushConfig(typing_extensions.TypedDict, total=False):
+class PushConfig(typing.TypedDict, total=False):
     attributes: dict[str, typing.Any]
     noWrapper: NoWrapper
     oidcToken: OidcToken
@@ -352,56 +348,56 @@ class PushConfig(typing_extensions.TypedDict, total=False):
     pushEndpoint: str
 
 @typing.type_check_only
-class ReceivedMessage(typing_extensions.TypedDict, total=False):
+class ReceivedMessage(typing.TypedDict, total=False):
     ackId: str
     deliveryAttempt: int
     message: PubsubMessage
 
 @typing.type_check_only
-class RetryPolicy(typing_extensions.TypedDict, total=False):
+class RetryPolicy(typing.TypedDict, total=False):
     maximumBackoff: str
     minimumBackoff: str
 
 @typing.type_check_only
-class RollbackSchemaRequest(typing_extensions.TypedDict, total=False):
+class RollbackSchemaRequest(typing.TypedDict, total=False):
     revisionId: str
 
 @typing.type_check_only
-class Schema(typing_extensions.TypedDict, total=False):
+class Schema(typing.TypedDict, total=False):
     definition: str
     name: str
     revisionCreateTime: str
     revisionId: str
-    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "PROTOCOL_BUFFER", "AVRO"]
+    type: typing.Literal["TYPE_UNSPECIFIED", "PROTOCOL_BUFFER", "AVRO"]
 
 @typing.type_check_only
-class SchemaSettings(typing_extensions.TypedDict, total=False):
-    encoding: typing_extensions.Literal["ENCODING_UNSPECIFIED", "JSON", "BINARY"]
+class SchemaSettings(typing.TypedDict, total=False):
+    encoding: typing.Literal["ENCODING_UNSPECIFIED", "JSON", "BINARY"]
     firstRevisionId: str
     lastRevisionId: str
     schema: str
 
 @typing.type_check_only
-class SeekRequest(typing_extensions.TypedDict, total=False):
+class SeekRequest(typing.TypedDict, total=False):
     snapshot: str
     time: str
 
 @typing.type_check_only
-class SeekResponse(typing_extensions.TypedDict, total=False): ...
+class SeekResponse(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
+class SetIamPolicyRequest(typing.TypedDict, total=False):
     policy: Policy
 
 @typing.type_check_only
-class Snapshot(typing_extensions.TypedDict, total=False):
+class Snapshot(typing.TypedDict, total=False):
     expireTime: str
     labels: dict[str, typing.Any]
     name: str
     topic: str
 
 @typing.type_check_only
-class Subscription(typing_extensions.TypedDict, total=False):
+class Subscription(typing.TypedDict, total=False):
     ackDeadlineSeconds: int
     analyticsHubSubscriptionInfo: AnalyticsHubSubscriptionInfo
     bigqueryConfig: BigQueryConfig
@@ -420,28 +416,28 @@ class Subscription(typing_extensions.TypedDict, total=False):
     pushConfig: PushConfig
     retainAckedMessages: bool
     retryPolicy: RetryPolicy
-    state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "RESOURCE_ERROR"]
+    state: typing.Literal["STATE_UNSPECIFIED", "ACTIVE", "RESOURCE_ERROR"]
     tags: dict[str, typing.Any]
     topic: str
     topicMessageRetentionDuration: str
 
 @typing.type_check_only
-class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
+class TestIamPermissionsRequest(typing.TypedDict, total=False):
     permissions: _list[str]
 
 @typing.type_check_only
-class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
+class TestIamPermissionsResponse(typing.TypedDict, total=False):
     permissions: _list[str]
 
 @typing.type_check_only
-class TextConfig(typing_extensions.TypedDict, total=False): ...
+class TextConfig(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class TextFormat(typing_extensions.TypedDict, total=False):
+class TextFormat(typing.TypedDict, total=False):
     delimiter: str
 
 @typing.type_check_only
-class Topic(typing_extensions.TypedDict, total=False):
+class Topic(typing.TypedDict, total=False):
     ingestionDataSourceSettings: IngestionDataSourceSettings
     kmsKeyName: str
     labels: dict[str, typing.Any]
@@ -451,43 +447,41 @@ class Topic(typing_extensions.TypedDict, total=False):
     name: str
     satisfiesPzs: bool
     schemaSettings: SchemaSettings
-    state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "ACTIVE", "INGESTION_RESOURCE_ERROR"
-    ]
+    state: typing.Literal["STATE_UNSPECIFIED", "ACTIVE", "INGESTION_RESOURCE_ERROR"]
     tags: dict[str, typing.Any]
 
 @typing.type_check_only
-class UnstructuredInference(typing_extensions.TypedDict, total=False):
+class UnstructuredInference(typing.TypedDict, total=False):
     parameters: dict[str, typing.Any]
 
 @typing.type_check_only
-class UpdateSnapshotRequest(typing_extensions.TypedDict, total=False):
+class UpdateSnapshotRequest(typing.TypedDict, total=False):
     snapshot: Snapshot
     updateMask: str
 
 @typing.type_check_only
-class UpdateSubscriptionRequest(typing_extensions.TypedDict, total=False):
+class UpdateSubscriptionRequest(typing.TypedDict, total=False):
     subscription: Subscription
     updateMask: str
 
 @typing.type_check_only
-class UpdateTopicRequest(typing_extensions.TypedDict, total=False):
+class UpdateTopicRequest(typing.TypedDict, total=False):
     topic: Topic
     updateMask: str
 
 @typing.type_check_only
-class ValidateMessageRequest(typing_extensions.TypedDict, total=False):
-    encoding: typing_extensions.Literal["ENCODING_UNSPECIFIED", "JSON", "BINARY"]
+class ValidateMessageRequest(typing.TypedDict, total=False):
+    encoding: typing.Literal["ENCODING_UNSPECIFIED", "JSON", "BINARY"]
     message: str
     name: str
     schema: Schema
 
 @typing.type_check_only
-class ValidateMessageResponse(typing_extensions.TypedDict, total=False): ...
+class ValidateMessageResponse(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class ValidateSchemaRequest(typing_extensions.TypedDict, total=False):
+class ValidateSchemaRequest(typing.TypedDict, total=False):
     schema: Schema
 
 @typing.type_check_only
-class ValidateSchemaResponse(typing_extensions.TypedDict, total=False): ...
+class ValidateSchemaResponse(typing.TypedDict, total=False): ...

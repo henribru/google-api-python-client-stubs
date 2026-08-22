@@ -1,14 +1,12 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class NotificationSetting(typing_extensions.TypedDict, total=False):
+class NotificationSetting(typing.TypedDict, total=False):
     name: str
     notificationTypes: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "NOTIFICATION_TYPE_UNSPECIFIED",
             "GOOGLE_UPDATE",
             "NEW_REVIEW",

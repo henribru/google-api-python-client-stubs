@@ -1,22 +1,20 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class Axis(typing_extensions.TypedDict, total=False):
+class Axis(typing.TypedDict, total=False):
     end: float
     start: float
     tag: str
 
 @typing.type_check_only
-class Tag(typing_extensions.TypedDict, total=False):
+class Tag(typing.TypedDict, total=False):
     name: str
     weight: float
 
 @typing.type_check_only
-class Webfont(typing_extensions.TypedDict, total=False):
+class Webfont(typing.TypedDict, total=False):
     axes: _list[Axis]
     category: str
     colorCapabilities: _list[str]
@@ -31,6 +29,6 @@ class Webfont(typing_extensions.TypedDict, total=False):
     version: str
 
 @typing.type_check_only
-class WebfontList(typing_extensions.TypedDict, total=False):
+class WebfontList(typing.TypedDict, total=False):
     items: _list[Webfont]
     kind: str

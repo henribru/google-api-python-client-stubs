@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -333,7 +332,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 resourceName: str,
                 pageSize: int | None = ...,
                 pageToken: str | None = ...,
-                responseContentType: typing_extensions.Literal[
+                responseContentType: typing.Literal[
                     "UNSPECIFIED", "RESOURCE_NAME_ONLY", "MUTABLE_RESOURCE"
                 ]
                 | None = ...,
@@ -909,7 +908,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 customerId: str,
                 billingSetup: str | None = ...,
                 includeGranularLevelInvoiceDetails: bool | None = ...,
-                issueMonth: typing_extensions.Literal[
+                issueMonth: typing.Literal[
                     "UNSPECIFIED",
                     "UNKNOWN",
                     "JANUARY",
@@ -1581,8 +1580,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
             countryCode: str | None = ...,
             email: str | None = ...,
             languageCode: str | None = ...,
-            type: typing_extensions.Literal["UNSPECIFIED", "UNKNOWN", "ACQUISITION"]
-            | None = ...,
+            type: typing.Literal["UNSPECIFIED", "UNKNOWN", "ACQUISITION"] | None = ...,
             **kwargs: typing.Any,
         ) -> GoogleAdsSearchads360V23Services__FetchIncentiveResponseHttpRequest: ...
 

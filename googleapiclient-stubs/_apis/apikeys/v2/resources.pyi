@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -41,7 +40,7 @@ class ApiKeysServiceResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    checkExistingUsage: typing_extensions.Literal[
+                    checkExistingUsage: typing.Literal[
                         "CHECK_EXISTING_USAGE_UNSPECIFIED", "SKIP", "CHECK"
                     ]
                     | None = ...,
@@ -73,7 +72,7 @@ class ApiKeysServiceResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: V2Key,
-                    checkExistingUsage: typing_extensions.Literal[
+                    checkExistingUsage: typing.Literal[
                         "CHECK_EXISTING_USAGE_UNSPECIFIED", "SKIP", "CHECK"
                     ]
                     | None = ...,

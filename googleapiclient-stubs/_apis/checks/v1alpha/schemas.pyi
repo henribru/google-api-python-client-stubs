@@ -1,32 +1,26 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
+class CancelOperationRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class GoogleChecksAccountV1alphaApp(typing_extensions.TypedDict, total=False):
+class GoogleChecksAccountV1alphaApp(typing.TypedDict, total=False):
     name: str
     title: str
 
 @typing.type_check_only
-class GoogleChecksAccountV1alphaListAppsResponse(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleChecksAccountV1alphaListAppsResponse(typing.TypedDict, total=False):
     apps: _list[GoogleChecksAccountV1alphaApp]
     nextPageToken: str
 
 @typing.type_check_only
-class GoogleChecksAisafetyV1alphaClassifyContentRequest(
-    typing_extensions.TypedDict, total=False
-):
-    classifierVersion: typing_extensions.Literal[
+class GoogleChecksAisafetyV1alphaClassifyContentRequest(typing.TypedDict, total=False):
+    classifierVersion: typing.Literal[
         "CLASSIFIER_VERSION_UNSPECIFIED", "STABLE", "LATEST"
     ]
     context: GoogleChecksAisafetyV1alphaClassifyContentRequestContext
@@ -35,21 +29,21 @@ class GoogleChecksAisafetyV1alphaClassifyContentRequest(
 
 @typing.type_check_only
 class GoogleChecksAisafetyV1alphaClassifyContentRequestContext(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     prompt: str
 
 @typing.type_check_only
 class GoogleChecksAisafetyV1alphaClassifyContentRequestInputContent(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     textInput: GoogleChecksAisafetyV1alphaTextInput
 
 @typing.type_check_only
 class GoogleChecksAisafetyV1alphaClassifyContentRequestPolicyConfig(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
-    policyType: typing_extensions.Literal[
+    policyType: typing.Literal[
         "POLICY_TYPE_UNSPECIFIED",
         "DANGEROUS_CONTENT",
         "PII_SOLICITING_RECITING",
@@ -63,16 +57,14 @@ class GoogleChecksAisafetyV1alphaClassifyContentRequestPolicyConfig(
     threshold: float
 
 @typing.type_check_only
-class GoogleChecksAisafetyV1alphaClassifyContentResponse(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleChecksAisafetyV1alphaClassifyContentResponse(typing.TypedDict, total=False):
     policyResults: _list[GoogleChecksAisafetyV1alphaClassifyContentResponsePolicyResult]
 
 @typing.type_check_only
 class GoogleChecksAisafetyV1alphaClassifyContentResponsePolicyResult(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
-    policyType: typing_extensions.Literal[
+    policyType: typing.Literal[
         "POLICY_TYPE_UNSPECIFIED",
         "DANGEROUS_CONTENT",
         "PII_SOLICITING_RECITING",
@@ -84,7 +76,7 @@ class GoogleChecksAisafetyV1alphaClassifyContentResponsePolicyResult(
         "OBSCENITY_AND_PROFANITY",
     ]
     score: float
-    violationResult: typing_extensions.Literal[
+    violationResult: typing.Literal[
         "VIOLATION_RESULT_UNSPECIFIED",
         "VIOLATIVE",
         "NON_VIOLATIVE",
@@ -92,26 +84,24 @@ class GoogleChecksAisafetyV1alphaClassifyContentResponsePolicyResult(
     ]
 
 @typing.type_check_only
-class GoogleChecksAisafetyV1alphaTextInput(typing_extensions.TypedDict, total=False):
+class GoogleChecksAisafetyV1alphaTextInput(typing.TypedDict, total=False):
     content: str
     languageCode: str
 
 @typing.type_check_only
-class GoogleChecksRepoScanV1alphaCliAnalysis(typing_extensions.TypedDict, total=False):
+class GoogleChecksRepoScanV1alphaCliAnalysis(typing.TypedDict, total=False):
     codeScans: _list[GoogleChecksRepoScanV1alphaCodeScan]
     sources: _list[GoogleChecksRepoScanV1alphaSource]
 
 @typing.type_check_only
-class GoogleChecksRepoScanV1alphaCodeAttribution(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleChecksRepoScanV1alphaCodeAttribution(typing.TypedDict, total=False):
     codeExcerpt: str
     lineNumber: int
     path: str
     startLineNumber: int
 
 @typing.type_check_only
-class GoogleChecksRepoScanV1alphaCodeScan(typing_extensions.TypedDict, total=False):
+class GoogleChecksRepoScanV1alphaCodeScan(typing.TypedDict, total=False):
     dataTypeClassifications: _list[
         GoogleChecksRepoScanV1alphaCodeScanDataTypeClassification
     ]
@@ -119,9 +109,9 @@ class GoogleChecksRepoScanV1alphaCodeScan(typing_extensions.TypedDict, total=Fal
 
 @typing.type_check_only
 class GoogleChecksRepoScanV1alphaCodeScanDataTypeClassification(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
-    dataType: typing_extensions.Literal[
+    dataType: typing.Literal[
         "DATA_TYPE_UNSPECIFIED",
         "DATA_TYPE_APPROXIMATE_LOCATION",
         "DATA_TYPE_PRECISE_LOCATION",
@@ -165,28 +155,24 @@ class GoogleChecksRepoScanV1alphaCodeScanDataTypeClassification(
     lineNumber: int
 
 @typing.type_check_only
-class GoogleChecksRepoScanV1alphaGenerateScanRequest(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleChecksRepoScanV1alphaGenerateScanRequest(typing.TypedDict, total=False):
     cliAnalysis: GoogleChecksRepoScanV1alphaCliAnalysis
     cliVersion: str
     localScanPath: str
     scmMetadata: GoogleChecksRepoScanV1alphaScmMetadata
 
 @typing.type_check_only
-class GoogleChecksRepoScanV1alphaListRepoScansResponse(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleChecksRepoScanV1alphaListRepoScansResponse(typing.TypedDict, total=False):
     nextPageToken: str
     repoScans: _list[GoogleChecksRepoScanV1alphaRepoScan]
 
 @typing.type_check_only
-class GoogleChecksRepoScanV1alphaPullRequest(typing_extensions.TypedDict, total=False):
+class GoogleChecksRepoScanV1alphaPullRequest(typing.TypedDict, total=False):
     baseBranch: str
     prNumber: str
 
 @typing.type_check_only
-class GoogleChecksRepoScanV1alphaRepoScan(typing_extensions.TypedDict, total=False):
+class GoogleChecksRepoScanV1alphaRepoScan(typing.TypedDict, total=False):
     cliVersion: str
     localScanPath: str
     name: str
@@ -195,16 +181,16 @@ class GoogleChecksRepoScanV1alphaRepoScan(typing_extensions.TypedDict, total=Fal
     sources: _list[GoogleChecksRepoScanV1alphaSource]
 
 @typing.type_check_only
-class GoogleChecksRepoScanV1alphaScmMetadata(typing_extensions.TypedDict, total=False):
+class GoogleChecksRepoScanV1alphaScmMetadata(typing.TypedDict, total=False):
     branch: str
     pullRequest: GoogleChecksRepoScanV1alphaPullRequest
     remoteUri: str
     revisionId: str
 
 @typing.type_check_only
-class GoogleChecksRepoScanV1alphaSource(typing_extensions.TypedDict, total=False):
+class GoogleChecksRepoScanV1alphaSource(typing.TypedDict, total=False):
     codeAttribution: GoogleChecksRepoScanV1alphaCodeAttribution
-    dataType: typing_extensions.Literal[
+    dataType: typing.Literal[
         "DATA_TYPE_UNSPECIFIED",
         "DATA_TYPE_APPROXIMATE_LOCATION",
         "DATA_TYPE_PRECISE_LOCATION",
@@ -248,44 +234,40 @@ class GoogleChecksRepoScanV1alphaSource(typing_extensions.TypedDict, total=False
     falsePositive: bool
 
 @typing.type_check_only
-class GoogleChecksRepoScanV1alphaSourceCode(typing_extensions.TypedDict, total=False):
+class GoogleChecksRepoScanV1alphaSourceCode(typing.TypedDict, total=False):
     code: str
     endLine: int
     path: str
     startLine: int
 
 @typing.type_check_only
-class GoogleChecksReportV1alphaAnalyzeUploadRequest(
-    typing_extensions.TypedDict, total=False
-):
-    appBinaryFileType: typing_extensions.Literal[
+class GoogleChecksReportV1alphaAnalyzeUploadRequest(typing.TypedDict, total=False):
+    appBinaryFileType: typing.Literal[
         "APP_BINARY_FILE_TYPE_UNSPECIFIED", "ANDROID_APK", "ANDROID_AAB", "IOS_IPA"
     ]
     codeReferenceId: str
 
 @typing.type_check_only
-class GoogleChecksReportV1alphaAppBundle(typing_extensions.TypedDict, total=False):
+class GoogleChecksReportV1alphaAppBundle(typing.TypedDict, total=False):
     bundleId: str
     codeReferenceId: str
-    releaseType: typing_extensions.Literal[
+    releaseType: typing.Literal[
         "APP_BUNDLE_RELEASE_TYPE_UNSPECIFIED", "PUBLIC", "PRE_RELEASE"
     ]
     version: str
     versionId: str
 
 @typing.type_check_only
-class GoogleChecksReportV1alphaCheck(typing_extensions.TypedDict, total=False):
+class GoogleChecksReportV1alphaCheck(typing.TypedDict, total=False):
     citations: _list[GoogleChecksReportV1alphaCheckCitation]
     evidence: GoogleChecksReportV1alphaCheckEvidence
     regionCodes: _list[str]
-    severity: typing_extensions.Literal[
+    severity: typing.Literal[
         "CHECK_SEVERITY_UNSPECIFIED", "PRIORITY", "POTENTIAL", "OPPORTUNITY"
     ]
-    state: typing_extensions.Literal[
-        "CHECK_STATE_UNSPECIFIED", "PASSED", "FAILED", "UNCHECKED"
-    ]
+    state: typing.Literal["CHECK_STATE_UNSPECIFIED", "PASSED", "FAILED", "UNCHECKED"]
     stateMetadata: GoogleChecksReportV1alphaCheckStateMetadata
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "CHECK_TYPE_UNSPECIFIED",
         "STORE_LISTING_PRIVACY_POLICY_LINK_PRESENT",
         "PRIVACY_POLICY_UPDATE_DATE_RECENT",
@@ -381,8 +363,8 @@ class GoogleChecksReportV1alphaCheck(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class GoogleChecksReportV1alphaCheckCitation(typing_extensions.TypedDict, total=False):
-    type: typing_extensions.Literal[
+class GoogleChecksReportV1alphaCheckCitation(typing.TypedDict, total=False):
+    type: typing.Literal[
         "CITATION_TYPE_UNSPECIFIED",
         "COPPA",
         "GDPR",
@@ -413,24 +395,20 @@ class GoogleChecksReportV1alphaCheckCitation(typing_extensions.TypedDict, total=
     ]
 
 @typing.type_check_only
-class GoogleChecksReportV1alphaCheckDataSecurityEvidence(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleChecksReportV1alphaCheckDataSecurityEvidence(typing.TypedDict, total=False):
     dataInTransitInfo: _list[
         GoogleChecksReportV1alphaCheckDataSecurityEvidenceDataInTransitInfo
     ]
 
 @typing.type_check_only
 class GoogleChecksReportV1alphaCheckDataSecurityEvidenceDataInTransitInfo(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     uri: str
 
 @typing.type_check_only
-class GoogleChecksReportV1alphaCheckDataTypeEvidence(
-    typing_extensions.TypedDict, total=False
-):
-    dataType: typing_extensions.Literal[
+class GoogleChecksReportV1alphaCheckDataTypeEvidence(typing.TypedDict, total=False):
+    dataType: typing.Literal[
         "DATA_TYPE_UNSPECIFIED",
         "DATA_TYPE_APPROXIMATE_LOCATION",
         "DATA_TYPE_PRECISE_LOCATION",
@@ -474,14 +452,12 @@ class GoogleChecksReportV1alphaCheckDataTypeEvidence(
     dataTypeEvidence: GoogleChecksReportV1alphaDataTypeEvidence
 
 @typing.type_check_only
-class GoogleChecksReportV1alphaCheckEndpointEvidence(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleChecksReportV1alphaCheckEndpointEvidence(typing.TypedDict, total=False):
     endpoint: GoogleChecksReportV1alphaEndpoint
 
 @typing.type_check_only
 class GoogleChecksReportV1alphaCheckEndpointRestrictionViolationEvidence(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     endpointDetails: _list[
         GoogleChecksReportV1alphaCheckEndpointRestrictionViolationEvidenceEndpointDetails
@@ -489,12 +465,12 @@ class GoogleChecksReportV1alphaCheckEndpointRestrictionViolationEvidence(
 
 @typing.type_check_only
 class GoogleChecksReportV1alphaCheckEndpointRestrictionViolationEvidenceEndpointDetails(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     endpoint: GoogleChecksReportV1alphaEndpoint
 
 @typing.type_check_only
-class GoogleChecksReportV1alphaCheckEvidence(typing_extensions.TypedDict, total=False):
+class GoogleChecksReportV1alphaCheckEvidence(typing.TypedDict, total=False):
     dataSecurity: GoogleChecksReportV1alphaCheckDataSecurityEvidence
     dataTypes: _list[GoogleChecksReportV1alphaCheckDataTypeEvidence]
     endpointRestrictionViolations: _list[
@@ -513,14 +489,12 @@ class GoogleChecksReportV1alphaCheckEvidence(typing_extensions.TypedDict, total=
     sdks: _list[GoogleChecksReportV1alphaCheckSdkEvidence]
 
 @typing.type_check_only
-class GoogleChecksReportV1alphaCheckPermissionEvidence(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleChecksReportV1alphaCheckPermissionEvidence(typing.TypedDict, total=False):
     permission: GoogleChecksReportV1alphaPermission
 
 @typing.type_check_only
 class GoogleChecksReportV1alphaCheckPermissionRestrictionViolationEvidence(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     permissionDetails: _list[
         GoogleChecksReportV1alphaCheckPermissionRestrictionViolationEvidencePermissionDetails
@@ -528,32 +502,28 @@ class GoogleChecksReportV1alphaCheckPermissionRestrictionViolationEvidence(
 
 @typing.type_check_only
 class GoogleChecksReportV1alphaCheckPermissionRestrictionViolationEvidencePermissionDetails(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     permission: GoogleChecksReportV1alphaPermission
 
 @typing.type_check_only
 class GoogleChecksReportV1alphaCheckPrivacyPolicyTextEvidence(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     policyFragment: GoogleChecksReportV1alphaPolicyFragment
 
 @typing.type_check_only
-class GoogleChecksReportV1alphaCheckSdkEvidence(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleChecksReportV1alphaCheckSdkEvidence(typing.TypedDict, total=False):
     sdk: GoogleChecksReportV1alphaSdk
 
 @typing.type_check_only
-class GoogleChecksReportV1alphaCheckSdkIssueEvidence(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleChecksReportV1alphaCheckSdkIssueEvidence(typing.TypedDict, total=False):
     sdk: GoogleChecksReportV1alphaSdk
     sdkVersion: str
 
 @typing.type_check_only
 class GoogleChecksReportV1alphaCheckSdkRestrictionViolationEvidence(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     sdkDetails: _list[
         GoogleChecksReportV1alphaCheckSdkRestrictionViolationEvidenceSdkDetails
@@ -561,16 +531,14 @@ class GoogleChecksReportV1alphaCheckSdkRestrictionViolationEvidence(
 
 @typing.type_check_only
 class GoogleChecksReportV1alphaCheckSdkRestrictionViolationEvidenceSdkDetails(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     sdk: GoogleChecksReportV1alphaSdk
 
 @typing.type_check_only
-class GoogleChecksReportV1alphaCheckStateMetadata(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleChecksReportV1alphaCheckStateMetadata(typing.TypedDict, total=False):
     badges: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "CHECK_STATE_BADGE_UNSPECIFIED",
             "NEWLY_FAILING",
             "RECENTLY_FAILING",
@@ -581,7 +549,7 @@ class GoogleChecksReportV1alphaCheckStateMetadata(
     lastFailingTime: str
 
 @typing.type_check_only
-class GoogleChecksReportV1alphaDataMonitoring(typing_extensions.TypedDict, total=False):
+class GoogleChecksReportV1alphaDataMonitoring(typing.TypedDict, total=False):
     dataTypes: _list[GoogleChecksReportV1alphaDataMonitoringDataTypeResult]
     endpoints: _list[GoogleChecksReportV1alphaDataMonitoringEndpointResult]
     permissions: _list[GoogleChecksReportV1alphaDataMonitoringPermissionResult]
@@ -589,9 +557,9 @@ class GoogleChecksReportV1alphaDataMonitoring(typing_extensions.TypedDict, total
 
 @typing.type_check_only
 class GoogleChecksReportV1alphaDataMonitoringDataTypeResult(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
-    dataType: typing_extensions.Literal[
+    dataType: typing.Literal[
         "DATA_TYPE_UNSPECIFIED",
         "DATA_TYPE_APPROXIMATE_LOCATION",
         "DATA_TYPE_PRECISE_LOCATION",
@@ -637,7 +605,7 @@ class GoogleChecksReportV1alphaDataMonitoringDataTypeResult(
 
 @typing.type_check_only
 class GoogleChecksReportV1alphaDataMonitoringEndpointResult(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     endpoint: GoogleChecksReportV1alphaEndpoint
     hitCount: int
@@ -645,40 +613,34 @@ class GoogleChecksReportV1alphaDataMonitoringEndpointResult(
 
 @typing.type_check_only
 class GoogleChecksReportV1alphaDataMonitoringPermissionResult(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     metadata: GoogleChecksReportV1alphaDataMonitoringResultMetadata
     permission: GoogleChecksReportV1alphaPermission
 
 @typing.type_check_only
 class GoogleChecksReportV1alphaDataMonitoringResultMetadata(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
-    badges: _list[
-        typing_extensions.Literal["DATA_MONITORING_RESULT_BADGE_UNSPECIFIED", "NEW"]
-    ]
+    badges: _list[typing.Literal["DATA_MONITORING_RESULT_BADGE_UNSPECIFIED", "NEW"]]
     firstDetectedTime: str
     lastDetectedAppVersion: str
     lastDetectedTime: str
 
 @typing.type_check_only
-class GoogleChecksReportV1alphaDataMonitoringSdkResult(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleChecksReportV1alphaDataMonitoringSdkResult(typing.TypedDict, total=False):
     metadata: GoogleChecksReportV1alphaDataMonitoringResultMetadata
     sdk: GoogleChecksReportV1alphaSdk
 
 @typing.type_check_only
-class GoogleChecksReportV1alphaDataTypeEndpointEvidence(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleChecksReportV1alphaDataTypeEndpointEvidence(typing.TypedDict, total=False):
     attributedSdks: _list[
         GoogleChecksReportV1alphaDataTypeEndpointEvidenceAttributedSdk
     ]
     endpointDetails: _list[
         GoogleChecksReportV1alphaDataTypeEndpointEvidenceEndpointDetails
     ]
-    exfiltratedDataType: typing_extensions.Literal[
+    exfiltratedDataType: typing.Literal[
         "EXFILTRATED_DATA_TYPE_UNSPECIFIED",
         "EXFILTRATED_DATA_TYPE_PHONE_NUMBER",
         "EXFILTRATED_DATA_TYPE_PRECISE_LOCATION",
@@ -702,20 +664,18 @@ class GoogleChecksReportV1alphaDataTypeEndpointEvidence(
 
 @typing.type_check_only
 class GoogleChecksReportV1alphaDataTypeEndpointEvidenceAttributedSdk(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     sdk: GoogleChecksReportV1alphaSdk
 
 @typing.type_check_only
 class GoogleChecksReportV1alphaDataTypeEndpointEvidenceEndpointDetails(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     endpoint: GoogleChecksReportV1alphaEndpoint
 
 @typing.type_check_only
-class GoogleChecksReportV1alphaDataTypeEvidence(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleChecksReportV1alphaDataTypeEvidence(typing.TypedDict, total=False):
     endpoints: _list[GoogleChecksReportV1alphaDataTypeEndpointEvidence]
     permissions: _list[GoogleChecksReportV1alphaDataTypePermissionEvidence]
     privacyPolicyTexts: _list[
@@ -724,38 +684,36 @@ class GoogleChecksReportV1alphaDataTypeEvidence(
 
 @typing.type_check_only
 class GoogleChecksReportV1alphaDataTypePermissionEvidence(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     permission: GoogleChecksReportV1alphaPermission
 
 @typing.type_check_only
 class GoogleChecksReportV1alphaDataTypePrivacyPolicyTextEvidence(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     policyFragment: GoogleChecksReportV1alphaPolicyFragment
 
 @typing.type_check_only
-class GoogleChecksReportV1alphaEndpoint(typing_extensions.TypedDict, total=False):
+class GoogleChecksReportV1alphaEndpoint(typing.TypedDict, total=False):
     domain: str
 
 @typing.type_check_only
-class GoogleChecksReportV1alphaListReportsResponse(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleChecksReportV1alphaListReportsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     reports: _list[GoogleChecksReportV1alphaReport]
 
 @typing.type_check_only
-class GoogleChecksReportV1alphaPermission(typing_extensions.TypedDict, total=False):
+class GoogleChecksReportV1alphaPermission(typing.TypedDict, total=False):
     id: str
 
 @typing.type_check_only
-class GoogleChecksReportV1alphaPolicyFragment(typing_extensions.TypedDict, total=False):
+class GoogleChecksReportV1alphaPolicyFragment(typing.TypedDict, total=False):
     htmlContent: str
     sourceUri: str
 
 @typing.type_check_only
-class GoogleChecksReportV1alphaReport(typing_extensions.TypedDict, total=False):
+class GoogleChecksReportV1alphaReport(typing.TypedDict, total=False):
     appBundle: GoogleChecksReportV1alphaAppBundle
     checks: _list[GoogleChecksReportV1alphaCheck]
     dataMonitoring: GoogleChecksReportV1alphaDataMonitoring
@@ -763,17 +721,17 @@ class GoogleChecksReportV1alphaReport(typing_extensions.TypedDict, total=False):
     resultsUri: str
 
 @typing.type_check_only
-class GoogleChecksReportV1alphaSdk(typing_extensions.TypedDict, total=False):
+class GoogleChecksReportV1alphaSdk(typing.TypedDict, total=False):
     id: str
 
 @typing.type_check_only
-class ListOperationsResponse(typing_extensions.TypedDict, total=False):
+class ListOperationsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
     unreachable: _list[str]
 
 @typing.type_check_only
-class Operation(typing_extensions.TypedDict, total=False):
+class Operation(typing.TypedDict, total=False):
     done: bool
     error: Status
     metadata: dict[str, typing.Any]
@@ -781,11 +739,11 @@ class Operation(typing_extensions.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
-class Status(typing_extensions.TypedDict, total=False):
+class Status(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
-class WaitOperationRequest(typing_extensions.TypedDict, total=False):
+class WaitOperationRequest(typing.TypedDict, total=False):
     timeout: str

@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -319,7 +318,7 @@ class ContactcenterinsightsResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             name: str,
-                            view: typing_extensions.Literal[
+                            view: typing.Literal[
                                 "CONVERSATION_VIEW_UNSPECIFIED", "FULL", "BASIC"
                             ]
                             | None = ...,
@@ -335,7 +334,7 @@ class ContactcenterinsightsResource(googleapiclient.discovery.Resource):
                             orderBy: str | None = ...,
                             pageSize: int | None = ...,
                             pageToken: str | None = ...,
-                            view: typing_extensions.Literal[
+                            view: typing.Literal[
                                 "CONVERSATION_VIEW_UNSPECIFIED", "FULL", "BASIC"
                             ]
                             | None = ...,
@@ -801,7 +800,7 @@ class ContactcenterinsightsResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    view: typing_extensions.Literal[
+                    view: typing.Literal[
                         "CONVERSATION_VIEW_UNSPECIFIED", "FULL", "BASIC"
                     ]
                     | None = ...,
@@ -822,7 +821,7 @@ class ContactcenterinsightsResource(googleapiclient.discovery.Resource):
                     orderBy: str | None = ...,
                     pageSize: int | None = ...,
                     pageToken: str | None = ...,
-                    view: typing_extensions.Literal[
+                    view: typing.Literal[
                         "CONVERSATION_VIEW_UNSPECIFIED", "FULL", "BASIC"
                     ]
                     | None = ...,
@@ -1022,7 +1021,7 @@ class ContactcenterinsightsResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        view: typing_extensions.Literal[
+                        view: typing.Literal[
                             "CONVERSATION_VIEW_UNSPECIFIED", "FULL", "BASIC"
                         ]
                         | None = ...,
@@ -1043,7 +1042,7 @@ class ContactcenterinsightsResource(googleapiclient.discovery.Resource):
                         orderBy: str | None = ...,
                         pageSize: int | None = ...,
                         pageToken: str | None = ...,
-                        view: typing_extensions.Literal[
+                        view: typing.Literal[
                             "CONVERSATION_VIEW_UNSPECIFIED", "FULL", "BASIC"
                         ]
                         | None = ...,
@@ -1450,14 +1449,14 @@ class ContactcenterinsightsResource(googleapiclient.discovery.Resource):
                         filter: str | None = ...,
                         pageSize: int | None = ...,
                         pageToken: str | None = ...,
-                        qaScorecardSources: typing_extensions.Literal[
+                        qaScorecardSources: typing.Literal[
                             "QA_SCORECARD_SOURCE_UNSPECIFIED",
                             "QA_SCORECARD_SOURCE_CUSTOMER_DEFINED",
                             "QA_SCORECARD_SOURCE_DISCOVERY_ENGINE",
                             "QA_SCORECARD_SOURCE_INTENT_TAXONOMY",
                         ]
                         | _list[
-                            typing_extensions.Literal[
+                            typing.Literal[
                                 "QA_SCORECARD_SOURCE_UNSPECIFIED",
                                 "QA_SCORECARD_SOURCE_CUSTOMER_DEFINED",
                                 "QA_SCORECARD_SOURCE_DISCOVERY_ENGINE",
@@ -1513,14 +1512,14 @@ class ContactcenterinsightsResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int | None = ...,
                     pageToken: str | None = ...,
-                    qaScorecardSources: typing_extensions.Literal[
+                    qaScorecardSources: typing.Literal[
                         "QA_SCORECARD_SOURCE_UNSPECIFIED",
                         "QA_SCORECARD_SOURCE_CUSTOMER_DEFINED",
                         "QA_SCORECARD_SOURCE_DISCOVERY_ENGINE",
                         "QA_SCORECARD_SOURCE_INTENT_TAXONOMY",
                     ]
                     | _list[
-                        typing_extensions.Literal[
+                        typing.Literal[
                             "QA_SCORECARD_SOURCE_UNSPECIFIED",
                             "QA_SCORECARD_SOURCE_CUSTOMER_DEFINED",
                             "QA_SCORECARD_SOURCE_DISCOVERY_ENGINE",

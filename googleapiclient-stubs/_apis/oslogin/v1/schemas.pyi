@@ -1,31 +1,29 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class ImportSshPublicKeyResponse(typing_extensions.TypedDict, total=False):
+class ImportSshPublicKeyResponse(typing.TypedDict, total=False):
     details: str
     loginProfile: LoginProfile
 
 @typing.type_check_only
-class LoginProfile(typing_extensions.TypedDict, total=False):
+class LoginProfile(typing.TypedDict, total=False):
     name: str
     posixAccounts: _list[PosixAccount]
     sshPublicKeys: dict[str, typing.Any]
 
 @typing.type_check_only
-class PosixAccount(typing_extensions.TypedDict, total=False):
+class PosixAccount(typing.TypedDict, total=False):
     accountId: str
     gecos: str
     gid: str
     homeDirectory: str
     name: str
-    operatingSystemType: typing_extensions.Literal[
+    operatingSystemType: typing.Literal[
         "OPERATING_SYSTEM_TYPE_UNSPECIFIED", "LINUX", "WINDOWS"
     ]
     primary: bool
@@ -35,11 +33,11 @@ class PosixAccount(typing_extensions.TypedDict, total=False):
     username: str
 
 @typing.type_check_only
-class ProvisionPosixAccountRequest(typing_extensions.TypedDict, total=False):
+class ProvisionPosixAccountRequest(typing.TypedDict, total=False):
     regions: _list[str]
 
 @typing.type_check_only
-class SignSshPublicKeyRequest(typing_extensions.TypedDict, total=False):
+class SignSshPublicKeyRequest(typing.TypedDict, total=False):
     appEngineInstance: str
     cloudRunResource: str
     computeInstance: str
@@ -47,11 +45,11 @@ class SignSshPublicKeyRequest(typing_extensions.TypedDict, total=False):
     sshPublicKey: str
 
 @typing.type_check_only
-class SignSshPublicKeyResponse(typing_extensions.TypedDict, total=False):
+class SignSshPublicKeyResponse(typing.TypedDict, total=False):
     signedSshPublicKey: str
 
 @typing.type_check_only
-class SshPublicKey(typing_extensions.TypedDict, total=False):
+class SshPublicKey(typing.TypedDict, total=False):
     expirationTimeUsec: str
     fingerprint: str
     key: str

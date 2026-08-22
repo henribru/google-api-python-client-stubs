@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -44,7 +43,7 @@ class ServiceManagementResource(googleapiclient.discovery.Resource):
                 *,
                 serviceName: str,
                 configId: str,
-                view: typing_extensions.Literal["BASIC", "FULL"] | None = ...,
+                view: typing.Literal["BASIC", "FULL"] | None = ...,
                 **kwargs: typing.Any,
             ) -> ServiceHttpRequest: ...
             def list(
@@ -124,7 +123,7 @@ class ServiceManagementResource(googleapiclient.discovery.Resource):
             *,
             serviceName: str,
             configId: str | None = ...,
-            view: typing_extensions.Literal["BASIC", "FULL"] | None = ...,
+            view: typing.Literal["BASIC", "FULL"] | None = ...,
             **kwargs: typing.Any,
         ) -> ServiceHttpRequest: ...
         def getIamPolicy(

@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -78,7 +77,7 @@ class ResellerResource(googleapiclient.discovery.Resource):
             *,
             customerId: str,
             subscriptionId: str,
-            deletionType: typing_extensions.Literal[
+            deletionType: typing.Literal[
                 "deletion_type_undefined", "cancel", "transfer_to_direct"
             ],
             **kwargs: typing.Any,
@@ -91,8 +90,7 @@ class ResellerResource(googleapiclient.discovery.Resource):
             *,
             customerId: str,
             body: Subscription,
-            action: typing_extensions.Literal["actionUnspecified", "buy", "switch"]
-            | None = ...,
+            action: typing.Literal["actionUnspecified", "buy", "switch"] | None = ...,
             customerAuthToken: str | None = ...,
             sourceSkuId: str | None = ...,
             **kwargs: typing.Any,

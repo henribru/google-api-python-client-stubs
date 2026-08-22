@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -20,7 +19,7 @@ class CloudSupportResource(googleapiclient.discovery.Resource):
             *,
             pageSize: int | None = ...,
             pageToken: str | None = ...,
-            product_productLine: typing_extensions.Literal[
+            product_productLine: typing.Literal[
                 "PRODUCT_LINE_UNSPECIFIED", "GOOGLE_CLOUD", "GOOGLE_MAPS"
             ]
             | None = ...,
@@ -91,7 +90,7 @@ class CloudSupportResource(googleapiclient.discovery.Resource):
             filter: str | None = ...,
             pageSize: int | None = ...,
             pageToken: str | None = ...,
-            productLine: typing_extensions.Literal[
+            productLine: typing.Literal[
                 "PRODUCT_LINE_UNSPECIFIED", "GOOGLE_CLOUD", "GOOGLE_MAPS"
             ]
             | None = ...,

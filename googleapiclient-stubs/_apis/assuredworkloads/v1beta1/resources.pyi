@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -112,7 +111,7 @@ class AssuredworkloadsResource(googleapiclient.discovery.Resource):
                     filter: str | None = ...,
                     pageSize: int | None = ...,
                     pageToken: str | None = ...,
-                    view: typing_extensions.Literal[
+                    view: typing.Literal[
                         "FRAMEWORK_COMPLIANCE_SUMMARY_VIEW_UNSPECIFIED",
                         "FRAMEWORK_COMPLIANCE_SUMMARY_VIEW_BASIC",
                         "FRAMEWORK_COMPLIANCE_SUMMARY_VIEW_FULL",
@@ -221,7 +220,7 @@ class AssuredworkloadsResource(googleapiclient.discovery.Resource):
                     filter: str | None = ...,
                     pageSize: int | None = ...,
                     pageToken: str | None = ...,
-                    view: typing_extensions.Literal[
+                    view: typing.Literal[
                         "FRAMEWORK_COMPLIANCE_SUMMARY_VIEW_UNSPECIFIED",
                         "FRAMEWORK_COMPLIANCE_SUMMARY_VIEW_BASIC",
                         "FRAMEWORK_COMPLIANCE_SUMMARY_VIEW_FULL",
@@ -489,7 +488,7 @@ class AssuredworkloadsResource(googleapiclient.discovery.Resource):
                     filter: str | None = ...,
                     pageSize: int | None = ...,
                     pageToken: str | None = ...,
-                    view: typing_extensions.Literal[
+                    view: typing.Literal[
                         "FRAMEWORK_COMPLIANCE_SUMMARY_VIEW_UNSPECIFIED",
                         "FRAMEWORK_COMPLIANCE_SUMMARY_VIEW_BASIC",
                         "FRAMEWORK_COMPLIANCE_SUMMARY_VIEW_FULL",

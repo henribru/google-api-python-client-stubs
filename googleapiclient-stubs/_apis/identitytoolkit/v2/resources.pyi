@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -440,7 +439,7 @@ class IdentityToolkitResource(googleapiclient.discovery.Resource):
         def getRecaptchaConfig(
             self,
             *,
-            clientType: typing_extensions.Literal[
+            clientType: typing.Literal[
                 "CLIENT_TYPE_UNSPECIFIED",
                 "CLIENT_TYPE_WEB",
                 "CLIENT_TYPE_ANDROID",
@@ -448,7 +447,7 @@ class IdentityToolkitResource(googleapiclient.discovery.Resource):
             ]
             | None = ...,
             tenantId: str | None = ...,
-            version: typing_extensions.Literal[
+            version: typing.Literal[
                 "RECAPTCHA_VERSION_UNSPECIFIED", "RECAPTCHA_ENTERPRISE"
             ]
             | None = ...,

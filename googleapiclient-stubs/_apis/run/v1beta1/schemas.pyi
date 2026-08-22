@@ -1,11 +1,9 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class CustomResourceColumnDefinition(typing_extensions.TypedDict, total=False):
+class CustomResourceColumnDefinition(typing.TypedDict, total=False):
     description: str
     format: str
     jsonPath: str
@@ -14,14 +12,14 @@ class CustomResourceColumnDefinition(typing_extensions.TypedDict, total=False):
     type: str
 
 @typing.type_check_only
-class CustomResourceDefinition(typing_extensions.TypedDict, total=False):
+class CustomResourceDefinition(typing.TypedDict, total=False):
     apiVersion: str
     kind: str
     metadata: ObjectMeta
     spec: CustomResourceDefinitionSpec
 
 @typing.type_check_only
-class CustomResourceDefinitionNames(typing_extensions.TypedDict, total=False):
+class CustomResourceDefinitionNames(typing.TypedDict, total=False):
     categories: _list[str]
     kind: str
     listKind: str
@@ -30,7 +28,7 @@ class CustomResourceDefinitionNames(typing_extensions.TypedDict, total=False):
     singular: str
 
 @typing.type_check_only
-class CustomResourceDefinitionSpec(typing_extensions.TypedDict, total=False):
+class CustomResourceDefinitionSpec(typing.TypedDict, total=False):
     additionalPrinterColumns: _list[CustomResourceColumnDefinition]
     group: str
     names: CustomResourceDefinitionNames
@@ -41,39 +39,39 @@ class CustomResourceDefinitionSpec(typing_extensions.TypedDict, total=False):
     versions: _list[CustomResourceDefinitionVersion]
 
 @typing.type_check_only
-class CustomResourceDefinitionVersion(typing_extensions.TypedDict, total=False):
+class CustomResourceDefinitionVersion(typing.TypedDict, total=False):
     name: str
     served: bool
     storage: bool
 
 @typing.type_check_only
-class CustomResourceSubresourceScale(typing_extensions.TypedDict, total=False):
+class CustomResourceSubresourceScale(typing.TypedDict, total=False):
     labelSelectorPath: str
     specReplicasPath: str
     statusReplicasPath: str
 
 @typing.type_check_only
-class CustomResourceSubresourceStatus(typing_extensions.TypedDict, total=False): ...
+class CustomResourceSubresourceStatus(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class CustomResourceSubresources(typing_extensions.TypedDict, total=False):
+class CustomResourceSubresources(typing.TypedDict, total=False):
     scale: CustomResourceSubresourceScale
     status: CustomResourceSubresourceStatus
 
 @typing.type_check_only
-class CustomResourceValidation(typing_extensions.TypedDict, total=False):
+class CustomResourceValidation(typing.TypedDict, total=False):
     openAPIV3Schema: JSONSchemaProps
 
 @typing.type_check_only
-class ExternalDocumentation(typing_extensions.TypedDict, total=False):
+class ExternalDocumentation(typing.TypedDict, total=False):
     description: str
     url: str
 
 @typing.type_check_only
-class JSON(typing_extensions.TypedDict, total=False):
+class JSON(typing.TypedDict, total=False):
     raw: str
 
-AlternativeJSONSchemaProps = typing_extensions.TypedDict(
+AlternativeJSONSchemaProps = typing.TypedDict(
     "AlternativeJSONSchemaProps",
     {
         "additionalItems": JSONSchemaPropsOrBool,
@@ -120,29 +118,29 @@ AlternativeJSONSchemaProps = typing_extensions.TypedDict(
 class JSONSchemaProps(AlternativeJSONSchemaProps): ...
 
 @typing.type_check_only
-class JSONSchemaPropsOrArray(typing_extensions.TypedDict, total=False):
+class JSONSchemaPropsOrArray(typing.TypedDict, total=False):
     jsonSchemas: _list[JSONSchemaProps]
     schema: JSONSchemaProps
 
 @typing.type_check_only
-class JSONSchemaPropsOrBool(typing_extensions.TypedDict, total=False):
+class JSONSchemaPropsOrBool(typing.TypedDict, total=False):
     allows: bool
     schema: JSONSchemaProps
 
 @typing.type_check_only
-class JSONSchemaPropsOrStringArray(typing_extensions.TypedDict, total=False):
+class JSONSchemaPropsOrStringArray(typing.TypedDict, total=False):
     property: _list[str]
     schema: JSONSchemaProps
 
 @typing.type_check_only
-class ListCustomResourceDefinitionsResponse(typing_extensions.TypedDict, total=False):
+class ListCustomResourceDefinitionsResponse(typing.TypedDict, total=False):
     apiVersion: str
     items: _list[CustomResourceDefinition]
     kind: str
     metadata: ListMeta
     unreachable: _list[str]
 
-AlternativeListMeta = typing_extensions.TypedDict(
+AlternativeListMeta = typing.TypedDict(
     "AlternativeListMeta",
     {
         "continue": str,
@@ -156,7 +154,7 @@ AlternativeListMeta = typing_extensions.TypedDict(
 class ListMeta(AlternativeListMeta): ...
 
 @typing.type_check_only
-class ObjectMeta(typing_extensions.TypedDict, total=False):
+class ObjectMeta(typing.TypedDict, total=False):
     annotations: dict[str, typing.Any]
     clusterName: str
     creationTimestamp: str
@@ -174,7 +172,7 @@ class ObjectMeta(typing_extensions.TypedDict, total=False):
     uid: str
 
 @typing.type_check_only
-class OwnerReference(typing_extensions.TypedDict, total=False):
+class OwnerReference(typing.TypedDict, total=False):
     apiVersion: str
     blockOwnerDeletion: bool
     controller: bool

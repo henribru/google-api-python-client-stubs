@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -127,11 +126,9 @@ class CloudTalentSolutionResource(googleapiclient.discovery.Resource):
             languageCode: str | None = ...,
             pageSize: int | None = ...,
             query: str | None = ...,
-            scope: typing_extensions.Literal[
-                "COMPLETION_SCOPE_UNSPECIFIED", "TENANT", "PUBLIC"
-            ]
+            scope: typing.Literal["COMPLETION_SCOPE_UNSPECIFIED", "TENANT", "PUBLIC"]
             | None = ...,
-            type: typing_extensions.Literal[
+            type: typing.Literal[
                 "COMPLETION_TYPE_UNSPECIFIED", "JOB_TITLE", "COMPANY_NAME", "COMBINED"
             ]
             | None = ...,

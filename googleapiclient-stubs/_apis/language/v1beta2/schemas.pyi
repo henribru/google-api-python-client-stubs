@@ -1,59 +1,57 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class AnalyzeEntitiesRequest(typing_extensions.TypedDict, total=False):
+class AnalyzeEntitiesRequest(typing.TypedDict, total=False):
     document: Document
-    encodingType: typing_extensions.Literal["NONE", "UTF8", "UTF16", "UTF32"]
+    encodingType: typing.Literal["NONE", "UTF8", "UTF16", "UTF32"]
 
 @typing.type_check_only
-class AnalyzeEntitiesResponse(typing_extensions.TypedDict, total=False):
+class AnalyzeEntitiesResponse(typing.TypedDict, total=False):
     entities: _list[Entity]
     language: str
 
 @typing.type_check_only
-class AnalyzeEntitySentimentRequest(typing_extensions.TypedDict, total=False):
+class AnalyzeEntitySentimentRequest(typing.TypedDict, total=False):
     document: Document
-    encodingType: typing_extensions.Literal["NONE", "UTF8", "UTF16", "UTF32"]
+    encodingType: typing.Literal["NONE", "UTF8", "UTF16", "UTF32"]
 
 @typing.type_check_only
-class AnalyzeEntitySentimentResponse(typing_extensions.TypedDict, total=False):
+class AnalyzeEntitySentimentResponse(typing.TypedDict, total=False):
     entities: _list[Entity]
     language: str
 
 @typing.type_check_only
-class AnalyzeSentimentRequest(typing_extensions.TypedDict, total=False):
+class AnalyzeSentimentRequest(typing.TypedDict, total=False):
     document: Document
-    encodingType: typing_extensions.Literal["NONE", "UTF8", "UTF16", "UTF32"]
+    encodingType: typing.Literal["NONE", "UTF8", "UTF16", "UTF32"]
 
 @typing.type_check_only
-class AnalyzeSentimentResponse(typing_extensions.TypedDict, total=False):
+class AnalyzeSentimentResponse(typing.TypedDict, total=False):
     documentSentiment: Sentiment
     language: str
     sentences: _list[Sentence]
 
 @typing.type_check_only
-class AnalyzeSyntaxRequest(typing_extensions.TypedDict, total=False):
+class AnalyzeSyntaxRequest(typing.TypedDict, total=False):
     document: Document
-    encodingType: typing_extensions.Literal["NONE", "UTF8", "UTF16", "UTF32"]
+    encodingType: typing.Literal["NONE", "UTF8", "UTF16", "UTF32"]
 
 @typing.type_check_only
-class AnalyzeSyntaxResponse(typing_extensions.TypedDict, total=False):
+class AnalyzeSyntaxResponse(typing.TypedDict, total=False):
     language: str
     sentences: _list[Sentence]
     tokens: _list[Token]
 
 @typing.type_check_only
-class AnnotateTextRequest(typing_extensions.TypedDict, total=False):
+class AnnotateTextRequest(typing.TypedDict, total=False):
     document: Document
-    encodingType: typing_extensions.Literal["NONE", "UTF8", "UTF16", "UTF32"]
+    encodingType: typing.Literal["NONE", "UTF8", "UTF16", "UTF32"]
     features: AnnotateTextRequestFeatures
 
 @typing.type_check_only
-class AnnotateTextRequestFeatures(typing_extensions.TypedDict, total=False):
+class AnnotateTextRequestFeatures(typing.TypedDict, total=False):
     classificationModelOptions: ClassificationModelOptions
     classifyText: bool
     extractDocumentSentiment: bool
@@ -63,7 +61,7 @@ class AnnotateTextRequestFeatures(typing_extensions.TypedDict, total=False):
     moderateText: bool
 
 @typing.type_check_only
-class AnnotateTextResponse(typing_extensions.TypedDict, total=False):
+class AnnotateTextResponse(typing.TypedDict, total=False):
     categories: _list[ClassificationCategory]
     documentSentiment: Sentiment
     entities: _list[Entity]
@@ -73,45 +71,45 @@ class AnnotateTextResponse(typing_extensions.TypedDict, total=False):
     tokens: _list[Token]
 
 @typing.type_check_only
-class ClassificationCategory(typing_extensions.TypedDict, total=False):
+class ClassificationCategory(typing.TypedDict, total=False):
     confidence: float
     name: str
 
 @typing.type_check_only
-class ClassificationModelOptions(typing_extensions.TypedDict, total=False):
+class ClassificationModelOptions(typing.TypedDict, total=False):
     v1Model: ClassificationModelOptionsV1Model
     v2Model: ClassificationModelOptionsV2Model
 
 @typing.type_check_only
-class ClassificationModelOptionsV1Model(typing_extensions.TypedDict, total=False): ...
+class ClassificationModelOptionsV1Model(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class ClassificationModelOptionsV2Model(typing_extensions.TypedDict, total=False):
-    contentCategoriesVersion: typing_extensions.Literal[
+class ClassificationModelOptionsV2Model(typing.TypedDict, total=False):
+    contentCategoriesVersion: typing.Literal[
         "CONTENT_CATEGORIES_VERSION_UNSPECIFIED", "V1", "V2"
     ]
 
 @typing.type_check_only
-class ClassifyTextRequest(typing_extensions.TypedDict, total=False):
+class ClassifyTextRequest(typing.TypedDict, total=False):
     classificationModelOptions: ClassificationModelOptions
     document: Document
 
 @typing.type_check_only
-class ClassifyTextResponse(typing_extensions.TypedDict, total=False):
+class ClassifyTextResponse(typing.TypedDict, total=False):
     categories: _list[ClassificationCategory]
 
 @typing.type_check_only
-class Color(typing_extensions.TypedDict, total=False):
+class Color(typing.TypedDict, total=False):
     alpha: float
     blue: float
     green: float
     red: float
 
 @typing.type_check_only
-class CpuMetric(typing_extensions.TypedDict, total=False):
+class CpuMetric(typing.TypedDict, total=False):
     coreNumber: str
     coreSec: str
-    cpuType: typing_extensions.Literal[
+    cpuType: typing.Literal[
         "UNKNOWN_CPU_TYPE",
         "A2",
         "A3",
@@ -137,7 +135,7 @@ class CpuMetric(typing_extensions.TypedDict, total=False):
         "N2",
         "N2D",
     ]
-    machineSpec: typing_extensions.Literal[
+    machineSpec: typing.Literal[
         "UNKNOWN_MACHINE_SPEC",
         "N1_STANDARD_2",
         "N1_STANDARD_4",
@@ -450,9 +448,9 @@ class CpuMetric(typing_extensions.TypedDict, total=False):
     trackingLabels: dict[str, typing.Any]
 
 @typing.type_check_only
-class DependencyEdge(typing_extensions.TypedDict, total=False):
+class DependencyEdge(typing.TypedDict, total=False):
     headTokenIndex: int
-    label: typing_extensions.Literal[
+    label: typing.Literal[
         "UNKNOWN",
         "ABBREV",
         "ACOMP",
@@ -539,8 +537,8 @@ class DependencyEdge(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class DiskMetric(typing_extensions.TypedDict, total=False):
-    diskType: typing_extensions.Literal[
+class DiskMetric(typing.TypedDict, total=False):
+    diskType: typing.Literal[
         "UNKNOWN_DISK_TYPE",
         "REGIONAL_SSD",
         "REGIONAL_STORAGE",
@@ -551,24 +549,24 @@ class DiskMetric(typing_extensions.TypedDict, total=False):
     gibSec: str
 
 @typing.type_check_only
-class Document(typing_extensions.TypedDict, total=False):
-    boilerplateHandling: typing_extensions.Literal[
+class Document(typing.TypedDict, total=False):
+    boilerplateHandling: typing.Literal[
         "BOILERPLATE_HANDLING_UNSPECIFIED", "SKIP_BOILERPLATE", "KEEP_BOILERPLATE"
     ]
     content: str
     gcsContentUri: str
     language: str
     referenceWebUri: str
-    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "PLAIN_TEXT", "HTML"]
+    type: typing.Literal["TYPE_UNSPECIFIED", "PLAIN_TEXT", "HTML"]
 
 @typing.type_check_only
-class Entity(typing_extensions.TypedDict, total=False):
+class Entity(typing.TypedDict, total=False):
     mentions: _list[EntityMention]
     metadata: dict[str, typing.Any]
     name: str
     salience: float
     sentiment: Sentiment
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "UNKNOWN",
         "PERSON",
         "LOCATION",
@@ -585,15 +583,15 @@ class Entity(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class EntityMention(typing_extensions.TypedDict, total=False):
+class EntityMention(typing.TypedDict, total=False):
     sentiment: Sentiment
     text: TextSpan
-    type: typing_extensions.Literal["TYPE_UNKNOWN", "PROPER", "COMMON"]
+    type: typing.Literal["TYPE_UNKNOWN", "PROPER", "COMMON"]
 
 @typing.type_check_only
-class GpuMetric(typing_extensions.TypedDict, total=False):
+class GpuMetric(typing.TypedDict, total=False):
     gpuSec: str
-    gpuType: typing_extensions.Literal[
+    gpuType: typing.Literal[
         "UNKNOWN_GPU_TYPE",
         "NVIDIA_TESLA_A100",
         "NVIDIA_A100_80GB",
@@ -610,7 +608,7 @@ class GpuMetric(typing_extensions.TypedDict, total=False):
         "NVIDIA_H200_141GB",
         "NVIDIA_RTX_PRO_6000",
     ]
-    machineSpec: typing_extensions.Literal[
+    machineSpec: typing.Literal[
         "UNKNOWN_MACHINE_SPEC",
         "N1_STANDARD_2",
         "N1_STANDARD_4",
@@ -923,7 +921,7 @@ class GpuMetric(typing_extensions.TypedDict, total=False):
     trackingLabels: dict[str, typing.Any]
 
 @typing.type_check_only
-class InfraUsage(typing_extensions.TypedDict, total=False):
+class InfraUsage(typing.TypedDict, total=False):
     cpuMetrics: _list[CpuMetric]
     diskMetrics: _list[DiskMetric]
     gpuMetrics: _list[GpuMetric]
@@ -931,19 +929,19 @@ class InfraUsage(typing_extensions.TypedDict, total=False):
     tpuMetrics: _list[TpuMetric]
 
 @typing.type_check_only
-class ModerateTextRequest(typing_extensions.TypedDict, total=False):
+class ModerateTextRequest(typing.TypedDict, total=False):
     document: Document
 
 @typing.type_check_only
-class ModerateTextResponse(typing_extensions.TypedDict, total=False):
+class ModerateTextResponse(typing.TypedDict, total=False):
     moderationCategories: _list[ClassificationCategory]
 
 @typing.type_check_only
-class PartOfSpeech(typing_extensions.TypedDict, total=False):
-    aspect: typing_extensions.Literal[
+class PartOfSpeech(typing.TypedDict, total=False):
+    aspect: typing.Literal[
         "ASPECT_UNKNOWN", "PERFECTIVE", "IMPERFECTIVE", "PROGRESSIVE"
     ]
-    case: typing_extensions.Literal[
+    case: typing.Literal[
         "CASE_UNKNOWN",
         "ACCUSATIVE",
         "ADVERBIAL",
@@ -960,7 +958,7 @@ class PartOfSpeech(typing_extensions.TypedDict, total=False):
         "RELATIVE_CASE",
         "VOCATIVE",
     ]
-    form: typing_extensions.Literal[
+    form: typing.Literal[
         "FORM_UNKNOWN",
         "ADNOMIAL",
         "AUXILIARY",
@@ -974,10 +972,8 @@ class PartOfSpeech(typing_extensions.TypedDict, total=False):
         "ORDER",
         "SPECIFIC",
     ]
-    gender: typing_extensions.Literal[
-        "GENDER_UNKNOWN", "FEMININE", "MASCULINE", "NEUTER"
-    ]
-    mood: typing_extensions.Literal[
+    gender: typing.Literal["GENDER_UNKNOWN", "FEMININE", "MASCULINE", "NEUTER"]
+    mood: typing.Literal[
         "MOOD_UNKNOWN",
         "CONDITIONAL_MOOD",
         "IMPERATIVE",
@@ -986,15 +982,13 @@ class PartOfSpeech(typing_extensions.TypedDict, total=False):
         "JUSSIVE",
         "SUBJUNCTIVE",
     ]
-    number: typing_extensions.Literal["NUMBER_UNKNOWN", "SINGULAR", "PLURAL", "DUAL"]
-    person: typing_extensions.Literal[
+    number: typing.Literal["NUMBER_UNKNOWN", "SINGULAR", "PLURAL", "DUAL"]
+    person: typing.Literal[
         "PERSON_UNKNOWN", "FIRST", "SECOND", "THIRD", "REFLEXIVE_PERSON"
     ]
-    proper: typing_extensions.Literal["PROPER_UNKNOWN", "PROPER", "NOT_PROPER"]
-    reciprocity: typing_extensions.Literal[
-        "RECIPROCITY_UNKNOWN", "RECIPROCAL", "NON_RECIPROCAL"
-    ]
-    tag: typing_extensions.Literal[
+    proper: typing.Literal["PROPER_UNKNOWN", "PROPER", "NOT_PROPER"]
+    reciprocity: typing.Literal["RECIPROCITY_UNKNOWN", "RECIPROCAL", "NON_RECIPROCAL"]
+    tag: typing.Literal[
         "UNKNOWN",
         "ADJ",
         "ADP",
@@ -1010,7 +1004,7 @@ class PartOfSpeech(typing_extensions.TypedDict, total=False):
         "X",
         "AFFIX",
     ]
-    tense: typing_extensions.Literal[
+    tense: typing.Literal[
         "TENSE_UNKNOWN",
         "CONDITIONAL_TENSE",
         "FUTURE",
@@ -1019,12 +1013,12 @@ class PartOfSpeech(typing_extensions.TypedDict, total=False):
         "IMPERFECT",
         "PLUPERFECT",
     ]
-    voice: typing_extensions.Literal["VOICE_UNKNOWN", "ACTIVE", "CAUSATIVE", "PASSIVE"]
+    voice: typing.Literal["VOICE_UNKNOWN", "ACTIVE", "CAUSATIVE", "PASSIVE"]
 
 @typing.type_check_only
-class RamMetric(typing_extensions.TypedDict, total=False):
+class RamMetric(typing.TypedDict, total=False):
     gibSec: str
-    machineSpec: typing_extensions.Literal[
+    machineSpec: typing.Literal[
         "UNKNOWN_MACHINE_SPEC",
         "N1_STANDARD_2",
         "N1_STANDARD_4",
@@ -1335,7 +1329,7 @@ class RamMetric(typing_extensions.TypedDict, total=False):
         "C3D_HIGHMEM_360",
     ]
     memories: float
-    ramType: typing_extensions.Literal[
+    ramType: typing.Literal[
         "UNKNOWN_RAM_TYPE",
         "A2",
         "A3",
@@ -1364,37 +1358,37 @@ class RamMetric(typing_extensions.TypedDict, total=False):
     trackingLabels: dict[str, typing.Any]
 
 @typing.type_check_only
-class Sentence(typing_extensions.TypedDict, total=False):
+class Sentence(typing.TypedDict, total=False):
     sentiment: Sentiment
     text: TextSpan
 
 @typing.type_check_only
-class Sentiment(typing_extensions.TypedDict, total=False):
+class Sentiment(typing.TypedDict, total=False):
     magnitude: float
     score: float
 
 @typing.type_check_only
-class Status(typing_extensions.TypedDict, total=False):
+class Status(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
-class TextSpan(typing_extensions.TypedDict, total=False):
+class TextSpan(typing.TypedDict, total=False):
     beginOffset: int
     content: str
 
 @typing.type_check_only
-class Token(typing_extensions.TypedDict, total=False):
+class Token(typing.TypedDict, total=False):
     dependencyEdge: DependencyEdge
     lemma: str
     partOfSpeech: PartOfSpeech
     text: TextSpan
 
 @typing.type_check_only
-class TpuMetric(typing_extensions.TypedDict, total=False):
+class TpuMetric(typing.TypedDict, total=False):
     tpuSec: str
-    tpuType: typing_extensions.Literal[
+    tpuType: typing.Literal[
         "UNKNOWN_TPU_TYPE",
         "TPU_V2_POD",
         "TPU_V2",
@@ -1404,41 +1398,39 @@ class TpuMetric(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class XPSArrayStats(typing_extensions.TypedDict, total=False):
+class XPSArrayStats(typing.TypedDict, total=False):
     commonStats: XPSCommonStats
     memberStats: XPSDataStats
 
 @typing.type_check_only
-class XPSBatchPredictResponse(typing_extensions.TypedDict, total=False):
+class XPSBatchPredictResponse(typing.TypedDict, total=False):
     exampleSet: XPSExampleSet
 
 @typing.type_check_only
-class XPSBoundingBoxMetricsEntry(typing_extensions.TypedDict, total=False):
+class XPSBoundingBoxMetricsEntry(typing.TypedDict, total=False):
     confidenceMetricsEntries: _list[XPSBoundingBoxMetricsEntryConfidenceMetricsEntry]
     iouThreshold: float
     meanAveragePrecision: float
 
 @typing.type_check_only
-class XPSBoundingBoxMetricsEntryConfidenceMetricsEntry(
-    typing_extensions.TypedDict, total=False
-):
+class XPSBoundingBoxMetricsEntryConfidenceMetricsEntry(typing.TypedDict, total=False):
     confidenceThreshold: float
     f1Score: float
     precision: float
     recall: float
 
 @typing.type_check_only
-class XPSCategoryStats(typing_extensions.TypedDict, total=False):
+class XPSCategoryStats(typing.TypedDict, total=False):
     commonStats: XPSCommonStats
     topCategoryStats: _list[XPSCategoryStatsSingleCategoryStats]
 
 @typing.type_check_only
-class XPSCategoryStatsSingleCategoryStats(typing_extensions.TypedDict, total=False):
+class XPSCategoryStatsSingleCategoryStats(typing.TypedDict, total=False):
     count: str
     value: str
 
 @typing.type_check_only
-class XPSClassificationEvaluationMetrics(typing_extensions.TypedDict, total=False):
+class XPSClassificationEvaluationMetrics(typing.TypedDict, total=False):
     auPrc: float
     auRoc: float
     baseAuPrc: float
@@ -1448,20 +1440,20 @@ class XPSClassificationEvaluationMetrics(typing_extensions.TypedDict, total=Fals
     logLoss: float
 
 @typing.type_check_only
-class XPSColorMap(typing_extensions.TypedDict, total=False):
+class XPSColorMap(typing.TypedDict, total=False):
     annotationSpecIdToken: str
     color: Color
     displayName: str
     intColor: XPSColorMapIntColor
 
 @typing.type_check_only
-class XPSColorMapIntColor(typing_extensions.TypedDict, total=False):
+class XPSColorMapIntColor(typing.TypedDict, total=False):
     blue: int
     green: int
     red: int
 
 @typing.type_check_only
-class XPSColumnSpec(typing_extensions.TypedDict, total=False):
+class XPSColumnSpec(typing.TypedDict, total=False):
     columnId: int
     dataStats: XPSDataStats
     dataType: XPSDataType
@@ -1470,13 +1462,13 @@ class XPSColumnSpec(typing_extensions.TypedDict, total=False):
     topCorrelatedColumns: _list[XPSColumnSpecCorrelatedColumn]
 
 @typing.type_check_only
-class XPSColumnSpecCorrelatedColumn(typing_extensions.TypedDict, total=False):
+class XPSColumnSpecCorrelatedColumn(typing.TypedDict, total=False):
     columnId: int
     correlationStats: XPSCorrelationStats
 
 @typing.type_check_only
-class XPSColumnSpecForecastingMetadata(typing_extensions.TypedDict, total=False):
-    columnType: typing_extensions.Literal[
+class XPSColumnSpecForecastingMetadata(typing.TypedDict, total=False):
+    columnType: typing.Literal[
         "COLUMN_TYPE_UNSPECIFIED",
         "KEY",
         "KEY_METADATA",
@@ -1485,13 +1477,13 @@ class XPSColumnSpecForecastingMetadata(typing_extensions.TypedDict, total=False)
     ]
 
 @typing.type_check_only
-class XPSCommonStats(typing_extensions.TypedDict, total=False):
+class XPSCommonStats(typing.TypedDict, total=False):
     distinctValueCount: str
     nullValueCount: str
     validValueCount: str
 
 @typing.type_check_only
-class XPSConfidenceMetricsEntry(typing_extensions.TypedDict, total=False):
+class XPSConfidenceMetricsEntry(typing.TypedDict, total=False):
     confidenceThreshold: float
     f1Score: float
     f1ScoreAt1: float
@@ -1508,28 +1500,28 @@ class XPSConfidenceMetricsEntry(typing_extensions.TypedDict, total=False):
     truePositiveCount: str
 
 @typing.type_check_only
-class XPSConfusionMatrix(typing_extensions.TypedDict, total=False):
+class XPSConfusionMatrix(typing.TypedDict, total=False):
     annotationSpecIdToken: _list[str]
     category: _list[int]
     row: _list[XPSConfusionMatrixRow]
     sentimentLabel: _list[int]
 
 @typing.type_check_only
-class XPSConfusionMatrixRow(typing_extensions.TypedDict, total=False):
+class XPSConfusionMatrixRow(typing.TypedDict, total=False):
     count: _list[str]
     exampleCount: _list[int]
 
 @typing.type_check_only
-class XPSCoreMlFormat(typing_extensions.TypedDict, total=False): ...
+class XPSCoreMlFormat(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class XPSCorrelationStats(typing_extensions.TypedDict, total=False):
+class XPSCorrelationStats(typing.TypedDict, total=False):
     cramersV: float
 
 @typing.type_check_only
-class XPSDataErrors(typing_extensions.TypedDict, total=False):
+class XPSDataErrors(typing.TypedDict, total=False):
     count: int
-    errorType: typing_extensions.Literal[
+    errorType: typing.Literal[
         "ERROR_TYPE_UNSPECIFIED",
         "UNSUPPORTED_AUDIO_FORMAT",
         "FILE_EXTENSION_MISMATCH_WITH_AUDIO_FORMAT",
@@ -1538,7 +1530,7 @@ class XPSDataErrors(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class XPSDataStats(typing_extensions.TypedDict, total=False):
+class XPSDataStats(typing.TypedDict, total=False):
     arrayStats: XPSArrayStats
     categoryStats: XPSCategoryStats
     distinctValueCount: str
@@ -1550,13 +1542,13 @@ class XPSDataStats(typing_extensions.TypedDict, total=False):
     validValueCount: str
 
 @typing.type_check_only
-class XPSDataType(typing_extensions.TypedDict, total=False):
+class XPSDataType(typing.TypedDict, total=False):
     compatibleDataTypes: _list[XPSDataType]
     listElementType: XPSDataType
     nullable: bool
     structType: XPSStructType
     timeFormat: str
-    typeCode: typing_extensions.Literal[
+    typeCode: typing.Literal[
         "TYPE_CODE_UNSPECIFIED",
         "FLOAT64",
         "TIMESTAMP",
@@ -1567,19 +1559,19 @@ class XPSDataType(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class XPSDockerFormat(typing_extensions.TypedDict, total=False):
-    cpuArchitecture: typing_extensions.Literal[
+class XPSDockerFormat(typing.TypedDict, total=False):
+    cpuArchitecture: typing.Literal[
         "CPU_ARCHITECTURE_UNSPECIFIED", "CPU_ARCHITECTURE_X86_64"
     ]
-    gpuArchitecture: typing_extensions.Literal[
+    gpuArchitecture: typing.Literal[
         "GPU_ARCHITECTURE_UNSPECIFIED", "GPU_ARCHITECTURE_NVIDIA"
     ]
 
 @typing.type_check_only
-class XPSEdgeTpuTfLiteFormat(typing_extensions.TypedDict, total=False): ...
+class XPSEdgeTpuTfLiteFormat(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class XPSEvaluationMetrics(typing_extensions.TypedDict, total=False):
+class XPSEvaluationMetrics(typing.TypedDict, total=False):
     annotationSpecIdToken: str
     category: int
     evaluatedExampleCount: int
@@ -1599,20 +1591,20 @@ class XPSEvaluationMetrics(typing_extensions.TypedDict, total=False):
     videoObjectTrackingEvalMetrics: XPSVideoObjectTrackingEvaluationMetrics
 
 @typing.type_check_only
-class XPSEvaluationMetricsSet(typing_extensions.TypedDict, total=False):
+class XPSEvaluationMetricsSet(typing.TypedDict, total=False):
     evaluationMetrics: _list[XPSEvaluationMetrics]
     fileSpec: XPSFileSpec
     numEvaluationMetrics: str
 
 @typing.type_check_only
-class XPSExampleSet(typing_extensions.TypedDict, total=False):
+class XPSExampleSet(typing.TypedDict, total=False):
     fileSpec: XPSFileSpec
     fingerprint: str
     numExamples: str
     numInputSources: str
 
 @typing.type_check_only
-class XPSExportModelOutputConfig(typing_extensions.TypedDict, total=False):
+class XPSExportModelOutputConfig(typing.TypedDict, total=False):
     coreMlFormat: XPSCoreMlFormat
     dockerFormat: XPSDockerFormat
     edgeTpuTfLiteFormat: XPSEdgeTpuTfLiteFormat
@@ -1624,9 +1616,9 @@ class XPSExportModelOutputConfig(typing_extensions.TypedDict, total=False):
     tfSavedModelFormat: XPSTfSavedModelFormat
 
 @typing.type_check_only
-class XPSFileSpec(typing_extensions.TypedDict, total=False):
+class XPSFileSpec(typing.TypedDict, total=False):
     directoryPath: str
-    fileFormat: typing_extensions.Literal[
+    fileFormat: typing.Literal[
         "FILE_FORMAT_UNKNOWN",
         "FILE_FORMAT_SSTABLE",
         "FILE_FORMAT_TRANSLATION_RKV",
@@ -1638,7 +1630,7 @@ class XPSFileSpec(typing_extensions.TypedDict, total=False):
     singleFilePath: str
 
 @typing.type_check_only
-class XPSFloat64Stats(typing_extensions.TypedDict, total=False):
+class XPSFloat64Stats(typing.TypedDict, total=False):
     commonStats: XPSCommonStats
     histogramBuckets: _list[XPSFloat64StatsHistogramBucket]
     mean: float
@@ -1646,18 +1638,18 @@ class XPSFloat64Stats(typing_extensions.TypedDict, total=False):
     standardDeviation: float
 
 @typing.type_check_only
-class XPSFloat64StatsHistogramBucket(typing_extensions.TypedDict, total=False):
+class XPSFloat64StatsHistogramBucket(typing.TypedDict, total=False):
     count: str
     max: float
     min: float
 
 @typing.type_check_only
-class XPSImageClassificationTrainResponse(typing_extensions.TypedDict, total=False):
+class XPSImageClassificationTrainResponse(typing.TypedDict, total=False):
     classCount: str
     exportModelSpec: XPSImageExportModelSpec
     modelArtifactSpec: XPSImageModelArtifactSpec
     modelServingSpec: XPSImageModelServingSpec
-    stopReason: typing_extensions.Literal[
+    stopReason: typing.Literal[
         "TRAIN_STOP_REASON_UNSPECIFIED",
         "TRAIN_STOP_REASON_BUDGET_REACHED",
         "TRAIN_STOP_REASON_MODEL_CONVERGED",
@@ -1667,11 +1659,11 @@ class XPSImageClassificationTrainResponse(typing_extensions.TypedDict, total=Fal
     trainCostNodeSeconds: str
 
 @typing.type_check_only
-class XPSImageExportModelSpec(typing_extensions.TypedDict, total=False):
+class XPSImageExportModelSpec(typing.TypedDict, total=False):
     exportModelOutputConfig: _list[XPSExportModelOutputConfig]
 
 @typing.type_check_only
-class XPSImageModelArtifactSpec(typing_extensions.TypedDict, total=False):
+class XPSImageModelArtifactSpec(typing.TypedDict, total=False):
     checkpointArtifact: XPSModelArtifactItem
     exportArtifact: _list[XPSModelArtifactItem]
     labelGcsUri: str
@@ -1680,16 +1672,14 @@ class XPSImageModelArtifactSpec(typing_extensions.TypedDict, total=False):
     tfLiteMetadataGcsUri: str
 
 @typing.type_check_only
-class XPSImageModelServingSpec(typing_extensions.TypedDict, total=False):
+class XPSImageModelServingSpec(typing.TypedDict, total=False):
     modelThroughputEstimation: _list[XPSImageModelServingSpecModelThroughputEstimation]
     nodeQps: float
     tfRuntimeVersion: str
 
 @typing.type_check_only
-class XPSImageModelServingSpecModelThroughputEstimation(
-    typing_extensions.TypedDict, total=False
-):
-    computeEngineAcceleratorType: typing_extensions.Literal[
+class XPSImageModelServingSpecModelThroughputEstimation(typing.TypedDict, total=False):
+    computeEngineAcceleratorType: typing.Literal[
         "UNSPECIFIED",
         "NVIDIA_TESLA_K80",
         "NVIDIA_TESLA_P100",
@@ -1711,7 +1701,7 @@ class XPSImageModelServingSpecModelThroughputEstimation(
     ]
     latencyInMilliseconds: float
     nodeQps: float
-    servomaticPartitionType: typing_extensions.Literal[
+    servomaticPartitionType: typing.Literal[
         "PARTITION_TYPE_UNSPECIFIED",
         "PARTITION_ZERO",
         "PARTITION_REDUCED_HOMING",
@@ -1721,21 +1711,19 @@ class XPSImageModelServingSpecModelThroughputEstimation(
     ]
 
 @typing.type_check_only
-class XPSImageObjectDetectionEvaluationMetrics(
-    typing_extensions.TypedDict, total=False
-):
+class XPSImageObjectDetectionEvaluationMetrics(typing.TypedDict, total=False):
     boundingBoxMeanAveragePrecision: float
     boundingBoxMetricsEntries: _list[XPSBoundingBoxMetricsEntry]
     evaluatedBoundingBoxCount: int
 
 @typing.type_check_only
-class XPSImageObjectDetectionModelSpec(typing_extensions.TypedDict, total=False):
+class XPSImageObjectDetectionModelSpec(typing.TypedDict, total=False):
     classCount: str
     exportModelSpec: XPSImageExportModelSpec
     maxBoundingBoxCount: str
     modelArtifactSpec: XPSImageModelArtifactSpec
     modelServingSpec: XPSImageModelServingSpec
-    stopReason: typing_extensions.Literal[
+    stopReason: typing.Literal[
         "TRAIN_STOP_REASON_UNSPECIFIED",
         "TRAIN_STOP_REASON_BUDGET_REACHED",
         "TRAIN_STOP_REASON_MODEL_CONVERGED",
@@ -1744,14 +1732,14 @@ class XPSImageObjectDetectionModelSpec(typing_extensions.TypedDict, total=False)
     trainCostNodeSeconds: str
 
 @typing.type_check_only
-class XPSImageSegmentationEvaluationMetrics(typing_extensions.TypedDict, total=False):
+class XPSImageSegmentationEvaluationMetrics(typing.TypedDict, total=False):
     confidenceMetricsEntries: _list[
         XPSImageSegmentationEvaluationMetricsConfidenceMetricsEntry
     ]
 
 @typing.type_check_only
 class XPSImageSegmentationEvaluationMetricsConfidenceMetricsEntry(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     confidenceThreshold: float
     confusionMatrix: XPSConfusionMatrix
@@ -1761,12 +1749,12 @@ class XPSImageSegmentationEvaluationMetricsConfidenceMetricsEntry(
     recall: float
 
 @typing.type_check_only
-class XPSImageSegmentationTrainResponse(typing_extensions.TypedDict, total=False):
+class XPSImageSegmentationTrainResponse(typing.TypedDict, total=False):
     colorMaps: _list[XPSColorMap]
     exportModelSpec: XPSImageExportModelSpec
     modelArtifactSpec: XPSImageModelArtifactSpec
     modelServingSpec: XPSImageModelServingSpec
-    stopReason: typing_extensions.Literal[
+    stopReason: typing.Literal[
         "TRAIN_STOP_REASON_UNSPECIFIED",
         "TRAIN_STOP_REASON_BUDGET_REACHED",
         "TRAIN_STOP_REASON_MODEL_CONVERGED",
@@ -1775,11 +1763,11 @@ class XPSImageSegmentationTrainResponse(typing_extensions.TypedDict, total=False
     trainCostNodeSeconds: str
 
 @typing.type_check_only
-class XPSIntegratedGradientsAttribution(typing_extensions.TypedDict, total=False):
+class XPSIntegratedGradientsAttribution(typing.TypedDict, total=False):
     stepCount: int
 
 @typing.type_check_only
-class XPSMetricEntry(typing_extensions.TypedDict, total=False):
+class XPSMetricEntry(typing.TypedDict, total=False):
     argentumMetricId: str
     doubleValue: float
     int64Value: str
@@ -1787,13 +1775,13 @@ class XPSMetricEntry(typing_extensions.TypedDict, total=False):
     systemLabels: _list[XPSMetricEntryLabel]
 
 @typing.type_check_only
-class XPSMetricEntryLabel(typing_extensions.TypedDict, total=False):
+class XPSMetricEntryLabel(typing.TypedDict, total=False):
     labelName: str
     labelValue: str
 
 @typing.type_check_only
-class XPSModelArtifactItem(typing_extensions.TypedDict, total=False):
-    artifactFormat: typing_extensions.Literal[
+class XPSModelArtifactItem(typing.TypedDict, total=False):
+    artifactFormat: typing.Literal[
         "ARTIFACT_FORMAT_UNSPECIFIED",
         "TF_CHECKPOINT",
         "TF_SAVED_MODEL",
@@ -1805,14 +1793,14 @@ class XPSModelArtifactItem(typing_extensions.TypedDict, total=False):
     gcsUri: str
 
 @typing.type_check_only
-class XPSPreprocessResponse(typing_extensions.TypedDict, total=False):
+class XPSPreprocessResponse(typing.TypedDict, total=False):
     outputExampleSet: XPSExampleSet
     speechPreprocessResp: XPSSpeechPreprocessResponse
     tablesPreprocessResponse: XPSTablesPreprocessResponse
     translationPreprocessResp: XPSTranslationPreprocessResponse
 
 @typing.type_check_only
-class XPSRegressionEvaluationMetrics(typing_extensions.TypedDict, total=False):
+class XPSRegressionEvaluationMetrics(typing.TypedDict, total=False):
     meanAbsoluteError: float
     meanAbsolutePercentageError: float
     rSquared: float
@@ -1821,61 +1809,53 @@ class XPSRegressionEvaluationMetrics(typing_extensions.TypedDict, total=False):
     rootMeanSquaredLogError: float
 
 @typing.type_check_only
-class XPSRegressionMetricsEntry(typing_extensions.TypedDict, total=False):
+class XPSRegressionMetricsEntry(typing.TypedDict, total=False):
     predictedValue: float
     trueValue: float
 
 @typing.type_check_only
-class XPSReportingMetrics(typing_extensions.TypedDict, total=False):
+class XPSReportingMetrics(typing.TypedDict, total=False):
     effectiveTrainingDuration: str
     metricEntries: _list[XPSMetricEntry]
 
 @typing.type_check_only
-class XPSResponseExplanationMetadata(typing_extensions.TypedDict, total=False):
+class XPSResponseExplanationMetadata(typing.TypedDict, total=False):
     inputs: dict[str, typing.Any]
     outputs: dict[str, typing.Any]
 
 @typing.type_check_only
-class XPSResponseExplanationMetadataInputMetadata(
-    typing_extensions.TypedDict, total=False
-):
+class XPSResponseExplanationMetadataInputMetadata(typing.TypedDict, total=False):
     inputTensorName: str
-    modality: typing_extensions.Literal[
-        "MODALITY_UNSPECIFIED", "NUMERIC", "IMAGE", "CATEGORICAL"
-    ]
+    modality: typing.Literal["MODALITY_UNSPECIFIED", "NUMERIC", "IMAGE", "CATEGORICAL"]
     visualizationConfig: XPSVisualization
 
 @typing.type_check_only
-class XPSResponseExplanationMetadataOutputMetadata(
-    typing_extensions.TypedDict, total=False
-):
+class XPSResponseExplanationMetadataOutputMetadata(typing.TypedDict, total=False):
     outputTensorName: str
 
 @typing.type_check_only
-class XPSResponseExplanationParameters(typing_extensions.TypedDict, total=False):
+class XPSResponseExplanationParameters(typing.TypedDict, total=False):
     integratedGradientsAttribution: XPSIntegratedGradientsAttribution
     xraiAttribution: XPSXraiAttribution
 
 @typing.type_check_only
-class XPSResponseExplanationSpec(typing_extensions.TypedDict, total=False):
+class XPSResponseExplanationSpec(typing.TypedDict, total=False):
     explanationType: str
     metadata: XPSResponseExplanationMetadata
     parameters: XPSResponseExplanationParameters
 
 @typing.type_check_only
-class XPSRow(typing_extensions.TypedDict, total=False):
+class XPSRow(typing.TypedDict, total=False):
     columnIds: _list[int]
     values: _list[typing.Any]
 
 @typing.type_check_only
-class XPSSpeechEvaluationMetrics(typing_extensions.TypedDict, total=False):
+class XPSSpeechEvaluationMetrics(typing.TypedDict, total=False):
     subModelEvaluationMetrics: _list[XPSSpeechEvaluationMetricsSubModelEvaluationMetric]
 
 @typing.type_check_only
-class XPSSpeechEvaluationMetricsSubModelEvaluationMetric(
-    typing_extensions.TypedDict, total=False
-):
-    biasingModelType: typing_extensions.Literal[
+class XPSSpeechEvaluationMetricsSubModelEvaluationMetric(typing.TypedDict, total=False):
+    biasingModelType: typing.Literal[
         "BIASING_MODEL_TYPE_UNSPECIFIED",
         "COMMAND_AND_SEARCH",
         "PHONE_CALL",
@@ -1892,14 +1872,14 @@ class XPSSpeechEvaluationMetricsSubModelEvaluationMetric(
     wer: float
 
 @typing.type_check_only
-class XPSSpeechModelSpec(typing_extensions.TypedDict, total=False):
+class XPSSpeechModelSpec(typing.TypedDict, total=False):
     datasetId: str
     language: str
     subModelSpecs: _list[XPSSpeechModelSpecSubModelSpec]
 
 @typing.type_check_only
-class XPSSpeechModelSpecSubModelSpec(typing_extensions.TypedDict, total=False):
-    biasingModelType: typing_extensions.Literal[
+class XPSSpeechModelSpecSubModelSpec(typing.TypedDict, total=False):
+    biasingModelType: typing.Literal[
         "BIASING_MODEL_TYPE_UNSPECIFIED",
         "COMMAND_AND_SEARCH",
         "PHONE_CALL",
@@ -1911,14 +1891,14 @@ class XPSSpeechModelSpecSubModelSpec(typing_extensions.TypedDict, total=False):
     isEnhancedModel: bool
 
 @typing.type_check_only
-class XPSSpeechPreprocessResponse(typing_extensions.TypedDict, total=False):
+class XPSSpeechPreprocessResponse(typing.TypedDict, total=False):
     cnsTestDataPath: str
     cnsTrainDataPath: str
     prebuiltModelEvaluationMetrics: XPSSpeechEvaluationMetrics
     speechPreprocessStats: XPSSpeechPreprocessStats
 
 @typing.type_check_only
-class XPSSpeechPreprocessStats(typing_extensions.TypedDict, total=False):
+class XPSSpeechPreprocessStats(typing.TypedDict, total=False):
     dataErrors: _list[XPSDataErrors]
     numHumanLabeledExamples: int
     numLogsExamples: int
@@ -1931,26 +1911,26 @@ class XPSSpeechPreprocessStats(typing_extensions.TypedDict, total=False):
     trainWordsCount: int
 
 @typing.type_check_only
-class XPSStringStats(typing_extensions.TypedDict, total=False):
+class XPSStringStats(typing.TypedDict, total=False):
     commonStats: XPSCommonStats
     topUnigramStats: _list[XPSStringStatsUnigramStats]
 
 @typing.type_check_only
-class XPSStringStatsUnigramStats(typing_extensions.TypedDict, total=False):
+class XPSStringStatsUnigramStats(typing.TypedDict, total=False):
     count: str
     value: str
 
 @typing.type_check_only
-class XPSStructStats(typing_extensions.TypedDict, total=False):
+class XPSStructStats(typing.TypedDict, total=False):
     commonStats: XPSCommonStats
     fieldStats: dict[str, typing.Any]
 
 @typing.type_check_only
-class XPSStructType(typing_extensions.TypedDict, total=False):
+class XPSStructType(typing.TypedDict, total=False):
     fields: dict[str, typing.Any]
 
 @typing.type_check_only
-class XPSTableSpec(typing_extensions.TypedDict, total=False):
+class XPSTableSpec(typing.TypedDict, total=False):
     columnSpecs: dict[str, typing.Any]
     importedDataSizeInBytes: str
     rowCount: str
@@ -1958,13 +1938,11 @@ class XPSTableSpec(typing_extensions.TypedDict, total=False):
     validRowCount: str
 
 @typing.type_check_only
-class XPSTablesClassificationMetrics(typing_extensions.TypedDict, total=False):
+class XPSTablesClassificationMetrics(typing.TypedDict, total=False):
     curveMetrics: _list[XPSTablesClassificationMetricsCurveMetrics]
 
 @typing.type_check_only
-class XPSTablesClassificationMetricsCurveMetrics(
-    typing_extensions.TypedDict, total=False
-):
+class XPSTablesClassificationMetricsCurveMetrics(typing.TypedDict, total=False):
     aucPr: float
     aucRoc: float
     confidenceMetricsEntries: _list[XPSTablesConfidenceMetricsEntry]
@@ -1973,7 +1951,7 @@ class XPSTablesClassificationMetricsCurveMetrics(
     value: str
 
 @typing.type_check_only
-class XPSTablesConfidenceMetricsEntry(typing_extensions.TypedDict, total=False):
+class XPSTablesConfidenceMetricsEntry(typing.TypedDict, total=False):
     confidenceThreshold: float
     f1Score: float
     falseNegativeCount: str
@@ -1986,7 +1964,7 @@ class XPSTablesConfidenceMetricsEntry(typing_extensions.TypedDict, total=False):
     truePositiveRate: float
 
 @typing.type_check_only
-class XPSTablesDatasetMetadata(typing_extensions.TypedDict, total=False):
+class XPSTablesDatasetMetadata(typing.TypedDict, total=False):
     mlUseColumnId: int
     primaryTableSpec: XPSTableSpec
     targetColumnCorrelations: dict[str, typing.Any]
@@ -1994,38 +1972,36 @@ class XPSTablesDatasetMetadata(typing_extensions.TypedDict, total=False):
     weightColumnId: int
 
 @typing.type_check_only
-class XPSTablesEvaluationMetrics(typing_extensions.TypedDict, total=False):
+class XPSTablesEvaluationMetrics(typing.TypedDict, total=False):
     classificationMetrics: XPSTablesClassificationMetrics
     regressionMetrics: XPSTablesRegressionMetrics
 
 @typing.type_check_only
-class XPSTablesModelColumnInfo(typing_extensions.TypedDict, total=False):
+class XPSTablesModelColumnInfo(typing.TypedDict, total=False):
     columnId: int
     featureImportance: float
 
 @typing.type_check_only
-class XPSTablesModelStructure(typing_extensions.TypedDict, total=False):
+class XPSTablesModelStructure(typing.TypedDict, total=False):
     modelParameters: _list[XPSTablesModelStructureModelParameters]
 
 @typing.type_check_only
-class XPSTablesModelStructureModelParameters(typing_extensions.TypedDict, total=False):
+class XPSTablesModelStructureModelParameters(typing.TypedDict, total=False):
     hyperparameters: _list[XPSTablesModelStructureModelParametersParameter]
 
 @typing.type_check_only
-class XPSTablesModelStructureModelParametersParameter(
-    typing_extensions.TypedDict, total=False
-):
+class XPSTablesModelStructureModelParametersParameter(typing.TypedDict, total=False):
     floatValue: float
     intValue: str
     name: str
     stringValue: str
 
 @typing.type_check_only
-class XPSTablesPreprocessResponse(typing_extensions.TypedDict, total=False):
+class XPSTablesPreprocessResponse(typing.TypedDict, total=False):
     tablesDatasetMetadata: XPSTablesDatasetMetadata
 
 @typing.type_check_only
-class XPSTablesRegressionMetrics(typing_extensions.TypedDict, total=False):
+class XPSTablesRegressionMetrics(typing.TypedDict, total=False):
     meanAbsoluteError: float
     meanAbsolutePercentageError: float
     rSquared: float
@@ -2034,15 +2010,15 @@ class XPSTablesRegressionMetrics(typing_extensions.TypedDict, total=False):
     rootMeanSquaredLogError: float
 
 @typing.type_check_only
-class XPSTablesTrainResponse(typing_extensions.TypedDict, total=False):
+class XPSTablesTrainResponse(typing.TypedDict, total=False):
     modelStructure: XPSTablesModelStructure
     predictionSampleRows: _list[XPSRow]
     tablesModelColumnInfo: _list[XPSTablesModelColumnInfo]
     trainCostMilliNodeHours: str
 
 @typing.type_check_only
-class XPSTablesTrainingOperationMetadata(typing_extensions.TypedDict, total=False):
-    createModelStage: typing_extensions.Literal[
+class XPSTablesTrainingOperationMetadata(typing.TypedDict, total=False):
+    createModelStage: typing.Literal[
         "CREATE_MODEL_STAGE_UNSPECIFIED",
         "DATA_PREPROCESSING",
         "TRAINING",
@@ -2056,10 +2032,10 @@ class XPSTablesTrainingOperationMetadata(typing_extensions.TypedDict, total=Fals
     trainingStartTime: str
 
 @typing.type_check_only
-class XPSTextComponentModel(typing_extensions.TypedDict, total=False):
+class XPSTextComponentModel(typing.TypedDict, total=False):
     batchPredictionModelGcsUri: str
     onlinePredictionModelGcsUri: str
-    partition: typing_extensions.Literal[
+    partition: typing.Literal[
         "PARTITION_TYPE_UNSPECIFIED",
         "PARTITION_ZERO",
         "PARTITION_REDUCED_HOMING",
@@ -2070,7 +2046,7 @@ class XPSTextComponentModel(typing_extensions.TypedDict, total=False):
     servingArtifact: XPSModelArtifactItem
     servoModelName: str
     submodelName: str
-    submodelType: typing_extensions.Literal[
+    submodelType: typing.Literal[
         "TEXT_MODEL_TYPE_UNSPECIFIED",
         "TEXT_MODEL_TYPE_DEFAULT",
         "TEXT_MODEL_TYPE_META_ARCHITECT",
@@ -2089,14 +2065,14 @@ class XPSTextComponentModel(typing_extensions.TypedDict, total=False):
     versionNumber: str
 
 @typing.type_check_only
-class XPSTextExtractionEvaluationMetrics(typing_extensions.TypedDict, total=False):
+class XPSTextExtractionEvaluationMetrics(typing.TypedDict, total=False):
     bestF1ConfidenceMetrics: XPSConfidenceMetricsEntry
     confidenceMetricsEntries: _list[XPSConfidenceMetricsEntry]
     confusionMatrix: XPSConfusionMatrix
     perLabelConfidenceMetrics: dict[str, typing.Any]
 
 @typing.type_check_only
-class XPSTextSentimentEvaluationMetrics(typing_extensions.TypedDict, total=False):
+class XPSTextSentimentEvaluationMetrics(typing.TypedDict, total=False):
     confusionMatrix: XPSConfusionMatrix
     f1Score: float
     linearKappa: float
@@ -2107,33 +2083,33 @@ class XPSTextSentimentEvaluationMetrics(typing_extensions.TypedDict, total=False
     recall: float
 
 @typing.type_check_only
-class XPSTextToSpeechTrainResponse(typing_extensions.TypedDict, total=False): ...
+class XPSTextToSpeechTrainResponse(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class XPSTextTrainResponse(typing_extensions.TypedDict, total=False):
+class XPSTextTrainResponse(typing.TypedDict, total=False):
     componentModel: _list[XPSTextComponentModel]
 
 @typing.type_check_only
-class XPSTfJsFormat(typing_extensions.TypedDict, total=False): ...
+class XPSTfJsFormat(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class XPSTfLiteFormat(typing_extensions.TypedDict, total=False): ...
+class XPSTfLiteFormat(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class XPSTfSavedModelFormat(typing_extensions.TypedDict, total=False): ...
+class XPSTfSavedModelFormat(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class XPSTimestampStats(typing_extensions.TypedDict, total=False):
+class XPSTimestampStats(typing.TypedDict, total=False):
     commonStats: XPSCommonStats
     granularStats: dict[str, typing.Any]
     medianTimestampNanos: str
 
 @typing.type_check_only
-class XPSTimestampStatsGranularStats(typing_extensions.TypedDict, total=False):
+class XPSTimestampStatsGranularStats(typing.TypedDict, total=False):
     buckets: dict[str, typing.Any]
 
 @typing.type_check_only
-class XPSTrackMetricsEntry(typing_extensions.TypedDict, total=False):
+class XPSTrackMetricsEntry(typing.TypedDict, total=False):
     confidenceMetricsEntries: _list[XPSTrackMetricsEntryConfidenceMetricsEntry]
     iouThreshold: float
     meanBoundingBoxIou: float
@@ -2141,9 +2117,7 @@ class XPSTrackMetricsEntry(typing_extensions.TypedDict, total=False):
     meanTrackingAveragePrecision: float
 
 @typing.type_check_only
-class XPSTrackMetricsEntryConfidenceMetricsEntry(
-    typing_extensions.TypedDict, total=False
-):
+class XPSTrackMetricsEntryConfidenceMetricsEntry(typing.TypedDict, total=False):
     boundingBoxIou: float
     confidenceThreshold: float
     mismatchRate: float
@@ -2151,7 +2125,7 @@ class XPSTrackMetricsEntryConfidenceMetricsEntry(
     trackingRecall: float
 
 @typing.type_check_only
-class XPSTrainResponse(typing_extensions.TypedDict, total=False):
+class XPSTrainResponse(typing.TypedDict, total=False):
     deployedModelSizeBytes: str
     errorAnalysisConfigs: _list[XPSVisionErrorAnalysisConfig]
     evaluatedExampleSet: XPSExampleSet
@@ -2171,76 +2145,72 @@ class XPSTrainResponse(typing_extensions.TypedDict, total=False):
     videoObjectTrackingTrainResp: XPSVideoObjectTrackingTrainResponse
 
 @typing.type_check_only
-class XPSTrainingObjectivePoint(typing_extensions.TypedDict, total=False):
+class XPSTrainingObjectivePoint(typing.TypedDict, total=False):
     createTime: str
     value: float
 
 @typing.type_check_only
-class XPSTranslationEvaluationMetrics(typing_extensions.TypedDict, total=False):
+class XPSTranslationEvaluationMetrics(typing.TypedDict, total=False):
     baseBleuScore: float
     bleuScore: float
 
 @typing.type_check_only
-class XPSTranslationPreprocessResponse(typing_extensions.TypedDict, total=False):
+class XPSTranslationPreprocessResponse(typing.TypedDict, total=False):
     parsedExampleCount: str
     validExampleCount: str
 
 @typing.type_check_only
-class XPSTranslationTrainResponse(typing_extensions.TypedDict, total=False):
-    modelType: typing_extensions.Literal["MODEL_TYPE_UNSPECIFIED", "LEGACY", "CURRENT"]
+class XPSTranslationTrainResponse(typing.TypedDict, total=False):
+    modelType: typing.Literal["MODEL_TYPE_UNSPECIFIED", "LEGACY", "CURRENT"]
 
 @typing.type_check_only
-class XPSTuningTrial(typing_extensions.TypedDict, total=False):
+class XPSTuningTrial(typing.TypedDict, total=False):
     modelStructure: XPSTablesModelStructure
     trainingObjectivePoint: XPSTrainingObjectivePoint
 
 @typing.type_check_only
-class XPSVideoActionMetricsEntry(typing_extensions.TypedDict, total=False):
+class XPSVideoActionMetricsEntry(typing.TypedDict, total=False):
     confidenceMetricsEntries: _list[XPSVideoActionMetricsEntryConfidenceMetricsEntry]
     meanAveragePrecision: float
     precisionWindowLength: str
 
 @typing.type_check_only
-class XPSVideoActionMetricsEntryConfidenceMetricsEntry(
-    typing_extensions.TypedDict, total=False
-):
+class XPSVideoActionMetricsEntryConfidenceMetricsEntry(typing.TypedDict, total=False):
     confidenceThreshold: float
     f1Score: float
     precision: float
     recall: float
 
 @typing.type_check_only
-class XPSVideoActionRecognitionEvaluationMetrics(
-    typing_extensions.TypedDict, total=False
-):
+class XPSVideoActionRecognitionEvaluationMetrics(typing.TypedDict, total=False):
     evaluatedActionCount: int
     videoActionMetricsEntries: _list[XPSVideoActionMetricsEntry]
 
 @typing.type_check_only
-class XPSVideoActionRecognitionTrainResponse(typing_extensions.TypedDict, total=False):
+class XPSVideoActionRecognitionTrainResponse(typing.TypedDict, total=False):
     modelArtifactSpec: XPSVideoModelArtifactSpec
     trainCostNodeSeconds: str
 
 @typing.type_check_only
-class XPSVideoBatchPredictOperationMetadata(typing_extensions.TypedDict, total=False):
+class XPSVideoBatchPredictOperationMetadata(typing.TypedDict, total=False):
     outputExamples: _list[str]
 
 @typing.type_check_only
-class XPSVideoClassificationTrainResponse(typing_extensions.TypedDict, total=False):
+class XPSVideoClassificationTrainResponse(typing.TypedDict, total=False):
     modelArtifactSpec: XPSVideoModelArtifactSpec
     trainCostNodeSeconds: str
 
 @typing.type_check_only
-class XPSVideoExportModelSpec(typing_extensions.TypedDict, total=False):
+class XPSVideoExportModelSpec(typing.TypedDict, total=False):
     exportModelOutputConfig: _list[XPSExportModelOutputConfig]
 
 @typing.type_check_only
-class XPSVideoModelArtifactSpec(typing_extensions.TypedDict, total=False):
+class XPSVideoModelArtifactSpec(typing.TypedDict, total=False):
     exportArtifact: _list[XPSModelArtifactItem]
     servingArtifact: XPSModelArtifactItem
 
 @typing.type_check_only
-class XPSVideoObjectTrackingEvaluationMetrics(typing_extensions.TypedDict, total=False):
+class XPSVideoObjectTrackingEvaluationMetrics(typing.TypedDict, total=False):
     boundingBoxMeanAveragePrecision: float
     boundingBoxMetricsEntries: _list[XPSBoundingBoxMetricsEntry]
     evaluatedBoundingboxCount: int
@@ -2252,19 +2222,19 @@ class XPSVideoObjectTrackingEvaluationMetrics(typing_extensions.TypedDict, total
     trackMetricsEntries: _list[XPSTrackMetricsEntry]
 
 @typing.type_check_only
-class XPSVideoObjectTrackingTrainResponse(typing_extensions.TypedDict, total=False):
+class XPSVideoObjectTrackingTrainResponse(typing.TypedDict, total=False):
     exportModelSpec: XPSVideoExportModelSpec
     modelArtifactSpec: XPSVideoModelArtifactSpec
     trainCostNodeSeconds: str
 
 @typing.type_check_only
-class XPSVideoTrainingOperationMetadata(typing_extensions.TypedDict, total=False):
+class XPSVideoTrainingOperationMetadata(typing.TypedDict, total=False):
     trainCostMilliNodeHour: str
 
 @typing.type_check_only
-class XPSVisionErrorAnalysisConfig(typing_extensions.TypedDict, total=False):
+class XPSVisionErrorAnalysisConfig(typing.TypedDict, total=False):
     exampleCount: int
-    queryType: typing_extensions.Literal[
+    queryType: typing.Literal[
         "QUERY_TYPE_UNSPECIFIED",
         "QUERY_TYPE_ALL_SIMILAR",
         "QUERY_TYPE_SAME_CLASS_SIMILAR",
@@ -2272,14 +2242,14 @@ class XPSVisionErrorAnalysisConfig(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class XPSVisionTrainingOperationMetadata(typing_extensions.TypedDict, total=False):
+class XPSVisionTrainingOperationMetadata(typing.TypedDict, total=False):
     explanationUsage: InfraUsage
 
 @typing.type_check_only
-class XPSVisualization(typing_extensions.TypedDict, total=False):
+class XPSVisualization(typing.TypedDict, total=False):
     clipPercentLowerbound: float
     clipPercentUpperbound: float
-    colorMap: typing_extensions.Literal[
+    colorMap: typing.Literal[
         "COLOR_MAP_UNSPECIFIED",
         "PINK_GREEN",
         "VIRIDIS",
@@ -2288,16 +2258,14 @@ class XPSVisualization(typing_extensions.TypedDict, total=False):
         "RED_GREEN",
         "PINK_WHITE_GREEN",
     ]
-    overlayType: typing_extensions.Literal[
+    overlayType: typing.Literal[
         "OVERLAY_TYPE_UNSPECIFIED", "NONE", "ORIGINAL", "GRAYSCALE", "MASK_BLACK"
     ]
-    polarity: typing_extensions.Literal[
-        "POLARITY_UNSPECIFIED", "POSITIVE", "NEGATIVE", "BOTH"
-    ]
-    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "PIXELS", "OUTLINES"]
+    polarity: typing.Literal["POLARITY_UNSPECIFIED", "POSITIVE", "NEGATIVE", "BOTH"]
+    type: typing.Literal["TYPE_UNSPECIFIED", "PIXELS", "OUTLINES"]
 
 @typing.type_check_only
-class XPSXpsOperationMetadata(typing_extensions.TypedDict, total=False):
+class XPSXpsOperationMetadata(typing.TypedDict, total=False):
     exampleCount: str
     reportingMetrics: XPSReportingMetrics
     tablesTrainingOperationMetadata: XPSTablesTrainingOperationMetadata
@@ -2306,5 +2274,5 @@ class XPSXpsOperationMetadata(typing_extensions.TypedDict, total=False):
     visionTrainingOperationMetadata: XPSVisionTrainingOperationMetadata
 
 @typing.type_check_only
-class XPSXraiAttribution(typing_extensions.TypedDict, total=False):
+class XPSXraiAttribution(typing.TypedDict, total=False):
     stepCount: int

@@ -1,9 +1,7 @@
 import typing
 
-import typing_extensions
-
 _list = list
-AlternativeSearchResponse = typing_extensions.TypedDict(
+AlternativeSearchResponse = typing.TypedDict(
     "AlternativeSearchResponse",
     {
         "@context": typing.Any,

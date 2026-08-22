@@ -1,40 +1,38 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class GoogleApiHttpBody(typing_extensions.TypedDict, total=False):
+class GoogleApiHttpBody(typing.TypedDict, total=False):
     contentType: str
     data: str
     extensions: _list[dict[str, typing.Any]]
 
 @typing.type_check_only
 class GoogleCloudRecommendationengineV1alphaRejoinCatalogMetadata(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ): ...
 
 @typing.type_check_only
 class GoogleCloudRecommendationengineV1alphaRejoinCatalogResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     rejoinedUserEventsCount: str
 
 @typing.type_check_only
 class GoogleCloudRecommendationengineV1alphaTuningMetadata(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     recommendationModel: str
 
 @typing.type_check_only
 class GoogleCloudRecommendationengineV1alphaTuningResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ): ...
 
 @typing.type_check_only
 class GoogleCloudRecommendationengineV1beta1BigQuerySource(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     dataSchema: str
     datasetId: str
@@ -43,9 +41,7 @@ class GoogleCloudRecommendationengineV1beta1BigQuerySource(
     tableId: str
 
 @typing.type_check_only
-class GoogleCloudRecommendationengineV1beta1Catalog(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudRecommendationengineV1beta1Catalog(typing.TypedDict, total=False):
     catalogItemLevelConfig: GoogleCloudRecommendationengineV1beta1CatalogItemLevelConfig
     defaultEventStoreId: str
     displayName: str
@@ -53,14 +49,12 @@ class GoogleCloudRecommendationengineV1beta1Catalog(
 
 @typing.type_check_only
 class GoogleCloudRecommendationengineV1beta1CatalogInlineSource(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     catalogItems: _list[GoogleCloudRecommendationengineV1beta1CatalogItem]
 
 @typing.type_check_only
-class GoogleCloudRecommendationengineV1beta1CatalogItem(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudRecommendationengineV1beta1CatalogItem(typing.TypedDict, total=False):
     categoryHierarchies: _list[
         GoogleCloudRecommendationengineV1beta1CatalogItemCategoryHierarchy
     ]
@@ -75,33 +69,31 @@ class GoogleCloudRecommendationengineV1beta1CatalogItem(
 
 @typing.type_check_only
 class GoogleCloudRecommendationengineV1beta1CatalogItemCategoryHierarchy(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     categories: _list[str]
 
 @typing.type_check_only
 class GoogleCloudRecommendationengineV1beta1CatalogItemLevelConfig(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
-    eventItemLevel: typing_extensions.Literal[
+    eventItemLevel: typing.Literal[
         "CATALOG_ITEM_LEVEL_UNSPECIFIED", "VARIANT", "MASTER"
     ]
-    predictItemLevel: typing_extensions.Literal[
+    predictItemLevel: typing.Literal[
         "CATALOG_ITEM_LEVEL_UNSPECIFIED", "VARIANT", "MASTER"
     ]
 
 @typing.type_check_only
 class GoogleCloudRecommendationengineV1beta1CreatePredictionApiKeyRegistrationRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     predictionApiKeyRegistration: (
         GoogleCloudRecommendationengineV1beta1PredictionApiKeyRegistration
     )
 
 @typing.type_check_only
-class GoogleCloudRecommendationengineV1beta1EventDetail(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudRecommendationengineV1beta1EventDetail(typing.TypedDict, total=False):
     eventAttributes: GoogleCloudRecommendationengineV1beta1FeatureMap
     experimentIds: _list[str]
     pageViewId: str
@@ -110,42 +102,36 @@ class GoogleCloudRecommendationengineV1beta1EventDetail(
     uri: str
 
 @typing.type_check_only
-class GoogleCloudRecommendationengineV1beta1FeatureMap(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudRecommendationengineV1beta1FeatureMap(typing.TypedDict, total=False):
     categoricalFeatures: dict[str, typing.Any]
     numericalFeatures: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleCloudRecommendationengineV1beta1FeatureMapFloatList(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     value: _list[float]
 
 @typing.type_check_only
 class GoogleCloudRecommendationengineV1beta1FeatureMapStringList(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     value: _list[str]
 
 @typing.type_check_only
-class GoogleCloudRecommendationengineV1beta1GcsSource(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudRecommendationengineV1beta1GcsSource(typing.TypedDict, total=False):
     inputUris: _list[str]
     jsonSchema: str
 
 @typing.type_check_only
-class GoogleCloudRecommendationengineV1beta1Image(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudRecommendationengineV1beta1Image(typing.TypedDict, total=False):
     height: int
     uri: str
     width: int
 
 @typing.type_check_only
 class GoogleCloudRecommendationengineV1beta1ImportCatalogItemsRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     errorsConfig: GoogleCloudRecommendationengineV1beta1ImportErrorsConfig
     inputConfig: GoogleCloudRecommendationengineV1beta1InputConfig
@@ -154,20 +140,20 @@ class GoogleCloudRecommendationengineV1beta1ImportCatalogItemsRequest(
 
 @typing.type_check_only
 class GoogleCloudRecommendationengineV1beta1ImportCatalogItemsResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     errorSamples: _list[GoogleRpcStatus]
     errorsConfig: GoogleCloudRecommendationengineV1beta1ImportErrorsConfig
 
 @typing.type_check_only
 class GoogleCloudRecommendationengineV1beta1ImportErrorsConfig(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     gcsPrefix: str
 
 @typing.type_check_only
 class GoogleCloudRecommendationengineV1beta1ImportMetadata(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     createTime: str
     failureCount: str
@@ -178,7 +164,7 @@ class GoogleCloudRecommendationengineV1beta1ImportMetadata(
 
 @typing.type_check_only
 class GoogleCloudRecommendationengineV1beta1ImportUserEventsRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     errorsConfig: GoogleCloudRecommendationengineV1beta1ImportErrorsConfig
     inputConfig: GoogleCloudRecommendationengineV1beta1InputConfig
@@ -186,16 +172,14 @@ class GoogleCloudRecommendationengineV1beta1ImportUserEventsRequest(
 
 @typing.type_check_only
 class GoogleCloudRecommendationengineV1beta1ImportUserEventsResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     errorSamples: _list[GoogleRpcStatus]
     errorsConfig: GoogleCloudRecommendationengineV1beta1ImportErrorsConfig
     importSummary: GoogleCloudRecommendationengineV1beta1UserEventImportSummary
 
 @typing.type_check_only
-class GoogleCloudRecommendationengineV1beta1InputConfig(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudRecommendationengineV1beta1InputConfig(typing.TypedDict, total=False):
     bigQuerySource: GoogleCloudRecommendationengineV1beta1BigQuerySource
     catalogInlineSource: GoogleCloudRecommendationengineV1beta1CatalogInlineSource
     gcsSource: GoogleCloudRecommendationengineV1beta1GcsSource
@@ -203,21 +187,21 @@ class GoogleCloudRecommendationengineV1beta1InputConfig(
 
 @typing.type_check_only
 class GoogleCloudRecommendationengineV1beta1ListCatalogItemsResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     catalogItems: _list[GoogleCloudRecommendationengineV1beta1CatalogItem]
     nextPageToken: str
 
 @typing.type_check_only
 class GoogleCloudRecommendationengineV1beta1ListCatalogsResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     catalogs: _list[GoogleCloudRecommendationengineV1beta1Catalog]
     nextPageToken: str
 
 @typing.type_check_only
 class GoogleCloudRecommendationengineV1beta1ListPredictionApiKeyRegistrationsResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     nextPageToken: str
     predictionApiKeyRegistrations: _list[
@@ -226,14 +210,14 @@ class GoogleCloudRecommendationengineV1beta1ListPredictionApiKeyRegistrationsRes
 
 @typing.type_check_only
 class GoogleCloudRecommendationengineV1beta1ListUserEventsResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     nextPageToken: str
     userEvents: _list[GoogleCloudRecommendationengineV1beta1UserEvent]
 
 @typing.type_check_only
 class GoogleCloudRecommendationengineV1beta1PredictRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     dryRun: bool
     filter: str
@@ -245,7 +229,7 @@ class GoogleCloudRecommendationengineV1beta1PredictRequest(
 
 @typing.type_check_only
 class GoogleCloudRecommendationengineV1beta1PredictResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     dryRun: bool
     itemsMissingInCatalog: _list[str]
@@ -258,20 +242,20 @@ class GoogleCloudRecommendationengineV1beta1PredictResponse(
 
 @typing.type_check_only
 class GoogleCloudRecommendationengineV1beta1PredictResponsePredictionResult(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     id: str
     itemMetadata: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleCloudRecommendationengineV1beta1PredictionApiKeyRegistration(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     apiKey: str
 
 @typing.type_check_only
 class GoogleCloudRecommendationengineV1beta1ProductCatalogItem(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     availableQuantity: str
     canonicalProductUri: str
@@ -280,27 +264,27 @@ class GoogleCloudRecommendationengineV1beta1ProductCatalogItem(
     exactPrice: GoogleCloudRecommendationengineV1beta1ProductCatalogItemExactPrice
     images: _list[GoogleCloudRecommendationengineV1beta1Image]
     priceRange: GoogleCloudRecommendationengineV1beta1ProductCatalogItemPriceRange
-    stockState: typing_extensions.Literal[
+    stockState: typing.Literal[
         "STOCK_STATE_UNSPECIFIED", "IN_STOCK", "OUT_OF_STOCK", "PREORDER", "BACKORDER"
     ]
 
 @typing.type_check_only
 class GoogleCloudRecommendationengineV1beta1ProductCatalogItemExactPrice(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     displayPrice: float
     originalPrice: float
 
 @typing.type_check_only
 class GoogleCloudRecommendationengineV1beta1ProductCatalogItemPriceRange(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     max: float
     min: float
 
 @typing.type_check_only
 class GoogleCloudRecommendationengineV1beta1ProductDetail(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     availableQuantity: int
     currencyCode: str
@@ -309,13 +293,13 @@ class GoogleCloudRecommendationengineV1beta1ProductDetail(
     itemAttributes: GoogleCloudRecommendationengineV1beta1FeatureMap
     originalPrice: float
     quantity: int
-    stockState: typing_extensions.Literal[
+    stockState: typing.Literal[
         "STOCK_STATE_UNSPECIFIED", "IN_STOCK", "OUT_OF_STOCK", "PREORDER", "BACKORDER"
     ]
 
 @typing.type_check_only
 class GoogleCloudRecommendationengineV1beta1ProductEventDetail(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     cartId: str
     listId: str
@@ -328,7 +312,7 @@ class GoogleCloudRecommendationengineV1beta1ProductEventDetail(
 
 @typing.type_check_only
 class GoogleCloudRecommendationengineV1beta1PurchaseTransaction(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     costs: dict[str, typing.Any]
     currencyCode: str
@@ -338,50 +322,48 @@ class GoogleCloudRecommendationengineV1beta1PurchaseTransaction(
 
 @typing.type_check_only
 class GoogleCloudRecommendationengineV1beta1PurgeUserEventsMetadata(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     createTime: str
     operationName: str
 
 @typing.type_check_only
 class GoogleCloudRecommendationengineV1beta1PurgeUserEventsRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     filter: str
     force: bool
 
 @typing.type_check_only
 class GoogleCloudRecommendationengineV1beta1PurgeUserEventsResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     purgedEventsCount: str
     userEventsSample: _list[GoogleCloudRecommendationengineV1beta1UserEvent]
 
 @typing.type_check_only
 class GoogleCloudRecommendationengineV1beta1RejoinUserEventsMetadata(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ): ...
 
 @typing.type_check_only
 class GoogleCloudRecommendationengineV1beta1RejoinUserEventsRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
-    userEventRejoinScope: typing_extensions.Literal[
+    userEventRejoinScope: typing.Literal[
         "USER_EVENT_REJOIN_SCOPE_UNSPECIFIED", "JOINED_EVENTS", "UNJOINED_EVENTS"
     ]
 
 @typing.type_check_only
 class GoogleCloudRecommendationengineV1beta1RejoinUserEventsResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     rejoinedUserEventsCount: str
 
 @typing.type_check_only
-class GoogleCloudRecommendationengineV1beta1UserEvent(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudRecommendationengineV1beta1UserEvent(typing.TypedDict, total=False):
     eventDetail: GoogleCloudRecommendationengineV1beta1EventDetail
-    eventSource: typing_extensions.Literal[
+    eventSource: typing.Literal[
         "EVENT_SOURCE_UNSPECIFIED", "AUTOML", "ECOMMERCE", "BATCH_UPLOAD"
     ]
     eventTime: str
@@ -391,21 +373,19 @@ class GoogleCloudRecommendationengineV1beta1UserEvent(
 
 @typing.type_check_only
 class GoogleCloudRecommendationengineV1beta1UserEventImportSummary(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     joinedEventsCount: str
     unjoinedEventsCount: str
 
 @typing.type_check_only
 class GoogleCloudRecommendationengineV1beta1UserEventInlineSource(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     userEvents: _list[GoogleCloudRecommendationengineV1beta1UserEvent]
 
 @typing.type_check_only
-class GoogleCloudRecommendationengineV1beta1UserInfo(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudRecommendationengineV1beta1UserInfo(typing.TypedDict, total=False):
     directUserRequest: bool
     ipAddress: str
     userAgent: str
@@ -413,13 +393,13 @@ class GoogleCloudRecommendationengineV1beta1UserInfo(
     visitorId: str
 
 @typing.type_check_only
-class GoogleLongrunningListOperationsResponse(typing_extensions.TypedDict, total=False):
+class GoogleLongrunningListOperationsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     operations: _list[GoogleLongrunningOperation]
     unreachable: _list[str]
 
 @typing.type_check_only
-class GoogleLongrunningOperation(typing_extensions.TypedDict, total=False):
+class GoogleLongrunningOperation(typing.TypedDict, total=False):
     done: bool
     error: GoogleRpcStatus
     metadata: dict[str, typing.Any]
@@ -427,10 +407,10 @@ class GoogleLongrunningOperation(typing_extensions.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
-class GoogleProtobufEmpty(typing_extensions.TypedDict, total=False): ...
+class GoogleProtobufEmpty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class GoogleRpcStatus(typing_extensions.TypedDict, total=False):
+class GoogleRpcStatus(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str

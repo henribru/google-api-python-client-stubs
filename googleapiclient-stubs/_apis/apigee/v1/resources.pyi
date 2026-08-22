@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -151,9 +150,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                     expand: bool | None = ...,
                     orderBy: str | None = ...,
                     startKey: str | None = ...,
-                    state: typing_extensions.Literal[
-                        "STATE_UNSPECIFIED", "DRAFT", "PUBLISHED"
-                    ]
+                    state: typing.Literal["STATE_UNSPECIFIED", "DRAFT", "PUBLISHED"]
                     | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudApigeeV1ListRatePlansResponseHttpRequest: ...
@@ -977,9 +974,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                view: typing_extensions.Literal[
-                    "INGRESS_CONFIG_VIEW_UNSPECIFIED", "BASIC", "FULL"
-                ]
+                view: typing.Literal["INGRESS_CONFIG_VIEW_UNSPECIFIED", "BASIC", "FULL"]
                 | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleCloudApigeeV1EnvironmentGroupConfigHttpRequest: ...
@@ -2313,7 +2308,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                riskAssessmentType: typing_extensions.Literal[
+                riskAssessmentType: typing.Literal[
                     "RISK_ASSESSMENT_TYPE_UNSPECIFIED", "APIGEE", "API_HUB"
                 ]
                 | None = ...,
@@ -2323,7 +2318,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                riskAssessmentType: typing_extensions.Literal[
+                riskAssessmentType: typing.Literal[
                     "RISK_ASSESSMENT_TYPE_UNSPECIFIED", "APIGEE", "API_HUB"
                 ]
                 | None = ...,
@@ -2336,7 +2331,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                 filter: str | None = ...,
                 pageSize: int | None = ...,
                 pageToken: str | None = ...,
-                riskAssessmentType: typing_extensions.Literal[
+                riskAssessmentType: typing.Literal[
                     "RISK_ASSESSMENT_TYPE_UNSPECIFIED", "APIGEE", "API_HUB"
                 ]
                 | None = ...,
@@ -2460,7 +2455,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                riskAssessmentType: typing_extensions.Literal[
+                riskAssessmentType: typing.Literal[
                     "RISK_ASSESSMENT_TYPE_UNSPECIFIED", "APIGEE", "API_HUB"
                 ]
                 | None = ...,
@@ -2470,7 +2465,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                riskAssessmentType: typing_extensions.Literal[
+                riskAssessmentType: typing.Literal[
                     "RISK_ASSESSMENT_TYPE_UNSPECIFIED", "APIGEE", "API_HUB"
                 ]
                 | None = ...,
@@ -2482,7 +2477,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                 parent: str,
                 pageSize: int | None = ...,
                 pageToken: str | None = ...,
-                riskAssessmentType: typing_extensions.Literal[
+                riskAssessmentType: typing.Literal[
                     "RISK_ASSESSMENT_TYPE_UNSPECIFIED", "APIGEE", "API_HUB"
                 ]
                 | None = ...,
@@ -2718,9 +2713,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            retention: typing_extensions.Literal[
-                "DELETION_RETENTION_UNSPECIFIED", "MINIMUM"
-            ]
+            retention: typing.Literal["DELETION_RETENTION_UNSPECIFIED", "MINIMUM"]
             | None = ...,
             **kwargs: typing.Any,
         ) -> GoogleLongrunningOperationHttpRequest: ...
@@ -2734,9 +2727,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            view: typing_extensions.Literal[
-                "INGRESS_CONFIG_VIEW_UNSPECIFIED", "BASIC", "FULL"
-            ]
+            view: typing.Literal["INGRESS_CONFIG_VIEW_UNSPECIFIED", "BASIC", "FULL"]
             | None = ...,
             **kwargs: typing.Any,
         ) -> GoogleCloudApigeeV1IngressConfigHttpRequest: ...

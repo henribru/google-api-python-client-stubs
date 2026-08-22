@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -401,7 +400,7 @@ class DataformResource(googleapiclient.discovery.Resource):
                         pageSize: int | None = ...,
                         pageToken: str | None = ...,
                         path: str | None = ...,
-                        view: typing_extensions.Literal[
+                        view: typing.Literal[
                             "DIRECTORY_CONTENTS_VIEW_UNSPECIFIED",
                             "DIRECTORY_CONTENTS_VIEW_BASIC",
                             "DIRECTORY_CONTENTS_VIEW_METADATA",

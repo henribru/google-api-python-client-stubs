@@ -1,55 +1,49 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1_AnnotateVideoProgress(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     annotationProgress: _list[GoogleCloudVideointelligenceV1_VideoAnnotationProgress]
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1_AnnotateVideoResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     annotationResults: _list[GoogleCloudVideointelligenceV1_VideoAnnotationResults]
 
 @typing.type_check_only
-class GoogleCloudVideointelligenceV1_DetectedAttribute(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudVideointelligenceV1_DetectedAttribute(typing.TypedDict, total=False):
     confidence: float
     name: str
     value: str
 
 @typing.type_check_only
-class GoogleCloudVideointelligenceV1_DetectedLandmark(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudVideointelligenceV1_DetectedLandmark(typing.TypedDict, total=False):
     confidence: float
     name: str
     point: GoogleCloudVideointelligenceV1_NormalizedVertex
 
 @typing.type_check_only
-class GoogleCloudVideointelligenceV1_Entity(typing_extensions.TypedDict, total=False):
+class GoogleCloudVideointelligenceV1_Entity(typing.TypedDict, total=False):
     description: str
     entityId: str
     languageCode: str
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1_ExplicitContentAnnotation(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     frames: _list[GoogleCloudVideointelligenceV1_ExplicitContentFrame]
     version: str
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1_ExplicitContentFrame(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
-    pornographyLikelihood: typing_extensions.Literal[
+    pornographyLikelihood: typing.Literal[
         "LIKELIHOOD_UNSPECIFIED",
         "VERY_UNLIKELY",
         "UNLIKELY",
@@ -61,44 +55,36 @@ class GoogleCloudVideointelligenceV1_ExplicitContentFrame(
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1_ExportToOutputUriStatus(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
-    state: typing_extensions.Literal["STATE_UNSPECIFIED", "SUCCEEDED", "FAILED"]
+    state: typing.Literal["STATE_UNSPECIFIED", "SUCCEEDED", "FAILED"]
     status: GoogleRpc_Status
 
 @typing.type_check_only
-class GoogleCloudVideointelligenceV1_FaceAnnotation(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudVideointelligenceV1_FaceAnnotation(typing.TypedDict, total=False):
     frames: _list[GoogleCloudVideointelligenceV1_FaceFrame]
     segments: _list[GoogleCloudVideointelligenceV1_FaceSegment]
     thumbnail: str
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1_FaceDetectionAnnotation(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     thumbnail: str
     tracks: _list[GoogleCloudVideointelligenceV1_Track]
     version: str
 
 @typing.type_check_only
-class GoogleCloudVideointelligenceV1_FaceFrame(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudVideointelligenceV1_FaceFrame(typing.TypedDict, total=False):
     normalizedBoundingBoxes: _list[GoogleCloudVideointelligenceV1_NormalizedBoundingBox]
     timeOffset: str
 
 @typing.type_check_only
-class GoogleCloudVideointelligenceV1_FaceSegment(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudVideointelligenceV1_FaceSegment(typing.TypedDict, total=False):
     segment: GoogleCloudVideointelligenceV1_VideoSegment
 
 @typing.type_check_only
-class GoogleCloudVideointelligenceV1_LabelAnnotation(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudVideointelligenceV1_LabelAnnotation(typing.TypedDict, total=False):
     categoryEntities: _list[GoogleCloudVideointelligenceV1_Entity]
     entity: GoogleCloudVideointelligenceV1_Entity
     frames: _list[GoogleCloudVideointelligenceV1_LabelFrame]
@@ -106,22 +92,18 @@ class GoogleCloudVideointelligenceV1_LabelAnnotation(
     version: str
 
 @typing.type_check_only
-class GoogleCloudVideointelligenceV1_LabelFrame(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudVideointelligenceV1_LabelFrame(typing.TypedDict, total=False):
     confidence: float
     timeOffset: str
 
 @typing.type_check_only
-class GoogleCloudVideointelligenceV1_LabelSegment(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudVideointelligenceV1_LabelSegment(typing.TypedDict, total=False):
     confidence: float
     segment: GoogleCloudVideointelligenceV1_VideoSegment
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1_LogoRecognitionAnnotation(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     entity: GoogleCloudVideointelligenceV1_Entity
     segments: _list[GoogleCloudVideointelligenceV1_VideoSegment]
@@ -129,7 +111,7 @@ class GoogleCloudVideointelligenceV1_LogoRecognitionAnnotation(
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1_NormalizedBoundingBox(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     bottom: float
     left: float
@@ -138,20 +120,18 @@ class GoogleCloudVideointelligenceV1_NormalizedBoundingBox(
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1_NormalizedBoundingPoly(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     vertices: _list[GoogleCloudVideointelligenceV1_NormalizedVertex]
 
 @typing.type_check_only
-class GoogleCloudVideointelligenceV1_NormalizedVertex(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudVideointelligenceV1_NormalizedVertex(typing.TypedDict, total=False):
     x: float
     y: float
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1_ObjectTrackingAnnotation(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     confidence: float
     entity: GoogleCloudVideointelligenceV1_Entity
@@ -161,68 +141,56 @@ class GoogleCloudVideointelligenceV1_ObjectTrackingAnnotation(
     version: str
 
 @typing.type_check_only
-class GoogleCloudVideointelligenceV1_ObjectTrackingFrame(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudVideointelligenceV1_ObjectTrackingFrame(typing.TypedDict, total=False):
     normalizedBoundingBox: GoogleCloudVideointelligenceV1_NormalizedBoundingBox
     timeOffset: str
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1_PersonDetectionAnnotation(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     tracks: _list[GoogleCloudVideointelligenceV1_Track]
     version: str
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1_SpeechRecognitionAlternative(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     confidence: float
     transcript: str
     words: _list[GoogleCloudVideointelligenceV1_WordInfo]
 
 @typing.type_check_only
-class GoogleCloudVideointelligenceV1_SpeechTranscription(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudVideointelligenceV1_SpeechTranscription(typing.TypedDict, total=False):
     alternatives: _list[GoogleCloudVideointelligenceV1_SpeechRecognitionAlternative]
     languageCode: str
 
 @typing.type_check_only
-class GoogleCloudVideointelligenceV1_TextAnnotation(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudVideointelligenceV1_TextAnnotation(typing.TypedDict, total=False):
     segments: _list[GoogleCloudVideointelligenceV1_TextSegment]
     text: str
     version: str
 
 @typing.type_check_only
-class GoogleCloudVideointelligenceV1_TextFrame(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudVideointelligenceV1_TextFrame(typing.TypedDict, total=False):
     rotatedBoundingBox: GoogleCloudVideointelligenceV1_NormalizedBoundingPoly
     timeOffset: str
 
 @typing.type_check_only
-class GoogleCloudVideointelligenceV1_TextSegment(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudVideointelligenceV1_TextSegment(typing.TypedDict, total=False):
     confidence: float
     frames: _list[GoogleCloudVideointelligenceV1_TextFrame]
     segment: GoogleCloudVideointelligenceV1_VideoSegment
 
 @typing.type_check_only
-class GoogleCloudVideointelligenceV1_TimestampedObject(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudVideointelligenceV1_TimestampedObject(typing.TypedDict, total=False):
     attributes: _list[GoogleCloudVideointelligenceV1_DetectedAttribute]
     landmarks: _list[GoogleCloudVideointelligenceV1_DetectedLandmark]
     normalizedBoundingBox: GoogleCloudVideointelligenceV1_NormalizedBoundingBox
     timeOffset: str
 
 @typing.type_check_only
-class GoogleCloudVideointelligenceV1_Track(typing_extensions.TypedDict, total=False):
+class GoogleCloudVideointelligenceV1_Track(typing.TypedDict, total=False):
     attributes: _list[GoogleCloudVideointelligenceV1_DetectedAttribute]
     confidence: float
     segment: GoogleCloudVideointelligenceV1_VideoSegment
@@ -230,10 +198,10 @@ class GoogleCloudVideointelligenceV1_Track(typing_extensions.TypedDict, total=Fa
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1_VideoAnnotationProgress(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     exportStatus: GoogleCloudVideointelligenceV1_ExportToOutputUriStatus
-    feature: typing_extensions.Literal[
+    feature: typing.Literal[
         "FEATURE_UNSPECIFIED",
         "LABEL_DETECTION",
         "SHOT_CHANGE_DETECTION",
@@ -253,7 +221,7 @@ class GoogleCloudVideointelligenceV1_VideoAnnotationProgress(
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1_VideoAnnotationResults(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     error: GoogleRpc_Status
     explicitAnnotation: GoogleCloudVideointelligenceV1_ExplicitContentAnnotation
@@ -282,14 +250,12 @@ class GoogleCloudVideointelligenceV1_VideoAnnotationResults(
     textAnnotations: _list[GoogleCloudVideointelligenceV1_TextAnnotation]
 
 @typing.type_check_only
-class GoogleCloudVideointelligenceV1_VideoSegment(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudVideointelligenceV1_VideoSegment(typing.TypedDict, total=False):
     endTimeOffset: str
     startTimeOffset: str
 
 @typing.type_check_only
-class GoogleCloudVideointelligenceV1_WordInfo(typing_extensions.TypedDict, total=False):
+class GoogleCloudVideointelligenceV1_WordInfo(typing.TypedDict, total=False):
     confidence: float
     endTime: str
     speakerLabel: str
@@ -299,7 +265,7 @@ class GoogleCloudVideointelligenceV1_WordInfo(typing_extensions.TypedDict, total
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1beta2_AnnotateVideoProgress(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     annotationProgress: _list[
         GoogleCloudVideointelligenceV1beta2_VideoAnnotationProgress
@@ -307,13 +273,13 @@ class GoogleCloudVideointelligenceV1beta2_AnnotateVideoProgress(
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1beta2_AnnotateVideoResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     annotationResults: _list[GoogleCloudVideointelligenceV1beta2_VideoAnnotationResults]
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1beta2_DetectedAttribute(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     confidence: float
     name: str
@@ -321,32 +287,30 @@ class GoogleCloudVideointelligenceV1beta2_DetectedAttribute(
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1beta2_DetectedLandmark(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     confidence: float
     name: str
     point: GoogleCloudVideointelligenceV1beta2_NormalizedVertex
 
 @typing.type_check_only
-class GoogleCloudVideointelligenceV1beta2_Entity(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudVideointelligenceV1beta2_Entity(typing.TypedDict, total=False):
     description: str
     entityId: str
     languageCode: str
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1beta2_ExplicitContentAnnotation(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     frames: _list[GoogleCloudVideointelligenceV1beta2_ExplicitContentFrame]
     version: str
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1beta2_ExplicitContentFrame(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
-    pornographyLikelihood: typing_extensions.Literal[
+    pornographyLikelihood: typing.Literal[
         "LIKELIHOOD_UNSPECIFIED",
         "VERY_UNLIKELY",
         "UNLIKELY",
@@ -358,45 +322,39 @@ class GoogleCloudVideointelligenceV1beta2_ExplicitContentFrame(
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1beta2_ExportToOutputUriStatus(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
-    state: typing_extensions.Literal["STATE_UNSPECIFIED", "SUCCEEDED", "FAILED"]
+    state: typing.Literal["STATE_UNSPECIFIED", "SUCCEEDED", "FAILED"]
     status: GoogleRpc_Status
 
 @typing.type_check_only
-class GoogleCloudVideointelligenceV1beta2_FaceAnnotation(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudVideointelligenceV1beta2_FaceAnnotation(typing.TypedDict, total=False):
     frames: _list[GoogleCloudVideointelligenceV1beta2_FaceFrame]
     segments: _list[GoogleCloudVideointelligenceV1beta2_FaceSegment]
     thumbnail: str
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1beta2_FaceDetectionAnnotation(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     thumbnail: str
     tracks: _list[GoogleCloudVideointelligenceV1beta2_Track]
     version: str
 
 @typing.type_check_only
-class GoogleCloudVideointelligenceV1beta2_FaceFrame(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudVideointelligenceV1beta2_FaceFrame(typing.TypedDict, total=False):
     normalizedBoundingBoxes: _list[
         GoogleCloudVideointelligenceV1beta2_NormalizedBoundingBox
     ]
     timeOffset: str
 
 @typing.type_check_only
-class GoogleCloudVideointelligenceV1beta2_FaceSegment(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudVideointelligenceV1beta2_FaceSegment(typing.TypedDict, total=False):
     segment: GoogleCloudVideointelligenceV1beta2_VideoSegment
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1beta2_LabelAnnotation(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     categoryEntities: _list[GoogleCloudVideointelligenceV1beta2_Entity]
     entity: GoogleCloudVideointelligenceV1beta2_Entity
@@ -405,22 +363,18 @@ class GoogleCloudVideointelligenceV1beta2_LabelAnnotation(
     version: str
 
 @typing.type_check_only
-class GoogleCloudVideointelligenceV1beta2_LabelFrame(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudVideointelligenceV1beta2_LabelFrame(typing.TypedDict, total=False):
     confidence: float
     timeOffset: str
 
 @typing.type_check_only
-class GoogleCloudVideointelligenceV1beta2_LabelSegment(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudVideointelligenceV1beta2_LabelSegment(typing.TypedDict, total=False):
     confidence: float
     segment: GoogleCloudVideointelligenceV1beta2_VideoSegment
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1beta2_LogoRecognitionAnnotation(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     entity: GoogleCloudVideointelligenceV1beta2_Entity
     segments: _list[GoogleCloudVideointelligenceV1beta2_VideoSegment]
@@ -428,7 +382,7 @@ class GoogleCloudVideointelligenceV1beta2_LogoRecognitionAnnotation(
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1beta2_NormalizedBoundingBox(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     bottom: float
     left: float
@@ -437,20 +391,20 @@ class GoogleCloudVideointelligenceV1beta2_NormalizedBoundingBox(
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1beta2_NormalizedBoundingPoly(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     vertices: _list[GoogleCloudVideointelligenceV1beta2_NormalizedVertex]
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1beta2_NormalizedVertex(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     x: float
     y: float
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1beta2_ObjectTrackingAnnotation(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     confidence: float
     entity: GoogleCloudVideointelligenceV1beta2_Entity
@@ -461,21 +415,21 @@ class GoogleCloudVideointelligenceV1beta2_ObjectTrackingAnnotation(
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1beta2_ObjectTrackingFrame(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     normalizedBoundingBox: GoogleCloudVideointelligenceV1beta2_NormalizedBoundingBox
     timeOffset: str
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1beta2_PersonDetectionAnnotation(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     tracks: _list[GoogleCloudVideointelligenceV1beta2_Track]
     version: str
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1beta2_SpeechRecognitionAlternative(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     confidence: float
     transcript: str
@@ -483,7 +437,7 @@ class GoogleCloudVideointelligenceV1beta2_SpeechRecognitionAlternative(
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1beta2_SpeechTranscription(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     alternatives: _list[
         GoogleCloudVideointelligenceV1beta2_SpeechRecognitionAlternative
@@ -491,31 +445,25 @@ class GoogleCloudVideointelligenceV1beta2_SpeechTranscription(
     languageCode: str
 
 @typing.type_check_only
-class GoogleCloudVideointelligenceV1beta2_TextAnnotation(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudVideointelligenceV1beta2_TextAnnotation(typing.TypedDict, total=False):
     segments: _list[GoogleCloudVideointelligenceV1beta2_TextSegment]
     text: str
     version: str
 
 @typing.type_check_only
-class GoogleCloudVideointelligenceV1beta2_TextFrame(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudVideointelligenceV1beta2_TextFrame(typing.TypedDict, total=False):
     rotatedBoundingBox: GoogleCloudVideointelligenceV1beta2_NormalizedBoundingPoly
     timeOffset: str
 
 @typing.type_check_only
-class GoogleCloudVideointelligenceV1beta2_TextSegment(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudVideointelligenceV1beta2_TextSegment(typing.TypedDict, total=False):
     confidence: float
     frames: _list[GoogleCloudVideointelligenceV1beta2_TextFrame]
     segment: GoogleCloudVideointelligenceV1beta2_VideoSegment
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1beta2_TimestampedObject(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     attributes: _list[GoogleCloudVideointelligenceV1beta2_DetectedAttribute]
     landmarks: _list[GoogleCloudVideointelligenceV1beta2_DetectedLandmark]
@@ -523,9 +471,7 @@ class GoogleCloudVideointelligenceV1beta2_TimestampedObject(
     timeOffset: str
 
 @typing.type_check_only
-class GoogleCloudVideointelligenceV1beta2_Track(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudVideointelligenceV1beta2_Track(typing.TypedDict, total=False):
     attributes: _list[GoogleCloudVideointelligenceV1beta2_DetectedAttribute]
     confidence: float
     segment: GoogleCloudVideointelligenceV1beta2_VideoSegment
@@ -533,10 +479,10 @@ class GoogleCloudVideointelligenceV1beta2_Track(
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1beta2_VideoAnnotationProgress(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     exportStatus: GoogleCloudVideointelligenceV1beta2_ExportToOutputUriStatus
-    feature: typing_extensions.Literal[
+    feature: typing.Literal[
         "FEATURE_UNSPECIFIED",
         "LABEL_DETECTION",
         "SHOT_CHANGE_DETECTION",
@@ -556,7 +502,7 @@ class GoogleCloudVideointelligenceV1beta2_VideoAnnotationProgress(
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1beta2_VideoAnnotationResults(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     error: GoogleRpc_Status
     explicitAnnotation: GoogleCloudVideointelligenceV1beta2_ExplicitContentAnnotation
@@ -589,16 +535,12 @@ class GoogleCloudVideointelligenceV1beta2_VideoAnnotationResults(
     textAnnotations: _list[GoogleCloudVideointelligenceV1beta2_TextAnnotation]
 
 @typing.type_check_only
-class GoogleCloudVideointelligenceV1beta2_VideoSegment(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudVideointelligenceV1beta2_VideoSegment(typing.TypedDict, total=False):
     endTimeOffset: str
     startTimeOffset: str
 
 @typing.type_check_only
-class GoogleCloudVideointelligenceV1beta2_WordInfo(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudVideointelligenceV1beta2_WordInfo(typing.TypedDict, total=False):
     confidence: float
     endTime: str
     speakerLabel: str
@@ -608,7 +550,7 @@ class GoogleCloudVideointelligenceV1beta2_WordInfo(
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1p1beta1_AnnotateVideoProgress(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     annotationProgress: _list[
         GoogleCloudVideointelligenceV1p1beta1_VideoAnnotationProgress
@@ -616,7 +558,7 @@ class GoogleCloudVideointelligenceV1p1beta1_AnnotateVideoProgress(
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1p1beta1_AnnotateVideoResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     annotationResults: _list[
         GoogleCloudVideointelligenceV1p1beta1_VideoAnnotationResults
@@ -624,7 +566,7 @@ class GoogleCloudVideointelligenceV1p1beta1_AnnotateVideoResponse(
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1p1beta1_DetectedAttribute(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     confidence: float
     name: str
@@ -632,32 +574,30 @@ class GoogleCloudVideointelligenceV1p1beta1_DetectedAttribute(
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1p1beta1_DetectedLandmark(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     confidence: float
     name: str
     point: GoogleCloudVideointelligenceV1p1beta1_NormalizedVertex
 
 @typing.type_check_only
-class GoogleCloudVideointelligenceV1p1beta1_Entity(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudVideointelligenceV1p1beta1_Entity(typing.TypedDict, total=False):
     description: str
     entityId: str
     languageCode: str
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1p1beta1_ExplicitContentAnnotation(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     frames: _list[GoogleCloudVideointelligenceV1p1beta1_ExplicitContentFrame]
     version: str
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1p1beta1_ExplicitContentFrame(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
-    pornographyLikelihood: typing_extensions.Literal[
+    pornographyLikelihood: typing.Literal[
         "LIKELIHOOD_UNSPECIFIED",
         "VERY_UNLIKELY",
         "UNLIKELY",
@@ -669,14 +609,14 @@ class GoogleCloudVideointelligenceV1p1beta1_ExplicitContentFrame(
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1p1beta1_ExportToOutputUriStatus(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
-    state: typing_extensions.Literal["STATE_UNSPECIFIED", "SUCCEEDED", "FAILED"]
+    state: typing.Literal["STATE_UNSPECIFIED", "SUCCEEDED", "FAILED"]
     status: GoogleRpc_Status
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1p1beta1_FaceAnnotation(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     frames: _list[GoogleCloudVideointelligenceV1p1beta1_FaceFrame]
     segments: _list[GoogleCloudVideointelligenceV1p1beta1_FaceSegment]
@@ -684,30 +624,26 @@ class GoogleCloudVideointelligenceV1p1beta1_FaceAnnotation(
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1p1beta1_FaceDetectionAnnotation(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     thumbnail: str
     tracks: _list[GoogleCloudVideointelligenceV1p1beta1_Track]
     version: str
 
 @typing.type_check_only
-class GoogleCloudVideointelligenceV1p1beta1_FaceFrame(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudVideointelligenceV1p1beta1_FaceFrame(typing.TypedDict, total=False):
     normalizedBoundingBoxes: _list[
         GoogleCloudVideointelligenceV1p1beta1_NormalizedBoundingBox
     ]
     timeOffset: str
 
 @typing.type_check_only
-class GoogleCloudVideointelligenceV1p1beta1_FaceSegment(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudVideointelligenceV1p1beta1_FaceSegment(typing.TypedDict, total=False):
     segment: GoogleCloudVideointelligenceV1p1beta1_VideoSegment
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1p1beta1_LabelAnnotation(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     categoryEntities: _list[GoogleCloudVideointelligenceV1p1beta1_Entity]
     entity: GoogleCloudVideointelligenceV1p1beta1_Entity
@@ -716,22 +652,18 @@ class GoogleCloudVideointelligenceV1p1beta1_LabelAnnotation(
     version: str
 
 @typing.type_check_only
-class GoogleCloudVideointelligenceV1p1beta1_LabelFrame(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudVideointelligenceV1p1beta1_LabelFrame(typing.TypedDict, total=False):
     confidence: float
     timeOffset: str
 
 @typing.type_check_only
-class GoogleCloudVideointelligenceV1p1beta1_LabelSegment(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudVideointelligenceV1p1beta1_LabelSegment(typing.TypedDict, total=False):
     confidence: float
     segment: GoogleCloudVideointelligenceV1p1beta1_VideoSegment
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1p1beta1_LogoRecognitionAnnotation(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     entity: GoogleCloudVideointelligenceV1p1beta1_Entity
     segments: _list[GoogleCloudVideointelligenceV1p1beta1_VideoSegment]
@@ -739,7 +671,7 @@ class GoogleCloudVideointelligenceV1p1beta1_LogoRecognitionAnnotation(
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1p1beta1_NormalizedBoundingBox(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     bottom: float
     left: float
@@ -748,20 +680,20 @@ class GoogleCloudVideointelligenceV1p1beta1_NormalizedBoundingBox(
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1p1beta1_NormalizedBoundingPoly(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     vertices: _list[GoogleCloudVideointelligenceV1p1beta1_NormalizedVertex]
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1p1beta1_NormalizedVertex(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     x: float
     y: float
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1p1beta1_ObjectTrackingAnnotation(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     confidence: float
     entity: GoogleCloudVideointelligenceV1p1beta1_Entity
@@ -772,21 +704,21 @@ class GoogleCloudVideointelligenceV1p1beta1_ObjectTrackingAnnotation(
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1p1beta1_ObjectTrackingFrame(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     normalizedBoundingBox: GoogleCloudVideointelligenceV1p1beta1_NormalizedBoundingBox
     timeOffset: str
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1p1beta1_PersonDetectionAnnotation(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     tracks: _list[GoogleCloudVideointelligenceV1p1beta1_Track]
     version: str
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1p1beta1_SpeechRecognitionAlternative(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     confidence: float
     transcript: str
@@ -794,7 +726,7 @@ class GoogleCloudVideointelligenceV1p1beta1_SpeechRecognitionAlternative(
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1p1beta1_SpeechTranscription(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     alternatives: _list[
         GoogleCloudVideointelligenceV1p1beta1_SpeechRecognitionAlternative
@@ -803,30 +735,26 @@ class GoogleCloudVideointelligenceV1p1beta1_SpeechTranscription(
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1p1beta1_TextAnnotation(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     segments: _list[GoogleCloudVideointelligenceV1p1beta1_TextSegment]
     text: str
     version: str
 
 @typing.type_check_only
-class GoogleCloudVideointelligenceV1p1beta1_TextFrame(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudVideointelligenceV1p1beta1_TextFrame(typing.TypedDict, total=False):
     rotatedBoundingBox: GoogleCloudVideointelligenceV1p1beta1_NormalizedBoundingPoly
     timeOffset: str
 
 @typing.type_check_only
-class GoogleCloudVideointelligenceV1p1beta1_TextSegment(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudVideointelligenceV1p1beta1_TextSegment(typing.TypedDict, total=False):
     confidence: float
     frames: _list[GoogleCloudVideointelligenceV1p1beta1_TextFrame]
     segment: GoogleCloudVideointelligenceV1p1beta1_VideoSegment
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1p1beta1_TimestampedObject(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     attributes: _list[GoogleCloudVideointelligenceV1p1beta1_DetectedAttribute]
     landmarks: _list[GoogleCloudVideointelligenceV1p1beta1_DetectedLandmark]
@@ -834,9 +762,7 @@ class GoogleCloudVideointelligenceV1p1beta1_TimestampedObject(
     timeOffset: str
 
 @typing.type_check_only
-class GoogleCloudVideointelligenceV1p1beta1_Track(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudVideointelligenceV1p1beta1_Track(typing.TypedDict, total=False):
     attributes: _list[GoogleCloudVideointelligenceV1p1beta1_DetectedAttribute]
     confidence: float
     segment: GoogleCloudVideointelligenceV1p1beta1_VideoSegment
@@ -844,10 +770,10 @@ class GoogleCloudVideointelligenceV1p1beta1_Track(
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1p1beta1_VideoAnnotationProgress(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     exportStatus: GoogleCloudVideointelligenceV1p1beta1_ExportToOutputUriStatus
-    feature: typing_extensions.Literal[
+    feature: typing.Literal[
         "FEATURE_UNSPECIFIED",
         "LABEL_DETECTION",
         "SHOT_CHANGE_DETECTION",
@@ -867,7 +793,7 @@ class GoogleCloudVideointelligenceV1p1beta1_VideoAnnotationProgress(
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1p1beta1_VideoAnnotationResults(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     error: GoogleRpc_Status
     explicitAnnotation: GoogleCloudVideointelligenceV1p1beta1_ExplicitContentAnnotation
@@ -904,16 +830,12 @@ class GoogleCloudVideointelligenceV1p1beta1_VideoAnnotationResults(
     textAnnotations: _list[GoogleCloudVideointelligenceV1p1beta1_TextAnnotation]
 
 @typing.type_check_only
-class GoogleCloudVideointelligenceV1p1beta1_VideoSegment(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudVideointelligenceV1p1beta1_VideoSegment(typing.TypedDict, total=False):
     endTimeOffset: str
     startTimeOffset: str
 
 @typing.type_check_only
-class GoogleCloudVideointelligenceV1p1beta1_WordInfo(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudVideointelligenceV1p1beta1_WordInfo(typing.TypedDict, total=False):
     confidence: float
     endTime: str
     speakerLabel: str
@@ -923,7 +845,7 @@ class GoogleCloudVideointelligenceV1p1beta1_WordInfo(
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1p2beta1_AnnotateVideoProgress(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     annotationProgress: _list[
         GoogleCloudVideointelligenceV1p2beta1_VideoAnnotationProgress
@@ -931,10 +853,10 @@ class GoogleCloudVideointelligenceV1p2beta1_AnnotateVideoProgress(
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1p2beta1_AnnotateVideoRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     features: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "FEATURE_UNSPECIFIED",
             "LABEL_DETECTION",
             "SHOT_CHANGE_DETECTION",
@@ -955,7 +877,7 @@ class GoogleCloudVideointelligenceV1p2beta1_AnnotateVideoRequest(
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1p2beta1_AnnotateVideoResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     annotationResults: _list[
         GoogleCloudVideointelligenceV1p2beta1_VideoAnnotationResults
@@ -963,7 +885,7 @@ class GoogleCloudVideointelligenceV1p2beta1_AnnotateVideoResponse(
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1p2beta1_DetectedAttribute(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     confidence: float
     name: str
@@ -971,38 +893,36 @@ class GoogleCloudVideointelligenceV1p2beta1_DetectedAttribute(
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1p2beta1_DetectedLandmark(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     confidence: float
     name: str
     point: GoogleCloudVideointelligenceV1p2beta1_NormalizedVertex
 
 @typing.type_check_only
-class GoogleCloudVideointelligenceV1p2beta1_Entity(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudVideointelligenceV1p2beta1_Entity(typing.TypedDict, total=False):
     description: str
     entityId: str
     languageCode: str
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1p2beta1_ExplicitContentAnnotation(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     frames: _list[GoogleCloudVideointelligenceV1p2beta1_ExplicitContentFrame]
     version: str
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1p2beta1_ExplicitContentDetectionConfig(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     model: str
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1p2beta1_ExplicitContentFrame(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
-    pornographyLikelihood: typing_extensions.Literal[
+    pornographyLikelihood: typing.Literal[
         "LIKELIHOOD_UNSPECIFIED",
         "VERY_UNLIKELY",
         "UNLIKELY",
@@ -1014,14 +934,14 @@ class GoogleCloudVideointelligenceV1p2beta1_ExplicitContentFrame(
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1p2beta1_ExportToOutputUriStatus(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
-    state: typing_extensions.Literal["STATE_UNSPECIFIED", "SUCCEEDED", "FAILED"]
+    state: typing.Literal["STATE_UNSPECIFIED", "SUCCEEDED", "FAILED"]
     status: GoogleRpc_Status
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1p2beta1_FaceAnnotation(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     frames: _list[GoogleCloudVideointelligenceV1p2beta1_FaceFrame]
     segments: _list[GoogleCloudVideointelligenceV1p2beta1_FaceSegment]
@@ -1029,7 +949,7 @@ class GoogleCloudVideointelligenceV1p2beta1_FaceAnnotation(
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1p2beta1_FaceDetectionAnnotation(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     thumbnail: str
     tracks: _list[GoogleCloudVideointelligenceV1p2beta1_Track]
@@ -1037,30 +957,26 @@ class GoogleCloudVideointelligenceV1p2beta1_FaceDetectionAnnotation(
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1p2beta1_FaceDetectionConfig(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     includeAttributes: bool
     includeBoundingBoxes: bool
     model: str
 
 @typing.type_check_only
-class GoogleCloudVideointelligenceV1p2beta1_FaceFrame(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudVideointelligenceV1p2beta1_FaceFrame(typing.TypedDict, total=False):
     normalizedBoundingBoxes: _list[
         GoogleCloudVideointelligenceV1p2beta1_NormalizedBoundingBox
     ]
     timeOffset: str
 
 @typing.type_check_only
-class GoogleCloudVideointelligenceV1p2beta1_FaceSegment(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudVideointelligenceV1p2beta1_FaceSegment(typing.TypedDict, total=False):
     segment: GoogleCloudVideointelligenceV1p2beta1_VideoSegment
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1p2beta1_LabelAnnotation(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     categoryEntities: _list[GoogleCloudVideointelligenceV1p2beta1_Entity]
     entity: GoogleCloudVideointelligenceV1p2beta1_Entity
@@ -1070,10 +986,10 @@ class GoogleCloudVideointelligenceV1p2beta1_LabelAnnotation(
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1p2beta1_LabelDetectionConfig(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     frameConfidenceThreshold: float
-    labelDetectionMode: typing_extensions.Literal[
+    labelDetectionMode: typing.Literal[
         "LABEL_DETECTION_MODE_UNSPECIFIED",
         "SHOT_MODE",
         "FRAME_MODE",
@@ -1084,22 +1000,18 @@ class GoogleCloudVideointelligenceV1p2beta1_LabelDetectionConfig(
     videoConfidenceThreshold: float
 
 @typing.type_check_only
-class GoogleCloudVideointelligenceV1p2beta1_LabelFrame(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudVideointelligenceV1p2beta1_LabelFrame(typing.TypedDict, total=False):
     confidence: float
     timeOffset: str
 
 @typing.type_check_only
-class GoogleCloudVideointelligenceV1p2beta1_LabelSegment(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudVideointelligenceV1p2beta1_LabelSegment(typing.TypedDict, total=False):
     confidence: float
     segment: GoogleCloudVideointelligenceV1p2beta1_VideoSegment
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1p2beta1_LogoRecognitionAnnotation(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     entity: GoogleCloudVideointelligenceV1p2beta1_Entity
     segments: _list[GoogleCloudVideointelligenceV1p2beta1_VideoSegment]
@@ -1107,7 +1019,7 @@ class GoogleCloudVideointelligenceV1p2beta1_LogoRecognitionAnnotation(
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1p2beta1_NormalizedBoundingBox(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     bottom: float
     left: float
@@ -1116,20 +1028,20 @@ class GoogleCloudVideointelligenceV1p2beta1_NormalizedBoundingBox(
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1p2beta1_NormalizedBoundingPoly(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     vertices: _list[GoogleCloudVideointelligenceV1p2beta1_NormalizedVertex]
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1p2beta1_NormalizedVertex(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     x: float
     y: float
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1p2beta1_ObjectTrackingAnnotation(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     confidence: float
     entity: GoogleCloudVideointelligenceV1p2beta1_Entity
@@ -1140,27 +1052,27 @@ class GoogleCloudVideointelligenceV1p2beta1_ObjectTrackingAnnotation(
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1p2beta1_ObjectTrackingConfig(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     model: str
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1p2beta1_ObjectTrackingFrame(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     normalizedBoundingBox: GoogleCloudVideointelligenceV1p2beta1_NormalizedBoundingBox
     timeOffset: str
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1p2beta1_PersonDetectionAnnotation(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     tracks: _list[GoogleCloudVideointelligenceV1p2beta1_Track]
     version: str
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1p2beta1_PersonDetectionConfig(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     includeAttributes: bool
     includeBoundingBoxes: bool
@@ -1168,19 +1080,19 @@ class GoogleCloudVideointelligenceV1p2beta1_PersonDetectionConfig(
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1p2beta1_ShotChangeDetectionConfig(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     model: str
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1p2beta1_SpeechContext(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     phrases: _list[str]
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1p2beta1_SpeechRecognitionAlternative(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     confidence: float
     transcript: str
@@ -1188,7 +1100,7 @@ class GoogleCloudVideointelligenceV1p2beta1_SpeechRecognitionAlternative(
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1p2beta1_SpeechTranscription(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     alternatives: _list[
         GoogleCloudVideointelligenceV1p2beta1_SpeechRecognitionAlternative
@@ -1197,7 +1109,7 @@ class GoogleCloudVideointelligenceV1p2beta1_SpeechTranscription(
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1p2beta1_SpeechTranscriptionConfig(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     audioOutputUriPrefix: str
     audioTracks: _list[int]
@@ -1212,7 +1124,7 @@ class GoogleCloudVideointelligenceV1p2beta1_SpeechTranscriptionConfig(
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1p2beta1_TextAnnotation(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     segments: _list[GoogleCloudVideointelligenceV1p2beta1_TextSegment]
     text: str
@@ -1220,29 +1132,25 @@ class GoogleCloudVideointelligenceV1p2beta1_TextAnnotation(
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1p2beta1_TextDetectionConfig(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     languageHints: _list[str]
     model: str
 
 @typing.type_check_only
-class GoogleCloudVideointelligenceV1p2beta1_TextFrame(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudVideointelligenceV1p2beta1_TextFrame(typing.TypedDict, total=False):
     rotatedBoundingBox: GoogleCloudVideointelligenceV1p2beta1_NormalizedBoundingPoly
     timeOffset: str
 
 @typing.type_check_only
-class GoogleCloudVideointelligenceV1p2beta1_TextSegment(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudVideointelligenceV1p2beta1_TextSegment(typing.TypedDict, total=False):
     confidence: float
     frames: _list[GoogleCloudVideointelligenceV1p2beta1_TextFrame]
     segment: GoogleCloudVideointelligenceV1p2beta1_VideoSegment
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1p2beta1_TimestampedObject(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     attributes: _list[GoogleCloudVideointelligenceV1p2beta1_DetectedAttribute]
     landmarks: _list[GoogleCloudVideointelligenceV1p2beta1_DetectedLandmark]
@@ -1250,9 +1158,7 @@ class GoogleCloudVideointelligenceV1p2beta1_TimestampedObject(
     timeOffset: str
 
 @typing.type_check_only
-class GoogleCloudVideointelligenceV1p2beta1_Track(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudVideointelligenceV1p2beta1_Track(typing.TypedDict, total=False):
     attributes: _list[GoogleCloudVideointelligenceV1p2beta1_DetectedAttribute]
     confidence: float
     segment: GoogleCloudVideointelligenceV1p2beta1_VideoSegment
@@ -1260,10 +1166,10 @@ class GoogleCloudVideointelligenceV1p2beta1_Track(
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1p2beta1_VideoAnnotationProgress(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     exportStatus: GoogleCloudVideointelligenceV1p2beta1_ExportToOutputUriStatus
-    feature: typing_extensions.Literal[
+    feature: typing.Literal[
         "FEATURE_UNSPECIFIED",
         "LABEL_DETECTION",
         "SHOT_CHANGE_DETECTION",
@@ -1283,7 +1189,7 @@ class GoogleCloudVideointelligenceV1p2beta1_VideoAnnotationProgress(
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1p2beta1_VideoAnnotationResults(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     error: GoogleRpc_Status
     explicitAnnotation: GoogleCloudVideointelligenceV1p2beta1_ExplicitContentAnnotation
@@ -1320,9 +1226,7 @@ class GoogleCloudVideointelligenceV1p2beta1_VideoAnnotationResults(
     textAnnotations: _list[GoogleCloudVideointelligenceV1p2beta1_TextAnnotation]
 
 @typing.type_check_only
-class GoogleCloudVideointelligenceV1p2beta1_VideoContext(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudVideointelligenceV1p2beta1_VideoContext(typing.TypedDict, total=False):
     explicitContentDetectionConfig: (
         GoogleCloudVideointelligenceV1p2beta1_ExplicitContentDetectionConfig
     )
@@ -1340,16 +1244,12 @@ class GoogleCloudVideointelligenceV1p2beta1_VideoContext(
     textDetectionConfig: GoogleCloudVideointelligenceV1p2beta1_TextDetectionConfig
 
 @typing.type_check_only
-class GoogleCloudVideointelligenceV1p2beta1_VideoSegment(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudVideointelligenceV1p2beta1_VideoSegment(typing.TypedDict, total=False):
     endTimeOffset: str
     startTimeOffset: str
 
 @typing.type_check_only
-class GoogleCloudVideointelligenceV1p2beta1_WordInfo(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudVideointelligenceV1p2beta1_WordInfo(typing.TypedDict, total=False):
     confidence: float
     endTime: str
     speakerLabel: str
@@ -1359,7 +1259,7 @@ class GoogleCloudVideointelligenceV1p2beta1_WordInfo(
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1p3beta1_AnnotateVideoProgress(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     annotationProgress: _list[
         GoogleCloudVideointelligenceV1p3beta1_VideoAnnotationProgress
@@ -1367,37 +1267,35 @@ class GoogleCloudVideointelligenceV1p3beta1_AnnotateVideoProgress(
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1p3beta1_AnnotateVideoResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     annotationResults: _list[
         GoogleCloudVideointelligenceV1p3beta1_VideoAnnotationResults
     ]
 
 @typing.type_check_only
-class GoogleCloudVideointelligenceV1p3beta1_Celebrity(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudVideointelligenceV1p3beta1_Celebrity(typing.TypedDict, total=False):
     description: str
     displayName: str
     name: str
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1p3beta1_CelebrityRecognitionAnnotation(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     celebrityTracks: _list[GoogleCloudVideointelligenceV1p3beta1_CelebrityTrack]
     version: str
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1p3beta1_CelebrityTrack(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     celebrities: _list[GoogleCloudVideointelligenceV1p3beta1_RecognizedCelebrity]
     faceTrack: GoogleCloudVideointelligenceV1p3beta1_Track
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1p3beta1_DetectedAttribute(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     confidence: float
     name: str
@@ -1405,32 +1303,30 @@ class GoogleCloudVideointelligenceV1p3beta1_DetectedAttribute(
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1p3beta1_DetectedLandmark(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     confidence: float
     name: str
     point: GoogleCloudVideointelligenceV1p3beta1_NormalizedVertex
 
 @typing.type_check_only
-class GoogleCloudVideointelligenceV1p3beta1_Entity(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudVideointelligenceV1p3beta1_Entity(typing.TypedDict, total=False):
     description: str
     entityId: str
     languageCode: str
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1p3beta1_ExplicitContentAnnotation(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     frames: _list[GoogleCloudVideointelligenceV1p3beta1_ExplicitContentFrame]
     version: str
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1p3beta1_ExplicitContentFrame(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
-    pornographyLikelihood: typing_extensions.Literal[
+    pornographyLikelihood: typing.Literal[
         "LIKELIHOOD_UNSPECIFIED",
         "VERY_UNLIKELY",
         "UNLIKELY",
@@ -1442,14 +1338,14 @@ class GoogleCloudVideointelligenceV1p3beta1_ExplicitContentFrame(
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1p3beta1_ExportToOutputUriStatus(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
-    state: typing_extensions.Literal["STATE_UNSPECIFIED", "SUCCEEDED", "FAILED"]
+    state: typing.Literal["STATE_UNSPECIFIED", "SUCCEEDED", "FAILED"]
     status: GoogleRpc_Status
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1p3beta1_FaceAnnotation(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     frames: _list[GoogleCloudVideointelligenceV1p3beta1_FaceFrame]
     segments: _list[GoogleCloudVideointelligenceV1p3beta1_FaceSegment]
@@ -1457,30 +1353,26 @@ class GoogleCloudVideointelligenceV1p3beta1_FaceAnnotation(
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1p3beta1_FaceDetectionAnnotation(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     thumbnail: str
     tracks: _list[GoogleCloudVideointelligenceV1p3beta1_Track]
     version: str
 
 @typing.type_check_only
-class GoogleCloudVideointelligenceV1p3beta1_FaceFrame(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudVideointelligenceV1p3beta1_FaceFrame(typing.TypedDict, total=False):
     normalizedBoundingBoxes: _list[
         GoogleCloudVideointelligenceV1p3beta1_NormalizedBoundingBox
     ]
     timeOffset: str
 
 @typing.type_check_only
-class GoogleCloudVideointelligenceV1p3beta1_FaceSegment(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudVideointelligenceV1p3beta1_FaceSegment(typing.TypedDict, total=False):
     segment: GoogleCloudVideointelligenceV1p3beta1_VideoSegment
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1p3beta1_LabelAnnotation(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     categoryEntities: _list[GoogleCloudVideointelligenceV1p3beta1_Entity]
     entity: GoogleCloudVideointelligenceV1p3beta1_Entity
@@ -1489,22 +1381,18 @@ class GoogleCloudVideointelligenceV1p3beta1_LabelAnnotation(
     version: str
 
 @typing.type_check_only
-class GoogleCloudVideointelligenceV1p3beta1_LabelFrame(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudVideointelligenceV1p3beta1_LabelFrame(typing.TypedDict, total=False):
     confidence: float
     timeOffset: str
 
 @typing.type_check_only
-class GoogleCloudVideointelligenceV1p3beta1_LabelSegment(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudVideointelligenceV1p3beta1_LabelSegment(typing.TypedDict, total=False):
     confidence: float
     segment: GoogleCloudVideointelligenceV1p3beta1_VideoSegment
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1p3beta1_LogoRecognitionAnnotation(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     entity: GoogleCloudVideointelligenceV1p3beta1_Entity
     segments: _list[GoogleCloudVideointelligenceV1p3beta1_VideoSegment]
@@ -1512,7 +1400,7 @@ class GoogleCloudVideointelligenceV1p3beta1_LogoRecognitionAnnotation(
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1p3beta1_NormalizedBoundingBox(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     bottom: float
     left: float
@@ -1521,20 +1409,20 @@ class GoogleCloudVideointelligenceV1p3beta1_NormalizedBoundingBox(
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1p3beta1_NormalizedBoundingPoly(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     vertices: _list[GoogleCloudVideointelligenceV1p3beta1_NormalizedVertex]
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1p3beta1_NormalizedVertex(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     x: float
     y: float
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1p3beta1_ObjectTrackingAnnotation(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     confidence: float
     entity: GoogleCloudVideointelligenceV1p3beta1_Entity
@@ -1545,28 +1433,28 @@ class GoogleCloudVideointelligenceV1p3beta1_ObjectTrackingAnnotation(
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1p3beta1_ObjectTrackingFrame(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     normalizedBoundingBox: GoogleCloudVideointelligenceV1p3beta1_NormalizedBoundingBox
     timeOffset: str
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1p3beta1_PersonDetectionAnnotation(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     tracks: _list[GoogleCloudVideointelligenceV1p3beta1_Track]
     version: str
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1p3beta1_RecognizedCelebrity(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     celebrity: GoogleCloudVideointelligenceV1p3beta1_Celebrity
     confidence: float
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1p3beta1_SpeechRecognitionAlternative(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     confidence: float
     transcript: str
@@ -1574,7 +1462,7 @@ class GoogleCloudVideointelligenceV1p3beta1_SpeechRecognitionAlternative(
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1p3beta1_SpeechTranscription(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     alternatives: _list[
         GoogleCloudVideointelligenceV1p3beta1_SpeechRecognitionAlternative
@@ -1583,7 +1471,7 @@ class GoogleCloudVideointelligenceV1p3beta1_SpeechTranscription(
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1p3beta1_StreamingAnnotateVideoResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     annotationResults: (
         GoogleCloudVideointelligenceV1p3beta1_StreamingVideoAnnotationResults
@@ -1593,7 +1481,7 @@ class GoogleCloudVideointelligenceV1p3beta1_StreamingAnnotateVideoResponse(
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1p3beta1_StreamingVideoAnnotationResults(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     explicitAnnotation: GoogleCloudVideointelligenceV1p3beta1_ExplicitContentAnnotation
     frameTimestamp: str
@@ -1605,30 +1493,26 @@ class GoogleCloudVideointelligenceV1p3beta1_StreamingVideoAnnotationResults(
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1p3beta1_TextAnnotation(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     segments: _list[GoogleCloudVideointelligenceV1p3beta1_TextSegment]
     text: str
     version: str
 
 @typing.type_check_only
-class GoogleCloudVideointelligenceV1p3beta1_TextFrame(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudVideointelligenceV1p3beta1_TextFrame(typing.TypedDict, total=False):
     rotatedBoundingBox: GoogleCloudVideointelligenceV1p3beta1_NormalizedBoundingPoly
     timeOffset: str
 
 @typing.type_check_only
-class GoogleCloudVideointelligenceV1p3beta1_TextSegment(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudVideointelligenceV1p3beta1_TextSegment(typing.TypedDict, total=False):
     confidence: float
     frames: _list[GoogleCloudVideointelligenceV1p3beta1_TextFrame]
     segment: GoogleCloudVideointelligenceV1p3beta1_VideoSegment
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1p3beta1_TimestampedObject(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     attributes: _list[GoogleCloudVideointelligenceV1p3beta1_DetectedAttribute]
     landmarks: _list[GoogleCloudVideointelligenceV1p3beta1_DetectedLandmark]
@@ -1636,9 +1520,7 @@ class GoogleCloudVideointelligenceV1p3beta1_TimestampedObject(
     timeOffset: str
 
 @typing.type_check_only
-class GoogleCloudVideointelligenceV1p3beta1_Track(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudVideointelligenceV1p3beta1_Track(typing.TypedDict, total=False):
     attributes: _list[GoogleCloudVideointelligenceV1p3beta1_DetectedAttribute]
     confidence: float
     segment: GoogleCloudVideointelligenceV1p3beta1_VideoSegment
@@ -1646,10 +1528,10 @@ class GoogleCloudVideointelligenceV1p3beta1_Track(
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1p3beta1_VideoAnnotationProgress(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     exportStatus: GoogleCloudVideointelligenceV1p3beta1_ExportToOutputUriStatus
-    feature: typing_extensions.Literal[
+    feature: typing.Literal[
         "FEATURE_UNSPECIFIED",
         "LABEL_DETECTION",
         "SHOT_CHANGE_DETECTION",
@@ -1670,7 +1552,7 @@ class GoogleCloudVideointelligenceV1p3beta1_VideoAnnotationProgress(
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1p3beta1_VideoAnnotationResults(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     celebrityRecognitionAnnotations: (
         GoogleCloudVideointelligenceV1p3beta1_CelebrityRecognitionAnnotation
@@ -1710,16 +1592,12 @@ class GoogleCloudVideointelligenceV1p3beta1_VideoAnnotationResults(
     textAnnotations: _list[GoogleCloudVideointelligenceV1p3beta1_TextAnnotation]
 
 @typing.type_check_only
-class GoogleCloudVideointelligenceV1p3beta1_VideoSegment(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudVideointelligenceV1p3beta1_VideoSegment(typing.TypedDict, total=False):
     endTimeOffset: str
     startTimeOffset: str
 
 @typing.type_check_only
-class GoogleCloudVideointelligenceV1p3beta1_WordInfo(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudVideointelligenceV1p3beta1_WordInfo(typing.TypedDict, total=False):
     confidence: float
     endTime: str
     speakerLabel: str
@@ -1728,7 +1606,7 @@ class GoogleCloudVideointelligenceV1p3beta1_WordInfo(
     word: str
 
 @typing.type_check_only
-class GoogleLongrunning_Operation(typing_extensions.TypedDict, total=False):
+class GoogleLongrunning_Operation(typing.TypedDict, total=False):
     done: bool
     error: GoogleRpc_Status
     metadata: dict[str, typing.Any]
@@ -1736,7 +1614,7 @@ class GoogleLongrunning_Operation(typing_extensions.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
-class GoogleRpc_Status(typing_extensions.TypedDict, total=False):
+class GoogleRpc_Status(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str

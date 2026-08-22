@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -233,7 +232,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 packageName: str,
                 editId: str,
                 apkVersionCode: int,
-                deobfuscationFileType: typing_extensions.Literal[
+                deobfuscationFileType: typing.Literal[
                     "deobfuscationFileTypeUnspecified", "proguard", "nativeCode"
                 ],
                 **kwargs: typing.Any,
@@ -269,7 +268,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 packageName: str,
                 editId: str,
                 apkVersionCode: int,
-                expansionFileType: typing_extensions.Literal[
+                expansionFileType: typing.Literal[
                     "expansionFileTypeUnspecified", "main", "patch"
                 ],
                 **kwargs: typing.Any,
@@ -280,7 +279,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 packageName: str,
                 editId: str,
                 apkVersionCode: int,
-                expansionFileType: typing_extensions.Literal[
+                expansionFileType: typing.Literal[
                     "expansionFileTypeUnspecified", "main", "patch"
                 ],
                 body: ExpansionFile,
@@ -292,7 +291,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 packageName: str,
                 editId: str,
                 apkVersionCode: int,
-                expansionFileType: typing_extensions.Literal[
+                expansionFileType: typing.Literal[
                     "expansionFileTypeUnspecified", "main", "patch"
                 ],
                 body: ExpansionFile,
@@ -304,7 +303,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 packageName: str,
                 editId: str,
                 apkVersionCode: int,
-                expansionFileType: typing_extensions.Literal[
+                expansionFileType: typing.Literal[
                     "expansionFileTypeUnspecified", "main", "patch"
                 ],
                 **kwargs: typing.Any,
@@ -318,7 +317,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 packageName: str,
                 editId: str,
                 language: str,
-                imageType: typing_extensions.Literal[
+                imageType: typing.Literal[
                     "appImageTypeUnspecified",
                     "phoneScreenshots",
                     "sevenInchScreenshots",
@@ -338,7 +337,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 packageName: str,
                 editId: str,
                 language: str,
-                imageType: typing_extensions.Literal[
+                imageType: typing.Literal[
                     "appImageTypeUnspecified",
                     "phoneScreenshots",
                     "sevenInchScreenshots",
@@ -357,7 +356,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 packageName: str,
                 editId: str,
                 language: str,
-                imageType: typing_extensions.Literal[
+                imageType: typing.Literal[
                     "appImageTypeUnspecified",
                     "phoneScreenshots",
                     "sevenInchScreenshots",
@@ -376,7 +375,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 packageName: str,
                 editId: str,
                 language: str,
-                imageType: typing_extensions.Literal[
+                imageType: typing.Literal[
                     "appImageTypeUnspecified",
                     "phoneScreenshots",
                     "sevenInchScreenshots",
@@ -387,7 +386,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                     "featureGraphic",
                     "tvBanner",
                 ],
-                aiGeneratedState: typing_extensions.Literal[
+                aiGeneratedState: typing.Literal[
                     "aiGeneratedStateUnspecified",
                     "aiGeneratedStateNotAiGenerated",
                     "aiGeneratedStateAiGeneratedDeveloperAttested",
@@ -503,7 +502,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
             *,
             packageName: str,
             editId: str,
-            changesInReviewBehavior: typing_extensions.Literal[
+            changesInReviewBehavior: typing.Literal[
                 "CHANGES_IN_REVIEW_BEHAVIOR_TYPE_UNSPECIFIED",
                 "CANCEL_IN_REVIEW_AND_SUBMIT",
                 "ERROR_IF_IN_REVIEW",
@@ -623,7 +622,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
             *,
             packageName: str,
             sku: str,
-            latencyTolerance: typing_extensions.Literal[
+            latencyTolerance: typing.Literal[
                 "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED",
                 "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE",
                 "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT",
@@ -658,7 +657,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
             sku: str,
             body: InAppProduct,
             autoConvertMissingPrices: bool | None = ...,
-            latencyTolerance: typing_extensions.Literal[
+            latencyTolerance: typing.Literal[
                 "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED",
                 "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE",
                 "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT",
@@ -674,7 +673,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
             body: InAppProduct,
             allowMissing: bool | None = ...,
             autoConvertMissingPrices: bool | None = ...,
-            latencyTolerance: typing_extensions.Literal[
+            latencyTolerance: typing.Literal[
                 "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED",
                 "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE",
                 "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT",
@@ -826,7 +825,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 *,
                 packageName: str,
                 productId: str,
-                latencyTolerance: typing_extensions.Literal[
+                latencyTolerance: typing.Literal[
                     "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED",
                     "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE",
                     "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT",
@@ -857,7 +856,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 productId: str,
                 body: OneTimeProduct,
                 allowMissing: bool | None = ...,
-                latencyTolerance: typing_extensions.Literal[
+                latencyTolerance: typing.Literal[
                     "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED",
                     "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE",
                     "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT",
@@ -975,7 +974,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                         offerId: str,
                         body: SubscriptionOffer,
                         allowMissing: bool | None = ...,
-                        latencyTolerance: typing_extensions.Literal[
+                        latencyTolerance: typing.Literal[
                             "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED",
                             "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE",
                             "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT",
@@ -1097,7 +1096,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 productId: str,
                 body: Subscription,
                 allowMissing: bool | None = ...,
-                latencyTolerance: typing_extensions.Literal[
+                latencyTolerance: typing.Literal[
                     "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED",
                     "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE",
                     "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT",

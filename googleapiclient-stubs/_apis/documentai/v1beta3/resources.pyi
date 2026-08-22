@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -90,7 +89,7 @@ class DocumentResource(googleapiclient.discovery.Resource):
                         documentId_gcsManagedDocId_cwDocId: str | None = ...,
                         documentId_gcsManagedDocId_gcsUri: str | None = ...,
                         documentId_revisionRef_latestProcessorVersion: str | None = ...,
-                        documentId_revisionRef_revisionCase: typing_extensions.Literal[
+                        documentId_revisionRef_revisionCase: typing.Literal[
                             "REVISION_CASE_UNSPECIFIED",
                             "LATEST_HUMAN_REVIEW",
                             "LATEST_TIMESTAMP",

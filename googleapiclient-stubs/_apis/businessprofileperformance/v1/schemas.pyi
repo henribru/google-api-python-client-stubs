@@ -1,12 +1,10 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class DailyMetricTimeSeries(typing_extensions.TypedDict, total=False):
-    dailyMetric: typing_extensions.Literal[
+class DailyMetricTimeSeries(typing.TypedDict, total=False):
+    dailyMetric: typing.Literal[
         "DAILY_METRIC_UNKNOWN",
         "BUSINESS_IMPRESSIONS_DESKTOP_MAPS",
         "BUSINESS_IMPRESSIONS_DESKTOP_SEARCH",
@@ -24,8 +22,8 @@ class DailyMetricTimeSeries(typing_extensions.TypedDict, total=False):
     timeSeries: TimeSeries
 
 @typing.type_check_only
-class DailySubEntityType(typing_extensions.TypedDict, total=False):
-    dayOfWeek: typing_extensions.Literal[
+class DailySubEntityType(typing.TypedDict, total=False):
+    dayOfWeek: typing.Literal[
         "DAY_OF_WEEK_UNSPECIFIED",
         "MONDAY",
         "TUESDAY",
@@ -38,54 +36,50 @@ class DailySubEntityType(typing_extensions.TypedDict, total=False):
     timeOfDay: TimeOfDay
 
 @typing.type_check_only
-class Date(typing_extensions.TypedDict, total=False):
+class Date(typing.TypedDict, total=False):
     day: int
     month: int
     year: int
 
 @typing.type_check_only
-class DatedValue(typing_extensions.TypedDict, total=False):
+class DatedValue(typing.TypedDict, total=False):
     date: Date
     value: str
 
 @typing.type_check_only
-class FetchMultiDailyMetricsTimeSeriesResponse(
-    typing_extensions.TypedDict, total=False
-):
+class FetchMultiDailyMetricsTimeSeriesResponse(typing.TypedDict, total=False):
     multiDailyMetricTimeSeries: _list[MultiDailyMetricTimeSeries]
 
 @typing.type_check_only
-class GetDailyMetricsTimeSeriesResponse(typing_extensions.TypedDict, total=False):
+class GetDailyMetricsTimeSeriesResponse(typing.TypedDict, total=False):
     timeSeries: TimeSeries
 
 @typing.type_check_only
-class InsightsValue(typing_extensions.TypedDict, total=False):
+class InsightsValue(typing.TypedDict, total=False):
     threshold: str
     value: str
 
 @typing.type_check_only
-class ListSearchKeywordImpressionsMonthlyResponse(
-    typing_extensions.TypedDict, total=False
-):
+class ListSearchKeywordImpressionsMonthlyResponse(typing.TypedDict, total=False):
     nextPageToken: str
     searchKeywordsCounts: _list[SearchKeywordCount]
 
 @typing.type_check_only
-class MultiDailyMetricTimeSeries(typing_extensions.TypedDict, total=False):
+class MultiDailyMetricTimeSeries(typing.TypedDict, total=False):
     dailyMetricTimeSeries: _list[DailyMetricTimeSeries]
 
 @typing.type_check_only
-class SearchKeywordCount(typing_extensions.TypedDict, total=False):
+class SearchKeywordCount(typing.TypedDict, total=False):
     insightsValue: InsightsValue
     searchKeyword: str
 
 @typing.type_check_only
-class TimeOfDay(typing_extensions.TypedDict, total=False):
+class TimeOfDay(typing.TypedDict, total=False):
     hours: int
     minutes: int
     nanos: int
     seconds: int
 
 @typing.type_check_only
-class TimeSeries(typing_extensions.TypedDict, total=False):
+class TimeSeries(typing.TypedDict, total=False):
     datedValues: _list[DatedValue]

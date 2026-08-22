@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -38,9 +37,7 @@ class PubsubResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                view: typing_extensions.Literal[
-                    "SCHEMA_VIEW_UNSPECIFIED", "BASIC", "FULL"
-                ]
+                view: typing.Literal["SCHEMA_VIEW_UNSPECIFIED", "BASIC", "FULL"]
                 | None = ...,
                 **kwargs: typing.Any,
             ) -> SchemaHttpRequest: ...
@@ -57,9 +54,7 @@ class PubsubResource(googleapiclient.discovery.Resource):
                 parent: str,
                 pageSize: int | None = ...,
                 pageToken: str | None = ...,
-                view: typing_extensions.Literal[
-                    "SCHEMA_VIEW_UNSPECIFIED", "BASIC", "FULL"
-                ]
+                view: typing.Literal["SCHEMA_VIEW_UNSPECIFIED", "BASIC", "FULL"]
                 | None = ...,
                 **kwargs: typing.Any,
             ) -> ListSchemasResponseHttpRequest: ...
@@ -74,9 +69,7 @@ class PubsubResource(googleapiclient.discovery.Resource):
                 name: str,
                 pageSize: int | None = ...,
                 pageToken: str | None = ...,
-                view: typing_extensions.Literal[
-                    "SCHEMA_VIEW_UNSPECIFIED", "BASIC", "FULL"
-                ]
+                view: typing.Literal["SCHEMA_VIEW_UNSPECIFIED", "BASIC", "FULL"]
                 | None = ...,
                 **kwargs: typing.Any,
             ) -> ListSchemaRevisionsResponseHttpRequest: ...

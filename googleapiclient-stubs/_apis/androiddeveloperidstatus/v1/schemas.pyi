@@ -1,14 +1,12 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class PackageRegistrationStatus(typing_extensions.TypedDict, total=False):
+class PackageRegistrationStatus(typing.TypedDict, total=False):
     certificateFingerprint: str
     name: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "REGISTRATION_STATE_UNSPECIFIED",
         "REGISTERED",
         "NOT_REGISTERED",

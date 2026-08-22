@@ -1,33 +1,31 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class AuthorizeEnvironmentRequest(typing_extensions.TypedDict, total=False):
+class AuthorizeEnvironmentRequest(typing.TypedDict, total=False):
     accessToken: str
     expireTime: str
     idToken: str
 
 @typing.type_check_only
-class CreatePublicKeyRequest(typing_extensions.TypedDict, total=False):
+class CreatePublicKeyRequest(typing.TypedDict, total=False):
     key: PublicKey
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Environment(typing_extensions.TypedDict, total=False):
+class Environment(typing.TypedDict, total=False):
     dockerImage: str
     id: str
     name: str
     publicKeys: _list[PublicKey]
-    size: typing_extensions.Literal["VM_SIZE_UNSPECIFIED", "DEFAULT", "BOOSTED"]
+    size: typing.Literal["VM_SIZE_UNSPECIFIED", "DEFAULT", "BOOSTED"]
     sshHost: str
     sshPort: int
     sshUsername: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED", "DISABLED", "STARTING", "RUNNING", "DELETING"
     ]
     vmSizeExpireTime: str
@@ -35,7 +33,7 @@ class Environment(typing_extensions.TypedDict, total=False):
     webPorts: _list[int]
 
 @typing.type_check_only
-class Operation(typing_extensions.TypedDict, total=False):
+class Operation(typing.TypedDict, total=False):
     done: bool
     error: Status
     metadata: dict[str, typing.Any]
@@ -43,8 +41,8 @@ class Operation(typing_extensions.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
-class PublicKey(typing_extensions.TypedDict, total=False):
-    format: typing_extensions.Literal[
+class PublicKey(typing.TypedDict, total=False):
+    format: typing.Literal[
         "FORMAT_UNSPECIFIED",
         "SSH_DSS",
         "SSH_RSA",
@@ -56,8 +54,8 @@ class PublicKey(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class StartEnvironmentMetadata(typing_extensions.TypedDict, total=False):
-    state: typing_extensions.Literal[
+class StartEnvironmentMetadata(typing.TypedDict, total=False):
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "STARTING",
         "UNARCHIVING_DISK",
@@ -67,16 +65,16 @@ class StartEnvironmentMetadata(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class StartEnvironmentRequest(typing_extensions.TypedDict, total=False):
+class StartEnvironmentRequest(typing.TypedDict, total=False):
     accessToken: str
     publicKeys: _list[PublicKey]
 
 @typing.type_check_only
-class StartEnvironmentResponse(typing_extensions.TypedDict, total=False):
+class StartEnvironmentResponse(typing.TypedDict, total=False):
     environment: Environment
 
 @typing.type_check_only
-class Status(typing_extensions.TypedDict, total=False):
+class Status(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str

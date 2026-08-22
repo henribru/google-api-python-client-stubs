@@ -1,11 +1,9 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class Availability(typing_extensions.TypedDict, total=False):
+class Availability(typing.TypedDict, total=False):
     advertiserId: str
     agencyId: str
     availabilityTimestamp: str
@@ -15,10 +13,10 @@ class Availability(typing_extensions.TypedDict, total=False):
     segmentationType: str
 
 @typing.type_check_only
-class Conversion(typing_extensions.TypedDict, total=False):
+class Conversion(typing.TypedDict, total=False):
     adGroupId: str
     adId: str
-    adUserDataConsent: typing_extensions.Literal["UNKNOWN", "GRANTED", "DENIED"]
+    adUserDataConsent: typing.Literal["UNKNOWN", "GRANTED", "DENIED"]
     advertiserId: str
     agencyId: str
     attributionModel: str
@@ -53,25 +51,25 @@ class Conversion(typing_extensions.TypedDict, total=False):
     type: str
 
 @typing.type_check_only
-class ConversionList(typing_extensions.TypedDict, total=False):
+class ConversionList(typing.TypedDict, total=False):
     conversion: _list[Conversion]
     kind: str
 
 @typing.type_check_only
-class CustomDimension(typing_extensions.TypedDict, total=False):
+class CustomDimension(typing.TypedDict, total=False):
     name: str
     value: str
 
 @typing.type_check_only
-class CustomMetric(typing_extensions.TypedDict, total=False):
+class CustomMetric(typing.TypedDict, total=False):
     name: str
     value: float
 
 @typing.type_check_only
-class IdMappingFile(typing_extensions.TypedDict, total=False): ...
+class IdMappingFile(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Report(typing_extensions.TypedDict, total=False):
+class Report(typing.TypedDict, total=False):
     files: _list[dict[str, typing.Any]]
     id: str
     isReportReady: bool
@@ -83,7 +81,7 @@ class Report(typing_extensions.TypedDict, total=False):
     statisticsTimeZone: str
 
 @typing.type_check_only
-class ReportApiColumnSpec(typing_extensions.TypedDict, total=False):
+class ReportApiColumnSpec(typing.TypedDict, total=False):
     columnName: str
     customDimensionName: str
     customMetricName: str
@@ -96,7 +94,7 @@ class ReportApiColumnSpec(typing_extensions.TypedDict, total=False):
     startDate: str
 
 @typing.type_check_only
-class ReportRequest(typing_extensions.TypedDict, total=False):
+class ReportRequest(typing.TypedDict, total=False):
     columns: _list[ReportApiColumnSpec]
     downloadFormat: str
     filters: _list[dict[str, typing.Any]]
@@ -116,20 +114,20 @@ class ReportRequest(typing_extensions.TypedDict, total=False):
 class ReportRow(dict[str, typing.Any]): ...
 
 @typing.type_check_only
-class SavedColumn(typing_extensions.TypedDict, total=False):
+class SavedColumn(typing.TypedDict, total=False):
     kind: str
     savedColumnName: str
     type: str
 
 @typing.type_check_only
-class SavedColumnList(typing_extensions.TypedDict, total=False):
+class SavedColumnList(typing.TypedDict, total=False):
     items: _list[SavedColumn]
     kind: str
 
 @typing.type_check_only
-class UpdateAvailabilityRequest(typing_extensions.TypedDict, total=False):
+class UpdateAvailabilityRequest(typing.TypedDict, total=False):
     availabilities: _list[Availability]
 
 @typing.type_check_only
-class UpdateAvailabilityResponse(typing_extensions.TypedDict, total=False):
+class UpdateAvailabilityResponse(typing.TypedDict, total=False):
     availabilities: _list[Availability]

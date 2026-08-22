@@ -1,33 +1,29 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class Asset(typing_extensions.TypedDict, total=False):
+class Asset(typing.TypedDict, total=False):
     authorName: str
     createTime: str
     description: str
     displayName: str
     formats: _list[Format]
     isCurated: bool
-    license: typing_extensions.Literal[
-        "UNKNOWN", "CREATIVE_COMMONS_BY", "ALL_RIGHTS_RESERVED"
-    ]
+    license: typing.Literal["UNKNOWN", "CREATIVE_COMMONS_BY", "ALL_RIGHTS_RESERVED"]
     metadata: str
     name: str
     presentationParams: PresentationParams
     remixInfo: RemixInfo
     thumbnail: File
     updateTime: str
-    visibility: typing_extensions.Literal[
+    visibility: typing.Literal[
         "VISIBILITY_UNSPECIFIED", "PRIVATE", "UNLISTED", "PUBLIC"
     ]
 
 @typing.type_check_only
-class AssetImportMessage(typing_extensions.TypedDict, total=False):
-    code: typing_extensions.Literal[
+class AssetImportMessage(typing.TypedDict, total=False):
+    code: typing.Literal[
         "CODE_UNSPECIFIED",
         "NO_IMPORTABLE_FILE",
         "EMPTY_MODEL",
@@ -44,51 +40,51 @@ class AssetImportMessage(typing_extensions.TypedDict, total=False):
     objParseError: ObjParseError
 
 @typing.type_check_only
-class File(typing_extensions.TypedDict, total=False):
+class File(typing.TypedDict, total=False):
     contentType: str
     relativePath: str
     url: str
 
 @typing.type_check_only
-class Format(typing_extensions.TypedDict, total=False):
+class Format(typing.TypedDict, total=False):
     formatComplexity: FormatComplexity
     formatType: str
     resources: _list[File]
     root: File
 
 @typing.type_check_only
-class FormatComplexity(typing_extensions.TypedDict, total=False):
+class FormatComplexity(typing.TypedDict, total=False):
     lodHint: int
     triangleCount: str
 
 @typing.type_check_only
-class ImageError(typing_extensions.TypedDict, total=False):
-    code: typing_extensions.Literal[
+class ImageError(typing.TypedDict, total=False):
+    code: typing.Literal[
         "CODE_UNSPECIFIED", "INVALID_IMAGE", "IMAGE_TOO_BIG", "WRONG_IMAGE_TYPE"
     ]
     filePath: str
 
 @typing.type_check_only
-class ListAssetsResponse(typing_extensions.TypedDict, total=False):
+class ListAssetsResponse(typing.TypedDict, total=False):
     assets: _list[Asset]
     nextPageToken: str
     totalSize: int
 
 @typing.type_check_only
-class ListLikedAssetsResponse(typing_extensions.TypedDict, total=False):
+class ListLikedAssetsResponse(typing.TypedDict, total=False):
     assets: _list[Asset]
     nextPageToken: str
     totalSize: int
 
 @typing.type_check_only
-class ListUserAssetsResponse(typing_extensions.TypedDict, total=False):
+class ListUserAssetsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     totalSize: int
     userAssets: _list[UserAsset]
 
 @typing.type_check_only
-class ObjParseError(typing_extensions.TypedDict, total=False):
-    code: typing_extensions.Literal[
+class ObjParseError(typing.TypedDict, total=False):
+    code: typing.Literal[
         "CODE_UNSPECIFIED",
         "INCONSISTENT_VERTEX_REFS",
         "INVALID_COMMAND",
@@ -123,29 +119,29 @@ class ObjParseError(typing_extensions.TypedDict, total=False):
     startIndex: int
 
 @typing.type_check_only
-class PresentationParams(typing_extensions.TypedDict, total=False):
+class PresentationParams(typing.TypedDict, total=False):
     backgroundColor: str
-    colorSpace: typing_extensions.Literal["UNKNOWN", "LINEAR", "GAMMA"]
+    colorSpace: typing.Literal["UNKNOWN", "LINEAR", "GAMMA"]
     orientingRotation: Quaternion
 
 @typing.type_check_only
-class Quaternion(typing_extensions.TypedDict, total=False):
+class Quaternion(typing.TypedDict, total=False):
     w: float
     x: float
     y: float
     z: float
 
 @typing.type_check_only
-class RemixInfo(typing_extensions.TypedDict, total=False):
+class RemixInfo(typing.TypedDict, total=False):
     sourceAsset: _list[str]
 
 @typing.type_check_only
-class StartAssetImportResponse(typing_extensions.TypedDict, total=False):
+class StartAssetImportResponse(typing.TypedDict, total=False):
     assetId: str
     assetImportId: str
     assetImportMessages: _list[AssetImportMessage]
     publishUrl: str
 
 @typing.type_check_only
-class UserAsset(typing_extensions.TypedDict, total=False):
+class UserAsset(typing.TypedDict, total=False):
     asset: Asset

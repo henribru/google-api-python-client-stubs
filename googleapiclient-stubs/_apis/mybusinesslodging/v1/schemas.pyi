@@ -1,34 +1,32 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class Accessibility(typing_extensions.TypedDict, total=False):
+class Accessibility(typing.TypedDict, total=False):
     mobilityAccessible: bool
     mobilityAccessibleElevator: bool
-    mobilityAccessibleElevatorException: typing_extensions.Literal[
+    mobilityAccessibleElevatorException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
-    mobilityAccessibleException: typing_extensions.Literal[
+    mobilityAccessibleException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     mobilityAccessibleParking: bool
-    mobilityAccessibleParkingException: typing_extensions.Literal[
+    mobilityAccessibleParkingException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     mobilityAccessiblePool: bool
-    mobilityAccessiblePoolException: typing_extensions.Literal[
+    mobilityAccessiblePoolException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
@@ -36,121 +34,121 @@ class Accessibility(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class Activities(typing_extensions.TypedDict, total=False):
+class Activities(typing.TypedDict, total=False):
     beachAccess: bool
-    beachAccessException: typing_extensions.Literal[
+    beachAccessException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     beachFront: bool
-    beachFrontException: typing_extensions.Literal[
+    beachFrontException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     bicycleRental: bool
-    bicycleRentalException: typing_extensions.Literal[
+    bicycleRentalException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     boutiqueStores: bool
-    boutiqueStoresException: typing_extensions.Literal[
+    boutiqueStoresException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     casino: bool
-    casinoException: typing_extensions.Literal[
+    casinoException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     freeBicycleRental: bool
-    freeBicycleRentalException: typing_extensions.Literal[
+    freeBicycleRentalException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     freeWatercraftRental: bool
-    freeWatercraftRentalException: typing_extensions.Literal[
+    freeWatercraftRentalException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     gameRoom: bool
-    gameRoomException: typing_extensions.Literal[
+    gameRoomException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     golf: bool
-    golfException: typing_extensions.Literal[
+    golfException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     horsebackRiding: bool
-    horsebackRidingException: typing_extensions.Literal[
+    horsebackRidingException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     nightclub: bool
-    nightclubException: typing_extensions.Literal[
+    nightclubException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     privateBeach: bool
-    privateBeachException: typing_extensions.Literal[
+    privateBeachException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     scuba: bool
-    scubaException: typing_extensions.Literal[
+    scubaException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     snorkeling: bool
-    snorkelingException: typing_extensions.Literal[
+    snorkelingException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     tennis: bool
-    tennisException: typing_extensions.Literal[
+    tennisException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     waterSkiing: bool
-    waterSkiingException: typing_extensions.Literal[
+    waterSkiingException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     watercraftRental: bool
-    watercraftRentalException: typing_extensions.Literal[
+    watercraftRentalException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
@@ -158,9 +156,9 @@ class Activities(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class Business(typing_extensions.TypedDict, total=False):
+class Business(typing.TypedDict, total=False):
     businessCenter: bool
-    businessCenterException: typing_extensions.Literal[
+    businessCenterException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
@@ -168,13 +166,13 @@ class Business(typing_extensions.TypedDict, total=False):
     ]
     meetingRooms: bool
     meetingRoomsCount: int
-    meetingRoomsCountException: typing_extensions.Literal[
+    meetingRoomsCountException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
-    meetingRoomsException: typing_extensions.Literal[
+    meetingRoomsException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
@@ -182,30 +180,30 @@ class Business(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class Connectivity(typing_extensions.TypedDict, total=False):
+class Connectivity(typing.TypedDict, total=False):
     freeWifi: bool
-    freeWifiException: typing_extensions.Literal[
+    freeWifiException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     publicAreaWifiAvailable: bool
-    publicAreaWifiAvailableException: typing_extensions.Literal[
+    publicAreaWifiAvailableException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     publicInternetTerminal: bool
-    publicInternetTerminalException: typing_extensions.Literal[
+    publicInternetTerminalException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     wifiAvailable: bool
-    wifiAvailableException: typing_extensions.Literal[
+    wifiAvailableException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
@@ -213,15 +211,15 @@ class Connectivity(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class EcoCertification(typing_extensions.TypedDict, total=False):
+class EcoCertification(typing.TypedDict, total=False):
     awarded: bool
-    awardedException: typing_extensions.Literal[
+    awardedException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
-    ecoCertificate: typing_extensions.Literal[
+    ecoCertificate: typing.Literal[
         "ECO_CERTIFICATE_UNSPECIFIED",
         "ISO14001",
         "ISO50001",
@@ -253,51 +251,51 @@ class EcoCertification(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class EnergyEfficiency(typing_extensions.TypedDict, total=False):
+class EnergyEfficiency(typing.TypedDict, total=False):
     carbonFreeEnergySources: bool
-    carbonFreeEnergySourcesException: typing_extensions.Literal[
+    carbonFreeEnergySourcesException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     energyConservationProgram: bool
-    energyConservationProgramException: typing_extensions.Literal[
+    energyConservationProgramException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     energyEfficientHeatingAndCoolingSystems: bool
-    energyEfficientHeatingAndCoolingSystemsException: typing_extensions.Literal[
+    energyEfficientHeatingAndCoolingSystemsException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     energyEfficientLighting: bool
-    energyEfficientLightingException: typing_extensions.Literal[
+    energyEfficientLightingException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     energySavingThermostats: bool
-    energySavingThermostatsException: typing_extensions.Literal[
+    energySavingThermostatsException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     greenBuildingDesign: bool
-    greenBuildingDesignException: typing_extensions.Literal[
+    greenBuildingDesignException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     independentOrganizationAuditsEnergyUse: bool
-    independentOrganizationAuditsEnergyUseException: typing_extensions.Literal[
+    independentOrganizationAuditsEnergyUseException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
@@ -305,44 +303,44 @@ class EnergyEfficiency(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class EnhancedCleaning(typing_extensions.TypedDict, total=False):
+class EnhancedCleaning(typing.TypedDict, total=False):
     commercialGradeDisinfectantCleaning: bool
-    commercialGradeDisinfectantCleaningException: typing_extensions.Literal[
+    commercialGradeDisinfectantCleaningException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     commonAreasEnhancedCleaning: bool
-    commonAreasEnhancedCleaningException: typing_extensions.Literal[
+    commonAreasEnhancedCleaningException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     employeesTrainedCleaningProcedures: bool
-    employeesTrainedCleaningProceduresException: typing_extensions.Literal[
+    employeesTrainedCleaningProceduresException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     employeesTrainedThoroughHandWashing: bool
-    employeesTrainedThoroughHandWashingException: typing_extensions.Literal[
+    employeesTrainedThoroughHandWashingException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     employeesWearProtectiveEquipment: bool
-    employeesWearProtectiveEquipmentException: typing_extensions.Literal[
+    employeesWearProtectiveEquipmentException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     guestRoomsEnhancedCleaning: bool
-    guestRoomsEnhancedCleaningException: typing_extensions.Literal[
+    guestRoomsEnhancedCleaningException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
@@ -350,30 +348,30 @@ class EnhancedCleaning(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class Families(typing_extensions.TypedDict, total=False):
+class Families(typing.TypedDict, total=False):
     babysitting: bool
-    babysittingException: typing_extensions.Literal[
+    babysittingException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     kidsActivities: bool
-    kidsActivitiesException: typing_extensions.Literal[
+    kidsActivitiesException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     kidsClub: bool
-    kidsClubException: typing_extensions.Literal[
+    kidsClubException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     kidsFriendly: bool
-    kidsFriendlyException: typing_extensions.Literal[
+    kidsFriendlyException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
@@ -381,86 +379,86 @@ class Families(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class FoodAndDrink(typing_extensions.TypedDict, total=False):
+class FoodAndDrink(typing.TypedDict, total=False):
     bar: bool
-    barException: typing_extensions.Literal[
+    barException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     breakfastAvailable: bool
-    breakfastAvailableException: typing_extensions.Literal[
+    breakfastAvailableException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     breakfastBuffet: bool
-    breakfastBuffetException: typing_extensions.Literal[
+    breakfastBuffetException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     buffet: bool
-    buffetException: typing_extensions.Literal[
+    buffetException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     dinnerBuffet: bool
-    dinnerBuffetException: typing_extensions.Literal[
+    dinnerBuffetException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     freeBreakfast: bool
-    freeBreakfastException: typing_extensions.Literal[
+    freeBreakfastException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     restaurant: bool
-    restaurantException: typing_extensions.Literal[
+    restaurantException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     restaurantsCount: int
-    restaurantsCountException: typing_extensions.Literal[
+    restaurantsCountException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     roomService: bool
-    roomServiceException: typing_extensions.Literal[
+    roomServiceException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     tableService: bool
-    tableServiceException: typing_extensions.Literal[
+    tableServiceException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     twentyFourHourRoomService: bool
-    twentyFourHourRoomServiceException: typing_extensions.Literal[
+    twentyFourHourRoomServiceException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     vendingMachine: bool
-    vendingMachineException: typing_extensions.Literal[
+    vendingMachineException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
@@ -468,72 +466,70 @@ class FoodAndDrink(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class GetGoogleUpdatedLodgingResponse(typing_extensions.TypedDict, total=False):
+class GetGoogleUpdatedLodgingResponse(typing.TypedDict, total=False):
     diffMask: str
     lodging: Lodging
 
 @typing.type_check_only
-class GuestUnitFeatures(typing_extensions.TypedDict, total=False):
+class GuestUnitFeatures(typing.TypedDict, total=False):
     bungalowOrVilla: bool
-    bungalowOrVillaException: typing_extensions.Literal[
+    bungalowOrVillaException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     connectingUnitAvailable: bool
-    connectingUnitAvailableException: typing_extensions.Literal[
+    connectingUnitAvailableException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     executiveFloor: bool
-    executiveFloorException: typing_extensions.Literal[
+    executiveFloorException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     maxAdultOccupantsCount: int
-    maxAdultOccupantsCountException: typing_extensions.Literal[
+    maxAdultOccupantsCountException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     maxChildOccupantsCount: int
-    maxChildOccupantsCountException: typing_extensions.Literal[
+    maxChildOccupantsCountException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     maxOccupantsCount: int
-    maxOccupantsCountException: typing_extensions.Literal[
+    maxOccupantsCountException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     privateHome: bool
-    privateHomeException: typing_extensions.Literal[
+    privateHomeException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     suite: bool
-    suiteException: typing_extensions.Literal[
+    suiteException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
-    tier: typing_extensions.Literal[
-        "UNIT_TIER_UNSPECIFIED", "STANDARD_UNIT", "DELUXE_UNIT"
-    ]
-    tierException: typing_extensions.Literal[
+    tier: typing.Literal["UNIT_TIER_UNSPECIFIED", "STANDARD_UNIT", "DELUXE_UNIT"]
+    tierException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
@@ -543,13 +539,13 @@ class GuestUnitFeatures(typing_extensions.TypedDict, total=False):
     views: ViewsFromUnit
 
 @typing.type_check_only
-class GuestUnitType(typing_extensions.TypedDict, total=False):
+class GuestUnitType(typing.TypedDict, total=False):
     codes: _list[str]
     features: GuestUnitFeatures
     label: str
 
 @typing.type_check_only
-class HealthAndSafety(typing_extensions.TypedDict, total=False):
+class HealthAndSafety(typing.TypedDict, total=False):
     enhancedCleaning: EnhancedCleaning
     increasedFoodSafety: IncreasedFoodSafety
     minimizedContact: MinimizedContact
@@ -557,23 +553,23 @@ class HealthAndSafety(typing_extensions.TypedDict, total=False):
     physicalDistancing: PhysicalDistancing
 
 @typing.type_check_only
-class Housekeeping(typing_extensions.TypedDict, total=False):
+class Housekeeping(typing.TypedDict, total=False):
     dailyHousekeeping: bool
-    dailyHousekeepingException: typing_extensions.Literal[
+    dailyHousekeepingException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     housekeepingAvailable: bool
-    housekeepingAvailableException: typing_extensions.Literal[
+    housekeepingAvailableException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     turndownService: bool
-    turndownServiceException: typing_extensions.Literal[
+    turndownServiceException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
@@ -581,37 +577,37 @@ class Housekeeping(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class IncreasedFoodSafety(typing_extensions.TypedDict, total=False):
+class IncreasedFoodSafety(typing.TypedDict, total=False):
     diningAreasAdditionalSanitation: bool
-    diningAreasAdditionalSanitationException: typing_extensions.Literal[
+    diningAreasAdditionalSanitationException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     disposableFlatware: bool
-    disposableFlatwareException: typing_extensions.Literal[
+    disposableFlatwareException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     foodPreparationAndServingAdditionalSafety: bool
-    foodPreparationAndServingAdditionalSafetyException: typing_extensions.Literal[
+    foodPreparationAndServingAdditionalSafetyException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     individualPackagedMeals: bool
-    individualPackagedMealsException: typing_extensions.Literal[
+    individualPackagedMealsException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     singleUseFoodMenus: bool
-    singleUseFoodMenusException: typing_extensions.Literal[
+    singleUseFoodMenusException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
@@ -619,10 +615,10 @@ class IncreasedFoodSafety(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class LanguageSpoken(typing_extensions.TypedDict, total=False):
+class LanguageSpoken(typing.TypedDict, total=False):
     languageCode: str
     spoken: bool
-    spokenException: typing_extensions.Literal[
+    spokenException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
@@ -630,7 +626,7 @@ class LanguageSpoken(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class LivingArea(typing_extensions.TypedDict, total=False):
+class LivingArea(typing.TypedDict, total=False):
     accessibility: LivingAreaAccessibility
     eating: LivingAreaEating
     features: LivingAreaFeatures
@@ -638,58 +634,58 @@ class LivingArea(typing_extensions.TypedDict, total=False):
     sleeping: LivingAreaSleeping
 
 @typing.type_check_only
-class LivingAreaAccessibility(typing_extensions.TypedDict, total=False):
+class LivingAreaAccessibility(typing.TypedDict, total=False):
     adaCompliantUnit: bool
-    adaCompliantUnitException: typing_extensions.Literal[
+    adaCompliantUnitException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     hearingAccessibleDoorbell: bool
-    hearingAccessibleDoorbellException: typing_extensions.Literal[
+    hearingAccessibleDoorbellException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     hearingAccessibleFireAlarm: bool
-    hearingAccessibleFireAlarmException: typing_extensions.Literal[
+    hearingAccessibleFireAlarmException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     hearingAccessibleUnit: bool
-    hearingAccessibleUnitException: typing_extensions.Literal[
+    hearingAccessibleUnitException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     mobilityAccessibleBathtub: bool
-    mobilityAccessibleBathtubException: typing_extensions.Literal[
+    mobilityAccessibleBathtubException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     mobilityAccessibleShower: bool
-    mobilityAccessibleShowerException: typing_extensions.Literal[
+    mobilityAccessibleShowerException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     mobilityAccessibleToilet: bool
-    mobilityAccessibleToiletException: typing_extensions.Literal[
+    mobilityAccessibleToiletException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     mobilityAccessibleUnit: bool
-    mobilityAccessibleUnitException: typing_extensions.Literal[
+    mobilityAccessibleUnitException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
@@ -697,114 +693,114 @@ class LivingAreaAccessibility(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class LivingAreaEating(typing_extensions.TypedDict, total=False):
+class LivingAreaEating(typing.TypedDict, total=False):
     coffeeMaker: bool
-    coffeeMakerException: typing_extensions.Literal[
+    coffeeMakerException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     cookware: bool
-    cookwareException: typing_extensions.Literal[
+    cookwareException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     dishwasher: bool
-    dishwasherException: typing_extensions.Literal[
+    dishwasherException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     indoorGrill: bool
-    indoorGrillException: typing_extensions.Literal[
+    indoorGrillException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     kettle: bool
-    kettleException: typing_extensions.Literal[
+    kettleException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     kitchenAvailable: bool
-    kitchenAvailableException: typing_extensions.Literal[
+    kitchenAvailableException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     microwave: bool
-    microwaveException: typing_extensions.Literal[
+    microwaveException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     minibar: bool
-    minibarException: typing_extensions.Literal[
+    minibarException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     outdoorGrill: bool
-    outdoorGrillException: typing_extensions.Literal[
+    outdoorGrillException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     oven: bool
-    ovenException: typing_extensions.Literal[
+    ovenException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     refrigerator: bool
-    refrigeratorException: typing_extensions.Literal[
+    refrigeratorException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     sink: bool
-    sinkException: typing_extensions.Literal[
+    sinkException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     snackbar: bool
-    snackbarException: typing_extensions.Literal[
+    snackbarException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     stove: bool
-    stoveException: typing_extensions.Literal[
+    stoveException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     teaStation: bool
-    teaStationException: typing_extensions.Literal[
+    teaStationException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     toaster: bool
-    toasterException: typing_extensions.Literal[
+    toasterException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
@@ -812,107 +808,107 @@ class LivingAreaEating(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class LivingAreaFeatures(typing_extensions.TypedDict, total=False):
+class LivingAreaFeatures(typing.TypedDict, total=False):
     airConditioning: bool
-    airConditioningException: typing_extensions.Literal[
+    airConditioningException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     bathtub: bool
-    bathtubException: typing_extensions.Literal[
+    bathtubException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     bidet: bool
-    bidetException: typing_extensions.Literal[
+    bidetException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     dryer: bool
-    dryerException: typing_extensions.Literal[
+    dryerException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     electronicRoomKey: bool
-    electronicRoomKeyException: typing_extensions.Literal[
+    electronicRoomKeyException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     fireplace: bool
-    fireplaceException: typing_extensions.Literal[
+    fireplaceException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     hairdryer: bool
-    hairdryerException: typing_extensions.Literal[
+    hairdryerException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     heating: bool
-    heatingException: typing_extensions.Literal[
+    heatingException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     inunitSafe: bool
-    inunitSafeException: typing_extensions.Literal[
+    inunitSafeException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     inunitWifiAvailable: bool
-    inunitWifiAvailableException: typing_extensions.Literal[
+    inunitWifiAvailableException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     ironingEquipment: bool
-    ironingEquipmentException: typing_extensions.Literal[
+    ironingEquipmentException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     payPerViewMovies: bool
-    payPerViewMoviesException: typing_extensions.Literal[
+    payPerViewMoviesException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     privateBathroom: bool
-    privateBathroomException: typing_extensions.Literal[
+    privateBathroomException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     shower: bool
-    showerException: typing_extensions.Literal[
+    showerException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     toilet: bool
-    toiletException: typing_extensions.Literal[
+    toiletException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
@@ -920,34 +916,34 @@ class LivingAreaFeatures(typing_extensions.TypedDict, total=False):
     ]
     tv: bool
     tvCasting: bool
-    tvCastingException: typing_extensions.Literal[
+    tvCastingException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
-    tvException: typing_extensions.Literal[
+    tvException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     tvStreaming: bool
-    tvStreamingException: typing_extensions.Literal[
+    tvStreamingException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     universalPowerAdapters: bool
-    universalPowerAdaptersException: typing_extensions.Literal[
+    universalPowerAdaptersException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     washer: bool
-    washerException: typing_extensions.Literal[
+    washerException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
@@ -955,44 +951,44 @@ class LivingAreaFeatures(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class LivingAreaLayout(typing_extensions.TypedDict, total=False):
+class LivingAreaLayout(typing.TypedDict, total=False):
     balcony: bool
-    balconyException: typing_extensions.Literal[
+    balconyException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     livingAreaSqMeters: float
-    livingAreaSqMetersException: typing_extensions.Literal[
+    livingAreaSqMetersException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     loft: bool
-    loftException: typing_extensions.Literal[
+    loftException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     nonSmoking: bool
-    nonSmokingException: typing_extensions.Literal[
+    nonSmokingException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     patio: bool
-    patioException: typing_extensions.Literal[
+    patioException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     stairs: bool
-    stairsException: typing_extensions.Literal[
+    stairsException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
@@ -1000,100 +996,100 @@ class LivingAreaLayout(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class LivingAreaSleeping(typing_extensions.TypedDict, total=False):
+class LivingAreaSleeping(typing.TypedDict, total=False):
     bedsCount: int
-    bedsCountException: typing_extensions.Literal[
+    bedsCountException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     bunkBedsCount: int
-    bunkBedsCountException: typing_extensions.Literal[
+    bunkBedsCountException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     cribsCount: int
-    cribsCountException: typing_extensions.Literal[
+    cribsCountException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     doubleBedsCount: int
-    doubleBedsCountException: typing_extensions.Literal[
+    doubleBedsCountException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     featherPillows: bool
-    featherPillowsException: typing_extensions.Literal[
+    featherPillowsException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     hypoallergenicBedding: bool
-    hypoallergenicBeddingException: typing_extensions.Literal[
+    hypoallergenicBeddingException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     kingBedsCount: int
-    kingBedsCountException: typing_extensions.Literal[
+    kingBedsCountException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     memoryFoamPillows: bool
-    memoryFoamPillowsException: typing_extensions.Literal[
+    memoryFoamPillowsException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     otherBedsCount: int
-    otherBedsCountException: typing_extensions.Literal[
+    otherBedsCountException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     queenBedsCount: int
-    queenBedsCountException: typing_extensions.Literal[
+    queenBedsCountException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     rollAwayBedsCount: int
-    rollAwayBedsCountException: typing_extensions.Literal[
+    rollAwayBedsCountException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     singleOrTwinBedsCount: int
-    singleOrTwinBedsCountException: typing_extensions.Literal[
+    singleOrTwinBedsCountException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     sofaBedsCount: int
-    sofaBedsCountException: typing_extensions.Literal[
+    sofaBedsCountException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     syntheticPillows: bool
-    syntheticPillowsException: typing_extensions.Literal[
+    syntheticPillowsException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
@@ -1101,7 +1097,7 @@ class LivingAreaSleeping(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class Lodging(typing_extensions.TypedDict, total=False):
+class Lodging(typing.TypedDict, total=False):
     accessibility: Accessibility
     activities: Activities
     allUnits: GuestUnitFeatures
@@ -1127,55 +1123,55 @@ class Lodging(typing_extensions.TypedDict, total=False):
     wellness: Wellness
 
 @typing.type_check_only
-class LodgingMetadata(typing_extensions.TypedDict, total=False):
+class LodgingMetadata(typing.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class MinimizedContact(typing_extensions.TypedDict, total=False):
+class MinimizedContact(typing.TypedDict, total=False):
     contactlessCheckinCheckout: bool
-    contactlessCheckinCheckoutException: typing_extensions.Literal[
+    contactlessCheckinCheckoutException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     digitalGuestRoomKeys: bool
-    digitalGuestRoomKeysException: typing_extensions.Literal[
+    digitalGuestRoomKeysException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     housekeepingScheduledRequestOnly: bool
-    housekeepingScheduledRequestOnlyException: typing_extensions.Literal[
+    housekeepingScheduledRequestOnlyException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     noHighTouchItemsCommonAreas: bool
-    noHighTouchItemsCommonAreasException: typing_extensions.Literal[
+    noHighTouchItemsCommonAreasException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     noHighTouchItemsGuestRooms: bool
-    noHighTouchItemsGuestRoomsException: typing_extensions.Literal[
+    noHighTouchItemsGuestRoomsException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     plasticKeycardsDisinfected: bool
-    plasticKeycardsDisinfectedException: typing_extensions.Literal[
+    plasticKeycardsDisinfectedException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     roomBookingsBuffer: bool
-    roomBookingsBufferException: typing_extensions.Literal[
+    roomBookingsBufferException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
@@ -1183,51 +1179,51 @@ class MinimizedContact(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class Parking(typing_extensions.TypedDict, total=False):
+class Parking(typing.TypedDict, total=False):
     electricCarChargingStations: bool
-    electricCarChargingStationsException: typing_extensions.Literal[
+    electricCarChargingStationsException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     freeParking: bool
-    freeParkingException: typing_extensions.Literal[
+    freeParkingException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     freeSelfParking: bool
-    freeSelfParkingException: typing_extensions.Literal[
+    freeSelfParkingException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     freeValetParking: bool
-    freeValetParkingException: typing_extensions.Literal[
+    freeValetParkingException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     parkingAvailable: bool
-    parkingAvailableException: typing_extensions.Literal[
+    parkingAvailableException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     selfParkingAvailable: bool
-    selfParkingAvailableException: typing_extensions.Literal[
+    selfParkingAvailableException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     valetParkingAvailable: bool
-    valetParkingAvailableException: typing_extensions.Literal[
+    valetParkingAvailableException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
@@ -1235,37 +1231,37 @@ class Parking(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class PaymentOptions(typing_extensions.TypedDict, total=False):
+class PaymentOptions(typing.TypedDict, total=False):
     cash: bool
-    cashException: typing_extensions.Literal[
+    cashException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     cheque: bool
-    chequeException: typing_extensions.Literal[
+    chequeException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     creditCard: bool
-    creditCardException: typing_extensions.Literal[
+    creditCardException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     debitCard: bool
-    debitCardException: typing_extensions.Literal[
+    debitCardException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     mobileNfc: bool
-    mobileNfcException: typing_extensions.Literal[
+    mobileNfcException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
@@ -1273,30 +1269,30 @@ class PaymentOptions(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class PersonalProtection(typing_extensions.TypedDict, total=False):
+class PersonalProtection(typing.TypedDict, total=False):
     commonAreasOfferSanitizingItems: bool
-    commonAreasOfferSanitizingItemsException: typing_extensions.Literal[
+    commonAreasOfferSanitizingItemsException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     faceMaskRequired: bool
-    faceMaskRequiredException: typing_extensions.Literal[
+    faceMaskRequiredException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     guestRoomHygieneKitsAvailable: bool
-    guestRoomHygieneKitsAvailableException: typing_extensions.Literal[
+    guestRoomHygieneKitsAvailableException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     protectiveEquipmentAvailable: bool
-    protectiveEquipmentAvailableException: typing_extensions.Literal[
+    protectiveEquipmentAvailableException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
@@ -1304,30 +1300,30 @@ class PersonalProtection(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class Pets(typing_extensions.TypedDict, total=False):
+class Pets(typing.TypedDict, total=False):
     catsAllowed: bool
-    catsAllowedException: typing_extensions.Literal[
+    catsAllowedException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     dogsAllowed: bool
-    dogsAllowedException: typing_extensions.Literal[
+    dogsAllowedException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     petsAllowed: bool
-    petsAllowedException: typing_extensions.Literal[
+    petsAllowedException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     petsAllowedFree: bool
-    petsAllowedFreeException: typing_extensions.Literal[
+    petsAllowedFreeException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
@@ -1335,37 +1331,37 @@ class Pets(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class PhysicalDistancing(typing_extensions.TypedDict, total=False):
+class PhysicalDistancing(typing.TypedDict, total=False):
     commonAreasPhysicalDistancingArranged: bool
-    commonAreasPhysicalDistancingArrangedException: typing_extensions.Literal[
+    commonAreasPhysicalDistancingArrangedException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     physicalDistancingRequired: bool
-    physicalDistancingRequiredException: typing_extensions.Literal[
+    physicalDistancingRequiredException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     safetyDividers: bool
-    safetyDividersException: typing_extensions.Literal[
+    safetyDividersException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     sharedAreasLimitedOccupancy: bool
-    sharedAreasLimitedOccupancyException: typing_extensions.Literal[
+    sharedAreasLimitedOccupancyException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     wellnessAreasHavePrivateSpaces: bool
-    wellnessAreasHavePrivateSpacesException: typing_extensions.Literal[
+    wellnessAreasHavePrivateSpacesException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
@@ -1373,51 +1369,51 @@ class PhysicalDistancing(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class Policies(typing_extensions.TypedDict, total=False):
+class Policies(typing.TypedDict, total=False):
     allInclusiveAvailable: bool
-    allInclusiveAvailableException: typing_extensions.Literal[
+    allInclusiveAvailableException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     allInclusiveOnly: bool
-    allInclusiveOnlyException: typing_extensions.Literal[
+    allInclusiveOnlyException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     checkinTime: TimeOfDay
-    checkinTimeException: typing_extensions.Literal[
+    checkinTimeException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     checkoutTime: TimeOfDay
-    checkoutTimeException: typing_extensions.Literal[
+    checkoutTimeException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     kidsStayFree: bool
-    kidsStayFreeException: typing_extensions.Literal[
+    kidsStayFreeException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     maxChildAge: int
-    maxChildAgeException: typing_extensions.Literal[
+    maxChildAgeException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     maxKidsStayFreeCount: int
-    maxKidsStayFreeCountException: typing_extensions.Literal[
+    maxKidsStayFreeCountException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
@@ -1425,7 +1421,7 @@ class Policies(typing_extensions.TypedDict, total=False):
     ]
     paymentOptions: PaymentOptions
     smokeFreeProperty: bool
-    smokeFreePropertyException: typing_extensions.Literal[
+    smokeFreePropertyException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
@@ -1433,100 +1429,100 @@ class Policies(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class Pools(typing_extensions.TypedDict, total=False):
+class Pools(typing.TypedDict, total=False):
     adultPool: bool
-    adultPoolException: typing_extensions.Literal[
+    adultPoolException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     hotTub: bool
-    hotTubException: typing_extensions.Literal[
+    hotTubException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     indoorPool: bool
-    indoorPoolException: typing_extensions.Literal[
+    indoorPoolException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     indoorPoolsCount: int
-    indoorPoolsCountException: typing_extensions.Literal[
+    indoorPoolsCountException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     lazyRiver: bool
-    lazyRiverException: typing_extensions.Literal[
+    lazyRiverException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     lifeguard: bool
-    lifeguardException: typing_extensions.Literal[
+    lifeguardException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     outdoorPool: bool
-    outdoorPoolException: typing_extensions.Literal[
+    outdoorPoolException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     outdoorPoolsCount: int
-    outdoorPoolsCountException: typing_extensions.Literal[
+    outdoorPoolsCountException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     pool: bool
-    poolException: typing_extensions.Literal[
+    poolException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     poolsCount: int
-    poolsCountException: typing_extensions.Literal[
+    poolsCountException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     wadingPool: bool
-    wadingPoolException: typing_extensions.Literal[
+    wadingPoolException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     waterPark: bool
-    waterParkException: typing_extensions.Literal[
+    waterParkException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     waterslide: bool
-    waterslideException: typing_extensions.Literal[
+    waterslideException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     wavePool: bool
-    wavePoolException: typing_extensions.Literal[
+    wavePoolException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
@@ -1534,30 +1530,30 @@ class Pools(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class Property(typing_extensions.TypedDict, total=False):
+class Property(typing.TypedDict, total=False):
     builtYear: int
-    builtYearException: typing_extensions.Literal[
+    builtYearException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     floorsCount: int
-    floorsCountException: typing_extensions.Literal[
+    floorsCountException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     lastRenovatedYear: int
-    lastRenovatedYearException: typing_extensions.Literal[
+    lastRenovatedYearException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     roomsCount: int
-    roomsCountException: typing_extensions.Literal[
+    roomsCountException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
@@ -1565,58 +1561,58 @@ class Property(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class Services(typing_extensions.TypedDict, total=False):
+class Services(typing.TypedDict, total=False):
     baggageStorage: bool
-    baggageStorageException: typing_extensions.Literal[
+    baggageStorageException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     concierge: bool
-    conciergeException: typing_extensions.Literal[
+    conciergeException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     convenienceStore: bool
-    convenienceStoreException: typing_extensions.Literal[
+    convenienceStoreException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     currencyExchange: bool
-    currencyExchangeException: typing_extensions.Literal[
+    currencyExchangeException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     elevator: bool
-    elevatorException: typing_extensions.Literal[
+    elevatorException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     frontDesk: bool
-    frontDeskException: typing_extensions.Literal[
+    frontDeskException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     fullServiceLaundry: bool
-    fullServiceLaundryException: typing_extensions.Literal[
+    fullServiceLaundryException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     giftShop: bool
-    giftShopException: typing_extensions.Literal[
+    giftShopException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
@@ -1624,28 +1620,28 @@ class Services(typing_extensions.TypedDict, total=False):
     ]
     languagesSpoken: _list[LanguageSpoken]
     selfServiceLaundry: bool
-    selfServiceLaundryException: typing_extensions.Literal[
+    selfServiceLaundryException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     socialHour: bool
-    socialHourException: typing_extensions.Literal[
+    socialHourException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     twentyFourHourFrontDesk: bool
-    twentyFourHourFrontDeskException: typing_extensions.Literal[
+    twentyFourHourFrontDeskException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     wakeUpCalls: bool
-    wakeUpCallsException: typing_extensions.Literal[
+    wakeUpCallsException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
@@ -1653,7 +1649,7 @@ class Services(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class Sustainability(typing_extensions.TypedDict, total=False):
+class Sustainability(typing.TypedDict, total=False):
     energyEfficiency: EnergyEfficiency
     sustainabilityCertifications: SustainabilityCertifications
     sustainableSourcing: SustainableSourcing
@@ -1661,8 +1657,8 @@ class Sustainability(typing_extensions.TypedDict, total=False):
     waterConservation: WaterConservation
 
 @typing.type_check_only
-class SustainabilityCertifications(typing_extensions.TypedDict, total=False):
-    breeamCertification: typing_extensions.Literal[
+class SustainabilityCertifications(typing.TypedDict, total=False):
+    breeamCertification: typing.Literal[
         "BREEAM_CERTIFICATION_UNSPECIFIED",
         "NO_BREEAM_CERTIFICATION",
         "BREEAM_PASS",
@@ -1671,14 +1667,14 @@ class SustainabilityCertifications(typing_extensions.TypedDict, total=False):
         "BREEAM_EXCELLENT",
         "BREEAM_OUTSTANDING",
     ]
-    breeamCertificationException: typing_extensions.Literal[
+    breeamCertificationException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     ecoCertifications: _list[EcoCertification]
-    leedCertification: typing_extensions.Literal[
+    leedCertification: typing.Literal[
         "LEED_CERTIFICATION_UNSPECIFIED",
         "NO_LEED_CERTIFICATION",
         "LEED_CERTIFIED",
@@ -1686,7 +1682,7 @@ class SustainabilityCertifications(typing_extensions.TypedDict, total=False):
         "LEED_GOLD",
         "LEED_PLATINUM",
     ]
-    leedCertificationException: typing_extensions.Literal[
+    leedCertificationException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
@@ -1694,58 +1690,58 @@ class SustainabilityCertifications(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class SustainableSourcing(typing_extensions.TypedDict, total=False):
+class SustainableSourcing(typing.TypedDict, total=False):
     ecoFriendlyToiletries: bool
-    ecoFriendlyToiletriesException: typing_extensions.Literal[
+    ecoFriendlyToiletriesException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     locallySourcedFoodAndBeverages: bool
-    locallySourcedFoodAndBeveragesException: typing_extensions.Literal[
+    locallySourcedFoodAndBeveragesException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     organicCageFreeEggs: bool
-    organicCageFreeEggsException: typing_extensions.Literal[
+    organicCageFreeEggsException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     organicFoodAndBeverages: bool
-    organicFoodAndBeveragesException: typing_extensions.Literal[
+    organicFoodAndBeveragesException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     responsiblePurchasingPolicy: bool
-    responsiblePurchasingPolicyException: typing_extensions.Literal[
+    responsiblePurchasingPolicyException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     responsiblySourcesSeafood: bool
-    responsiblySourcesSeafoodException: typing_extensions.Literal[
+    responsiblySourcesSeafoodException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     veganMeals: bool
-    veganMealsException: typing_extensions.Literal[
+    veganMealsException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     vegetarianMeals: bool
-    vegetarianMealsException: typing_extensions.Literal[
+    vegetarianMealsException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
@@ -1753,58 +1749,58 @@ class SustainableSourcing(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class TimeOfDay(typing_extensions.TypedDict, total=False):
+class TimeOfDay(typing.TypedDict, total=False):
     hours: int
     minutes: int
     nanos: int
     seconds: int
 
 @typing.type_check_only
-class Transportation(typing_extensions.TypedDict, total=False):
+class Transportation(typing.TypedDict, total=False):
     airportShuttle: bool
-    airportShuttleException: typing_extensions.Literal[
+    airportShuttleException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     carRentalOnProperty: bool
-    carRentalOnPropertyException: typing_extensions.Literal[
+    carRentalOnPropertyException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     freeAirportShuttle: bool
-    freeAirportShuttleException: typing_extensions.Literal[
+    freeAirportShuttleException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     freePrivateCarService: bool
-    freePrivateCarServiceException: typing_extensions.Literal[
+    freePrivateCarServiceException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     localShuttle: bool
-    localShuttleException: typing_extensions.Literal[
+    localShuttleException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     privateCarService: bool
-    privateCarServiceException: typing_extensions.Literal[
+    privateCarServiceException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     transfer: bool
-    transferException: typing_extensions.Literal[
+    transferException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
@@ -1812,58 +1808,58 @@ class Transportation(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class ViewsFromUnit(typing_extensions.TypedDict, total=False):
+class ViewsFromUnit(typing.TypedDict, total=False):
     beachView: bool
-    beachViewException: typing_extensions.Literal[
+    beachViewException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     cityView: bool
-    cityViewException: typing_extensions.Literal[
+    cityViewException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     gardenView: bool
-    gardenViewException: typing_extensions.Literal[
+    gardenViewException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     lakeView: bool
-    lakeViewException: typing_extensions.Literal[
+    lakeViewException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     landmarkView: bool
-    landmarkViewException: typing_extensions.Literal[
+    landmarkViewException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     oceanView: bool
-    oceanViewException: typing_extensions.Literal[
+    oceanViewException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     poolView: bool
-    poolViewException: typing_extensions.Literal[
+    poolViewException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     valleyView: bool
-    valleyViewException: typing_extensions.Literal[
+    valleyViewException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
@@ -1871,114 +1867,114 @@ class ViewsFromUnit(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class WasteReduction(typing_extensions.TypedDict, total=False):
+class WasteReduction(typing.TypedDict, total=False):
     compostableFoodContainersAndCutlery: bool
-    compostableFoodContainersAndCutleryException: typing_extensions.Literal[
+    compostableFoodContainersAndCutleryException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     compostsExcessFood: bool
-    compostsExcessFoodException: typing_extensions.Literal[
+    compostsExcessFoodException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     donatesExcessFood: bool
-    donatesExcessFoodException: typing_extensions.Literal[
+    donatesExcessFoodException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     foodWasteReductionProgram: bool
-    foodWasteReductionProgramException: typing_extensions.Literal[
+    foodWasteReductionProgramException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     noSingleUsePlasticStraws: bool
-    noSingleUsePlasticStrawsException: typing_extensions.Literal[
+    noSingleUsePlasticStrawsException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     noSingleUsePlasticWaterBottles: bool
-    noSingleUsePlasticWaterBottlesException: typing_extensions.Literal[
+    noSingleUsePlasticWaterBottlesException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     noStyrofoamFoodContainers: bool
-    noStyrofoamFoodContainersException: typing_extensions.Literal[
+    noStyrofoamFoodContainersException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     recyclingProgram: bool
-    recyclingProgramException: typing_extensions.Literal[
+    recyclingProgramException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     refillableToiletryContainers: bool
-    refillableToiletryContainersException: typing_extensions.Literal[
+    refillableToiletryContainersException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     safelyDisposesBatteries: bool
-    safelyDisposesBatteriesException: typing_extensions.Literal[
+    safelyDisposesBatteriesException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     safelyDisposesElectronics: bool
-    safelyDisposesElectronicsException: typing_extensions.Literal[
+    safelyDisposesElectronicsException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     safelyDisposesLightbulbs: bool
-    safelyDisposesLightbulbsException: typing_extensions.Literal[
+    safelyDisposesLightbulbsException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     safelyHandlesHazardousSubstances: bool
-    safelyHandlesHazardousSubstancesException: typing_extensions.Literal[
+    safelyHandlesHazardousSubstancesException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     soapDonationProgram: bool
-    soapDonationProgramException: typing_extensions.Literal[
+    soapDonationProgramException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     toiletryDonationProgram: bool
-    toiletryDonationProgramException: typing_extensions.Literal[
+    toiletryDonationProgramException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     waterBottleFillingStations: bool
-    waterBottleFillingStationsException: typing_extensions.Literal[
+    waterBottleFillingStationsException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
@@ -1986,44 +1982,44 @@ class WasteReduction(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class WaterConservation(typing_extensions.TypedDict, total=False):
+class WaterConservation(typing.TypedDict, total=False):
     independentOrganizationAuditsWaterUse: bool
-    independentOrganizationAuditsWaterUseException: typing_extensions.Literal[
+    independentOrganizationAuditsWaterUseException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     linenReuseProgram: bool
-    linenReuseProgramException: typing_extensions.Literal[
+    linenReuseProgramException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     towelReuseProgram: bool
-    towelReuseProgramException: typing_extensions.Literal[
+    towelReuseProgramException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     waterSavingShowers: bool
-    waterSavingShowersException: typing_extensions.Literal[
+    waterSavingShowersException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     waterSavingSinks: bool
-    waterSavingSinksException: typing_extensions.Literal[
+    waterSavingSinksException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     waterSavingToilets: bool
-    waterSavingToiletsException: typing_extensions.Literal[
+    waterSavingToiletsException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
@@ -2031,79 +2027,79 @@ class WaterConservation(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class Wellness(typing_extensions.TypedDict, total=False):
+class Wellness(typing.TypedDict, total=False):
     doctorOnCall: bool
-    doctorOnCallException: typing_extensions.Literal[
+    doctorOnCallException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     ellipticalMachine: bool
-    ellipticalMachineException: typing_extensions.Literal[
+    ellipticalMachineException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     fitnessCenter: bool
-    fitnessCenterException: typing_extensions.Literal[
+    fitnessCenterException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     freeFitnessCenter: bool
-    freeFitnessCenterException: typing_extensions.Literal[
+    freeFitnessCenterException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     freeWeights: bool
-    freeWeightsException: typing_extensions.Literal[
+    freeWeightsException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     massage: bool
-    massageException: typing_extensions.Literal[
+    massageException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     salon: bool
-    salonException: typing_extensions.Literal[
+    salonException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     sauna: bool
-    saunaException: typing_extensions.Literal[
+    saunaException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     spa: bool
-    spaException: typing_extensions.Literal[
+    spaException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     treadmill: bool
-    treadmillException: typing_extensions.Literal[
+    treadmillException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",
         "DEPENDENT_ON_DAY_OF_WEEK",
     ]
     weightMachine: bool
-    weightMachineException: typing_extensions.Literal[
+    weightMachineException: typing.Literal[
         "EXCEPTION_UNSPECIFIED",
         "UNDER_CONSTRUCTION",
         "DEPENDENT_ON_SEASON",

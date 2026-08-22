@@ -1,127 +1,125 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class AddBandingRequest(typing_extensions.TypedDict, total=False):
+class AddBandingRequest(typing.TypedDict, total=False):
     bandedRange: BandedRange
 
 @typing.type_check_only
-class AddBandingResponse(typing_extensions.TypedDict, total=False):
+class AddBandingResponse(typing.TypedDict, total=False):
     bandedRange: BandedRange
 
 @typing.type_check_only
-class AddChartRequest(typing_extensions.TypedDict, total=False):
+class AddChartRequest(typing.TypedDict, total=False):
     chart: EmbeddedChart
 
 @typing.type_check_only
-class AddChartResponse(typing_extensions.TypedDict, total=False):
+class AddChartResponse(typing.TypedDict, total=False):
     chart: EmbeddedChart
 
 @typing.type_check_only
-class AddConditionalFormatRuleRequest(typing_extensions.TypedDict, total=False):
+class AddConditionalFormatRuleRequest(typing.TypedDict, total=False):
     index: int
     rule: ConditionalFormatRule
 
 @typing.type_check_only
-class AddDataSourceRequest(typing_extensions.TypedDict, total=False):
+class AddDataSourceRequest(typing.TypedDict, total=False):
     dataSource: DataSource
 
 @typing.type_check_only
-class AddDataSourceResponse(typing_extensions.TypedDict, total=False):
+class AddDataSourceResponse(typing.TypedDict, total=False):
     dataExecutionStatus: DataExecutionStatus
     dataSource: DataSource
 
 @typing.type_check_only
-class AddDimensionGroupRequest(typing_extensions.TypedDict, total=False):
+class AddDimensionGroupRequest(typing.TypedDict, total=False):
     range: DimensionRange
 
 @typing.type_check_only
-class AddDimensionGroupResponse(typing_extensions.TypedDict, total=False):
+class AddDimensionGroupResponse(typing.TypedDict, total=False):
     dimensionGroups: _list[DimensionGroup]
 
 @typing.type_check_only
-class AddFilterViewRequest(typing_extensions.TypedDict, total=False):
+class AddFilterViewRequest(typing.TypedDict, total=False):
     filter: FilterView
 
 @typing.type_check_only
-class AddFilterViewResponse(typing_extensions.TypedDict, total=False):
+class AddFilterViewResponse(typing.TypedDict, total=False):
     filter: FilterView
 
 @typing.type_check_only
-class AddNamedRangeRequest(typing_extensions.TypedDict, total=False):
+class AddNamedRangeRequest(typing.TypedDict, total=False):
     namedRange: NamedRange
 
 @typing.type_check_only
-class AddNamedRangeResponse(typing_extensions.TypedDict, total=False):
+class AddNamedRangeResponse(typing.TypedDict, total=False):
     namedRange: NamedRange
 
 @typing.type_check_only
-class AddProtectedRangeRequest(typing_extensions.TypedDict, total=False):
+class AddProtectedRangeRequest(typing.TypedDict, total=False):
     protectedRange: ProtectedRange
 
 @typing.type_check_only
-class AddProtectedRangeResponse(typing_extensions.TypedDict, total=False):
+class AddProtectedRangeResponse(typing.TypedDict, total=False):
     protectedRange: ProtectedRange
 
 @typing.type_check_only
-class AddSheetRequest(typing_extensions.TypedDict, total=False):
+class AddSheetRequest(typing.TypedDict, total=False):
     properties: SheetProperties
 
 @typing.type_check_only
-class AddSheetResponse(typing_extensions.TypedDict, total=False):
+class AddSheetResponse(typing.TypedDict, total=False):
     properties: SheetProperties
 
 @typing.type_check_only
-class AddSlicerRequest(typing_extensions.TypedDict, total=False):
+class AddSlicerRequest(typing.TypedDict, total=False):
     slicer: Slicer
 
 @typing.type_check_only
-class AddSlicerResponse(typing_extensions.TypedDict, total=False):
+class AddSlicerResponse(typing.TypedDict, total=False):
     slicer: Slicer
 
 @typing.type_check_only
-class AddTableRequest(typing_extensions.TypedDict, total=False):
+class AddTableRequest(typing.TypedDict, total=False):
     table: Table
 
 @typing.type_check_only
-class AddTableResponse(typing_extensions.TypedDict, total=False):
+class AddTableResponse(typing.TypedDict, total=False):
     table: Table
 
 @typing.type_check_only
-class AppendCellsRequest(typing_extensions.TypedDict, total=False):
+class AppendCellsRequest(typing.TypedDict, total=False):
     fields: str
     rows: _list[RowData]
     sheetId: int
     tableId: str
 
 @typing.type_check_only
-class AppendDimensionRequest(typing_extensions.TypedDict, total=False):
-    dimension: typing_extensions.Literal["DIMENSION_UNSPECIFIED", "ROWS", "COLUMNS"]
+class AppendDimensionRequest(typing.TypedDict, total=False):
+    dimension: typing.Literal["DIMENSION_UNSPECIFIED", "ROWS", "COLUMNS"]
     length: int
     sheetId: int
 
 @typing.type_check_only
-class AppendValuesResponse(typing_extensions.TypedDict, total=False):
+class AppendValuesResponse(typing.TypedDict, total=False):
     spreadsheetId: str
     tableRange: str
     updates: UpdateValuesResponse
 
 @typing.type_check_only
-class AutoFillRequest(typing_extensions.TypedDict, total=False):
+class AutoFillRequest(typing.TypedDict, total=False):
     range: GridRange
     sourceAndDestination: SourceAndDestination
     useAlternateSeries: bool
 
 @typing.type_check_only
-class AutoResizeDimensionsRequest(typing_extensions.TypedDict, total=False):
+class AutoResizeDimensionsRequest(typing.TypedDict, total=False):
     dataSourceSheetDimensions: DataSourceSheetDimensionRange
     dimensions: DimensionRange
 
 @typing.type_check_only
-class BandedRange(typing_extensions.TypedDict, total=False):
+class BandedRange(typing.TypedDict, total=False):
     bandedRangeId: int
     bandedRangeReference: str
     columnProperties: BandingProperties
@@ -129,7 +127,7 @@ class BandedRange(typing_extensions.TypedDict, total=False):
     rowProperties: BandingProperties
 
 @typing.type_check_only
-class BandingProperties(typing_extensions.TypedDict, total=False):
+class BandingProperties(typing.TypedDict, total=False):
     firstBandColor: Color
     firstBandColorStyle: ColorStyle
     footerColor: Color
@@ -140,8 +138,8 @@ class BandingProperties(typing_extensions.TypedDict, total=False):
     secondBandColorStyle: ColorStyle
 
 @typing.type_check_only
-class BaselineValueFormat(typing_extensions.TypedDict, total=False):
-    comparisonType: typing_extensions.Literal[
+class BaselineValueFormat(typing.TypedDict, total=False):
+    comparisonType: typing.Literal[
         "COMPARISON_TYPE_UNDEFINED", "ABSOLUTE_DIFFERENCE", "PERCENTAGE_DIFFERENCE"
     ]
     description: str
@@ -153,9 +151,9 @@ class BaselineValueFormat(typing_extensions.TypedDict, total=False):
     textFormat: TextFormat
 
 @typing.type_check_only
-class BasicChartAxis(typing_extensions.TypedDict, total=False):
+class BasicChartAxis(typing.TypedDict, total=False):
     format: TextFormat
-    position: typing_extensions.Literal[
+    position: typing.Literal[
         "BASIC_CHART_AXIS_POSITION_UNSPECIFIED",
         "BOTTOM_AXIS",
         "LEFT_AXIS",
@@ -166,12 +164,12 @@ class BasicChartAxis(typing_extensions.TypedDict, total=False):
     viewWindowOptions: ChartAxisViewWindowOptions
 
 @typing.type_check_only
-class BasicChartDomain(typing_extensions.TypedDict, total=False):
+class BasicChartDomain(typing.TypedDict, total=False):
     domain: ChartData
     reversed: bool
 
 @typing.type_check_only
-class BasicChartSeries(typing_extensions.TypedDict, total=False):
+class BasicChartSeries(typing.TypedDict, total=False):
     color: Color
     colorStyle: ColorStyle
     dataLabel: DataLabel
@@ -179,13 +177,13 @@ class BasicChartSeries(typing_extensions.TypedDict, total=False):
     pointStyle: PointStyle
     series: ChartData
     styleOverrides: _list[BasicSeriesDataPointStyleOverride]
-    targetAxis: typing_extensions.Literal[
+    targetAxis: typing.Literal[
         "BASIC_CHART_AXIS_POSITION_UNSPECIFIED",
         "BOTTOM_AXIS",
         "LEFT_AXIS",
         "RIGHT_AXIS",
     ]
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "BASIC_CHART_TYPE_UNSPECIFIED",
         "BAR",
         "LINE",
@@ -197,9 +195,9 @@ class BasicChartSeries(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class BasicChartSpec(typing_extensions.TypedDict, total=False):
+class BasicChartSpec(typing.TypedDict, total=False):
     axis: _list[BasicChartAxis]
-    chartType: typing_extensions.Literal[
+    chartType: typing.Literal[
         "BASIC_CHART_TYPE_UNSPECIFIED",
         "BAR",
         "LINE",
@@ -209,13 +207,13 @@ class BasicChartSpec(typing_extensions.TypedDict, total=False):
         "COMBO",
         "STEPPED_AREA",
     ]
-    compareMode: typing_extensions.Literal[
+    compareMode: typing.Literal[
         "BASIC_CHART_COMPARE_MODE_UNSPECIFIED", "DATUM", "CATEGORY"
     ]
     domains: _list[BasicChartDomain]
     headerCount: int
     interpolateNulls: bool
-    legendPosition: typing_extensions.Literal[
+    legendPosition: typing.Literal[
         "BASIC_CHART_LEGEND_POSITION_UNSPECIFIED",
         "BOTTOM_LEGEND",
         "LEFT_LEGEND",
@@ -225,7 +223,7 @@ class BasicChartSpec(typing_extensions.TypedDict, total=False):
     ]
     lineSmoothing: bool
     series: _list[BasicChartSeries]
-    stackedType: typing_extensions.Literal[
+    stackedType: typing.Literal[
         "BASIC_CHART_STACKED_TYPE_UNSPECIFIED",
         "NOT_STACKED",
         "STACKED",
@@ -235,7 +233,7 @@ class BasicChartSpec(typing_extensions.TypedDict, total=False):
     totalDataLabel: DataLabel
 
 @typing.type_check_only
-class BasicFilter(typing_extensions.TypedDict, total=False):
+class BasicFilter(typing.TypedDict, total=False):
     criteria: dict[str, typing.Any]
     filterSpecs: _list[FilterSpec]
     range: GridRange
@@ -243,80 +241,74 @@ class BasicFilter(typing_extensions.TypedDict, total=False):
     tableId: str
 
 @typing.type_check_only
-class BasicSeriesDataPointStyleOverride(typing_extensions.TypedDict, total=False):
+class BasicSeriesDataPointStyleOverride(typing.TypedDict, total=False):
     color: Color
     colorStyle: ColorStyle
     index: int
     pointStyle: PointStyle
 
 @typing.type_check_only
-class BatchClearValuesByDataFilterRequest(typing_extensions.TypedDict, total=False):
+class BatchClearValuesByDataFilterRequest(typing.TypedDict, total=False):
     dataFilters: _list[DataFilter]
 
 @typing.type_check_only
-class BatchClearValuesByDataFilterResponse(typing_extensions.TypedDict, total=False):
+class BatchClearValuesByDataFilterResponse(typing.TypedDict, total=False):
     clearedRanges: _list[str]
     spreadsheetId: str
 
 @typing.type_check_only
-class BatchClearValuesRequest(typing_extensions.TypedDict, total=False):
+class BatchClearValuesRequest(typing.TypedDict, total=False):
     ranges: _list[str]
 
 @typing.type_check_only
-class BatchClearValuesResponse(typing_extensions.TypedDict, total=False):
+class BatchClearValuesResponse(typing.TypedDict, total=False):
     clearedRanges: _list[str]
     spreadsheetId: str
 
 @typing.type_check_only
-class BatchGetValuesByDataFilterRequest(typing_extensions.TypedDict, total=False):
+class BatchGetValuesByDataFilterRequest(typing.TypedDict, total=False):
     dataFilters: _list[DataFilter]
-    dateTimeRenderOption: typing_extensions.Literal["SERIAL_NUMBER", "FORMATTED_STRING"]
-    majorDimension: typing_extensions.Literal[
-        "DIMENSION_UNSPECIFIED", "ROWS", "COLUMNS"
-    ]
-    valueRenderOption: typing_extensions.Literal[
-        "FORMATTED_VALUE", "UNFORMATTED_VALUE", "FORMULA"
-    ]
+    dateTimeRenderOption: typing.Literal["SERIAL_NUMBER", "FORMATTED_STRING"]
+    majorDimension: typing.Literal["DIMENSION_UNSPECIFIED", "ROWS", "COLUMNS"]
+    valueRenderOption: typing.Literal["FORMATTED_VALUE", "UNFORMATTED_VALUE", "FORMULA"]
 
 @typing.type_check_only
-class BatchGetValuesByDataFilterResponse(typing_extensions.TypedDict, total=False):
+class BatchGetValuesByDataFilterResponse(typing.TypedDict, total=False):
     spreadsheetId: str
     valueRanges: _list[MatchedValueRange]
 
 @typing.type_check_only
-class BatchGetValuesResponse(typing_extensions.TypedDict, total=False):
+class BatchGetValuesResponse(typing.TypedDict, total=False):
     spreadsheetId: str
     valueRanges: _list[ValueRange]
 
 @typing.type_check_only
-class BatchUpdateSpreadsheetRequest(typing_extensions.TypedDict, total=False):
+class BatchUpdateSpreadsheetRequest(typing.TypedDict, total=False):
     includeSpreadsheetInResponse: bool
     requests: _list[Request]
     responseIncludeGridData: bool
     responseRanges: _list[str]
 
 @typing.type_check_only
-class BatchUpdateSpreadsheetResponse(typing_extensions.TypedDict, total=False):
+class BatchUpdateSpreadsheetResponse(typing.TypedDict, total=False):
     replies: _list[Response]
     spreadsheetId: str
     updatedSpreadsheet: Spreadsheet
 
 @typing.type_check_only
-class BatchUpdateValuesByDataFilterRequest(typing_extensions.TypedDict, total=False):
+class BatchUpdateValuesByDataFilterRequest(typing.TypedDict, total=False):
     data: _list[DataFilterValueRange]
     includeValuesInResponse: bool
-    responseDateTimeRenderOption: typing_extensions.Literal[
-        "SERIAL_NUMBER", "FORMATTED_STRING"
-    ]
-    responseValueRenderOption: typing_extensions.Literal[
+    responseDateTimeRenderOption: typing.Literal["SERIAL_NUMBER", "FORMATTED_STRING"]
+    responseValueRenderOption: typing.Literal[
         "FORMATTED_VALUE", "UNFORMATTED_VALUE", "FORMULA"
     ]
-    valueInputOption: typing_extensions.Literal[
+    valueInputOption: typing.Literal[
         "INPUT_VALUE_OPTION_UNSPECIFIED", "RAW", "USER_ENTERED"
     ]
 
 @typing.type_check_only
-class BatchUpdateValuesByDataFilterResponse(typing_extensions.TypedDict, total=False):
+class BatchUpdateValuesByDataFilterResponse(typing.TypedDict, total=False):
     responses: _list[UpdateValuesByDataFilterResponse]
     spreadsheetId: str
     totalUpdatedCells: int
@@ -325,21 +317,19 @@ class BatchUpdateValuesByDataFilterResponse(typing_extensions.TypedDict, total=F
     totalUpdatedSheets: int
 
 @typing.type_check_only
-class BatchUpdateValuesRequest(typing_extensions.TypedDict, total=False):
+class BatchUpdateValuesRequest(typing.TypedDict, total=False):
     data: _list[ValueRange]
     includeValuesInResponse: bool
-    responseDateTimeRenderOption: typing_extensions.Literal[
-        "SERIAL_NUMBER", "FORMATTED_STRING"
-    ]
-    responseValueRenderOption: typing_extensions.Literal[
+    responseDateTimeRenderOption: typing.Literal["SERIAL_NUMBER", "FORMATTED_STRING"]
+    responseValueRenderOption: typing.Literal[
         "FORMATTED_VALUE", "UNFORMATTED_VALUE", "FORMULA"
     ]
-    valueInputOption: typing_extensions.Literal[
+    valueInputOption: typing.Literal[
         "INPUT_VALUE_OPTION_UNSPECIFIED", "RAW", "USER_ENTERED"
     ]
 
 @typing.type_check_only
-class BatchUpdateValuesResponse(typing_extensions.TypedDict, total=False):
+class BatchUpdateValuesResponse(typing.TypedDict, total=False):
     responses: _list[UpdateValuesResponse]
     spreadsheetId: str
     totalUpdatedCells: int
@@ -348,24 +338,24 @@ class BatchUpdateValuesResponse(typing_extensions.TypedDict, total=False):
     totalUpdatedSheets: int
 
 @typing.type_check_only
-class BigQueryDataSourceSpec(typing_extensions.TypedDict, total=False):
+class BigQueryDataSourceSpec(typing.TypedDict, total=False):
     projectId: str
     querySpec: BigQueryQuerySpec
     tableSpec: BigQueryTableSpec
 
 @typing.type_check_only
-class BigQueryQuerySpec(typing_extensions.TypedDict, total=False):
+class BigQueryQuerySpec(typing.TypedDict, total=False):
     rawQuery: str
 
 @typing.type_check_only
-class BigQueryTableSpec(typing_extensions.TypedDict, total=False):
+class BigQueryTableSpec(typing.TypedDict, total=False):
     datasetId: str
     tableId: str
     tableProjectId: str
 
 @typing.type_check_only
-class BooleanCondition(typing_extensions.TypedDict, total=False):
-    type: typing_extensions.Literal[
+class BooleanCondition(typing.TypedDict, total=False):
+    type: typing.Literal[
         "CONDITION_TYPE_UNSPECIFIED",
         "NUMBER_GREATER",
         "NUMBER_GREATER_THAN_EQ",
@@ -403,15 +393,15 @@ class BooleanCondition(typing_extensions.TypedDict, total=False):
     values: _list[ConditionValue]
 
 @typing.type_check_only
-class BooleanRule(typing_extensions.TypedDict, total=False):
+class BooleanRule(typing.TypedDict, total=False):
     condition: BooleanCondition
     format: CellFormat
 
 @typing.type_check_only
-class Border(typing_extensions.TypedDict, total=False):
+class Border(typing.TypedDict, total=False):
     color: Color
     colorStyle: ColorStyle
-    style: typing_extensions.Literal[
+    style: typing.Literal[
         "STYLE_UNSPECIFIED",
         "DOTTED",
         "DASHED",
@@ -424,14 +414,14 @@ class Border(typing_extensions.TypedDict, total=False):
     width: int
 
 @typing.type_check_only
-class Borders(typing_extensions.TypedDict, total=False):
+class Borders(typing.TypedDict, total=False):
     bottom: Border
     left: Border
     right: Border
     top: Border
 
 @typing.type_check_only
-class BubbleChartSpec(typing_extensions.TypedDict, total=False):
+class BubbleChartSpec(typing.TypedDict, total=False):
     bubbleBorderColor: Color
     bubbleBorderColorStyle: ColorStyle
     bubbleLabels: ChartData
@@ -442,7 +432,7 @@ class BubbleChartSpec(typing_extensions.TypedDict, total=False):
     bubbleTextStyle: TextFormat
     domain: ChartData
     groupIds: ChartData
-    legendPosition: typing_extensions.Literal[
+    legendPosition: typing.Literal[
         "BUBBLE_CHART_LEGEND_POSITION_UNSPECIFIED",
         "BOTTOM_LEGEND",
         "LEFT_LEGEND",
@@ -454,43 +444,43 @@ class BubbleChartSpec(typing_extensions.TypedDict, total=False):
     series: ChartData
 
 @typing.type_check_only
-class CancelDataSourceRefreshRequest(typing_extensions.TypedDict, total=False):
+class CancelDataSourceRefreshRequest(typing.TypedDict, total=False):
     dataSourceId: str
     isAll: bool
     references: DataSourceObjectReferences
 
 @typing.type_check_only
-class CancelDataSourceRefreshResponse(typing_extensions.TypedDict, total=False):
+class CancelDataSourceRefreshResponse(typing.TypedDict, total=False):
     statuses: _list[CancelDataSourceRefreshStatus]
 
 @typing.type_check_only
-class CancelDataSourceRefreshStatus(typing_extensions.TypedDict, total=False):
+class CancelDataSourceRefreshStatus(typing.TypedDict, total=False):
     reference: DataSourceObjectReference
     refreshCancellationStatus: RefreshCancellationStatus
 
 @typing.type_check_only
-class CandlestickChartSpec(typing_extensions.TypedDict, total=False):
+class CandlestickChartSpec(typing.TypedDict, total=False):
     data: _list[CandlestickData]
     domain: CandlestickDomain
 
 @typing.type_check_only
-class CandlestickData(typing_extensions.TypedDict, total=False):
+class CandlestickData(typing.TypedDict, total=False):
     closeSeries: CandlestickSeries
     highSeries: CandlestickSeries
     lowSeries: CandlestickSeries
     openSeries: CandlestickSeries
 
 @typing.type_check_only
-class CandlestickDomain(typing_extensions.TypedDict, total=False):
+class CandlestickDomain(typing.TypedDict, total=False):
     data: ChartData
     reversed: bool
 
 @typing.type_check_only
-class CandlestickSeries(typing_extensions.TypedDict, total=False):
+class CandlestickSeries(typing.TypedDict, total=False):
     data: ChartData
 
 @typing.type_check_only
-class CellData(typing_extensions.TypedDict, total=False):
+class CellData(typing.TypedDict, total=False):
     chipRuns: _list[ChipRun]
     dataSourceFormula: DataSourceFormula
     dataSourceTable: DataSourceTable
@@ -506,46 +496,46 @@ class CellData(typing_extensions.TypedDict, total=False):
     userEnteredValue: ExtendedValue
 
 @typing.type_check_only
-class CellFormat(typing_extensions.TypedDict, total=False):
+class CellFormat(typing.TypedDict, total=False):
     backgroundColor: Color
     backgroundColorStyle: ColorStyle
     borders: Borders
-    horizontalAlignment: typing_extensions.Literal[
+    horizontalAlignment: typing.Literal[
         "HORIZONTAL_ALIGN_UNSPECIFIED", "LEFT", "CENTER", "RIGHT"
     ]
-    hyperlinkDisplayType: typing_extensions.Literal[
+    hyperlinkDisplayType: typing.Literal[
         "HYPERLINK_DISPLAY_TYPE_UNSPECIFIED", "LINKED", "PLAIN_TEXT"
     ]
     numberFormat: NumberFormat
     padding: Padding
-    textDirection: typing_extensions.Literal[
+    textDirection: typing.Literal[
         "TEXT_DIRECTION_UNSPECIFIED", "LEFT_TO_RIGHT", "RIGHT_TO_LEFT"
     ]
     textFormat: TextFormat
     textRotation: TextRotation
-    verticalAlignment: typing_extensions.Literal[
+    verticalAlignment: typing.Literal[
         "VERTICAL_ALIGN_UNSPECIFIED", "TOP", "MIDDLE", "BOTTOM"
     ]
-    wrapStrategy: typing_extensions.Literal[
+    wrapStrategy: typing.Literal[
         "WRAP_STRATEGY_UNSPECIFIED", "OVERFLOW_CELL", "LEGACY_WRAP", "CLIP", "WRAP"
     ]
 
 @typing.type_check_only
-class ChartAxisViewWindowOptions(typing_extensions.TypedDict, total=False):
+class ChartAxisViewWindowOptions(typing.TypedDict, total=False):
     viewWindowMax: float
     viewWindowMin: float
-    viewWindowMode: typing_extensions.Literal[
+    viewWindowMode: typing.Literal[
         "DEFAULT_VIEW_WINDOW_MODE", "VIEW_WINDOW_MODE_UNSUPPORTED", "EXPLICIT", "PRETTY"
     ]
 
 @typing.type_check_only
-class ChartCustomNumberFormatOptions(typing_extensions.TypedDict, total=False):
+class ChartCustomNumberFormatOptions(typing.TypedDict, total=False):
     prefix: str
     suffix: str
 
 @typing.type_check_only
-class ChartData(typing_extensions.TypedDict, total=False):
-    aggregateType: typing_extensions.Literal[
+class ChartData(typing.TypedDict, total=False):
+    aggregateType: typing.Literal[
         "CHART_AGGREGATE_TYPE_UNSPECIFIED",
         "AVERAGE",
         "COUNT",
@@ -559,8 +549,8 @@ class ChartData(typing_extensions.TypedDict, total=False):
     sourceRange: ChartSourceRange
 
 @typing.type_check_only
-class ChartDateTimeRule(typing_extensions.TypedDict, total=False):
-    type: typing_extensions.Literal[
+class ChartDateTimeRule(typing.TypedDict, total=False):
+    type: typing.Literal[
         "CHART_DATE_TIME_RULE_TYPE_UNSPECIFIED",
         "SECOND",
         "MINUTE",
@@ -580,22 +570,22 @@ class ChartDateTimeRule(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class ChartGroupRule(typing_extensions.TypedDict, total=False):
+class ChartGroupRule(typing.TypedDict, total=False):
     dateTimeRule: ChartDateTimeRule
     histogramRule: ChartHistogramRule
 
 @typing.type_check_only
-class ChartHistogramRule(typing_extensions.TypedDict, total=False):
+class ChartHistogramRule(typing.TypedDict, total=False):
     intervalSize: float
     maxValue: float
     minValue: float
 
 @typing.type_check_only
-class ChartSourceRange(typing_extensions.TypedDict, total=False):
+class ChartSourceRange(typing.TypedDict, total=False):
     sources: _list[GridRange]
 
 @typing.type_check_only
-class ChartSpec(typing_extensions.TypedDict, total=False):
+class ChartSpec(typing.TypedDict, total=False):
     altText: str
     backgroundColor: Color
     backgroundColorStyle: ColorStyle
@@ -605,7 +595,7 @@ class ChartSpec(typing_extensions.TypedDict, total=False):
     dataSourceChartProperties: DataSourceChartProperties
     filterSpecs: _list[FilterSpec]
     fontName: str
-    hiddenDimensionStrategy: typing_extensions.Literal[
+    hiddenDimensionStrategy: typing.Literal[
         "CHART_HIDDEN_DIMENSION_STRATEGY_UNSPECIFIED",
         "SKIP_HIDDEN_ROWS_AND_COLUMNS",
         "SKIP_HIDDEN_ROWS",
@@ -628,38 +618,38 @@ class ChartSpec(typing_extensions.TypedDict, total=False):
     waterfallChart: WaterfallChartSpec
 
 @typing.type_check_only
-class Chip(typing_extensions.TypedDict, total=False):
+class Chip(typing.TypedDict, total=False):
     personProperties: PersonProperties
     richLinkProperties: RichLinkProperties
 
 @typing.type_check_only
-class ChipRun(typing_extensions.TypedDict, total=False):
+class ChipRun(typing.TypedDict, total=False):
     chip: Chip
     startIndex: int
 
 @typing.type_check_only
-class ClearBasicFilterRequest(typing_extensions.TypedDict, total=False):
+class ClearBasicFilterRequest(typing.TypedDict, total=False):
     sheetId: int
 
 @typing.type_check_only
-class ClearValuesRequest(typing_extensions.TypedDict, total=False): ...
+class ClearValuesRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class ClearValuesResponse(typing_extensions.TypedDict, total=False):
+class ClearValuesResponse(typing.TypedDict, total=False):
     clearedRange: str
     spreadsheetId: str
 
 @typing.type_check_only
-class Color(typing_extensions.TypedDict, total=False):
+class Color(typing.TypedDict, total=False):
     alpha: float
     blue: float
     green: float
     red: float
 
 @typing.type_check_only
-class ColorStyle(typing_extensions.TypedDict, total=False):
+class ColorStyle(typing.TypedDict, total=False):
     rgbColor: Color
-    themeColor: typing_extensions.Literal[
+    themeColor: typing.Literal[
         "THEME_COLOR_TYPE_UNSPECIFIED",
         "TEXT",
         "BACKGROUND",
@@ -673,8 +663,8 @@ class ColorStyle(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class ConditionValue(typing_extensions.TypedDict, total=False):
-    relativeDate: typing_extensions.Literal[
+class ConditionValue(typing.TypedDict, total=False):
+    relativeDate: typing.Literal[
         "RELATIVE_DATE_UNSPECIFIED",
         "PAST_YEAR",
         "PAST_MONTH",
@@ -686,16 +676,16 @@ class ConditionValue(typing_extensions.TypedDict, total=False):
     userEnteredValue: str
 
 @typing.type_check_only
-class ConditionalFormatRule(typing_extensions.TypedDict, total=False):
+class ConditionalFormatRule(typing.TypedDict, total=False):
     booleanRule: BooleanRule
     gradientRule: GradientRule
     ranges: _list[GridRange]
 
 @typing.type_check_only
-class CopyPasteRequest(typing_extensions.TypedDict, total=False):
+class CopyPasteRequest(typing.TypedDict, total=False):
     destination: GridRange
-    pasteOrientation: typing_extensions.Literal["NORMAL", "TRANSPOSE"]
-    pasteType: typing_extensions.Literal[
+    pasteOrientation: typing.Literal["NORMAL", "TRANSPOSE"]
+    pasteType: typing.Literal[
         "PASTE_NORMAL",
         "PASTE_VALUES",
         "PASTE_FORMAT",
@@ -707,21 +697,21 @@ class CopyPasteRequest(typing_extensions.TypedDict, total=False):
     source: GridRange
 
 @typing.type_check_only
-class CopySheetToAnotherSpreadsheetRequest(typing_extensions.TypedDict, total=False):
+class CopySheetToAnotherSpreadsheetRequest(typing.TypedDict, total=False):
     destinationSpreadsheetId: str
 
 @typing.type_check_only
-class CreateDeveloperMetadataRequest(typing_extensions.TypedDict, total=False):
+class CreateDeveloperMetadataRequest(typing.TypedDict, total=False):
     developerMetadata: DeveloperMetadata
 
 @typing.type_check_only
-class CreateDeveloperMetadataResponse(typing_extensions.TypedDict, total=False):
+class CreateDeveloperMetadataResponse(typing.TypedDict, total=False):
     developerMetadata: DeveloperMetadata
 
 @typing.type_check_only
-class CutPasteRequest(typing_extensions.TypedDict, total=False):
+class CutPasteRequest(typing.TypedDict, total=False):
     destination: GridCoordinate
-    pasteType: typing_extensions.Literal[
+    pasteType: typing.Literal[
         "PASTE_NORMAL",
         "PASTE_VALUES",
         "PASTE_FORMAT",
@@ -733,8 +723,8 @@ class CutPasteRequest(typing_extensions.TypedDict, total=False):
     source: GridRange
 
 @typing.type_check_only
-class DataExecutionStatus(typing_extensions.TypedDict, total=False):
-    errorCode: typing_extensions.Literal[
+class DataExecutionStatus(typing.TypedDict, total=False):
+    errorCode: typing.Literal[
         "DATA_EXECUTION_ERROR_CODE_UNSPECIFIED",
         "TIMED_OUT",
         "TOO_MANY_ROWS",
@@ -758,7 +748,7 @@ class DataExecutionStatus(typing_extensions.TypedDict, total=False):
     ]
     errorMessage: str
     lastRefreshTime: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "DATA_EXECUTION_STATE_UNSPECIFIED",
         "NOT_STARTED",
         "RUNNING",
@@ -768,23 +758,21 @@ class DataExecutionStatus(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class DataFilter(typing_extensions.TypedDict, total=False):
+class DataFilter(typing.TypedDict, total=False):
     a1Range: str
     developerMetadataLookup: DeveloperMetadataLookup
     gridRange: GridRange
 
 @typing.type_check_only
-class DataFilterValueRange(typing_extensions.TypedDict, total=False):
+class DataFilterValueRange(typing.TypedDict, total=False):
     dataFilter: DataFilter
-    majorDimension: typing_extensions.Literal[
-        "DIMENSION_UNSPECIFIED", "ROWS", "COLUMNS"
-    ]
+    majorDimension: typing.Literal["DIMENSION_UNSPECIFIED", "ROWS", "COLUMNS"]
     values: _list[_list[typing.Any]]
 
 @typing.type_check_only
-class DataLabel(typing_extensions.TypedDict, total=False):
+class DataLabel(typing.TypedDict, total=False):
     customLabelData: ChartData
-    placement: typing_extensions.Literal[
+    placement: typing.Literal[
         "DATA_LABEL_PLACEMENT_UNSPECIFIED",
         "CENTER",
         "LEFT",
@@ -796,38 +784,36 @@ class DataLabel(typing_extensions.TypedDict, total=False):
         "OUTSIDE_END",
     ]
     textFormat: TextFormat
-    type: typing_extensions.Literal[
-        "DATA_LABEL_TYPE_UNSPECIFIED", "NONE", "DATA", "CUSTOM"
-    ]
+    type: typing.Literal["DATA_LABEL_TYPE_UNSPECIFIED", "NONE", "DATA", "CUSTOM"]
 
 @typing.type_check_only
-class DataSource(typing_extensions.TypedDict, total=False):
+class DataSource(typing.TypedDict, total=False):
     calculatedColumns: _list[DataSourceColumn]
     dataSourceId: str
     sheetId: int
     spec: DataSourceSpec
 
 @typing.type_check_only
-class DataSourceChartProperties(typing_extensions.TypedDict, total=False):
+class DataSourceChartProperties(typing.TypedDict, total=False):
     dataExecutionStatus: DataExecutionStatus
     dataSourceId: str
 
 @typing.type_check_only
-class DataSourceColumn(typing_extensions.TypedDict, total=False):
+class DataSourceColumn(typing.TypedDict, total=False):
     formula: str
     reference: DataSourceColumnReference
 
 @typing.type_check_only
-class DataSourceColumnReference(typing_extensions.TypedDict, total=False):
+class DataSourceColumnReference(typing.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class DataSourceFormula(typing_extensions.TypedDict, total=False):
+class DataSourceFormula(typing.TypedDict, total=False):
     dataExecutionStatus: DataExecutionStatus
     dataSourceId: str
 
 @typing.type_check_only
-class DataSourceObjectReference(typing_extensions.TypedDict, total=False):
+class DataSourceObjectReference(typing.TypedDict, total=False):
     chartId: int
     dataSourceFormulaCell: GridCoordinate
     dataSourcePivotTableAnchorCell: GridCoordinate
@@ -835,39 +821,39 @@ class DataSourceObjectReference(typing_extensions.TypedDict, total=False):
     sheetId: str
 
 @typing.type_check_only
-class DataSourceObjectReferences(typing_extensions.TypedDict, total=False):
+class DataSourceObjectReferences(typing.TypedDict, total=False):
     references: _list[DataSourceObjectReference]
 
 @typing.type_check_only
-class DataSourceParameter(typing_extensions.TypedDict, total=False):
+class DataSourceParameter(typing.TypedDict, total=False):
     name: str
     namedRangeId: str
     range: GridRange
 
 @typing.type_check_only
-class DataSourceRefreshDailySchedule(typing_extensions.TypedDict, total=False):
+class DataSourceRefreshDailySchedule(typing.TypedDict, total=False):
     startTime: TimeOfDay
 
 @typing.type_check_only
-class DataSourceRefreshMonthlySchedule(typing_extensions.TypedDict, total=False):
+class DataSourceRefreshMonthlySchedule(typing.TypedDict, total=False):
     daysOfMonth: _list[int]
     startTime: TimeOfDay
 
 @typing.type_check_only
-class DataSourceRefreshSchedule(typing_extensions.TypedDict, total=False):
+class DataSourceRefreshSchedule(typing.TypedDict, total=False):
     dailySchedule: DataSourceRefreshDailySchedule
     enabled: bool
     monthlySchedule: DataSourceRefreshMonthlySchedule
     nextRun: Interval
-    refreshScope: typing_extensions.Literal[
+    refreshScope: typing.Literal[
         "DATA_SOURCE_REFRESH_SCOPE_UNSPECIFIED", "ALL_DATA_SOURCES"
     ]
     weeklySchedule: DataSourceRefreshWeeklySchedule
 
 @typing.type_check_only
-class DataSourceRefreshWeeklySchedule(typing_extensions.TypedDict, total=False):
+class DataSourceRefreshWeeklySchedule(typing.TypedDict, total=False):
     daysOfWeek: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "DAY_OF_WEEK_UNSPECIFIED",
             "MONDAY",
             "TUESDAY",
@@ -881,25 +867,25 @@ class DataSourceRefreshWeeklySchedule(typing_extensions.TypedDict, total=False):
     startTime: TimeOfDay
 
 @typing.type_check_only
-class DataSourceSheetDimensionRange(typing_extensions.TypedDict, total=False):
+class DataSourceSheetDimensionRange(typing.TypedDict, total=False):
     columnReferences: _list[DataSourceColumnReference]
     sheetId: int
 
 @typing.type_check_only
-class DataSourceSheetProperties(typing_extensions.TypedDict, total=False):
+class DataSourceSheetProperties(typing.TypedDict, total=False):
     columns: _list[DataSourceColumn]
     dataExecutionStatus: DataExecutionStatus
     dataSourceId: str
 
 @typing.type_check_only
-class DataSourceSpec(typing_extensions.TypedDict, total=False):
+class DataSourceSpec(typing.TypedDict, total=False):
     bigQuery: BigQueryDataSourceSpec
     looker: LookerDataSourceSpec
     parameters: _list[DataSourceParameter]
 
 @typing.type_check_only
-class DataSourceTable(typing_extensions.TypedDict, total=False):
-    columnSelectionType: typing_extensions.Literal[
+class DataSourceTable(typing.TypedDict, total=False):
+    columnSelectionType: typing.Literal[
         "DATA_SOURCE_TABLE_COLUMN_SELECTION_TYPE_UNSPECIFIED", "SELECTED", "SYNC_ALL"
     ]
     columns: _list[DataSourceColumnReference]
@@ -910,15 +896,15 @@ class DataSourceTable(typing_extensions.TypedDict, total=False):
     sortSpecs: _list[SortSpec]
 
 @typing.type_check_only
-class DataValidationRule(typing_extensions.TypedDict, total=False):
+class DataValidationRule(typing.TypedDict, total=False):
     condition: BooleanCondition
     inputMessage: str
     showCustomUi: bool
     strict: bool
 
 @typing.type_check_only
-class DateTimeRule(typing_extensions.TypedDict, total=False):
-    type: typing_extensions.Literal[
+class DateTimeRule(typing.TypedDict, total=False):
+    type: typing.Literal[
         "DATE_TIME_RULE_TYPE_UNSPECIFIED",
         "SECOND",
         "MINUTE",
@@ -938,96 +924,94 @@ class DateTimeRule(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class DeleteBandingRequest(typing_extensions.TypedDict, total=False):
+class DeleteBandingRequest(typing.TypedDict, total=False):
     bandedRangeId: int
 
 @typing.type_check_only
-class DeleteConditionalFormatRuleRequest(typing_extensions.TypedDict, total=False):
+class DeleteConditionalFormatRuleRequest(typing.TypedDict, total=False):
     index: int
     sheetId: int
 
 @typing.type_check_only
-class DeleteConditionalFormatRuleResponse(typing_extensions.TypedDict, total=False):
+class DeleteConditionalFormatRuleResponse(typing.TypedDict, total=False):
     rule: ConditionalFormatRule
 
 @typing.type_check_only
-class DeleteDataSourceRequest(typing_extensions.TypedDict, total=False):
+class DeleteDataSourceRequest(typing.TypedDict, total=False):
     dataSourceId: str
 
 @typing.type_check_only
-class DeleteDeveloperMetadataRequest(typing_extensions.TypedDict, total=False):
+class DeleteDeveloperMetadataRequest(typing.TypedDict, total=False):
     dataFilter: DataFilter
 
 @typing.type_check_only
-class DeleteDeveloperMetadataResponse(typing_extensions.TypedDict, total=False):
+class DeleteDeveloperMetadataResponse(typing.TypedDict, total=False):
     deletedDeveloperMetadata: _list[DeveloperMetadata]
 
 @typing.type_check_only
-class DeleteDimensionGroupRequest(typing_extensions.TypedDict, total=False):
+class DeleteDimensionGroupRequest(typing.TypedDict, total=False):
     range: DimensionRange
 
 @typing.type_check_only
-class DeleteDimensionGroupResponse(typing_extensions.TypedDict, total=False):
+class DeleteDimensionGroupResponse(typing.TypedDict, total=False):
     dimensionGroups: _list[DimensionGroup]
 
 @typing.type_check_only
-class DeleteDimensionRequest(typing_extensions.TypedDict, total=False):
+class DeleteDimensionRequest(typing.TypedDict, total=False):
     range: DimensionRange
 
 @typing.type_check_only
-class DeleteDuplicatesRequest(typing_extensions.TypedDict, total=False):
+class DeleteDuplicatesRequest(typing.TypedDict, total=False):
     comparisonColumns: _list[DimensionRange]
     range: GridRange
 
 @typing.type_check_only
-class DeleteDuplicatesResponse(typing_extensions.TypedDict, total=False):
+class DeleteDuplicatesResponse(typing.TypedDict, total=False):
     duplicatesRemovedCount: int
 
 @typing.type_check_only
-class DeleteEmbeddedObjectRequest(typing_extensions.TypedDict, total=False):
+class DeleteEmbeddedObjectRequest(typing.TypedDict, total=False):
     objectId: int
 
 @typing.type_check_only
-class DeleteFilterViewRequest(typing_extensions.TypedDict, total=False):
+class DeleteFilterViewRequest(typing.TypedDict, total=False):
     filterId: int
 
 @typing.type_check_only
-class DeleteNamedRangeRequest(typing_extensions.TypedDict, total=False):
+class DeleteNamedRangeRequest(typing.TypedDict, total=False):
     namedRangeId: str
 
 @typing.type_check_only
-class DeleteProtectedRangeRequest(typing_extensions.TypedDict, total=False):
+class DeleteProtectedRangeRequest(typing.TypedDict, total=False):
     protectedRangeId: int
 
 @typing.type_check_only
-class DeleteRangeRequest(typing_extensions.TypedDict, total=False):
+class DeleteRangeRequest(typing.TypedDict, total=False):
     range: GridRange
-    shiftDimension: typing_extensions.Literal[
-        "DIMENSION_UNSPECIFIED", "ROWS", "COLUMNS"
-    ]
+    shiftDimension: typing.Literal["DIMENSION_UNSPECIFIED", "ROWS", "COLUMNS"]
 
 @typing.type_check_only
-class DeleteSheetRequest(typing_extensions.TypedDict, total=False):
+class DeleteSheetRequest(typing.TypedDict, total=False):
     sheetId: int
 
 @typing.type_check_only
-class DeleteTableRequest(typing_extensions.TypedDict, total=False):
+class DeleteTableRequest(typing.TypedDict, total=False):
     tableId: str
 
 @typing.type_check_only
-class DeveloperMetadata(typing_extensions.TypedDict, total=False):
+class DeveloperMetadata(typing.TypedDict, total=False):
     location: DeveloperMetadataLocation
     metadataId: int
     metadataKey: str
     metadataValue: str
-    visibility: typing_extensions.Literal[
+    visibility: typing.Literal[
         "DEVELOPER_METADATA_VISIBILITY_UNSPECIFIED", "DOCUMENT", "PROJECT"
     ]
 
 @typing.type_check_only
-class DeveloperMetadataLocation(typing_extensions.TypedDict, total=False):
+class DeveloperMetadataLocation(typing.TypedDict, total=False):
     dimensionRange: DimensionRange
-    locationType: typing_extensions.Literal[
+    locationType: typing.Literal[
         "DEVELOPER_METADATA_LOCATION_TYPE_UNSPECIFIED",
         "ROW",
         "COLUMN",
@@ -1038,13 +1022,13 @@ class DeveloperMetadataLocation(typing_extensions.TypedDict, total=False):
     spreadsheet: bool
 
 @typing.type_check_only
-class DeveloperMetadataLookup(typing_extensions.TypedDict, total=False):
-    locationMatchingStrategy: typing_extensions.Literal[
+class DeveloperMetadataLookup(typing.TypedDict, total=False):
+    locationMatchingStrategy: typing.Literal[
         "DEVELOPER_METADATA_LOCATION_MATCHING_STRATEGY_UNSPECIFIED",
         "EXACT_LOCATION",
         "INTERSECTING_LOCATION",
     ]
-    locationType: typing_extensions.Literal[
+    locationType: typing.Literal[
         "DEVELOPER_METADATA_LOCATION_TYPE_UNSPECIFIED",
         "ROW",
         "COLUMN",
@@ -1055,18 +1039,18 @@ class DeveloperMetadataLookup(typing_extensions.TypedDict, total=False):
     metadataKey: str
     metadataLocation: DeveloperMetadataLocation
     metadataValue: str
-    visibility: typing_extensions.Literal[
+    visibility: typing.Literal[
         "DEVELOPER_METADATA_VISIBILITY_UNSPECIFIED", "DOCUMENT", "PROJECT"
     ]
 
 @typing.type_check_only
-class DimensionGroup(typing_extensions.TypedDict, total=False):
+class DimensionGroup(typing.TypedDict, total=False):
     collapsed: bool
     depth: int
     range: DimensionRange
 
 @typing.type_check_only
-class DimensionProperties(typing_extensions.TypedDict, total=False):
+class DimensionProperties(typing.TypedDict, total=False):
     dataSourceColumnReference: DataSourceColumnReference
     developerMetadata: _list[DeveloperMetadata]
     hiddenByFilter: bool
@@ -1074,59 +1058,59 @@ class DimensionProperties(typing_extensions.TypedDict, total=False):
     pixelSize: int
 
 @typing.type_check_only
-class DimensionRange(typing_extensions.TypedDict, total=False):
-    dimension: typing_extensions.Literal["DIMENSION_UNSPECIFIED", "ROWS", "COLUMNS"]
+class DimensionRange(typing.TypedDict, total=False):
+    dimension: typing.Literal["DIMENSION_UNSPECIFIED", "ROWS", "COLUMNS"]
     endIndex: int
     sheetId: int
     startIndex: int
 
 @typing.type_check_only
-class DuplicateFilterViewRequest(typing_extensions.TypedDict, total=False):
+class DuplicateFilterViewRequest(typing.TypedDict, total=False):
     filterId: int
 
 @typing.type_check_only
-class DuplicateFilterViewResponse(typing_extensions.TypedDict, total=False):
+class DuplicateFilterViewResponse(typing.TypedDict, total=False):
     filter: FilterView
 
 @typing.type_check_only
-class DuplicateSheetRequest(typing_extensions.TypedDict, total=False):
+class DuplicateSheetRequest(typing.TypedDict, total=False):
     insertSheetIndex: int
     newSheetId: int
     newSheetName: str
     sourceSheetId: int
 
 @typing.type_check_only
-class DuplicateSheetResponse(typing_extensions.TypedDict, total=False):
+class DuplicateSheetResponse(typing.TypedDict, total=False):
     properties: SheetProperties
 
 @typing.type_check_only
-class Editors(typing_extensions.TypedDict, total=False):
+class Editors(typing.TypedDict, total=False):
     domainUsersCanEdit: bool
     groups: _list[str]
     users: _list[str]
 
 @typing.type_check_only
-class EmbeddedChart(typing_extensions.TypedDict, total=False):
+class EmbeddedChart(typing.TypedDict, total=False):
     border: EmbeddedObjectBorder
     chartId: int
     position: EmbeddedObjectPosition
     spec: ChartSpec
 
 @typing.type_check_only
-class EmbeddedObjectBorder(typing_extensions.TypedDict, total=False):
+class EmbeddedObjectBorder(typing.TypedDict, total=False):
     color: Color
     colorStyle: ColorStyle
 
 @typing.type_check_only
-class EmbeddedObjectPosition(typing_extensions.TypedDict, total=False):
+class EmbeddedObjectPosition(typing.TypedDict, total=False):
     newSheet: bool
     overlayPosition: OverlayPosition
     sheetId: int
 
 @typing.type_check_only
-class ErrorValue(typing_extensions.TypedDict, total=False):
+class ErrorValue(typing.TypedDict, total=False):
     message: str
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "ERROR_TYPE_UNSPECIFIED",
         "ERROR",
         "NULL_VALUE",
@@ -1140,7 +1124,7 @@ class ErrorValue(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class ExtendedValue(typing_extensions.TypedDict, total=False):
+class ExtendedValue(typing.TypedDict, total=False):
     boolValue: bool
     errorValue: ErrorValue
     formulaValue: str
@@ -1148,7 +1132,7 @@ class ExtendedValue(typing_extensions.TypedDict, total=False):
     stringValue: str
 
 @typing.type_check_only
-class FilterCriteria(typing_extensions.TypedDict, total=False):
+class FilterCriteria(typing.TypedDict, total=False):
     condition: BooleanCondition
     hiddenValues: _list[str]
     visibleBackgroundColor: Color
@@ -1157,13 +1141,13 @@ class FilterCriteria(typing_extensions.TypedDict, total=False):
     visibleForegroundColorStyle: ColorStyle
 
 @typing.type_check_only
-class FilterSpec(typing_extensions.TypedDict, total=False):
+class FilterSpec(typing.TypedDict, total=False):
     columnIndex: int
     dataSourceColumnReference: DataSourceColumnReference
     filterCriteria: FilterCriteria
 
 @typing.type_check_only
-class FilterView(typing_extensions.TypedDict, total=False):
+class FilterView(typing.TypedDict, total=False):
     criteria: dict[str, typing.Any]
     filterSpecs: _list[FilterSpec]
     filterViewId: int
@@ -1174,7 +1158,7 @@ class FilterView(typing_extensions.TypedDict, total=False):
     title: str
 
 @typing.type_check_only
-class FindReplaceRequest(typing_extensions.TypedDict, total=False):
+class FindReplaceRequest(typing.TypedDict, total=False):
     allSheets: bool
     find: str
     includeFormulas: bool
@@ -1186,7 +1170,7 @@ class FindReplaceRequest(typing_extensions.TypedDict, total=False):
     sheetId: int
 
 @typing.type_check_only
-class FindReplaceResponse(typing_extensions.TypedDict, total=False):
+class FindReplaceResponse(typing.TypedDict, total=False):
     formulasChanged: int
     occurrencesChanged: int
     rowsChanged: int
@@ -1194,25 +1178,25 @@ class FindReplaceResponse(typing_extensions.TypedDict, total=False):
     valuesChanged: int
 
 @typing.type_check_only
-class GetSpreadsheetByDataFilterRequest(typing_extensions.TypedDict, total=False):
+class GetSpreadsheetByDataFilterRequest(typing.TypedDict, total=False):
     dataFilters: _list[DataFilter]
     excludeTablesInBandedRanges: bool
     includeGridData: bool
 
 @typing.type_check_only
-class GradientRule(typing_extensions.TypedDict, total=False):
+class GradientRule(typing.TypedDict, total=False):
     maxpoint: InterpolationPoint
     midpoint: InterpolationPoint
     minpoint: InterpolationPoint
 
 @typing.type_check_only
-class GridCoordinate(typing_extensions.TypedDict, total=False):
+class GridCoordinate(typing.TypedDict, total=False):
     columnIndex: int
     rowIndex: int
     sheetId: int
 
 @typing.type_check_only
-class GridData(typing_extensions.TypedDict, total=False):
+class GridData(typing.TypedDict, total=False):
     columnMetadata: _list[DimensionProperties]
     rowData: _list[RowData]
     rowMetadata: _list[DimensionProperties]
@@ -1220,7 +1204,7 @@ class GridData(typing_extensions.TypedDict, total=False):
     startRow: int
 
 @typing.type_check_only
-class GridProperties(typing_extensions.TypedDict, total=False):
+class GridProperties(typing.TypedDict, total=False):
     columnCount: int
     columnGroupControlAfter: bool
     frozenColumnCount: int
@@ -1230,7 +1214,7 @@ class GridProperties(typing_extensions.TypedDict, total=False):
     rowGroupControlAfter: bool
 
 @typing.type_check_only
-class GridRange(typing_extensions.TypedDict, total=False):
+class GridRange(typing.TypedDict, total=False):
     endColumnIndex: int
     endRowIndex: int
     sheetId: int
@@ -1238,9 +1222,9 @@ class GridRange(typing_extensions.TypedDict, total=False):
     startRowIndex: int
 
 @typing.type_check_only
-class HistogramChartSpec(typing_extensions.TypedDict, total=False):
+class HistogramChartSpec(typing.TypedDict, total=False):
     bucketSize: float
-    legendPosition: typing_extensions.Literal[
+    legendPosition: typing.Literal[
         "HISTOGRAM_CHART_LEGEND_POSITION_UNSPECIFIED",
         "BOTTOM_LEGEND",
         "LEFT_LEGEND",
@@ -1254,34 +1238,32 @@ class HistogramChartSpec(typing_extensions.TypedDict, total=False):
     showItemDividers: bool
 
 @typing.type_check_only
-class HistogramRule(typing_extensions.TypedDict, total=False):
+class HistogramRule(typing.TypedDict, total=False):
     end: float
     interval: float
     start: float
 
 @typing.type_check_only
-class HistogramSeries(typing_extensions.TypedDict, total=False):
+class HistogramSeries(typing.TypedDict, total=False):
     barColor: Color
     barColorStyle: ColorStyle
     data: ChartData
 
 @typing.type_check_only
-class InsertDimensionRequest(typing_extensions.TypedDict, total=False):
+class InsertDimensionRequest(typing.TypedDict, total=False):
     inheritFromBefore: bool
     range: DimensionRange
 
 @typing.type_check_only
-class InsertRangeRequest(typing_extensions.TypedDict, total=False):
+class InsertRangeRequest(typing.TypedDict, total=False):
     range: GridRange
-    shiftDimension: typing_extensions.Literal[
-        "DIMENSION_UNSPECIFIED", "ROWS", "COLUMNS"
-    ]
+    shiftDimension: typing.Literal["DIMENSION_UNSPECIFIED", "ROWS", "COLUMNS"]
 
 @typing.type_check_only
-class InterpolationPoint(typing_extensions.TypedDict, total=False):
+class InterpolationPoint(typing.TypedDict, total=False):
     color: Color
     colorStyle: ColorStyle
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "INTERPOLATION_POINT_TYPE_UNSPECIFIED",
         "MIN",
         "MAX",
@@ -1292,23 +1274,23 @@ class InterpolationPoint(typing_extensions.TypedDict, total=False):
     value: str
 
 @typing.type_check_only
-class Interval(typing_extensions.TypedDict, total=False):
+class Interval(typing.TypedDict, total=False):
     endTime: str
     startTime: str
 
 @typing.type_check_only
-class IterativeCalculationSettings(typing_extensions.TypedDict, total=False):
+class IterativeCalculationSettings(typing.TypedDict, total=False):
     convergenceThreshold: float
     maxIterations: int
 
 @typing.type_check_only
-class KeyValueFormat(typing_extensions.TypedDict, total=False):
+class KeyValueFormat(typing.TypedDict, total=False):
     position: TextPosition
     textFormat: TextFormat
 
 @typing.type_check_only
-class LineStyle(typing_extensions.TypedDict, total=False):
-    type: typing_extensions.Literal[
+class LineStyle(typing.TypedDict, total=False):
+    type: typing.Literal[
         "LINE_DASH_TYPE_UNSPECIFIED",
         "INVISIBLE",
         "CUSTOM",
@@ -1322,54 +1304,54 @@ class LineStyle(typing_extensions.TypedDict, total=False):
     width: int
 
 @typing.type_check_only
-class Link(typing_extensions.TypedDict, total=False):
+class Link(typing.TypedDict, total=False):
     uri: str
 
 @typing.type_check_only
-class LookerDataSourceSpec(typing_extensions.TypedDict, total=False):
+class LookerDataSourceSpec(typing.TypedDict, total=False):
     explore: str
     instanceUri: str
     model: str
 
 @typing.type_check_only
-class ManualRule(typing_extensions.TypedDict, total=False):
+class ManualRule(typing.TypedDict, total=False):
     groups: _list[ManualRuleGroup]
 
 @typing.type_check_only
-class ManualRuleGroup(typing_extensions.TypedDict, total=False):
+class ManualRuleGroup(typing.TypedDict, total=False):
     groupName: ExtendedValue
     items: _list[ExtendedValue]
 
 @typing.type_check_only
-class MatchedDeveloperMetadata(typing_extensions.TypedDict, total=False):
+class MatchedDeveloperMetadata(typing.TypedDict, total=False):
     dataFilters: _list[DataFilter]
     developerMetadata: DeveloperMetadata
 
 @typing.type_check_only
-class MatchedValueRange(typing_extensions.TypedDict, total=False):
+class MatchedValueRange(typing.TypedDict, total=False):
     dataFilters: _list[DataFilter]
     valueRange: ValueRange
 
 @typing.type_check_only
-class MergeCellsRequest(typing_extensions.TypedDict, total=False):
-    mergeType: typing_extensions.Literal["MERGE_ALL", "MERGE_COLUMNS", "MERGE_ROWS"]
+class MergeCellsRequest(typing.TypedDict, total=False):
+    mergeType: typing.Literal["MERGE_ALL", "MERGE_COLUMNS", "MERGE_ROWS"]
     range: GridRange
 
 @typing.type_check_only
-class MoveDimensionRequest(typing_extensions.TypedDict, total=False):
+class MoveDimensionRequest(typing.TypedDict, total=False):
     destinationIndex: int
     source: DimensionRange
 
 @typing.type_check_only
-class NamedRange(typing_extensions.TypedDict, total=False):
+class NamedRange(typing.TypedDict, total=False):
     name: str
     namedRangeId: str
     range: GridRange
 
 @typing.type_check_only
-class NumberFormat(typing_extensions.TypedDict, total=False):
+class NumberFormat(typing.TypedDict, total=False):
     pattern: str
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "NUMBER_FORMAT_TYPE_UNSPECIFIED",
         "TEXT",
         "NUMBER",
@@ -1382,11 +1364,11 @@ class NumberFormat(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class OrgChartSpec(typing_extensions.TypedDict, total=False):
+class OrgChartSpec(typing.TypedDict, total=False):
     labels: ChartData
     nodeColor: Color
     nodeColorStyle: ColorStyle
-    nodeSize: typing_extensions.Literal[
+    nodeSize: typing.Literal[
         "ORG_CHART_LABEL_SIZE_UNSPECIFIED", "SMALL", "MEDIUM", "LARGE"
     ]
     parentLabels: ChartData
@@ -1395,7 +1377,7 @@ class OrgChartSpec(typing_extensions.TypedDict, total=False):
     tooltips: ChartData
 
 @typing.type_check_only
-class OverlayPosition(typing_extensions.TypedDict, total=False):
+class OverlayPosition(typing.TypedDict, total=False):
     anchorCell: GridCoordinate
     heightPixels: int
     offsetXPixels: int
@@ -1403,19 +1385,19 @@ class OverlayPosition(typing_extensions.TypedDict, total=False):
     widthPixels: int
 
 @typing.type_check_only
-class Padding(typing_extensions.TypedDict, total=False):
+class Padding(typing.TypedDict, total=False):
     bottom: int
     left: int
     right: int
     top: int
 
 @typing.type_check_only
-class PasteDataRequest(typing_extensions.TypedDict, total=False):
+class PasteDataRequest(typing.TypedDict, total=False):
     coordinate: GridCoordinate
     data: str
     delimiter: str
     html: bool
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "PASTE_NORMAL",
         "PASTE_VALUES",
         "PASTE_FORMAT",
@@ -1426,16 +1408,16 @@ class PasteDataRequest(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class PersonProperties(typing_extensions.TypedDict, total=False):
-    displayFormat: typing_extensions.Literal[
+class PersonProperties(typing.TypedDict, total=False):
+    displayFormat: typing.Literal[
         "DISPLAY_FORMAT_UNSPECIFIED", "DEFAULT", "LAST_NAME_COMMA_FIRST_NAME", "EMAIL"
     ]
     email: str
 
 @typing.type_check_only
-class PieChartSpec(typing_extensions.TypedDict, total=False):
+class PieChartSpec(typing.TypedDict, total=False):
     domain: ChartData
-    legendPosition: typing_extensions.Literal[
+    legendPosition: typing.Literal[
         "PIE_CHART_LEGEND_POSITION_UNSPECIFIED",
         "BOTTOM_LEGEND",
         "LEFT_LEGEND",
@@ -1449,55 +1431,53 @@ class PieChartSpec(typing_extensions.TypedDict, total=False):
     threeDimensional: bool
 
 @typing.type_check_only
-class PivotFilterCriteria(typing_extensions.TypedDict, total=False):
+class PivotFilterCriteria(typing.TypedDict, total=False):
     condition: BooleanCondition
     visibleByDefault: bool
     visibleValues: _list[str]
 
 @typing.type_check_only
-class PivotFilterSpec(typing_extensions.TypedDict, total=False):
+class PivotFilterSpec(typing.TypedDict, total=False):
     columnOffsetIndex: int
     dataSourceColumnReference: DataSourceColumnReference
     filterCriteria: PivotFilterCriteria
 
 @typing.type_check_only
-class PivotGroup(typing_extensions.TypedDict, total=False):
+class PivotGroup(typing.TypedDict, total=False):
     dataSourceColumnReference: DataSourceColumnReference
     groupLimit: PivotGroupLimit
     groupRule: PivotGroupRule
     label: str
     repeatHeadings: bool
     showTotals: bool
-    sortOrder: typing_extensions.Literal[
-        "SORT_ORDER_UNSPECIFIED", "ASCENDING", "DESCENDING"
-    ]
+    sortOrder: typing.Literal["SORT_ORDER_UNSPECIFIED", "ASCENDING", "DESCENDING"]
     sourceColumnOffset: int
     valueBucket: PivotGroupSortValueBucket
     valueMetadata: _list[PivotGroupValueMetadata]
 
 @typing.type_check_only
-class PivotGroupLimit(typing_extensions.TypedDict, total=False):
+class PivotGroupLimit(typing.TypedDict, total=False):
     applyOrder: int
     countLimit: int
 
 @typing.type_check_only
-class PivotGroupRule(typing_extensions.TypedDict, total=False):
+class PivotGroupRule(typing.TypedDict, total=False):
     dateTimeRule: DateTimeRule
     histogramRule: HistogramRule
     manualRule: ManualRule
 
 @typing.type_check_only
-class PivotGroupSortValueBucket(typing_extensions.TypedDict, total=False):
+class PivotGroupSortValueBucket(typing.TypedDict, total=False):
     buckets: _list[ExtendedValue]
     valuesIndex: int
 
 @typing.type_check_only
-class PivotGroupValueMetadata(typing_extensions.TypedDict, total=False):
+class PivotGroupValueMetadata(typing.TypedDict, total=False):
     collapsed: bool
     value: ExtendedValue
 
 @typing.type_check_only
-class PivotTable(typing_extensions.TypedDict, total=False):
+class PivotTable(typing.TypedDict, total=False):
     columns: _list[PivotGroup]
     criteria: dict[str, typing.Any]
     dataExecutionStatus: DataExecutionStatus
@@ -1505,12 +1485,12 @@ class PivotTable(typing_extensions.TypedDict, total=False):
     filterSpecs: _list[PivotFilterSpec]
     rows: _list[PivotGroup]
     source: GridRange
-    valueLayout: typing_extensions.Literal["HORIZONTAL", "VERTICAL"]
+    valueLayout: typing.Literal["HORIZONTAL", "VERTICAL"]
     values: _list[PivotValue]
 
 @typing.type_check_only
-class PivotValue(typing_extensions.TypedDict, total=False):
-    calculatedDisplayType: typing_extensions.Literal[
+class PivotValue(typing.TypedDict, total=False):
+    calculatedDisplayType: typing.Literal[
         "PIVOT_VALUE_CALCULATED_DISPLAY_TYPE_UNSPECIFIED",
         "PERCENT_OF_ROW_TOTAL",
         "PERCENT_OF_COLUMN_TOTAL",
@@ -1520,7 +1500,7 @@ class PivotValue(typing_extensions.TypedDict, total=False):
     formula: str
     name: str
     sourceColumnOffset: int
-    summarizeFunction: typing_extensions.Literal[
+    summarizeFunction: typing.Literal[
         "PIVOT_STANDARD_VALUE_FUNCTION_UNSPECIFIED",
         "SUM",
         "COUNTA",
@@ -1540,8 +1520,8 @@ class PivotValue(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class PointStyle(typing_extensions.TypedDict, total=False):
-    shape: typing_extensions.Literal[
+class PointStyle(typing.TypedDict, total=False):
+    shape: typing.Literal[
         "POINT_SHAPE_UNSPECIFIED",
         "CIRCLE",
         "DIAMOND",
@@ -1555,7 +1535,7 @@ class PointStyle(typing_extensions.TypedDict, total=False):
     size: float
 
 @typing.type_check_only
-class ProtectedRange(typing_extensions.TypedDict, total=False):
+class ProtectedRange(typing.TypedDict, total=False):
     description: str
     editors: Editors
     namedRangeId: str
@@ -1567,12 +1547,12 @@ class ProtectedRange(typing_extensions.TypedDict, total=False):
     warningOnly: bool
 
 @typing.type_check_only
-class RandomizeRangeRequest(typing_extensions.TypedDict, total=False):
+class RandomizeRangeRequest(typing.TypedDict, total=False):
     range: GridRange
 
 @typing.type_check_only
-class RefreshCancellationStatus(typing_extensions.TypedDict, total=False):
-    errorCode: typing_extensions.Literal[
+class RefreshCancellationStatus(typing.TypedDict, total=False):
+    errorCode: typing.Literal[
         "REFRESH_CANCELLATION_ERROR_CODE_UNSPECIFIED",
         "EXECUTION_NOT_FOUND",
         "CANCEL_PERMISSION_DENIED",
@@ -1580,34 +1560,34 @@ class RefreshCancellationStatus(typing_extensions.TypedDict, total=False):
         "CONCURRENT_CANCELLATION",
         "CANCEL_OTHER_ERROR",
     ]
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "REFRESH_CANCELLATION_STATE_UNSPECIFIED", "CANCEL_SUCCEEDED", "CANCEL_FAILED"
     ]
 
 @typing.type_check_only
-class RefreshDataSourceObjectExecutionStatus(typing_extensions.TypedDict, total=False):
+class RefreshDataSourceObjectExecutionStatus(typing.TypedDict, total=False):
     dataExecutionStatus: DataExecutionStatus
     reference: DataSourceObjectReference
 
 @typing.type_check_only
-class RefreshDataSourceRequest(typing_extensions.TypedDict, total=False):
+class RefreshDataSourceRequest(typing.TypedDict, total=False):
     dataSourceId: str
     force: bool
     isAll: bool
     references: DataSourceObjectReferences
 
 @typing.type_check_only
-class RefreshDataSourceResponse(typing_extensions.TypedDict, total=False):
+class RefreshDataSourceResponse(typing.TypedDict, total=False):
     statuses: _list[RefreshDataSourceObjectExecutionStatus]
 
 @typing.type_check_only
-class RepeatCellRequest(typing_extensions.TypedDict, total=False):
+class RepeatCellRequest(typing.TypedDict, total=False):
     cell: CellData
     fields: str
     range: GridRange
 
 @typing.type_check_only
-class Request(typing_extensions.TypedDict, total=False):
+class Request(typing.TypedDict, total=False):
     addBanding: AddBandingRequest
     addChart: AddChartRequest
     addConditionalFormatRule: AddConditionalFormatRuleRequest
@@ -1679,7 +1659,7 @@ class Request(typing_extensions.TypedDict, total=False):
     updateTable: UpdateTableRequest
 
 @typing.type_check_only
-class Response(typing_extensions.TypedDict, total=False):
+class Response(typing.TypedDict, total=False):
     addBanding: AddBandingResponse
     addChart: AddChartResponse
     addDataSource: AddDataSourceResponse
@@ -1707,17 +1687,17 @@ class Response(typing_extensions.TypedDict, total=False):
     updateEmbeddedObjectPosition: UpdateEmbeddedObjectPositionResponse
 
 @typing.type_check_only
-class RichLinkProperties(typing_extensions.TypedDict, total=False):
+class RichLinkProperties(typing.TypedDict, total=False):
     mimeType: str
     uri: str
 
 @typing.type_check_only
-class RowData(typing_extensions.TypedDict, total=False):
+class RowData(typing.TypedDict, total=False):
     values: _list[CellData]
 
 @typing.type_check_only
-class ScorecardChartSpec(typing_extensions.TypedDict, total=False):
-    aggregateType: typing_extensions.Literal[
+class ScorecardChartSpec(typing.TypedDict, total=False):
+    aggregateType: typing.Literal[
         "CHART_AGGREGATE_TYPE_UNSPECIFIED",
         "AVERAGE",
         "COUNT",
@@ -1731,31 +1711,31 @@ class ScorecardChartSpec(typing_extensions.TypedDict, total=False):
     customFormatOptions: ChartCustomNumberFormatOptions
     keyValueData: ChartData
     keyValueFormat: KeyValueFormat
-    numberFormatSource: typing_extensions.Literal[
+    numberFormatSource: typing.Literal[
         "CHART_NUMBER_FORMAT_SOURCE_UNDEFINED", "FROM_DATA", "CUSTOM"
     ]
     scaleFactor: float
 
 @typing.type_check_only
-class SearchDeveloperMetadataRequest(typing_extensions.TypedDict, total=False):
+class SearchDeveloperMetadataRequest(typing.TypedDict, total=False):
     dataFilters: _list[DataFilter]
 
 @typing.type_check_only
-class SearchDeveloperMetadataResponse(typing_extensions.TypedDict, total=False):
+class SearchDeveloperMetadataResponse(typing.TypedDict, total=False):
     matchedDeveloperMetadata: _list[MatchedDeveloperMetadata]
 
 @typing.type_check_only
-class SetBasicFilterRequest(typing_extensions.TypedDict, total=False):
+class SetBasicFilterRequest(typing.TypedDict, total=False):
     filter: BasicFilter
 
 @typing.type_check_only
-class SetDataValidationRequest(typing_extensions.TypedDict, total=False):
+class SetDataValidationRequest(typing.TypedDict, total=False):
     filteredRowsIncluded: bool
     range: GridRange
     rule: DataValidationRule
 
 @typing.type_check_only
-class Sheet(typing_extensions.TypedDict, total=False):
+class Sheet(typing.TypedDict, total=False):
     bandedRanges: _list[BandedRange]
     basicFilter: BasicFilter
     charts: _list[EmbeddedChart]
@@ -1772,65 +1752,61 @@ class Sheet(typing_extensions.TypedDict, total=False):
     tables: _list[Table]
 
 @typing.type_check_only
-class SheetProperties(typing_extensions.TypedDict, total=False):
+class SheetProperties(typing.TypedDict, total=False):
     dataSourceSheetProperties: DataSourceSheetProperties
     gridProperties: GridProperties
     hidden: bool
     index: int
     rightToLeft: bool
     sheetId: int
-    sheetType: typing_extensions.Literal[
-        "SHEET_TYPE_UNSPECIFIED", "GRID", "OBJECT", "DATA_SOURCE"
-    ]
+    sheetType: typing.Literal["SHEET_TYPE_UNSPECIFIED", "GRID", "OBJECT", "DATA_SOURCE"]
     tabColor: Color
     tabColorStyle: ColorStyle
     title: str
 
 @typing.type_check_only
-class Slicer(typing_extensions.TypedDict, total=False):
+class Slicer(typing.TypedDict, total=False):
     position: EmbeddedObjectPosition
     slicerId: int
     spec: SlicerSpec
 
 @typing.type_check_only
-class SlicerSpec(typing_extensions.TypedDict, total=False):
+class SlicerSpec(typing.TypedDict, total=False):
     applyToPivotTables: bool
     backgroundColor: Color
     backgroundColorStyle: ColorStyle
     columnIndex: int
     dataRange: GridRange
     filterCriteria: FilterCriteria
-    horizontalAlignment: typing_extensions.Literal[
+    horizontalAlignment: typing.Literal[
         "HORIZONTAL_ALIGN_UNSPECIFIED", "LEFT", "CENTER", "RIGHT"
     ]
     textFormat: TextFormat
     title: str
 
 @typing.type_check_only
-class SortRangeRequest(typing_extensions.TypedDict, total=False):
+class SortRangeRequest(typing.TypedDict, total=False):
     range: GridRange
     sortSpecs: _list[SortSpec]
 
 @typing.type_check_only
-class SortSpec(typing_extensions.TypedDict, total=False):
+class SortSpec(typing.TypedDict, total=False):
     backgroundColor: Color
     backgroundColorStyle: ColorStyle
     dataSourceColumnReference: DataSourceColumnReference
     dimensionIndex: int
     foregroundColor: Color
     foregroundColorStyle: ColorStyle
-    sortOrder: typing_extensions.Literal[
-        "SORT_ORDER_UNSPECIFIED", "ASCENDING", "DESCENDING"
-    ]
+    sortOrder: typing.Literal["SORT_ORDER_UNSPECIFIED", "ASCENDING", "DESCENDING"]
 
 @typing.type_check_only
-class SourceAndDestination(typing_extensions.TypedDict, total=False):
-    dimension: typing_extensions.Literal["DIMENSION_UNSPECIFIED", "ROWS", "COLUMNS"]
+class SourceAndDestination(typing.TypedDict, total=False):
+    dimension: typing.Literal["DIMENSION_UNSPECIFIED", "ROWS", "COLUMNS"]
     fillLength: int
     source: GridRange
 
 @typing.type_check_only
-class Spreadsheet(typing_extensions.TypedDict, total=False):
+class Spreadsheet(typing.TypedDict, total=False):
     dataSourceSchedules: _list[DataSourceRefreshSchedule]
     dataSources: _list[DataSource]
     developerMetadata: _list[DeveloperMetadata]
@@ -1841,8 +1817,8 @@ class Spreadsheet(typing_extensions.TypedDict, total=False):
     spreadsheetUrl: str
 
 @typing.type_check_only
-class SpreadsheetProperties(typing_extensions.TypedDict, total=False):
-    autoRecalc: typing_extensions.Literal[
+class SpreadsheetProperties(typing.TypedDict, total=False):
+    autoRecalc: typing.Literal[
         "RECALCULATION_INTERVAL_UNSPECIFIED", "ON_CHANGE", "MINUTE", "HOUR"
     ]
     defaultFormat: CellFormat
@@ -1854,12 +1830,12 @@ class SpreadsheetProperties(typing_extensions.TypedDict, total=False):
     title: str
 
 @typing.type_check_only
-class SpreadsheetTheme(typing_extensions.TypedDict, total=False):
+class SpreadsheetTheme(typing.TypedDict, total=False):
     primaryFontFamily: str
     themeColors: _list[ThemeColorPair]
 
 @typing.type_check_only
-class Table(typing_extensions.TypedDict, total=False):
+class Table(typing.TypedDict, total=False):
     columnProperties: _list[TableColumnProperties]
     name: str
     range: GridRange
@@ -1867,14 +1843,14 @@ class Table(typing_extensions.TypedDict, total=False):
     tableId: str
 
 @typing.type_check_only
-class TableColumnDataValidationRule(typing_extensions.TypedDict, total=False):
+class TableColumnDataValidationRule(typing.TypedDict, total=False):
     condition: BooleanCondition
 
 @typing.type_check_only
-class TableColumnProperties(typing_extensions.TypedDict, total=False):
+class TableColumnProperties(typing.TypedDict, total=False):
     columnIndex: int
     columnName: str
-    columnType: typing_extensions.Literal[
+    columnType: typing.Literal[
         "COLUMN_TYPE_UNSPECIFIED",
         "DOUBLE",
         "CURRENCY",
@@ -1894,14 +1870,14 @@ class TableColumnProperties(typing_extensions.TypedDict, total=False):
     dataValidationRule: TableColumnDataValidationRule
 
 @typing.type_check_only
-class TableRowsProperties(typing_extensions.TypedDict, total=False):
+class TableRowsProperties(typing.TypedDict, total=False):
     firstBandColorStyle: ColorStyle
     footerColorStyle: ColorStyle
     headerColorStyle: ColorStyle
     secondBandColorStyle: ColorStyle
 
 @typing.type_check_only
-class TextFormat(typing_extensions.TypedDict, total=False):
+class TextFormat(typing.TypedDict, total=False):
     bold: bool
     fontFamily: str
     fontSize: int
@@ -1913,25 +1889,25 @@ class TextFormat(typing_extensions.TypedDict, total=False):
     underline: bool
 
 @typing.type_check_only
-class TextFormatRun(typing_extensions.TypedDict, total=False):
+class TextFormatRun(typing.TypedDict, total=False):
     format: TextFormat
     startIndex: int
 
 @typing.type_check_only
-class TextPosition(typing_extensions.TypedDict, total=False):
-    horizontalAlignment: typing_extensions.Literal[
+class TextPosition(typing.TypedDict, total=False):
+    horizontalAlignment: typing.Literal[
         "HORIZONTAL_ALIGN_UNSPECIFIED", "LEFT", "CENTER", "RIGHT"
     ]
 
 @typing.type_check_only
-class TextRotation(typing_extensions.TypedDict, total=False):
+class TextRotation(typing.TypedDict, total=False):
     angle: int
     vertical: bool
 
 @typing.type_check_only
-class TextToColumnsRequest(typing_extensions.TypedDict, total=False):
+class TextToColumnsRequest(typing.TypedDict, total=False):
     delimiter: str
-    delimiterType: typing_extensions.Literal[
+    delimiterType: typing.Literal[
         "DELIMITER_TYPE_UNSPECIFIED",
         "COMMA",
         "SEMICOLON",
@@ -1943,9 +1919,9 @@ class TextToColumnsRequest(typing_extensions.TypedDict, total=False):
     source: GridRange
 
 @typing.type_check_only
-class ThemeColorPair(typing_extensions.TypedDict, total=False):
+class ThemeColorPair(typing.TypedDict, total=False):
     color: ColorStyle
-    colorType: typing_extensions.Literal[
+    colorType: typing.Literal[
         "THEME_COLOR_TYPE_UNSPECIFIED",
         "TEXT",
         "BACKGROUND",
@@ -1959,14 +1935,14 @@ class ThemeColorPair(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class TimeOfDay(typing_extensions.TypedDict, total=False):
+class TimeOfDay(typing.TypedDict, total=False):
     hours: int
     minutes: int
     nanos: int
     seconds: int
 
 @typing.type_check_only
-class TreemapChartColorScale(typing_extensions.TypedDict, total=False):
+class TreemapChartColorScale(typing.TypedDict, total=False):
     maxValueColor: Color
     maxValueColorStyle: ColorStyle
     midValueColor: Color
@@ -1977,7 +1953,7 @@ class TreemapChartColorScale(typing_extensions.TypedDict, total=False):
     noDataColorStyle: ColorStyle
 
 @typing.type_check_only
-class TreemapChartSpec(typing_extensions.TypedDict, total=False):
+class TreemapChartSpec(typing.TypedDict, total=False):
     colorData: ChartData
     colorScale: TreemapChartColorScale
     headerColor: Color
@@ -1993,24 +1969,24 @@ class TreemapChartSpec(typing_extensions.TypedDict, total=False):
     textFormat: TextFormat
 
 @typing.type_check_only
-class TrimWhitespaceRequest(typing_extensions.TypedDict, total=False):
+class TrimWhitespaceRequest(typing.TypedDict, total=False):
     range: GridRange
 
 @typing.type_check_only
-class TrimWhitespaceResponse(typing_extensions.TypedDict, total=False):
+class TrimWhitespaceResponse(typing.TypedDict, total=False):
     cellsChangedCount: int
 
 @typing.type_check_only
-class UnmergeCellsRequest(typing_extensions.TypedDict, total=False):
+class UnmergeCellsRequest(typing.TypedDict, total=False):
     range: GridRange
 
 @typing.type_check_only
-class UpdateBandingRequest(typing_extensions.TypedDict, total=False):
+class UpdateBandingRequest(typing.TypedDict, total=False):
     bandedRange: BandedRange
     fields: str
 
 @typing.type_check_only
-class UpdateBordersRequest(typing_extensions.TypedDict, total=False):
+class UpdateBordersRequest(typing.TypedDict, total=False):
     bottom: Border
     innerHorizontal: Border
     innerVertical: Border
@@ -2020,117 +1996,117 @@ class UpdateBordersRequest(typing_extensions.TypedDict, total=False):
     top: Border
 
 @typing.type_check_only
-class UpdateCellsRequest(typing_extensions.TypedDict, total=False):
+class UpdateCellsRequest(typing.TypedDict, total=False):
     fields: str
     range: GridRange
     rows: _list[RowData]
     start: GridCoordinate
 
 @typing.type_check_only
-class UpdateChartSpecRequest(typing_extensions.TypedDict, total=False):
+class UpdateChartSpecRequest(typing.TypedDict, total=False):
     chartId: int
     spec: ChartSpec
 
 @typing.type_check_only
-class UpdateConditionalFormatRuleRequest(typing_extensions.TypedDict, total=False):
+class UpdateConditionalFormatRuleRequest(typing.TypedDict, total=False):
     index: int
     newIndex: int
     rule: ConditionalFormatRule
     sheetId: int
 
 @typing.type_check_only
-class UpdateConditionalFormatRuleResponse(typing_extensions.TypedDict, total=False):
+class UpdateConditionalFormatRuleResponse(typing.TypedDict, total=False):
     newIndex: int
     newRule: ConditionalFormatRule
     oldIndex: int
     oldRule: ConditionalFormatRule
 
 @typing.type_check_only
-class UpdateDataSourceRequest(typing_extensions.TypedDict, total=False):
+class UpdateDataSourceRequest(typing.TypedDict, total=False):
     dataSource: DataSource
     fields: str
 
 @typing.type_check_only
-class UpdateDataSourceResponse(typing_extensions.TypedDict, total=False):
+class UpdateDataSourceResponse(typing.TypedDict, total=False):
     dataExecutionStatus: DataExecutionStatus
     dataSource: DataSource
 
 @typing.type_check_only
-class UpdateDeveloperMetadataRequest(typing_extensions.TypedDict, total=False):
+class UpdateDeveloperMetadataRequest(typing.TypedDict, total=False):
     dataFilters: _list[DataFilter]
     developerMetadata: DeveloperMetadata
     fields: str
 
 @typing.type_check_only
-class UpdateDeveloperMetadataResponse(typing_extensions.TypedDict, total=False):
+class UpdateDeveloperMetadataResponse(typing.TypedDict, total=False):
     developerMetadata: _list[DeveloperMetadata]
 
 @typing.type_check_only
-class UpdateDimensionGroupRequest(typing_extensions.TypedDict, total=False):
+class UpdateDimensionGroupRequest(typing.TypedDict, total=False):
     dimensionGroup: DimensionGroup
     fields: str
 
 @typing.type_check_only
-class UpdateDimensionPropertiesRequest(typing_extensions.TypedDict, total=False):
+class UpdateDimensionPropertiesRequest(typing.TypedDict, total=False):
     dataSourceSheetRange: DataSourceSheetDimensionRange
     fields: str
     properties: DimensionProperties
     range: DimensionRange
 
 @typing.type_check_only
-class UpdateEmbeddedObjectBorderRequest(typing_extensions.TypedDict, total=False):
+class UpdateEmbeddedObjectBorderRequest(typing.TypedDict, total=False):
     border: EmbeddedObjectBorder
     fields: str
     objectId: int
 
 @typing.type_check_only
-class UpdateEmbeddedObjectPositionRequest(typing_extensions.TypedDict, total=False):
+class UpdateEmbeddedObjectPositionRequest(typing.TypedDict, total=False):
     fields: str
     newPosition: EmbeddedObjectPosition
     objectId: int
 
 @typing.type_check_only
-class UpdateEmbeddedObjectPositionResponse(typing_extensions.TypedDict, total=False):
+class UpdateEmbeddedObjectPositionResponse(typing.TypedDict, total=False):
     position: EmbeddedObjectPosition
 
 @typing.type_check_only
-class UpdateFilterViewRequest(typing_extensions.TypedDict, total=False):
+class UpdateFilterViewRequest(typing.TypedDict, total=False):
     fields: str
     filter: FilterView
 
 @typing.type_check_only
-class UpdateNamedRangeRequest(typing_extensions.TypedDict, total=False):
+class UpdateNamedRangeRequest(typing.TypedDict, total=False):
     fields: str
     namedRange: NamedRange
 
 @typing.type_check_only
-class UpdateProtectedRangeRequest(typing_extensions.TypedDict, total=False):
+class UpdateProtectedRangeRequest(typing.TypedDict, total=False):
     fields: str
     protectedRange: ProtectedRange
 
 @typing.type_check_only
-class UpdateSheetPropertiesRequest(typing_extensions.TypedDict, total=False):
+class UpdateSheetPropertiesRequest(typing.TypedDict, total=False):
     fields: str
     properties: SheetProperties
 
 @typing.type_check_only
-class UpdateSlicerSpecRequest(typing_extensions.TypedDict, total=False):
+class UpdateSlicerSpecRequest(typing.TypedDict, total=False):
     fields: str
     slicerId: int
     spec: SlicerSpec
 
 @typing.type_check_only
-class UpdateSpreadsheetPropertiesRequest(typing_extensions.TypedDict, total=False):
+class UpdateSpreadsheetPropertiesRequest(typing.TypedDict, total=False):
     fields: str
     properties: SpreadsheetProperties
 
 @typing.type_check_only
-class UpdateTableRequest(typing_extensions.TypedDict, total=False):
+class UpdateTableRequest(typing.TypedDict, total=False):
     fields: str
     table: Table
 
 @typing.type_check_only
-class UpdateValuesByDataFilterResponse(typing_extensions.TypedDict, total=False):
+class UpdateValuesByDataFilterResponse(typing.TypedDict, total=False):
     dataFilter: DataFilter
     updatedCells: int
     updatedColumns: int
@@ -2139,7 +2115,7 @@ class UpdateValuesByDataFilterResponse(typing_extensions.TypedDict, total=False)
     updatedRows: int
 
 @typing.type_check_only
-class UpdateValuesResponse(typing_extensions.TypedDict, total=False):
+class UpdateValuesResponse(typing.TypedDict, total=False):
     spreadsheetId: str
     updatedCells: int
     updatedColumns: int
@@ -2148,32 +2124,30 @@ class UpdateValuesResponse(typing_extensions.TypedDict, total=False):
     updatedRows: int
 
 @typing.type_check_only
-class ValueRange(typing_extensions.TypedDict, total=False):
-    majorDimension: typing_extensions.Literal[
-        "DIMENSION_UNSPECIFIED", "ROWS", "COLUMNS"
-    ]
+class ValueRange(typing.TypedDict, total=False):
+    majorDimension: typing.Literal["DIMENSION_UNSPECIFIED", "ROWS", "COLUMNS"]
     range: str
     values: _list[_list[typing.Any]]
 
 @typing.type_check_only
-class WaterfallChartColumnStyle(typing_extensions.TypedDict, total=False):
+class WaterfallChartColumnStyle(typing.TypedDict, total=False):
     color: Color
     colorStyle: ColorStyle
     label: str
 
 @typing.type_check_only
-class WaterfallChartCustomSubtotal(typing_extensions.TypedDict, total=False):
+class WaterfallChartCustomSubtotal(typing.TypedDict, total=False):
     dataIsSubtotal: bool
     label: str
     subtotalIndex: int
 
 @typing.type_check_only
-class WaterfallChartDomain(typing_extensions.TypedDict, total=False):
+class WaterfallChartDomain(typing.TypedDict, total=False):
     data: ChartData
     reversed: bool
 
 @typing.type_check_only
-class WaterfallChartSeries(typing_extensions.TypedDict, total=False):
+class WaterfallChartSeries(typing.TypedDict, total=False):
     customSubtotals: _list[WaterfallChartCustomSubtotal]
     data: ChartData
     dataLabel: DataLabel
@@ -2183,13 +2157,13 @@ class WaterfallChartSeries(typing_extensions.TypedDict, total=False):
     subtotalColumnsStyle: WaterfallChartColumnStyle
 
 @typing.type_check_only
-class WaterfallChartSpec(typing_extensions.TypedDict, total=False):
+class WaterfallChartSpec(typing.TypedDict, total=False):
     connectorLineStyle: LineStyle
     domain: WaterfallChartDomain
     firstValueIsTotal: bool
     hideConnectorLines: bool
     series: _list[WaterfallChartSeries]
-    stackedType: typing_extensions.Literal[
+    stackedType: typing.Literal[
         "WATERFALL_STACKED_TYPE_UNSPECIFIED", "STACKED", "SEQUENTIAL"
     ]
     totalDataLabel: DataLabel

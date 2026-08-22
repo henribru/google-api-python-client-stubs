@@ -1,16 +1,14 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class GoogleGeoTypeViewport(typing_extensions.TypedDict, total=False):
+class GoogleGeoTypeViewport(typing.TypedDict, total=False):
     high: GoogleTypeLatLng
     low: GoogleTypeLatLng
 
 @typing.type_check_only
-class GoogleMapsAddressvalidationV1Address(typing_extensions.TypedDict, total=False):
+class GoogleMapsAddressvalidationV1Address(typing.TypedDict, total=False):
     addressComponents: _list[GoogleMapsAddressvalidationV1AddressComponent]
     formattedAddress: str
     missingComponentTypes: _list[str]
@@ -19,12 +17,10 @@ class GoogleMapsAddressvalidationV1Address(typing_extensions.TypedDict, total=Fa
     unresolvedTokens: _list[str]
 
 @typing.type_check_only
-class GoogleMapsAddressvalidationV1AddressComponent(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleMapsAddressvalidationV1AddressComponent(typing.TypedDict, total=False):
     componentName: GoogleMapsAddressvalidationV1ComponentName
     componentType: str
-    confirmationLevel: typing_extensions.Literal[
+    confirmationLevel: typing.Literal[
         "CONFIRMATION_LEVEL_UNSPECIFIED",
         "CONFIRMED",
         "UNCONFIRMED_BUT_PLAUSIBLE",
@@ -36,22 +32,18 @@ class GoogleMapsAddressvalidationV1AddressComponent(
     unexpected: bool
 
 @typing.type_check_only
-class GoogleMapsAddressvalidationV1AddressMetadata(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleMapsAddressvalidationV1AddressMetadata(typing.TypedDict, total=False):
     business: bool
     poBox: bool
     residential: bool
 
 @typing.type_check_only
-class GoogleMapsAddressvalidationV1ComponentName(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleMapsAddressvalidationV1ComponentName(typing.TypedDict, total=False):
     languageCode: str
     text: str
 
 @typing.type_check_only
-class GoogleMapsAddressvalidationV1Geocode(typing_extensions.TypedDict, total=False):
+class GoogleMapsAddressvalidationV1Geocode(typing.TypedDict, total=False):
     bounds: GoogleGeoTypeViewport
     featureSizeMeters: float
     location: GoogleTypeLatLng
@@ -60,21 +52,19 @@ class GoogleMapsAddressvalidationV1Geocode(typing_extensions.TypedDict, total=Fa
     plusCode: GoogleMapsAddressvalidationV1PlusCode
 
 @typing.type_check_only
-class GoogleMapsAddressvalidationV1LanguageOptions(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleMapsAddressvalidationV1LanguageOptions(typing.TypedDict, total=False):
     returnEnglishLatinAddress: bool
 
 @typing.type_check_only
-class GoogleMapsAddressvalidationV1PlusCode(typing_extensions.TypedDict, total=False):
+class GoogleMapsAddressvalidationV1PlusCode(typing.TypedDict, total=False):
     compoundCode: str
     globalCode: str
 
 @typing.type_check_only
 class GoogleMapsAddressvalidationV1ProvideValidationFeedbackRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
-    conclusion: typing_extensions.Literal[
+    conclusion: typing.Literal[
         "VALIDATION_CONCLUSION_UNSPECIFIED",
         "VALIDATED_VERSION_USED",
         "USER_VERSION_USED",
@@ -85,13 +75,11 @@ class GoogleMapsAddressvalidationV1ProvideValidationFeedbackRequest(
 
 @typing.type_check_only
 class GoogleMapsAddressvalidationV1ProvideValidationFeedbackResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ): ...
 
 @typing.type_check_only
-class GoogleMapsAddressvalidationV1UspsAddress(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleMapsAddressvalidationV1UspsAddress(typing.TypedDict, total=False):
     city: str
     cityStateZipAddressLine: str
     firm: str
@@ -103,7 +91,7 @@ class GoogleMapsAddressvalidationV1UspsAddress(
     zipCodeExtension: str
 
 @typing.type_check_only
-class GoogleMapsAddressvalidationV1UspsData(typing_extensions.TypedDict, total=False):
+class GoogleMapsAddressvalidationV1UspsData(typing.TypedDict, total=False):
     abbreviatedCity: str
     addressRecordType: str
     carrierRoute: str
@@ -144,7 +132,7 @@ class GoogleMapsAddressvalidationV1UspsData(typing_extensions.TypedDict, total=F
 
 @typing.type_check_only
 class GoogleMapsAddressvalidationV1ValidateAddressRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     address: GoogleTypePostalAddress
     enableUspsCass: bool
@@ -154,15 +142,13 @@ class GoogleMapsAddressvalidationV1ValidateAddressRequest(
 
 @typing.type_check_only
 class GoogleMapsAddressvalidationV1ValidateAddressResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     responseId: str
     result: GoogleMapsAddressvalidationV1ValidationResult
 
 @typing.type_check_only
-class GoogleMapsAddressvalidationV1ValidationResult(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleMapsAddressvalidationV1ValidationResult(typing.TypedDict, total=False):
     address: GoogleMapsAddressvalidationV1Address
     englishLatinAddress: GoogleMapsAddressvalidationV1Address
     geocode: GoogleMapsAddressvalidationV1Geocode
@@ -171,9 +157,9 @@ class GoogleMapsAddressvalidationV1ValidationResult(
     verdict: GoogleMapsAddressvalidationV1Verdict
 
 @typing.type_check_only
-class GoogleMapsAddressvalidationV1Verdict(typing_extensions.TypedDict, total=False):
+class GoogleMapsAddressvalidationV1Verdict(typing.TypedDict, total=False):
     addressComplete: bool
-    geocodeGranularity: typing_extensions.Literal[
+    geocodeGranularity: typing.Literal[
         "GRANULARITY_UNSPECIFIED",
         "SUB_PREMISE",
         "PREMISE",
@@ -186,7 +172,7 @@ class GoogleMapsAddressvalidationV1Verdict(typing_extensions.TypedDict, total=Fa
     hasReplacedComponents: bool
     hasSpellCorrectedComponents: bool
     hasUnconfirmedComponents: bool
-    inputGranularity: typing_extensions.Literal[
+    inputGranularity: typing.Literal[
         "GRANULARITY_UNSPECIFIED",
         "SUB_PREMISE",
         "PREMISE",
@@ -195,14 +181,14 @@ class GoogleMapsAddressvalidationV1Verdict(typing_extensions.TypedDict, total=Fa
         "ROUTE",
         "OTHER",
     ]
-    possibleNextAction: typing_extensions.Literal[
+    possibleNextAction: typing.Literal[
         "POSSIBLE_NEXT_ACTION_UNSPECIFIED",
         "FIX",
         "CONFIRM_ADD_SUBPREMISES",
         "CONFIRM",
         "ACCEPT",
     ]
-    validationGranularity: typing_extensions.Literal[
+    validationGranularity: typing.Literal[
         "GRANULARITY_UNSPECIFIED",
         "SUB_PREMISE",
         "PREMISE",
@@ -213,12 +199,12 @@ class GoogleMapsAddressvalidationV1Verdict(typing_extensions.TypedDict, total=Fa
     ]
 
 @typing.type_check_only
-class GoogleTypeLatLng(typing_extensions.TypedDict, total=False):
+class GoogleTypeLatLng(typing.TypedDict, total=False):
     latitude: float
     longitude: float
 
 @typing.type_check_only
-class GoogleTypePostalAddress(typing_extensions.TypedDict, total=False):
+class GoogleTypePostalAddress(typing.TypedDict, total=False):
     addressLines: _list[str]
     administrativeArea: str
     languageCode: str

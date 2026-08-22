@@ -1,44 +1,42 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class SasPortalAssignment(typing_extensions.TypedDict, total=False):
+class SasPortalAssignment(typing.TypedDict, total=False):
     members: _list[str]
     role: str
 
 @typing.type_check_only
-class SasPortalChannelWithScore(typing_extensions.TypedDict, total=False):
+class SasPortalChannelWithScore(typing.TypedDict, total=False):
     frequencyRange: SasPortalFrequencyRange
     score: float
 
 @typing.type_check_only
-class SasPortalCreateSignedDeviceRequest(typing_extensions.TypedDict, total=False):
+class SasPortalCreateSignedDeviceRequest(typing.TypedDict, total=False):
     encodedDevice: str
     installerId: str
 
 @typing.type_check_only
-class SasPortalCustomer(typing_extensions.TypedDict, total=False):
+class SasPortalCustomer(typing.TypedDict, total=False):
     displayName: str
     name: str
     sasUserIds: _list[str]
 
 @typing.type_check_only
-class SasPortalDeployment(typing_extensions.TypedDict, total=False):
+class SasPortalDeployment(typing.TypedDict, total=False):
     displayName: str
     frns: _list[str]
     name: str
     sasUserIds: _list[str]
 
 @typing.type_check_only
-class SasPortalDeploymentAssociation(typing_extensions.TypedDict, total=False):
+class SasPortalDeploymentAssociation(typing.TypedDict, total=False):
     gcpProjectId: str
     userId: str
 
 @typing.type_check_only
-class SasPortalDevice(typing_extensions.TypedDict, total=False):
+class SasPortalDevice(typing.TypedDict, total=False):
     activeConfig: SasPortalDeviceConfig
     currentChannels: _list[SasPortalChannelWithScore]
     deviceMetadata: SasPortalDeviceMetadata
@@ -49,13 +47,13 @@ class SasPortalDevice(typing_extensions.TypedDict, total=False):
     name: str
     preloadedConfig: SasPortalDeviceConfig
     serialNumber: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "DEVICE_STATE_UNSPECIFIED", "RESERVED", "REGISTERED", "DEREGISTERED"
     ]
 
 @typing.type_check_only
-class SasPortalDeviceAirInterface(typing_extensions.TypedDict, total=False):
-    radioTechnology: typing_extensions.Literal[
+class SasPortalDeviceAirInterface(typing.TypedDict, total=False):
+    radioTechnology: typing.Literal[
         "RADIO_TECHNOLOGY_UNSPECIFIED",
         "E_UTRA",
         "CAMBIUM_NETWORKS",
@@ -70,31 +68,29 @@ class SasPortalDeviceAirInterface(typing_extensions.TypedDict, total=False):
     supportedSpec: str
 
 @typing.type_check_only
-class SasPortalDeviceConfig(typing_extensions.TypedDict, total=False):
+class SasPortalDeviceConfig(typing.TypedDict, total=False):
     airInterface: SasPortalDeviceAirInterface
     callSign: str
-    category: typing_extensions.Literal[
+    category: typing.Literal[
         "DEVICE_CATEGORY_UNSPECIFIED", "DEVICE_CATEGORY_A", "DEVICE_CATEGORY_B"
     ]
     installationParams: SasPortalInstallationParams
     isSigned: bool
     measurementCapabilities: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "MEASUREMENT_CAPABILITY_UNSPECIFIED",
             "MEASUREMENT_CAPABILITY_RECEIVED_POWER_WITH_GRANT",
             "MEASUREMENT_CAPABILITY_RECEIVED_POWER_WITHOUT_GRANT",
         ]
     ]
     model: SasPortalDeviceModel
-    state: typing_extensions.Literal[
-        "DEVICE_CONFIG_STATE_UNSPECIFIED", "DRAFT", "FINAL"
-    ]
+    state: typing.Literal["DEVICE_CONFIG_STATE_UNSPECIFIED", "DRAFT", "FINAL"]
     updateTime: str
     userId: str
 
 @typing.type_check_only
-class SasPortalDeviceGrant(typing_extensions.TypedDict, total=False):
-    channelType: typing_extensions.Literal[
+class SasPortalDeviceGrant(typing.TypedDict, total=False):
+    channelType: typing.Literal[
         "CHANNEL_TYPE_UNSPECIFIED", "CHANNEL_TYPE_GAA", "CHANNEL_TYPE_PAL"
     ]
     expireTime: str
@@ -103,7 +99,7 @@ class SasPortalDeviceGrant(typing_extensions.TypedDict, total=False):
     lastHeartbeatTransmitExpireTime: str
     maxEirp: float
     moveList: _list[SasPortalDpaMoveList]
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "GRANT_STATE_UNSPECIFIED",
         "GRANT_STATE_GRANTED",
         "GRANT_STATE_TERMINATED",
@@ -114,7 +110,7 @@ class SasPortalDeviceGrant(typing_extensions.TypedDict, total=False):
     suspensionReason: _list[str]
 
 @typing.type_check_only
-class SasPortalDeviceMetadata(typing_extensions.TypedDict, total=False):
+class SasPortalDeviceMetadata(typing.TypedDict, total=False):
     antennaModel: str
     commonChannelGroup: str
     interferenceCoordinationGroup: str
@@ -122,7 +118,7 @@ class SasPortalDeviceMetadata(typing_extensions.TypedDict, total=False):
     nrqzValidation: SasPortalNrqzValidation
 
 @typing.type_check_only
-class SasPortalDeviceModel(typing_extensions.TypedDict, total=False):
+class SasPortalDeviceModel(typing.TypedDict, total=False):
     firmwareVersion: str
     hardwareVersion: str
     name: str
@@ -130,36 +126,36 @@ class SasPortalDeviceModel(typing_extensions.TypedDict, total=False):
     vendor: str
 
 @typing.type_check_only
-class SasPortalDpaMoveList(typing_extensions.TypedDict, total=False):
+class SasPortalDpaMoveList(typing.TypedDict, total=False):
     dpaId: str
     frequencyRange: SasPortalFrequencyRange
 
 @typing.type_check_only
-class SasPortalEmpty(typing_extensions.TypedDict, total=False): ...
+class SasPortalEmpty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class SasPortalFrequencyRange(typing_extensions.TypedDict, total=False):
+class SasPortalFrequencyRange(typing.TypedDict, total=False):
     highFrequencyMhz: float
     lowFrequencyMhz: float
 
 @typing.type_check_only
-class SasPortalGcpProjectDeployment(typing_extensions.TypedDict, total=False):
+class SasPortalGcpProjectDeployment(typing.TypedDict, total=False):
     deployment: SasPortalDeployment
     hasEnabledAnalytics: bool
 
 @typing.type_check_only
-class SasPortalGenerateSecretRequest(typing_extensions.TypedDict, total=False): ...
+class SasPortalGenerateSecretRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class SasPortalGenerateSecretResponse(typing_extensions.TypedDict, total=False):
+class SasPortalGenerateSecretResponse(typing.TypedDict, total=False):
     secret: str
 
 @typing.type_check_only
-class SasPortalGetPolicyRequest(typing_extensions.TypedDict, total=False):
+class SasPortalGetPolicyRequest(typing.TypedDict, total=False):
     resource: str
 
 @typing.type_check_only
-class SasPortalInstallationParams(typing_extensions.TypedDict, total=False):
+class SasPortalInstallationParams(typing.TypedDict, total=False):
     antennaAzimuth: int
     antennaBeamwidth: int
     antennaDowntilt: int
@@ -168,7 +164,7 @@ class SasPortalInstallationParams(typing_extensions.TypedDict, total=False):
     cpeCbsdIndication: bool
     eirpCapability: int
     height: float
-    heightType: typing_extensions.Literal[
+    heightType: typing.Literal[
         "HEIGHT_TYPE_UNSPECIFIED", "HEIGHT_TYPE_AGL", "HEIGHT_TYPE_AMSL"
     ]
     horizontalAccuracy: float
@@ -178,40 +174,36 @@ class SasPortalInstallationParams(typing_extensions.TypedDict, total=False):
     verticalAccuracy: float
 
 @typing.type_check_only
-class SasPortalListCustomersResponse(typing_extensions.TypedDict, total=False):
+class SasPortalListCustomersResponse(typing.TypedDict, total=False):
     customers: _list[SasPortalCustomer]
     nextPageToken: str
 
 @typing.type_check_only
-class SasPortalListDeploymentsResponse(typing_extensions.TypedDict, total=False):
+class SasPortalListDeploymentsResponse(typing.TypedDict, total=False):
     deployments: _list[SasPortalDeployment]
     nextPageToken: str
 
 @typing.type_check_only
-class SasPortalListDevicesResponse(typing_extensions.TypedDict, total=False):
+class SasPortalListDevicesResponse(typing.TypedDict, total=False):
     devices: _list[SasPortalDevice]
     nextPageToken: str
 
 @typing.type_check_only
-class SasPortalListGcpProjectDeploymentsResponse(
-    typing_extensions.TypedDict, total=False
-):
+class SasPortalListGcpProjectDeploymentsResponse(typing.TypedDict, total=False):
     deployments: _list[SasPortalGcpProjectDeployment]
 
 @typing.type_check_only
-class SasPortalListLegacyOrganizationsResponse(
-    typing_extensions.TypedDict, total=False
-):
+class SasPortalListLegacyOrganizationsResponse(typing.TypedDict, total=False):
     organizations: _list[SasPortalOrganization]
 
 @typing.type_check_only
-class SasPortalListNodesResponse(typing_extensions.TypedDict, total=False):
+class SasPortalListNodesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     nodes: _list[SasPortalNode]
 
 @typing.type_check_only
-class SasPortalMigrateOrganizationMetadata(typing_extensions.TypedDict, total=False):
-    operationState: typing_extensions.Literal[
+class SasPortalMigrateOrganizationMetadata(typing.TypedDict, total=False):
+    operationState: typing.Literal[
         "OPERATION_STATE_UNSPECIFIED",
         "OPERATION_STATE_PENDING",
         "OPERATION_STATE_RUNNING",
@@ -220,41 +212,41 @@ class SasPortalMigrateOrganizationMetadata(typing_extensions.TypedDict, total=Fa
     ]
 
 @typing.type_check_only
-class SasPortalMigrateOrganizationRequest(typing_extensions.TypedDict, total=False):
+class SasPortalMigrateOrganizationRequest(typing.TypedDict, total=False):
     organizationId: str
 
 @typing.type_check_only
-class SasPortalMigrateOrganizationResponse(typing_extensions.TypedDict, total=False):
+class SasPortalMigrateOrganizationResponse(typing.TypedDict, total=False):
     deploymentAssociation: _list[SasPortalDeploymentAssociation]
 
 @typing.type_check_only
-class SasPortalMoveDeploymentRequest(typing_extensions.TypedDict, total=False):
+class SasPortalMoveDeploymentRequest(typing.TypedDict, total=False):
     destination: str
 
 @typing.type_check_only
-class SasPortalMoveDeviceRequest(typing_extensions.TypedDict, total=False):
+class SasPortalMoveDeviceRequest(typing.TypedDict, total=False):
     destination: str
 
 @typing.type_check_only
-class SasPortalMoveNodeRequest(typing_extensions.TypedDict, total=False):
+class SasPortalMoveNodeRequest(typing.TypedDict, total=False):
     destination: str
 
 @typing.type_check_only
-class SasPortalNode(typing_extensions.TypedDict, total=False):
+class SasPortalNode(typing.TypedDict, total=False):
     displayName: str
     name: str
     sasUserIds: _list[str]
 
 @typing.type_check_only
-class SasPortalNrqzValidation(typing_extensions.TypedDict, total=False):
+class SasPortalNrqzValidation(typing.TypedDict, total=False):
     caseId: str
     cpiId: str
     latitude: float
     longitude: float
-    state: typing_extensions.Literal["STATE_UNSPECIFIED", "DRAFT", "FINAL"]
+    state: typing.Literal["STATE_UNSPECIFIED", "DRAFT", "FINAL"]
 
 @typing.type_check_only
-class SasPortalOperation(typing_extensions.TypedDict, total=False):
+class SasPortalOperation(typing.TypedDict, total=False):
     done: bool
     error: SasPortalStatus
     metadata: dict[str, typing.Any]
@@ -262,70 +254,70 @@ class SasPortalOperation(typing_extensions.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
-class SasPortalOrganization(typing_extensions.TypedDict, total=False):
+class SasPortalOrganization(typing.TypedDict, total=False):
     displayName: str
     id: str
 
 @typing.type_check_only
-class SasPortalPolicy(typing_extensions.TypedDict, total=False):
+class SasPortalPolicy(typing.TypedDict, total=False):
     assignments: _list[SasPortalAssignment]
     etag: str
 
 @typing.type_check_only
-class SasPortalProvisionDeploymentRequest(typing_extensions.TypedDict, total=False):
+class SasPortalProvisionDeploymentRequest(typing.TypedDict, total=False):
     newDeploymentDisplayName: str
     newOrganizationDisplayName: str
     organizationId: str
 
 @typing.type_check_only
-class SasPortalProvisionDeploymentResponse(typing_extensions.TypedDict, total=False):
+class SasPortalProvisionDeploymentResponse(typing.TypedDict, total=False):
     errorMessage: str
 
 @typing.type_check_only
-class SasPortalSetPolicyRequest(typing_extensions.TypedDict, total=False):
+class SasPortalSetPolicyRequest(typing.TypedDict, total=False):
     disableNotification: bool
     policy: SasPortalPolicy
     resource: str
 
 @typing.type_check_only
-class SasPortalSetupSasAnalyticsMetadata(typing_extensions.TypedDict, total=False): ...
+class SasPortalSetupSasAnalyticsMetadata(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class SasPortalSetupSasAnalyticsRequest(typing_extensions.TypedDict, total=False):
+class SasPortalSetupSasAnalyticsRequest(typing.TypedDict, total=False):
     userId: str
 
 @typing.type_check_only
-class SasPortalSetupSasAnalyticsResponse(typing_extensions.TypedDict, total=False): ...
+class SasPortalSetupSasAnalyticsResponse(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class SasPortalSignDeviceRequest(typing_extensions.TypedDict, total=False):
+class SasPortalSignDeviceRequest(typing.TypedDict, total=False):
     device: SasPortalDevice
 
 @typing.type_check_only
-class SasPortalStatus(typing_extensions.TypedDict, total=False):
+class SasPortalStatus(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
-class SasPortalTestPermissionsRequest(typing_extensions.TypedDict, total=False):
+class SasPortalTestPermissionsRequest(typing.TypedDict, total=False):
     permissions: _list[str]
     resource: str
 
 @typing.type_check_only
-class SasPortalTestPermissionsResponse(typing_extensions.TypedDict, total=False):
+class SasPortalTestPermissionsResponse(typing.TypedDict, total=False):
     permissions: _list[str]
 
 @typing.type_check_only
-class SasPortalUpdateSignedDeviceRequest(typing_extensions.TypedDict, total=False):
+class SasPortalUpdateSignedDeviceRequest(typing.TypedDict, total=False):
     encodedDevice: str
     installerId: str
 
 @typing.type_check_only
-class SasPortalValidateInstallerRequest(typing_extensions.TypedDict, total=False):
+class SasPortalValidateInstallerRequest(typing.TypedDict, total=False):
     encodedSecret: str
     installerId: str
     secret: str
 
 @typing.type_check_only
-class SasPortalValidateInstallerResponse(typing_extensions.TypedDict, total=False): ...
+class SasPortalValidateInstallerResponse(typing.TypedDict, total=False): ...

@@ -1,22 +1,16 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class GoogleCloudOrgpolicyV2AlternatePolicySpec(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudOrgpolicyV2AlternatePolicySpec(typing.TypedDict, total=False):
     launch: str
     spec: GoogleCloudOrgpolicyV2PolicySpec
 
 @typing.type_check_only
-class GoogleCloudOrgpolicyV2Constraint(typing_extensions.TypedDict, total=False):
+class GoogleCloudOrgpolicyV2Constraint(typing.TypedDict, total=False):
     booleanConstraint: GoogleCloudOrgpolicyV2ConstraintBooleanConstraint
-    constraintDefault: typing_extensions.Literal[
-        "CONSTRAINT_DEFAULT_UNSPECIFIED", "ALLOW", "DENY"
-    ]
+    constraintDefault: typing.Literal["CONSTRAINT_DEFAULT_UNSPECIFIED", "ALLOW", "DENY"]
     description: str
     displayName: str
     equivalentConstraint: str
@@ -26,21 +20,19 @@ class GoogleCloudOrgpolicyV2Constraint(typing_extensions.TypedDict, total=False)
     supportsSimulation: bool
 
 @typing.type_check_only
-class GoogleCloudOrgpolicyV2ConstraintBooleanConstraint(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudOrgpolicyV2ConstraintBooleanConstraint(typing.TypedDict, total=False):
     customConstraintDefinition: (
         GoogleCloudOrgpolicyV2ConstraintCustomConstraintDefinition
     )
 
 @typing.type_check_only
 class GoogleCloudOrgpolicyV2ConstraintCustomConstraintDefinition(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
-    actionType: typing_extensions.Literal["ACTION_TYPE_UNSPECIFIED", "ALLOW", "DENY"]
+    actionType: typing.Literal["ACTION_TYPE_UNSPECIFIED", "ALLOW", "DENY"]
     condition: str
     methodTypes: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "METHOD_TYPE_UNSPECIFIED",
             "CREATE",
             "UPDATE",
@@ -54,37 +46,35 @@ class GoogleCloudOrgpolicyV2ConstraintCustomConstraintDefinition(
 
 @typing.type_check_only
 class GoogleCloudOrgpolicyV2ConstraintCustomConstraintDefinitionParameter(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     defaultValue: typing.Any
-    item: typing_extensions.Literal["TYPE_UNSPECIFIED", "LIST", "STRING", "BOOLEAN"]
+    item: typing.Literal["TYPE_UNSPECIFIED", "LIST", "STRING", "BOOLEAN"]
     metadata: (
         GoogleCloudOrgpolicyV2ConstraintCustomConstraintDefinitionParameterMetadata
     )
-    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "LIST", "STRING", "BOOLEAN"]
+    type: typing.Literal["TYPE_UNSPECIFIED", "LIST", "STRING", "BOOLEAN"]
     validValuesExpr: str
 
 @typing.type_check_only
 class GoogleCloudOrgpolicyV2ConstraintCustomConstraintDefinitionParameterMetadata(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     description: str
 
 @typing.type_check_only
-class GoogleCloudOrgpolicyV2ConstraintListConstraint(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudOrgpolicyV2ConstraintListConstraint(typing.TypedDict, total=False):
     supportsIn: bool
     supportsUnder: bool
 
 @typing.type_check_only
-class GoogleCloudOrgpolicyV2CustomConstraint(typing_extensions.TypedDict, total=False):
-    actionType: typing_extensions.Literal["ACTION_TYPE_UNSPECIFIED", "ALLOW", "DENY"]
+class GoogleCloudOrgpolicyV2CustomConstraint(typing.TypedDict, total=False):
+    actionType: typing.Literal["ACTION_TYPE_UNSPECIFIED", "ALLOW", "DENY"]
     condition: str
     description: str
     displayName: str
     methodTypes: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "METHOD_TYPE_UNSPECIFIED",
             "CREATE",
             "UPDATE",
@@ -98,28 +88,24 @@ class GoogleCloudOrgpolicyV2CustomConstraint(typing_extensions.TypedDict, total=
     updateTime: str
 
 @typing.type_check_only
-class GoogleCloudOrgpolicyV2ListConstraintsResponse(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudOrgpolicyV2ListConstraintsResponse(typing.TypedDict, total=False):
     constraints: _list[GoogleCloudOrgpolicyV2Constraint]
     nextPageToken: str
 
 @typing.type_check_only
 class GoogleCloudOrgpolicyV2ListCustomConstraintsResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     customConstraints: _list[GoogleCloudOrgpolicyV2CustomConstraint]
     nextPageToken: str
 
 @typing.type_check_only
-class GoogleCloudOrgpolicyV2ListPoliciesResponse(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudOrgpolicyV2ListPoliciesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     policies: _list[GoogleCloudOrgpolicyV2Policy]
 
 @typing.type_check_only
-class GoogleCloudOrgpolicyV2Policy(typing_extensions.TypedDict, total=False):
+class GoogleCloudOrgpolicyV2Policy(typing.TypedDict, total=False):
     alternate: GoogleCloudOrgpolicyV2AlternatePolicySpec
     dryRunSpec: GoogleCloudOrgpolicyV2PolicySpec
     etag: str
@@ -127,7 +113,7 @@ class GoogleCloudOrgpolicyV2Policy(typing_extensions.TypedDict, total=False):
     spec: GoogleCloudOrgpolicyV2PolicySpec
 
 @typing.type_check_only
-class GoogleCloudOrgpolicyV2PolicySpec(typing_extensions.TypedDict, total=False):
+class GoogleCloudOrgpolicyV2PolicySpec(typing.TypedDict, total=False):
     etag: str
     inheritFromParent: bool
     reset: bool
@@ -135,9 +121,7 @@ class GoogleCloudOrgpolicyV2PolicySpec(typing_extensions.TypedDict, total=False)
     updateTime: str
 
 @typing.type_check_only
-class GoogleCloudOrgpolicyV2PolicySpecPolicyRule(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudOrgpolicyV2PolicySpecPolicyRule(typing.TypedDict, total=False):
     allowAll: bool
     condition: GoogleTypeExpr
     denyAll: bool
@@ -147,16 +131,16 @@ class GoogleCloudOrgpolicyV2PolicySpecPolicyRule(
 
 @typing.type_check_only
 class GoogleCloudOrgpolicyV2PolicySpecPolicyRuleStringValues(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     allowedValues: _list[str]
     deniedValues: _list[str]
 
 @typing.type_check_only
-class GoogleProtobufEmpty(typing_extensions.TypedDict, total=False): ...
+class GoogleProtobufEmpty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class GoogleTypeExpr(typing_extensions.TypedDict, total=False):
+class GoogleTypeExpr(typing.TypedDict, total=False):
     description: str
     expression: str
     location: str

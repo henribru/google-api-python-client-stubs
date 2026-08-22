@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -143,7 +142,7 @@ class ToolResultsResource(googleapiclient.discovery.Resource):
                             historyId: str,
                             executionId: str,
                             stepId: str,
-                            filter: typing_extensions.Literal[
+                            filter: typing.Literal[
                                 "perfMetricTypeUnspecified",
                                 "memory",
                                 "cpu",
@@ -151,7 +150,7 @@ class ToolResultsResource(googleapiclient.discovery.Resource):
                                 "graphics",
                             ]
                             | _list[
-                                typing_extensions.Literal[
+                                typing.Literal[
                                     "perfMetricTypeUnspecified",
                                     "memory",
                                     "cpu",

@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -6351,7 +6350,7 @@ class AiplatformResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        view: typing_extensions.Literal[
+                        view: typing.Literal[
                             "ANALYZED_SESSION_VIEW_UNSPECIFIED",
                             "ANALYZED_SESSION_VIEW_BASIC",
                             "ANALYZED_SESSION_VIEW_FULL",
@@ -6367,7 +6366,7 @@ class AiplatformResource(googleapiclient.discovery.Resource):
                         orderBy: str | None = ...,
                         pageSize: int | None = ...,
                         pageToken: str | None = ...,
-                        view: typing_extensions.Literal[
+                        view: typing.Literal[
                             "ANALYZED_SESSION_VIEW_UNSPECIFIED",
                             "ANALYZED_SESSION_VIEW_BASIC",
                             "ANALYZED_SESSION_VIEW_FULL",
@@ -6546,7 +6545,7 @@ class AiplatformResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    view: typing_extensions.Literal[
+                    view: typing.Literal[
                         "NOTEBOOK_EXECUTION_JOB_VIEW_UNSPECIFIED",
                         "NOTEBOOK_EXECUTION_JOB_VIEW_BASIC",
                         "NOTEBOOK_EXECUTION_JOB_VIEW_FULL",
@@ -6562,7 +6561,7 @@ class AiplatformResource(googleapiclient.discovery.Resource):
                     orderBy: str | None = ...,
                     pageSize: int | None = ...,
                     pageToken: str | None = ...,
-                    view: typing_extensions.Literal[
+                    view: typing.Literal[
                         "NOTEBOOK_EXECUTION_JOB_VIEW_UNSPECIFIED",
                         "NOTEBOOK_EXECUTION_JOB_VIEW_BASIC",
                         "NOTEBOOK_EXECUTION_JOB_VIEW_FULL",
@@ -7758,7 +7757,7 @@ class AiplatformResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        view: typing_extensions.Literal[
+                        view: typing.Literal[
                             "A2A_TASK_VIEW_UNSPECIFIED",
                             "A2A_TASK_VIEW_BASIC",
                             "A2A_TASK_VIEW_FULL",
@@ -10343,7 +10342,7 @@ class AiplatformResource(googleapiclient.discovery.Resource):
                 includeEquivalentModelGardenModelDeploymentConfigs: bool | None = ...,
                 isHuggingFaceModel: bool | None = ...,
                 languageCode: str | None = ...,
-                view: typing_extensions.Literal[
+                view: typing.Literal[
                     "PUBLISHER_MODEL_VIEW_UNSPECIFIED",
                     "PUBLISHER_MODEL_VIEW_BASIC",
                     "PUBLISHER_MODEL_VIEW_FULL",
@@ -10362,7 +10361,7 @@ class AiplatformResource(googleapiclient.discovery.Resource):
                 orderBy: str | None = ...,
                 pageSize: int | None = ...,
                 pageToken: str | None = ...,
-                view: typing_extensions.Literal[
+                view: typing.Literal[
                     "PUBLISHER_MODEL_VIEW_UNSPECIFIED",
                     "PUBLISHER_MODEL_VIEW_BASIC",
                     "PUBLISHER_MODEL_VIEW_FULL",

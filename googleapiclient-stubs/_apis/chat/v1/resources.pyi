@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -135,14 +134,14 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: Message,
-                createMessageNotificationOptions_notificationType: typing_extensions.Literal[
+                createMessageNotificationOptions_notificationType: typing.Literal[
                     "NOTIFICATION_TYPE_NONE",
                     "NOTIFICATION_TYPE_FORCE_NOTIFY",
                     "NOTIFICATION_TYPE_SILENT",
                 ]
                 | None = ...,
                 messageId: str | None = ...,
-                messageReplyOption: typing_extensions.Literal[
+                messageReplyOption: typing.Literal[
                     "MESSAGE_REPLY_OPTION_UNSPECIFIED",
                     "REPLY_MESSAGE_FALLBACK_TO_NEW_THREAD",
                     "REPLY_MESSAGE_OR_FAIL",
@@ -159,7 +158,7 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                markupSyntax: typing_extensions.Literal[
+                markupSyntax: typing.Literal[
                     "MARKUP_SYNTAX_UNSPECIFIED",
                     "MARKUP_SYNTAX_CHAT",
                     "MARKUP_SYNTAX_MARKDOWN",
@@ -172,7 +171,7 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 filter: str | None = ...,
-                markupSyntax: typing_extensions.Literal[
+                markupSyntax: typing.Literal[
                     "MARKUP_SYNTAX_UNSPECIFIED",
                     "MARKUP_SYNTAX_CHAT",
                     "MARKUP_SYNTAX_MARKDOWN",
@@ -255,7 +254,7 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
             *,
             pageSize: int | None = ...,
             pageToken: str | None = ...,
-            spaceView: typing_extensions.Literal[
+            spaceView: typing.Literal[
                 "SPACE_VIEW_UNSPECIFIED",
                 "SPACE_VIEW_RESOURCE_NAME_ONLY",
                 "SPACE_VIEW_EXPANDED",

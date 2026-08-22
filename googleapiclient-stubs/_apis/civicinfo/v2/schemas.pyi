@@ -1,40 +1,30 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class CivicinfoApiprotosV2DivisionByAddressResponse(
-    typing_extensions.TypedDict, total=False
-):
+class CivicinfoApiprotosV2DivisionByAddressResponse(typing.TypedDict, total=False):
     divisions: dict[str, typing.Any]
     normalizedInput: CivicinfoSchemaV2SimpleAddressType
 
 @typing.type_check_only
-class CivicinfoApiprotosV2DivisionSearchResponse(
-    typing_extensions.TypedDict, total=False
-):
+class CivicinfoApiprotosV2DivisionSearchResponse(typing.TypedDict, total=False):
     kind: str
     results: _list[CivicinfoApiprotosV2DivisionSearchResult]
 
 @typing.type_check_only
-class CivicinfoApiprotosV2DivisionSearchResult(
-    typing_extensions.TypedDict, total=False
-):
+class CivicinfoApiprotosV2DivisionSearchResult(typing.TypedDict, total=False):
     aliases: _list[str]
     name: str
     ocdId: str
 
 @typing.type_check_only
-class CivicinfoApiprotosV2ElectionsQueryResponse(
-    typing_extensions.TypedDict, total=False
-):
+class CivicinfoApiprotosV2ElectionsQueryResponse(typing.TypedDict, total=False):
     elections: _list[CivicinfoSchemaV2Election]
     kind: str
 
 @typing.type_check_only
-class CivicinfoApiprotosV2VoterInfoResponse(typing_extensions.TypedDict, total=False):
+class CivicinfoApiprotosV2VoterInfoResponse(typing.TypedDict, total=False):
     contests: _list[CivicinfoSchemaV2Contest]
     dropOffLocations: _list[CivicinfoSchemaV2PollingLocation]
     earlyVoteSites: _list[CivicinfoSchemaV2PollingLocation]
@@ -49,14 +39,14 @@ class CivicinfoApiprotosV2VoterInfoResponse(typing_extensions.TypedDict, total=F
     state: _list[CivicinfoSchemaV2AdministrationRegion]
 
 @typing.type_check_only
-class CivicinfoSchemaV2AdministrationRegion(typing_extensions.TypedDict, total=False):
+class CivicinfoSchemaV2AdministrationRegion(typing.TypedDict, total=False):
     electionAdministrationBody: CivicinfoSchemaV2AdministrativeBody
     local_jurisdiction: CivicinfoSchemaV2AdministrationRegion
     name: str
     sources: _list[CivicinfoSchemaV2Source]
 
 @typing.type_check_only
-class CivicinfoSchemaV2AdministrativeBody(typing_extensions.TypedDict, total=False):
+class CivicinfoSchemaV2AdministrativeBody(typing.TypedDict, total=False):
     absenteeVotingInfoUrl: str
     ballotInfoUrl: str
     correspondenceAddress: CivicinfoSchemaV2SimpleAddressType
@@ -74,7 +64,7 @@ class CivicinfoSchemaV2AdministrativeBody(typing_extensions.TypedDict, total=Fal
     votingLocationFinderUrl: str
 
 @typing.type_check_only
-class CivicinfoSchemaV2Candidate(typing_extensions.TypedDict, total=False):
+class CivicinfoSchemaV2Candidate(typing.TypedDict, total=False):
     candidateUrl: str
     channels: _list[CivicinfoSchemaV2Channel]
     email: str
@@ -85,19 +75,19 @@ class CivicinfoSchemaV2Candidate(typing_extensions.TypedDict, total=False):
     photoUrl: str
 
 @typing.type_check_only
-class CivicinfoSchemaV2Channel(typing_extensions.TypedDict, total=False):
+class CivicinfoSchemaV2Channel(typing.TypedDict, total=False):
     id: str
     type: str
 
 @typing.type_check_only
-class CivicinfoSchemaV2Contest(typing_extensions.TypedDict, total=False):
+class CivicinfoSchemaV2Contest(typing.TypedDict, total=False):
     ballotPlacement: str
     ballotTitle: str
     candidates: _list[CivicinfoSchemaV2Candidate]
     district: CivicinfoSchemaV2ElectoralDistrict
     electorateSpecifications: str
     level: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "international",
             "country",
             "administrativeArea1",
@@ -124,7 +114,7 @@ class CivicinfoSchemaV2Contest(typing_extensions.TypedDict, total=False):
     referendumTitle: str
     referendumUrl: str
     roles: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "headOfState",
             "headOfGovernment",
             "deputyHeadOfGovernment",
@@ -144,17 +134,17 @@ class CivicinfoSchemaV2Contest(typing_extensions.TypedDict, total=False):
     type: str
 
 @typing.type_check_only
-class CivicinfoSchemaV2Election(typing_extensions.TypedDict, total=False):
+class CivicinfoSchemaV2Election(typing.TypedDict, total=False):
     electionDay: str
     id: str
     name: str
     ocdDivisionId: str
-    shapeLookupBehavior: typing_extensions.Literal[
+    shapeLookupBehavior: typing.Literal[
         "shapeLookupDefault", "shapeLookupDisabled", "shapeLookupEnabled"
     ]
 
 @typing.type_check_only
-class CivicinfoSchemaV2ElectionOfficial(typing_extensions.TypedDict, total=False):
+class CivicinfoSchemaV2ElectionOfficial(typing.TypedDict, total=False):
     emailAddress: str
     faxNumber: str
     name: str
@@ -162,10 +152,10 @@ class CivicinfoSchemaV2ElectionOfficial(typing_extensions.TypedDict, total=False
     title: str
 
 @typing.type_check_only
-class CivicinfoSchemaV2ElectoralDistrict(typing_extensions.TypedDict, total=False):
+class CivicinfoSchemaV2ElectoralDistrict(typing.TypedDict, total=False):
     id: str
     name: str
-    scope: typing_extensions.Literal[
+    scope: typing.Literal[
         "statewide",
         "congressional",
         "stateUpper",
@@ -183,13 +173,13 @@ class CivicinfoSchemaV2ElectoralDistrict(typing_extensions.TypedDict, total=Fals
     ]
 
 @typing.type_check_only
-class CivicinfoSchemaV2GeographicDivision(typing_extensions.TypedDict, total=False):
+class CivicinfoSchemaV2GeographicDivision(typing.TypedDict, total=False):
     alsoKnownAs: _list[str]
     name: str
     officeIndices: _list[int]
 
 @typing.type_check_only
-class CivicinfoSchemaV2PollingLocation(typing_extensions.TypedDict, total=False):
+class CivicinfoSchemaV2PollingLocation(typing.TypedDict, total=False):
     address: CivicinfoSchemaV2SimpleAddressType
     endDate: str
     latitude: float
@@ -202,7 +192,7 @@ class CivicinfoSchemaV2PollingLocation(typing_extensions.TypedDict, total=False)
     voterServices: str
 
 @typing.type_check_only
-class CivicinfoSchemaV2Precinct(typing_extensions.TypedDict, total=False):
+class CivicinfoSchemaV2Precinct(typing.TypedDict, total=False):
     administrationRegionId: str
     contestId: _list[str]
     datasetId: str
@@ -219,7 +209,7 @@ class CivicinfoSchemaV2Precinct(typing_extensions.TypedDict, total=False):
     ward: str
 
 @typing.type_check_only
-class CivicinfoSchemaV2SimpleAddressType(typing_extensions.TypedDict, total=False):
+class CivicinfoSchemaV2SimpleAddressType(typing.TypedDict, total=False):
     addressLine: _list[str]
     city: str
     line1: str
@@ -230,6 +220,6 @@ class CivicinfoSchemaV2SimpleAddressType(typing_extensions.TypedDict, total=Fals
     zip: str
 
 @typing.type_check_only
-class CivicinfoSchemaV2Source(typing_extensions.TypedDict, total=False):
+class CivicinfoSchemaV2Source(typing.TypedDict, total=False):
     name: str
     official: bool

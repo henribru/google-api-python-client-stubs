@@ -1,29 +1,27 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class AssignmentInfo(typing_extensions.TypedDict, total=False):
+class AssignmentInfo(typing.TypedDict, total=False):
     driveResourceInfo: DriveResourceInfo
     linkToTask: str
     spaceInfo: SpaceInfo
-    surfaceType: typing_extensions.Literal[
+    surfaceType: typing.Literal[
         "CONTEXT_TYPE_UNSPECIFIED", "GMAIL", "DOCUMENT", "SPACE"
     ]
 
 @typing.type_check_only
-class DriveResourceInfo(typing_extensions.TypedDict, total=False):
+class DriveResourceInfo(typing.TypedDict, total=False):
     driveFileId: str
     resourceKey: str
 
 @typing.type_check_only
-class SpaceInfo(typing_extensions.TypedDict, total=False):
+class SpaceInfo(typing.TypedDict, total=False):
     space: str
 
 @typing.type_check_only
-class Task(typing_extensions.TypedDict, total=False):
+class Task(typing.TypedDict, total=False):
     assignmentInfo: AssignmentInfo
     completed: str
     deleted: bool
@@ -43,7 +41,7 @@ class Task(typing_extensions.TypedDict, total=False):
     webViewLink: str
 
 @typing.type_check_only
-class TaskList(typing_extensions.TypedDict, total=False):
+class TaskList(typing.TypedDict, total=False):
     etag: str
     id: str
     kind: str
@@ -52,14 +50,14 @@ class TaskList(typing_extensions.TypedDict, total=False):
     updated: str
 
 @typing.type_check_only
-class TaskLists(typing_extensions.TypedDict, total=False):
+class TaskLists(typing.TypedDict, total=False):
     etag: str
     items: _list[TaskList]
     kind: str
     nextPageToken: str
 
 @typing.type_check_only
-class Tasks(typing_extensions.TypedDict, total=False):
+class Tasks(typing.TypedDict, total=False):
     etag: str
     items: _list[Task]
     kind: str

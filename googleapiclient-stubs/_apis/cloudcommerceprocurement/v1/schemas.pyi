@@ -1,55 +1,51 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class Account(typing_extensions.TypedDict, total=False):
+class Account(typing.TypedDict, total=False):
     approvals: _list[Approval]
     createTime: str
     inputProperties: dict[str, typing.Any]
     name: str
     provider: str
     resellerParentBillingAccount: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "ACCOUNT_STATE_UNSPECIFIED", "ACCOUNT_ACTIVATION_REQUESTED", "ACCOUNT_ACTIVE"
     ]
     updateTime: str
 
 @typing.type_check_only
-class Approval(typing_extensions.TypedDict, total=False):
+class Approval(typing.TypedDict, total=False):
     name: str
     reason: str
-    state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "PENDING", "APPROVED", "REJECTED"
-    ]
+    state: typing.Literal["STATE_UNSPECIFIED", "PENDING", "APPROVED", "REJECTED"]
     updateTime: str
 
 @typing.type_check_only
-class ApproveAccountRequest(typing_extensions.TypedDict, total=False):
+class ApproveAccountRequest(typing.TypedDict, total=False):
     approvalName: str
     properties: dict[str, typing.Any]
     reason: str
 
 @typing.type_check_only
-class ApproveEntitlementPlanChangeRequest(typing_extensions.TypedDict, total=False):
+class ApproveEntitlementPlanChangeRequest(typing.TypedDict, total=False):
     pendingPlanName: str
 
 @typing.type_check_only
-class ApproveEntitlementRequest(typing_extensions.TypedDict, total=False):
+class ApproveEntitlementRequest(typing.TypedDict, total=False):
     entitlementMigrated: str
     properties: dict[str, typing.Any]
 
 @typing.type_check_only
-class Consumer(typing_extensions.TypedDict, total=False):
+class Consumer(typing.TypedDict, total=False):
     project: str
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Entitlement(typing_extensions.TypedDict, total=False):
+class Entitlement(typing.TypedDict, total=False):
     account: str
     cancellationReason: str
     consumers: _list[Consumer]
@@ -72,7 +68,7 @@ class Entitlement(typing_extensions.TypedDict, total=False):
     productExternalName: str
     provider: str
     quoteExternalName: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "ENTITLEMENT_STATE_UNSPECIFIED",
         "ENTITLEMENT_ACTIVATION_REQUESTED",
         "ENTITLEMENT_ACTIVE",
@@ -87,32 +83,32 @@ class Entitlement(typing_extensions.TypedDict, total=False):
     usageReportingId: str
 
 @typing.type_check_only
-class ListAccountsResponse(typing_extensions.TypedDict, total=False):
+class ListAccountsResponse(typing.TypedDict, total=False):
     accounts: _list[Account]
     nextPageToken: str
 
 @typing.type_check_only
-class ListEntitlementsResponse(typing_extensions.TypedDict, total=False):
+class ListEntitlementsResponse(typing.TypedDict, total=False):
     entitlements: _list[Entitlement]
     nextPageToken: str
 
 @typing.type_check_only
-class RejectAccountRequest(typing_extensions.TypedDict, total=False):
+class RejectAccountRequest(typing.TypedDict, total=False):
     approvalName: str
     reason: str
 
 @typing.type_check_only
-class RejectEntitlementPlanChangeRequest(typing_extensions.TypedDict, total=False):
+class RejectEntitlementPlanChangeRequest(typing.TypedDict, total=False):
     pendingPlanName: str
     reason: str
 
 @typing.type_check_only
-class RejectEntitlementRequest(typing_extensions.TypedDict, total=False):
+class RejectEntitlementRequest(typing.TypedDict, total=False):
     reason: str
 
 @typing.type_check_only
-class ResetAccountRequest(typing_extensions.TypedDict, total=False): ...
+class ResetAccountRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class SuspendEntitlementRequest(typing_extensions.TypedDict, total=False):
+class SuspendEntitlementRequest(typing.TypedDict, total=False):
     reason: str

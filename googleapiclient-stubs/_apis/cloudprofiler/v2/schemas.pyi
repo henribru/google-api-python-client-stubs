@@ -1,14 +1,12 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class CreateProfileRequest(typing_extensions.TypedDict, total=False):
+class CreateProfileRequest(typing.TypedDict, total=False):
     deployment: Deployment
     profileType: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "PROFILE_TYPE_UNSPECIFIED",
             "CPU",
             "WALL",
@@ -21,25 +19,25 @@ class CreateProfileRequest(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class Deployment(typing_extensions.TypedDict, total=False):
+class Deployment(typing.TypedDict, total=False):
     labels: dict[str, typing.Any]
     projectId: str
     target: str
 
 @typing.type_check_only
-class ListProfilesResponse(typing_extensions.TypedDict, total=False):
+class ListProfilesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     profiles: _list[Profile]
     skippedProfiles: int
 
 @typing.type_check_only
-class Profile(typing_extensions.TypedDict, total=False):
+class Profile(typing.TypedDict, total=False):
     deployment: Deployment
     duration: str
     labels: dict[str, typing.Any]
     name: str
     profileBytes: str
-    profileType: typing_extensions.Literal[
+    profileType: typing.Literal[
         "PROFILE_TYPE_UNSPECIFIED",
         "CPU",
         "WALL",

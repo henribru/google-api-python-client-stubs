@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -119,11 +118,11 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 courseId: str,
-                announcementStates: typing_extensions.Literal[
+                announcementStates: typing.Literal[
                     "ANNOUNCEMENT_STATE_UNSPECIFIED", "PUBLISHED", "DRAFT", "DELETED"
                 ]
                 | _list[
-                    typing_extensions.Literal[
+                    typing.Literal[
                         "ANNOUNCEMENT_STATE_UNSPECIFIED",
                         "PUBLISHED",
                         "DRAFT",
@@ -311,13 +310,13 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                     *,
                     courseId: str,
                     courseWorkId: str,
-                    late: typing_extensions.Literal[
+                    late: typing.Literal[
                         "LATE_VALUES_UNSPECIFIED", "LATE_ONLY", "NOT_LATE_ONLY"
                     ]
                     | None = ...,
                     pageSize: int | None = ...,
                     pageToken: str | None = ...,
-                    states: typing_extensions.Literal[
+                    states: typing.Literal[
                         "SUBMISSION_STATE_UNSPECIFIED",
                         "NEW",
                         "CREATED",
@@ -326,7 +325,7 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                         "RECLAIMED_BY_STUDENT",
                     ]
                     | _list[
-                        typing_extensions.Literal[
+                        typing.Literal[
                             "SUBMISSION_STATE_UNSPECIFIED",
                             "NEW",
                             "CREATED",
@@ -414,11 +413,11 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 courseId: str,
-                courseWorkStates: typing_extensions.Literal[
+                courseWorkStates: typing.Literal[
                     "COURSE_WORK_STATE_UNSPECIFIED", "PUBLISHED", "DRAFT", "DELETED"
                 ]
                 | _list[
-                    typing_extensions.Literal[
+                    typing.Literal[
                         "COURSE_WORK_STATE_UNSPECIFIED", "PUBLISHED", "DRAFT", "DELETED"
                     ]
                 ]
@@ -546,14 +545,14 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 courseId: str,
-                courseWorkMaterialStates: typing_extensions.Literal[
+                courseWorkMaterialStates: typing.Literal[
                     "COURSEWORK_MATERIAL_STATE_UNSPECIFIED",
                     "PUBLISHED",
                     "DRAFT",
                     "DELETED",
                 ]
                 | _list[
-                    typing_extensions.Literal[
+                    typing.Literal[
                         "COURSEWORK_MATERIAL_STATE_UNSPECIFIED",
                         "PUBLISHED",
                         "DRAFT",
@@ -846,7 +845,7 @@ class ClassroomResource(googleapiclient.discovery.Resource):
         def list(
             self,
             *,
-            courseStates: typing_extensions.Literal[
+            courseStates: typing.Literal[
                 "COURSE_STATE_UNSPECIFIED",
                 "ACTIVE",
                 "ARCHIVED",
@@ -855,7 +854,7 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                 "SUSPENDED",
             ]
             | _list[
-                typing_extensions.Literal[
+                typing.Literal[
                     "COURSE_STATE_UNSPECIFIED",
                     "ACTIVE",
                     "ARCHIVED",
@@ -954,11 +953,11 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                 invitedEmailAddress: str | None = ...,
                 pageSize: int | None = ...,
                 pageToken: str | None = ...,
-                states: typing_extensions.Literal[
+                states: typing.Literal[
                     "GUARDIAN_INVITATION_STATE_UNSPECIFIED", "PENDING", "COMPLETE"
                 ]
                 | _list[
-                    typing_extensions.Literal[
+                    typing.Literal[
                         "GUARDIAN_INVITATION_STATE_UNSPECIFIED", "PENDING", "COMPLETE"
                     ]
                 ]

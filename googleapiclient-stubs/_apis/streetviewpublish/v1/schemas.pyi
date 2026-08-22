@@ -1,101 +1,99 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class BatchDeletePhotosRequest(typing_extensions.TypedDict, total=False):
+class BatchDeletePhotosRequest(typing.TypedDict, total=False):
     photoIds: _list[str]
 
 @typing.type_check_only
-class BatchDeletePhotosResponse(typing_extensions.TypedDict, total=False):
+class BatchDeletePhotosResponse(typing.TypedDict, total=False):
     status: _list[Status]
 
 @typing.type_check_only
-class BatchGetPhotosResponse(typing_extensions.TypedDict, total=False):
+class BatchGetPhotosResponse(typing.TypedDict, total=False):
     results: _list[PhotoResponse]
 
 @typing.type_check_only
-class BatchUpdatePhotosRequest(typing_extensions.TypedDict, total=False):
+class BatchUpdatePhotosRequest(typing.TypedDict, total=False):
     updatePhotoRequests: _list[UpdatePhotoRequest]
 
 @typing.type_check_only
-class BatchUpdatePhotosResponse(typing_extensions.TypedDict, total=False):
+class BatchUpdatePhotosResponse(typing.TypedDict, total=False):
     results: _list[PhotoResponse]
 
 @typing.type_check_only
-class Connection(typing_extensions.TypedDict, total=False):
+class Connection(typing.TypedDict, total=False):
     target: PhotoId
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class GpsDataGapFailureDetails(typing_extensions.TypedDict, total=False):
+class GpsDataGapFailureDetails(typing.TypedDict, total=False):
     gapDuration: str
     gapStartTime: str
 
 @typing.type_check_only
-class Imu(typing_extensions.TypedDict, total=False):
+class Imu(typing.TypedDict, total=False):
     accelMpsps: _list[Measurement3d]
     gyroRps: _list[Measurement3d]
     magUt: _list[Measurement3d]
 
 @typing.type_check_only
-class ImuDataGapFailureDetails(typing_extensions.TypedDict, total=False):
+class ImuDataGapFailureDetails(typing.TypedDict, total=False):
     gapDuration: str
     gapStartTime: str
 
 @typing.type_check_only
-class InsufficientGpsFailureDetails(typing_extensions.TypedDict, total=False):
+class InsufficientGpsFailureDetails(typing.TypedDict, total=False):
     gpsPointsFound: int
 
 @typing.type_check_only
-class LatLng(typing_extensions.TypedDict, total=False):
+class LatLng(typing.TypedDict, total=False):
     latitude: float
     longitude: float
 
 @typing.type_check_only
-class LatLngBounds(typing_extensions.TypedDict, total=False):
+class LatLngBounds(typing.TypedDict, total=False):
     northeast: LatLng
     southwest: LatLng
 
 @typing.type_check_only
-class Level(typing_extensions.TypedDict, total=False):
+class Level(typing.TypedDict, total=False):
     name: str
     number: float
 
 @typing.type_check_only
-class ListPhotoSequencesResponse(typing_extensions.TypedDict, total=False):
+class ListPhotoSequencesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     photoSequences: _list[Operation]
 
 @typing.type_check_only
-class ListPhotosResponse(typing_extensions.TypedDict, total=False):
+class ListPhotosResponse(typing.TypedDict, total=False):
     nextPageToken: str
     photos: _list[Photo]
 
 @typing.type_check_only
-class Measurement3d(typing_extensions.TypedDict, total=False):
+class Measurement3d(typing.TypedDict, total=False):
     captureTime: str
     x: float
     y: float
     z: float
 
 @typing.type_check_only
-class NoOverlapGpsFailureDetails(typing_extensions.TypedDict, total=False):
+class NoOverlapGpsFailureDetails(typing.TypedDict, total=False):
     gpsEndTime: str
     gpsStartTime: str
     videoEndTime: str
     videoStartTime: str
 
 @typing.type_check_only
-class NotOutdoorsFailureDetails(typing_extensions.TypedDict, total=False):
+class NotOutdoorsFailureDetails(typing.TypedDict, total=False):
     startTime: str
 
 @typing.type_check_only
-class Operation(typing_extensions.TypedDict, total=False):
+class Operation(typing.TypedDict, total=False):
     done: bool
     error: Status
     metadata: dict[str, typing.Any]
@@ -103,11 +101,11 @@ class Operation(typing_extensions.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
-class Photo(typing_extensions.TypedDict, total=False):
+class Photo(typing.TypedDict, total=False):
     captureTime: str
     connections: _list[Connection]
     downloadUrl: str
-    mapsPublishStatus: typing_extensions.Literal[
+    mapsPublishStatus: typing.Literal[
         "UNSPECIFIED_MAPS_PUBLISH_STATUS", "PUBLISHED", "REJECTED_UNKNOWN"
     ]
     photoId: PhotoId
@@ -115,7 +113,7 @@ class Photo(typing_extensions.TypedDict, total=False):
     pose: Pose
     shareLink: str
     thumbnailUrl: str
-    transferStatus: typing_extensions.Literal[
+    transferStatus: typing.Literal[
         "TRANSFER_STATUS_UNKNOWN",
         "NEVER_TRANSFERRED",
         "PENDING",
@@ -130,20 +128,20 @@ class Photo(typing_extensions.TypedDict, total=False):
     viewCount: str
 
 @typing.type_check_only
-class PhotoId(typing_extensions.TypedDict, total=False):
+class PhotoId(typing.TypedDict, total=False):
     id: str
 
 @typing.type_check_only
-class PhotoResponse(typing_extensions.TypedDict, total=False):
+class PhotoResponse(typing.TypedDict, total=False):
     photo: Photo
     status: Status
 
 @typing.type_check_only
-class PhotoSequence(typing_extensions.TypedDict, total=False):
+class PhotoSequence(typing.TypedDict, total=False):
     captureTimeOverride: str
     distanceMeters: float
     failureDetails: ProcessingFailureDetails
-    failureReason: typing_extensions.Literal[
+    failureReason: typing.Literal[
         "PROCESSING_FAILURE_REASON_UNSPECIFIED",
         "LOW_RESOLUTION",
         "DUPLICATE",
@@ -171,13 +169,11 @@ class PhotoSequence(typing_extensions.TypedDict, total=False):
         "CAMERA_COVERED",
     ]
     filename: str
-    gpsSource: typing_extensions.Literal[
-        "PHOTO_SEQUENCE", "CAMERA_MOTION_METADATA_TRACK"
-    ]
+    gpsSource: typing.Literal["PHOTO_SEQUENCE", "CAMERA_MOTION_METADATA_TRACK"]
     id: str
     imu: Imu
     photos: _list[Photo]
-    processingState: typing_extensions.Literal[
+    processingState: typing.Literal[
         "PROCESSING_STATE_UNSPECIFIED", "PENDING", "PROCESSING", "PROCESSED", "FAILED"
     ]
     rawGpsTimeline: _list[Pose]
@@ -187,13 +183,13 @@ class PhotoSequence(typing_extensions.TypedDict, total=False):
     viewCount: str
 
 @typing.type_check_only
-class Place(typing_extensions.TypedDict, total=False):
+class Place(typing.TypedDict, total=False):
     languageCode: str
     name: str
     placeId: str
 
 @typing.type_check_only
-class Pose(typing_extensions.TypedDict, total=False):
+class Pose(typing.TypedDict, total=False):
     accuracyMeters: float
     altitude: float
     gpsRecordTimestampUnixEpoch: str
@@ -204,7 +200,7 @@ class Pose(typing_extensions.TypedDict, total=False):
     roll: float
 
 @typing.type_check_only
-class ProcessingFailureDetails(typing_extensions.TypedDict, total=False):
+class ProcessingFailureDetails(typing.TypedDict, total=False):
     gpsDataGapDetails: GpsDataGapFailureDetails
     imuDataGapDetails: ImuDataGapFailureDetails
     insufficientGpsDetails: InsufficientGpsFailureDetails
@@ -212,16 +208,16 @@ class ProcessingFailureDetails(typing_extensions.TypedDict, total=False):
     notOutdoorsDetails: NotOutdoorsFailureDetails
 
 @typing.type_check_only
-class Status(typing_extensions.TypedDict, total=False):
+class Status(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
-class UpdatePhotoRequest(typing_extensions.TypedDict, total=False):
+class UpdatePhotoRequest(typing.TypedDict, total=False):
     photo: Photo
     updateMask: str
 
 @typing.type_check_only
-class UploadRef(typing_extensions.TypedDict, total=False):
+class UploadRef(typing.TypedDict, total=False):
     uploadUrl: str

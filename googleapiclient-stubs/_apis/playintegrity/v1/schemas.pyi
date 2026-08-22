@@ -1,12 +1,10 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class AccountActivity(typing_extensions.TypedDict, total=False):
-    activityLevel: typing_extensions.Literal[
+class AccountActivity(typing.TypedDict, total=False):
+    activityLevel: typing.Literal[
         "ACTIVITY_LEVEL_UNSPECIFIED",
         "UNEVALUATED",
         "UNUSUAL",
@@ -16,16 +14,16 @@ class AccountActivity(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class AccountDetails(typing_extensions.TypedDict, total=False):
+class AccountDetails(typing.TypedDict, total=False):
     accountActivity: AccountActivity
-    appLicensingVerdict: typing_extensions.Literal[
+    appLicensingVerdict: typing.Literal[
         "UNKNOWN", "LICENSED", "UNLICENSED", "UNEVALUATED"
     ]
 
 @typing.type_check_only
-class AppAccessRiskVerdict(typing_extensions.TypedDict, total=False):
+class AppAccessRiskVerdict(typing.TypedDict, total=False):
     appsDetected: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "APPS_DETECTED_UNSPECIFIED",
             "KNOWN_INSTALLED",
             "KNOWN_CAPTURING",
@@ -39,8 +37,8 @@ class AppAccessRiskVerdict(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class AppIntegrity(typing_extensions.TypedDict, total=False):
-    appRecognitionVerdict: typing_extensions.Literal[
+class AppIntegrity(typing.TypedDict, total=False):
+    appRecognitionVerdict: typing.Literal[
         "UNKNOWN", "PLAY_RECOGNIZED", "UNRECOGNIZED_VERSION", "UNEVALUATED"
     ]
     certificateSha256Digest: _list[str]
@@ -48,31 +46,31 @@ class AppIntegrity(typing_extensions.TypedDict, total=False):
     versionCode: str
 
 @typing.type_check_only
-class DecodeIntegrityTokenRequest(typing_extensions.TypedDict, total=False):
+class DecodeIntegrityTokenRequest(typing.TypedDict, total=False):
     integrityToken: str
 
 @typing.type_check_only
-class DecodeIntegrityTokenResponse(typing_extensions.TypedDict, total=False):
+class DecodeIntegrityTokenResponse(typing.TypedDict, total=False):
     tokenPayloadExternal: TokenPayloadExternal
 
 @typing.type_check_only
-class DecodePcIntegrityTokenRequest(typing_extensions.TypedDict, total=False):
+class DecodePcIntegrityTokenRequest(typing.TypedDict, total=False):
     integrityToken: str
 
 @typing.type_check_only
-class DecodePcIntegrityTokenResponse(typing_extensions.TypedDict, total=False):
+class DecodePcIntegrityTokenResponse(typing.TypedDict, total=False):
     tokenPayloadExternal: PcTokenPayloadExternal
 
 @typing.type_check_only
-class DeviceAttributes(typing_extensions.TypedDict, total=False):
+class DeviceAttributes(typing.TypedDict, total=False):
     sdkVersion: int
 
 @typing.type_check_only
-class DeviceIntegrity(typing_extensions.TypedDict, total=False):
+class DeviceIntegrity(typing.TypedDict, total=False):
     deviceAttributes: DeviceAttributes
     deviceRecall: DeviceRecall
     deviceRecognitionVerdict: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "UNKNOWN",
             "MEETS_BASIC_INTEGRITY",
             "MEETS_DEVICE_INTEGRITY",
@@ -81,7 +79,7 @@ class DeviceIntegrity(typing_extensions.TypedDict, total=False):
         ]
     ]
     legacyDeviceRecognitionVerdict: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "UNKNOWN",
             "MEETS_BASIC_INTEGRITY",
             "MEETS_DEVICE_INTEGRITY",
@@ -92,14 +90,14 @@ class DeviceIntegrity(typing_extensions.TypedDict, total=False):
     recentDeviceActivity: RecentDeviceActivity
 
 @typing.type_check_only
-class DeviceRecall(typing_extensions.TypedDict, total=False):
+class DeviceRecall(typing.TypedDict, total=False):
     values: Values
     writeDates: WriteDates
 
 @typing.type_check_only
-class EnvironmentDetails(typing_extensions.TypedDict, total=False):
+class EnvironmentDetails(typing.TypedDict, total=False):
     appAccessRiskVerdict: AppAccessRiskVerdict
-    playProtectVerdict: typing_extensions.Literal[
+    playProtectVerdict: typing.Literal[
         "PLAY_PROTECT_VERDICT_UNSPECIFIED",
         "UNEVALUATED",
         "NO_ISSUES",
@@ -110,39 +108,37 @@ class EnvironmentDetails(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class PcAccountDetails(typing_extensions.TypedDict, total=False):
-    appLicensingVerdict: typing_extensions.Literal[
+class PcAccountDetails(typing.TypedDict, total=False):
+    appLicensingVerdict: typing.Literal[
         "UNKNOWN", "LICENSED", "UNLICENSED", "UNEVALUATED"
     ]
 
 @typing.type_check_only
-class PcDeviceIntegrity(typing_extensions.TypedDict, total=False):
+class PcDeviceIntegrity(typing.TypedDict, total=False):
     deviceRecognitionVerdict: _list[
-        typing_extensions.Literal[
-            "DEVICE_RECOGNITION_VERDICT_UNSPECIFIED", "MEETS_PC_INTEGRITY"
-        ]
+        typing.Literal["DEVICE_RECOGNITION_VERDICT_UNSPECIFIED", "MEETS_PC_INTEGRITY"]
     ]
 
 @typing.type_check_only
-class PcRequestDetails(typing_extensions.TypedDict, total=False):
+class PcRequestDetails(typing.TypedDict, total=False):
     requestHash: str
     requestPackageName: str
     requestTime: str
 
 @typing.type_check_only
-class PcTestingDetails(typing_extensions.TypedDict, total=False):
+class PcTestingDetails(typing.TypedDict, total=False):
     isTestingResponse: bool
 
 @typing.type_check_only
-class PcTokenPayloadExternal(typing_extensions.TypedDict, total=False):
+class PcTokenPayloadExternal(typing.TypedDict, total=False):
     accountDetails: PcAccountDetails
     deviceIntegrity: PcDeviceIntegrity
     requestDetails: PcRequestDetails
     testingDetails: PcTestingDetails
 
 @typing.type_check_only
-class RecentDeviceActivity(typing_extensions.TypedDict, total=False):
-    deviceActivityLevel: typing_extensions.Literal[
+class RecentDeviceActivity(typing.TypedDict, total=False):
+    deviceActivityLevel: typing.Literal[
         "DEVICE_ACTIVITY_LEVEL_UNSPECIFIED",
         "UNEVALUATED",
         "LEVEL_1",
@@ -152,18 +148,18 @@ class RecentDeviceActivity(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class RequestDetails(typing_extensions.TypedDict, total=False):
+class RequestDetails(typing.TypedDict, total=False):
     nonce: str
     requestHash: str
     requestPackageName: str
     timestampMillis: str
 
 @typing.type_check_only
-class TestingDetails(typing_extensions.TypedDict, total=False):
+class TestingDetails(typing.TypedDict, total=False):
     isTestingResponse: bool
 
 @typing.type_check_only
-class TokenPayloadExternal(typing_extensions.TypedDict, total=False):
+class TokenPayloadExternal(typing.TypedDict, total=False):
     accountDetails: AccountDetails
     appIntegrity: AppIntegrity
     deviceIntegrity: DeviceIntegrity
@@ -172,21 +168,21 @@ class TokenPayloadExternal(typing_extensions.TypedDict, total=False):
     testingDetails: TestingDetails
 
 @typing.type_check_only
-class Values(typing_extensions.TypedDict, total=False):
+class Values(typing.TypedDict, total=False):
     bitFirst: bool
     bitSecond: bool
     bitThird: bool
 
 @typing.type_check_only
-class WriteDates(typing_extensions.TypedDict, total=False):
+class WriteDates(typing.TypedDict, total=False):
     yyyymmFirst: int
     yyyymmSecond: int
     yyyymmThird: int
 
 @typing.type_check_only
-class WriteDeviceRecallRequest(typing_extensions.TypedDict, total=False):
+class WriteDeviceRecallRequest(typing.TypedDict, total=False):
     integrityToken: str
     newValues: Values
 
 @typing.type_check_only
-class WriteDeviceRecallResponse(typing_extensions.TypedDict, total=False): ...
+class WriteDeviceRecallResponse(typing.TypedDict, total=False): ...

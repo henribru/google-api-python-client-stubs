@@ -1,13 +1,11 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class AcceleratorConfig(typing_extensions.TypedDict, total=False):
+class AcceleratorConfig(typing.TypedDict, total=False):
     coreCount: str
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "ACCELERATOR_TYPE_UNSPECIFIED",
         "NVIDIA_TESLA_P100",
         "NVIDIA_TESLA_V100",
@@ -27,22 +25,20 @@ class AcceleratorConfig(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class AccessConfig(typing_extensions.TypedDict, total=False):
+class AccessConfig(typing.TypedDict, total=False):
     externalIp: str
 
 @typing.type_check_only
-class Binding(typing_extensions.TypedDict, total=False):
+class Binding(typing.TypedDict, total=False):
     condition: Expr
     members: _list[str]
     role: str
 
 @typing.type_check_only
-class BootDisk(typing_extensions.TypedDict, total=False):
-    diskEncryption: typing_extensions.Literal[
-        "DISK_ENCRYPTION_UNSPECIFIED", "GMEK", "CMEK"
-    ]
+class BootDisk(typing.TypedDict, total=False):
+    diskEncryption: typing.Literal["DISK_ENCRYPTION_UNSPECIFIED", "GMEK", "CMEK"]
     diskSizeGb: str
-    diskType: typing_extensions.Literal[
+    diskType: typing.Literal[
         "DISK_TYPE_UNSPECIFIED",
         "PD_STANDARD",
         "PD_SSD",
@@ -57,50 +53,48 @@ class BootDisk(typing_extensions.TypedDict, total=False):
     kmsKey: str
 
 @typing.type_check_only
-class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
+class CancelOperationRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class CheckAuthorizationRequest(typing_extensions.TypedDict, total=False):
+class CheckAuthorizationRequest(typing.TypedDict, total=False):
     authorizationDetails: dict[str, typing.Any]
 
 @typing.type_check_only
-class CheckAuthorizationResponse(typing_extensions.TypedDict, total=False):
+class CheckAuthorizationResponse(typing.TypedDict, total=False):
     createTime: str
     oauth_uri: str
     success: bool
 
 @typing.type_check_only
-class CheckInstanceUpgradabilityResponse(typing_extensions.TypedDict, total=False):
+class CheckInstanceUpgradabilityResponse(typing.TypedDict, total=False):
     upgradeImage: str
     upgradeInfo: str
     upgradeVersion: str
     upgradeable: bool
 
 @typing.type_check_only
-class ConfidentialInstanceConfig(typing_extensions.TypedDict, total=False):
-    confidentialInstanceType: typing_extensions.Literal[
+class ConfidentialInstanceConfig(typing.TypedDict, total=False):
+    confidentialInstanceType: typing.Literal[
         "CONFIDENTIAL_INSTANCE_TYPE_UNSPECIFIED", "SEV"
     ]
 
 @typing.type_check_only
-class Config(typing_extensions.TypedDict, total=False):
+class Config(typing.TypedDict, total=False):
     availableImages: _list[ImageRelease]
     defaultValues: DefaultValues
     disableWorkbenchLegacyCreation: bool
     supportedValues: SupportedValues
 
 @typing.type_check_only
-class ContainerImage(typing_extensions.TypedDict, total=False):
+class ContainerImage(typing.TypedDict, total=False):
     repository: str
     tag: str
 
 @typing.type_check_only
-class DataDisk(typing_extensions.TypedDict, total=False):
-    diskEncryption: typing_extensions.Literal[
-        "DISK_ENCRYPTION_UNSPECIFIED", "GMEK", "CMEK"
-    ]
+class DataDisk(typing.TypedDict, total=False):
+    diskEncryption: typing.Literal["DISK_ENCRYPTION_UNSPECIFIED", "GMEK", "CMEK"]
     diskSizeGb: str
-    diskType: typing_extensions.Literal[
+    diskType: typing.Literal[
         "DISK_TYPE_UNSPECIFIED",
         "PD_STANDARD",
         "PD_SSD",
@@ -116,16 +110,16 @@ class DataDisk(typing_extensions.TypedDict, total=False):
     resourcePolicies: _list[str]
 
 @typing.type_check_only
-class DefaultValues(typing_extensions.TypedDict, total=False):
+class DefaultValues(typing.TypedDict, total=False):
     machineType: str
 
 @typing.type_check_only
-class DiagnoseInstanceRequest(typing_extensions.TypedDict, total=False):
+class DiagnoseInstanceRequest(typing.TypedDict, total=False):
     diagnosticConfig: DiagnosticConfig
     timeoutMinutes: int
 
 @typing.type_check_only
-class DiagnosticConfig(typing_extensions.TypedDict, total=False):
+class DiagnosticConfig(typing.TypedDict, total=False):
     enableCopyHomeFilesFlag: bool
     enablePacketCaptureFlag: bool
     enableRepairFlag: bool
@@ -133,13 +127,13 @@ class DiagnosticConfig(typing_extensions.TypedDict, total=False):
     relativePath: str
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Event(typing_extensions.TypedDict, total=False):
+class Event(typing.TypedDict, total=False):
     details: dict[str, typing.Any]
     reportTime: str
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "EVENT_TYPE_UNSPECIFIED",
         "IDLE",
         "HEARTBEAT",
@@ -149,19 +143,19 @@ class Event(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class Expr(typing_extensions.TypedDict, total=False):
+class Expr(typing.TypedDict, total=False):
     description: str
     expression: str
     location: str
     title: str
 
 @typing.type_check_only
-class GPUDriverConfig(typing_extensions.TypedDict, total=False):
+class GPUDriverConfig(typing.TypedDict, total=False):
     customGpuDriverPath: str
     enableGpuDriver: bool
 
 @typing.type_check_only
-class GceSetup(typing_extensions.TypedDict, total=False):
+class GceSetup(typing.TypedDict, total=False):
     acceleratorConfigs: _list[AcceleratorConfig]
     bootDisk: BootDisk
     confidentialInstanceConfig: ConfidentialInstanceConfig
@@ -182,25 +176,25 @@ class GceSetup(typing_extensions.TypedDict, total=False):
     vmImage: VmImage
 
 @typing.type_check_only
-class GenerateAccessTokenRequest(typing_extensions.TypedDict, total=False):
+class GenerateAccessTokenRequest(typing.TypedDict, total=False):
     vmToken: str
 
 @typing.type_check_only
-class GenerateAccessTokenResponse(typing_extensions.TypedDict, total=False):
+class GenerateAccessTokenResponse(typing.TypedDict, total=False):
     access_token: str
     expires_in: int
     scope: str
     token_type: str
 
 @typing.type_check_only
-class ImageRelease(typing_extensions.TypedDict, total=False):
+class ImageRelease(typing.TypedDict, total=False):
     description: str
     imageFamily: str
     imageName: str
     releaseName: str
 
 @typing.type_check_only
-class Instance(typing_extensions.TypedDict, total=False):
+class Instance(typing.TypedDict, total=False):
     createTime: str
     creator: str
     disableProxyAccess: bool
@@ -209,7 +203,7 @@ class Instance(typing_extensions.TypedDict, total=False):
     enableThirdPartyIdentity: bool
     gceSetup: GceSetup
     healthInfo: dict[str, typing.Any]
-    healthState: typing_extensions.Literal[
+    healthState: typing.Literal[
         "HEALTH_STATE_UNSPECIFIED",
         "HEALTHY",
         "UNHEALTHY",
@@ -223,7 +217,7 @@ class Instance(typing_extensions.TypedDict, total=False):
     proxyUri: str
     satisfiesPzi: bool
     satisfiesPzs: bool
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "STARTING",
         "PROVISIONING",
@@ -241,24 +235,24 @@ class Instance(typing_extensions.TypedDict, total=False):
     upgradeHistory: _list[UpgradeHistoryEntry]
 
 @typing.type_check_only
-class ListInstancesResponse(typing_extensions.TypedDict, total=False):
+class ListInstancesResponse(typing.TypedDict, total=False):
     instances: _list[Instance]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListLocationsResponse(typing_extensions.TypedDict, total=False):
+class ListLocationsResponse(typing.TypedDict, total=False):
     locations: _list[Location]
     nextPageToken: str
 
 @typing.type_check_only
-class ListOperationsResponse(typing_extensions.TypedDict, total=False):
+class ListOperationsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
     unreachable: _list[str]
 
 @typing.type_check_only
-class Location(typing_extensions.TypedDict, total=False):
+class Location(typing.TypedDict, total=False):
     displayName: str
     labels: dict[str, typing.Any]
     locationId: str
@@ -266,14 +260,14 @@ class Location(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class NetworkInterface(typing_extensions.TypedDict, total=False):
+class NetworkInterface(typing.TypedDict, total=False):
     accessConfigs: _list[AccessConfig]
     network: str
-    nicType: typing_extensions.Literal["NIC_TYPE_UNSPECIFIED", "VIRTIO_NET", "GVNIC"]
+    nicType: typing.Literal["NIC_TYPE_UNSPECIFIED", "VIRTIO_NET", "GVNIC"]
     subnet: str
 
 @typing.type_check_only
-class Operation(typing_extensions.TypedDict, total=False):
+class Operation(typing.TypedDict, total=False):
     done: bool
     error: Status
     metadata: dict[str, typing.Any]
@@ -281,7 +275,7 @@ class Operation(typing_extensions.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
-class OperationMetadata(typing_extensions.TypedDict, total=False):
+class OperationMetadata(typing.TypedDict, total=False):
     apiVersion: str
     createTime: str
     endTime: str
@@ -292,19 +286,19 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     verb: str
 
 @typing.type_check_only
-class Policy(typing_extensions.TypedDict, total=False):
+class Policy(typing.TypedDict, total=False):
     bindings: _list[Binding]
     etag: str
     version: int
 
 @typing.type_check_only
-class ReportInstanceInfoSystemRequest(typing_extensions.TypedDict, total=False):
+class ReportInstanceInfoSystemRequest(typing.TypedDict, total=False):
     event: Event
     vmId: str
 
 @typing.type_check_only
-class ReservationAffinity(typing_extensions.TypedDict, total=False):
-    consumeReservationType: typing_extensions.Literal[
+class ReservationAffinity(typing.TypedDict, total=False):
+    consumeReservationType: typing.Literal[
         "RESERVATION_UNSPECIFIED",
         "RESERVATION_NONE",
         "RESERVATION_ANY",
@@ -314,91 +308,89 @@ class ReservationAffinity(typing_extensions.TypedDict, total=False):
     values: _list[str]
 
 @typing.type_check_only
-class ResetInstanceRequest(typing_extensions.TypedDict, total=False): ...
+class ResetInstanceRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class ResizeDiskRequest(typing_extensions.TypedDict, total=False):
+class ResizeDiskRequest(typing.TypedDict, total=False):
     bootDisk: BootDisk
     dataDisk: DataDisk
 
 @typing.type_check_only
-class RestoreInstanceRequest(typing_extensions.TypedDict, total=False):
+class RestoreInstanceRequest(typing.TypedDict, total=False):
     snapshot: Snapshot
 
 @typing.type_check_only
-class RollbackInstanceRequest(typing_extensions.TypedDict, total=False):
+class RollbackInstanceRequest(typing.TypedDict, total=False):
     revisionId: str
     targetSnapshot: str
 
 @typing.type_check_only
-class ServiceAccount(typing_extensions.TypedDict, total=False):
+class ServiceAccount(typing.TypedDict, total=False):
     email: str
     scopes: _list[str]
 
 @typing.type_check_only
-class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
+class SetIamPolicyRequest(typing.TypedDict, total=False):
     policy: Policy
 
 @typing.type_check_only
-class ShieldedInstanceConfig(typing_extensions.TypedDict, total=False):
+class ShieldedInstanceConfig(typing.TypedDict, total=False):
     enableIntegrityMonitoring: bool
     enableSecureBoot: bool
     enableVtpm: bool
 
 @typing.type_check_only
-class Snapshot(typing_extensions.TypedDict, total=False):
+class Snapshot(typing.TypedDict, total=False):
     projectId: str
     snapshotId: str
 
 @typing.type_check_only
-class StartInstanceRequest(typing_extensions.TypedDict, total=False): ...
+class StartInstanceRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Status(typing_extensions.TypedDict, total=False):
+class Status(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
-class StopInstanceRequest(typing_extensions.TypedDict, total=False): ...
+class StopInstanceRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class SupportedValues(typing_extensions.TypedDict, total=False):
+class SupportedValues(typing.TypedDict, total=False):
     acceleratorTypes: _list[str]
     machineTypes: _list[str]
 
 @typing.type_check_only
-class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
+class TestIamPermissionsRequest(typing.TypedDict, total=False):
     permissions: _list[str]
 
 @typing.type_check_only
-class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
+class TestIamPermissionsResponse(typing.TypedDict, total=False):
     permissions: _list[str]
 
 @typing.type_check_only
-class UpgradeHistoryEntry(typing_extensions.TypedDict, total=False):
-    action: typing_extensions.Literal["ACTION_UNSPECIFIED", "UPGRADE", "ROLLBACK"]
+class UpgradeHistoryEntry(typing.TypedDict, total=False):
+    action: typing.Literal["ACTION_UNSPECIFIED", "UPGRADE", "ROLLBACK"]
     containerImage: str
     createTime: str
     framework: str
     snapshot: str
-    state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "STARTED", "SUCCEEDED", "FAILED"
-    ]
+    state: typing.Literal["STATE_UNSPECIFIED", "STARTED", "SUCCEEDED", "FAILED"]
     targetVersion: str
     version: str
     vmImage: str
 
 @typing.type_check_only
-class UpgradeInstanceRequest(typing_extensions.TypedDict, total=False):
+class UpgradeInstanceRequest(typing.TypedDict, total=False):
     imageFamily: str
 
 @typing.type_check_only
-class UpgradeInstanceSystemRequest(typing_extensions.TypedDict, total=False):
+class UpgradeInstanceSystemRequest(typing.TypedDict, total=False):
     vmId: str
 
 @typing.type_check_only
-class VmImage(typing_extensions.TypedDict, total=False):
+class VmImage(typing.TypedDict, total=False):
     family: str
     name: str
     project: str

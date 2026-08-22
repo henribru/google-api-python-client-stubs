@@ -1,24 +1,22 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class Annotation(typing_extensions.TypedDict, total=False):
+class Annotation(typing.TypedDict, total=False):
     createTime: str
     labels: dict[str, typing.Any]
     name: str
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "TYPE_UNSPECIFIED", "TYPE_LEGACY_EXPORT_CONSENT", "TYPE_QWIKLAB"
     ]
     updateTime: str
 
 @typing.type_check_only
-class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
+class CancelOperationRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Collector(typing_extensions.TypedDict, total=False):
+class Collector(typing.TypedDict, total=False):
     bucket: str
     clientVersion: str
     collectionDays: int
@@ -31,7 +29,7 @@ class Collector(typing_extensions.TypedDict, total=False):
     labels: dict[str, typing.Any]
     name: str
     serviceAccount: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "STATE_INITIALIZING",
         "STATE_READY_TO_USE",
@@ -46,30 +44,30 @@ class Collector(typing_extensions.TypedDict, total=False):
     vsphereScan: VSphereScan
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class GuestOsScan(typing_extensions.TypedDict, total=False):
+class GuestOsScan(typing.TypedDict, total=False):
     coreSource: str
 
 @typing.type_check_only
-class ListCollectorsResponse(typing_extensions.TypedDict, total=False):
+class ListCollectorsResponse(typing.TypedDict, total=False):
     collectors: _list[Collector]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListLocationsResponse(typing_extensions.TypedDict, total=False):
+class ListLocationsResponse(typing.TypedDict, total=False):
     locations: _list[Location]
     nextPageToken: str
 
 @typing.type_check_only
-class ListOperationsResponse(typing_extensions.TypedDict, total=False):
+class ListOperationsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
 
 @typing.type_check_only
-class Location(typing_extensions.TypedDict, total=False):
+class Location(typing.TypedDict, total=False):
     displayName: str
     labels: dict[str, typing.Any]
     locationId: str
@@ -77,7 +75,7 @@ class Location(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class Operation(typing_extensions.TypedDict, total=False):
+class Operation(typing.TypedDict, total=False):
     done: bool
     error: Status
     metadata: dict[str, typing.Any]
@@ -85,7 +83,7 @@ class Operation(typing_extensions.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
-class OperationMetadata(typing_extensions.TypedDict, total=False):
+class OperationMetadata(typing.TypedDict, total=False):
     apiVersion: str
     createTime: str
     endTime: str
@@ -95,23 +93,23 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     verb: str
 
 @typing.type_check_only
-class PauseCollectorRequest(typing_extensions.TypedDict, total=False):
+class PauseCollectorRequest(typing.TypedDict, total=False):
     requestId: str
 
 @typing.type_check_only
-class RegisterCollectorRequest(typing_extensions.TypedDict, total=False):
+class RegisterCollectorRequest(typing.TypedDict, total=False):
     requestId: str
 
 @typing.type_check_only
-class ResumeCollectorRequest(typing_extensions.TypedDict, total=False):
+class ResumeCollectorRequest(typing.TypedDict, total=False):
     requestId: str
 
 @typing.type_check_only
-class Status(typing_extensions.TypedDict, total=False):
+class Status(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
-class VSphereScan(typing_extensions.TypedDict, total=False):
+class VSphereScan(typing.TypedDict, total=False):
     coreSource: str

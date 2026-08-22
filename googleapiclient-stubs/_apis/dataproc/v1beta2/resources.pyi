@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -340,9 +339,7 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     region: str,
                     clusterName: str | None = ...,
                     filter: str | None = ...,
-                    jobStateMatcher: typing_extensions.Literal[
-                        "ALL", "ACTIVE", "NON_ACTIVE"
-                    ]
+                    jobStateMatcher: typing.Literal["ALL", "ACTIVE", "NON_ACTIVE"]
                     | None = ...,
                     pageSize: int | None = ...,
                     pageToken: str | None = ...,

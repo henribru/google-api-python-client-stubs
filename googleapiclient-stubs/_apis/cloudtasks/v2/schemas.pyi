@@ -1,15 +1,13 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class AppEngineHttpRequest(typing_extensions.TypedDict, total=False):
+class AppEngineHttpRequest(typing.TypedDict, total=False):
     appEngineRouting: AppEngineRouting
     body: str
     headers: dict[str, typing.Any]
-    httpMethod: typing_extensions.Literal[
+    httpMethod: typing.Literal[
         "HTTP_METHOD_UNSPECIFIED",
         "POST",
         "GET",
@@ -22,81 +20,81 @@ class AppEngineHttpRequest(typing_extensions.TypedDict, total=False):
     relativeUri: str
 
 @typing.type_check_only
-class AppEngineRouting(typing_extensions.TypedDict, total=False):
+class AppEngineRouting(typing.TypedDict, total=False):
     host: str
     instance: str
     service: str
     version: str
 
 @typing.type_check_only
-class Attempt(typing_extensions.TypedDict, total=False):
+class Attempt(typing.TypedDict, total=False):
     dispatchTime: str
     responseStatus: Status
     responseTime: str
     scheduleTime: str
 
 @typing.type_check_only
-class Binding(typing_extensions.TypedDict, total=False):
+class Binding(typing.TypedDict, total=False):
     condition: Expr
     members: _list[str]
     role: str
 
 @typing.type_check_only
-class BufferTaskRequest(typing_extensions.TypedDict, total=False):
+class BufferTaskRequest(typing.TypedDict, total=False):
     body: HttpBody
 
 @typing.type_check_only
-class BufferTaskResponse(typing_extensions.TypedDict, total=False):
+class BufferTaskResponse(typing.TypedDict, total=False):
     task: Task
 
 @typing.type_check_only
-class CmekConfig(typing_extensions.TypedDict, total=False):
+class CmekConfig(typing.TypedDict, total=False):
     kmsKey: str
     name: str
 
 @typing.type_check_only
-class CreateTaskRequest(typing_extensions.TypedDict, total=False):
-    responseView: typing_extensions.Literal["VIEW_UNSPECIFIED", "BASIC", "FULL"]
+class CreateTaskRequest(typing.TypedDict, total=False):
+    responseView: typing.Literal["VIEW_UNSPECIFIED", "BASIC", "FULL"]
     task: Task
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Expr(typing_extensions.TypedDict, total=False):
+class Expr(typing.TypedDict, total=False):
     description: str
     expression: str
     location: str
     title: str
 
 @typing.type_check_only
-class GetIamPolicyRequest(typing_extensions.TypedDict, total=False):
+class GetIamPolicyRequest(typing.TypedDict, total=False):
     options: GetPolicyOptions
 
 @typing.type_check_only
-class GetPolicyOptions(typing_extensions.TypedDict, total=False):
+class GetPolicyOptions(typing.TypedDict, total=False):
     requestedPolicyVersion: int
 
 @typing.type_check_only
-class Header(typing_extensions.TypedDict, total=False):
+class Header(typing.TypedDict, total=False):
     key: str
     value: str
 
 @typing.type_check_only
-class HeaderOverride(typing_extensions.TypedDict, total=False):
+class HeaderOverride(typing.TypedDict, total=False):
     header: Header
 
 @typing.type_check_only
-class HttpBody(typing_extensions.TypedDict, total=False):
+class HttpBody(typing.TypedDict, total=False):
     contentType: str
     data: str
     extensions: _list[dict[str, typing.Any]]
 
 @typing.type_check_only
-class HttpRequest(typing_extensions.TypedDict, total=False):
+class HttpRequest(typing.TypedDict, total=False):
     body: str
     headers: dict[str, typing.Any]
-    httpMethod: typing_extensions.Literal[
+    httpMethod: typing.Literal[
         "HTTP_METHOD_UNSPECIFIED",
         "POST",
         "GET",
@@ -111,9 +109,9 @@ class HttpRequest(typing_extensions.TypedDict, total=False):
     url: str
 
 @typing.type_check_only
-class HttpTarget(typing_extensions.TypedDict, total=False):
+class HttpTarget(typing.TypedDict, total=False):
     headerOverrides: _list[HeaderOverride]
-    httpMethod: typing_extensions.Literal[
+    httpMethod: typing.Literal[
         "HTTP_METHOD_UNSPECIFIED",
         "POST",
         "GET",
@@ -128,22 +126,22 @@ class HttpTarget(typing_extensions.TypedDict, total=False):
     uriOverride: UriOverride
 
 @typing.type_check_only
-class ListLocationsResponse(typing_extensions.TypedDict, total=False):
+class ListLocationsResponse(typing.TypedDict, total=False):
     locations: _list[Location]
     nextPageToken: str
 
 @typing.type_check_only
-class ListQueuesResponse(typing_extensions.TypedDict, total=False):
+class ListQueuesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     queues: _list[Queue]
 
 @typing.type_check_only
-class ListTasksResponse(typing_extensions.TypedDict, total=False):
+class ListTasksResponse(typing.TypedDict, total=False):
     nextPageToken: str
     tasks: _list[Task]
 
 @typing.type_check_only
-class Location(typing_extensions.TypedDict, total=False):
+class Location(typing.TypedDict, total=False):
     displayName: str
     labels: dict[str, typing.Any]
     locationId: str
@@ -151,37 +149,37 @@ class Location(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class OAuthToken(typing_extensions.TypedDict, total=False):
+class OAuthToken(typing.TypedDict, total=False):
     scope: str
     serviceAccountEmail: str
 
 @typing.type_check_only
-class OidcToken(typing_extensions.TypedDict, total=False):
+class OidcToken(typing.TypedDict, total=False):
     audience: str
     serviceAccountEmail: str
 
 @typing.type_check_only
-class PathOverride(typing_extensions.TypedDict, total=False):
+class PathOverride(typing.TypedDict, total=False):
     path: str
 
 @typing.type_check_only
-class PauseQueueRequest(typing_extensions.TypedDict, total=False): ...
+class PauseQueueRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Policy(typing_extensions.TypedDict, total=False):
+class Policy(typing.TypedDict, total=False):
     bindings: _list[Binding]
     etag: str
     version: int
 
 @typing.type_check_only
-class PurgeQueueRequest(typing_extensions.TypedDict, total=False): ...
+class PurgeQueueRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class QueryOverride(typing_extensions.TypedDict, total=False):
+class QueryOverride(typing.TypedDict, total=False):
     queryParams: str
 
 @typing.type_check_only
-class Queue(typing_extensions.TypedDict, total=False):
+class Queue(typing.TypedDict, total=False):
     appEngineRoutingOverride: AppEngineRouting
     httpTarget: HttpTarget
     name: str
@@ -189,21 +187,19 @@ class Queue(typing_extensions.TypedDict, total=False):
     rateLimits: RateLimits
     retryConfig: RetryConfig
     stackdriverLoggingConfig: StackdriverLoggingConfig
-    state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "RUNNING", "PAUSED", "DISABLED"
-    ]
+    state: typing.Literal["STATE_UNSPECIFIED", "RUNNING", "PAUSED", "DISABLED"]
 
 @typing.type_check_only
-class RateLimits(typing_extensions.TypedDict, total=False):
+class RateLimits(typing.TypedDict, total=False):
     maxBurstSize: int
     maxConcurrentDispatches: int
     maxDispatchesPerSecond: float
 
 @typing.type_check_only
-class ResumeQueueRequest(typing_extensions.TypedDict, total=False): ...
+class ResumeQueueRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class RetryConfig(typing_extensions.TypedDict, total=False):
+class RetryConfig(typing.TypedDict, total=False):
     maxAttempts: int
     maxBackoff: str
     maxDoublings: int
@@ -211,25 +207,25 @@ class RetryConfig(typing_extensions.TypedDict, total=False):
     minBackoff: str
 
 @typing.type_check_only
-class RunTaskRequest(typing_extensions.TypedDict, total=False):
-    responseView: typing_extensions.Literal["VIEW_UNSPECIFIED", "BASIC", "FULL"]
+class RunTaskRequest(typing.TypedDict, total=False):
+    responseView: typing.Literal["VIEW_UNSPECIFIED", "BASIC", "FULL"]
 
 @typing.type_check_only
-class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
+class SetIamPolicyRequest(typing.TypedDict, total=False):
     policy: Policy
 
 @typing.type_check_only
-class StackdriverLoggingConfig(typing_extensions.TypedDict, total=False):
+class StackdriverLoggingConfig(typing.TypedDict, total=False):
     samplingRatio: float
 
 @typing.type_check_only
-class Status(typing_extensions.TypedDict, total=False):
+class Status(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
-class Task(typing_extensions.TypedDict, total=False):
+class Task(typing.TypedDict, total=False):
     appEngineHttpRequest: AppEngineHttpRequest
     createTime: str
     dispatchCount: int
@@ -240,23 +236,23 @@ class Task(typing_extensions.TypedDict, total=False):
     name: str
     responseCount: int
     scheduleTime: str
-    view: typing_extensions.Literal["VIEW_UNSPECIFIED", "BASIC", "FULL"]
+    view: typing.Literal["VIEW_UNSPECIFIED", "BASIC", "FULL"]
 
 @typing.type_check_only
-class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
+class TestIamPermissionsRequest(typing.TypedDict, total=False):
     permissions: _list[str]
 
 @typing.type_check_only
-class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
+class TestIamPermissionsResponse(typing.TypedDict, total=False):
     permissions: _list[str]
 
 @typing.type_check_only
-class UriOverride(typing_extensions.TypedDict, total=False):
+class UriOverride(typing.TypedDict, total=False):
     host: str
     pathOverride: PathOverride
     port: str
     queryOverride: QueryOverride
-    scheme: typing_extensions.Literal["SCHEME_UNSPECIFIED", "HTTP", "HTTPS"]
-    uriOverrideEnforceMode: typing_extensions.Literal[
+    scheme: typing.Literal["SCHEME_UNSPECIFIED", "HTTP", "HTTPS"]
+    uriOverrideEnforceMode: typing.Literal[
         "URI_OVERRIDE_ENFORCE_MODE_UNSPECIFIED", "IF_NOT_EXISTS", "ALWAYS"
     ]

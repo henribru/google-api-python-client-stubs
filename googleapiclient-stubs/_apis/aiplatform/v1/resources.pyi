@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -4878,7 +4877,7 @@ class AiplatformResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    view: typing_extensions.Literal[
+                    view: typing.Literal[
                         "NOTEBOOK_EXECUTION_JOB_VIEW_UNSPECIFIED",
                         "NOTEBOOK_EXECUTION_JOB_VIEW_BASIC",
                         "NOTEBOOK_EXECUTION_JOB_VIEW_FULL",
@@ -4894,7 +4893,7 @@ class AiplatformResource(googleapiclient.discovery.Resource):
                     orderBy: str | None = ...,
                     pageSize: int | None = ...,
                     pageToken: str | None = ...,
-                    view: typing_extensions.Literal[
+                    view: typing.Literal[
                         "NOTEBOOK_EXECUTION_JOB_VIEW_UNSPECIFIED",
                         "NOTEBOOK_EXECUTION_JOB_VIEW_BASIC",
                         "NOTEBOOK_EXECUTION_JOB_VIEW_FULL",
@@ -7600,7 +7599,7 @@ class AiplatformResource(googleapiclient.discovery.Resource):
                 huggingFaceToken: str | None = ...,
                 isHuggingFaceModel: bool | None = ...,
                 languageCode: str | None = ...,
-                view: typing_extensions.Literal[
+                view: typing.Literal[
                     "PUBLISHER_MODEL_VIEW_UNSPECIFIED",
                     "PUBLISHER_MODEL_VIEW_BASIC",
                     "PUBLISHER_MODEL_VIEW_FULL",

@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -51,7 +50,7 @@ class BusinessProfilePerformanceResource(googleapiclient.discovery.Resource):
             self,
             *,
             location: str,
-            dailyMetrics: typing_extensions.Literal[
+            dailyMetrics: typing.Literal[
                 "DAILY_METRIC_UNKNOWN",
                 "BUSINESS_IMPRESSIONS_DESKTOP_MAPS",
                 "BUSINESS_IMPRESSIONS_DESKTOP_SEARCH",
@@ -66,7 +65,7 @@ class BusinessProfilePerformanceResource(googleapiclient.discovery.Resource):
                 "BUSINESS_FOOD_MENU_CLICKS",
             ]
             | _list[
-                typing_extensions.Literal[
+                typing.Literal[
                     "DAILY_METRIC_UNKNOWN",
                     "BUSINESS_IMPRESSIONS_DESKTOP_MAPS",
                     "BUSINESS_IMPRESSIONS_DESKTOP_SEARCH",
@@ -94,7 +93,7 @@ class BusinessProfilePerformanceResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            dailyMetric: typing_extensions.Literal[
+            dailyMetric: typing.Literal[
                 "DAILY_METRIC_UNKNOWN",
                 "BUSINESS_IMPRESSIONS_DESKTOP_MAPS",
                 "BUSINESS_IMPRESSIONS_DESKTOP_SEARCH",
@@ -115,7 +114,7 @@ class BusinessProfilePerformanceResource(googleapiclient.discovery.Resource):
             dailyRange_startDate_day: int | None = ...,
             dailyRange_startDate_month: int | None = ...,
             dailyRange_startDate_year: int | None = ...,
-            dailySubEntityType_dayOfWeek: typing_extensions.Literal[
+            dailySubEntityType_dayOfWeek: typing.Literal[
                 "DAY_OF_WEEK_UNSPECIFIED",
                 "MONDAY",
                 "TUESDAY",

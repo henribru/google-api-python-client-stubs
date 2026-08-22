@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -41,9 +40,7 @@ class ParameterManagerResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        view: typing_extensions.Literal[
-                            "VIEW_UNSPECIFIED", "BASIC", "FULL"
-                        ]
+                        view: typing.Literal["VIEW_UNSPECIFIED", "BASIC", "FULL"]
                         | None = ...,
                         **kwargs: typing.Any,
                     ) -> ParameterVersionHttpRequest: ...
@@ -144,9 +141,7 @@ class ParameterManagerResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        view: typing_extensions.Literal[
-                            "VIEW_UNSPECIFIED", "BASIC", "FULL"
-                        ]
+                        view: typing.Literal["VIEW_UNSPECIFIED", "BASIC", "FULL"]
                         | None = ...,
                         **kwargs: typing.Any,
                     ) -> TemplateVersionHttpRequest: ...

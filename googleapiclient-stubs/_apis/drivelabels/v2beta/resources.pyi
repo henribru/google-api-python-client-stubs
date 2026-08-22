@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -207,8 +206,7 @@ class DriveLabelsResource(googleapiclient.discovery.Resource):
             name: str,
             languageCode: str | None = ...,
             useAdminAccess: bool | None = ...,
-            view: typing_extensions.Literal["LABEL_VIEW_BASIC", "LABEL_VIEW_FULL"]
-            | None = ...,
+            view: typing.Literal["LABEL_VIEW_BASIC", "LABEL_VIEW_FULL"] | None = ...,
             **kwargs: typing.Any,
         ) -> GoogleAppsDriveLabelsV2betaLabelHttpRequest: ...
         def list(
@@ -216,7 +214,7 @@ class DriveLabelsResource(googleapiclient.discovery.Resource):
             *,
             customer: str | None = ...,
             languageCode: str | None = ...,
-            minimumRole: typing_extensions.Literal[
+            minimumRole: typing.Literal[
                 "LABEL_ROLE_UNSPECIFIED", "READER", "APPLIER", "ORGANIZER", "EDITOR"
             ]
             | None = ...,
@@ -224,8 +222,7 @@ class DriveLabelsResource(googleapiclient.discovery.Resource):
             pageToken: str | None = ...,
             publishedOnly: bool | None = ...,
             useAdminAccess: bool | None = ...,
-            view: typing_extensions.Literal["LABEL_VIEW_BASIC", "LABEL_VIEW_FULL"]
-            | None = ...,
+            view: typing.Literal["LABEL_VIEW_BASIC", "LABEL_VIEW_FULL"] | None = ...,
             **kwargs: typing.Any,
         ) -> GoogleAppsDriveLabelsV2betaListLabelsResponseHttpRequest: ...
         def list_next(

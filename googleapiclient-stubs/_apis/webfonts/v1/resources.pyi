@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -18,18 +17,16 @@ class WebfontsResource(googleapiclient.discovery.Resource):
         def list(
             self,
             *,
-            capability: typing_extensions.Literal[
+            capability: typing.Literal[
                 "CAPABILITY_UNSPECIFIED", "WOFF2", "VF", "FAMILY_TAGS"
             ]
             | _list[
-                typing_extensions.Literal[
-                    "CAPABILITY_UNSPECIFIED", "WOFF2", "VF", "FAMILY_TAGS"
-                ]
+                typing.Literal["CAPABILITY_UNSPECIFIED", "WOFF2", "VF", "FAMILY_TAGS"]
             ]
             | None = ...,
             category: str | None = ...,
             family: str | _list[str] | None = ...,
-            sort: typing_extensions.Literal[
+            sort: typing.Literal[
                 "SORT_UNDEFINED", "ALPHA", "DATE", "POPULARITY", "STYLE", "TRENDING"
             ]
             | None = ...,

@@ -1,27 +1,25 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class AddAssetsToGroupRequest(typing_extensions.TypedDict, total=False):
+class AddAssetsToGroupRequest(typing.TypedDict, total=False):
     allowExisting: bool
     assets: AssetList
     requestId: str
 
 @typing.type_check_only
-class AggregateAssetsValuesRequest(typing_extensions.TypedDict, total=False):
+class AggregateAssetsValuesRequest(typing.TypedDict, total=False):
     aggregations: _list[Aggregation]
     filter: str
     showHidden: bool
 
 @typing.type_check_only
-class AggregateAssetsValuesResponse(typing_extensions.TypedDict, total=False):
+class AggregateAssetsValuesResponse(typing.TypedDict, total=False):
     results: _list[AggregationResult]
 
 @typing.type_check_only
-class Aggregation(typing_extensions.TypedDict, total=False):
+class Aggregation(typing.TypedDict, total=False):
     count: AggregationCount
     field: str
     frequency: AggregationFrequency
@@ -29,17 +27,17 @@ class Aggregation(typing_extensions.TypedDict, total=False):
     sum: AggregationSum
 
 @typing.type_check_only
-class AggregationCount(typing_extensions.TypedDict, total=False): ...
+class AggregationCount(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class AggregationFrequency(typing_extensions.TypedDict, total=False): ...
+class AggregationFrequency(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class AggregationHistogram(typing_extensions.TypedDict, total=False):
+class AggregationHistogram(typing.TypedDict, total=False):
     lowerBounds: _list[float]
 
 @typing.type_check_only
-class AggregationResult(typing_extensions.TypedDict, total=False):
+class AggregationResult(typing.TypedDict, total=False):
     count: AggregationResultCount
     field: str
     frequency: AggregationResultFrequency
@@ -47,32 +45,32 @@ class AggregationResult(typing_extensions.TypedDict, total=False):
     sum: AggregationResultSum
 
 @typing.type_check_only
-class AggregationResultCount(typing_extensions.TypedDict, total=False):
+class AggregationResultCount(typing.TypedDict, total=False):
     value: str
 
 @typing.type_check_only
-class AggregationResultFrequency(typing_extensions.TypedDict, total=False):
+class AggregationResultFrequency(typing.TypedDict, total=False):
     values: dict[str, typing.Any]
 
 @typing.type_check_only
-class AggregationResultHistogram(typing_extensions.TypedDict, total=False):
+class AggregationResultHistogram(typing.TypedDict, total=False):
     buckets: _list[AggregationResultHistogramBucket]
 
 @typing.type_check_only
-class AggregationResultHistogramBucket(typing_extensions.TypedDict, total=False):
+class AggregationResultHistogramBucket(typing.TypedDict, total=False):
     count: str
     lowerBound: float
     upperBound: float
 
 @typing.type_check_only
-class AggregationResultSum(typing_extensions.TypedDict, total=False):
+class AggregationResultSum(typing.TypedDict, total=False):
     value: float
 
 @typing.type_check_only
-class AggregationSum(typing_extensions.TypedDict, total=False): ...
+class AggregationSum(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Asset(typing_extensions.TypedDict, total=False):
+class Asset(typing.TypedDict, total=False):
     assignedGroups: _list[str]
     attributes: dict[str, typing.Any]
     createTime: str
@@ -91,9 +89,9 @@ class Asset(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class AssetFrame(typing_extensions.TypedDict, total=False):
+class AssetFrame(typing.TypedDict, total=False):
     attributes: dict[str, typing.Any]
-    collectionType: typing_extensions.Literal[
+    collectionType: typing.Literal[
         "SOURCE_TYPE_UNKNOWN",
         "SOURCE_TYPE_UPLOAD",
         "SOURCE_TYPE_GUEST_OS_SCAN",
@@ -110,15 +108,15 @@ class AssetFrame(typing_extensions.TypedDict, total=False):
     traceToken: str
 
 @typing.type_check_only
-class AssetList(typing_extensions.TypedDict, total=False):
+class AssetList(typing.TypedDict, total=False):
     assetIds: _list[str]
 
 @typing.type_check_only
-class AssetPerformanceData(typing_extensions.TypedDict, total=False):
+class AssetPerformanceData(typing.TypedDict, total=False):
     dailyResourceUsageAggregations: _list[DailyResourceUsageAggregation]
 
 @typing.type_check_only
-class AssetsExportJob(typing_extensions.TypedDict, total=False):
+class AssetsExportJob(typing.TypedDict, total=False):
     condition: AssetsExportJobExportCondition
     createTime: str
     inventory: AssetsExportJobInventory
@@ -132,7 +130,7 @@ class AssetsExportJob(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class AssetsExportJobExecution(typing_extensions.TypedDict, total=False):
+class AssetsExportJobExecution(typing.TypedDict, total=False):
     endTime: str
     executionId: str
     expireTime: str
@@ -141,28 +139,28 @@ class AssetsExportJobExecution(typing_extensions.TypedDict, total=False):
     startTime: str
 
 @typing.type_check_only
-class AssetsExportJobExecutionResult(typing_extensions.TypedDict, total=False):
+class AssetsExportJobExecutionResult(typing.TypedDict, total=False):
     error: Status
     outputFiles: OutputFileList
     signedUris: SignedUris
 
 @typing.type_check_only
-class AssetsExportJobExportCondition(typing_extensions.TypedDict, total=False):
+class AssetsExportJobExportCondition(typing.TypedDict, total=False):
     filter: str
 
 @typing.type_check_only
-class AssetsExportJobInventory(typing_extensions.TypedDict, total=False): ...
+class AssetsExportJobInventory(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class AssetsExportJobNetworkDependencies(typing_extensions.TypedDict, total=False): ...
+class AssetsExportJobNetworkDependencies(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class AssetsExportJobPerformanceData(typing_extensions.TypedDict, total=False):
+class AssetsExportJobPerformanceData(typing.TypedDict, total=False):
     maxDays: int
 
 @typing.type_check_only
-class AwsEc2PlatformDetails(typing_extensions.TypedDict, total=False):
-    hyperthreading: typing_extensions.Literal[
+class AwsEc2PlatformDetails(typing.TypedDict, total=False):
+    hyperthreading: typing.Literal[
         "HYPERTHREADING_STATUS_UNSPECIFIED",
         "HYPERTHREADING_STATUS_DISABLED",
         "HYPERTHREADING_STATUS_ENABLED",
@@ -171,11 +169,11 @@ class AwsEc2PlatformDetails(typing_extensions.TypedDict, total=False):
     machineTypeLabel: str
 
 @typing.type_check_only
-class AwsRds(typing_extensions.TypedDict, total=False): ...
+class AwsRds(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class AzureVmPlatformDetails(typing_extensions.TypedDict, total=False):
-    hyperthreading: typing_extensions.Literal[
+class AzureVmPlatformDetails(typing.TypedDict, total=False):
+    hyperthreading: typing.Literal[
         "HYPERTHREADING_STATUS_UNSPECIFIED",
         "HYPERTHREADING_STATUS_DISABLED",
         "HYPERTHREADING_STATUS_ENABLED",
@@ -185,21 +183,21 @@ class AzureVmPlatformDetails(typing_extensions.TypedDict, total=False):
     provisioningState: str
 
 @typing.type_check_only
-class BatchDeleteAssetsRequest(typing_extensions.TypedDict, total=False):
+class BatchDeleteAssetsRequest(typing.TypedDict, total=False):
     allowMissing: bool
     cascadingRules: _list[CascadingRule]
     names: _list[str]
 
 @typing.type_check_only
-class BatchUpdateAssetsRequest(typing_extensions.TypedDict, total=False):
+class BatchUpdateAssetsRequest(typing.TypedDict, total=False):
     requests: _list[UpdateAssetRequest]
 
 @typing.type_check_only
-class BatchUpdateAssetsResponse(typing_extensions.TypedDict, total=False):
+class BatchUpdateAssetsResponse(typing.TypedDict, total=False):
     assets: _list[Asset]
 
 @typing.type_check_only
-class BiosDetails(typing_extensions.TypedDict, total=False):
+class BiosDetails(typing.TypedDict, total=False):
     biosName: str
     id: str
     manufacturer: str
@@ -208,28 +206,28 @@ class BiosDetails(typing_extensions.TypedDict, total=False):
     version: str
 
 @typing.type_check_only
-class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
+class CancelOperationRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class CascadeLogicalDBsRule(typing_extensions.TypedDict, total=False): ...
+class CascadeLogicalDBsRule(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class CascadingRule(typing_extensions.TypedDict, total=False):
+class CascadingRule(typing.TypedDict, total=False):
     cascadeLogicalDbs: CascadeLogicalDBsRule
 
 @typing.type_check_only
-class ComputeEngineMigrationTarget(typing_extensions.TypedDict, total=False):
+class ComputeEngineMigrationTarget(typing.TypedDict, total=False):
     shape: ComputeEngineShapeDescriptor
 
 @typing.type_check_only
-class ComputeEnginePreferences(typing_extensions.TypedDict, total=False):
-    licenseType: typing_extensions.Literal[
+class ComputeEnginePreferences(typing.TypedDict, total=False):
+    licenseType: typing.Literal[
         "LICENSE_TYPE_UNSPECIFIED",
         "LICENSE_TYPE_DEFAULT",
         "LICENSE_TYPE_BRING_YOUR_OWN_LICENSE",
     ]
     machinePreferences: MachinePreferences
-    persistentDiskType: typing_extensions.Literal[
+    persistentDiskType: typing.Literal[
         "PERSISTENT_DISK_TYPE_UNSPECIFIED",
         "PERSISTENT_DISK_TYPE_STANDARD",
         "PERSISTENT_DISK_TYPE_BALANCED",
@@ -237,7 +235,7 @@ class ComputeEnginePreferences(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class ComputeEngineShapeDescriptor(typing_extensions.TypedDict, total=False):
+class ComputeEngineShapeDescriptor(typing.TypedDict, total=False):
     logicalCoreCount: int
     machineType: str
     memoryMb: int
@@ -246,9 +244,9 @@ class ComputeEngineShapeDescriptor(typing_extensions.TypedDict, total=False):
     storage: _list[ComputeStorageDescriptor]
 
 @typing.type_check_only
-class ComputeStorageDescriptor(typing_extensions.TypedDict, total=False):
+class ComputeStorageDescriptor(typing.TypedDict, total=False):
     sizeGb: int
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "PERSISTENT_DISK_TYPE_UNSPECIFIED",
         "PERSISTENT_DISK_TYPE_STANDARD",
         "PERSISTENT_DISK_TYPE_BALANCED",
@@ -256,17 +254,17 @@ class ComputeStorageDescriptor(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class CpuUsageSample(typing_extensions.TypedDict, total=False):
+class CpuUsageSample(typing.TypedDict, total=False):
     utilizedPercentage: float
 
 @typing.type_check_only
-class CsvOutputFile(typing_extensions.TypedDict, total=False):
+class CsvOutputFile(typing.TypedDict, total=False):
     columnsCount: int
     rowCount: int
     signedUri: SignedUri
 
 @typing.type_check_only
-class DailyResourceUsageAggregation(typing_extensions.TypedDict, total=False):
+class DailyResourceUsageAggregation(typing.TypedDict, total=False):
     cpu: DailyResourceUsageAggregationCPU
     date: Date
     disk: DailyResourceUsageAggregationDisk
@@ -274,33 +272,33 @@ class DailyResourceUsageAggregation(typing_extensions.TypedDict, total=False):
     network: DailyResourceUsageAggregationNetwork
 
 @typing.type_check_only
-class DailyResourceUsageAggregationCPU(typing_extensions.TypedDict, total=False):
+class DailyResourceUsageAggregationCPU(typing.TypedDict, total=False):
     utilizationPercentage: DailyResourceUsageAggregationStats
 
 @typing.type_check_only
-class DailyResourceUsageAggregationDisk(typing_extensions.TypedDict, total=False):
+class DailyResourceUsageAggregationDisk(typing.TypedDict, total=False):
     iops: DailyResourceUsageAggregationStats
     readIops: DailyResourceUsageAggregationStats
     writeIops: DailyResourceUsageAggregationStats
 
 @typing.type_check_only
-class DailyResourceUsageAggregationMemory(typing_extensions.TypedDict, total=False):
+class DailyResourceUsageAggregationMemory(typing.TypedDict, total=False):
     utilizationPercentage: DailyResourceUsageAggregationStats
 
 @typing.type_check_only
-class DailyResourceUsageAggregationNetwork(typing_extensions.TypedDict, total=False):
+class DailyResourceUsageAggregationNetwork(typing.TypedDict, total=False):
     egressBps: DailyResourceUsageAggregationStats
     ingressBps: DailyResourceUsageAggregationStats
 
 @typing.type_check_only
-class DailyResourceUsageAggregationStats(typing_extensions.TypedDict, total=False):
+class DailyResourceUsageAggregationStats(typing.TypedDict, total=False):
     average: float
     median: float
     ninteyFifthPercentile: float
     peak: float
 
 @typing.type_check_only
-class DatabaseDeploymentDetails(typing_extensions.TypedDict, total=False):
+class DatabaseDeploymentDetails(typing.TypedDict, total=False):
     aggregatedStats: DatabaseDeploymentDetailsAggregatedStats
     awsRds: AwsRds
     edition: str
@@ -313,13 +311,11 @@ class DatabaseDeploymentDetails(typing_extensions.TypedDict, total=False):
     version: str
 
 @typing.type_check_only
-class DatabaseDeploymentDetailsAggregatedStats(
-    typing_extensions.TypedDict, total=False
-):
+class DatabaseDeploymentDetailsAggregatedStats(typing.TypedDict, total=False):
     databaseCount: int
 
 @typing.type_check_only
-class DatabaseDeploymentTopology(typing_extensions.TypedDict, total=False):
+class DatabaseDeploymentTopology(typing.TypedDict, total=False):
     coreCount: int
     coreLimit: int
     diskAllocatedBytes: str
@@ -331,34 +327,32 @@ class DatabaseDeploymentTopology(typing_extensions.TypedDict, total=False):
     physicalCoreLimit: int
 
 @typing.type_check_only
-class DatabaseDetails(typing_extensions.TypedDict, total=False):
+class DatabaseDetails(typing.TypedDict, total=False):
     allocatedStorageBytes: str
     databaseName: str
     parentDatabaseDeployment: DatabaseDetailsParentDatabaseDeployment
     schemas: _list[DatabaseSchema]
 
 @typing.type_check_only
-class DatabaseDetailsParentDatabaseDeployment(typing_extensions.TypedDict, total=False):
+class DatabaseDetailsParentDatabaseDeployment(typing.TypedDict, total=False):
     generatedId: str
     manualUniqueId: str
 
 @typing.type_check_only
-class DatabaseInstance(typing_extensions.TypedDict, total=False):
+class DatabaseInstance(typing.TypedDict, total=False):
     instanceName: str
     network: DatabaseInstanceNetwork
-    role: typing_extensions.Literal[
-        "ROLE_UNSPECIFIED", "PRIMARY", "SECONDARY", "ARBITER"
-    ]
+    role: typing.Literal["ROLE_UNSPECIFIED", "PRIMARY", "SECONDARY", "ARBITER"]
 
 @typing.type_check_only
-class DatabaseInstanceNetwork(typing_extensions.TypedDict, total=False):
+class DatabaseInstanceNetwork(typing.TypedDict, total=False):
     hostNames: _list[str]
     ipAddresses: _list[str]
     primaryMacAddress: str
 
 @typing.type_check_only
-class DatabaseObjects(typing_extensions.TypedDict, total=False):
-    category: typing_extensions.Literal[
+class DatabaseObjects(typing.TypedDict, total=False):
+    category: typing.Literal[
         "CATEGORY_UNSPECIFIED",
         "TABLE",
         "INDEX",
@@ -370,7 +364,7 @@ class DatabaseObjects(typing_extensions.TypedDict, total=False):
     count: str
 
 @typing.type_check_only
-class DatabaseSchema(typing_extensions.TypedDict, total=False):
+class DatabaseSchema(typing.TypedDict, total=False):
     mysql: MySqlSchemaDetails
     objects: _list[DatabaseObjects]
     postgresql: PostgreSqlSchemaDetails
@@ -379,13 +373,13 @@ class DatabaseSchema(typing_extensions.TypedDict, total=False):
     tablesSizeBytes: str
 
 @typing.type_check_only
-class Date(typing_extensions.TypedDict, total=False):
+class Date(typing.TypedDict, total=False):
     day: int
     month: int
     year: int
 
 @typing.type_check_only
-class DiscoveryClient(typing_extensions.TypedDict, total=False):
+class DiscoveryClient(typing.TypedDict, total=False):
     createTime: str
     description: str
     displayName: str
@@ -397,7 +391,7 @@ class DiscoveryClient(typing_extensions.TypedDict, total=False):
     serviceAccount: str
     signalsEndpoint: str
     source: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED", "ACTIVE", "OFFLINE", "DEGRADED", "EXPIRED"
     ]
     ttl: str
@@ -405,13 +399,13 @@ class DiscoveryClient(typing_extensions.TypedDict, total=False):
     version: str
 
 @typing.type_check_only
-class DiskEntry(typing_extensions.TypedDict, total=False):
+class DiskEntry(typing.TypedDict, total=False):
     capacityBytes: str
     diskLabel: str
     diskLabelType: str
     freeBytes: str
     hwAddress: str
-    interfaceType: typing_extensions.Literal[
+    interfaceType: typing.Literal[
         "INTERFACE_TYPE_UNSPECIFIED",
         "IDE",
         "SATA",
@@ -425,11 +419,11 @@ class DiskEntry(typing_extensions.TypedDict, total=False):
     vmware: VmwareDiskConfig
 
 @typing.type_check_only
-class DiskEntryList(typing_extensions.TypedDict, total=False):
+class DiskEntryList(typing.TypedDict, total=False):
     entries: _list[DiskEntry]
 
 @typing.type_check_only
-class DiskPartition(typing_extensions.TypedDict, total=False):
+class DiskPartition(typing.TypedDict, total=False):
     capacityBytes: str
     fileSystem: str
     freeBytes: str
@@ -439,61 +433,61 @@ class DiskPartition(typing_extensions.TypedDict, total=False):
     uuid: str
 
 @typing.type_check_only
-class DiskPartitionDetails(typing_extensions.TypedDict, total=False):
+class DiskPartitionDetails(typing.TypedDict, total=False):
     freeSpaceBytes: str
     partitions: DiskPartitionList
     totalCapacityBytes: str
 
 @typing.type_check_only
-class DiskPartitionList(typing_extensions.TypedDict, total=False):
+class DiskPartitionList(typing.TypedDict, total=False):
     entries: _list[DiskPartition]
 
 @typing.type_check_only
-class DiskUsageSample(typing_extensions.TypedDict, total=False):
+class DiskUsageSample(typing.TypedDict, total=False):
     averageIops: float
     averageReadIops: float
     averageWriteIops: float
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class ErrorFrame(typing_extensions.TypedDict, total=False):
+class ErrorFrame(typing.TypedDict, total=False):
     ingestionTime: str
     name: str
     originalFrame: AssetFrame
     violations: _list[FrameViolationEntry]
 
 @typing.type_check_only
-class ExecutionReport(typing_extensions.TypedDict, total=False):
+class ExecutionReport(typing.TypedDict, total=False):
     executionErrors: ValidationReport
     framesReported: int
     totalRowsCount: int
 
 @typing.type_check_only
-class FileValidationReport(typing_extensions.TypedDict, total=False):
+class FileValidationReport(typing.TypedDict, total=False):
     fileErrors: _list[ImportError]
     fileName: str
     partialReport: bool
     rowErrors: _list[ImportRowError]
 
 @typing.type_check_only
-class FitDescriptor(typing_extensions.TypedDict, total=False):
-    fitLevel: typing_extensions.Literal[
+class FitDescriptor(typing.TypedDict, total=False):
+    fitLevel: typing.Literal[
         "FIT_LEVEL_UNSPECIFIED", "FIT", "NO_FIT", "REQUIRES_EFFORT"
     ]
 
 @typing.type_check_only
-class FrameViolationEntry(typing_extensions.TypedDict, total=False):
+class FrameViolationEntry(typing.TypedDict, total=False):
     field: str
     violation: str
 
 @typing.type_check_only
-class Frames(typing_extensions.TypedDict, total=False):
+class Frames(typing.TypedDict, total=False):
     framesData: _list[AssetFrame]
 
 @typing.type_check_only
-class FstabEntry(typing_extensions.TypedDict, total=False):
+class FstabEntry(typing.TypedDict, total=False):
     file: str
     freq: int
     mntops: str
@@ -502,18 +496,18 @@ class FstabEntry(typing_extensions.TypedDict, total=False):
     vfstype: str
 
 @typing.type_check_only
-class FstabEntryList(typing_extensions.TypedDict, total=False):
+class FstabEntryList(typing.TypedDict, total=False):
     entries: _list[FstabEntry]
 
 @typing.type_check_only
-class GenericInsight(typing_extensions.TypedDict, total=False):
+class GenericInsight(typing.TypedDict, total=False):
     additionalInformation: _list[str]
     defaultMessage: str
     messageId: str
 
 @typing.type_check_only
-class GenericPlatformDetails(typing_extensions.TypedDict, total=False):
-    hyperthreading: typing_extensions.Literal[
+class GenericPlatformDetails(typing.TypedDict, total=False):
+    hyperthreading: typing.Literal[
         "HYPERTHREADING_STATUS_UNSPECIFIED",
         "HYPERTHREADING_STATUS_DISABLED",
         "HYPERTHREADING_STATUS_ENABLED",
@@ -521,7 +515,7 @@ class GenericPlatformDetails(typing_extensions.TypedDict, total=False):
     location: str
 
 @typing.type_check_only
-class Group(typing_extensions.TypedDict, total=False):
+class Group(typing.TypedDict, total=False):
     createTime: str
     description: str
     displayName: str
@@ -530,12 +524,12 @@ class Group(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class GuestConfigDetails(typing_extensions.TypedDict, total=False):
+class GuestConfigDetails(typing.TypedDict, total=False):
     fstab: FstabEntryList
     hosts: HostsEntryList
     issue: str
     nfsExports: NfsExportList
-    selinuxMode: typing_extensions.Literal[
+    selinuxMode: typing.Literal[
         "SE_LINUX_MODE_UNSPECIFIED",
         "SE_LINUX_MODE_DISABLED",
         "SE_LINUX_MODE_PERMISSIVE",
@@ -543,7 +537,7 @@ class GuestConfigDetails(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class GuestInstalledApplication(typing_extensions.TypedDict, total=False):
+class GuestInstalledApplication(typing.TypedDict, total=False):
     applicationName: str
     installTime: str
     licenses: _list[str]
@@ -552,13 +546,13 @@ class GuestInstalledApplication(typing_extensions.TypedDict, total=False):
     version: str
 
 @typing.type_check_only
-class GuestInstalledApplicationList(typing_extensions.TypedDict, total=False):
+class GuestInstalledApplicationList(typing.TypedDict, total=False):
     entries: _list[GuestInstalledApplication]
 
 @typing.type_check_only
-class GuestOsDetails(typing_extensions.TypedDict, total=False):
+class GuestOsDetails(typing.TypedDict, total=False):
     config: GuestConfigDetails
-    family: typing_extensions.Literal[
+    family: typing.Literal[
         "OS_FAMILY_UNKNOWN", "OS_FAMILY_WINDOWS", "OS_FAMILY_LINUX", "OS_FAMILY_UNIX"
     ]
     osName: str
@@ -566,7 +560,7 @@ class GuestOsDetails(typing_extensions.TypedDict, total=False):
     version: str
 
 @typing.type_check_only
-class GuestRuntimeDetails(typing_extensions.TypedDict, total=False):
+class GuestRuntimeDetails(typing.TypedDict, total=False):
     domain: str
     installedApps: GuestInstalledApplicationList
     lastBootTime: str
@@ -577,19 +571,19 @@ class GuestRuntimeDetails(typing_extensions.TypedDict, total=False):
     services: RunningServiceList
 
 @typing.type_check_only
-class HostsEntry(typing_extensions.TypedDict, total=False):
+class HostsEntry(typing.TypedDict, total=False):
     hostNames: _list[str]
     ip: str
 
 @typing.type_check_only
-class HostsEntryList(typing_extensions.TypedDict, total=False):
+class HostsEntryList(typing.TypedDict, total=False):
     entries: _list[HostsEntry]
 
 @typing.type_check_only
-class ImportDataFile(typing_extensions.TypedDict, total=False):
+class ImportDataFile(typing.TypedDict, total=False):
     createTime: str
     displayName: str
-    format: typing_extensions.Literal[
+    format: typing.Literal[
         "IMPORT_JOB_FORMAT_UNSPECIFIED",
         "IMPORT_JOB_FORMAT_RVTOOLS_XLSX",
         "IMPORT_JOB_FORMAT_RVTOOLS_CSV",
@@ -599,18 +593,16 @@ class ImportDataFile(typing_extensions.TypedDict, total=False):
         "IMPORT_JOB_FORMAT_DATABASE_ZIP",
     ]
     name: str
-    state: typing_extensions.Literal["STATE_UNSPECIFIED", "CREATING", "ACTIVE"]
+    state: typing.Literal["STATE_UNSPECIFIED", "CREATING", "ACTIVE"]
     uploadFileInfo: UploadFileInfo
 
 @typing.type_check_only
-class ImportError(typing_extensions.TypedDict, total=False):
+class ImportError(typing.TypedDict, total=False):
     errorDetails: str
-    severity: typing_extensions.Literal[
-        "SEVERITY_UNSPECIFIED", "ERROR", "WARNING", "INFO"
-    ]
+    severity: typing.Literal["SEVERITY_UNSPECIFIED", "ERROR", "WARNING", "INFO"]
 
 @typing.type_check_only
-class ImportJob(typing_extensions.TypedDict, total=False):
+class ImportJob(typing.TypedDict, total=False):
     assetSource: str
     completeTime: str
     createTime: str
@@ -618,7 +610,7 @@ class ImportJob(typing_extensions.TypedDict, total=False):
     executionReport: ExecutionReport
     labels: dict[str, typing.Any]
     name: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "IMPORT_JOB_STATE_UNSPECIFIED",
         "IMPORT_JOB_STATE_PENDING",
         "IMPORT_JOB_STATE_RUNNING",
@@ -632,7 +624,7 @@ class ImportJob(typing_extensions.TypedDict, total=False):
     validationReport: ValidationReport
 
 @typing.type_check_only
-class ImportRowError(typing_extensions.TypedDict, total=False):
+class ImportRowError(typing.TypedDict, total=False):
     archiveError: ImportRowErrorArchiveErrorDetails
     assetTitle: str
     csvError: ImportRowErrorCsvErrorDetails
@@ -643,112 +635,112 @@ class ImportRowError(typing_extensions.TypedDict, total=False):
     xlsxError: ImportRowErrorXlsxErrorDetails
 
 @typing.type_check_only
-class ImportRowErrorArchiveErrorDetails(typing_extensions.TypedDict, total=False):
+class ImportRowErrorArchiveErrorDetails(typing.TypedDict, total=False):
     csvError: ImportRowErrorCsvErrorDetails
     filePath: str
 
 @typing.type_check_only
-class ImportRowErrorCsvErrorDetails(typing_extensions.TypedDict, total=False):
+class ImportRowErrorCsvErrorDetails(typing.TypedDict, total=False):
     rowNumber: int
 
 @typing.type_check_only
-class ImportRowErrorXlsxErrorDetails(typing_extensions.TypedDict, total=False):
+class ImportRowErrorXlsxErrorDetails(typing.TypedDict, total=False):
     rowNumber: int
     sheet: str
 
 @typing.type_check_only
-class Insight(typing_extensions.TypedDict, total=False):
+class Insight(typing.TypedDict, total=False):
     genericInsight: GenericInsight
     migrationInsight: MigrationInsight
 
 @typing.type_check_only
-class InsightList(typing_extensions.TypedDict, total=False):
+class InsightList(typing.TypedDict, total=False):
     insights: _list[Insight]
     updateTime: str
 
 @typing.type_check_only
-class ListAssetsExportJobsResponse(typing_extensions.TypedDict, total=False):
+class ListAssetsExportJobsResponse(typing.TypedDict, total=False):
     assetsExportJobs: _list[AssetsExportJob]
     nextPageToken: str
 
 @typing.type_check_only
-class ListAssetsResponse(typing_extensions.TypedDict, total=False):
+class ListAssetsResponse(typing.TypedDict, total=False):
     assets: _list[Asset]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListDiscoveryClientsResponse(typing_extensions.TypedDict, total=False):
+class ListDiscoveryClientsResponse(typing.TypedDict, total=False):
     discoveryClients: _list[DiscoveryClient]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListErrorFramesResponse(typing_extensions.TypedDict, total=False):
+class ListErrorFramesResponse(typing.TypedDict, total=False):
     errorFrames: _list[ErrorFrame]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListGroupsResponse(typing_extensions.TypedDict, total=False):
+class ListGroupsResponse(typing.TypedDict, total=False):
     groups: _list[Group]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListImportDataFilesResponse(typing_extensions.TypedDict, total=False):
+class ListImportDataFilesResponse(typing.TypedDict, total=False):
     importDataFiles: _list[ImportDataFile]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListImportJobsResponse(typing_extensions.TypedDict, total=False):
+class ListImportJobsResponse(typing.TypedDict, total=False):
     importJobs: _list[ImportJob]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListLocationsResponse(typing_extensions.TypedDict, total=False):
+class ListLocationsResponse(typing.TypedDict, total=False):
     locations: _list[Location]
     nextPageToken: str
 
 @typing.type_check_only
-class ListOperationsResponse(typing_extensions.TypedDict, total=False):
+class ListOperationsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListPreferenceSetsResponse(typing_extensions.TypedDict, total=False):
+class ListPreferenceSetsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     preferenceSets: _list[PreferenceSet]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListRelationsResponse(typing_extensions.TypedDict, total=False):
+class ListRelationsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     relations: _list[Relation]
 
 @typing.type_check_only
-class ListReportConfigsResponse(typing_extensions.TypedDict, total=False):
+class ListReportConfigsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     reportConfigs: _list[ReportConfig]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListReportsResponse(typing_extensions.TypedDict, total=False):
+class ListReportsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     reports: _list[Report]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListSourcesResponse(typing_extensions.TypedDict, total=False):
+class ListSourcesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     sources: _list[Source]
     unreachable: _list[str]
 
 @typing.type_check_only
-class Location(typing_extensions.TypedDict, total=False):
+class Location(typing.TypedDict, total=False):
     displayName: str
     labels: dict[str, typing.Any]
     locationId: str
@@ -756,21 +748,21 @@ class Location(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class MachineArchitectureDetails(typing_extensions.TypedDict, total=False):
+class MachineArchitectureDetails(typing.TypedDict, total=False):
     bios: BiosDetails
     cpuArchitecture: str
     cpuManufacturer: str
     cpuName: str
     cpuSocketCount: int
     cpuThreadCount: int
-    firmwareType: typing_extensions.Literal["FIRMWARE_TYPE_UNSPECIFIED", "BIOS", "EFI"]
-    hyperthreading: typing_extensions.Literal[
+    firmwareType: typing.Literal["FIRMWARE_TYPE_UNSPECIFIED", "BIOS", "EFI"]
+    hyperthreading: typing.Literal[
         "CPU_HYPER_THREADING_UNSPECIFIED", "DISABLED", "ENABLED"
     ]
     vendor: str
 
 @typing.type_check_only
-class MachineDetails(typing_extensions.TypedDict, total=False):
+class MachineDetails(typing.TypedDict, total=False):
     architecture: MachineArchitectureDetails
     coreCount: int
     createTime: str
@@ -781,7 +773,7 @@ class MachineDetails(typing_extensions.TypedDict, total=False):
     memoryMb: int
     network: MachineNetworkDetails
     platform: PlatformDetails
-    powerState: typing_extensions.Literal[
+    powerState: typing.Literal[
         "POWER_STATE_UNSPECIFIED",
         "PENDING",
         "ACTIVE",
@@ -793,13 +785,13 @@ class MachineDetails(typing_extensions.TypedDict, total=False):
     uuid: str
 
 @typing.type_check_only
-class MachineDiskDetails(typing_extensions.TypedDict, total=False):
+class MachineDiskDetails(typing.TypedDict, total=False):
     disks: DiskEntryList
     totalCapacityBytes: str
     totalFreeBytes: str
 
 @typing.type_check_only
-class MachineNetworkDetails(typing_extensions.TypedDict, total=False):
+class MachineNetworkDetails(typing.TypedDict, total=False):
     adapters: NetworkAdapterList
     defaultGateway: str
     primaryIpAddress: str
@@ -807,48 +799,48 @@ class MachineNetworkDetails(typing_extensions.TypedDict, total=False):
     publicIpAddress: str
 
 @typing.type_check_only
-class MachinePreferences(typing_extensions.TypedDict, total=False):
+class MachinePreferences(typing.TypedDict, total=False):
     allowedMachineSeries: _list[MachineSeries]
 
 @typing.type_check_only
-class MachineSeries(typing_extensions.TypedDict, total=False):
+class MachineSeries(typing.TypedDict, total=False):
     code: str
 
 @typing.type_check_only
-class MemoryUsageSample(typing_extensions.TypedDict, total=False):
+class MemoryUsageSample(typing.TypedDict, total=False):
     utilizedPercentage: float
 
 @typing.type_check_only
-class MigrationInsight(typing_extensions.TypedDict, total=False):
+class MigrationInsight(typing.TypedDict, total=False):
     computeEngineTarget: ComputeEngineMigrationTarget
     fit: FitDescriptor
 
 @typing.type_check_only
-class Money(typing_extensions.TypedDict, total=False):
+class Money(typing.TypedDict, total=False):
     currencyCode: str
     nanos: int
     units: str
 
 @typing.type_check_only
-class MySqlPlugin(typing_extensions.TypedDict, total=False):
+class MySqlPlugin(typing.TypedDict, total=False):
     enabled: bool
     plugin: str
     version: str
 
 @typing.type_check_only
-class MySqlProperty(typing_extensions.TypedDict, total=False):
+class MySqlProperty(typing.TypedDict, total=False):
     enabled: bool
     numericValue: str
     property: str
 
 @typing.type_check_only
-class MySqlSchemaDetails(typing_extensions.TypedDict, total=False):
+class MySqlSchemaDetails(typing.TypedDict, total=False):
     storageEngines: _list[MySqlStorageEngineDetails]
 
 @typing.type_check_only
-class MySqlStorageEngineDetails(typing_extensions.TypedDict, total=False):
+class MySqlStorageEngineDetails(typing.TypedDict, total=False):
     encryptedTableCount: int
-    engine: typing_extensions.Literal[
+    engine: typing.Literal[
         "ENGINE_UNSPECIFIED",
         "INNODB",
         "MYISAM",
@@ -865,31 +857,31 @@ class MySqlStorageEngineDetails(typing_extensions.TypedDict, total=False):
     tableCount: int
 
 @typing.type_check_only
-class MySqlVariable(typing_extensions.TypedDict, total=False):
+class MySqlVariable(typing.TypedDict, total=False):
     category: str
     value: str
     variable: str
 
 @typing.type_check_only
-class MysqlDatabaseDeployment(typing_extensions.TypedDict, total=False):
+class MysqlDatabaseDeployment(typing.TypedDict, total=False):
     plugins: _list[MySqlPlugin]
     properties: _list[MySqlProperty]
     resourceGroupsCount: int
     variables: _list[MySqlVariable]
 
 @typing.type_check_only
-class NetworkAdapterDetails(typing_extensions.TypedDict, total=False):
+class NetworkAdapterDetails(typing.TypedDict, total=False):
     adapterType: str
     addresses: NetworkAddressList
     macAddress: str
 
 @typing.type_check_only
-class NetworkAdapterList(typing_extensions.TypedDict, total=False):
+class NetworkAdapterList(typing.TypedDict, total=False):
     entries: _list[NetworkAdapterDetails]
 
 @typing.type_check_only
-class NetworkAddress(typing_extensions.TypedDict, total=False):
-    assignment: typing_extensions.Literal[
+class NetworkAddress(typing.TypedDict, total=False):
+    assignment: typing.Literal[
         "ADDRESS_ASSIGNMENT_UNSPECIFIED",
         "ADDRESS_ASSIGNMENT_STATIC",
         "ADDRESS_ASSIGNMENT_DHCP",
@@ -900,11 +892,11 @@ class NetworkAddress(typing_extensions.TypedDict, total=False):
     subnetMask: str
 
 @typing.type_check_only
-class NetworkAddressList(typing_extensions.TypedDict, total=False):
+class NetworkAddressList(typing.TypedDict, total=False):
     entries: _list[NetworkAddress]
 
 @typing.type_check_only
-class NetworkConnection(typing_extensions.TypedDict, total=False):
+class NetworkConnection(typing.TypedDict, total=False):
     localIpAddress: str
     localPort: int
     pid: str
@@ -912,41 +904,41 @@ class NetworkConnection(typing_extensions.TypedDict, total=False):
     protocol: str
     remoteIpAddress: str
     remotePort: int
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED", "OPENING", "OPEN", "LISTEN", "CLOSING", "CLOSED"
     ]
 
 @typing.type_check_only
-class NetworkConnectionList(typing_extensions.TypedDict, total=False):
+class NetworkConnectionList(typing.TypedDict, total=False):
     entries: _list[NetworkConnection]
 
 @typing.type_check_only
-class NetworkUsageSample(typing_extensions.TypedDict, total=False):
+class NetworkUsageSample(typing.TypedDict, total=False):
     averageEgressBps: float
     averageIngressBps: float
 
 @typing.type_check_only
-class NfsExport(typing_extensions.TypedDict, total=False):
+class NfsExport(typing.TypedDict, total=False):
     exportDirectory: str
     hosts: _list[str]
 
 @typing.type_check_only
-class NfsExportList(typing_extensions.TypedDict, total=False):
+class NfsExportList(typing.TypedDict, total=False):
     entries: _list[NfsExport]
 
 @typing.type_check_only
-class OpenFileDetails(typing_extensions.TypedDict, total=False):
+class OpenFileDetails(typing.TypedDict, total=False):
     command: str
     filePath: str
     fileType: str
     user: str
 
 @typing.type_check_only
-class OpenFileList(typing_extensions.TypedDict, total=False):
+class OpenFileList(typing.TypedDict, total=False):
     entries: _list[OpenFileDetails]
 
 @typing.type_check_only
-class Operation(typing_extensions.TypedDict, total=False):
+class Operation(typing.TypedDict, total=False):
     done: bool
     error: Status
     metadata: dict[str, typing.Any]
@@ -954,7 +946,7 @@ class Operation(typing_extensions.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
-class OperationMetadata(typing_extensions.TypedDict, total=False):
+class OperationMetadata(typing.TypedDict, total=False):
     apiVersion: str
     createTime: str
     endTime: str
@@ -964,17 +956,17 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     verb: str
 
 @typing.type_check_only
-class OutputFile(typing_extensions.TypedDict, total=False):
+class OutputFile(typing.TypedDict, total=False):
     csvOutputFile: CsvOutputFile
     fileSizeBytes: str
     xlsxOutputFile: XlsxOutputFile
 
 @typing.type_check_only
-class OutputFileList(typing_extensions.TypedDict, total=False):
+class OutputFileList(typing.TypedDict, total=False):
     entries: _list[OutputFile]
 
 @typing.type_check_only
-class PerformanceSample(typing_extensions.TypedDict, total=False):
+class PerformanceSample(typing.TypedDict, total=False):
     cpu: CpuUsageSample
     disk: DiskUsageSample
     memory: MemoryUsageSample
@@ -982,8 +974,8 @@ class PerformanceSample(typing_extensions.TypedDict, total=False):
     sampleTime: str
 
 @typing.type_check_only
-class PhysicalPlatformDetails(typing_extensions.TypedDict, total=False):
-    hyperthreading: typing_extensions.Literal[
+class PhysicalPlatformDetails(typing.TypedDict, total=False):
+    hyperthreading: typing.Literal[
         "HYPERTHREADING_STATUS_UNSPECIFIED",
         "HYPERTHREADING_STATUS_DISABLED",
         "HYPERTHREADING_STATUS_ENABLED",
@@ -991,7 +983,7 @@ class PhysicalPlatformDetails(typing_extensions.TypedDict, total=False):
     location: str
 
 @typing.type_check_only
-class PlatformDetails(typing_extensions.TypedDict, total=False):
+class PlatformDetails(typing.TypedDict, total=False):
     awsEc2Details: AwsEc2PlatformDetails
     azureVmDetails: AzureVmPlatformDetails
     genericDetails: GenericPlatformDetails
@@ -999,28 +991,28 @@ class PlatformDetails(typing_extensions.TypedDict, total=False):
     vmwareDetails: VmwarePlatformDetails
 
 @typing.type_check_only
-class PostgreSqlDatabaseDeployment(typing_extensions.TypedDict, total=False):
+class PostgreSqlDatabaseDeployment(typing.TypedDict, total=False):
     properties: _list[PostgreSqlProperty]
     settings: _list[PostgreSqlSetting]
 
 @typing.type_check_only
-class PostgreSqlExtension(typing_extensions.TypedDict, total=False):
+class PostgreSqlExtension(typing.TypedDict, total=False):
     extension: str
     version: str
 
 @typing.type_check_only
-class PostgreSqlProperty(typing_extensions.TypedDict, total=False):
+class PostgreSqlProperty(typing.TypedDict, total=False):
     enabled: bool
     numericValue: str
     property: str
 
 @typing.type_check_only
-class PostgreSqlSchemaDetails(typing_extensions.TypedDict, total=False):
+class PostgreSqlSchemaDetails(typing.TypedDict, total=False):
     foreignTablesCount: int
     postgresqlExtensions: _list[PostgreSqlExtension]
 
 @typing.type_check_only
-class PostgreSqlSetting(typing_extensions.TypedDict, total=False):
+class PostgreSqlSetting(typing.TypedDict, total=False):
     boolValue: bool
     intValue: str
     realValue: float
@@ -1030,7 +1022,7 @@ class PostgreSqlSetting(typing_extensions.TypedDict, total=False):
     unit: str
 
 @typing.type_check_only
-class PreferenceSet(typing_extensions.TypedDict, total=False):
+class PreferenceSet(typing.TypedDict, total=False):
     createTime: str
     description: str
     displayName: str
@@ -1039,43 +1031,41 @@ class PreferenceSet(typing_extensions.TypedDict, total=False):
     virtualMachinePreferences: VirtualMachinePreferences
 
 @typing.type_check_only
-class RegionPreferences(typing_extensions.TypedDict, total=False):
+class RegionPreferences(typing.TypedDict, total=False):
     preferredRegions: _list[str]
 
 @typing.type_check_only
-class Relation(typing_extensions.TypedDict, total=False):
+class Relation(typing.TypedDict, total=False):
     createTime: str
     dstAsset: str
     name: str
     srcAsset: str
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "TYPE_UNSPECIFIED", "LOGICAL_DATABASE", "DATABASE_DEPLOYMENT_HOSTING_SERVER"
     ]
 
 @typing.type_check_only
-class RemoveAssetsFromGroupRequest(typing_extensions.TypedDict, total=False):
+class RemoveAssetsFromGroupRequest(typing.TypedDict, total=False):
     allowMissing: bool
     assets: AssetList
     requestId: str
 
 @typing.type_check_only
-class Report(typing_extensions.TypedDict, total=False):
+class Report(typing.TypedDict, total=False):
     createTime: str
     description: str
     displayName: str
     name: str
-    state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "PENDING", "SUCCEEDED", "FAILED"
-    ]
+    state: typing.Literal["STATE_UNSPECIFIED", "PENDING", "SUCCEEDED", "FAILED"]
     summary: ReportSummary
-    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "TOTAL_COST_OF_OWNERSHIP"]
+    type: typing.Literal["TYPE_UNSPECIFIED", "TOTAL_COST_OF_OWNERSHIP"]
     updateTime: str
 
 @typing.type_check_only
-class ReportAssetFramesResponse(typing_extensions.TypedDict, total=False): ...
+class ReportAssetFramesResponse(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class ReportConfig(typing_extensions.TypedDict, total=False):
+class ReportConfig(typing.TypedDict, total=False):
     createTime: str
     description: str
     displayName: str
@@ -1084,19 +1074,17 @@ class ReportConfig(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class ReportConfigGroupPreferenceSetAssignment(
-    typing_extensions.TypedDict, total=False
-):
+class ReportConfigGroupPreferenceSetAssignment(typing.TypedDict, total=False):
     group: str
     preferenceSet: str
 
 @typing.type_check_only
-class ReportSummary(typing_extensions.TypedDict, total=False):
+class ReportSummary(typing.TypedDict, total=False):
     allAssetsStats: ReportSummaryAssetAggregateStats
     groupFindings: _list[ReportSummaryGroupFinding]
 
 @typing.type_check_only
-class ReportSummaryAssetAggregateStats(typing_extensions.TypedDict, total=False):
+class ReportSummaryAssetAggregateStats(typing.TypedDict, total=False):
     coreCountHistogram: ReportSummaryHistogramChartData
     memoryBytesHistogram: ReportSummaryHistogramChartData
     memoryUtilizationChart: ReportSummaryUtilizationChartData
@@ -1110,19 +1098,19 @@ class ReportSummaryAssetAggregateStats(typing_extensions.TypedDict, total=False)
     totalStorageBytes: str
 
 @typing.type_check_only
-class ReportSummaryChartData(typing_extensions.TypedDict, total=False):
+class ReportSummaryChartData(typing.TypedDict, total=False):
     dataPoints: _list[ReportSummaryChartDataDataPoint]
 
 @typing.type_check_only
-class ReportSummaryChartDataDataPoint(typing_extensions.TypedDict, total=False):
+class ReportSummaryChartDataDataPoint(typing.TypedDict, total=False):
     label: str
     value: float
 
 @typing.type_check_only
-class ReportSummaryComputeEngineFinding(typing_extensions.TypedDict, total=False):
+class ReportSummaryComputeEngineFinding(typing.TypedDict, total=False):
     allocatedAssetCount: str
     allocatedDiskTypes: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "PERSISTENT_DISK_TYPE_UNSPECIFIED",
             "PERSISTENT_DISK_TYPE_STANDARD",
             "PERSISTENT_DISK_TYPE_BALANCED",
@@ -1133,7 +1121,7 @@ class ReportSummaryComputeEngineFinding(typing_extensions.TypedDict, total=False
     machineSeriesAllocations: _list[ReportSummaryMachineSeriesAllocation]
 
 @typing.type_check_only
-class ReportSummaryGroupFinding(typing_extensions.TypedDict, total=False):
+class ReportSummaryGroupFinding(typing.TypedDict, total=False):
     assetAggregateStats: ReportSummaryAssetAggregateStats
     description: str
     displayName: str
@@ -1141,7 +1129,7 @@ class ReportSummaryGroupFinding(typing_extensions.TypedDict, total=False):
     preferenceSetFindings: _list[ReportSummaryGroupPreferenceSetFinding]
 
 @typing.type_check_only
-class ReportSummaryGroupPreferenceSetFinding(typing_extensions.TypedDict, total=False):
+class ReportSummaryGroupPreferenceSetFinding(typing.TypedDict, total=False):
     computeEngineFinding: ReportSummaryComputeEngineFinding
     description: str
     displayName: str
@@ -1156,67 +1144,67 @@ class ReportSummaryGroupPreferenceSetFinding(typing_extensions.TypedDict, total=
     vmwareEngineFinding: ReportSummaryVmwareEngineFinding
 
 @typing.type_check_only
-class ReportSummaryHistogramChartData(typing_extensions.TypedDict, total=False):
+class ReportSummaryHistogramChartData(typing.TypedDict, total=False):
     buckets: _list[ReportSummaryHistogramChartDataBucket]
 
 @typing.type_check_only
-class ReportSummaryHistogramChartDataBucket(typing_extensions.TypedDict, total=False):
+class ReportSummaryHistogramChartDataBucket(typing.TypedDict, total=False):
     count: str
     lowerBound: str
     upperBound: str
 
 @typing.type_check_only
-class ReportSummaryMachineSeriesAllocation(typing_extensions.TypedDict, total=False):
+class ReportSummaryMachineSeriesAllocation(typing.TypedDict, total=False):
     allocatedAssetCount: str
     machineSeries: MachineSeries
 
 @typing.type_check_only
-class ReportSummarySoleTenantFinding(typing_extensions.TypedDict, total=False):
+class ReportSummarySoleTenantFinding(typing.TypedDict, total=False):
     allocatedAssetCount: str
     allocatedRegions: _list[str]
     nodeAllocations: _list[ReportSummarySoleTenantNodeAllocation]
 
 @typing.type_check_only
-class ReportSummarySoleTenantNodeAllocation(typing_extensions.TypedDict, total=False):
+class ReportSummarySoleTenantNodeAllocation(typing.TypedDict, total=False):
     allocatedAssetCount: str
     node: SoleTenantNodeType
     nodeCount: str
 
 @typing.type_check_only
-class ReportSummaryUtilizationChartData(typing_extensions.TypedDict, total=False):
+class ReportSummaryUtilizationChartData(typing.TypedDict, total=False):
     free: str
     used: str
 
 @typing.type_check_only
-class ReportSummaryVmwareEngineFinding(typing_extensions.TypedDict, total=False):
+class ReportSummaryVmwareEngineFinding(typing.TypedDict, total=False):
     allocatedAssetCount: str
     allocatedRegions: _list[str]
     nodeAllocations: _list[ReportSummaryVmwareNodeAllocation]
 
 @typing.type_check_only
-class ReportSummaryVmwareNode(typing_extensions.TypedDict, total=False):
+class ReportSummaryVmwareNode(typing.TypedDict, total=False):
     code: str
 
 @typing.type_check_only
-class ReportSummaryVmwareNodeAllocation(typing_extensions.TypedDict, total=False):
+class ReportSummaryVmwareNodeAllocation(typing.TypedDict, total=False):
     allocatedAssetCount: str
     nodeCount: str
     vmwareNode: ReportSummaryVmwareNode
 
 @typing.type_check_only
-class RunAssetsExportJobRequest(typing_extensions.TypedDict, total=False):
+class RunAssetsExportJobRequest(typing.TypedDict, total=False):
     requestId: str
 
 @typing.type_check_only
-class RunAssetsExportJobResponse(typing_extensions.TypedDict, total=False):
+class RunAssetsExportJobResponse(typing.TypedDict, total=False):
     assetsExportJobExecution: AssetsExportJobExecution
 
 @typing.type_check_only
-class RunImportJobRequest(typing_extensions.TypedDict, total=False):
+class RunImportJobRequest(typing.TypedDict, total=False):
     requestId: str
 
 @typing.type_check_only
-class RunningProcess(typing_extensions.TypedDict, total=False):
+class RunningProcess(typing.TypedDict, total=False):
     attributes: dict[str, typing.Any]
     cmdline: str
     exePath: str
@@ -1224,63 +1212,63 @@ class RunningProcess(typing_extensions.TypedDict, total=False):
     user: str
 
 @typing.type_check_only
-class RunningProcessList(typing_extensions.TypedDict, total=False):
+class RunningProcessList(typing.TypedDict, total=False):
     entries: _list[RunningProcess]
 
 @typing.type_check_only
-class RunningService(typing_extensions.TypedDict, total=False):
+class RunningService(typing.TypedDict, total=False):
     cmdline: str
     exePath: str
     pid: str
     serviceName: str
-    startMode: typing_extensions.Literal[
+    startMode: typing.Literal[
         "START_MODE_UNSPECIFIED", "BOOT", "SYSTEM", "AUTO", "MANUAL", "DISABLED"
     ]
-    state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "PAUSED", "STOPPED"]
+    state: typing.Literal["STATE_UNSPECIFIED", "ACTIVE", "PAUSED", "STOPPED"]
 
 @typing.type_check_only
-class RunningServiceList(typing_extensions.TypedDict, total=False):
+class RunningServiceList(typing.TypedDict, total=False):
     entries: _list[RunningService]
 
 @typing.type_check_only
-class RuntimeNetworkInfo(typing_extensions.TypedDict, total=False):
+class RuntimeNetworkInfo(typing.TypedDict, total=False):
     connections: NetworkConnectionList
     scanTime: str
 
 @typing.type_check_only
-class SendDiscoveryClientHeartbeatRequest(typing_extensions.TypedDict, total=False):
+class SendDiscoveryClientHeartbeatRequest(typing.TypedDict, total=False):
     errors: _list[Status]
     version: str
 
 @typing.type_check_only
-class Settings(typing_extensions.TypedDict, total=False):
+class Settings(typing.TypedDict, total=False):
     disableCloudLogging: bool
     name: str
     preferenceSet: str
 
 @typing.type_check_only
-class SignedUri(typing_extensions.TypedDict, total=False):
+class SignedUri(typing.TypedDict, total=False):
     file: str
     uri: str
 
 @typing.type_check_only
-class SignedUriDestination(typing_extensions.TypedDict, total=False):
-    fileFormat: typing_extensions.Literal["FILE_FORMAT_UNSPECIFIED", "CSV", "XLSX"]
+class SignedUriDestination(typing.TypedDict, total=False):
+    fileFormat: typing.Literal["FILE_FORMAT_UNSPECIFIED", "CSV", "XLSX"]
 
 @typing.type_check_only
-class SignedUris(typing_extensions.TypedDict, total=False):
+class SignedUris(typing.TypedDict, total=False):
     signedUris: _list[SignedUri]
 
 @typing.type_check_only
-class SoleTenancyPreferences(typing_extensions.TypedDict, total=False):
-    commitmentPlan: typing_extensions.Literal[
+class SoleTenancyPreferences(typing.TypedDict, total=False):
+    commitmentPlan: typing.Literal[
         "COMMITMENT_PLAN_UNSPECIFIED",
         "ON_DEMAND",
         "COMMITMENT_1_YEAR",
         "COMMITMENT_3_YEAR",
     ]
     cpuOvercommitRatio: float
-    hostMaintenancePolicy: typing_extensions.Literal[
+    hostMaintenancePolicy: typing.Literal[
         "HOST_MAINTENANCE_POLICY_UNSPECIFIED",
         "HOST_MAINTENANCE_POLICY_DEFAULT",
         "HOST_MAINTENANCE_POLICY_RESTART_IN_PLACE",
@@ -1289,11 +1277,11 @@ class SoleTenancyPreferences(typing_extensions.TypedDict, total=False):
     nodeTypes: _list[SoleTenantNodeType]
 
 @typing.type_check_only
-class SoleTenantNodeType(typing_extensions.TypedDict, total=False):
+class SoleTenantNodeType(typing.TypedDict, total=False):
     nodeName: str
 
 @typing.type_check_only
-class Source(typing_extensions.TypedDict, total=False):
+class Source(typing.TypedDict, total=False):
     createTime: str
     description: str
     displayName: str
@@ -1302,10 +1290,8 @@ class Source(typing_extensions.TypedDict, total=False):
     name: str
     pendingFrameCount: int
     priority: int
-    state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "ACTIVE", "DELETING", "INVALID"
-    ]
-    type: typing_extensions.Literal[
+    state: typing.Literal["STATE_UNSPECIFIED", "ACTIVE", "DELETING", "INVALID"]
+    type: typing.Literal[
         "SOURCE_TYPE_UNKNOWN",
         "SOURCE_TYPE_UPLOAD",
         "SOURCE_TYPE_GUEST_OS_SCAN",
@@ -1316,61 +1302,61 @@ class Source(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class SqlServerDatabaseDeployment(typing_extensions.TypedDict, total=False):
+class SqlServerDatabaseDeployment(typing.TypedDict, total=False):
     features: _list[SqlServerFeature]
     serverFlags: _list[SqlServerServerFlag]
     traceFlags: _list[SqlServerTraceFlag]
 
 @typing.type_check_only
-class SqlServerFeature(typing_extensions.TypedDict, total=False):
+class SqlServerFeature(typing.TypedDict, total=False):
     enabled: bool
     featureName: str
 
 @typing.type_check_only
-class SqlServerSchemaDetails(typing_extensions.TypedDict, total=False):
+class SqlServerSchemaDetails(typing.TypedDict, total=False):
     clrObjectCount: int
 
 @typing.type_check_only
-class SqlServerServerFlag(typing_extensions.TypedDict, total=False):
+class SqlServerServerFlag(typing.TypedDict, total=False):
     serverFlagName: str
     value: str
     valueInUse: str
 
 @typing.type_check_only
-class SqlServerTraceFlag(typing_extensions.TypedDict, total=False):
-    scope: typing_extensions.Literal["SCOPE_UNSPECIFIED", "OFF", "GLOBAL", "SESSION"]
+class SqlServerTraceFlag(typing.TypedDict, total=False):
+    scope: typing.Literal["SCOPE_UNSPECIFIED", "OFF", "GLOBAL", "SESSION"]
     traceFlagName: str
 
 @typing.type_check_only
-class Status(typing_extensions.TypedDict, total=False):
+class Status(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
-class UpdateAssetRequest(typing_extensions.TypedDict, total=False):
+class UpdateAssetRequest(typing.TypedDict, total=False):
     asset: Asset
     requestId: str
     updateMask: str
 
 @typing.type_check_only
-class UploadFileInfo(typing_extensions.TypedDict, total=False):
+class UploadFileInfo(typing.TypedDict, total=False):
     headers: dict[str, typing.Any]
     signedUri: str
     uriExpirationTime: str
 
 @typing.type_check_only
-class ValidateImportJobRequest(typing_extensions.TypedDict, total=False):
+class ValidateImportJobRequest(typing.TypedDict, total=False):
     requestId: str
 
 @typing.type_check_only
-class ValidationReport(typing_extensions.TypedDict, total=False):
+class ValidationReport(typing.TypedDict, total=False):
     fileValidations: _list[FileValidationReport]
     jobErrors: _list[ImportError]
 
 @typing.type_check_only
-class VirtualMachinePreferences(typing_extensions.TypedDict, total=False):
-    commitmentPlan: typing_extensions.Literal[
+class VirtualMachinePreferences(typing.TypedDict, total=False):
+    commitmentPlan: typing.Literal[
         "COMMITMENT_PLAN_UNSPECIFIED",
         "COMMITMENT_PLAN_NONE",
         "COMMITMENT_PLAN_ONE_YEAR",
@@ -1378,14 +1364,14 @@ class VirtualMachinePreferences(typing_extensions.TypedDict, total=False):
     ]
     computeEnginePreferences: ComputeEnginePreferences
     regionPreferences: RegionPreferences
-    sizingOptimizationStrategy: typing_extensions.Literal[
+    sizingOptimizationStrategy: typing.Literal[
         "SIZING_OPTIMIZATION_STRATEGY_UNSPECIFIED",
         "SIZING_OPTIMIZATION_STRATEGY_SAME_AS_SOURCE",
         "SIZING_OPTIMIZATION_STRATEGY_MODERATE",
         "SIZING_OPTIMIZATION_STRATEGY_AGGRESSIVE",
     ]
     soleTenancyPreferences: SoleTenancyPreferences
-    targetProduct: typing_extensions.Literal[
+    targetProduct: typing.Literal[
         "COMPUTE_MIGRATION_TARGET_PRODUCT_UNSPECIFIED",
         "COMPUTE_MIGRATION_TARGET_PRODUCT_COMPUTE_ENGINE",
         "COMPUTE_MIGRATION_TARGET_PRODUCT_VMWARE_ENGINE",
@@ -1394,8 +1380,8 @@ class VirtualMachinePreferences(typing_extensions.TypedDict, total=False):
     vmwareEnginePreferences: VmwareEnginePreferences
 
 @typing.type_check_only
-class VmwareDiskConfig(typing_extensions.TypedDict, total=False):
-    backingType: typing_extensions.Literal[
+class VmwareDiskConfig(typing.TypedDict, total=False):
+    backingType: typing.Literal[
         "BACKING_TYPE_UNSPECIFIED",
         "BACKING_TYPE_FLAT_V1",
         "BACKING_TYPE_FLAT_V2",
@@ -1406,13 +1392,13 @@ class VmwareDiskConfig(typing_extensions.TypedDict, total=False):
         "BACKING_TYPE_SESPARSE_V1",
         "BACKING_TYPE_SESPARSE_V2",
     ]
-    rdmCompatibility: typing_extensions.Literal[
+    rdmCompatibility: typing.Literal[
         "RDM_COMPATIBILITY_UNSPECIFIED",
         "PHYSICAL_COMPATIBILITY",
         "VIRTUAL_COMPATIBILITY",
     ]
     shared: bool
-    vmdkMode: typing_extensions.Literal[
+    vmdkMode: typing.Literal[
         "VMDK_MODE_UNSPECIFIED",
         "DEPENDENT",
         "INDEPENDENT_PERSISTENT",
@@ -1420,8 +1406,8 @@ class VmwareDiskConfig(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class VmwareEnginePreferences(typing_extensions.TypedDict, total=False):
-    commitmentPlan: typing_extensions.Literal[
+class VmwareEnginePreferences(typing.TypedDict, total=False):
+    commitmentPlan: typing.Literal[
         "COMMITMENT_PLAN_UNSPECIFIED",
         "ON_DEMAND",
         "COMMITMENT_1_YEAR_MONTHLY_PAYMENTS",
@@ -1434,8 +1420,8 @@ class VmwareEnginePreferences(typing_extensions.TypedDict, total=False):
     storageDeduplicationCompressionRatio: float
 
 @typing.type_check_only
-class VmwarePlatformDetails(typing_extensions.TypedDict, total=False):
-    esxHyperthreading: typing_extensions.Literal[
+class VmwarePlatformDetails(typing.TypedDict, total=False):
+    esxHyperthreading: typing.Literal[
         "HYPERTHREADING_STATUS_UNSPECIFIED",
         "HYPERTHREADING_STATUS_DISABLED",
         "HYPERTHREADING_STATUS_ENABLED",
@@ -1448,5 +1434,5 @@ class VmwarePlatformDetails(typing_extensions.TypedDict, total=False):
     vcenterVmId: str
 
 @typing.type_check_only
-class XlsxOutputFile(typing_extensions.TypedDict, total=False):
+class XlsxOutputFile(typing.TypedDict, total=False):
     signedUri: SignedUri

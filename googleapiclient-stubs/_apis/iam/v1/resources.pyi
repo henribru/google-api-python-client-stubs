@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -328,7 +327,7 @@ class IamResource(googleapiclient.discovery.Resource):
                 pageSize: int | None = ...,
                 pageToken: str | None = ...,
                 showDeleted: bool | None = ...,
-                view: typing_extensions.Literal["BASIC", "FULL"] | None = ...,
+                view: typing.Literal["BASIC", "FULL"] | None = ...,
                 **kwargs: typing.Any,
             ) -> ListRolesResponseHttpRequest: ...
             def list_next(
@@ -840,7 +839,7 @@ class IamResource(googleapiclient.discovery.Resource):
                 pageSize: int | None = ...,
                 pageToken: str | None = ...,
                 showDeleted: bool | None = ...,
-                view: typing_extensions.Literal["BASIC", "FULL"] | None = ...,
+                view: typing.Literal["BASIC", "FULL"] | None = ...,
                 **kwargs: typing.Any,
             ) -> ListRolesResponseHttpRequest: ...
             def list_next(
@@ -892,7 +891,7 @@ class IamResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    publicKeyType: typing_extensions.Literal[
+                    publicKeyType: typing.Literal[
                         "TYPE_NONE", "TYPE_X509_PEM_FILE", "TYPE_RAW_PUBLIC_KEY"
                     ]
                     | None = ...,
@@ -902,11 +901,11 @@ class IamResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    keyTypes: typing_extensions.Literal[
+                    keyTypes: typing.Literal[
                         "KEY_TYPE_UNSPECIFIED", "USER_MANAGED", "SYSTEM_MANAGED"
                     ]
                     | _list[
-                        typing_extensions.Literal[
+                        typing.Literal[
                             "KEY_TYPE_UNSPECIFIED", "USER_MANAGED", "SYSTEM_MANAGED"
                         ]
                     ]
@@ -1017,7 +1016,7 @@ class IamResource(googleapiclient.discovery.Resource):
             pageToken: str | None = ...,
             parent: str | None = ...,
             showDeleted: bool | None = ...,
-            view: typing_extensions.Literal["BASIC", "FULL"] | None = ...,
+            view: typing.Literal["BASIC", "FULL"] | None = ...,
             **kwargs: typing.Any,
         ) -> ListRolesResponseHttpRequest: ...
         def list_next(

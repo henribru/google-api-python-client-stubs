@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -19,7 +18,7 @@ class ReportsResource(googleapiclient.discovery.Resource):
             self,
             *,
             userKey: str,
-            applicationName: typing_extensions.Literal[
+            applicationName: typing.Literal[
                 "access_transparency",
                 "admin",
                 "calendar",
@@ -88,7 +87,7 @@ class ReportsResource(googleapiclient.discovery.Resource):
             self,
             *,
             userKey: str,
-            applicationName: typing_extensions.Literal[
+            applicationName: typing.Literal[
                 "access_transparency",
                 "admin",
                 "calendar",
@@ -154,7 +153,7 @@ class ReportsResource(googleapiclient.discovery.Resource):
         def get(
             self,
             *,
-            entityType: typing_extensions.Literal["gplus_communities"],
+            entityType: typing.Literal["gplus_communities"],
             entityKey: str,
             date: str,
             customerId: str | None = ...,

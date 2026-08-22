@@ -1,11 +1,9 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class AddressInfo(typing_extensions.TypedDict, total=False):
+class AddressInfo(typing.TypedDict, total=False):
     city: str
     familyName: str
     givenName: str
@@ -14,8 +12,8 @@ class AddressInfo(typing_extensions.TypedDict, total=False):
     state: str
 
 @typing.type_check_only
-class LoyaltyCustomer(typing_extensions.TypedDict, total=False):
-    loyaltyTier: typing_extensions.Literal[
+class LoyaltyCustomer(typing.TypedDict, total=False):
+    loyaltyTier: typing.Literal[
         "LOYALTY_TIER_UNSPECIFIED",
         "TIER1",
         "TIER2",
@@ -30,19 +28,19 @@ class LoyaltyCustomer(typing_extensions.TypedDict, total=False):
     userIdentifier: UserIdentifier
 
 @typing.type_check_only
-class ManageLoyaltyCustomerMatchRequest(typing_extensions.TypedDict, total=False):
+class ManageLoyaltyCustomerMatchRequest(typing.TypedDict, total=False):
     loyaltyCustomer: LoyaltyCustomer
 
 @typing.type_check_only
-class ManageLoyaltyCustomerMatchResponse(typing_extensions.TypedDict, total=False):
+class ManageLoyaltyCustomerMatchResponse(typing.TypedDict, total=False):
     loyaltyCustomer: LoyaltyCustomer
 
 @typing.type_check_only
-class ProductChange(typing_extensions.TypedDict, total=False):
+class ProductChange(typing.TypedDict, total=False):
     newValue: str
     oldValue: str
     regionCode: str
-    reportingContext: typing_extensions.Literal[
+    reportingContext: typing.Literal[
         "REPORTING_CONTEXT_ENUM_UNSPECIFIED",
         "SHOPPING_ADS",
         "DISCOVERY_ADS",
@@ -66,21 +64,19 @@ class ProductChange(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class ProductStatusChangeMessage(typing_extensions.TypedDict, total=False):
+class ProductStatusChangeMessage(typing.TypedDict, total=False):
     account: str
-    attribute: typing_extensions.Literal["ATTRIBUTE_UNSPECIFIED", "STATUS"]
+    attribute: typing.Literal["ATTRIBUTE_UNSPECIFIED", "STATUS"]
     changes: _list[ProductChange]
     eventTime: str
     expirationTime: str
     managingAccount: str
     resource: str
     resourceId: str
-    resourceType: typing_extensions.Literal[
-        "RESOURCE_UNSPECIFIED", "PRODUCT", "ACCOUNT_SERVICE"
-    ]
+    resourceType: typing.Literal["RESOURCE_UNSPECIFIED", "PRODUCT", "ACCOUNT_SERVICE"]
 
 @typing.type_check_only
-class UserIdentifier(typing_extensions.TypedDict, total=False):
+class UserIdentifier(typing.TypedDict, total=False):
     address: AddressInfo
     emailAddress: str
     phoneNumber: str

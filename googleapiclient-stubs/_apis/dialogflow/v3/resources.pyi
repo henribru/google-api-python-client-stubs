@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -720,7 +719,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        intentView: typing_extensions.Literal[
+                        intentView: typing.Literal[
                             "INTENT_VIEW_UNSPECIFIED",
                             "INTENT_VIEW_PARTIAL",
                             "INTENT_VIEW_FULL",
@@ -1007,7 +1006,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         agent: str,
-                        type: typing_extensions.Literal[
+                        type: typing.Literal[
                             "COVERAGE_TYPE_UNSPECIFIED",
                             "INTENT",
                             "PAGE_TRANSITION",
@@ -1048,7 +1047,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                         parent: str,
                         pageSize: int | None = ...,
                         pageToken: str | None = ...,
-                        view: typing_extensions.Literal[
+                        view: typing.Literal[
                             "TEST_CASE_VIEW_UNSPECIFIED", "BASIC", "FULL"
                         ]
                         | None = ...,

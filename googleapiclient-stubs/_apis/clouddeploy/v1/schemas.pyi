@@ -1,53 +1,51 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class AbandonReleaseRequest(typing_extensions.TypedDict, total=False): ...
+class AbandonReleaseRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class AbandonReleaseResponse(typing_extensions.TypedDict, total=False): ...
+class AbandonReleaseResponse(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class AdvanceChildRolloutJob(typing_extensions.TypedDict, total=False): ...
+class AdvanceChildRolloutJob(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class AdvanceChildRolloutJobRun(typing_extensions.TypedDict, total=False):
+class AdvanceChildRolloutJobRun(typing.TypedDict, total=False):
     rollout: str
     rolloutPhaseId: str
 
 @typing.type_check_only
-class AdvanceRolloutOperation(typing_extensions.TypedDict, total=False):
+class AdvanceRolloutOperation(typing.TypedDict, total=False):
     destinationPhase: str
     rollout: str
     sourcePhase: str
     wait: str
 
 @typing.type_check_only
-class AdvanceRolloutRequest(typing_extensions.TypedDict, total=False):
+class AdvanceRolloutRequest(typing.TypedDict, total=False):
     overrideDeployPolicy: _list[str]
     phaseId: str
 
 @typing.type_check_only
-class AdvanceRolloutResponse(typing_extensions.TypedDict, total=False): ...
+class AdvanceRolloutResponse(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class AdvanceRolloutRule(typing_extensions.TypedDict, total=False):
+class AdvanceRolloutRule(typing.TypedDict, total=False):
     condition: AutomationRuleCondition
     id: str
     sourcePhases: _list[str]
     wait: str
 
 @typing.type_check_only
-class AlertPolicyCheck(typing_extensions.TypedDict, total=False):
+class AlertPolicyCheck(typing.TypedDict, total=False):
     alertPolicies: _list[str]
     id: str
     labels: dict[str, typing.Any]
 
 @typing.type_check_only
-class AlertPolicyCheckStatus(typing_extensions.TypedDict, total=False):
+class AlertPolicyCheckStatus(typing.TypedDict, total=False):
     alertPolicies: _list[str]
     failedAlertPolicies: _list[FailedAlertPolicy]
     failureMessage: str
@@ -55,54 +53,54 @@ class AlertPolicyCheckStatus(typing_extensions.TypedDict, total=False):
     labels: dict[str, typing.Any]
 
 @typing.type_check_only
-class Analysis(typing_extensions.TypedDict, total=False):
+class Analysis(typing.TypedDict, total=False):
     customChecks: _list[CustomCheck]
     duration: str
     googleCloud: GoogleCloudAnalysis
 
 @typing.type_check_only
-class AnalysisJob(typing_extensions.TypedDict, total=False):
+class AnalysisJob(typing.TypedDict, total=False):
     customChecks: _list[CustomCheck]
     duration: str
     googleCloud: GoogleCloudAnalysis
 
 @typing.type_check_only
-class AnalysisJobRun(typing_extensions.TypedDict, total=False):
+class AnalysisJobRun(typing.TypedDict, total=False):
     alertPolicyAnalyses: _list[AlertPolicyCheckStatus]
     customCheckAnalyses: _list[CustomCheckStatus]
     failedCheckId: str
 
 @typing.type_check_only
-class AnthosCluster(typing_extensions.TypedDict, total=False):
+class AnthosCluster(typing.TypedDict, total=False):
     membership: str
 
 @typing.type_check_only
-class ApproveRolloutRequest(typing_extensions.TypedDict, total=False):
+class ApproveRolloutRequest(typing.TypedDict, total=False):
     approved: bool
     overrideDeployPolicy: _list[str]
 
 @typing.type_check_only
-class ApproveRolloutResponse(typing_extensions.TypedDict, total=False): ...
+class ApproveRolloutResponse(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class AssociatedEntities(typing_extensions.TypedDict, total=False):
+class AssociatedEntities(typing.TypedDict, total=False):
     anthosClusters: _list[AnthosCluster]
     gkeClusters: _list[GkeCluster]
 
 @typing.type_check_only
-class AuditConfig(typing_extensions.TypedDict, total=False):
+class AuditConfig(typing.TypedDict, total=False):
     auditLogConfigs: _list[AuditLogConfig]
     service: str
 
 @typing.type_check_only
-class AuditLogConfig(typing_extensions.TypedDict, total=False):
+class AuditLogConfig(typing.TypedDict, total=False):
     exemptedMembers: _list[str]
-    logType: typing_extensions.Literal[
+    logType: typing.Literal[
         "LOG_TYPE_UNSPECIFIED", "ADMIN_READ", "DATA_WRITE", "DATA_READ"
     ]
 
 @typing.type_check_only
-class Automation(typing_extensions.TypedDict, total=False):
+class Automation(typing.TypedDict, total=False):
     annotations: dict[str, typing.Any]
     createTime: str
     description: str
@@ -117,11 +115,11 @@ class Automation(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class AutomationEvent(typing_extensions.TypedDict, total=False):
+class AutomationEvent(typing.TypedDict, total=False):
     automation: str
     message: str
     pipelineUid: str
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "TYPE_UNSPECIFIED",
         "TYPE_PUBSUB_NOTIFICATION_FAILURE",
         "TYPE_RESOURCE_STATE_CHANGE",
@@ -134,29 +132,29 @@ class AutomationEvent(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class AutomationResourceSelector(typing_extensions.TypedDict, total=False):
+class AutomationResourceSelector(typing.TypedDict, total=False):
     targets: _list[TargetAttribute]
 
 @typing.type_check_only
-class AutomationRolloutMetadata(typing_extensions.TypedDict, total=False):
+class AutomationRolloutMetadata(typing.TypedDict, total=False):
     advanceAutomationRuns: _list[str]
     promoteAutomationRun: str
     repairAutomationRuns: _list[str]
 
 @typing.type_check_only
-class AutomationRule(typing_extensions.TypedDict, total=False):
+class AutomationRule(typing.TypedDict, total=False):
     advanceRolloutRule: AdvanceRolloutRule
     promoteReleaseRule: PromoteReleaseRule
     repairRolloutRule: RepairRolloutRule
     timedPromoteReleaseRule: TimedPromoteReleaseRule
 
 @typing.type_check_only
-class AutomationRuleCondition(typing_extensions.TypedDict, total=False):
+class AutomationRuleCondition(typing.TypedDict, total=False):
     targetsPresentCondition: TargetsPresentCondition
     timedPromoteReleaseCondition: TimedPromoteReleaseCondition
 
 @typing.type_check_only
-class AutomationRun(typing_extensions.TypedDict, total=False):
+class AutomationRun(typing.TypedDict, total=False):
     advanceRolloutOperation: AdvanceRolloutOperation
     automationId: str
     automationSnapshot: Automation
@@ -169,7 +167,7 @@ class AutomationRun(typing_extensions.TypedDict, total=False):
     repairRolloutOperation: RepairRolloutOperation
     ruleId: str
     serviceAccount: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "SUCCEEDED",
         "CANCELLED",
@@ -186,14 +184,14 @@ class AutomationRun(typing_extensions.TypedDict, total=False):
     waitUntilTime: str
 
 @typing.type_check_only
-class AutomationRunEvent(typing_extensions.TypedDict, total=False):
+class AutomationRunEvent(typing.TypedDict, total=False):
     automationId: str
     automationRun: str
     destinationTargetId: str
     message: str
     pipelineUid: str
     ruleId: str
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "TYPE_UNSPECIFIED",
         "TYPE_PUBSUB_NOTIFICATION_FAILURE",
         "TYPE_RESOURCE_STATE_CHANGE",
@@ -206,24 +204,24 @@ class AutomationRunEvent(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class Binding(typing_extensions.TypedDict, total=False):
+class Binding(typing.TypedDict, total=False):
     condition: Expr
     members: _list[str]
     role: str
 
 @typing.type_check_only
-class BuildArtifact(typing_extensions.TypedDict, total=False):
+class BuildArtifact(typing.TypedDict, total=False):
     image: str
     tag: str
 
 @typing.type_check_only
-class Canary(typing_extensions.TypedDict, total=False):
+class Canary(typing.TypedDict, total=False):
     canaryDeployment: CanaryDeployment
     customCanaryDeployment: CustomCanaryDeployment
     runtimeConfig: RuntimeConfig
 
 @typing.type_check_only
-class CanaryDeployment(typing_extensions.TypedDict, total=False):
+class CanaryDeployment(typing.TypedDict, total=False):
     analysis: Analysis
     percentages: _list[int]
     postdeploy: Postdeploy
@@ -232,39 +230,39 @@ class CanaryDeployment(typing_extensions.TypedDict, total=False):
     verifyConfig: Verify
 
 @typing.type_check_only
-class CancelAutomationRunRequest(typing_extensions.TypedDict, total=False): ...
+class CancelAutomationRunRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class CancelAutomationRunResponse(typing_extensions.TypedDict, total=False): ...
+class CancelAutomationRunResponse(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
+class CancelOperationRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class CancelRolloutRequest(typing_extensions.TypedDict, total=False):
+class CancelRolloutRequest(typing.TypedDict, total=False):
     overrideDeployPolicy: _list[str]
 
 @typing.type_check_only
-class CancelRolloutResponse(typing_extensions.TypedDict, total=False): ...
+class CancelRolloutResponse(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class ChildRolloutJobs(typing_extensions.TypedDict, total=False):
+class ChildRolloutJobs(typing.TypedDict, total=False):
     advanceRolloutJobs: _list[Job]
     createRolloutJobs: _list[Job]
 
 @typing.type_check_only
-class CloudRunConfig(typing_extensions.TypedDict, total=False):
+class CloudRunConfig(typing.TypedDict, total=False):
     automaticTrafficControl: bool
     canaryRevisionTags: _list[str]
     priorRevisionTags: _list[str]
     stableRevisionTags: _list[str]
 
 @typing.type_check_only
-class CloudRunLocation(typing_extensions.TypedDict, total=False):
+class CloudRunLocation(typing.TypedDict, total=False):
     location: str
 
 @typing.type_check_only
-class CloudRunMetadata(typing_extensions.TypedDict, total=False):
+class CloudRunMetadata(typing.TypedDict, total=False):
     job: str
     previousRevision: str
     revision: str
@@ -273,47 +271,47 @@ class CloudRunMetadata(typing_extensions.TypedDict, total=False):
     workerPool: str
 
 @typing.type_check_only
-class CloudRunRenderMetadata(typing_extensions.TypedDict, total=False):
+class CloudRunRenderMetadata(typing.TypedDict, total=False):
     job: str
     revision: str
     service: str
     workerPool: str
 
 @typing.type_check_only
-class Config(typing_extensions.TypedDict, total=False):
+class Config(typing.TypedDict, total=False):
     defaultSkaffoldVersion: str
     defaultToolVersions: ToolVersions
     name: str
     supportedVersions: _list[SkaffoldVersion]
 
 @typing.type_check_only
-class ContainerTask(typing_extensions.TypedDict, total=False):
+class ContainerTask(typing.TypedDict, total=False):
     args: _list[str]
     command: _list[str]
     env: dict[str, typing.Any]
     image: str
 
 @typing.type_check_only
-class CreateChildRolloutJob(typing_extensions.TypedDict, total=False): ...
+class CreateChildRolloutJob(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class CreateChildRolloutJobRun(typing_extensions.TypedDict, total=False):
+class CreateChildRolloutJobRun(typing.TypedDict, total=False):
     rollout: str
     rolloutPhaseId: str
 
 @typing.type_check_only
-class CustomCanaryDeployment(typing_extensions.TypedDict, total=False):
+class CustomCanaryDeployment(typing.TypedDict, total=False):
     phaseConfigs: _list[PhaseConfig]
 
 @typing.type_check_only
-class CustomCheck(typing_extensions.TypedDict, total=False):
+class CustomCheck(typing.TypedDict, total=False):
     frequency: str
     id: str
     task: Task
 
 @typing.type_check_only
-class CustomCheckStatus(typing_extensions.TypedDict, total=False):
-    failureCause: typing_extensions.Literal[
+class CustomCheckStatus(typing.TypedDict, total=False):
+    failureCause: typing.Literal[
         "FAILURE_CAUSE_UNSPECIFIED",
         "CLOUD_BUILD_UNAVAILABLE",
         "EXECUTION_FAILED",
@@ -328,30 +326,30 @@ class CustomCheckStatus(typing_extensions.TypedDict, total=False):
     task: Task
 
 @typing.type_check_only
-class CustomMetadata(typing_extensions.TypedDict, total=False):
+class CustomMetadata(typing.TypedDict, total=False):
     values: dict[str, typing.Any]
 
 @typing.type_check_only
-class CustomTarget(typing_extensions.TypedDict, total=False):
+class CustomTarget(typing.TypedDict, total=False):
     customTargetType: str
 
 @typing.type_check_only
-class CustomTargetDeployMetadata(typing_extensions.TypedDict, total=False):
+class CustomTargetDeployMetadata(typing.TypedDict, total=False):
     skipMessage: str
 
 @typing.type_check_only
-class CustomTargetSkaffoldActions(typing_extensions.TypedDict, total=False):
+class CustomTargetSkaffoldActions(typing.TypedDict, total=False):
     deployAction: str
     includeSkaffoldModules: _list[SkaffoldModules]
     renderAction: str
 
 @typing.type_check_only
-class CustomTargetTasks(typing_extensions.TypedDict, total=False):
+class CustomTargetTasks(typing.TypedDict, total=False):
     deploy: Task
     render: Task
 
 @typing.type_check_only
-class CustomTargetType(typing_extensions.TypedDict, total=False):
+class CustomTargetType(typing.TypedDict, total=False):
     annotations: dict[str, typing.Any]
     createTime: str
     customActions: CustomTargetSkaffoldActions
@@ -365,11 +363,11 @@ class CustomTargetType(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class CustomTargetTypeNotificationEvent(typing_extensions.TypedDict, total=False):
+class CustomTargetTypeNotificationEvent(typing.TypedDict, total=False):
     customTargetType: str
     customTargetTypeUid: str
     message: str
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "TYPE_UNSPECIFIED",
         "TYPE_PUBSUB_NOTIFICATION_FAILURE",
         "TYPE_RESOURCE_STATE_CHANGE",
@@ -382,18 +380,18 @@ class CustomTargetTypeNotificationEvent(typing_extensions.TypedDict, total=False
     ]
 
 @typing.type_check_only
-class Date(typing_extensions.TypedDict, total=False):
+class Date(typing.TypedDict, total=False):
     day: int
     month: int
     year: int
 
 @typing.type_check_only
-class DefaultPool(typing_extensions.TypedDict, total=False):
+class DefaultPool(typing.TypedDict, total=False):
     artifactStorage: str
     serviceAccount: str
 
 @typing.type_check_only
-class DeliveryPipeline(typing_extensions.TypedDict, total=False):
+class DeliveryPipeline(typing.TypedDict, total=False):
     annotations: dict[str, typing.Any]
     condition: PipelineCondition
     createTime: str
@@ -407,16 +405,16 @@ class DeliveryPipeline(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class DeliveryPipelineAttribute(typing_extensions.TypedDict, total=False):
+class DeliveryPipelineAttribute(typing.TypedDict, total=False):
     id: str
     labels: dict[str, typing.Any]
 
 @typing.type_check_only
-class DeliveryPipelineNotificationEvent(typing_extensions.TypedDict, total=False):
+class DeliveryPipelineNotificationEvent(typing.TypedDict, total=False):
     deliveryPipeline: str
     message: str
     pipelineUid: str
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "TYPE_UNSPECIFIED",
         "TYPE_PUBSUB_NOTIFICATION_FAILURE",
         "TYPE_RESOURCE_STATE_CHANGE",
@@ -429,18 +427,18 @@ class DeliveryPipelineNotificationEvent(typing_extensions.TypedDict, total=False
     ]
 
 @typing.type_check_only
-class DeployArtifact(typing_extensions.TypedDict, total=False):
+class DeployArtifact(typing.TypedDict, total=False):
     artifactUri: str
     manifestPaths: _list[str]
 
 @typing.type_check_only
-class DeployJob(typing_extensions.TypedDict, total=False): ...
+class DeployJob(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class DeployJobRun(typing_extensions.TypedDict, total=False):
+class DeployJobRun(typing.TypedDict, total=False):
     artifact: DeployArtifact
     build: str
-    failureCause: typing_extensions.Literal[
+    failureCause: typing.Literal[
         "FAILURE_CAUSE_UNSPECIFIED",
         "CLOUD_BUILD_UNAVAILABLE",
         "EXECUTION_FAILED",
@@ -453,18 +451,18 @@ class DeployJobRun(typing_extensions.TypedDict, total=False):
     metadata: DeployJobRunMetadata
 
 @typing.type_check_only
-class DeployJobRunMetadata(typing_extensions.TypedDict, total=False):
+class DeployJobRunMetadata(typing.TypedDict, total=False):
     cloudRun: CloudRunMetadata
     custom: CustomMetadata
     customTarget: CustomTargetDeployMetadata
 
 @typing.type_check_only
-class DeployParameters(typing_extensions.TypedDict, total=False):
+class DeployParameters(typing.TypedDict, total=False):
     matchTargetLabels: dict[str, typing.Any]
     values: dict[str, typing.Any]
 
 @typing.type_check_only
-class DeployPolicy(typing_extensions.TypedDict, total=False):
+class DeployPolicy(typing.TypedDict, total=False):
     annotations: dict[str, typing.Any]
     createTime: str
     description: str
@@ -478,17 +476,15 @@ class DeployPolicy(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class DeployPolicyEvaluationEvent(typing_extensions.TypedDict, total=False):
+class DeployPolicyEvaluationEvent(typing.TypedDict, total=False):
     allowed: bool
     deliveryPipeline: str
     deployPolicy: str
     deployPolicyUid: str
-    invoker: typing_extensions.Literal[
-        "INVOKER_UNSPECIFIED", "USER", "DEPLOY_AUTOMATION"
-    ]
+    invoker: typing.Literal["INVOKER_UNSPECIFIED", "USER", "DEPLOY_AUTOMATION"]
     message: str
     overrides: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "POLICY_VERDICT_OVERRIDE_UNSPECIFIED",
             "POLICY_OVERRIDDEN",
             "POLICY_SUSPENDED",
@@ -499,16 +495,16 @@ class DeployPolicyEvaluationEvent(typing_extensions.TypedDict, total=False):
     ruleType: str
     target: str
     targetUid: str
-    verdict: typing_extensions.Literal[
+    verdict: typing.Literal[
         "POLICY_VERDICT_UNSPECIFIED", "ALLOWED_BY_POLICY", "DENIED_BY_POLICY"
     ]
 
 @typing.type_check_only
-class DeployPolicyNotificationEvent(typing_extensions.TypedDict, total=False):
+class DeployPolicyNotificationEvent(typing.TypedDict, total=False):
     deployPolicy: str
     deployPolicyUid: str
     message: str
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "TYPE_UNSPECIFIED",
         "TYPE_PUBSUB_NOTIFICATION_FAILURE",
         "TYPE_RESOURCE_STATE_CHANGE",
@@ -521,12 +517,12 @@ class DeployPolicyNotificationEvent(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class DeployPolicyResourceSelector(typing_extensions.TypedDict, total=False):
+class DeployPolicyResourceSelector(typing.TypedDict, total=False):
     deliveryPipeline: DeliveryPipelineAttribute
     target: TargetAttribute
 
 @typing.type_check_only
-class DeploymentJobs(typing_extensions.TypedDict, total=False):
+class DeploymentJobs(typing.TypedDict, total=False):
     analysisJob: Job
     deployJob: Job
     postdeployJob: Job
@@ -534,17 +530,17 @@ class DeploymentJobs(typing_extensions.TypedDict, total=False):
     verifyJob: Job
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class ExecutionConfig(typing_extensions.TypedDict, total=False):
+class ExecutionConfig(typing.TypedDict, total=False):
     artifactStorage: str
     defaultPool: DefaultPool
     executionTimeout: str
     privatePool: PrivatePool
     serviceAccount: str
     usages: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "EXECUTION_ENVIRONMENT_USAGE_UNSPECIFIED",
             "RENDER",
             "DEPLOY",
@@ -558,19 +554,19 @@ class ExecutionConfig(typing_extensions.TypedDict, total=False):
     workerPool: str
 
 @typing.type_check_only
-class Expr(typing_extensions.TypedDict, total=False):
+class Expr(typing.TypedDict, total=False):
     description: str
     expression: str
     location: str
     title: str
 
 @typing.type_check_only
-class FailedAlertPolicy(typing_extensions.TypedDict, total=False):
+class FailedAlertPolicy(typing.TypedDict, total=False):
     alertPolicy: str
     alerts: _list[str]
 
 @typing.type_check_only
-class GatewayServiceMesh(typing_extensions.TypedDict, total=False):
+class GatewayServiceMesh(typing.TypedDict, total=False):
     deployment: str
     httpRoute: str
     podSelectorLabel: str
@@ -580,27 +576,27 @@ class GatewayServiceMesh(typing_extensions.TypedDict, total=False):
     stableCutbackDuration: str
 
 @typing.type_check_only
-class GkeCluster(typing_extensions.TypedDict, total=False):
+class GkeCluster(typing.TypedDict, total=False):
     cluster: str
     dnsEndpoint: bool
     internalIp: bool
     proxyUrl: str
 
 @typing.type_check_only
-class GoogleCloudAnalysis(typing_extensions.TypedDict, total=False):
+class GoogleCloudAnalysis(typing.TypedDict, total=False):
     alertPolicyChecks: _list[AlertPolicyCheck]
 
 @typing.type_check_only
-class IgnoreJobRequest(typing_extensions.TypedDict, total=False):
+class IgnoreJobRequest(typing.TypedDict, total=False):
     jobId: str
     overrideDeployPolicy: _list[str]
     phaseId: str
 
 @typing.type_check_only
-class IgnoreJobResponse(typing_extensions.TypedDict, total=False): ...
+class IgnoreJobResponse(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Job(typing_extensions.TypedDict, total=False):
+class Job(typing.TypedDict, total=False):
     advanceChildRolloutJob: AdvanceChildRolloutJob
     analysisJob: AnalysisJob
     createChildRolloutJob: CreateChildRolloutJob
@@ -610,7 +606,7 @@ class Job(typing_extensions.TypedDict, total=False):
     postdeployJob: PostdeployJob
     predeployJob: PredeployJob
     skipMessage: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "PENDING",
         "DISABLED",
@@ -624,7 +620,7 @@ class Job(typing_extensions.TypedDict, total=False):
     verifyJob: VerifyJob
 
 @typing.type_check_only
-class JobRun(typing_extensions.TypedDict, total=False):
+class JobRun(typing.TypedDict, total=False):
     advanceChildRolloutJobRun: AdvanceChildRolloutJobRun
     analysisJobRun: AnalysisJobRun
     createChildRolloutJobRun: CreateChildRolloutJobRun
@@ -638,7 +634,7 @@ class JobRun(typing_extensions.TypedDict, total=False):
     postdeployJobRun: PostdeployJobRun
     predeployJobRun: PredeployJobRun
     startTime: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "IN_PROGRESS",
         "SUCCEEDED",
@@ -650,7 +646,7 @@ class JobRun(typing_extensions.TypedDict, total=False):
     verifyJobRun: VerifyJobRun
 
 @typing.type_check_only
-class JobRunNotificationEvent(typing_extensions.TypedDict, total=False):
+class JobRunNotificationEvent(typing.TypedDict, total=False):
     jobRun: str
     message: str
     pipelineUid: str
@@ -659,7 +655,7 @@ class JobRunNotificationEvent(typing_extensions.TypedDict, total=False):
     rollout: str
     rolloutUid: str
     targetId: str
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "TYPE_UNSPECIFIED",
         "TYPE_PUBSUB_NOTIFICATION_FAILURE",
         "TYPE_RESOURCE_STATE_CHANGE",
@@ -672,83 +668,83 @@ class JobRunNotificationEvent(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class KubernetesConfig(typing_extensions.TypedDict, total=False):
+class KubernetesConfig(typing.TypedDict, total=False):
     gatewayServiceMesh: GatewayServiceMesh
     serviceNetworking: ServiceNetworking
 
 @typing.type_check_only
-class KubernetesRenderMetadata(typing_extensions.TypedDict, total=False):
+class KubernetesRenderMetadata(typing.TypedDict, total=False):
     canaryDeployment: str
     deployment: str
     kubernetesNamespace: str
 
 @typing.type_check_only
-class ListAutomationRunsResponse(typing_extensions.TypedDict, total=False):
+class ListAutomationRunsResponse(typing.TypedDict, total=False):
     automationRuns: _list[AutomationRun]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListAutomationsResponse(typing_extensions.TypedDict, total=False):
+class ListAutomationsResponse(typing.TypedDict, total=False):
     automations: _list[Automation]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListCustomTargetTypesResponse(typing_extensions.TypedDict, total=False):
+class ListCustomTargetTypesResponse(typing.TypedDict, total=False):
     customTargetTypes: _list[CustomTargetType]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListDeliveryPipelinesResponse(typing_extensions.TypedDict, total=False):
+class ListDeliveryPipelinesResponse(typing.TypedDict, total=False):
     deliveryPipelines: _list[DeliveryPipeline]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListDeployPoliciesResponse(typing_extensions.TypedDict, total=False):
+class ListDeployPoliciesResponse(typing.TypedDict, total=False):
     deployPolicies: _list[DeployPolicy]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListJobRunsResponse(typing_extensions.TypedDict, total=False):
+class ListJobRunsResponse(typing.TypedDict, total=False):
     jobRuns: _list[JobRun]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListLocationsResponse(typing_extensions.TypedDict, total=False):
+class ListLocationsResponse(typing.TypedDict, total=False):
     locations: _list[Location]
     nextPageToken: str
 
 @typing.type_check_only
-class ListOperationsResponse(typing_extensions.TypedDict, total=False):
+class ListOperationsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListReleasesResponse(typing_extensions.TypedDict, total=False):
+class ListReleasesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     releases: _list[Release]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListRolloutsResponse(typing_extensions.TypedDict, total=False):
+class ListRolloutsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     rollouts: _list[Rollout]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListTargetsResponse(typing_extensions.TypedDict, total=False):
+class ListTargetsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     targets: _list[Target]
     unreachable: _list[str]
 
 @typing.type_check_only
-class Location(typing_extensions.TypedDict, total=False):
+class Location(typing.TypedDict, total=False):
     displayName: str
     labels: dict[str, typing.Any]
     locationId: str
@@ -756,24 +752,24 @@ class Location(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class Metadata(typing_extensions.TypedDict, total=False):
+class Metadata(typing.TypedDict, total=False):
     automation: AutomationRolloutMetadata
     cloudRun: CloudRunMetadata
     custom: CustomMetadata
 
 @typing.type_check_only
-class MultiTarget(typing_extensions.TypedDict, total=False):
+class MultiTarget(typing.TypedDict, total=False):
     targetIds: _list[str]
 
 @typing.type_check_only
-class OneTimeWindow(typing_extensions.TypedDict, total=False):
+class OneTimeWindow(typing.TypedDict, total=False):
     endDate: Date
     endTime: TimeOfDay
     startDate: Date
     startTime: TimeOfDay
 
 @typing.type_check_only
-class Operation(typing_extensions.TypedDict, total=False):
+class Operation(typing.TypedDict, total=False):
     done: bool
     error: Status
     metadata: dict[str, typing.Any]
@@ -781,7 +777,7 @@ class Operation(typing_extensions.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
-class OperationMetadata(typing_extensions.TypedDict, total=False):
+class OperationMetadata(typing.TypedDict, total=False):
     apiVersion: str
     createTime: str
     endTime: str
@@ -791,12 +787,12 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     verb: str
 
 @typing.type_check_only
-class Phase(typing_extensions.TypedDict, total=False):
+class Phase(typing.TypedDict, total=False):
     childRolloutJobs: ChildRolloutJobs
     deploymentJobs: DeploymentJobs
     id: str
     skipMessage: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "PENDING",
         "IN_PROGRESS",
@@ -807,13 +803,13 @@ class Phase(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class PhaseArtifact(typing_extensions.TypedDict, total=False):
+class PhaseArtifact(typing.TypedDict, total=False):
     jobManifestsPath: str
     manifestPath: str
     skaffoldConfigPath: str
 
 @typing.type_check_only
-class PhaseConfig(typing_extensions.TypedDict, total=False):
+class PhaseConfig(typing.TypedDict, total=False):
     analysis: Analysis
     percentage: int
     phaseId: str
@@ -824,51 +820,51 @@ class PhaseConfig(typing_extensions.TypedDict, total=False):
     verifyConfig: Verify
 
 @typing.type_check_only
-class PipelineCondition(typing_extensions.TypedDict, total=False):
+class PipelineCondition(typing.TypedDict, total=False):
     pipelineReadyCondition: PipelineReadyCondition
     targetsPresentCondition: TargetsPresentCondition
     targetsTypeCondition: TargetsTypeCondition
 
 @typing.type_check_only
-class PipelineReadyCondition(typing_extensions.TypedDict, total=False):
+class PipelineReadyCondition(typing.TypedDict, total=False):
     status: bool
     updateTime: str
 
 @typing.type_check_only
-class Policy(typing_extensions.TypedDict, total=False):
+class Policy(typing.TypedDict, total=False):
     auditConfigs: _list[AuditConfig]
     bindings: _list[Binding]
     etag: str
     version: int
 
 @typing.type_check_only
-class PolicyRule(typing_extensions.TypedDict, total=False):
+class PolicyRule(typing.TypedDict, total=False):
     rolloutRestriction: RolloutRestriction
 
 @typing.type_check_only
-class PolicyViolation(typing_extensions.TypedDict, total=False):
+class PolicyViolation(typing.TypedDict, total=False):
     policyViolationDetails: _list[PolicyViolationDetails]
 
 @typing.type_check_only
-class PolicyViolationDetails(typing_extensions.TypedDict, total=False):
+class PolicyViolationDetails(typing.TypedDict, total=False):
     failureMessage: str
     policy: str
     ruleId: str
 
 @typing.type_check_only
-class Postdeploy(typing_extensions.TypedDict, total=False):
+class Postdeploy(typing.TypedDict, total=False):
     actions: _list[str]
     tasks: _list[Task]
 
 @typing.type_check_only
-class PostdeployJob(typing_extensions.TypedDict, total=False):
+class PostdeployJob(typing.TypedDict, total=False):
     actions: _list[str]
     tasks: _list[Task]
 
 @typing.type_check_only
-class PostdeployJobRun(typing_extensions.TypedDict, total=False):
+class PostdeployJobRun(typing.TypedDict, total=False):
     build: str
-    failureCause: typing_extensions.Literal[
+    failureCause: typing.Literal[
         "FAILURE_CAUSE_UNSPECIFIED",
         "CLOUD_BUILD_UNAVAILABLE",
         "EXECUTION_FAILED",
@@ -879,23 +875,23 @@ class PostdeployJobRun(typing_extensions.TypedDict, total=False):
     metadata: PostdeployJobRunMetadata
 
 @typing.type_check_only
-class PostdeployJobRunMetadata(typing_extensions.TypedDict, total=False):
+class PostdeployJobRunMetadata(typing.TypedDict, total=False):
     custom: CustomMetadata
 
 @typing.type_check_only
-class Predeploy(typing_extensions.TypedDict, total=False):
+class Predeploy(typing.TypedDict, total=False):
     actions: _list[str]
     tasks: _list[Task]
 
 @typing.type_check_only
-class PredeployJob(typing_extensions.TypedDict, total=False):
+class PredeployJob(typing.TypedDict, total=False):
     actions: _list[str]
     tasks: _list[Task]
 
 @typing.type_check_only
-class PredeployJobRun(typing_extensions.TypedDict, total=False):
+class PredeployJobRun(typing.TypedDict, total=False):
     build: str
-    failureCause: typing_extensions.Literal[
+    failureCause: typing.Literal[
         "FAILURE_CAUSE_UNSPECIFIED",
         "CLOUD_BUILD_UNAVAILABLE",
         "EXECUTION_FAILED",
@@ -906,24 +902,24 @@ class PredeployJobRun(typing_extensions.TypedDict, total=False):
     metadata: PredeployJobRunMetadata
 
 @typing.type_check_only
-class PredeployJobRunMetadata(typing_extensions.TypedDict, total=False):
+class PredeployJobRunMetadata(typing.TypedDict, total=False):
     custom: CustomMetadata
 
 @typing.type_check_only
-class PrivatePool(typing_extensions.TypedDict, total=False):
+class PrivatePool(typing.TypedDict, total=False):
     artifactStorage: str
     serviceAccount: str
     workerPool: str
 
 @typing.type_check_only
-class PromoteReleaseOperation(typing_extensions.TypedDict, total=False):
+class PromoteReleaseOperation(typing.TypedDict, total=False):
     phase: str
     rollout: str
     targetId: str
     wait: str
 
 @typing.type_check_only
-class PromoteReleaseRule(typing_extensions.TypedDict, total=False):
+class PromoteReleaseRule(typing.TypedDict, total=False):
     condition: AutomationRuleCondition
     destinationPhase: str
     destinationTargetId: str
@@ -931,7 +927,7 @@ class PromoteReleaseRule(typing_extensions.TypedDict, total=False):
     wait: str
 
 @typing.type_check_only
-class Release(typing_extensions.TypedDict, total=False):
+class Release(typing.TypedDict, total=False):
     abandoned: bool
     annotations: dict[str, typing.Any]
     buildArtifacts: _list[BuildArtifact]
@@ -946,7 +942,7 @@ class Release(typing_extensions.TypedDict, total=False):
     name: str
     renderEndTime: str
     renderStartTime: str
-    renderState: typing_extensions.Literal[
+    renderState: typing.Literal[
         "RENDER_STATE_UNSPECIFIED", "SUCCEEDED", "FAILED", "IN_PROGRESS"
     ]
     skaffoldConfigPath: str
@@ -959,7 +955,7 @@ class Release(typing_extensions.TypedDict, total=False):
     uid: str
 
 @typing.type_check_only
-class ReleaseCondition(typing_extensions.TypedDict, total=False):
+class ReleaseCondition(typing.TypedDict, total=False):
     dockerVersionSupportedCondition: ToolVersionSupportedCondition
     helmVersionSupportedCondition: ToolVersionSupportedCondition
     kptVersionSupportedCondition: ToolVersionSupportedCondition
@@ -970,12 +966,12 @@ class ReleaseCondition(typing_extensions.TypedDict, total=False):
     skaffoldVersionSupportedCondition: ToolVersionSupportedCondition
 
 @typing.type_check_only
-class ReleaseNotificationEvent(typing_extensions.TypedDict, total=False):
+class ReleaseNotificationEvent(typing.TypedDict, total=False):
     message: str
     pipelineUid: str
     release: str
     releaseUid: str
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "TYPE_UNSPECIFIED",
         "TYPE_PUBSUB_NOTIFICATION_FAILURE",
         "TYPE_RESOURCE_STATE_CHANGE",
@@ -988,18 +984,18 @@ class ReleaseNotificationEvent(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class ReleaseReadyCondition(typing_extensions.TypedDict, total=False):
+class ReleaseReadyCondition(typing.TypedDict, total=False):
     status: bool
 
 @typing.type_check_only
-class ReleaseRenderEvent(typing_extensions.TypedDict, total=False):
+class ReleaseRenderEvent(typing.TypedDict, total=False):
     message: str
     pipelineUid: str
     release: str
-    releaseRenderState: typing_extensions.Literal[
+    releaseRenderState: typing.Literal[
         "RENDER_STATE_UNSPECIFIED", "SUCCEEDED", "FAILED", "IN_PROGRESS"
     ]
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "TYPE_UNSPECIFIED",
         "TYPE_PUBSUB_NOTIFICATION_FAILURE",
         "TYPE_RESOURCE_STATE_CHANGE",
@@ -1012,23 +1008,23 @@ class ReleaseRenderEvent(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class RenderMetadata(typing_extensions.TypedDict, total=False):
+class RenderMetadata(typing.TypedDict, total=False):
     cloudRun: CloudRunRenderMetadata
     custom: CustomMetadata
     kubernetes: KubernetesRenderMetadata
 
 @typing.type_check_only
-class RepairPhase(typing_extensions.TypedDict, total=False):
+class RepairPhase(typing.TypedDict, total=False):
     retry: RetryPhase
     rollback: RollbackAttempt
 
 @typing.type_check_only
-class RepairPhaseConfig(typing_extensions.TypedDict, total=False):
+class RepairPhaseConfig(typing.TypedDict, total=False):
     retry: Retry
     rollback: Rollback
 
 @typing.type_check_only
-class RepairRolloutOperation(typing_extensions.TypedDict, total=False):
+class RepairRolloutOperation(typing.TypedDict, total=False):
     currentRepairPhaseIndex: str
     jobId: str
     phaseId: str
@@ -1036,7 +1032,7 @@ class RepairRolloutOperation(typing_extensions.TypedDict, total=False):
     rollout: str
 
 @typing.type_check_only
-class RepairRolloutRule(typing_extensions.TypedDict, total=False):
+class RepairRolloutRule(typing.TypedDict, total=False):
     condition: AutomationRuleCondition
     id: str
     jobs: _list[str]
@@ -1044,17 +1040,17 @@ class RepairRolloutRule(typing_extensions.TypedDict, total=False):
     repairPhases: _list[RepairPhaseConfig]
 
 @typing.type_check_only
-class Retry(typing_extensions.TypedDict, total=False):
+class Retry(typing.TypedDict, total=False):
     attempts: str
-    backoffMode: typing_extensions.Literal[
+    backoffMode: typing.Literal[
         "BACKOFF_MODE_UNSPECIFIED", "BACKOFF_MODE_LINEAR", "BACKOFF_MODE_EXPONENTIAL"
     ]
     wait: str
 
 @typing.type_check_only
-class RetryAttempt(typing_extensions.TypedDict, total=False):
+class RetryAttempt(typing.TypedDict, total=False):
     attempt: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "REPAIR_STATE_UNSPECIFIED",
         "REPAIR_STATE_SUCCEEDED",
         "REPAIR_STATE_CANCELLED",
@@ -1067,33 +1063,33 @@ class RetryAttempt(typing_extensions.TypedDict, total=False):
     wait: str
 
 @typing.type_check_only
-class RetryJobRequest(typing_extensions.TypedDict, total=False):
+class RetryJobRequest(typing.TypedDict, total=False):
     jobId: str
     overrideDeployPolicy: _list[str]
     phaseId: str
 
 @typing.type_check_only
-class RetryJobResponse(typing_extensions.TypedDict, total=False): ...
+class RetryJobResponse(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class RetryPhase(typing_extensions.TypedDict, total=False):
+class RetryPhase(typing.TypedDict, total=False):
     attempts: _list[RetryAttempt]
-    backoffMode: typing_extensions.Literal[
+    backoffMode: typing.Literal[
         "BACKOFF_MODE_UNSPECIFIED", "BACKOFF_MODE_LINEAR", "BACKOFF_MODE_EXPONENTIAL"
     ]
     totalAttempts: str
 
 @typing.type_check_only
-class Rollback(typing_extensions.TypedDict, total=False):
+class Rollback(typing.TypedDict, total=False):
     destinationPhase: str
     disableRollbackIfRolloutPending: bool
 
 @typing.type_check_only
-class RollbackAttempt(typing_extensions.TypedDict, total=False):
+class RollbackAttempt(typing.TypedDict, total=False):
     destinationPhase: str
     disableRollbackIfRolloutPending: bool
     rolloutId: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "REPAIR_STATE_UNSPECIFIED",
         "REPAIR_STATE_SUCCEEDED",
         "REPAIR_STATE_CANCELLED",
@@ -1105,12 +1101,12 @@ class RollbackAttempt(typing_extensions.TypedDict, total=False):
     stateDesc: str
 
 @typing.type_check_only
-class RollbackTargetConfig(typing_extensions.TypedDict, total=False):
+class RollbackTargetConfig(typing.TypedDict, total=False):
     rollout: Rollout
     startingPhaseId: str
 
 @typing.type_check_only
-class RollbackTargetRequest(typing_extensions.TypedDict, total=False):
+class RollbackTargetRequest(typing.TypedDict, total=False):
     overrideDeployPolicy: _list[str]
     releaseId: str
     rollbackConfig: RollbackTargetConfig
@@ -1120,14 +1116,14 @@ class RollbackTargetRequest(typing_extensions.TypedDict, total=False):
     validateOnly: bool
 
 @typing.type_check_only
-class RollbackTargetResponse(typing_extensions.TypedDict, total=False):
+class RollbackTargetResponse(typing.TypedDict, total=False):
     rollbackConfig: RollbackTargetConfig
 
 @typing.type_check_only
-class Rollout(typing_extensions.TypedDict, total=False):
+class Rollout(typing.TypedDict, total=False):
     activeRepairAutomationRun: str
     annotations: dict[str, typing.Any]
-    approvalState: typing_extensions.Literal[
+    approvalState: typing.Literal[
         "APPROVAL_STATE_UNSPECIFIED",
         "NEEDS_APPROVAL",
         "DOES_NOT_NEED_APPROVAL",
@@ -1138,7 +1134,7 @@ class Rollout(typing_extensions.TypedDict, total=False):
     controllerRollout: str
     createTime: str
     deployEndTime: str
-    deployFailureCause: typing_extensions.Literal[
+    deployFailureCause: typing.Literal[
         "FAILURE_CAUSE_UNSPECIFIED",
         "CLOUD_BUILD_UNAVAILABLE",
         "EXECUTION_FAILED",
@@ -1161,7 +1157,7 @@ class Rollout(typing_extensions.TypedDict, total=False):
     phases: _list[Phase]
     rollbackOfRollout: str
     rolledBackByRollouts: _list[str]
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "SUCCEEDED",
         "FAILED",
@@ -1178,7 +1174,7 @@ class Rollout(typing_extensions.TypedDict, total=False):
     uid: str
 
 @typing.type_check_only
-class RolloutNotificationEvent(typing_extensions.TypedDict, total=False):
+class RolloutNotificationEvent(typing.TypedDict, total=False):
     message: str
     pipelineUid: str
     release: str
@@ -1186,7 +1182,7 @@ class RolloutNotificationEvent(typing_extensions.TypedDict, total=False):
     rollout: str
     rolloutUid: str
     targetId: str
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "TYPE_UNSPECIFIED",
         "TYPE_PUBSUB_NOTIFICATION_FAILURE",
         "TYPE_RESOURCE_STATE_CHANGE",
@@ -1199,9 +1195,9 @@ class RolloutNotificationEvent(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class RolloutRestriction(typing_extensions.TypedDict, total=False):
+class RolloutRestriction(typing.TypedDict, total=False):
     actions: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "ROLLOUT_ACTIONS_UNSPECIFIED",
             "ADVANCE",
             "APPROVE",
@@ -1214,19 +1210,17 @@ class RolloutRestriction(typing_extensions.TypedDict, total=False):
         ]
     ]
     id: str
-    invokers: _list[
-        typing_extensions.Literal["INVOKER_UNSPECIFIED", "USER", "DEPLOY_AUTOMATION"]
-    ]
+    invokers: _list[typing.Literal["INVOKER_UNSPECIFIED", "USER", "DEPLOY_AUTOMATION"]]
     timeWindows: TimeWindows
 
 @typing.type_check_only
-class RolloutUpdateEvent(typing_extensions.TypedDict, total=False):
+class RolloutUpdateEvent(typing.TypedDict, total=False):
     message: str
     pipelineUid: str
     release: str
     releaseUid: str
     rollout: str
-    rolloutUpdateType: typing_extensions.Literal[
+    rolloutUpdateType: typing.Literal[
         "ROLLOUT_UPDATE_TYPE_UNSPECIFIED",
         "PENDING",
         "PENDING_RELEASE",
@@ -1243,7 +1237,7 @@ class RolloutUpdateEvent(typing_extensions.TypedDict, total=False):
         "ADVANCED",
     ]
     targetId: str
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "TYPE_UNSPECIFIED",
         "TYPE_PUBSUB_NOTIFICATION_FAILURE",
         "TYPE_RESOURCE_STATE_CHANGE",
@@ -1256,59 +1250,59 @@ class RolloutUpdateEvent(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class RouteDestinations(typing_extensions.TypedDict, total=False):
+class RouteDestinations(typing.TypedDict, total=False):
     destinationIds: _list[str]
     propagateService: bool
 
 @typing.type_check_only
-class RuntimeConfig(typing_extensions.TypedDict, total=False):
+class RuntimeConfig(typing.TypedDict, total=False):
     cloudRun: CloudRunConfig
     kubernetes: KubernetesConfig
 
 @typing.type_check_only
-class SerialPipeline(typing_extensions.TypedDict, total=False):
+class SerialPipeline(typing.TypedDict, total=False):
     stages: _list[Stage]
 
 @typing.type_check_only
-class ServiceNetworking(typing_extensions.TypedDict, total=False):
+class ServiceNetworking(typing.TypedDict, total=False):
     deployment: str
     disablePodOverprovisioning: bool
     podSelectorLabel: str
     service: str
 
 @typing.type_check_only
-class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
+class SetIamPolicyRequest(typing.TypedDict, total=False):
     policy: Policy
     updateMask: str
 
 @typing.type_check_only
-class SkaffoldGCBRepoSource(typing_extensions.TypedDict, total=False):
+class SkaffoldGCBRepoSource(typing.TypedDict, total=False):
     path: str
     ref: str
     repository: str
 
 @typing.type_check_only
-class SkaffoldGCSSource(typing_extensions.TypedDict, total=False):
+class SkaffoldGCSSource(typing.TypedDict, total=False):
     path: str
     source: str
 
 @typing.type_check_only
-class SkaffoldGitSource(typing_extensions.TypedDict, total=False):
+class SkaffoldGitSource(typing.TypedDict, total=False):
     path: str
     ref: str
     repo: str
 
 @typing.type_check_only
-class SkaffoldModules(typing_extensions.TypedDict, total=False):
+class SkaffoldModules(typing.TypedDict, total=False):
     configs: _list[str]
     git: SkaffoldGitSource
     googleCloudBuildRepo: SkaffoldGCBRepoSource
     googleCloudStorage: SkaffoldGCSSource
 
 @typing.type_check_only
-class SkaffoldSupportedCondition(typing_extensions.TypedDict, total=False):
+class SkaffoldSupportedCondition(typing.TypedDict, total=False):
     maintenanceModeTime: str
-    skaffoldSupportState: typing_extensions.Literal[
+    skaffoldSupportState: typing.Literal[
         "SKAFFOLD_SUPPORT_STATE_UNSPECIFIED",
         "SKAFFOLD_SUPPORT_STATE_SUPPORTED",
         "SKAFFOLD_SUPPORT_STATE_MAINTENANCE_MODE",
@@ -1318,21 +1312,21 @@ class SkaffoldSupportedCondition(typing_extensions.TypedDict, total=False):
     supportExpirationTime: str
 
 @typing.type_check_only
-class SkaffoldVersion(typing_extensions.TypedDict, total=False):
+class SkaffoldVersion(typing.TypedDict, total=False):
     maintenanceModeTime: str
     supportEndDate: Date
     supportExpirationTime: str
     version: str
 
 @typing.type_check_only
-class Stage(typing_extensions.TypedDict, total=False):
+class Stage(typing.TypedDict, total=False):
     deployParameters: _list[DeployParameters]
     profiles: _list[str]
     strategy: Strategy
     targetId: str
 
 @typing.type_check_only
-class Standard(typing_extensions.TypedDict, total=False):
+class Standard(typing.TypedDict, total=False):
     analysis: Analysis
     postdeploy: Postdeploy
     predeploy: Predeploy
@@ -1340,18 +1334,18 @@ class Standard(typing_extensions.TypedDict, total=False):
     verifyConfig: Verify
 
 @typing.type_check_only
-class Status(typing_extensions.TypedDict, total=False):
+class Status(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
-class Strategy(typing_extensions.TypedDict, total=False):
+class Strategy(typing.TypedDict, total=False):
     canary: Canary
     standard: Standard
 
 @typing.type_check_only
-class Target(typing_extensions.TypedDict, total=False):
+class Target(typing.TypedDict, total=False):
     annotations: dict[str, typing.Any]
     anthosCluster: AnthosCluster
     associatedEntities: dict[str, typing.Any]
@@ -1372,22 +1366,22 @@ class Target(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class TargetArtifact(typing_extensions.TypedDict, total=False):
+class TargetArtifact(typing.TypedDict, total=False):
     artifactUri: str
     manifestPath: str
     phaseArtifacts: dict[str, typing.Any]
     skaffoldConfigPath: str
 
 @typing.type_check_only
-class TargetAttribute(typing_extensions.TypedDict, total=False):
+class TargetAttribute(typing.TypedDict, total=False):
     id: str
     labels: dict[str, typing.Any]
 
 @typing.type_check_only
-class TargetNotificationEvent(typing_extensions.TypedDict, total=False):
+class TargetNotificationEvent(typing.TypedDict, total=False):
     message: str
     target: str
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "TYPE_UNSPECIFIED",
         "TYPE_PUBSUB_NOTIFICATION_FAILURE",
         "TYPE_RESOURCE_STATE_CHANGE",
@@ -1400,8 +1394,8 @@ class TargetNotificationEvent(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class TargetRender(typing_extensions.TypedDict, total=False):
-    failureCause: typing_extensions.Literal[
+class TargetRender(typing.TypedDict, total=False):
+    failureCause: typing.Literal[
         "FAILURE_CAUSE_UNSPECIFIED",
         "CLOUD_BUILD_UNAVAILABLE",
         "EXECUTION_FAILED",
@@ -1414,71 +1408,71 @@ class TargetRender(typing_extensions.TypedDict, total=False):
     failureMessage: str
     metadata: RenderMetadata
     renderingBuild: str
-    renderingState: typing_extensions.Literal[
+    renderingState: typing.Literal[
         "TARGET_RENDER_STATE_UNSPECIFIED", "SUCCEEDED", "FAILED", "IN_PROGRESS"
     ]
 
 @typing.type_check_only
-class Targets(typing_extensions.TypedDict, total=False):
+class Targets(typing.TypedDict, total=False):
     destinationTargetId: str
     sourceTargetId: str
 
 @typing.type_check_only
-class TargetsPresentCondition(typing_extensions.TypedDict, total=False):
+class TargetsPresentCondition(typing.TypedDict, total=False):
     missingTargets: _list[str]
     status: bool
     updateTime: str
 
 @typing.type_check_only
-class TargetsTypeCondition(typing_extensions.TypedDict, total=False):
+class TargetsTypeCondition(typing.TypedDict, total=False):
     errorDetails: str
     status: bool
 
 @typing.type_check_only
-class Task(typing_extensions.TypedDict, total=False):
+class Task(typing.TypedDict, total=False):
     container: ContainerTask
 
 @typing.type_check_only
-class TerminateJobRunRequest(typing_extensions.TypedDict, total=False):
+class TerminateJobRunRequest(typing.TypedDict, total=False):
     overrideDeployPolicy: _list[str]
 
 @typing.type_check_only
-class TerminateJobRunResponse(typing_extensions.TypedDict, total=False): ...
+class TerminateJobRunResponse(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
+class TestIamPermissionsRequest(typing.TypedDict, total=False):
     permissions: _list[str]
 
 @typing.type_check_only
-class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
+class TestIamPermissionsResponse(typing.TypedDict, total=False):
     permissions: _list[str]
 
 @typing.type_check_only
-class TimeOfDay(typing_extensions.TypedDict, total=False):
+class TimeOfDay(typing.TypedDict, total=False):
     hours: int
     minutes: int
     nanos: int
     seconds: int
 
 @typing.type_check_only
-class TimeWindows(typing_extensions.TypedDict, total=False):
+class TimeWindows(typing.TypedDict, total=False):
     oneTimeWindows: _list[OneTimeWindow]
     timeZone: str
     weeklyWindows: _list[WeeklyWindow]
 
 @typing.type_check_only
-class TimedPromoteReleaseCondition(typing_extensions.TypedDict, total=False):
+class TimedPromoteReleaseCondition(typing.TypedDict, total=False):
     nextPromotionTime: str
     targetsList: _list[Targets]
 
 @typing.type_check_only
-class TimedPromoteReleaseOperation(typing_extensions.TypedDict, total=False):
+class TimedPromoteReleaseOperation(typing.TypedDict, total=False):
     phase: str
     release: str
     targetId: str
 
 @typing.type_check_only
-class TimedPromoteReleaseRule(typing_extensions.TypedDict, total=False):
+class TimedPromoteReleaseRule(typing.TypedDict, total=False):
     condition: AutomationRuleCondition
     destinationPhase: str
     destinationTargetId: str
@@ -1487,11 +1481,11 @@ class TimedPromoteReleaseRule(typing_extensions.TypedDict, total=False):
     timeZone: str
 
 @typing.type_check_only
-class ToolVersionSupportedCondition(typing_extensions.TypedDict, total=False):
+class ToolVersionSupportedCondition(typing.TypedDict, total=False):
     maintenanceModeTime: str
     status: bool
     supportExpirationTime: str
-    toolVersionSupportState: typing_extensions.Literal[
+    toolVersionSupportState: typing.Literal[
         "TOOL_VERSION_SUPPORT_STATE_UNSPECIFIED",
         "TOOL_VERSION_SUPPORT_STATE_SUPPORTED",
         "TOOL_VERSION_SUPPORT_STATE_MAINTENANCE_MODE",
@@ -1499,7 +1493,7 @@ class ToolVersionSupportedCondition(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class ToolVersions(typing_extensions.TypedDict, total=False):
+class ToolVersions(typing.TypedDict, total=False):
     docker: str
     helm: str
     kpt: str
@@ -1508,19 +1502,19 @@ class ToolVersions(typing_extensions.TypedDict, total=False):
     skaffold: str
 
 @typing.type_check_only
-class Verify(typing_extensions.TypedDict, total=False):
+class Verify(typing.TypedDict, total=False):
     tasks: _list[Task]
 
 @typing.type_check_only
-class VerifyJob(typing_extensions.TypedDict, total=False):
+class VerifyJob(typing.TypedDict, total=False):
     tasks: _list[Task]
 
 @typing.type_check_only
-class VerifyJobRun(typing_extensions.TypedDict, total=False):
+class VerifyJobRun(typing.TypedDict, total=False):
     artifactUri: str
     build: str
     eventLogPath: str
-    failureCause: typing_extensions.Literal[
+    failureCause: typing.Literal[
         "FAILURE_CAUSE_UNSPECIFIED",
         "CLOUD_BUILD_UNAVAILABLE",
         "EXECUTION_FAILED",
@@ -1532,13 +1526,13 @@ class VerifyJobRun(typing_extensions.TypedDict, total=False):
     metadata: VerifyJobRunMetadata
 
 @typing.type_check_only
-class VerifyJobRunMetadata(typing_extensions.TypedDict, total=False):
+class VerifyJobRunMetadata(typing.TypedDict, total=False):
     custom: CustomMetadata
 
 @typing.type_check_only
-class WeeklyWindow(typing_extensions.TypedDict, total=False):
+class WeeklyWindow(typing.TypedDict, total=False):
     daysOfWeek: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "DAY_OF_WEEK_UNSPECIFIED",
             "MONDAY",
             "TUESDAY",

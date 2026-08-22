@@ -1,11 +1,9 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class Annotation(typing_extensions.TypedDict, total=False):
+class Annotation(typing.TypedDict, total=False):
     afterSelectedText: str
     beforeSelectedText: str
     clientVersionRanges: dict[str, typing.Any]
@@ -25,44 +23,44 @@ class Annotation(typing_extensions.TypedDict, total=False):
     volumeId: str
 
 @typing.type_check_only
-class Annotations(typing_extensions.TypedDict, total=False):
+class Annotations(typing.TypedDict, total=False):
     items: _list[Annotation]
     kind: str
     nextPageToken: str
     totalItems: int
 
 @typing.type_check_only
-class AnnotationsSummary(typing_extensions.TypedDict, total=False):
+class AnnotationsSummary(typing.TypedDict, total=False):
     kind: str
     layers: _list[dict[str, typing.Any]]
 
 @typing.type_check_only
-class Annotationsdata(typing_extensions.TypedDict, total=False):
+class Annotationsdata(typing.TypedDict, total=False):
     items: _list[GeoAnnotationdata]
     kind: str
     nextPageToken: str
     totalItems: int
 
 @typing.type_check_only
-class BooksAnnotationsRange(typing_extensions.TypedDict, total=False):
+class BooksAnnotationsRange(typing.TypedDict, total=False):
     endOffset: str
     endPosition: str
     startOffset: str
     startPosition: str
 
 @typing.type_check_only
-class BooksCloudloadingResource(typing_extensions.TypedDict, total=False):
+class BooksCloudloadingResource(typing.TypedDict, total=False):
     author: str
     processingState: str
     title: str
     volumeId: str
 
 @typing.type_check_only
-class BooksVolumesRecommendedRateResponse(typing_extensions.TypedDict, total=False):
+class BooksVolumesRecommendedRateResponse(typing.TypedDict, total=False):
     consistency_token: str
 
 @typing.type_check_only
-class Bookshelf(typing_extensions.TypedDict, total=False):
+class Bookshelf(typing.TypedDict, total=False):
     access: str
     created: str
     description: str
@@ -75,17 +73,17 @@ class Bookshelf(typing_extensions.TypedDict, total=False):
     volumesLastUpdated: str
 
 @typing.type_check_only
-class Bookshelves(typing_extensions.TypedDict, total=False):
+class Bookshelves(typing.TypedDict, total=False):
     items: _list[Bookshelf]
     kind: str
 
 @typing.type_check_only
-class Category(typing_extensions.TypedDict, total=False):
+class Category(typing.TypedDict, total=False):
     items: _list[dict[str, typing.Any]]
     kind: str
 
 @typing.type_check_only
-class ConcurrentAccessRestriction(typing_extensions.TypedDict, total=False):
+class ConcurrentAccessRestriction(typing.TypedDict, total=False):
     deviceAllowed: bool
     kind: str
     maxConcurrentDevices: int
@@ -99,7 +97,7 @@ class ConcurrentAccessRestriction(typing_extensions.TypedDict, total=False):
     volumeId: str
 
 @typing.type_check_only
-class DictionaryAnnotationdata(typing_extensions.TypedDict, total=False):
+class DictionaryAnnotationdata(typing.TypedDict, total=False):
     annotationType: str
     data: Dictlayerdata
     encodedData: str
@@ -111,19 +109,19 @@ class DictionaryAnnotationdata(typing_extensions.TypedDict, total=False):
     volumeId: str
 
 @typing.type_check_only
-class Dictlayerdata(typing_extensions.TypedDict, total=False):
+class Dictlayerdata(typing.TypedDict, total=False):
     common: dict[str, typing.Any]
     dict: dict[str, typing.Any]
     kind: str
 
 @typing.type_check_only
-class Discoveryclusters(typing_extensions.TypedDict, total=False):
+class Discoveryclusters(typing.TypedDict, total=False):
     clusters: _list[dict[str, typing.Any]]
     kind: str
     totalClusters: int
 
 @typing.type_check_only
-class DownloadAccessRestriction(typing_extensions.TypedDict, total=False):
+class DownloadAccessRestriction(typing.TypedDict, total=False):
     deviceAllowed: bool
     downloadsAcquired: int
     justAcquired: bool
@@ -138,20 +136,20 @@ class DownloadAccessRestriction(typing_extensions.TypedDict, total=False):
     volumeId: str
 
 @typing.type_check_only
-class DownloadAccesses(typing_extensions.TypedDict, total=False):
+class DownloadAccesses(typing.TypedDict, total=False):
     downloadAccessList: _list[DownloadAccessRestriction]
     kind: str
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class FamilyInfo(typing_extensions.TypedDict, total=False):
+class FamilyInfo(typing.TypedDict, total=False):
     kind: str
     membership: dict[str, typing.Any]
 
 @typing.type_check_only
-class GeoAnnotationdata(typing_extensions.TypedDict, total=False):
+class GeoAnnotationdata(typing.TypedDict, total=False):
     annotationType: str
     data: Geolayerdata
     encodedData: str
@@ -163,19 +161,19 @@ class GeoAnnotationdata(typing_extensions.TypedDict, total=False):
     volumeId: str
 
 @typing.type_check_only
-class Geolayerdata(typing_extensions.TypedDict, total=False):
+class Geolayerdata(typing.TypedDict, total=False):
     common: dict[str, typing.Any]
     geo: dict[str, typing.Any]
     kind: str
 
 @typing.type_check_only
-class Layersummaries(typing_extensions.TypedDict, total=False):
+class Layersummaries(typing.TypedDict, total=False):
     items: _list[Layersummary]
     kind: str
     totalItems: int
 
 @typing.type_check_only
-class Layersummary(typing_extensions.TypedDict, total=False):
+class Layersummary(typing.TypedDict, total=False):
     annotationCount: int
     annotationTypes: _list[str]
     annotationsDataLink: str
@@ -191,12 +189,12 @@ class Layersummary(typing_extensions.TypedDict, total=False):
     volumeId: str
 
 @typing.type_check_only
-class Metadata(typing_extensions.TypedDict, total=False):
+class Metadata(typing.TypedDict, total=False):
     items: _list[dict[str, typing.Any]]
     kind: str
 
 @typing.type_check_only
-class Notification(typing_extensions.TypedDict, total=False):
+class Notification(typing.TypedDict, total=False):
     body: str
     crmExperimentIds: _list[str]
     doc_id: str
@@ -215,12 +213,12 @@ class Notification(typing_extensions.TypedDict, total=False):
     title: str
 
 @typing.type_check_only
-class Offers(typing_extensions.TypedDict, total=False):
+class Offers(typing.TypedDict, total=False):
     items: _list[dict[str, typing.Any]]
     kind: str
 
 @typing.type_check_only
-class ReadingPosition(typing_extensions.TypedDict, total=False):
+class ReadingPosition(typing.TypedDict, total=False):
     epubCfiPosition: str
     gbImagePosition: str
     gbTextPosition: str
@@ -230,13 +228,13 @@ class ReadingPosition(typing_extensions.TypedDict, total=False):
     volumeId: str
 
 @typing.type_check_only
-class RequestAccessData(typing_extensions.TypedDict, total=False):
+class RequestAccessData(typing.TypedDict, total=False):
     concurrentAccess: ConcurrentAccessRestriction
     downloadAccess: DownloadAccessRestriction
     kind: str
 
 @typing.type_check_only
-class Review(typing_extensions.TypedDict, total=False):
+class Review(typing.TypedDict, total=False):
     author: dict[str, typing.Any]
     content: str
     date: str
@@ -249,24 +247,24 @@ class Review(typing_extensions.TypedDict, total=False):
     volumeId: str
 
 @typing.type_check_only
-class Series(typing_extensions.TypedDict, total=False):
+class Series(typing.TypedDict, total=False):
     kind: str
     series: _list[dict[str, typing.Any]]
 
 @typing.type_check_only
-class Seriesmembership(typing_extensions.TypedDict, total=False):
+class Seriesmembership(typing.TypedDict, total=False):
     kind: str
     member: _list[Volume]
     nextPageToken: str
 
 @typing.type_check_only
-class Usersettings(typing_extensions.TypedDict, total=False):
+class Usersettings(typing.TypedDict, total=False):
     kind: str
     notesExport: dict[str, typing.Any]
     notification: dict[str, typing.Any]
 
 @typing.type_check_only
-class Volume(typing_extensions.TypedDict, total=False):
+class Volume(typing.TypedDict, total=False):
     accessInfo: dict[str, typing.Any]
     etag: str
     id: str
@@ -280,13 +278,13 @@ class Volume(typing_extensions.TypedDict, total=False):
     volumeInfo: dict[str, typing.Any]
 
 @typing.type_check_only
-class Volume2(typing_extensions.TypedDict, total=False):
+class Volume2(typing.TypedDict, total=False):
     items: _list[Volume]
     kind: str
     nextPageToken: str
 
 @typing.type_check_only
-class Volumeannotation(typing_extensions.TypedDict, total=False):
+class Volumeannotation(typing.TypedDict, total=False):
     annotationDataId: str
     annotationDataLink: str
     annotationType: str
@@ -303,7 +301,7 @@ class Volumeannotation(typing_extensions.TypedDict, total=False):
     volumeId: str
 
 @typing.type_check_only
-class Volumeannotations(typing_extensions.TypedDict, total=False):
+class Volumeannotations(typing.TypedDict, total=False):
     items: _list[Volumeannotation]
     kind: str
     nextPageToken: str
@@ -311,13 +309,13 @@ class Volumeannotations(typing_extensions.TypedDict, total=False):
     version: str
 
 @typing.type_check_only
-class Volumes(typing_extensions.TypedDict, total=False):
+class Volumes(typing.TypedDict, total=False):
     items: _list[Volume]
     kind: str
     totalItems: int
 
 @typing.type_check_only
-class Volumeseriesinfo(typing_extensions.TypedDict, total=False):
+class Volumeseriesinfo(typing.TypedDict, total=False):
     bookDisplayNumber: str
     kind: str
     shortSeriesBookTitle: str

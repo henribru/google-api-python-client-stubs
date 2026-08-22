@@ -1,21 +1,19 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class AndroidAppAsset(typing_extensions.TypedDict, total=False):
+class AndroidAppAsset(typing.TypedDict, total=False):
     certificate: CertificateInfo
     packageName: str
 
 @typing.type_check_only
-class Asset(typing_extensions.TypedDict, total=False):
+class Asset(typing.TypedDict, total=False):
     androidApp: AndroidAppAsset
     web: WebAsset
 
 @typing.type_check_only
-class BulkCheckRequest(typing_extensions.TypedDict, total=False):
+class BulkCheckRequest(typing.TypedDict, total=False):
     defaultRelation: str
     defaultSource: Asset
     defaultTarget: Asset
@@ -23,8 +21,8 @@ class BulkCheckRequest(typing_extensions.TypedDict, total=False):
     statements: _list[StatementTemplate]
 
 @typing.type_check_only
-class BulkCheckResponse(typing_extensions.TypedDict, total=False):
-    bulkErrorCode: typing_extensions.Literal[
+class BulkCheckResponse(typing.TypedDict, total=False):
+    bulkErrorCode: typing.Literal[
         "ERROR_CODE_UNSPECIFIED",
         "ERROR_CODE_INVALID_QUERY",
         "ERROR_CODE_FETCH_ERROR",
@@ -40,14 +38,14 @@ class BulkCheckResponse(typing_extensions.TypedDict, total=False):
     checkResults: _list[CheckResponse]
 
 @typing.type_check_only
-class CertificateInfo(typing_extensions.TypedDict, total=False):
+class CertificateInfo(typing.TypedDict, total=False):
     sha256Fingerprint: str
 
 @typing.type_check_only
-class CheckResponse(typing_extensions.TypedDict, total=False):
+class CheckResponse(typing.TypedDict, total=False):
     debugString: str
     errorCode: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "ERROR_CODE_UNSPECIFIED",
             "ERROR_CODE_INVALID_QUERY",
             "ERROR_CODE_FETCH_ERROR",
@@ -66,10 +64,10 @@ class CheckResponse(typing_extensions.TypedDict, total=False):
     relationExtensions: _list[dict[str, typing.Any]]
 
 @typing.type_check_only
-class ListResponse(typing_extensions.TypedDict, total=False):
+class ListResponse(typing.TypedDict, total=False):
     debugString: str
     errorCode: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "ERROR_CODE_UNSPECIFIED",
             "ERROR_CODE_INVALID_QUERY",
             "ERROR_CODE_FETCH_ERROR",
@@ -87,18 +85,18 @@ class ListResponse(typing_extensions.TypedDict, total=False):
     statements: _list[Statement]
 
 @typing.type_check_only
-class Statement(typing_extensions.TypedDict, total=False):
+class Statement(typing.TypedDict, total=False):
     relation: str
     relationExtensions: dict[str, typing.Any]
     source: Asset
     target: Asset
 
 @typing.type_check_only
-class StatementTemplate(typing_extensions.TypedDict, total=False):
+class StatementTemplate(typing.TypedDict, total=False):
     relation: str
     source: Asset
     target: Asset
 
 @typing.type_check_only
-class WebAsset(typing_extensions.TypedDict, total=False):
+class WebAsset(typing.TypedDict, total=False):
     site: str

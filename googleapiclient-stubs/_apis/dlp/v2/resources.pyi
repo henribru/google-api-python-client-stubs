@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -287,7 +286,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                     orderBy: str | None = ...,
                     pageSize: int | None = ...,
                     pageToken: str | None = ...,
-                    type: typing_extensions.Literal[
+                    type: typing.Literal[
                         "DLP_JOB_TYPE_UNSPECIFIED", "INSPECT_JOB", "RISK_ANALYSIS_JOB"
                     ]
                     | None = ...,
@@ -402,7 +401,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                     orderBy: str | None = ...,
                     pageSize: int | None = ...,
                     pageToken: str | None = ...,
-                    type: typing_extensions.Literal[
+                    type: typing.Literal[
                         "DLP_JOB_TYPE_UNSPECIFIED", "INSPECT_JOB", "RISK_ANALYSIS_JOB"
                     ]
                     | None = ...,
@@ -663,7 +662,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                 orderBy: str | None = ...,
                 pageSize: int | None = ...,
                 pageToken: str | None = ...,
-                type: typing_extensions.Literal[
+                type: typing.Literal[
                     "DLP_JOB_TYPE_UNSPECIFIED", "INSPECT_JOB", "RISK_ANALYSIS_JOB"
                 ]
                 | None = ...,
@@ -754,7 +753,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                 orderBy: str | None = ...,
                 pageSize: int | None = ...,
                 pageToken: str | None = ...,
-                type: typing_extensions.Literal[
+                type: typing.Literal[
                     "DLP_JOB_TYPE_UNSPECIFIED", "INSPECT_JOB", "RISK_ANALYSIS_JOB"
                 ]
                 | None = ...,
@@ -1035,7 +1034,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                     orderBy: str | None = ...,
                     pageSize: int | None = ...,
                     pageToken: str | None = ...,
-                    type: typing_extensions.Literal[
+                    type: typing.Literal[
                         "DLP_JOB_TYPE_UNSPECIFIED", "INSPECT_JOB", "RISK_ANALYSIS_JOB"
                     ]
                     | None = ...,
@@ -1174,7 +1173,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                     orderBy: str | None = ...,
                     pageSize: int | None = ...,
                     pageToken: str | None = ...,
-                    type: typing_extensions.Literal[
+                    type: typing.Literal[
                         "DLP_JOB_TYPE_UNSPECIFIED", "INSPECT_JOB", "RISK_ANALYSIS_JOB"
                     ]
                     | None = ...,

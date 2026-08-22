@@ -1,20 +1,18 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class Binding(typing_extensions.TypedDict, total=False):
+class Binding(typing.TypedDict, total=False):
     condition: Expr
     members: _list[str]
     role: str
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Endpoint(typing_extensions.TypedDict, total=False):
+class Endpoint(typing.TypedDict, total=False):
     address: str
     annotations: dict[str, typing.Any]
     name: str
@@ -23,42 +21,42 @@ class Endpoint(typing_extensions.TypedDict, total=False):
     uid: str
 
 @typing.type_check_only
-class Expr(typing_extensions.TypedDict, total=False):
+class Expr(typing.TypedDict, total=False):
     description: str
     expression: str
     location: str
     title: str
 
 @typing.type_check_only
-class GetIamPolicyRequest(typing_extensions.TypedDict, total=False):
+class GetIamPolicyRequest(typing.TypedDict, total=False):
     options: GetPolicyOptions
 
 @typing.type_check_only
-class GetPolicyOptions(typing_extensions.TypedDict, total=False):
+class GetPolicyOptions(typing.TypedDict, total=False):
     requestedPolicyVersion: int
 
 @typing.type_check_only
-class ListEndpointsResponse(typing_extensions.TypedDict, total=False):
+class ListEndpointsResponse(typing.TypedDict, total=False):
     endpoints: _list[Endpoint]
     nextPageToken: str
 
 @typing.type_check_only
-class ListLocationsResponse(typing_extensions.TypedDict, total=False):
+class ListLocationsResponse(typing.TypedDict, total=False):
     locations: _list[Location]
     nextPageToken: str
 
 @typing.type_check_only
-class ListNamespacesResponse(typing_extensions.TypedDict, total=False):
+class ListNamespacesResponse(typing.TypedDict, total=False):
     namespaces: _list[Namespace]
     nextPageToken: str
 
 @typing.type_check_only
-class ListServicesResponse(typing_extensions.TypedDict, total=False):
+class ListServicesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     services: _list[Service]
 
 @typing.type_check_only
-class Location(typing_extensions.TypedDict, total=False):
+class Location(typing.TypedDict, total=False):
     displayName: str
     labels: dict[str, typing.Any]
     locationId: str
@@ -66,41 +64,41 @@ class Location(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class Namespace(typing_extensions.TypedDict, total=False):
+class Namespace(typing.TypedDict, total=False):
     labels: dict[str, typing.Any]
     name: str
     uid: str
 
 @typing.type_check_only
-class Policy(typing_extensions.TypedDict, total=False):
+class Policy(typing.TypedDict, total=False):
     bindings: _list[Binding]
     etag: str
     version: int
 
 @typing.type_check_only
-class ResolveServiceRequest(typing_extensions.TypedDict, total=False):
+class ResolveServiceRequest(typing.TypedDict, total=False):
     endpointFilter: str
     maxEndpoints: int
 
 @typing.type_check_only
-class ResolveServiceResponse(typing_extensions.TypedDict, total=False):
+class ResolveServiceResponse(typing.TypedDict, total=False):
     service: Service
 
 @typing.type_check_only
-class Service(typing_extensions.TypedDict, total=False):
+class Service(typing.TypedDict, total=False):
     annotations: dict[str, typing.Any]
     endpoints: _list[Endpoint]
     name: str
     uid: str
 
 @typing.type_check_only
-class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
+class SetIamPolicyRequest(typing.TypedDict, total=False):
     policy: Policy
 
 @typing.type_check_only
-class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
+class TestIamPermissionsRequest(typing.TypedDict, total=False):
     permissions: _list[str]
 
 @typing.type_check_only
-class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
+class TestIamPermissionsResponse(typing.TypedDict, total=False):
     permissions: _list[str]

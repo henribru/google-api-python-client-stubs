@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -63,7 +62,7 @@ class CloudTasksResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        responseView: typing_extensions.Literal[
+                        responseView: typing.Literal[
                             "VIEW_UNSPECIFIED", "BASIC", "FULL"
                         ]
                         | None = ...,
@@ -75,7 +74,7 @@ class CloudTasksResource(googleapiclient.discovery.Resource):
                         parent: str,
                         pageSize: int | None = ...,
                         pageToken: str | None = ...,
-                        responseView: typing_extensions.Literal[
+                        responseView: typing.Literal[
                             "VIEW_UNSPECIFIED", "BASIC", "FULL"
                         ]
                         | None = ...,

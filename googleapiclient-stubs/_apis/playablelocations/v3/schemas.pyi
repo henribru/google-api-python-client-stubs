@@ -1,33 +1,29 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class GoogleMapsPlayablelocationsV3Impression(typing_extensions.TypedDict, total=False):
+class GoogleMapsPlayablelocationsV3Impression(typing.TypedDict, total=False):
     gameObjectType: int
-    impressionType: typing_extensions.Literal[
+    impressionType: typing.Literal[
         "IMPRESSION_TYPE_UNSPECIFIED", "PRESENTED", "INTERACTED"
     ]
     locationName: str
 
 @typing.type_check_only
-class GoogleMapsPlayablelocationsV3LogImpressionsRequest(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleMapsPlayablelocationsV3LogImpressionsRequest(typing.TypedDict, total=False):
     clientInfo: GoogleMapsUnityClientInfo
     impressions: _list[GoogleMapsPlayablelocationsV3Impression]
     requestId: str
 
 @typing.type_check_only
 class GoogleMapsPlayablelocationsV3LogImpressionsResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ): ...
 
 @typing.type_check_only
 class GoogleMapsPlayablelocationsV3LogPlayerReportsRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     clientInfo: GoogleMapsUnityClientInfo
     playerReports: _list[GoogleMapsPlayablelocationsV3PlayerReport]
@@ -35,18 +31,16 @@ class GoogleMapsPlayablelocationsV3LogPlayerReportsRequest(
 
 @typing.type_check_only
 class GoogleMapsPlayablelocationsV3LogPlayerReportsResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ): ...
 
 @typing.type_check_only
-class GoogleMapsPlayablelocationsV3PlayerReport(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleMapsPlayablelocationsV3PlayerReport(typing.TypedDict, total=False):
     languageCode: str
     locationName: str
     reasonDetails: str
     reasons: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "BAD_LOCATION_REASON_UNSPECIFIED",
             "OTHER",
             "NOT_PEDESTRIAN_ACCESSIBLE",
@@ -57,30 +51,24 @@ class GoogleMapsPlayablelocationsV3PlayerReport(
     ]
 
 @typing.type_check_only
-class GoogleMapsPlayablelocationsV3SampleAreaFilter(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleMapsPlayablelocationsV3SampleAreaFilter(typing.TypedDict, total=False):
     s2CellId: str
 
 @typing.type_check_only
-class GoogleMapsPlayablelocationsV3SampleCriterion(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleMapsPlayablelocationsV3SampleCriterion(typing.TypedDict, total=False):
     fieldsToReturn: str
     filter: GoogleMapsPlayablelocationsV3SampleFilter
     gameObjectType: int
 
 @typing.type_check_only
-class GoogleMapsPlayablelocationsV3SampleFilter(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleMapsPlayablelocationsV3SampleFilter(typing.TypedDict, total=False):
     includedTypes: _list[str]
     maxLocationCount: int
     spacing: GoogleMapsPlayablelocationsV3SampleSpacingOptions
 
 @typing.type_check_only
 class GoogleMapsPlayablelocationsV3SamplePlayableLocation(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     centerPoint: GoogleTypeLatLng
     name: str
@@ -91,35 +79,31 @@ class GoogleMapsPlayablelocationsV3SamplePlayableLocation(
 
 @typing.type_check_only
 class GoogleMapsPlayablelocationsV3SamplePlayableLocationList(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     locations: _list[GoogleMapsPlayablelocationsV3SamplePlayableLocation]
 
 @typing.type_check_only
 class GoogleMapsPlayablelocationsV3SamplePlayableLocationsRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     areaFilter: GoogleMapsPlayablelocationsV3SampleAreaFilter
     criteria: _list[GoogleMapsPlayablelocationsV3SampleCriterion]
 
 @typing.type_check_only
 class GoogleMapsPlayablelocationsV3SamplePlayableLocationsResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     locationsPerGameObjectType: dict[str, typing.Any]
     ttl: str
 
 @typing.type_check_only
-class GoogleMapsPlayablelocationsV3SampleSpacingOptions(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleMapsPlayablelocationsV3SampleSpacingOptions(typing.TypedDict, total=False):
     minSpacingMeters: float
-    pointType: typing_extensions.Literal[
-        "POINT_TYPE_UNSPECIFIED", "CENTER_POINT", "SNAPPED_POINT"
-    ]
+    pointType: typing.Literal["POINT_TYPE_UNSPECIFIED", "CENTER_POINT", "SNAPPED_POINT"]
 
 @typing.type_check_only
-class GoogleMapsUnityClientInfo(typing_extensions.TypedDict, total=False):
+class GoogleMapsUnityClientInfo(typing.TypedDict, total=False):
     apiClient: str
     applicationId: str
     applicationVersion: str
@@ -127,7 +111,7 @@ class GoogleMapsUnityClientInfo(typing_extensions.TypedDict, total=False):
     languageCode: str
     operatingSystem: str
     operatingSystemBuild: str
-    platform: typing_extensions.Literal[
+    platform: typing.Literal[
         "PLATFORM_UNSPECIFIED",
         "EDITOR",
         "MAC_OS",
@@ -139,6 +123,6 @@ class GoogleMapsUnityClientInfo(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class GoogleTypeLatLng(typing_extensions.TypedDict, total=False):
+class GoogleTypeLatLng(typing.TypedDict, total=False):
     latitude: float
     longitude: float

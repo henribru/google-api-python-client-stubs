@@ -1,11 +1,9 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class Artifact(typing_extensions.TypedDict, total=False):
+class Artifact(typing.TypedDict, total=False):
     artifactId: str
     description: str
     extensions: _list[str]
@@ -14,58 +12,58 @@ class Artifact(typing_extensions.TypedDict, total=False):
     parts: _list[Part]
 
 @typing.type_check_only
-class AuthenticationInfo(typing_extensions.TypedDict, total=False):
+class AuthenticationInfo(typing.TypedDict, total=False):
     credentials: str
     schemes: _list[str]
 
 @typing.type_check_only
-class CancelTaskRequest(typing_extensions.TypedDict, total=False):
+class CancelTaskRequest(typing.TypedDict, total=False):
     tenant: str
 
 @typing.type_check_only
-class DataPart(typing_extensions.TypedDict, total=False):
+class DataPart(typing.TypedDict, total=False):
     data: dict[str, typing.Any]
 
 @typing.type_check_only
-class DriveOptions(typing_extensions.TypedDict, total=False):
+class DriveOptions(typing.TypedDict, total=False):
     includeDescendants: bool
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class FilePart(typing_extensions.TypedDict, total=False):
+class FilePart(typing.TypedDict, total=False):
     fileWithBytes: str
     fileWithUri: str
     mimeType: str
     name: str
 
 @typing.type_check_only
-class ListSubscriptionsResponse(typing_extensions.TypedDict, total=False):
+class ListSubscriptionsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     subscriptions: _list[Subscription]
 
 @typing.type_check_only
-class ListTaskPushNotificationConfigResponse(typing_extensions.TypedDict, total=False):
+class ListTaskPushNotificationConfigResponse(typing.TypedDict, total=False):
     configs: _list[TaskPushNotificationConfig]
     nextPageToken: str
 
 @typing.type_check_only
-class Message(typing_extensions.TypedDict, total=False):
+class Message(typing.TypedDict, total=False):
     content: _list[Part]
     contextId: str
     extensions: _list[str]
     messageId: str
     metadata: dict[str, typing.Any]
-    role: typing_extensions.Literal["ROLE_UNSPECIFIED", "ROLE_USER", "ROLE_AGENT"]
+    role: typing.Literal["ROLE_UNSPECIFIED", "ROLE_USER", "ROLE_AGENT"]
     taskId: str
 
 @typing.type_check_only
-class NotificationEndpoint(typing_extensions.TypedDict, total=False):
+class NotificationEndpoint(typing.TypedDict, total=False):
     pubsubTopic: str
 
 @typing.type_check_only
-class Operation(typing_extensions.TypedDict, total=False):
+class Operation(typing.TypedDict, total=False):
     done: bool
     error: Status
     metadata: dict[str, typing.Any]
@@ -73,56 +71,56 @@ class Operation(typing_extensions.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
-class Part(typing_extensions.TypedDict, total=False):
+class Part(typing.TypedDict, total=False):
     data: DataPart
     file: FilePart
     metadata: dict[str, typing.Any]
     text: str
 
 @typing.type_check_only
-class PayloadOptions(typing_extensions.TypedDict, total=False):
+class PayloadOptions(typing.TypedDict, total=False):
     fieldMask: str
     includeResource: bool
 
 @typing.type_check_only
-class PushNotificationConfig(typing_extensions.TypedDict, total=False):
+class PushNotificationConfig(typing.TypedDict, total=False):
     authentication: AuthenticationInfo
     id: str
     token: str
     url: str
 
 @typing.type_check_only
-class ReactivateSubscriptionRequest(typing_extensions.TypedDict, total=False): ...
+class ReactivateSubscriptionRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class SendMessageConfiguration(typing_extensions.TypedDict, total=False):
+class SendMessageConfiguration(typing.TypedDict, total=False):
     acceptedOutputModes: _list[str]
     blocking: bool
     historyLength: int
     pushNotification: PushNotificationConfig
 
 @typing.type_check_only
-class SendMessageRequest(typing_extensions.TypedDict, total=False):
+class SendMessageRequest(typing.TypedDict, total=False):
     configuration: SendMessageConfiguration
     message: Message
     metadata: dict[str, typing.Any]
     tenant: str
 
 @typing.type_check_only
-class Status(typing_extensions.TypedDict, total=False):
+class Status(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
-class StreamResponse(typing_extensions.TypedDict, total=False):
+class StreamResponse(typing.TypedDict, total=False):
     artifactUpdate: TaskArtifactUpdateEvent
     message: Message
     statusUpdate: TaskStatusUpdateEvent
     task: Task
 
 @typing.type_check_only
-class Subscription(typing_extensions.TypedDict, total=False):
+class Subscription(typing.TypedDict, total=False):
     authority: str
     createTime: str
     driveOptions: DriveOptions
@@ -134,10 +132,8 @@ class Subscription(typing_extensions.TypedDict, total=False):
     payloadOptions: PayloadOptions
     reconciling: bool
     serviceAccountAuthority: str
-    state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "ACTIVE", "SUSPENDED", "DELETED"
-    ]
-    suspensionReason: typing_extensions.Literal[
+    state: typing.Literal["STATE_UNSPECIFIED", "ACTIVE", "SUSPENDED", "DELETED"]
+    suspensionReason: typing.Literal[
         "ERROR_TYPE_UNSPECIFIED",
         "USER_SCOPE_REVOKED",
         "APP_SCOPE_REVOKED",
@@ -156,7 +152,7 @@ class Subscription(typing_extensions.TypedDict, total=False):
     userAuthority: str
 
 @typing.type_check_only
-class Task(typing_extensions.TypedDict, total=False):
+class Task(typing.TypedDict, total=False):
     artifacts: _list[Artifact]
     contextId: str
     history: _list[Message]
@@ -165,7 +161,7 @@ class Task(typing_extensions.TypedDict, total=False):
     status: TaskStatus
 
 @typing.type_check_only
-class TaskArtifactUpdateEvent(typing_extensions.TypedDict, total=False):
+class TaskArtifactUpdateEvent(typing.TypedDict, total=False):
     append: bool
     artifact: Artifact
     contextId: str
@@ -174,14 +170,14 @@ class TaskArtifactUpdateEvent(typing_extensions.TypedDict, total=False):
     taskId: str
 
 @typing.type_check_only
-class TaskPushNotificationConfig(typing_extensions.TypedDict, total=False):
+class TaskPushNotificationConfig(typing.TypedDict, total=False):
     name: str
     pushNotificationConfig: PushNotificationConfig
 
 @typing.type_check_only
-class TaskStatus(typing_extensions.TypedDict, total=False):
+class TaskStatus(typing.TypedDict, total=False):
     message: Message
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "TASK_STATE_UNSPECIFIED",
         "TASK_STATE_SUBMITTED",
         "TASK_STATE_WORKING",
@@ -195,7 +191,7 @@ class TaskStatus(typing_extensions.TypedDict, total=False):
     timestamp: str
 
 @typing.type_check_only
-class TaskStatusUpdateEvent(typing_extensions.TypedDict, total=False):
+class TaskStatusUpdateEvent(typing.TypedDict, total=False):
     contextId: str
     final: bool
     metadata: dict[str, typing.Any]

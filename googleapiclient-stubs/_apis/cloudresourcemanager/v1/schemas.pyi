@@ -1,71 +1,63 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class Ancestor(typing_extensions.TypedDict, total=False):
+class Ancestor(typing.TypedDict, total=False):
     resourceId: ResourceId
 
 @typing.type_check_only
-class AuditConfig(typing_extensions.TypedDict, total=False):
+class AuditConfig(typing.TypedDict, total=False):
     auditLogConfigs: _list[AuditLogConfig]
     service: str
 
 @typing.type_check_only
-class AuditLogConfig(typing_extensions.TypedDict, total=False):
+class AuditLogConfig(typing.TypedDict, total=False):
     exemptedMembers: _list[str]
-    logType: typing_extensions.Literal[
+    logType: typing.Literal[
         "LOG_TYPE_UNSPECIFIED", "ADMIN_READ", "DATA_WRITE", "DATA_READ"
     ]
 
 @typing.type_check_only
-class Binding(typing_extensions.TypedDict, total=False):
+class Binding(typing.TypedDict, total=False):
     condition: Expr
     members: _list[str]
     role: str
 
 @typing.type_check_only
-class BooleanConstraint(typing_extensions.TypedDict, total=False): ...
+class BooleanConstraint(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class BooleanPolicy(typing_extensions.TypedDict, total=False):
+class BooleanPolicy(typing.TypedDict, total=False):
     enforced: bool
 
 @typing.type_check_only
-class ClearOrgPolicyRequest(typing_extensions.TypedDict, total=False):
+class ClearOrgPolicyRequest(typing.TypedDict, total=False):
     constraint: str
     etag: str
 
 @typing.type_check_only
 class CloudresourcemanagerGoogleCloudResourcemanagerV2alpha1FolderOperation(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     destinationParent: str
     displayName: str
-    operationType: typing_extensions.Literal[
-        "OPERATION_TYPE_UNSPECIFIED", "CREATE", "MOVE"
-    ]
+    operationType: typing.Literal["OPERATION_TYPE_UNSPECIFIED", "CREATE", "MOVE"]
     sourceParent: str
 
 @typing.type_check_only
 class CloudresourcemanagerGoogleCloudResourcemanagerV2beta1FolderOperation(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     destinationParent: str
     displayName: str
-    operationType: typing_extensions.Literal[
-        "OPERATION_TYPE_UNSPECIFIED", "CREATE", "MOVE"
-    ]
+    operationType: typing.Literal["OPERATION_TYPE_UNSPECIFIED", "CREATE", "MOVE"]
     sourceParent: str
 
 @typing.type_check_only
-class Constraint(typing_extensions.TypedDict, total=False):
+class Constraint(typing.TypedDict, total=False):
     booleanConstraint: BooleanConstraint
-    constraintDefault: typing_extensions.Literal[
-        "CONSTRAINT_DEFAULT_UNSPECIFIED", "ALLOW", "DENY"
-    ]
+    constraintDefault: typing.Literal["CONSTRAINT_DEFAULT_UNSPECIFIED", "ALLOW", "DENY"]
     description: str
     displayName: str
     listConstraint: ListConstraint
@@ -73,65 +65,63 @@ class Constraint(typing_extensions.TypedDict, total=False):
     version: int
 
 @typing.type_check_only
-class CreateFolderMetadata(typing_extensions.TypedDict, total=False):
+class CreateFolderMetadata(typing.TypedDict, total=False):
     displayName: str
     parent: str
 
 @typing.type_check_only
-class CreateProjectMetadata(typing_extensions.TypedDict, total=False):
+class CreateProjectMetadata(typing.TypedDict, total=False):
     createTime: str
     gettable: bool
     ready: bool
 
 @typing.type_check_only
-class CreateTagBindingMetadata(typing_extensions.TypedDict, total=False): ...
+class CreateTagBindingMetadata(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class CreateTagKeyMetadata(typing_extensions.TypedDict, total=False): ...
+class CreateTagKeyMetadata(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class CreateTagValueMetadata(typing_extensions.TypedDict, total=False): ...
+class CreateTagValueMetadata(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class DeleteFolderMetadata(typing_extensions.TypedDict, total=False): ...
+class DeleteFolderMetadata(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class DeleteOrganizationMetadata(typing_extensions.TypedDict, total=False): ...
+class DeleteOrganizationMetadata(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class DeleteProjectMetadata(typing_extensions.TypedDict, total=False): ...
+class DeleteProjectMetadata(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class DeleteTagBindingMetadata(typing_extensions.TypedDict, total=False): ...
+class DeleteTagBindingMetadata(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class DeleteTagKeyMetadata(typing_extensions.TypedDict, total=False): ...
+class DeleteTagKeyMetadata(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class DeleteTagValueMetadata(typing_extensions.TypedDict, total=False): ...
+class DeleteTagValueMetadata(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Expr(typing_extensions.TypedDict, total=False):
+class Expr(typing.TypedDict, total=False):
     description: str
     expression: str
     location: str
     title: str
 
 @typing.type_check_only
-class FolderOperation(typing_extensions.TypedDict, total=False):
+class FolderOperation(typing.TypedDict, total=False):
     destinationParent: str
     displayName: str
-    operationType: typing_extensions.Literal[
-        "OPERATION_TYPE_UNSPECIFIED", "CREATE", "MOVE"
-    ]
+    operationType: typing.Literal["OPERATION_TYPE_UNSPECIFIED", "CREATE", "MOVE"]
     sourceParent: str
 
 @typing.type_check_only
-class FolderOperationError(typing_extensions.TypedDict, total=False):
-    errorMessageId: typing_extensions.Literal[
+class FolderOperationError(typing.TypedDict, total=False):
+    errorMessageId: typing.Literal[
         "ERROR_TYPE_UNSPECIFIED",
         "ACTIVE_FOLDER_HEIGHT_VIOLATION",
         "MAX_CHILD_FOLDERS_VIOLATION",
@@ -146,30 +136,30 @@ class FolderOperationError(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class GetAncestryRequest(typing_extensions.TypedDict, total=False): ...
+class GetAncestryRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class GetAncestryResponse(typing_extensions.TypedDict, total=False):
+class GetAncestryResponse(typing.TypedDict, total=False):
     ancestor: _list[Ancestor]
 
 @typing.type_check_only
-class GetEffectiveOrgPolicyRequest(typing_extensions.TypedDict, total=False):
+class GetEffectiveOrgPolicyRequest(typing.TypedDict, total=False):
     constraint: str
 
 @typing.type_check_only
-class GetIamPolicyRequest(typing_extensions.TypedDict, total=False):
+class GetIamPolicyRequest(typing.TypedDict, total=False):
     options: GetPolicyOptions
 
 @typing.type_check_only
-class GetOrgPolicyRequest(typing_extensions.TypedDict, total=False):
+class GetOrgPolicyRequest(typing.TypedDict, total=False):
     constraint: str
 
 @typing.type_check_only
-class GetPolicyOptions(typing_extensions.TypedDict, total=False):
+class GetPolicyOptions(typing.TypedDict, total=False):
     requestedPolicyVersion: int
 
 @typing.type_check_only
-class Lien(typing_extensions.TypedDict, total=False):
+class Lien(typing.TypedDict, total=False):
     createTime: str
     name: str
     origin: str
@@ -178,63 +168,59 @@ class Lien(typing_extensions.TypedDict, total=False):
     restrictions: _list[str]
 
 @typing.type_check_only
-class ListAvailableOrgPolicyConstraintsRequest(
-    typing_extensions.TypedDict, total=False
-):
+class ListAvailableOrgPolicyConstraintsRequest(typing.TypedDict, total=False):
     pageSize: int
     pageToken: str
 
 @typing.type_check_only
-class ListAvailableOrgPolicyConstraintsResponse(
-    typing_extensions.TypedDict, total=False
-):
+class ListAvailableOrgPolicyConstraintsResponse(typing.TypedDict, total=False):
     constraints: _list[Constraint]
     nextPageToken: str
 
 @typing.type_check_only
-class ListConstraint(typing_extensions.TypedDict, total=False):
+class ListConstraint(typing.TypedDict, total=False):
     suggestedValue: str
     supportsUnder: bool
 
 @typing.type_check_only
-class ListLiensResponse(typing_extensions.TypedDict, total=False):
+class ListLiensResponse(typing.TypedDict, total=False):
     liens: _list[Lien]
     nextPageToken: str
 
 @typing.type_check_only
-class ListOrgPoliciesRequest(typing_extensions.TypedDict, total=False):
+class ListOrgPoliciesRequest(typing.TypedDict, total=False):
     pageSize: int
     pageToken: str
 
 @typing.type_check_only
-class ListOrgPoliciesResponse(typing_extensions.TypedDict, total=False):
+class ListOrgPoliciesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     policies: _list[OrgPolicy]
 
 @typing.type_check_only
-class ListPolicy(typing_extensions.TypedDict, total=False):
-    allValues: typing_extensions.Literal["ALL_VALUES_UNSPECIFIED", "ALLOW", "DENY"]
+class ListPolicy(typing.TypedDict, total=False):
+    allValues: typing.Literal["ALL_VALUES_UNSPECIFIED", "ALLOW", "DENY"]
     allowedValues: _list[str]
     deniedValues: _list[str]
     inheritFromParent: bool
     suggestedValue: str
 
 @typing.type_check_only
-class ListProjectsResponse(typing_extensions.TypedDict, total=False):
+class ListProjectsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     projects: _list[Project]
 
 @typing.type_check_only
-class MoveFolderMetadata(typing_extensions.TypedDict, total=False):
+class MoveFolderMetadata(typing.TypedDict, total=False):
     destinationParent: str
     displayName: str
     sourceParent: str
 
 @typing.type_check_only
-class MoveProjectMetadata(typing_extensions.TypedDict, total=False): ...
+class MoveProjectMetadata(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Operation(typing_extensions.TypedDict, total=False):
+class Operation(typing.TypedDict, total=False):
     done: bool
     error: Status
     metadata: dict[str, typing.Any]
@@ -242,7 +228,7 @@ class Operation(typing_extensions.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
-class OrgPolicy(typing_extensions.TypedDict, total=False):
+class OrgPolicy(typing.TypedDict, total=False):
     booleanPolicy: BooleanPolicy
     constraint: str
     etag: str
@@ -252,32 +238,32 @@ class OrgPolicy(typing_extensions.TypedDict, total=False):
     version: int
 
 @typing.type_check_only
-class Organization(typing_extensions.TypedDict, total=False):
+class Organization(typing.TypedDict, total=False):
     creationTime: str
     displayName: str
-    lifecycleState: typing_extensions.Literal[
+    lifecycleState: typing.Literal[
         "LIFECYCLE_STATE_UNSPECIFIED", "ACTIVE", "DELETE_REQUESTED"
     ]
     name: str
     owner: OrganizationOwner
 
 @typing.type_check_only
-class OrganizationOwner(typing_extensions.TypedDict, total=False):
+class OrganizationOwner(typing.TypedDict, total=False):
     directoryCustomerId: str
 
 @typing.type_check_only
-class Policy(typing_extensions.TypedDict, total=False):
+class Policy(typing.TypedDict, total=False):
     auditConfigs: _list[AuditConfig]
     bindings: _list[Binding]
     etag: str
     version: int
 
 @typing.type_check_only
-class Project(typing_extensions.TypedDict, total=False):
+class Project(typing.TypedDict, total=False):
     configuredCapabilities: _list[str]
     createTime: str
     labels: dict[str, typing.Any]
-    lifecycleState: typing_extensions.Literal[
+    lifecycleState: typing.Literal[
         "LIFECYCLE_STATE_UNSPECIFIED",
         "ACTIVE",
         "DELETE_REQUESTED",
@@ -290,73 +276,73 @@ class Project(typing_extensions.TypedDict, total=False):
     tags: dict[str, typing.Any]
 
 @typing.type_check_only
-class ProjectCreationStatus(typing_extensions.TypedDict, total=False):
+class ProjectCreationStatus(typing.TypedDict, total=False):
     createTime: str
     gettable: bool
     ready: bool
 
 @typing.type_check_only
-class ResourceId(typing_extensions.TypedDict, total=False):
+class ResourceId(typing.TypedDict, total=False):
     id: str
     type: str
 
 @typing.type_check_only
-class RestoreDefault(typing_extensions.TypedDict, total=False): ...
+class RestoreDefault(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class SearchOrganizationsRequest(typing_extensions.TypedDict, total=False):
+class SearchOrganizationsRequest(typing.TypedDict, total=False):
     filter: str
     pageSize: int
     pageToken: str
 
 @typing.type_check_only
-class SearchOrganizationsResponse(typing_extensions.TypedDict, total=False):
+class SearchOrganizationsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     organizations: _list[Organization]
 
 @typing.type_check_only
-class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
+class SetIamPolicyRequest(typing.TypedDict, total=False):
     policy: Policy
     updateMask: str
 
 @typing.type_check_only
-class SetOrgPolicyRequest(typing_extensions.TypedDict, total=False):
+class SetOrgPolicyRequest(typing.TypedDict, total=False):
     policy: OrgPolicy
 
 @typing.type_check_only
-class Status(typing_extensions.TypedDict, total=False):
+class Status(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
-class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
+class TestIamPermissionsRequest(typing.TypedDict, total=False):
     permissions: _list[str]
 
 @typing.type_check_only
-class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
+class TestIamPermissionsResponse(typing.TypedDict, total=False):
     permissions: _list[str]
 
 @typing.type_check_only
-class UndeleteFolderMetadata(typing_extensions.TypedDict, total=False): ...
+class UndeleteFolderMetadata(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class UndeleteOrganizationMetadata(typing_extensions.TypedDict, total=False): ...
+class UndeleteOrganizationMetadata(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class UndeleteProjectMetadata(typing_extensions.TypedDict, total=False): ...
+class UndeleteProjectMetadata(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class UndeleteProjectRequest(typing_extensions.TypedDict, total=False): ...
+class UndeleteProjectRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class UpdateFolderMetadata(typing_extensions.TypedDict, total=False): ...
+class UpdateFolderMetadata(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class UpdateProjectMetadata(typing_extensions.TypedDict, total=False): ...
+class UpdateProjectMetadata(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class UpdateTagKeyMetadata(typing_extensions.TypedDict, total=False): ...
+class UpdateTagKeyMetadata(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class UpdateTagValueMetadata(typing_extensions.TypedDict, total=False): ...
+class UpdateTagValueMetadata(typing.TypedDict, total=False): ...

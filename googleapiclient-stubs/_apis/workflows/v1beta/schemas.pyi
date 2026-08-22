@@ -1,31 +1,29 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class ListLocationsResponse(typing_extensions.TypedDict, total=False):
+class ListLocationsResponse(typing.TypedDict, total=False):
     locations: _list[Location]
     nextPageToken: str
 
 @typing.type_check_only
-class ListOperationsResponse(typing_extensions.TypedDict, total=False):
+class ListOperationsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListWorkflowsResponse(typing_extensions.TypedDict, total=False):
+class ListWorkflowsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     unreachable: _list[str]
     workflows: _list[Workflow]
 
 @typing.type_check_only
-class Location(typing_extensions.TypedDict, total=False):
+class Location(typing.TypedDict, total=False):
     displayName: str
     labels: dict[str, typing.Any]
     locationId: str
@@ -33,7 +31,7 @@ class Location(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class Operation(typing_extensions.TypedDict, total=False):
+class Operation(typing.TypedDict, total=False):
     done: bool
     error: Status
     metadata: dict[str, typing.Any]
@@ -41,7 +39,7 @@ class Operation(typing_extensions.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
-class OperationMetadata(typing_extensions.TypedDict, total=False):
+class OperationMetadata(typing.TypedDict, total=False):
     apiVersion: str
     createTime: str
     endTime: str
@@ -49,13 +47,13 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     verb: str
 
 @typing.type_check_only
-class Status(typing_extensions.TypedDict, total=False):
+class Status(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
-class Workflow(typing_extensions.TypedDict, total=False):
+class Workflow(typing.TypedDict, total=False):
     createTime: str
     description: str
     labels: dict[str, typing.Any]
@@ -64,5 +62,5 @@ class Workflow(typing_extensions.TypedDict, total=False):
     revisionId: str
     serviceAccount: str
     sourceContents: str
-    state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE"]
+    state: typing.Literal["STATE_UNSPECIFIED", "ACTIVE"]
     updateTime: str

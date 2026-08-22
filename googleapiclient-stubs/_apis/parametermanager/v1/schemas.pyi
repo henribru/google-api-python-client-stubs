@@ -1,43 +1,41 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class ListLocationsResponse(typing_extensions.TypedDict, total=False):
+class ListLocationsResponse(typing.TypedDict, total=False):
     locations: _list[Location]
     nextPageToken: str
 
 @typing.type_check_only
-class ListParameterVersionsResponse(typing_extensions.TypedDict, total=False):
+class ListParameterVersionsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     parameterVersions: _list[ParameterVersion]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListParametersResponse(typing_extensions.TypedDict, total=False):
+class ListParametersResponse(typing.TypedDict, total=False):
     nextPageToken: str
     parameters: _list[Parameter]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListTemplateVersionsResponse(typing_extensions.TypedDict, total=False):
+class ListTemplateVersionsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     templateVersions: _list[TemplateVersion]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListTemplatesResponse(typing_extensions.TypedDict, total=False):
+class ListTemplatesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     templates: _list[Template]
     unreachable: _list[str]
 
 @typing.type_check_only
-class Location(typing_extensions.TypedDict, total=False):
+class Location(typing.TypedDict, total=False):
     displayName: str
     labels: dict[str, typing.Any]
     locationId: str
@@ -45,9 +43,9 @@ class Location(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class Parameter(typing_extensions.TypedDict, total=False):
+class Parameter(typing.TypedDict, total=False):
     createTime: str
-    format: typing_extensions.Literal[
+    format: typing.Literal[
         "PARAMETER_FORMAT_UNSPECIFIED", "UNFORMATTED", "YAML", "JSON"
     ]
     kmsKey: str
@@ -57,7 +55,7 @@ class Parameter(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class ParameterVersion(typing_extensions.TypedDict, total=False):
+class ParameterVersion(typing.TypedDict, total=False):
     createTime: str
     disabled: bool
     kmsKeyVersion: str
@@ -66,34 +64,34 @@ class ParameterVersion(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class ParameterVersionPayload(typing_extensions.TypedDict, total=False):
+class ParameterVersionPayload(typing.TypedDict, total=False):
     data: str
 
 @typing.type_check_only
-class RenderParameterVersionResponse(typing_extensions.TypedDict, total=False):
+class RenderParameterVersionResponse(typing.TypedDict, total=False):
     parameterVersion: str
     payload: ParameterVersionPayload
     renderedPayload: str
 
 @typing.type_check_only
-class RenderTemplateVersionResponse(typing_extensions.TypedDict, total=False):
+class RenderTemplateVersionResponse(typing.TypedDict, total=False):
     parameterVersion: str
     payload: TemplateVersionPayload
     renderedPayload: str
-    templateFormat: typing_extensions.Literal[
+    templateFormat: typing.Literal[
         "TEMPLATE_FORMAT_UNSPECIFIED", "TEMPLATE_FORMAT_YAML", "TEMPLATE_FORMAT_JSON"
     ]
     templateVersion: str
 
 @typing.type_check_only
-class ResourcePolicyMember(typing_extensions.TypedDict, total=False):
+class ResourcePolicyMember(typing.TypedDict, total=False):
     iamPolicyNamePrincipal: str
     iamPolicyUidPrincipal: str
 
 @typing.type_check_only
-class Template(typing_extensions.TypedDict, total=False):
+class Template(typing.TypedDict, total=False):
     createTime: str
-    format: typing_extensions.Literal[
+    format: typing.Literal[
         "TEMPLATE_FORMAT_UNSPECIFIED", "TEMPLATE_FORMAT_YAML", "TEMPLATE_FORMAT_JSON"
     ]
     labels: dict[str, typing.Any]
@@ -101,7 +99,7 @@ class Template(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class TemplateVersion(typing_extensions.TypedDict, total=False):
+class TemplateVersion(typing.TypedDict, total=False):
     createTime: str
     disabled: bool
     name: str
@@ -109,5 +107,5 @@ class TemplateVersion(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class TemplateVersionPayload(typing_extensions.TypedDict, total=False):
+class TemplateVersionPayload(typing.TypedDict, total=False):
     data: str

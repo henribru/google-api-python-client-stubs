@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -48,7 +47,7 @@ class AirQualityResource(googleapiclient.discovery.Resource):
             def lookupHeatmapTile(
                 self,
                 *,
-                mapType: typing_extensions.Literal[
+                mapType: typing.Literal[
                     "MAP_TYPE_UNSPECIFIED",
                     "UAQI_RED_GREEN",
                     "UAQI_INDIGO_PERSIAN",

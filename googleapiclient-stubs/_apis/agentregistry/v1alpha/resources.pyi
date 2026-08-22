@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -351,7 +350,7 @@ class AgentRegistryResource(googleapiclient.discovery.Resource):
                     pageSize: int | None = ...,
                     pageToken: str | None = ...,
                     searchString: str | None = ...,
-                    searchType: typing_extensions.Literal[
+                    searchType: typing.Literal[
                         "SEARCH_TYPE_UNSPECIFIED", "KEYWORD", "SEMANTIC"
                     ]
                     | None = ...,

@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -190,7 +189,7 @@ class SpannerResource(googleapiclient.discovery.Resource):
                     parent: str,
                     body: Backup,
                     backupId: str | None = ...,
-                    encryptionConfig_encryptionType: typing_extensions.Literal[
+                    encryptionConfig_encryptionType: typing.Literal[
                         "ENCRYPTION_TYPE_UNSPECIFIED",
                         "USE_DATABASE_ENCRYPTION",
                         "GOOGLE_DEFAULT_ENCRYPTION",
@@ -531,9 +530,7 @@ class SpannerResource(googleapiclient.discovery.Resource):
                     name: str,
                     endTime: str | None = ...,
                     startTime: str | None = ...,
-                    view: typing_extensions.Literal[
-                        "VIEW_UNSPECIFIED", "SUMMARY", "FULL"
-                    ]
+                    view: typing.Literal["VIEW_UNSPECIFIED", "SUMMARY", "FULL"]
                     | None = ...,
                     **kwargs: typing.Any,
                 ) -> ScanHttpRequest: ...
@@ -769,8 +766,7 @@ class SpannerResource(googleapiclient.discovery.Resource):
             filter: str | None = ...,
             pageSize: int | None = ...,
             pageToken: str | None = ...,
-            view: typing_extensions.Literal["VIEW_UNSPECIFIED", "SUMMARY", "FULL"]
-            | None = ...,
+            view: typing.Literal["VIEW_UNSPECIFIED", "SUMMARY", "FULL"] | None = ...,
             **kwargs: typing.Any,
         ) -> ListScansResponseHttpRequest: ...
         def list_next(

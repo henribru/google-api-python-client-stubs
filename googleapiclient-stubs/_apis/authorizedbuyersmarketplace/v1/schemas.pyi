@@ -1,37 +1,33 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class AcceptProposalRequest(typing_extensions.TypedDict, total=False):
+class AcceptProposalRequest(typing.TypedDict, total=False):
     proposalRevision: str
 
 @typing.type_check_only
-class ActivateClientRequest(typing_extensions.TypedDict, total=False): ...
+class ActivateClientRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class ActivateClientUserRequest(typing_extensions.TypedDict, total=False): ...
+class ActivateClientUserRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class AdSize(typing_extensions.TypedDict, total=False):
+class AdSize(typing.TypedDict, total=False):
     height: str
-    type: typing_extensions.Literal[
-        "TYPE_UNSPECIFIED", "PIXEL", "INTERSTITIAL", "NATIVE", "FLUID"
-    ]
+    type: typing.Literal["TYPE_UNSPECIFIED", "PIXEL", "INTERSTITIAL", "NATIVE", "FLUID"]
     width: str
 
 @typing.type_check_only
-class AddCreativeRequest(typing_extensions.TypedDict, total=False):
+class AddCreativeRequest(typing.TypedDict, total=False):
     creative: str
 
 @typing.type_check_only
-class AddNoteRequest(typing_extensions.TypedDict, total=False):
+class AddNoteRequest(typing.TypedDict, total=False):
     note: Note
 
 @typing.type_check_only
-class AuctionPackage(typing_extensions.TypedDict, total=False):
+class AuctionPackage(typing.TypedDict, total=False):
     createTime: str
     creator: str
     dealOwnerSeatId: str
@@ -46,61 +42,59 @@ class AuctionPackage(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class BatchUpdateDealsRequest(typing_extensions.TypedDict, total=False):
+class BatchUpdateDealsRequest(typing.TypedDict, total=False):
     requests: _list[UpdateDealRequest]
 
 @typing.type_check_only
-class BatchUpdateDealsResponse(typing_extensions.TypedDict, total=False):
+class BatchUpdateDealsResponse(typing.TypedDict, total=False):
     deals: _list[Deal]
 
 @typing.type_check_only
-class CancelNegotiationRequest(typing_extensions.TypedDict, total=False): ...
+class CancelNegotiationRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Client(typing_extensions.TypedDict, total=False):
+class Client(typing.TypedDict, total=False):
     displayName: str
     name: str
     partnerClientId: str
-    role: typing_extensions.Literal[
+    role: typing.Literal[
         "CLIENT_ROLE_UNSPECIFIED",
         "CLIENT_DEAL_VIEWER",
         "CLIENT_DEAL_NEGOTIATOR",
         "CLIENT_DEAL_APPROVER",
     ]
     sellerVisible: bool
-    state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "INACTIVE"]
+    state: typing.Literal["STATE_UNSPECIFIED", "ACTIVE", "INACTIVE"]
 
 @typing.type_check_only
-class ClientUser(typing_extensions.TypedDict, total=False):
+class ClientUser(typing.TypedDict, total=False):
     email: str
     name: str
-    state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "INVITED", "ACTIVE", "INACTIVE"
-    ]
+    state: typing.Literal["STATE_UNSPECIFIED", "INVITED", "ACTIVE", "INACTIVE"]
 
 @typing.type_check_only
-class Contact(typing_extensions.TypedDict, total=False):
+class Contact(typing.TypedDict, total=False):
     displayName: str
     email: str
 
 @typing.type_check_only
-class CreativeRequirements(typing_extensions.TypedDict, total=False):
-    creativeFormat: typing_extensions.Literal[
+class CreativeRequirements(typing.TypedDict, total=False):
+    creativeFormat: typing.Literal[
         "CREATIVE_FORMAT_UNSPECIFIED", "DISPLAY", "VIDEO", "AUDIO"
     ]
-    creativePreApprovalPolicy: typing_extensions.Literal[
+    creativePreApprovalPolicy: typing.Literal[
         "CREATIVE_PRE_APPROVAL_POLICY_UNSPECIFIED",
         "SELLER_PRE_APPROVAL_REQUIRED",
         "SELLER_PRE_APPROVAL_NOT_REQUIRED",
     ]
-    creativeSafeFrameCompatibility: typing_extensions.Literal[
+    creativeSafeFrameCompatibility: typing.Literal[
         "CREATIVE_SAFE_FRAME_COMPATIBILITY_UNSPECIFIED", "COMPATIBLE", "INCOMPATIBLE"
     ]
     maxAdDurationMs: str
-    programmaticCreativeSource: typing_extensions.Literal[
+    programmaticCreativeSource: typing.Literal[
         "PROGRAMMATIC_CREATIVE_SOURCE_UNSPECIFIED", "ADVERTISER", "PUBLISHER"
     ]
-    skippableAdType: typing_extensions.Literal[
+    skippableAdType: typing.Literal[
         "SKIPPABLE_AD_TYPE_UNSPECIFIED",
         "SKIPPABLE",
         "INSTREAM_SELECT",
@@ -109,13 +103,13 @@ class CreativeRequirements(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class CriteriaTargeting(typing_extensions.TypedDict, total=False):
+class CriteriaTargeting(typing.TypedDict, total=False):
     excludedCriteriaIds: _list[str]
     targetedCriteriaIds: _list[str]
 
 @typing.type_check_only
-class DayPart(typing_extensions.TypedDict, total=False):
-    dayOfWeek: typing_extensions.Literal[
+class DayPart(typing.TypedDict, total=False):
+    dayOfWeek: typing.Literal[
         "DAY_OF_WEEK_UNSPECIFIED",
         "MONDAY",
         "TUESDAY",
@@ -129,29 +123,27 @@ class DayPart(typing_extensions.TypedDict, total=False):
     startTime: TimeOfDay
 
 @typing.type_check_only
-class DayPartTargeting(typing_extensions.TypedDict, total=False):
+class DayPartTargeting(typing.TypedDict, total=False):
     dayParts: _list[DayPart]
-    timeZoneType: typing_extensions.Literal[
-        "TIME_ZONE_TYPE_UNSPECIFIED", "SELLER", "USER"
-    ]
+    timeZoneType: typing.Literal["TIME_ZONE_TYPE_UNSPECIFIED", "SELLER", "USER"]
 
 @typing.type_check_only
-class DeactivateClientRequest(typing_extensions.TypedDict, total=False): ...
+class DeactivateClientRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class DeactivateClientUserRequest(typing_extensions.TypedDict, total=False): ...
+class DeactivateClientUserRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Deal(typing_extensions.TypedDict, total=False):
+class Deal(typing.TypedDict, total=False):
     billedBuyer: str
     buyer: str
-    buyerPermissionType: typing_extensions.Literal[
+    buyerPermissionType: typing.Literal[
         "BUYER_PERMISSION_TYPE_UNSPECIFIED", "NEGOTIATOR_ONLY", "BIDDER"
     ]
     client: str
     createTime: str
     creativeRequirements: CreativeRequirements
-    dealType: typing_extensions.Literal[
+    dealType: typing.Literal[
         "DEAL_TYPE_UNSPECIFIED",
         "PREFERRED_DEAL",
         "PRIVATE_AUCTION",
@@ -176,36 +168,34 @@ class Deal(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class DealPausingInfo(typing_extensions.TypedDict, total=False):
+class DealPausingInfo(typing.TypedDict, total=False):
     pauseReason: str
-    pauseRole: typing_extensions.Literal[
-        "BUYER_SELLER_ROLE_UNSPECIFIED", "BUYER", "SELLER"
-    ]
+    pauseRole: typing.Literal["BUYER_SELLER_ROLE_UNSPECIFIED", "BUYER", "SELLER"]
     pausingConsented: bool
 
 @typing.type_check_only
-class DeliveryControl(typing_extensions.TypedDict, total=False):
-    companionDeliveryType: typing_extensions.Literal[
+class DeliveryControl(typing.TypedDict, total=False):
+    companionDeliveryType: typing.Literal[
         "COMPANION_DELIVERY_TYPE_UNSPECIFIED",
         "DELIVERY_OPTIONAL",
         "DELIVERY_AT_LEAST_ONE",
         "DELIVERY_ALL",
     ]
-    creativeRotationType: typing_extensions.Literal[
+    creativeRotationType: typing.Literal[
         "CREATIVE_ROTATION_TYPE_UNSPECIFIED",
         "ROTATION_EVEN",
         "ROTATION_OPTIMIZED",
         "ROTATION_MANUAL",
         "ROTATION_SEQUENTIAL",
     ]
-    deliveryRateType: typing_extensions.Literal[
+    deliveryRateType: typing.Literal[
         "DELIVERY_RATE_TYPE_UNSPECIFIED",
         "EVENLY",
         "FRONT_LOADED",
         "AS_FAST_AS_POSSIBLE",
     ]
     frequencyCap: _list[FrequencyCap]
-    roadblockingType: typing_extensions.Literal[
+    roadblockingType: typing.Literal[
         "ROADBLOCKING_TYPE_UNSPECIFIED",
         "ONLY_ONE",
         "ONE_OR_MORE",
@@ -215,13 +205,13 @@ class DeliveryControl(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class FinalizedDeal(typing_extensions.TypedDict, total=False):
+class FinalizedDeal(typing.TypedDict, total=False):
     deal: Deal
     dealPausingInfo: DealPausingInfo
-    dealServingStatus: typing_extensions.Literal[
+    dealServingStatus: typing.Literal[
         "DEAL_SERVING_STATUS_UNSPECIFIED",
         "ACTIVE",
         "ENDED",
@@ -233,14 +223,14 @@ class FinalizedDeal(typing_extensions.TypedDict, total=False):
     rtbMetrics: RtbMetrics
 
 @typing.type_check_only
-class FirstPartyMobileApplicationTargeting(typing_extensions.TypedDict, total=False):
+class FirstPartyMobileApplicationTargeting(typing.TypedDict, total=False):
     excludedAppIds: _list[str]
     targetedAppIds: _list[str]
 
 @typing.type_check_only
-class FrequencyCap(typing_extensions.TypedDict, total=False):
+class FrequencyCap(typing.TypedDict, total=False):
     maxImpressions: int
-    timeUnitType: typing_extensions.Literal[
+    timeUnitType: typing.Literal[
         "TIME_UNIT_TYPE_UNSPECIFIED",
         "MINUTE",
         "HOUR",
@@ -254,55 +244,55 @@ class FrequencyCap(typing_extensions.TypedDict, total=False):
     timeUnitsCount: int
 
 @typing.type_check_only
-class InventorySizeTargeting(typing_extensions.TypedDict, total=False):
+class InventorySizeTargeting(typing.TypedDict, total=False):
     excludedInventorySizes: _list[AdSize]
     targetedInventorySizes: _list[AdSize]
 
 @typing.type_check_only
-class InventoryTypeTargeting(typing_extensions.TypedDict, total=False):
+class InventoryTypeTargeting(typing.TypedDict, total=False):
     inventoryTypes: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "INVENTORY_TYPE_UNSPECIFIED", "BROWSER", "MOBILE_APP", "VIDEO_PLAYER"
         ]
     ]
 
 @typing.type_check_only
-class ListAuctionPackagesResponse(typing_extensions.TypedDict, total=False):
+class ListAuctionPackagesResponse(typing.TypedDict, total=False):
     auctionPackages: _list[AuctionPackage]
     nextPageToken: str
 
 @typing.type_check_only
-class ListClientUsersResponse(typing_extensions.TypedDict, total=False):
+class ListClientUsersResponse(typing.TypedDict, total=False):
     clientUsers: _list[ClientUser]
     nextPageToken: str
 
 @typing.type_check_only
-class ListClientsResponse(typing_extensions.TypedDict, total=False):
+class ListClientsResponse(typing.TypedDict, total=False):
     clients: _list[Client]
     nextPageToken: str
 
 @typing.type_check_only
-class ListDealsResponse(typing_extensions.TypedDict, total=False):
+class ListDealsResponse(typing.TypedDict, total=False):
     deals: _list[Deal]
     nextPageToken: str
 
 @typing.type_check_only
-class ListFinalizedDealsResponse(typing_extensions.TypedDict, total=False):
+class ListFinalizedDealsResponse(typing.TypedDict, total=False):
     finalizedDeals: _list[FinalizedDeal]
     nextPageToken: str
 
 @typing.type_check_only
-class ListProposalsResponse(typing_extensions.TypedDict, total=False):
+class ListProposalsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     proposals: _list[Proposal]
 
 @typing.type_check_only
-class ListPublisherProfilesResponse(typing_extensions.TypedDict, total=False):
+class ListPublisherProfilesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     publisherProfiles: _list[PublisherProfile]
 
 @typing.type_check_only
-class MarketplaceTargeting(typing_extensions.TypedDict, total=False):
+class MarketplaceTargeting(typing.TypedDict, total=False):
     daypartTargeting: DayPartTargeting
     excludedSensitiveCategoryIds: _list[str]
     geoTargeting: CriteriaTargeting
@@ -315,81 +305,79 @@ class MarketplaceTargeting(typing_extensions.TypedDict, total=False):
     videoTargeting: VideoTargeting
 
 @typing.type_check_only
-class MediaPlanner(typing_extensions.TypedDict, total=False):
+class MediaPlanner(typing.TypedDict, total=False):
     accountId: str
     ancestorNames: _list[str]
     displayName: str
     name: str
 
 @typing.type_check_only
-class MobileApplicationTargeting(typing_extensions.TypedDict, total=False):
+class MobileApplicationTargeting(typing.TypedDict, total=False):
     firstPartyTargeting: FirstPartyMobileApplicationTargeting
 
 @typing.type_check_only
-class Money(typing_extensions.TypedDict, total=False):
+class Money(typing.TypedDict, total=False):
     currencyCode: str
     nanos: int
     units: str
 
 @typing.type_check_only
-class Note(typing_extensions.TypedDict, total=False):
+class Note(typing.TypedDict, total=False):
     createTime: str
-    creatorRole: typing_extensions.Literal[
-        "BUYER_SELLER_ROLE_UNSPECIFIED", "BUYER", "SELLER"
-    ]
+    creatorRole: typing.Literal["BUYER_SELLER_ROLE_UNSPECIFIED", "BUYER", "SELLER"]
     note: str
 
 @typing.type_check_only
-class OperatingSystemTargeting(typing_extensions.TypedDict, total=False):
+class OperatingSystemTargeting(typing.TypedDict, total=False):
     operatingSystemCriteria: CriteriaTargeting
     operatingSystemVersionCriteria: CriteriaTargeting
 
 @typing.type_check_only
-class PauseFinalizedDealRequest(typing_extensions.TypedDict, total=False):
+class PauseFinalizedDealRequest(typing.TypedDict, total=False):
     reason: str
 
 @typing.type_check_only
-class PlacementTargeting(typing_extensions.TypedDict, total=False):
+class PlacementTargeting(typing.TypedDict, total=False):
     mobileApplicationTargeting: MobileApplicationTargeting
     uriTargeting: UriTargeting
 
 @typing.type_check_only
-class PreferredDealTerms(typing_extensions.TypedDict, total=False):
+class PreferredDealTerms(typing.TypedDict, total=False):
     fixedPrice: Price
 
 @typing.type_check_only
-class Price(typing_extensions.TypedDict, total=False):
+class Price(typing.TypedDict, total=False):
     amount: Money
-    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "CPM", "CPD"]
+    type: typing.Literal["TYPE_UNSPECIFIED", "CPM", "CPD"]
 
 @typing.type_check_only
-class PrivateAuctionTerms(typing_extensions.TypedDict, total=False):
+class PrivateAuctionTerms(typing.TypedDict, total=False):
     floorPrice: Price
     openAuctionAllowed: bool
 
 @typing.type_check_only
-class PrivateData(typing_extensions.TypedDict, total=False):
+class PrivateData(typing.TypedDict, total=False):
     referenceId: str
 
 @typing.type_check_only
-class ProgrammaticGuaranteedTerms(typing_extensions.TypedDict, total=False):
+class ProgrammaticGuaranteedTerms(typing.TypedDict, total=False):
     fixedPrice: Price
     guaranteedLooks: str
     impressionCap: str
     minimumDailyLooks: str
     percentShareOfVoice: str
-    reservationType: typing_extensions.Literal[
+    reservationType: typing.Literal[
         "RESERVATION_TYPE_UNSPECIFIED", "STANDARD", "SPONSORSHIP"
     ]
 
 @typing.type_check_only
-class Proposal(typing_extensions.TypedDict, total=False):
+class Proposal(typing.TypedDict, total=False):
     billedBuyer: str
     buyer: str
     buyerContacts: _list[Contact]
     buyerPrivateData: PrivateData
     client: str
-    dealType: typing_extensions.Literal[
+    dealType: typing.Literal[
         "DEAL_TYPE_UNSPECIFIED",
         "PREFERRED_DEAL",
         "PRIVATE_AUCTION",
@@ -397,19 +385,17 @@ class Proposal(typing_extensions.TypedDict, total=False):
     ]
     displayName: str
     isRenegotiating: bool
-    lastUpdaterOrCommentorRole: typing_extensions.Literal[
+    lastUpdaterOrCommentorRole: typing.Literal[
         "BUYER_SELLER_ROLE_UNSPECIFIED", "BUYER", "SELLER"
     ]
     name: str
     notes: _list[Note]
-    originatorRole: typing_extensions.Literal[
-        "BUYER_SELLER_ROLE_UNSPECIFIED", "BUYER", "SELLER"
-    ]
+    originatorRole: typing.Literal["BUYER_SELLER_ROLE_UNSPECIFIED", "BUYER", "SELLER"]
     pausingConsented: bool
     proposalRevision: str
     publisherProfile: str
     sellerContacts: _list[Contact]
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "BUYER_REVIEW_REQUESTED",
         "SELLER_REVIEW_REQUESTED",
@@ -421,7 +407,7 @@ class Proposal(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class PublisherProfile(typing_extensions.TypedDict, total=False):
+class PublisherProfile(typing.TypedDict, total=False):
     audienceDescription: str
     directDealsContact: str
     displayName: str
@@ -439,8 +425,8 @@ class PublisherProfile(typing_extensions.TypedDict, total=False):
     topHeadlines: _list[str]
 
 @typing.type_check_only
-class PublisherProfileMobileApplication(typing_extensions.TypedDict, total=False):
-    appStore: typing_extensions.Literal[
+class PublisherProfileMobileApplication(typing.TypedDict, total=False):
+    appStore: typing.Literal[
         "APP_STORE_TYPE_UNSPECIFIED",
         "APPLE_ITUNES",
         "GOOGLE_PLAY",
@@ -460,10 +446,10 @@ class PublisherProfileMobileApplication(typing_extensions.TypedDict, total=False
     name: str
 
 @typing.type_check_only
-class ResumeFinalizedDealRequest(typing_extensions.TypedDict, total=False): ...
+class ResumeFinalizedDealRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class RtbMetrics(typing_extensions.TypedDict, total=False):
+class RtbMetrics(typing.TypedDict, total=False):
     adImpressions7Days: str
     bidRate7Days: float
     bidRequests7Days: str
@@ -472,7 +458,7 @@ class RtbMetrics(typing_extensions.TypedDict, total=False):
     mustBidRateCurrentMonth: float
 
 @typing.type_check_only
-class SendRfpRequest(typing_extensions.TypedDict, total=False):
+class SendRfpRequest(typing.TypedDict, total=False):
     buyerContacts: _list[Contact]
     client: str
     displayName: str
@@ -487,59 +473,55 @@ class SendRfpRequest(typing_extensions.TypedDict, total=False):
     publisherProfile: str
 
 @typing.type_check_only
-class SetReadyToServeRequest(typing_extensions.TypedDict, total=False): ...
+class SetReadyToServeRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class SubscribeAuctionPackageRequest(typing_extensions.TypedDict, total=False): ...
+class SubscribeAuctionPackageRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class SubscribeClientsRequest(typing_extensions.TypedDict, total=False):
+class SubscribeClientsRequest(typing.TypedDict, total=False):
     clients: _list[str]
 
 @typing.type_check_only
-class TechnologyTargeting(typing_extensions.TypedDict, total=False):
+class TechnologyTargeting(typing.TypedDict, total=False):
     deviceCapabilityTargeting: CriteriaTargeting
     deviceCategoryTargeting: CriteriaTargeting
     operatingSystemTargeting: OperatingSystemTargeting
 
 @typing.type_check_only
-class TimeOfDay(typing_extensions.TypedDict, total=False):
+class TimeOfDay(typing.TypedDict, total=False):
     hours: int
     minutes: int
     nanos: int
     seconds: int
 
 @typing.type_check_only
-class TimeZone(typing_extensions.TypedDict, total=False):
+class TimeZone(typing.TypedDict, total=False):
     id: str
     version: str
 
 @typing.type_check_only
-class UnsubscribeAuctionPackageRequest(typing_extensions.TypedDict, total=False): ...
+class UnsubscribeAuctionPackageRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class UnsubscribeClientsRequest(typing_extensions.TypedDict, total=False):
+class UnsubscribeClientsRequest(typing.TypedDict, total=False):
     clients: _list[str]
 
 @typing.type_check_only
-class UpdateDealRequest(typing_extensions.TypedDict, total=False):
+class UpdateDealRequest(typing.TypedDict, total=False):
     deal: Deal
     updateMask: str
 
 @typing.type_check_only
-class UriTargeting(typing_extensions.TypedDict, total=False):
+class UriTargeting(typing.TypedDict, total=False):
     excludedUris: _list[str]
     targetedUris: _list[str]
 
 @typing.type_check_only
-class VideoTargeting(typing_extensions.TypedDict, total=False):
+class VideoTargeting(typing.TypedDict, total=False):
     excludedPositionTypes: _list[
-        typing_extensions.Literal[
-            "POSITION_TYPE_UNSPECIFIED", "PREROLL", "MIDROLL", "POSTROLL"
-        ]
+        typing.Literal["POSITION_TYPE_UNSPECIFIED", "PREROLL", "MIDROLL", "POSTROLL"]
     ]
     targetedPositionTypes: _list[
-        typing_extensions.Literal[
-            "POSITION_TYPE_UNSPECIFIED", "PREROLL", "MIDROLL", "POSTROLL"
-        ]
+        typing.Literal["POSITION_TYPE_UNSPECIFIED", "PREROLL", "MIDROLL", "POSTROLL"]
     ]

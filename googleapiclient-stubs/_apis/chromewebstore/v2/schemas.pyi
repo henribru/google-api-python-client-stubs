@@ -1,28 +1,26 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class CancelSubmissionRequest(typing_extensions.TypedDict, total=False): ...
+class CancelSubmissionRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class CancelSubmissionResponse(typing_extensions.TypedDict, total=False): ...
+class CancelSubmissionResponse(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class DeployInfo(typing_extensions.TypedDict, total=False):
+class DeployInfo(typing.TypedDict, total=False):
     deployPercentage: int
 
 @typing.type_check_only
-class DistributionChannel(typing_extensions.TypedDict, total=False):
+class DistributionChannel(typing.TypedDict, total=False):
     crxVersion: str
     deployPercentage: int
 
 @typing.type_check_only
-class FetchItemStatusResponse(typing_extensions.TypedDict, total=False):
+class FetchItemStatusResponse(typing.TypedDict, total=False):
     itemId: str
-    lastAsyncUploadState: typing_extensions.Literal[
+    lastAsyncUploadState: typing.Literal[
         "UPLOAD_STATE_UNSPECIFIED", "SUCCEEDED", "IN_PROGRESS", "FAILED", "NOT_FOUND"
     ]
     name: str
@@ -33,9 +31,9 @@ class FetchItemStatusResponse(typing_extensions.TypedDict, total=False):
     warned: bool
 
 @typing.type_check_only
-class ItemRevisionStatus(typing_extensions.TypedDict, total=False):
+class ItemRevisionStatus(typing.TypedDict, total=False):
     distributionChannels: _list[DistributionChannel]
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "ITEM_STATE_UNSPECIFIED",
         "PENDING_REVIEW",
         "STAGED",
@@ -46,19 +44,19 @@ class ItemRevisionStatus(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class PublishItemRequest(typing_extensions.TypedDict, total=False):
+class PublishItemRequest(typing.TypedDict, total=False):
     blockOnWarnings: bool
     deployInfos: _list[DeployInfo]
-    publishType: typing_extensions.Literal[
+    publishType: typing.Literal[
         "PUBLISH_TYPE_UNSPECIFIED", "DEFAULT_PUBLISH", "STAGED_PUBLISH"
     ]
     skipReview: bool
 
 @typing.type_check_only
-class PublishItemResponse(typing_extensions.TypedDict, total=False):
+class PublishItemResponse(typing.TypedDict, total=False):
     itemId: str
     name: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "ITEM_STATE_UNSPECIFIED",
         "PENDING_REVIEW",
         "STAGED",
@@ -70,31 +68,29 @@ class PublishItemResponse(typing_extensions.TypedDict, total=False):
     warningInfo: WarningsInfo
 
 @typing.type_check_only
-class SetPublishedDeployPercentageRequest(typing_extensions.TypedDict, total=False):
+class SetPublishedDeployPercentageRequest(typing.TypedDict, total=False):
     deployPercentage: int
 
 @typing.type_check_only
-class SetPublishedDeployPercentageResponse(
-    typing_extensions.TypedDict, total=False
-): ...
+class SetPublishedDeployPercentageResponse(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class UploadItemPackageRequest(typing_extensions.TypedDict, total=False): ...
+class UploadItemPackageRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class UploadItemPackageResponse(typing_extensions.TypedDict, total=False):
+class UploadItemPackageResponse(typing.TypedDict, total=False):
     crxVersion: str
     itemId: str
     name: str
-    uploadState: typing_extensions.Literal[
+    uploadState: typing.Literal[
         "UPLOAD_STATE_UNSPECIFIED", "SUCCEEDED", "IN_PROGRESS", "FAILED", "NOT_FOUND"
     ]
 
 @typing.type_check_only
-class Warning(typing_extensions.TypedDict, total=False):
+class Warning(typing.TypedDict, total=False):
     description: str
     reason: str
 
 @typing.type_check_only
-class WarningsInfo(typing_extensions.TypedDict, total=False):
+class WarningsInfo(typing.TypedDict, total=False):
     warnings: _list[Warning]

@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -63,7 +62,7 @@ class CloudIotResource(googleapiclient.discovery.Resource):
                         fieldMask: str | None = ...,
                         gatewayListOptions_associationsDeviceId: str | None = ...,
                         gatewayListOptions_associationsGatewayId: str | None = ...,
-                        gatewayListOptions_gatewayType: typing_extensions.Literal[
+                        gatewayListOptions_gatewayType: typing.Literal[
                             "GATEWAY_TYPE_UNSPECIFIED", "GATEWAY", "NON_GATEWAY"
                         ]
                         | None = ...,
@@ -114,7 +113,7 @@ class CloudIotResource(googleapiclient.discovery.Resource):
                             fieldMask: str | None = ...,
                             gatewayListOptions_associationsDeviceId: str | None = ...,
                             gatewayListOptions_associationsGatewayId: str | None = ...,
-                            gatewayListOptions_gatewayType: typing_extensions.Literal[
+                            gatewayListOptions_gatewayType: typing.Literal[
                                 "GATEWAY_TYPE_UNSPECIFIED", "GATEWAY", "NON_GATEWAY"
                             ]
                             | None = ...,

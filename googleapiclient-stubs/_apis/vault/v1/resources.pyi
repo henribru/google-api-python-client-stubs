@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -83,9 +82,7 @@ class VaultResource(googleapiclient.discovery.Resource):
                 *,
                 matterId: str,
                 holdId: str,
-                view: typing_extensions.Literal[
-                    "HOLD_VIEW_UNSPECIFIED", "BASIC_HOLD", "FULL_HOLD"
-                ]
+                view: typing.Literal["HOLD_VIEW_UNSPECIFIED", "BASIC_HOLD", "FULL_HOLD"]
                 | None = ...,
                 **kwargs: typing.Any,
             ) -> HoldHttpRequest: ...
@@ -95,9 +92,7 @@ class VaultResource(googleapiclient.discovery.Resource):
                 matterId: str,
                 pageSize: int | None = ...,
                 pageToken: str | None = ...,
-                view: typing_extensions.Literal[
-                    "HOLD_VIEW_UNSPECIFIED", "BASIC_HOLD", "FULL_HOLD"
-                ]
+                view: typing.Literal["HOLD_VIEW_UNSPECIFIED", "BASIC_HOLD", "FULL_HOLD"]
                 | None = ...,
                 **kwargs: typing.Any,
             ) -> ListHoldsResponseHttpRequest: ...
@@ -167,8 +162,7 @@ class VaultResource(googleapiclient.discovery.Resource):
             self,
             *,
             matterId: str,
-            view: typing_extensions.Literal["VIEW_UNSPECIFIED", "BASIC", "FULL"]
-            | None = ...,
+            view: typing.Literal["VIEW_UNSPECIFIED", "BASIC", "FULL"] | None = ...,
             **kwargs: typing.Any,
         ) -> MatterHttpRequest: ...
         def list(
@@ -176,12 +170,9 @@ class VaultResource(googleapiclient.discovery.Resource):
             *,
             pageSize: int | None = ...,
             pageToken: str | None = ...,
-            state: typing_extensions.Literal[
-                "STATE_UNSPECIFIED", "OPEN", "CLOSED", "DELETED"
-            ]
+            state: typing.Literal["STATE_UNSPECIFIED", "OPEN", "CLOSED", "DELETED"]
             | None = ...,
-            view: typing_extensions.Literal["VIEW_UNSPECIFIED", "BASIC", "FULL"]
-            | None = ...,
+            view: typing.Literal["VIEW_UNSPECIFIED", "BASIC", "FULL"] | None = ...,
             **kwargs: typing.Any,
         ) -> ListMattersResponseHttpRequest: ...
         def list_next(

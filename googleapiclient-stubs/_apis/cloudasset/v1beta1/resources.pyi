@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -39,7 +38,7 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
             *,
             parent: str,
             assetNames: str | _list[str] | None = ...,
-            contentType: typing_extensions.Literal[
+            contentType: typing.Literal[
                 "CONTENT_TYPE_UNSPECIFIED", "RESOURCE", "IAM_POLICY"
             ]
             | None = ...,
@@ -65,7 +64,7 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
             *,
             parent: str,
             assetNames: str | _list[str] | None = ...,
-            contentType: typing_extensions.Literal[
+            contentType: typing.Literal[
                 "CONTENT_TYPE_UNSPECIFIED", "RESOURCE", "IAM_POLICY"
             ]
             | None = ...,

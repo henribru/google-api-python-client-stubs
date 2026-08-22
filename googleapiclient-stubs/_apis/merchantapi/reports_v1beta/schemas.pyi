@@ -1,14 +1,12 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class BestSellersBrandView(typing_extensions.TypedDict, total=False):
+class BestSellersBrandView(typing.TypedDict, total=False):
     brand: str
     previousRank: str
-    previousRelativeDemand: typing_extensions.Literal[
+    previousRelativeDemand: typing.Literal[
         "RELATIVE_DEMAND_ENUM_UNSPECIFIED",
         "VERY_LOW",
         "LOW",
@@ -17,7 +15,7 @@ class BestSellersBrandView(typing_extensions.TypedDict, total=False):
         "VERY_HIGH",
     ]
     rank: str
-    relativeDemand: typing_extensions.Literal[
+    relativeDemand: typing.Literal[
         "RELATIVE_DEMAND_ENUM_UNSPECIFIED",
         "VERY_LOW",
         "LOW",
@@ -25,20 +23,20 @@ class BestSellersBrandView(typing_extensions.TypedDict, total=False):
         "HIGH",
         "VERY_HIGH",
     ]
-    relativeDemandChange: typing_extensions.Literal[
+    relativeDemandChange: typing.Literal[
         "RELATIVE_DEMAND_CHANGE_TYPE_ENUM_UNSPECIFIED", "SINKER", "FLAT", "RISER"
     ]
     reportCategoryId: str
     reportCountryCode: str
     reportDate: Date
-    reportGranularity: typing_extensions.Literal[
+    reportGranularity: typing.Literal[
         "REPORT_GRANULARITY_ENUM_UNSPECIFIED", "WEEKLY", "MONTHLY"
     ]
 
 @typing.type_check_only
-class BestSellersProductClusterView(typing_extensions.TypedDict, total=False):
+class BestSellersProductClusterView(typing.TypedDict, total=False):
     brand: str
-    brandInventoryStatus: typing_extensions.Literal[
+    brandInventoryStatus: typing.Literal[
         "INVENTORY_STATUS_UNSPECIFIED", "IN_STOCK", "OUT_OF_STOCK", "NOT_IN_INVENTORY"
     ]
     categoryL1: str
@@ -46,11 +44,11 @@ class BestSellersProductClusterView(typing_extensions.TypedDict, total=False):
     categoryL3: str
     categoryL4: str
     categoryL5: str
-    inventoryStatus: typing_extensions.Literal[
+    inventoryStatus: typing.Literal[
         "INVENTORY_STATUS_UNSPECIFIED", "IN_STOCK", "OUT_OF_STOCK", "NOT_IN_INVENTORY"
     ]
     previousRank: str
-    previousRelativeDemand: typing_extensions.Literal[
+    previousRelativeDemand: typing.Literal[
         "RELATIVE_DEMAND_ENUM_UNSPECIFIED",
         "VERY_LOW",
         "LOW",
@@ -59,7 +57,7 @@ class BestSellersProductClusterView(typing_extensions.TypedDict, total=False):
         "VERY_HIGH",
     ]
     rank: str
-    relativeDemand: typing_extensions.Literal[
+    relativeDemand: typing.Literal[
         "RELATIVE_DEMAND_ENUM_UNSPECIFIED",
         "VERY_LOW",
         "LOW",
@@ -67,31 +65,31 @@ class BestSellersProductClusterView(typing_extensions.TypedDict, total=False):
         "HIGH",
         "VERY_HIGH",
     ]
-    relativeDemandChange: typing_extensions.Literal[
+    relativeDemandChange: typing.Literal[
         "RELATIVE_DEMAND_CHANGE_TYPE_ENUM_UNSPECIFIED", "SINKER", "FLAT", "RISER"
     ]
     reportCategoryId: str
     reportCountryCode: str
     reportDate: Date
-    reportGranularity: typing_extensions.Literal[
+    reportGranularity: typing.Literal[
         "REPORT_GRANULARITY_ENUM_UNSPECIFIED", "WEEKLY", "MONTHLY"
     ]
     title: str
     variantGtins: _list[str]
 
 @typing.type_check_only
-class CompetitiveVisibilityBenchmarkView(typing_extensions.TypedDict, total=False):
+class CompetitiveVisibilityBenchmarkView(typing.TypedDict, total=False):
     categoryBenchmarkVisibilityTrend: float
     date: Date
     reportCategoryId: str
     reportCountryCode: str
-    trafficSource: typing_extensions.Literal[
+    trafficSource: typing.Literal[
         "TRAFFIC_SOURCE_ENUM_UNSPECIFIED", "ORGANIC", "ADS", "ALL"
     ]
     yourDomainVisibilityTrend: float
 
 @typing.type_check_only
-class CompetitiveVisibilityCompetitorView(typing_extensions.TypedDict, total=False):
+class CompetitiveVisibilityCompetitorView(typing.TypedDict, total=False):
     adsOrganicRatio: float
     date: Date
     domain: str
@@ -102,12 +100,12 @@ class CompetitiveVisibilityCompetitorView(typing_extensions.TypedDict, total=Fal
     relativeVisibility: float
     reportCategoryId: str
     reportCountryCode: str
-    trafficSource: typing_extensions.Literal[
+    trafficSource: typing.Literal[
         "TRAFFIC_SOURCE_ENUM_UNSPECIFIED", "ORGANIC", "ADS", "ALL"
     ]
 
 @typing.type_check_only
-class CompetitiveVisibilityTopMerchantView(typing_extensions.TypedDict, total=False):
+class CompetitiveVisibilityTopMerchantView(typing.TypedDict, total=False):
     adsOrganicRatio: float
     date: Date
     domain: str
@@ -117,21 +115,21 @@ class CompetitiveVisibilityTopMerchantView(typing_extensions.TypedDict, total=Fa
     rank: str
     reportCategoryId: str
     reportCountryCode: str
-    trafficSource: typing_extensions.Literal[
+    trafficSource: typing.Literal[
         "TRAFFIC_SOURCE_ENUM_UNSPECIFIED", "ORGANIC", "ADS", "ALL"
     ]
 
 @typing.type_check_only
-class Date(typing_extensions.TypedDict, total=False):
+class Date(typing.TypedDict, total=False):
     day: int
     month: int
     year: int
 
 @typing.type_check_only
-class IssueSeverityPerReportingContext(typing_extensions.TypedDict, total=False):
+class IssueSeverityPerReportingContext(typing.TypedDict, total=False):
     demotedCountries: _list[str]
     disapprovedCountries: _list[str]
-    reportingContext: typing_extensions.Literal[
+    reportingContext: typing.Literal[
         "REPORTING_CONTEXT_ENUM_UNSPECIFIED",
         "SHOPPING_ADS",
         "DISCOVERY_ADS",
@@ -155,27 +153,27 @@ class IssueSeverityPerReportingContext(typing_extensions.TypedDict, total=False)
     ]
 
 @typing.type_check_only
-class ItemIssue(typing_extensions.TypedDict, total=False):
-    resolution: typing_extensions.Literal[
+class ItemIssue(typing.TypedDict, total=False):
+    resolution: typing.Literal[
         "ITEM_ISSUE_RESOLUTION_UNSPECIFIED", "MERCHANT_ACTION", "PENDING_PROCESSING"
     ]
     severity: ItemIssueSeverity
     type: ItemIssueType
 
 @typing.type_check_only
-class ItemIssueSeverity(typing_extensions.TypedDict, total=False):
-    aggregatedSeverity: typing_extensions.Literal[
+class ItemIssueSeverity(typing.TypedDict, total=False):
+    aggregatedSeverity: typing.Literal[
         "AGGREGATED_ISSUE_SEVERITY_UNSPECIFIED", "DISAPPROVED", "DEMOTED", "PENDING"
     ]
     severityPerReportingContext: _list[IssueSeverityPerReportingContext]
 
 @typing.type_check_only
-class ItemIssueType(typing_extensions.TypedDict, total=False):
+class ItemIssueType(typing.TypedDict, total=False):
     canonicalAttribute: str
     code: str
 
 @typing.type_check_only
-class NonProductPerformanceView(typing_extensions.TypedDict, total=False):
+class NonProductPerformanceView(typing.TypedDict, total=False):
     clickThroughRate: float
     clicks: str
     date: Date
@@ -183,12 +181,12 @@ class NonProductPerformanceView(typing_extensions.TypedDict, total=False):
     week: Date
 
 @typing.type_check_only
-class Price(typing_extensions.TypedDict, total=False):
+class Price(typing.TypedDict, total=False):
     amountMicros: str
     currencyCode: str
 
 @typing.type_check_only
-class PriceCompetitivenessProductView(typing_extensions.TypedDict, total=False):
+class PriceCompetitivenessProductView(typing.TypedDict, total=False):
     benchmarkPrice: Price
     brand: str
     categoryL1: str
@@ -208,16 +206,14 @@ class PriceCompetitivenessProductView(typing_extensions.TypedDict, total=False):
     title: str
 
 @typing.type_check_only
-class PriceInsightsProductView(typing_extensions.TypedDict, total=False):
+class PriceInsightsProductView(typing.TypedDict, total=False):
     brand: str
     categoryL1: str
     categoryL2: str
     categoryL3: str
     categoryL4: str
     categoryL5: str
-    effectiveness: typing_extensions.Literal[
-        "EFFECTIVENESS_UNSPECIFIED", "LOW", "MEDIUM", "HIGH"
-    ]
+    effectiveness: typing.Literal["EFFECTIVENESS_UNSPECIFIED", "LOW", "MEDIUM", "HIGH"]
     id: str
     offerId: str
     predictedClicksChangeFraction: float
@@ -233,11 +229,11 @@ class PriceInsightsProductView(typing_extensions.TypedDict, total=False):
     title: str
 
 @typing.type_check_only
-class ProductChange(typing_extensions.TypedDict, total=False):
+class ProductChange(typing.TypedDict, total=False):
     newValue: str
     oldValue: str
     regionCode: str
-    reportingContext: typing_extensions.Literal[
+    reportingContext: typing.Literal[
         "REPORTING_CONTEXT_ENUM_UNSPECIFIED",
         "SHOPPING_ADS",
         "DISCOVERY_ADS",
@@ -261,7 +257,7 @@ class ProductChange(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class ProductPerformanceView(typing_extensions.TypedDict, total=False):
+class ProductPerformanceView(typing.TypedDict, total=False):
     brand: str
     categoryL1: str
     categoryL2: str
@@ -281,7 +277,7 @@ class ProductPerformanceView(typing_extensions.TypedDict, total=False):
     customerCountryCode: str
     date: Date
     impressions: str
-    marketingMethod: typing_extensions.Literal[
+    marketingMethod: typing.Literal[
         "MARKETING_METHOD_ENUM_UNSPECIFIED", "ORGANIC", "ADS"
     ]
     offerId: str
@@ -290,29 +286,27 @@ class ProductPerformanceView(typing_extensions.TypedDict, total=False):
     productTypeL3: str
     productTypeL4: str
     productTypeL5: str
-    storeType: typing_extensions.Literal[
+    storeType: typing.Literal[
         "STORE_TYPE_ENUM_UNSPECIFIED", "ONLINE_STORE", "LOCAL_STORES"
     ]
     title: str
     week: Date
 
 @typing.type_check_only
-class ProductStatusChangeMessage(typing_extensions.TypedDict, total=False):
+class ProductStatusChangeMessage(typing.TypedDict, total=False):
     account: str
-    attribute: typing_extensions.Literal["ATTRIBUTE_UNSPECIFIED", "STATUS"]
+    attribute: typing.Literal["ATTRIBUTE_UNSPECIFIED", "STATUS"]
     changes: _list[ProductChange]
     eventTime: str
     expirationTime: str
     managingAccount: str
     resource: str
     resourceId: str
-    resourceType: typing_extensions.Literal[
-        "RESOURCE_UNSPECIFIED", "PRODUCT", "ACCOUNT_SERVICE"
-    ]
+    resourceType: typing.Literal["RESOURCE_UNSPECIFIED", "PRODUCT", "ACCOUNT_SERVICE"]
 
 @typing.type_check_only
-class ProductView(typing_extensions.TypedDict, total=False):
-    aggregatedReportingContextStatus: typing_extensions.Literal[
+class ProductView(typing.TypedDict, total=False):
+    aggregatedReportingContextStatus: typing.Literal[
         "AGGREGATED_REPORTING_CONTEXT_STATUS_UNSPECIFIED",
         "NOT_ELIGIBLE_OR_DISAPPROVED",
         "PENDING",
@@ -326,8 +320,8 @@ class ProductView(typing_extensions.TypedDict, total=False):
     categoryL3: str
     categoryL4: str
     categoryL5: str
-    channel: typing_extensions.Literal["CHANNEL_ENUM_UNSPECIFIED", "ONLINE", "LOCAL"]
-    clickPotential: typing_extensions.Literal[
+    channel: typing.Literal["CHANNEL_ENUM_UNSPECIFIED", "ONLINE", "LOCAL"]
+    clickPotential: typing.Literal[
         "CLICK_POTENTIAL_UNSPECIFIED", "LOW", "MEDIUM", "HIGH"
     ]
     clickPotentialRank: str
@@ -347,7 +341,7 @@ class ProductView(typing_extensions.TypedDict, total=False):
     productTypeL3: str
     productTypeL4: str
     productTypeL5: str
-    reportingContext: typing_extensions.Literal[
+    reportingContext: typing.Literal[
         "REPORTING_CONTEXT_ENUM_UNSPECIFIED",
         "SHOPPING_ADS",
         "DISCOVERY_ADS",
@@ -375,7 +369,7 @@ class ProductView(typing_extensions.TypedDict, total=False):
     title: str
 
 @typing.type_check_only
-class ReportRow(typing_extensions.TypedDict, total=False):
+class ReportRow(typing.TypedDict, total=False):
     bestSellersBrandView: BestSellersBrandView
     bestSellersProductClusterView: BestSellersProductClusterView
     competitiveVisibilityBenchmarkView: CompetitiveVisibilityBenchmarkView
@@ -388,22 +382,22 @@ class ReportRow(typing_extensions.TypedDict, total=False):
     productView: ProductView
 
 @typing.type_check_only
-class SearchRequest(typing_extensions.TypedDict, total=False):
+class SearchRequest(typing.TypedDict, total=False):
     pageSize: int
     pageToken: str
     query: str
 
 @typing.type_check_only
-class SearchResponse(typing_extensions.TypedDict, total=False):
+class SearchResponse(typing.TypedDict, total=False):
     nextPageToken: str
     results: _list[ReportRow]
 
 @typing.type_check_only
-class StatusPerReportingContext(typing_extensions.TypedDict, total=False):
+class StatusPerReportingContext(typing.TypedDict, total=False):
     approvedCountries: _list[str]
     disapprovedCountries: _list[str]
     pendingCountries: _list[str]
-    reportingContext: typing_extensions.Literal[
+    reportingContext: typing.Literal[
         "REPORTING_CONTEXT_ENUM_UNSPECIFIED",
         "SHOPPING_ADS",
         "DISCOVERY_ADS",

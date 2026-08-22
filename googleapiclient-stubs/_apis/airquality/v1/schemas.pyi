@@ -1,16 +1,14 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class AdditionalInfo(typing_extensions.TypedDict, total=False):
+class AdditionalInfo(typing.TypedDict, total=False):
     effects: str
     sources: str
 
 @typing.type_check_only
-class AirQualityIndex(typing_extensions.TypedDict, total=False):
+class AirQualityIndex(typing.TypedDict, total=False):
     aqi: int
     aqiDisplay: str
     category: str
@@ -20,26 +18,26 @@ class AirQualityIndex(typing_extensions.TypedDict, total=False):
     dominantPollutant: str
 
 @typing.type_check_only
-class Color(typing_extensions.TypedDict, total=False):
+class Color(typing.TypedDict, total=False):
     alpha: float
     blue: float
     green: float
     red: float
 
 @typing.type_check_only
-class Concentration(typing_extensions.TypedDict, total=False):
-    units: typing_extensions.Literal[
+class Concentration(typing.TypedDict, total=False):
+    units: typing.Literal[
         "UNIT_UNSPECIFIED", "PARTS_PER_BILLION", "MICROGRAMS_PER_CUBIC_METER"
     ]
     value: float
 
 @typing.type_check_only
-class CustomLocalAqi(typing_extensions.TypedDict, total=False):
+class CustomLocalAqi(typing.TypedDict, total=False):
     aqi: str
     regionCode: str
 
 @typing.type_check_only
-class HealthRecommendations(typing_extensions.TypedDict, total=False):
+class HealthRecommendations(typing.TypedDict, total=False):
     athletes: str
     children: str
     elderly: str
@@ -49,40 +47,40 @@ class HealthRecommendations(typing_extensions.TypedDict, total=False):
     pregnantWomen: str
 
 @typing.type_check_only
-class HourInfo(typing_extensions.TypedDict, total=False):
+class HourInfo(typing.TypedDict, total=False):
     dateTime: str
     healthRecommendations: HealthRecommendations
     indexes: _list[AirQualityIndex]
     pollutants: _list[Pollutant]
 
 @typing.type_check_only
-class HourlyForecast(typing_extensions.TypedDict, total=False):
+class HourlyForecast(typing.TypedDict, total=False):
     dateTime: str
     healthRecommendations: HealthRecommendations
     indexes: _list[AirQualityIndex]
     pollutants: _list[Pollutant]
 
 @typing.type_check_only
-class HttpBody(typing_extensions.TypedDict, total=False):
+class HttpBody(typing.TypedDict, total=False):
     contentType: str
     data: str
     extensions: _list[dict[str, typing.Any]]
 
 @typing.type_check_only
-class Interval(typing_extensions.TypedDict, total=False):
+class Interval(typing.TypedDict, total=False):
     endTime: str
     startTime: str
 
 @typing.type_check_only
-class LatLng(typing_extensions.TypedDict, total=False):
+class LatLng(typing.TypedDict, total=False):
     latitude: float
     longitude: float
 
 @typing.type_check_only
-class LookupCurrentConditionsRequest(typing_extensions.TypedDict, total=False):
+class LookupCurrentConditionsRequest(typing.TypedDict, total=False):
     customLocalAqis: _list[CustomLocalAqi]
     extraComputations: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "EXTRA_COMPUTATION_UNSPECIFIED",
             "LOCAL_AQI",
             "HEALTH_RECOMMENDATIONS",
@@ -93,7 +91,7 @@ class LookupCurrentConditionsRequest(typing_extensions.TypedDict, total=False):
     ]
     languageCode: str
     location: LatLng
-    uaqiColorPalette: typing_extensions.Literal[
+    uaqiColorPalette: typing.Literal[
         "COLOR_PALETTE_UNSPECIFIED",
         "RED_GREEN",
         "INDIGO_PERSIAN_DARK",
@@ -102,7 +100,7 @@ class LookupCurrentConditionsRequest(typing_extensions.TypedDict, total=False):
     universalAqi: bool
 
 @typing.type_check_only
-class LookupCurrentConditionsResponse(typing_extensions.TypedDict, total=False):
+class LookupCurrentConditionsResponse(typing.TypedDict, total=False):
     dateTime: str
     healthRecommendations: HealthRecommendations
     indexes: _list[AirQualityIndex]
@@ -110,11 +108,11 @@ class LookupCurrentConditionsResponse(typing_extensions.TypedDict, total=False):
     regionCode: str
 
 @typing.type_check_only
-class LookupForecastRequest(typing_extensions.TypedDict, total=False):
+class LookupForecastRequest(typing.TypedDict, total=False):
     customLocalAqis: _list[CustomLocalAqi]
     dateTime: str
     extraComputations: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "EXTRA_COMPUTATION_UNSPECIFIED",
             "LOCAL_AQI",
             "HEALTH_RECOMMENDATIONS",
@@ -128,7 +126,7 @@ class LookupForecastRequest(typing_extensions.TypedDict, total=False):
     pageSize: int
     pageToken: str
     period: Interval
-    uaqiColorPalette: typing_extensions.Literal[
+    uaqiColorPalette: typing.Literal[
         "COLOR_PALETTE_UNSPECIFIED",
         "RED_GREEN",
         "INDIGO_PERSIAN_DARK",
@@ -137,17 +135,17 @@ class LookupForecastRequest(typing_extensions.TypedDict, total=False):
     universalAqi: bool
 
 @typing.type_check_only
-class LookupForecastResponse(typing_extensions.TypedDict, total=False):
+class LookupForecastResponse(typing.TypedDict, total=False):
     hourlyForecasts: _list[HourlyForecast]
     nextPageToken: str
     regionCode: str
 
 @typing.type_check_only
-class LookupHistoryRequest(typing_extensions.TypedDict, total=False):
+class LookupHistoryRequest(typing.TypedDict, total=False):
     customLocalAqis: _list[CustomLocalAqi]
     dateTime: str
     extraComputations: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "EXTRA_COMPUTATION_UNSPECIFIED",
             "LOCAL_AQI",
             "HEALTH_RECOMMENDATIONS",
@@ -162,7 +160,7 @@ class LookupHistoryRequest(typing_extensions.TypedDict, total=False):
     pageSize: int
     pageToken: str
     period: Interval
-    uaqiColorPalette: typing_extensions.Literal[
+    uaqiColorPalette: typing.Literal[
         "COLOR_PALETTE_UNSPECIFIED",
         "RED_GREEN",
         "INDIGO_PERSIAN_DARK",
@@ -171,13 +169,13 @@ class LookupHistoryRequest(typing_extensions.TypedDict, total=False):
     universalAqi: bool
 
 @typing.type_check_only
-class LookupHistoryResponse(typing_extensions.TypedDict, total=False):
+class LookupHistoryResponse(typing.TypedDict, total=False):
     hoursInfo: _list[HourInfo]
     nextPageToken: str
     regionCode: str
 
 @typing.type_check_only
-class Pollutant(typing_extensions.TypedDict, total=False):
+class Pollutant(typing.TypedDict, total=False):
     additionalInfo: AdditionalInfo
     code: str
     concentration: Concentration

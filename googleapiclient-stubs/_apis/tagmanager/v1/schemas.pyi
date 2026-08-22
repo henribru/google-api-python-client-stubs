@@ -1,28 +1,24 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class Account(typing_extensions.TypedDict, total=False):
+class Account(typing.TypedDict, total=False):
     accountId: str
     fingerprint: str
     name: str
     shareData: bool
 
 @typing.type_check_only
-class AccountAccess(typing_extensions.TypedDict, total=False):
+class AccountAccess(typing.TypedDict, total=False):
     permission: _list[
-        typing_extensions.Literal[
-            "read", "edit", "publish", "delete", "manage", "editWorkspace"
-        ]
+        typing.Literal["read", "edit", "publish", "delete", "manage", "editWorkspace"]
     ]
 
 @typing.type_check_only
-class Condition(typing_extensions.TypedDict, total=False):
+class Condition(typing.TypedDict, total=False):
     parameter: _list[Parameter]
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "equals",
         "contains",
         "startsWith",
@@ -37,12 +33,12 @@ class Condition(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class Container(typing_extensions.TypedDict, total=False):
+class Container(typing.TypedDict, total=False):
     accountId: str
     containerId: str
     domainName: _list[str]
     enabledBuiltInVariable: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "pageUrl",
             "pageHostname",
             "pagePath",
@@ -160,22 +156,18 @@ class Container(typing_extensions.TypedDict, total=False):
     timeZoneCountryId: str
     timeZoneId: str
     usageContext: _list[
-        typing_extensions.Literal[
-            "web", "android", "ios", "androidSdk5", "iosSdk5", "amp"
-        ]
+        typing.Literal["web", "android", "ios", "androidSdk5", "iosSdk5", "amp"]
     ]
 
 @typing.type_check_only
-class ContainerAccess(typing_extensions.TypedDict, total=False):
+class ContainerAccess(typing.TypedDict, total=False):
     containerId: str
     permission: _list[
-        typing_extensions.Literal[
-            "read", "edit", "publish", "delete", "manage", "editWorkspace"
-        ]
+        typing.Literal["read", "edit", "publish", "delete", "manage", "editWorkspace"]
     ]
 
 @typing.type_check_only
-class ContainerVersion(typing_extensions.TypedDict, total=False):
+class ContainerVersion(typing.TypedDict, total=False):
     accountId: str
     container: Container
     containerId: str
@@ -190,7 +182,7 @@ class ContainerVersion(typing_extensions.TypedDict, total=False):
     variable: _list[Variable]
 
 @typing.type_check_only
-class ContainerVersionHeader(typing_extensions.TypedDict, total=False):
+class ContainerVersionHeader(typing.TypedDict, total=False):
     accountId: str
     containerId: str
     containerVersionId: str
@@ -201,20 +193,18 @@ class ContainerVersionHeader(typing_extensions.TypedDict, total=False):
     numVariables: str
 
 @typing.type_check_only
-class CreateContainerVersionRequestVersionOptions(
-    typing_extensions.TypedDict, total=False
-):
+class CreateContainerVersionRequestVersionOptions(typing.TypedDict, total=False):
     name: str
     notes: str
     quickPreview: bool
 
 @typing.type_check_only
-class CreateContainerVersionResponse(typing_extensions.TypedDict, total=False):
+class CreateContainerVersionResponse(typing.TypedDict, total=False):
     compilerError: bool
     containerVersion: ContainerVersion
 
 @typing.type_check_only
-class Environment(typing_extensions.TypedDict, total=False):
+class Environment(typing.TypedDict, total=False):
     accountId: str
     authorizationCode: str
     authorizationTimestampMs: str
@@ -225,11 +215,11 @@ class Environment(typing_extensions.TypedDict, total=False):
     environmentId: str
     fingerprint: str
     name: str
-    type: typing_extensions.Literal["user", "live", "latest", "draft"]
+    type: typing.Literal["user", "live", "latest", "draft"]
     url: str
 
 @typing.type_check_only
-class Folder(typing_extensions.TypedDict, total=False):
+class Folder(typing.TypedDict, total=False):
     accountId: str
     containerId: str
     fingerprint: str
@@ -237,54 +227,54 @@ class Folder(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class FolderEntities(typing_extensions.TypedDict, total=False):
+class FolderEntities(typing.TypedDict, total=False):
     tag: _list[Tag]
     trigger: _list[Trigger]
     variable: _list[Variable]
 
 @typing.type_check_only
-class ListAccountUsersResponse(typing_extensions.TypedDict, total=False):
+class ListAccountUsersResponse(typing.TypedDict, total=False):
     userAccess: _list[UserAccess]
 
 @typing.type_check_only
-class ListAccountsResponse(typing_extensions.TypedDict, total=False):
+class ListAccountsResponse(typing.TypedDict, total=False):
     accounts: _list[Account]
 
 @typing.type_check_only
-class ListContainerVersionsResponse(typing_extensions.TypedDict, total=False):
+class ListContainerVersionsResponse(typing.TypedDict, total=False):
     containerVersion: _list[ContainerVersion]
     containerVersionHeader: _list[ContainerVersionHeader]
 
 @typing.type_check_only
-class ListContainersResponse(typing_extensions.TypedDict, total=False):
+class ListContainersResponse(typing.TypedDict, total=False):
     containers: _list[Container]
 
 @typing.type_check_only
-class ListEnvironmentsResponse(typing_extensions.TypedDict, total=False):
+class ListEnvironmentsResponse(typing.TypedDict, total=False):
     environments: _list[Environment]
 
 @typing.type_check_only
-class ListFoldersResponse(typing_extensions.TypedDict, total=False):
+class ListFoldersResponse(typing.TypedDict, total=False):
     folders: _list[Folder]
 
 @typing.type_check_only
-class ListTagsResponse(typing_extensions.TypedDict, total=False):
+class ListTagsResponse(typing.TypedDict, total=False):
     tags: _list[Tag]
 
 @typing.type_check_only
-class ListTriggersResponse(typing_extensions.TypedDict, total=False):
+class ListTriggersResponse(typing.TypedDict, total=False):
     triggers: _list[Trigger]
 
 @typing.type_check_only
-class ListVariablesResponse(typing_extensions.TypedDict, total=False):
+class ListVariablesResponse(typing.TypedDict, total=False):
     variables: _list[Variable]
 
 @typing.type_check_only
-class Parameter(typing_extensions.TypedDict, total=False):
+class Parameter(typing.TypedDict, total=False):
     key: str
     list: _list[Parameter]
     map: _list[Parameter]
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "template",
         "integer",
         "boolean",
@@ -296,17 +286,17 @@ class Parameter(typing_extensions.TypedDict, total=False):
     value: str
 
 @typing.type_check_only
-class PublishContainerVersionResponse(typing_extensions.TypedDict, total=False):
+class PublishContainerVersionResponse(typing.TypedDict, total=False):
     compilerError: bool
     containerVersion: ContainerVersion
 
 @typing.type_check_only
-class SetupTag(typing_extensions.TypedDict, total=False):
+class SetupTag(typing.TypedDict, total=False):
     stopOnSetupFailure: bool
     tagName: str
 
 @typing.type_check_only
-class Tag(typing_extensions.TypedDict, total=False):
+class Tag(typing.TypedDict, total=False):
     accountId: str
     blockingTriggerId: _list[str]
     containerId: str
@@ -322,20 +312,18 @@ class Tag(typing_extensions.TypedDict, total=False):
     scheduleEndMs: str
     scheduleStartMs: str
     setupTag: _list[SetupTag]
-    tagFiringOption: typing_extensions.Literal[
-        "unlimited", "oncePerEvent", "oncePerLoad"
-    ]
+    tagFiringOption: typing.Literal["unlimited", "oncePerEvent", "oncePerLoad"]
     tagId: str
     teardownTag: _list[TeardownTag]
     type: str
 
 @typing.type_check_only
-class TeardownTag(typing_extensions.TypedDict, total=False):
+class TeardownTag(typing.TypedDict, total=False):
     stopTeardownOnFailure: bool
     tagName: str
 
 @typing.type_check_only
-class Trigger(typing_extensions.TypedDict, total=False):
+class Trigger(typing.TypedDict, total=False):
     accountId: str
     autoEventFilter: _list[Condition]
     checkValidation: Parameter
@@ -356,7 +344,7 @@ class Trigger(typing_extensions.TypedDict, total=False):
     selector: Parameter
     totalTimeMinMilliseconds: Parameter
     triggerId: str
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "pageview",
         "domReady",
         "windowLoaded",
@@ -386,7 +374,7 @@ class Trigger(typing_extensions.TypedDict, total=False):
     waitForTagsTimeout: Parameter
 
 @typing.type_check_only
-class UserAccess(typing_extensions.TypedDict, total=False):
+class UserAccess(typing.TypedDict, total=False):
     accountAccess: AccountAccess
     accountId: str
     containerAccess: _list[ContainerAccess]
@@ -394,7 +382,7 @@ class UserAccess(typing_extensions.TypedDict, total=False):
     permissionId: str
 
 @typing.type_check_only
-class Variable(typing_extensions.TypedDict, total=False):
+class Variable(typing.TypedDict, total=False):
     accountId: str
     containerId: str
     disablingTriggerId: _list[str]

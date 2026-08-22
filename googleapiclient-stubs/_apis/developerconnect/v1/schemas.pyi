@@ -1,11 +1,9 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class AccountConnector(typing_extensions.TypedDict, total=False):
+class AccountConnector(typing.TypedDict, total=False):
     annotations: dict[str, typing.Any]
     createTime: str
     customOauthConfig: CustomOAuthConfig
@@ -19,25 +17,25 @@ class AccountConnector(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class AppHubService(typing_extensions.TypedDict, total=False):
+class AppHubService(typing.TypedDict, total=False):
     apphubService: str
     criticality: str
     environment: str
 
 @typing.type_check_only
-class AppHubWorkload(typing_extensions.TypedDict, total=False):
+class AppHubWorkload(typing.TypedDict, total=False):
     criticality: str
     environment: str
     workload: str
 
 @typing.type_check_only
-class ArtifactConfig(typing_extensions.TypedDict, total=False):
+class ArtifactConfig(typing.TypedDict, total=False):
     googleArtifactAnalysis: GoogleArtifactAnalysis
     googleArtifactRegistry: GoogleArtifactRegistry
     uri: str
 
 @typing.type_check_only
-class ArtifactDeployment(typing_extensions.TypedDict, total=False):
+class ArtifactDeployment(typing.TypedDict, total=False):
     artifactAlias: str
     artifactReference: str
     containerStatusSummary: str
@@ -48,23 +46,23 @@ class ArtifactDeployment(typing_extensions.TypedDict, total=False):
     undeployTime: str
 
 @typing.type_check_only
-class BasicAuthentication(typing_extensions.TypedDict, total=False):
+class BasicAuthentication(typing.TypedDict, total=False):
     passwordSecretVersion: str
     username: str
 
 @typing.type_check_only
-class BearerTokenAuthentication(typing_extensions.TypedDict, total=False):
+class BearerTokenAuthentication(typing.TypedDict, total=False):
     tokenSecretVersion: str
 
 @typing.type_check_only
-class BitbucketCloudConfig(typing_extensions.TypedDict, total=False):
+class BitbucketCloudConfig(typing.TypedDict, total=False):
     authorizerCredential: UserCredential
     readAuthorizerCredential: UserCredential
     webhookSecretSecretVersion: str
     workspace: str
 
 @typing.type_check_only
-class BitbucketDataCenterConfig(typing_extensions.TypedDict, total=False):
+class BitbucketDataCenterConfig(typing.TypedDict, total=False):
     authorizerCredential: UserCredential
     hostUri: str
     readAuthorizerCredential: UserCredential
@@ -74,10 +72,10 @@ class BitbucketDataCenterConfig(typing_extensions.TypedDict, total=False):
     webhookSecretSecretVersion: str
 
 @typing.type_check_only
-class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
+class CancelOperationRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Connection(typing_extensions.TypedDict, total=False):
+class Connection(typing.TypedDict, total=False):
     annotations: dict[str, typing.Any]
     bitbucketCloudConfig: BitbucketCloudConfig
     bitbucketDataCenterConfig: BitbucketDataCenterConfig
@@ -101,17 +99,17 @@ class Connection(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class CryptoKeyConfig(typing_extensions.TypedDict, total=False):
+class CryptoKeyConfig(typing.TypedDict, total=False):
     keyReference: str
 
 @typing.type_check_only
-class CustomOAuthConfig(typing_extensions.TypedDict, total=False):
+class CustomOAuthConfig(typing.TypedDict, total=False):
     authUri: str
     clientId: str
     clientSecret: str
     hostUri: str
     pkceDisabled: bool
-    scmProvider: typing_extensions.Literal[
+    scmProvider: typing.Literal[
         "SCM_PROVIDER_UNKNOWN",
         "GITHUB_ENTERPRISE",
         "GITLAB_ENTERPRISE",
@@ -124,85 +122,83 @@ class CustomOAuthConfig(typing_extensions.TypedDict, total=False):
     tokenUri: str
 
 @typing.type_check_only
-class DeploymentEvent(typing_extensions.TypedDict, total=False):
+class DeploymentEvent(typing.TypedDict, total=False):
     artifactDeployments: _list[ArtifactDeployment]
     createTime: str
     deployTime: str
     name: str
     runtimeConfig: RuntimeConfig
     runtimeDeploymentUri: str
-    state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "STATE_ACTIVE", "STATE_INACTIVE"
-    ]
+    state: typing.Literal["STATE_UNSPECIFIED", "STATE_ACTIVE", "STATE_INACTIVE"]
     undeployTime: str
     updateTime: str
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class ExchangeError(typing_extensions.TypedDict, total=False):
+class ExchangeError(typing.TypedDict, total=False):
     code: str
     description: str
 
 @typing.type_check_only
-class FetchAccessTokenRequest(typing_extensions.TypedDict, total=False): ...
+class FetchAccessTokenRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class FetchAccessTokenResponse(typing_extensions.TypedDict, total=False):
+class FetchAccessTokenResponse(typing.TypedDict, total=False):
     exchangeError: ExchangeError
     expirationTime: str
     scopes: _list[str]
     token: str
 
 @typing.type_check_only
-class FetchGitHubInstallationsResponse(typing_extensions.TypedDict, total=False):
+class FetchGitHubInstallationsResponse(typing.TypedDict, total=False):
     installations: _list[Installation]
 
 @typing.type_check_only
-class FetchGitRefsResponse(typing_extensions.TypedDict, total=False):
+class FetchGitRefsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     refNames: _list[str]
 
 @typing.type_check_only
-class FetchLinkableGitRepositoriesResponse(typing_extensions.TypedDict, total=False):
+class FetchLinkableGitRepositoriesResponse(typing.TypedDict, total=False):
     linkableGitRepositories: _list[LinkableGitRepository]
     nextPageToken: str
 
 @typing.type_check_only
-class FetchReadTokenRequest(typing_extensions.TypedDict, total=False): ...
+class FetchReadTokenRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class FetchReadTokenResponse(typing_extensions.TypedDict, total=False):
+class FetchReadTokenResponse(typing.TypedDict, total=False):
     expirationTime: str
     gitUsername: str
     token: str
 
 @typing.type_check_only
-class FetchReadWriteTokenRequest(typing_extensions.TypedDict, total=False): ...
+class FetchReadWriteTokenRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class FetchReadWriteTokenResponse(typing_extensions.TypedDict, total=False):
+class FetchReadWriteTokenResponse(typing.TypedDict, total=False):
     expirationTime: str
     gitUsername: str
     token: str
 
 @typing.type_check_only
-class FetchUserRepositoriesResponse(typing_extensions.TypedDict, total=False):
+class FetchUserRepositoriesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     userRepos: _list[UserRepository]
 
 @typing.type_check_only
-class FinishOAuthResponse(typing_extensions.TypedDict, total=False):
+class FinishOAuthResponse(typing.TypedDict, total=False):
     exchangeError: ExchangeError
 
 @typing.type_check_only
-class GKEWorkload(typing_extensions.TypedDict, total=False):
+class GKEWorkload(typing.TypedDict, total=False):
     cluster: str
     deployment: str
 
 @typing.type_check_only
-class GenericHTTPEndpointConfig(typing_extensions.TypedDict, total=False):
+class GenericHTTPEndpointConfig(typing.TypedDict, total=False):
     basicAuthentication: BasicAuthentication
     bearerTokenAuthentication: BearerTokenAuthentication
     hostUri: str
@@ -210,10 +206,10 @@ class GenericHTTPEndpointConfig(typing_extensions.TypedDict, total=False):
     sslCaCertificate: str
 
 @typing.type_check_only
-class GitHubConfig(typing_extensions.TypedDict, total=False):
+class GitHubConfig(typing.TypedDict, total=False):
     appInstallationId: str
     authorizerCredential: OAuthCredential
-    githubApp: typing_extensions.Literal[
+    githubApp: typing.Literal[
         "GIT_HUB_APP_UNSPECIFIED",
         "DEVELOPER_CONNECT",
         "FIREBASE",
@@ -223,7 +219,7 @@ class GitHubConfig(typing_extensions.TypedDict, total=False):
     installationUri: str
 
 @typing.type_check_only
-class GitHubEnterpriseConfig(typing_extensions.TypedDict, total=False):
+class GitHubEnterpriseConfig(typing.TypedDict, total=False):
     appId: str
     appInstallationId: str
     appSlug: str
@@ -237,13 +233,13 @@ class GitHubEnterpriseConfig(typing_extensions.TypedDict, total=False):
     webhookSecretSecretVersion: str
 
 @typing.type_check_only
-class GitLabConfig(typing_extensions.TypedDict, total=False):
+class GitLabConfig(typing.TypedDict, total=False):
     authorizerCredential: UserCredential
     readAuthorizerCredential: UserCredential
     webhookSecretSecretVersion: str
 
 @typing.type_check_only
-class GitLabEnterpriseConfig(typing_extensions.TypedDict, total=False):
+class GitLabEnterpriseConfig(typing.TypedDict, total=False):
     authorizerCredential: UserCredential
     hostUri: str
     readAuthorizerCredential: UserCredential
@@ -253,12 +249,12 @@ class GitLabEnterpriseConfig(typing_extensions.TypedDict, total=False):
     webhookSecretSecretVersion: str
 
 @typing.type_check_only
-class GitProxyConfig(typing_extensions.TypedDict, total=False):
+class GitProxyConfig(typing.TypedDict, total=False):
     enabled: bool
     httpProxyBaseUri: str
 
 @typing.type_check_only
-class GitRepositoryLink(typing_extensions.TypedDict, total=False):
+class GitRepositoryLink(typing.TypedDict, total=False):
     annotations: dict[str, typing.Any]
     cloneUri: str
     createTime: str
@@ -273,26 +269,26 @@ class GitRepositoryLink(typing_extensions.TypedDict, total=False):
     webhookId: str
 
 @typing.type_check_only
-class GoogleArtifactAnalysis(typing_extensions.TypedDict, total=False):
+class GoogleArtifactAnalysis(typing.TypedDict, total=False):
     projectId: str
 
 @typing.type_check_only
-class GoogleArtifactRegistry(typing_extensions.TypedDict, total=False):
+class GoogleArtifactRegistry(typing.TypedDict, total=False):
     artifactRegistryPackage: str
     projectId: str
 
 @typing.type_check_only
-class GoogleCloudRun(typing_extensions.TypedDict, total=False):
+class GoogleCloudRun(typing.TypedDict, total=False):
     serviceUri: str
 
 @typing.type_check_only
-class HttpBody(typing_extensions.TypedDict, total=False):
+class HttpBody(typing.TypedDict, total=False):
     contentType: str
     data: str
     extensions: _list[dict[str, typing.Any]]
 
 @typing.type_check_only
-class InsightsConfig(typing_extensions.TypedDict, total=False):
+class InsightsConfig(typing.TypedDict, total=False):
     annotations: dict[str, typing.Any]
     appHubApplication: str
     artifactConfigs: _list[ArtifactConfig]
@@ -303,22 +299,20 @@ class InsightsConfig(typing_extensions.TypedDict, total=False):
     projects: Projects
     reconciling: bool
     runtimeConfigs: _list[RuntimeConfig]
-    state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "PENDING", "COMPLETE", "ERROR"
-    ]
+    state: typing.Literal["STATE_UNSPECIFIED", "PENDING", "COMPLETE", "ERROR"]
     updateTime: str
 
 @typing.type_check_only
-class Installation(typing_extensions.TypedDict, total=False):
+class Installation(typing.TypedDict, total=False):
     id: str
     name: str
     type: str
 
 @typing.type_check_only
-class InstallationState(typing_extensions.TypedDict, total=False):
+class InstallationState(typing.TypedDict, total=False):
     actionUri: str
     message: str
-    stage: typing_extensions.Literal[
+    stage: typing.Literal[
         "STAGE_UNSPECIFIED",
         "PENDING_CREATE_APP",
         "PENDING_USER_OAUTH",
@@ -327,57 +321,57 @@ class InstallationState(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class LinkableGitRepository(typing_extensions.TypedDict, total=False):
+class LinkableGitRepository(typing.TypedDict, total=False):
     cloneUri: str
 
 @typing.type_check_only
-class ListAccountConnectorsResponse(typing_extensions.TypedDict, total=False):
+class ListAccountConnectorsResponse(typing.TypedDict, total=False):
     accountConnectors: _list[AccountConnector]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListConnectionsResponse(typing_extensions.TypedDict, total=False):
+class ListConnectionsResponse(typing.TypedDict, total=False):
     connections: _list[Connection]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListDeploymentEventsResponse(typing_extensions.TypedDict, total=False):
+class ListDeploymentEventsResponse(typing.TypedDict, total=False):
     deploymentEvents: _list[DeploymentEvent]
     nextPageToken: str
 
 @typing.type_check_only
-class ListGitRepositoryLinksResponse(typing_extensions.TypedDict, total=False):
+class ListGitRepositoryLinksResponse(typing.TypedDict, total=False):
     gitRepositoryLinks: _list[GitRepositoryLink]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListInsightsConfigsResponse(typing_extensions.TypedDict, total=False):
+class ListInsightsConfigsResponse(typing.TypedDict, total=False):
     insightsConfigs: _list[InsightsConfig]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListLocationsResponse(typing_extensions.TypedDict, total=False):
+class ListLocationsResponse(typing.TypedDict, total=False):
     locations: _list[Location]
     nextPageToken: str
 
 @typing.type_check_only
-class ListOperationsResponse(typing_extensions.TypedDict, total=False):
+class ListOperationsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListUsersResponse(typing_extensions.TypedDict, total=False):
+class ListUsersResponse(typing.TypedDict, total=False):
     nextPageToken: str
     unreachable: _list[str]
     users: _list[User]
 
 @typing.type_check_only
-class Location(typing_extensions.TypedDict, total=False):
+class Location(typing.TypedDict, total=False):
     displayName: str
     labels: dict[str, typing.Any]
     locationId: str
@@ -385,12 +379,12 @@ class Location(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class OAuthCredential(typing_extensions.TypedDict, total=False):
+class OAuthCredential(typing.TypedDict, total=False):
     oauthTokenSecretVersion: str
     username: str
 
 @typing.type_check_only
-class Operation(typing_extensions.TypedDict, total=False):
+class Operation(typing.TypedDict, total=False):
     done: bool
     error: Status
     metadata: dict[str, typing.Any]
@@ -398,7 +392,7 @@ class Operation(typing_extensions.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
-class OperationMetadata(typing_extensions.TypedDict, total=False):
+class OperationMetadata(typing.TypedDict, total=False):
     apiVersion: str
     createTime: str
     endTime: str
@@ -408,35 +402,33 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     verb: str
 
 @typing.type_check_only
-class ProcessBitbucketCloudWebhookRequest(typing_extensions.TypedDict, total=False):
+class ProcessBitbucketCloudWebhookRequest(typing.TypedDict, total=False):
     body: HttpBody
 
 @typing.type_check_only
-class ProcessBitbucketDataCenterWebhookRequest(
-    typing_extensions.TypedDict, total=False
-):
+class ProcessBitbucketDataCenterWebhookRequest(typing.TypedDict, total=False):
     body: HttpBody
 
 @typing.type_check_only
-class ProcessGitHubEnterpriseWebhookRequest(typing_extensions.TypedDict, total=False):
+class ProcessGitHubEnterpriseWebhookRequest(typing.TypedDict, total=False):
     body: HttpBody
 
 @typing.type_check_only
-class ProcessGitLabEnterpriseWebhookRequest(typing_extensions.TypedDict, total=False):
+class ProcessGitLabEnterpriseWebhookRequest(typing.TypedDict, total=False):
     body: HttpBody
 
 @typing.type_check_only
-class ProcessGitLabWebhookRequest(typing_extensions.TypedDict, total=False):
+class ProcessGitLabWebhookRequest(typing.TypedDict, total=False):
     body: HttpBody
 
 @typing.type_check_only
-class Projects(typing_extensions.TypedDict, total=False):
+class Projects(typing.TypedDict, total=False):
     projectIds: _list[str]
 
 @typing.type_check_only
-class ProviderOAuthConfig(typing_extensions.TypedDict, total=False):
+class ProviderOAuthConfig(typing.TypedDict, total=False):
     scopes: _list[str]
-    systemProviderId: typing_extensions.Literal[
+    systemProviderId: typing.Literal[
         "SYSTEM_PROVIDER_UNSPECIFIED",
         "GITHUB",
         "GITLAB",
@@ -449,35 +441,35 @@ class ProviderOAuthConfig(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class ProxyConfig(typing_extensions.TypedDict, total=False):
+class ProxyConfig(typing.TypedDict, total=False):
     enabled: bool
     httpProxyBaseUri: str
 
 @typing.type_check_only
-class RuntimeConfig(typing_extensions.TypedDict, total=False):
+class RuntimeConfig(typing.TypedDict, total=False):
     appHubService: AppHubService
     appHubWorkload: AppHubWorkload
     gkeWorkload: GKEWorkload
     googleCloudRun: GoogleCloudRun
-    state: typing_extensions.Literal["STATE_UNSPECIFIED", "LINKED", "UNLINKED"]
+    state: typing.Literal["STATE_UNSPECIFIED", "LINKED", "UNLINKED"]
     uri: str
 
 @typing.type_check_only
-class SecureSourceManagerInstanceConfig(typing_extensions.TypedDict, total=False):
+class SecureSourceManagerInstanceConfig(typing.TypedDict, total=False):
     instance: str
 
 @typing.type_check_only
-class ServiceDirectoryConfig(typing_extensions.TypedDict, total=False):
+class ServiceDirectoryConfig(typing.TypedDict, total=False):
     service: str
 
 @typing.type_check_only
-class StartOAuthResponse(typing_extensions.TypedDict, total=False):
+class StartOAuthResponse(typing.TypedDict, total=False):
     authUri: str
     clientId: str
     codeChallenge: str
     codeChallengeMethod: str
     scopes: _list[str]
-    systemProviderId: typing_extensions.Literal[
+    systemProviderId: typing.Literal[
         "SYSTEM_PROVIDER_UNSPECIFIED",
         "GITHUB",
         "GITLAB",
@@ -491,25 +483,25 @@ class StartOAuthResponse(typing_extensions.TypedDict, total=False):
     ticket: str
 
 @typing.type_check_only
-class Status(typing_extensions.TypedDict, total=False):
+class Status(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
-class User(typing_extensions.TypedDict, total=False):
+class User(typing.TypedDict, total=False):
     createTime: str
     displayName: str
     lastTokenRequestTime: str
     name: str
 
 @typing.type_check_only
-class UserCredential(typing_extensions.TypedDict, total=False):
+class UserCredential(typing.TypedDict, total=False):
     userTokenSecretVersion: str
     username: str
 
 @typing.type_check_only
-class UserRepository(typing_extensions.TypedDict, total=False):
+class UserRepository(typing.TypedDict, total=False):
     cloneUri: str
     displayName: str
     gitProxyUri: str

@@ -1,11 +1,9 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class ArchiveSource(typing_extensions.TypedDict, total=False):
+class ArchiveSource(typing.TypedDict, total=False):
     author: SourceUserMetadata
     description: str
     externalSignedUri: str
@@ -13,7 +11,7 @@ class ArchiveSource(typing_extensions.TypedDict, total=False):
     userStorageUri: str
 
 @typing.type_check_only
-class Backend(typing_extensions.TypedDict, total=False):
+class Backend(typing.TypedDict, total=False):
     annotations: dict[str, typing.Any]
     appId: str
     codebase: Codebase
@@ -29,7 +27,7 @@ class Backend(typing_extensions.TypedDict, total=False):
     reconciling: bool
     requestLogsDisabled: bool
     serviceAccount: str
-    servingLocality: typing_extensions.Literal[
+    servingLocality: typing.Literal[
         "SERVING_LOCALITY_UNSPECIFIED", "REGIONAL_STRICT", "GLOBAL_ACCESS"
     ]
     uid: str
@@ -37,7 +35,7 @@ class Backend(typing_extensions.TypedDict, total=False):
     uri: str
 
 @typing.type_check_only
-class Build(typing_extensions.TypedDict, total=False):
+class Build(typing.TypedDict, total=False):
     annotations: dict[str, typing.Any]
     buildLogsUri: str
     config: Config
@@ -52,7 +50,7 @@ class Build(typing_extensions.TypedDict, total=False):
     name: str
     reconciling: bool
     source: BuildSource
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "BUILDING",
         "BUILT",
@@ -66,21 +64,21 @@ class Build(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class BuildSource(typing_extensions.TypedDict, total=False):
+class BuildSource(typing.TypedDict, total=False):
     archive: ArchiveSource
     codebase: CodebaseSource
     container: ContainerSource
 
 @typing.type_check_only
-class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
+class CancelOperationRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Codebase(typing_extensions.TypedDict, total=False):
+class Codebase(typing.TypedDict, total=False):
     repository: str
     rootDirectory: str
 
 @typing.type_check_only
-class CodebaseSource(typing_extensions.TypedDict, total=False):
+class CodebaseSource(typing.TypedDict, total=False):
     author: UserMetadata
     branch: str
     commit: str
@@ -92,18 +90,18 @@ class CodebaseSource(typing_extensions.TypedDict, total=False):
     uri: str
 
 @typing.type_check_only
-class Config(typing_extensions.TypedDict, total=False):
+class Config(typing.TypedDict, total=False):
     effectiveEnv: _list[EnvironmentVariable]
     env: _list[EnvironmentVariable]
     runConfig: RunConfig
 
 @typing.type_check_only
-class ContainerSource(typing_extensions.TypedDict, total=False):
+class ContainerSource(typing.TypedDict, total=False):
     image: str
 
 @typing.type_check_only
-class CustomDomainOperationMetadata(typing_extensions.TypedDict, total=False):
-    certState: typing_extensions.Literal[
+class CustomDomainOperationMetadata(typing.TypedDict, total=False):
+    certState: typing.Literal[
         "CERT_STATE_UNSPECIFIED",
         "CERT_PREPARING",
         "CERT_VALIDATING",
@@ -112,7 +110,7 @@ class CustomDomainOperationMetadata(typing_extensions.TypedDict, total=False):
         "CERT_EXPIRING_SOON",
         "CERT_EXPIRED",
     ]
-    hostState: typing_extensions.Literal[
+    hostState: typing.Literal[
         "HOST_STATE_UNSPECIFIED",
         "HOST_UNHOSTED",
         "HOST_UNREACHABLE",
@@ -123,7 +121,7 @@ class CustomDomainOperationMetadata(typing_extensions.TypedDict, total=False):
     ]
     issues: _list[Status]
     liveMigrationSteps: _list[LiveMigrationStep]
-    ownershipState: typing_extensions.Literal[
+    ownershipState: typing.Literal[
         "OWNERSHIP_STATE_UNSPECIFIED",
         "OWNERSHIP_MISSING",
         "OWNERSHIP_UNREACHABLE",
@@ -135,8 +133,8 @@ class CustomDomainOperationMetadata(typing_extensions.TypedDict, total=False):
     quickSetupUpdates: _list[DnsUpdates]
 
 @typing.type_check_only
-class CustomDomainStatus(typing_extensions.TypedDict, total=False):
-    certState: typing_extensions.Literal[
+class CustomDomainStatus(typing.TypedDict, total=False):
+    certState: typing.Literal[
         "CERT_STATE_UNSPECIFIED",
         "CERT_PREPARING",
         "CERT_VALIDATING",
@@ -145,7 +143,7 @@ class CustomDomainStatus(typing_extensions.TypedDict, total=False):
         "CERT_EXPIRING_SOON",
         "CERT_EXPIRED",
     ]
-    hostState: typing_extensions.Literal[
+    hostState: typing.Literal[
         "HOST_STATE_UNSPECIFIED",
         "HOST_UNHOSTED",
         "HOST_UNREACHABLE",
@@ -155,7 +153,7 @@ class CustomDomainStatus(typing_extensions.TypedDict, total=False):
         "HOST_ACTIVE",
     ]
     issues: _list[Status]
-    ownershipState: typing_extensions.Literal[
+    ownershipState: typing.Literal[
         "OWNERSHIP_STATE_UNSPECIFIED",
         "OWNERSHIP_MISSING",
         "OWNERSHIP_UNREACHABLE",
@@ -167,37 +165,35 @@ class CustomDomainStatus(typing_extensions.TypedDict, total=False):
     requiredDnsUpdates: _list[DnsUpdates]
 
 @typing.type_check_only
-class DnsRecord(typing_extensions.TypedDict, total=False):
+class DnsRecord(typing.TypedDict, total=False):
     domainName: str
     rdata: str
     relevantState: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "CUSTOM_DOMAIN_STATE_UNSPECIFIED",
             "HOST_STATE",
             "OWNERSHIP_STATE",
             "CERT_STATE",
         ]
     ]
-    requiredAction: typing_extensions.Literal["NONE", "ADD", "REMOVE"]
-    type: typing_extensions.Literal[
-        "TYPE_UNSPECIFIED", "A", "CNAME", "TXT", "AAAA", "CAA"
-    ]
+    requiredAction: typing.Literal["NONE", "ADD", "REMOVE"]
+    type: typing.Literal["TYPE_UNSPECIFIED", "A", "CNAME", "TXT", "AAAA", "CAA"]
 
 @typing.type_check_only
-class DnsRecordSet(typing_extensions.TypedDict, total=False):
+class DnsRecordSet(typing.TypedDict, total=False):
     checkError: Status
     domainName: str
     records: _list[DnsRecord]
 
 @typing.type_check_only
-class DnsUpdates(typing_extensions.TypedDict, total=False):
+class DnsUpdates(typing.TypedDict, total=False):
     checkTime: str
     desired: _list[DnsRecordSet]
     discovered: _list[DnsRecordSet]
     domainName: str
 
 @typing.type_check_only
-class Domain(typing_extensions.TypedDict, total=False):
+class Domain(typing.TypedDict, total=False):
     annotations: dict[str, typing.Any]
     createTime: str
     customDomainStatus: CustomDomainStatus
@@ -209,12 +205,12 @@ class Domain(typing_extensions.TypedDict, total=False):
     name: str
     reconciling: bool
     serve: ServingBehavior
-    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "DEFAULT", "CUSTOM"]
+    type: typing.Literal["TYPE_UNSPECIFIED", "DEFAULT", "CUSTOM"]
     uid: str
     updateTime: str
 
 @typing.type_check_only
-class DomainOperationMetadata(typing_extensions.TypedDict, total=False):
+class DomainOperationMetadata(typing.TypedDict, total=False):
     apiVersion: str
     createTime: str
     customDomainOperationMetadata: CustomDomainOperationMetadata
@@ -225,14 +221,12 @@ class DomainOperationMetadata(typing_extensions.TypedDict, total=False):
     verb: str
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class EnvironmentVariable(typing_extensions.TypedDict, total=False):
-    availability: _list[
-        typing_extensions.Literal["AVAILABILITY_UNSPECIFIED", "BUILD", "RUNTIME"]
-    ]
-    origin: typing_extensions.Literal[
+class EnvironmentVariable(typing.TypedDict, total=False):
+    availability: _list[typing.Literal["AVAILABILITY_UNSPECIFIED", "BUILD", "RUNTIME"]]
+    origin: typing.Literal[
         "ORIGIN_UNSPECIFIED",
         "BACKEND_OVERRIDES",
         "BUILD_CONFIG",
@@ -245,61 +239,59 @@ class EnvironmentVariable(typing_extensions.TypedDict, total=False):
     variable: str
 
 @typing.type_check_only
-class Error(typing_extensions.TypedDict, total=False):
+class Error(typing.TypedDict, total=False):
     cloudResource: str
     error: Status
-    errorSource: typing_extensions.Literal[
-        "ERROR_SOURCE_UNSPECIFIED", "CLOUD_BUILD", "CLOUD_RUN"
-    ]
+    errorSource: typing.Literal["ERROR_SOURCE_UNSPECIFIED", "CLOUD_BUILD", "CLOUD_RUN"]
 
 @typing.type_check_only
-class ListBackendsResponse(typing_extensions.TypedDict, total=False):
+class ListBackendsResponse(typing.TypedDict, total=False):
     backends: _list[Backend]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListBuildsResponse(typing_extensions.TypedDict, total=False):
+class ListBuildsResponse(typing.TypedDict, total=False):
     builds: _list[Build]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListDomainsResponse(typing_extensions.TypedDict, total=False):
+class ListDomainsResponse(typing.TypedDict, total=False):
     domains: _list[Domain]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListLocationsResponse(typing_extensions.TypedDict, total=False):
+class ListLocationsResponse(typing.TypedDict, total=False):
     locations: _list[Location]
     nextPageToken: str
 
 @typing.type_check_only
-class ListOperationsResponse(typing_extensions.TypedDict, total=False):
+class ListOperationsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListRolloutsResponse(typing_extensions.TypedDict, total=False):
+class ListRolloutsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     rollouts: _list[Rollout]
     unreachable: _list[str]
 
 @typing.type_check_only
-class LiveMigrationStep(typing_extensions.TypedDict, total=False):
+class LiveMigrationStep(typing.TypedDict, total=False):
     dnsUpdates: _list[DnsUpdates]
     issues: _list[Status]
     relevantDomainStates: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "CUSTOM_DOMAIN_STATE_UNSPECIFIED",
             "HOST_STATE",
             "OWNERSHIP_STATE",
             "CERT_STATE",
         ]
     ]
-    stepState: typing_extensions.Literal[
+    stepState: typing.Literal[
         "STEP_STATE_UNSPECIFIED",
         "PREPARING",
         "PENDING",
@@ -309,7 +301,7 @@ class LiveMigrationStep(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class Location(typing_extensions.TypedDict, total=False):
+class Location(typing.TypedDict, total=False):
     displayName: str
     labels: dict[str, typing.Any]
     locationId: str
@@ -317,11 +309,11 @@ class Location(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class ManagedResource(typing_extensions.TypedDict, total=False):
+class ManagedResource(typing.TypedDict, total=False):
     runService: RunService
 
 @typing.type_check_only
-class Operation(typing_extensions.TypedDict, total=False):
+class Operation(typing.TypedDict, total=False):
     done: bool
     error: Status
     metadata: dict[str, typing.Any]
@@ -329,7 +321,7 @@ class Operation(typing_extensions.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
-class OperationMetadata(typing_extensions.TypedDict, total=False):
+class OperationMetadata(typing.TypedDict, total=False):
     apiVersion: str
     createTime: str
     endTime: str
@@ -339,17 +331,17 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     verb: str
 
 @typing.type_check_only
-class Path(typing_extensions.TypedDict, total=False):
+class Path(typing.TypedDict, total=False):
     pattern: str
-    type: typing_extensions.Literal["PATTERN_TYPE_UNSPECIFIED", "RE2", "GLOB", "PREFIX"]
+    type: typing.Literal["PATTERN_TYPE_UNSPECIFIED", "RE2", "GLOB", "PREFIX"]
 
 @typing.type_check_only
-class Redirect(typing_extensions.TypedDict, total=False):
+class Redirect(typing.TypedDict, total=False):
     status: str
     uri: str
 
 @typing.type_check_only
-class Rollout(typing_extensions.TypedDict, total=False):
+class Rollout(typing.TypedDict, total=False):
     annotations: dict[str, typing.Any]
     build: str
     createTime: str
@@ -360,7 +352,7 @@ class Rollout(typing_extensions.TypedDict, total=False):
     labels: dict[str, typing.Any]
     name: str
     reconciling: bool
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "QUEUED",
         "PENDING_BUILD",
@@ -375,7 +367,7 @@ class Rollout(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class RolloutPolicy(typing_extensions.TypedDict, total=False):
+class RolloutPolicy(typing.TypedDict, total=False):
     codebaseBranch: str
     disabled: bool
     disabledTime: str
@@ -383,7 +375,7 @@ class RolloutPolicy(typing_extensions.TypedDict, total=False):
     requiredPaths: _list[Path]
 
 @typing.type_check_only
-class RunConfig(typing_extensions.TypedDict, total=False):
+class RunConfig(typing.TypedDict, total=False):
     concurrency: int
     cpu: float
     maxInstances: int
@@ -391,27 +383,27 @@ class RunConfig(typing_extensions.TypedDict, total=False):
     minInstances: int
 
 @typing.type_check_only
-class RunService(typing_extensions.TypedDict, total=False):
+class RunService(typing.TypedDict, total=False):
     service: str
 
 @typing.type_check_only
-class ServingBehavior(typing_extensions.TypedDict, total=False):
+class ServingBehavior(typing.TypedDict, total=False):
     redirect: Redirect
 
 @typing.type_check_only
-class SourceUserMetadata(typing_extensions.TypedDict, total=False):
+class SourceUserMetadata(typing.TypedDict, total=False):
     displayName: str
     email: str
     imageUri: str
 
 @typing.type_check_only
-class Status(typing_extensions.TypedDict, total=False):
+class Status(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
-class Traffic(typing_extensions.TypedDict, total=False):
+class Traffic(typing.TypedDict, total=False):
     annotations: dict[str, typing.Any]
     createTime: str
     current: TrafficSet
@@ -425,16 +417,16 @@ class Traffic(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class TrafficSet(typing_extensions.TypedDict, total=False):
+class TrafficSet(typing.TypedDict, total=False):
     splits: _list[TrafficSplit]
 
 @typing.type_check_only
-class TrafficSplit(typing_extensions.TypedDict, total=False):
+class TrafficSplit(typing.TypedDict, total=False):
     build: str
     percent: int
 
 @typing.type_check_only
-class UserMetadata(typing_extensions.TypedDict, total=False):
+class UserMetadata(typing.TypedDict, total=False):
     displayName: str
     email: str
     imageUri: str

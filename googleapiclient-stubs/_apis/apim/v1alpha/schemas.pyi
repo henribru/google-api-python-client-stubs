@@ -1,11 +1,9 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class ApiObservation(typing_extensions.TypedDict, total=False):
+class ApiObservation(typing.TypedDict, total=False):
     apiOperationCount: str
     createTime: str
     hostname: str
@@ -13,12 +11,12 @@ class ApiObservation(typing_extensions.TypedDict, total=False):
     name: str
     serverIps: _list[str]
     sourceLocations: _list[str]
-    style: typing_extensions.Literal["STYLE_UNSPECIFIED", "REST", "GRPC", "GRAPHQL"]
+    style: typing.Literal["STYLE_UNSPECIFIED", "REST", "GRPC", "GRAPHQL"]
     tags: _list[str]
     updateTime: str
 
 @typing.type_check_only
-class ApiOperation(typing_extensions.TypedDict, total=False):
+class ApiOperation(typing.TypedDict, total=False):
     count: str
     firstSeenTime: str
     httpOperation: HttpOperation
@@ -26,32 +24,32 @@ class ApiOperation(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class BatchEditTagsApiObservationsRequest(typing_extensions.TypedDict, total=False):
+class BatchEditTagsApiObservationsRequest(typing.TypedDict, total=False):
     requests: _list[EditTagsApiObservationsRequest]
 
 @typing.type_check_only
-class BatchEditTagsApiObservationsResponse(typing_extensions.TypedDict, total=False):
+class BatchEditTagsApiObservationsResponse(typing.TypedDict, total=False):
     apiObservations: _list[ApiObservation]
 
 @typing.type_check_only
-class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
+class CancelOperationRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class DisableObservationJobRequest(typing_extensions.TypedDict, total=False): ...
+class DisableObservationJobRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class EditTagsApiObservationsRequest(typing_extensions.TypedDict, total=False):
+class EditTagsApiObservationsRequest(typing.TypedDict, total=False):
     apiObservationId: str
     tagActions: _list[TagAction]
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class EnableObservationJobRequest(typing_extensions.TypedDict, total=False): ...
+class EnableObservationJobRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Entitlement(typing_extensions.TypedDict, total=False):
+class Entitlement(typing.TypedDict, total=False):
     apiObservationEntitled: bool
     billingProjectNumber: str
     createTime: str
@@ -59,17 +57,17 @@ class Entitlement(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class GclbObservationSource(typing_extensions.TypedDict, total=False):
+class GclbObservationSource(typing.TypedDict, total=False):
     pscNetworkConfigs: _list[GclbObservationSourcePscNetworkConfig]
 
 @typing.type_check_only
-class GclbObservationSourcePscNetworkConfig(typing_extensions.TypedDict, total=False):
+class GclbObservationSourcePscNetworkConfig(typing.TypedDict, total=False):
     network: str
     subnetwork: str
 
 @typing.type_check_only
-class HttpOperation(typing_extensions.TypedDict, total=False):
-    method: typing_extensions.Literal[
+class HttpOperation(typing.TypedDict, total=False):
+    method: typing.Literal[
         "HTTP_METHOD_UNSPECIFIED",
         "GET",
         "HEAD",
@@ -88,77 +86,77 @@ class HttpOperation(typing_extensions.TypedDict, total=False):
     response: HttpOperationHttpResponse
 
 @typing.type_check_only
-class HttpOperationHeader(typing_extensions.TypedDict, total=False):
+class HttpOperationHeader(typing.TypedDict, total=False):
     count: str
-    dataType: typing_extensions.Literal[
+    dataType: typing.Literal[
         "DATA_TYPE_UNSPECIFIED", "BOOL", "INTEGER", "FLOAT", "STRING", "UUID"
     ]
     name: str
 
 @typing.type_check_only
-class HttpOperationHttpRequest(typing_extensions.TypedDict, total=False):
+class HttpOperationHttpRequest(typing.TypedDict, total=False):
     headers: dict[str, typing.Any]
 
 @typing.type_check_only
-class HttpOperationHttpResponse(typing_extensions.TypedDict, total=False):
+class HttpOperationHttpResponse(typing.TypedDict, total=False):
     headers: dict[str, typing.Any]
     responseCodes: dict[str, typing.Any]
 
 @typing.type_check_only
-class HttpOperationPathParam(typing_extensions.TypedDict, total=False):
-    dataType: typing_extensions.Literal[
+class HttpOperationPathParam(typing.TypedDict, total=False):
+    dataType: typing.Literal[
         "DATA_TYPE_UNSPECIFIED", "BOOL", "INTEGER", "FLOAT", "STRING", "UUID"
     ]
     position: int
 
 @typing.type_check_only
-class HttpOperationQueryParam(typing_extensions.TypedDict, total=False):
+class HttpOperationQueryParam(typing.TypedDict, total=False):
     count: str
-    dataType: typing_extensions.Literal[
+    dataType: typing.Literal[
         "DATA_TYPE_UNSPECIFIED", "BOOL", "INTEGER", "FLOAT", "STRING", "UUID"
     ]
     name: str
 
 @typing.type_check_only
-class ListApiObservationTagsResponse(typing_extensions.TypedDict, total=False):
+class ListApiObservationTagsResponse(typing.TypedDict, total=False):
     apiObservationTags: _list[str]
     nextPageToken: str
 
 @typing.type_check_only
-class ListApiObservationsResponse(typing_extensions.TypedDict, total=False):
+class ListApiObservationsResponse(typing.TypedDict, total=False):
     apiObservations: _list[ApiObservation]
     nextPageToken: str
 
 @typing.type_check_only
-class ListApiOperationsResponse(typing_extensions.TypedDict, total=False):
+class ListApiOperationsResponse(typing.TypedDict, total=False):
     apiOperations: _list[ApiOperation]
     nextPageToken: str
 
 @typing.type_check_only
-class ListLocationsResponse(typing_extensions.TypedDict, total=False):
+class ListLocationsResponse(typing.TypedDict, total=False):
     locations: _list[Location]
     nextPageToken: str
 
 @typing.type_check_only
-class ListObservationJobsResponse(typing_extensions.TypedDict, total=False):
+class ListObservationJobsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     observationJobs: _list[ObservationJob]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListObservationSourcesResponse(typing_extensions.TypedDict, total=False):
+class ListObservationSourcesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     observationSources: _list[ObservationSource]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListOperationsResponse(typing_extensions.TypedDict, total=False):
+class ListOperationsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
     unreachable: _list[str]
 
 @typing.type_check_only
-class Location(typing_extensions.TypedDict, total=False):
+class Location(typing.TypedDict, total=False):
     displayName: str
     labels: dict[str, typing.Any]
     locationId: str
@@ -166,11 +164,11 @@ class Location(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class ObservationJob(typing_extensions.TypedDict, total=False):
+class ObservationJob(typing.TypedDict, total=False):
     createTime: str
     name: str
     sources: _list[str]
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "CREATING",
         "ENABLING",
@@ -183,17 +181,17 @@ class ObservationJob(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class ObservationSource(typing_extensions.TypedDict, total=False):
+class ObservationSource(typing.TypedDict, total=False):
     createTime: str
     gclbObservationSource: GclbObservationSource
     name: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED", "CREATING", "CREATED", "DELETING", "ERROR"
     ]
     updateTime: str
 
 @typing.type_check_only
-class Operation(typing_extensions.TypedDict, total=False):
+class Operation(typing.TypedDict, total=False):
     done: bool
     error: Status
     metadata: dict[str, typing.Any]
@@ -201,7 +199,7 @@ class Operation(typing_extensions.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
-class OperationMetadata(typing_extensions.TypedDict, total=False):
+class OperationMetadata(typing.TypedDict, total=False):
     apiVersion: str
     createTime: str
     endTime: str
@@ -211,12 +209,12 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     verb: str
 
 @typing.type_check_only
-class Status(typing_extensions.TypedDict, total=False):
+class Status(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
-class TagAction(typing_extensions.TypedDict, total=False):
-    action: typing_extensions.Literal["ACTION_UNSPECIFIED", "ADD", "REMOVE"]
+class TagAction(typing.TypedDict, total=False):
+    action: typing.Literal["ACTION_UNSPECIFIED", "ADD", "REMOVE"]
     tag: str

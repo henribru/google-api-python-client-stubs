@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -28,7 +27,7 @@ class GmailResource(googleapiclient.discovery.Resource):
                 *,
                 userId: str,
                 id: str,
-                format: typing_extensions.Literal["minimal", "full", "raw", "metadata"]
+                format: typing.Literal["minimal", "full", "raw", "metadata"]
                 | None = ...,
                 **kwargs: typing.Any,
             ) -> DraftHttpRequest: ...
@@ -60,11 +59,11 @@ class GmailResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 userId: str,
-                historyTypes: typing_extensions.Literal[
+                historyTypes: typing.Literal[
                     "messageAdded", "messageDeleted", "labelAdded", "labelRemoved"
                 ]
                 | _list[
-                    typing_extensions.Literal[
+                    typing.Literal[
                         "messageAdded", "messageDeleted", "labelAdded", "labelRemoved"
                     ]
                 ]
@@ -132,7 +131,7 @@ class GmailResource(googleapiclient.discovery.Resource):
                 *,
                 userId: str,
                 id: str,
-                format: typing_extensions.Literal["minimal", "full", "raw", "metadata"]
+                format: typing.Literal["minimal", "full", "raw", "metadata"]
                 | None = ...,
                 metadataHeaders: str | _list[str] | None = ...,
                 **kwargs: typing.Any,
@@ -143,9 +142,7 @@ class GmailResource(googleapiclient.discovery.Resource):
                 userId: str,
                 body: Message,
                 deleted: bool | None = ...,
-                internalDateSource: typing_extensions.Literal[
-                    "receivedTime", "dateHeader"
-                ]
+                internalDateSource: typing.Literal["receivedTime", "dateHeader"]
                 | None = ...,
                 neverMarkSpam: bool | None = ...,
                 processForCalendar: bool | None = ...,
@@ -157,9 +154,7 @@ class GmailResource(googleapiclient.discovery.Resource):
                 userId: str,
                 body: Message,
                 deleted: bool | None = ...,
-                internalDateSource: typing_extensions.Literal[
-                    "receivedTime", "dateHeader"
-                ]
+                internalDateSource: typing.Literal["receivedTime", "dateHeader"]
                 | None = ...,
                 **kwargs: typing.Any,
             ) -> MessageHttpRequest: ...
@@ -242,8 +237,7 @@ class GmailResource(googleapiclient.discovery.Resource):
                         *,
                         userId: str,
                         body: CseKeyPair,
-                        chainValidation: typing_extensions.Literal["all", "none"]
-                        | None = ...,
+                        chainValidation: typing.Literal["all", "none"] | None = ...,
                         **kwargs: typing.Any,
                     ) -> CseKeyPairHttpRequest: ...
                     def disable(
@@ -454,8 +448,7 @@ class GmailResource(googleapiclient.discovery.Resource):
                 *,
                 userId: str,
                 id: str,
-                format: typing_extensions.Literal["full", "metadata", "minimal"]
-                | None = ...,
+                format: typing.Literal["full", "metadata", "minimal"] | None = ...,
                 metadataHeaders: str | _list[str] | None = ...,
                 **kwargs: typing.Any,
             ) -> ThreadHttpRequest: ...

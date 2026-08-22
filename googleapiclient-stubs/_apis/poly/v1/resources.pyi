@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -23,7 +22,7 @@ class PolyServiceResource(googleapiclient.discovery.Resource):
             curated: bool | None = ...,
             format: str | None = ...,
             keywords: str | None = ...,
-            maxComplexity: typing_extensions.Literal[
+            maxComplexity: typing.Literal[
                 "COMPLEXITY_UNSPECIFIED", "COMPLEX", "MEDIUM", "SIMPLE"
             ]
             | None = ...,
@@ -50,7 +49,7 @@ class PolyServiceResource(googleapiclient.discovery.Resource):
                 orderBy: str | None = ...,
                 pageSize: int | None = ...,
                 pageToken: str | None = ...,
-                visibility: typing_extensions.Literal[
+                visibility: typing.Literal[
                     "VISIBILITY_UNSPECIFIED", "PUBLISHED", "PRIVATE"
                 ]
                 | None = ...,

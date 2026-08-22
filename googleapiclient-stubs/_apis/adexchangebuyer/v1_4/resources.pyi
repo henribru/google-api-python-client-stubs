@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -74,12 +73,12 @@ class AdExchangeBuyerResource(googleapiclient.discovery.Resource):
             *,
             accountId: int | _list[int] | None = ...,
             buyerCreativeId: str | _list[str] | None = ...,
-            dealsStatusFilter: typing_extensions.Literal[
+            dealsStatusFilter: typing.Literal[
                 "approved", "conditionally_approved", "disapproved", "not_checked"
             ]
             | None = ...,
             maxResults: int | None = ...,
-            openAuctionStatusFilter: typing_extensions.Literal[
+            openAuctionStatusFilter: typing.Literal[
                 "approved", "conditionally_approved", "disapproved", "not_checked"
             ]
             | None = ...,
@@ -211,7 +210,7 @@ class AdExchangeBuyerResource(googleapiclient.discovery.Resource):
             *,
             proposalId: str,
             revisionNumber: str,
-            updateAction: typing_extensions.Literal[
+            updateAction: typing.Literal[
                 "accept",
                 "cancel",
                 "propose",
@@ -233,7 +232,7 @@ class AdExchangeBuyerResource(googleapiclient.discovery.Resource):
             *,
             proposalId: str,
             revisionNumber: str,
-            updateAction: typing_extensions.Literal[
+            updateAction: typing.Literal[
                 "accept",
                 "cancel",
                 "propose",

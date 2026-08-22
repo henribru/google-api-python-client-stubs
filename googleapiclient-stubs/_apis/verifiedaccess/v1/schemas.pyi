@@ -1,29 +1,27 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class Challenge(typing_extensions.TypedDict, total=False):
+class Challenge(typing.TypedDict, total=False):
     alternativeChallenge: SignedData
     challenge: SignedData
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class SignedData(typing_extensions.TypedDict, total=False):
+class SignedData(typing.TypedDict, total=False):
     data: str
     signature: str
 
 @typing.type_check_only
-class VerifyChallengeResponseRequest(typing_extensions.TypedDict, total=False):
+class VerifyChallengeResponseRequest(typing.TypedDict, total=False):
     challengeResponse: SignedData
     expectedIdentity: str
 
 @typing.type_check_only
-class VerifyChallengeResponseResult(typing_extensions.TypedDict, total=False):
+class VerifyChallengeResponseResult(typing.TypedDict, total=False):
     attestedDeviceId: str
     deviceEnrollmentId: str
     devicePermanentId: str

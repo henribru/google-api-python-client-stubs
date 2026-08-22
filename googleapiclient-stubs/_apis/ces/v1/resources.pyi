@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -98,7 +97,7 @@ class CustomerEngagementSuiteResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        source: typing_extensions.Literal[
+                        source: typing.Literal[
                             "SOURCE_UNSPECIFIED",
                             "LIVE",
                             "SIMULATOR",
@@ -112,7 +111,7 @@ class CustomerEngagementSuiteResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        source: typing_extensions.Literal[
+                        source: typing.Literal[
                             "SOURCE_UNSPECIFIED",
                             "LIVE",
                             "SIMULATOR",
@@ -120,7 +119,7 @@ class CustomerEngagementSuiteResource(googleapiclient.discovery.Resource):
                             "AGENT_TOOL",
                         ]
                         | None = ...,
-                        view: typing_extensions.Literal[
+                        view: typing.Literal[
                             "CONVERSATION_VIEW_UNSPECIFIED",
                             "CONVERSATION_VIEW_BASIC",
                             "CONVERSATION_VIEW_FULL",
@@ -135,7 +134,7 @@ class CustomerEngagementSuiteResource(googleapiclient.discovery.Resource):
                         filter: str | None = ...,
                         pageSize: int | None = ...,
                         pageToken: str | None = ...,
-                        source: typing_extensions.Literal[
+                        source: typing.Literal[
                             "SOURCE_UNSPECIFIED",
                             "LIVE",
                             "SIMULATOR",
@@ -143,7 +142,7 @@ class CustomerEngagementSuiteResource(googleapiclient.discovery.Resource):
                             "AGENT_TOOL",
                         ]
                         | None = ...,
-                        sources: typing_extensions.Literal[
+                        sources: typing.Literal[
                             "SOURCE_UNSPECIFIED",
                             "LIVE",
                             "SIMULATOR",
@@ -151,7 +150,7 @@ class CustomerEngagementSuiteResource(googleapiclient.discovery.Resource):
                             "AGENT_TOOL",
                         ]
                         | _list[
-                            typing_extensions.Literal[
+                            typing.Literal[
                                 "SOURCE_UNSPECIFIED",
                                 "LIVE",
                                 "SIMULATOR",

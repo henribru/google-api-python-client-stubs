@@ -1,27 +1,25 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class ListQuotaGroupsResponse(typing_extensions.TypedDict, total=False):
+class ListQuotaGroupsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     quotaGroups: _list[QuotaGroup]
 
 @typing.type_check_only
-class MethodDetails(typing_extensions.TypedDict, total=False):
+class MethodDetails(typing.TypedDict, total=False):
     method: str
     path: str
     subapi: str
     version: str
 
 @typing.type_check_only
-class ProductChange(typing_extensions.TypedDict, total=False):
+class ProductChange(typing.TypedDict, total=False):
     newValue: str
     oldValue: str
     regionCode: str
-    reportingContext: typing_extensions.Literal[
+    reportingContext: typing.Literal[
         "REPORTING_CONTEXT_ENUM_UNSPECIFIED",
         "SHOPPING_ADS",
         "DISCOVERY_ADS",
@@ -45,21 +43,19 @@ class ProductChange(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class ProductStatusChangeMessage(typing_extensions.TypedDict, total=False):
+class ProductStatusChangeMessage(typing.TypedDict, total=False):
     account: str
-    attribute: typing_extensions.Literal["ATTRIBUTE_UNSPECIFIED", "STATUS"]
+    attribute: typing.Literal["ATTRIBUTE_UNSPECIFIED", "STATUS"]
     changes: _list[ProductChange]
     eventTime: str
     expirationTime: str
     managingAccount: str
     resource: str
     resourceId: str
-    resourceType: typing_extensions.Literal[
-        "RESOURCE_UNSPECIFIED", "PRODUCT", "ACCOUNT_SERVICE"
-    ]
+    resourceType: typing.Literal["RESOURCE_UNSPECIFIED", "PRODUCT", "ACCOUNT_SERVICE"]
 
 @typing.type_check_only
-class QuotaGroup(typing_extensions.TypedDict, total=False):
+class QuotaGroup(typing.TypedDict, total=False):
     methodDetails: _list[MethodDetails]
     name: str
     quotaLimit: str

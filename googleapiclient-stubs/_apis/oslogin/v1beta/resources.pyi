@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -90,7 +89,7 @@ class CloudOSLoginResource(googleapiclient.discovery.Resource):
             name: str,
             projectId: str | None = ...,
             systemId: str | None = ...,
-            view: typing_extensions.Literal[
+            view: typing.Literal[
                 "LOGIN_PROFILE_VIEW_UNSPECIFIED", "BASIC", "SECURITY_KEY"
             ]
             | None = ...,
@@ -103,7 +102,7 @@ class CloudOSLoginResource(googleapiclient.discovery.Resource):
             body: SshPublicKey,
             projectId: str | None = ...,
             regions: str | _list[str] | None = ...,
-            view: typing_extensions.Literal[
+            view: typing.Literal[
                 "LOGIN_PROFILE_VIEW_UNSPECIFIED", "BASIC", "SECURITY_KEY"
             ]
             | None = ...,

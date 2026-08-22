@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -112,7 +111,7 @@ class PaymentsResellerSubscriptionResource(googleapiclient.discovery.Resource):
                 parent: str,
                 body: Subscription,
                 cycleOptions_initialCycleDuration_count: int | None = ...,
-                cycleOptions_initialCycleDuration_unit: typing_extensions.Literal[
+                cycleOptions_initialCycleDuration_unit: typing.Literal[
                     "UNIT_UNSPECIFIED", "MONTH", "DAY", "HOUR"
                 ]
                 | None = ...,

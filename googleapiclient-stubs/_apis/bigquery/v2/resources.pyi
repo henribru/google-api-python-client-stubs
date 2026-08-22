@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -29,7 +28,7 @@ class BigqueryResource(googleapiclient.discovery.Resource):
             projectId: str,
             datasetId: str,
             accessPolicyVersion: int | None = ...,
-            datasetView: typing_extensions.Literal[
+            datasetView: typing.Literal[
                 "DATASET_VIEW_UNSPECIFIED", "METADATA", "ACL", "FULL"
             ]
             | None = ...,
@@ -65,7 +64,7 @@ class BigqueryResource(googleapiclient.discovery.Resource):
             datasetId: str,
             body: Dataset,
             accessPolicyVersion: int | None = ...,
-            updateMode: typing_extensions.Literal[
+            updateMode: typing.Literal[
                 "UPDATE_MODE_UNSPECIFIED",
                 "UPDATE_METADATA",
                 "UPDATE_ACL",
@@ -89,7 +88,7 @@ class BigqueryResource(googleapiclient.discovery.Resource):
             datasetId: str,
             body: Dataset,
             accessPolicyVersion: int | None = ...,
-            updateMode: typing_extensions.Literal[
+            updateMode: typing.Literal[
                 "UPDATE_MODE_UNSPECIFIED",
                 "UPDATE_METADATA",
                 "UPDATE_ACL",
@@ -130,7 +129,7 @@ class BigqueryResource(googleapiclient.discovery.Resource):
             *,
             projectId: str,
             jobId: str,
-            formatOptions_timestampOutputFormat: typing_extensions.Literal[
+            formatOptions_timestampOutputFormat: typing.Literal[
                 "TIMESTAMP_OUTPUT_FORMAT_UNSPECIFIED",
                 "FLOAT64",
                 "INT64",
@@ -163,9 +162,9 @@ class BigqueryResource(googleapiclient.discovery.Resource):
             minCreationTime: str | None = ...,
             pageToken: str | None = ...,
             parentJobId: str | None = ...,
-            projection: typing_extensions.Literal["full", "minimal"] | None = ...,
-            stateFilter: typing_extensions.Literal["done", "pending", "running"]
-            | _list[typing_extensions.Literal["done", "pending", "running"]]
+            projection: typing.Literal["full", "minimal"] | None = ...,
+            stateFilter: typing.Literal["done", "pending", "running"]
+            | _list[typing.Literal["done", "pending", "running"]]
             | None = ...,
             **kwargs: typing.Any,
         ) -> JobListHttpRequest: ...
@@ -379,7 +378,7 @@ class BigqueryResource(googleapiclient.discovery.Resource):
             projectId: str,
             datasetId: str,
             tableId: str,
-            formatOptions_timestampOutputFormat: typing_extensions.Literal[
+            formatOptions_timestampOutputFormat: typing.Literal[
                 "TIMESTAMP_OUTPUT_FORMAT_UNSPECIFIED",
                 "FLOAT64",
                 "INT64",
@@ -411,7 +410,7 @@ class BigqueryResource(googleapiclient.discovery.Resource):
             datasetId: str,
             tableId: str,
             selectedFields: str | None = ...,
-            view: typing_extensions.Literal[
+            view: typing.Literal[
                 "TABLE_METADATA_VIEW_UNSPECIFIED", "BASIC", "STORAGE_STATS", "FULL"
             ]
             | None = ...,

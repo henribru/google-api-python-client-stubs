@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -22,7 +21,7 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 aggregation_alignmentPeriod: str | None = ...,
-                aggregation_crossSeriesReducer: typing_extensions.Literal[
+                aggregation_crossSeriesReducer: typing.Literal[
                     "REDUCE_NONE",
                     "REDUCE_MEAN",
                     "REDUCE_MIN",
@@ -40,7 +39,7 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                 ]
                 | None = ...,
                 aggregation_groupByFields: str | _list[str] | None = ...,
-                aggregation_perSeriesAligner: typing_extensions.Literal[
+                aggregation_perSeriesAligner: typing.Literal[
                     "ALIGN_NONE",
                     "ALIGN_DELTA",
                     "ALIGN_RATE",
@@ -69,7 +68,7 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                 pageSize: int | None = ...,
                 pageToken: str | None = ...,
                 secondaryAggregation_alignmentPeriod: str | None = ...,
-                secondaryAggregation_crossSeriesReducer: typing_extensions.Literal[
+                secondaryAggregation_crossSeriesReducer: typing.Literal[
                     "REDUCE_NONE",
                     "REDUCE_MEAN",
                     "REDUCE_MIN",
@@ -87,7 +86,7 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                 ]
                 | None = ...,
                 secondaryAggregation_groupByFields: str | _list[str] | None = ...,
-                secondaryAggregation_perSeriesAligner: typing_extensions.Literal[
+                secondaryAggregation_perSeriesAligner: typing.Literal[
                     "ALIGN_NONE",
                     "ALIGN_DELTA",
                     "ALIGN_RATE",
@@ -109,7 +108,7 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                     "ALIGN_PERCENT_CHANGE",
                 ]
                 | None = ...,
-                view: typing_extensions.Literal["FULL", "HEADERS"] | None = ...,
+                view: typing.Literal["FULL", "HEADERS"] | None = ...,
                 **kwargs: typing.Any,
             ) -> ListTimeSeriesResponseHttpRequest: ...
             def list_next(
@@ -129,7 +128,7 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 aggregation_alignmentPeriod: str | None = ...,
-                aggregation_crossSeriesReducer: typing_extensions.Literal[
+                aggregation_crossSeriesReducer: typing.Literal[
                     "REDUCE_NONE",
                     "REDUCE_MEAN",
                     "REDUCE_MIN",
@@ -147,7 +146,7 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                 ]
                 | None = ...,
                 aggregation_groupByFields: str | _list[str] | None = ...,
-                aggregation_perSeriesAligner: typing_extensions.Literal[
+                aggregation_perSeriesAligner: typing.Literal[
                     "ALIGN_NONE",
                     "ALIGN_DELTA",
                     "ALIGN_RATE",
@@ -176,7 +175,7 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                 pageSize: int | None = ...,
                 pageToken: str | None = ...,
                 secondaryAggregation_alignmentPeriod: str | None = ...,
-                secondaryAggregation_crossSeriesReducer: typing_extensions.Literal[
+                secondaryAggregation_crossSeriesReducer: typing.Literal[
                     "REDUCE_NONE",
                     "REDUCE_MEAN",
                     "REDUCE_MIN",
@@ -194,7 +193,7 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                 ]
                 | None = ...,
                 secondaryAggregation_groupByFields: str | _list[str] | None = ...,
-                secondaryAggregation_perSeriesAligner: typing_extensions.Literal[
+                secondaryAggregation_perSeriesAligner: typing.Literal[
                     "ALIGN_NONE",
                     "ALIGN_DELTA",
                     "ALIGN_RATE",
@@ -216,7 +215,7 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                     "ALIGN_PERCENT_CHANGE",
                 ]
                 | None = ...,
-                view: typing_extensions.Literal["FULL", "HEADERS"] | None = ...,
+                view: typing.Literal["FULL", "HEADERS"] | None = ...,
                 **kwargs: typing.Any,
             ) -> ListTimeSeriesResponseHttpRequest: ...
             def list_next(
@@ -518,7 +517,7 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 aggregation_alignmentPeriod: str | None = ...,
-                aggregation_crossSeriesReducer: typing_extensions.Literal[
+                aggregation_crossSeriesReducer: typing.Literal[
                     "REDUCE_NONE",
                     "REDUCE_MEAN",
                     "REDUCE_MIN",
@@ -536,7 +535,7 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                 ]
                 | None = ...,
                 aggregation_groupByFields: str | _list[str] | None = ...,
-                aggregation_perSeriesAligner: typing_extensions.Literal[
+                aggregation_perSeriesAligner: typing.Literal[
                     "ALIGN_NONE",
                     "ALIGN_DELTA",
                     "ALIGN_RATE",
@@ -565,7 +564,7 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                 pageSize: int | None = ...,
                 pageToken: str | None = ...,
                 secondaryAggregation_alignmentPeriod: str | None = ...,
-                secondaryAggregation_crossSeriesReducer: typing_extensions.Literal[
+                secondaryAggregation_crossSeriesReducer: typing.Literal[
                     "REDUCE_NONE",
                     "REDUCE_MEAN",
                     "REDUCE_MIN",
@@ -583,7 +582,7 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                 ]
                 | None = ...,
                 secondaryAggregation_groupByFields: str | _list[str] | None = ...,
-                secondaryAggregation_perSeriesAligner: typing_extensions.Literal[
+                secondaryAggregation_perSeriesAligner: typing.Literal[
                     "ALIGN_NONE",
                     "ALIGN_DELTA",
                     "ALIGN_RATE",
@@ -605,7 +604,7 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                     "ALIGN_PERCENT_CHANGE",
                 ]
                 | None = ...,
-                view: typing_extensions.Literal["FULL", "HEADERS"] | None = ...,
+                view: typing.Literal["FULL", "HEADERS"] | None = ...,
                 **kwargs: typing.Any,
             ) -> ListTimeSeriesResponseHttpRequest: ...
             def list_next(
@@ -691,7 +690,7 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                view: typing_extensions.Literal["VIEW_UNSPECIFIED", "FULL", "EXPLICIT"]
+                view: typing.Literal["VIEW_UNSPECIFIED", "FULL", "EXPLICIT"]
                 | None = ...,
                 **kwargs: typing.Any,
             ) -> ServiceLevelObjectiveHttpRequest: ...
@@ -702,7 +701,7 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                 filter: str | None = ...,
                 pageSize: int | None = ...,
                 pageToken: str | None = ...,
-                view: typing_extensions.Literal["VIEW_UNSPECIFIED", "FULL", "EXPLICIT"]
+                view: typing.Literal["VIEW_UNSPECIFIED", "FULL", "EXPLICIT"]
                 | None = ...,
                 **kwargs: typing.Any,
             ) -> ListServiceLevelObjectivesResponseHttpRequest: ...

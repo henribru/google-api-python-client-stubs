@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -286,7 +285,7 @@ class WorkloadManagerResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     customRulesBucket: str | None = ...,
-                    evaluationType: typing_extensions.Literal[
+                    evaluationType: typing.Literal[
                         "EVALUATION_TYPE_UNSPECIFIED", "SAP", "SQL_SERVER", "OTHER"
                     ]
                     | None = ...,

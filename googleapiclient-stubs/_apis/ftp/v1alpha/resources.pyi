@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -72,7 +71,7 @@ class CloudFTPResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        view: typing_extensions.Literal[
+                        view: typing.Literal[
                             "USER_VIEW_UNSPECIFIED", "USER_VIEW_BASIC", "USER_VIEW_FULL"
                         ]
                         | None = ...,
@@ -86,7 +85,7 @@ class CloudFTPResource(googleapiclient.discovery.Resource):
                         orderBy: str | None = ...,
                         pageSize: int | None = ...,
                         pageToken: str | None = ...,
-                        view: typing_extensions.Literal[
+                        view: typing.Literal[
                             "USER_VIEW_UNSPECIFIED", "USER_VIEW_BASIC", "USER_VIEW_FULL"
                         ]
                         | None = ...,
@@ -122,7 +121,7 @@ class CloudFTPResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    view: typing_extensions.Literal[
+                    view: typing.Literal[
                         "SERVER_VIEW_UNSPECIFIED",
                         "SERVER_VIEW_BASIC",
                         "SERVER_VIEW_FULL",
@@ -138,7 +137,7 @@ class CloudFTPResource(googleapiclient.discovery.Resource):
                     orderBy: str | None = ...,
                     pageSize: int | None = ...,
                     pageToken: str | None = ...,
-                    view: typing_extensions.Literal[
+                    view: typing.Literal[
                         "SERVER_VIEW_UNSPECIFIED",
                         "SERVER_VIEW_BASIC",
                         "SERVER_VIEW_FULL",

@@ -1,11 +1,9 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class AuditRefs(typing_extensions.TypedDict, total=False):
+class AuditRefs(typing.TypedDict, total=False):
     acronym: str
     group: str
     id: str
@@ -13,12 +11,12 @@ class AuditRefs(typing_extensions.TypedDict, total=False):
     weight: float
 
 @typing.type_check_only
-class Bucket(typing_extensions.TypedDict, total=False):
+class Bucket(typing.TypedDict, total=False):
     max: int
     min: int
     proportion: float
 
-AlternativeCategories = typing_extensions.TypedDict(
+AlternativeCategories = typing.TypedDict(
     "AlternativeCategories",
     {
         "accessibility": LighthouseCategoryV5,
@@ -35,12 +33,12 @@ AlternativeCategories = typing_extensions.TypedDict(
 class Categories(AlternativeCategories): ...
 
 @typing.type_check_only
-class CategoryGroupV5(typing_extensions.TypedDict, total=False):
+class CategoryGroupV5(typing.TypedDict, total=False):
     description: str
     title: str
 
 @typing.type_check_only
-class ConfigSettings(typing_extensions.TypedDict, total=False):
+class ConfigSettings(typing.TypedDict, total=False):
     channel: str
     emulatedFormFactor: str
     formFactor: str
@@ -48,18 +46,18 @@ class ConfigSettings(typing_extensions.TypedDict, total=False):
     onlyCategories: typing.Any
 
 @typing.type_check_only
-class Environment(typing_extensions.TypedDict, total=False):
+class Environment(typing.TypedDict, total=False):
     benchmarkIndex: float
     credits: dict[str, typing.Any]
     hostUserAgent: str
     networkUserAgent: str
 
 @typing.type_check_only
-class I18n(typing_extensions.TypedDict, total=False):
+class I18n(typing.TypedDict, total=False):
     rendererFormattedStrings: RendererFormattedStrings
 
 @typing.type_check_only
-class LhrEntity(typing_extensions.TypedDict, total=False):
+class LhrEntity(typing.TypedDict, total=False):
     category: str
     homepage: str
     isFirstParty: bool
@@ -68,7 +66,7 @@ class LhrEntity(typing_extensions.TypedDict, total=False):
     origins: _list[str]
 
 @typing.type_check_only
-class LighthouseAuditResultV5(typing_extensions.TypedDict, total=False):
+class LighthouseAuditResultV5(typing.TypedDict, total=False):
     description: str
     details: dict[str, typing.Any]
     displayValue: str
@@ -84,9 +82,9 @@ class LighthouseAuditResultV5(typing_extensions.TypedDict, total=False):
     warnings: typing.Any
 
 @typing.type_check_only
-class LighthouseCategoryV5(typing_extensions.TypedDict, total=False):
+class LighthouseCategoryV5(typing.TypedDict, total=False):
     auditRefs: _list[AuditRefs]
-    categoryScoreDisplayMode: typing_extensions.Literal[
+    categoryScoreDisplayMode: typing.Literal[
         "CATEGORY_SCORE_DISPLAY_MODE_UNSPECIFIED", "GAUGE", "FRACTION"
     ]
     description: str
@@ -96,7 +94,7 @@ class LighthouseCategoryV5(typing_extensions.TypedDict, total=False):
     title: str
 
 @typing.type_check_only
-class LighthouseResultV5(typing_extensions.TypedDict, total=False):
+class LighthouseResultV5(typing.TypedDict, total=False):
     audits: dict[str, typing.Any]
     categories: Categories
     categoryGroups: dict[str, typing.Any]
@@ -118,7 +116,7 @@ class LighthouseResultV5(typing_extensions.TypedDict, total=False):
     userAgent: str
 
 @typing.type_check_only
-class MetricSavings(typing_extensions.TypedDict, total=False):
+class MetricSavings(typing.TypedDict, total=False):
     CLS: float
     FCP: float
     INP: float
@@ -126,7 +124,7 @@ class MetricSavings(typing_extensions.TypedDict, total=False):
     TBT: float
 
 @typing.type_check_only
-class PagespeedApiLoadingExperienceV5(typing_extensions.TypedDict, total=False):
+class PagespeedApiLoadingExperienceV5(typing.TypedDict, total=False):
     id: str
     initial_url: str
     metrics: dict[str, typing.Any]
@@ -134,7 +132,7 @@ class PagespeedApiLoadingExperienceV5(typing_extensions.TypedDict, total=False):
     overall_category: str
 
 @typing.type_check_only
-class PagespeedApiPagespeedResponseV5(typing_extensions.TypedDict, total=False):
+class PagespeedApiPagespeedResponseV5(typing.TypedDict, total=False):
     analysisUTCTimestamp: str
     captchaResult: str
     id: str
@@ -145,12 +143,12 @@ class PagespeedApiPagespeedResponseV5(typing_extensions.TypedDict, total=False):
     version: PagespeedVersion
 
 @typing.type_check_only
-class PagespeedVersion(typing_extensions.TypedDict, total=False):
+class PagespeedVersion(typing.TypedDict, total=False):
     major: str
     minor: str
 
 @typing.type_check_only
-class RendererFormattedStrings(typing_extensions.TypedDict, total=False):
+class RendererFormattedStrings(typing.TypedDict, total=False):
     auditGroupExpandTooltip: str
     calculatorLink: str
     crcInitialNavigation: str
@@ -201,23 +199,23 @@ class RendererFormattedStrings(typing_extensions.TypedDict, total=False):
     warningHeader: str
 
 @typing.type_check_only
-class RuntimeError(typing_extensions.TypedDict, total=False):
+class RuntimeError(typing.TypedDict, total=False):
     code: str
     message: str
 
 @typing.type_check_only
-class StackPack(typing_extensions.TypedDict, total=False):
+class StackPack(typing.TypedDict, total=False):
     descriptions: dict[str, typing.Any]
     iconDataURL: str
     id: str
     title: str
 
 @typing.type_check_only
-class Timing(typing_extensions.TypedDict, total=False):
+class Timing(typing.TypedDict, total=False):
     total: float
 
 @typing.type_check_only
-class UserPageLoadMetricV5(typing_extensions.TypedDict, total=False):
+class UserPageLoadMetricV5(typing.TypedDict, total=False):
     category: str
     distributions: _list[Bucket]
     formFactor: str

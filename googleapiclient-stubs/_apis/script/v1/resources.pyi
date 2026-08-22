@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -26,7 +25,7 @@ class ScriptResource(googleapiclient.discovery.Resource):
             userProcessFilter_projectName: str | None = ...,
             userProcessFilter_scriptId: str | None = ...,
             userProcessFilter_startTime: str | None = ...,
-            userProcessFilter_statuses: typing_extensions.Literal[
+            userProcessFilter_statuses: typing.Literal[
                 "PROCESS_STATUS_UNSPECIFIED",
                 "RUNNING",
                 "PAUSED",
@@ -39,7 +38,7 @@ class ScriptResource(googleapiclient.discovery.Resource):
                 "EXECUTION_DISABLED",
             ]
             | _list[
-                typing_extensions.Literal[
+                typing.Literal[
                     "PROCESS_STATUS_UNSPECIFIED",
                     "RUNNING",
                     "PAUSED",
@@ -53,7 +52,7 @@ class ScriptResource(googleapiclient.discovery.Resource):
                 ]
             ]
             | None = ...,
-            userProcessFilter_types: typing_extensions.Literal[
+            userProcessFilter_types: typing.Literal[
                 "PROCESS_TYPE_UNSPECIFIED",
                 "ADD_ON",
                 "EXECUTION_API",
@@ -66,7 +65,7 @@ class ScriptResource(googleapiclient.discovery.Resource):
                 "BATCH_TASK",
             ]
             | _list[
-                typing_extensions.Literal[
+                typing.Literal[
                     "PROCESS_TYPE_UNSPECIFIED",
                     "ADD_ON",
                     "EXECUTION_API",
@@ -80,11 +79,11 @@ class ScriptResource(googleapiclient.discovery.Resource):
                 ]
             ]
             | None = ...,
-            userProcessFilter_userAccessLevels: typing_extensions.Literal[
+            userProcessFilter_userAccessLevels: typing.Literal[
                 "USER_ACCESS_LEVEL_UNSPECIFIED", "NONE", "READ", "WRITE", "OWNER"
             ]
             | _list[
-                typing_extensions.Literal[
+                typing.Literal[
                     "USER_ACCESS_LEVEL_UNSPECIFIED", "NONE", "READ", "WRITE", "OWNER"
                 ]
             ]
@@ -106,7 +105,7 @@ class ScriptResource(googleapiclient.discovery.Resource):
             scriptProcessFilter_endTime: str | None = ...,
             scriptProcessFilter_functionName: str | None = ...,
             scriptProcessFilter_startTime: str | None = ...,
-            scriptProcessFilter_statuses: typing_extensions.Literal[
+            scriptProcessFilter_statuses: typing.Literal[
                 "PROCESS_STATUS_UNSPECIFIED",
                 "RUNNING",
                 "PAUSED",
@@ -119,7 +118,7 @@ class ScriptResource(googleapiclient.discovery.Resource):
                 "EXECUTION_DISABLED",
             ]
             | _list[
-                typing_extensions.Literal[
+                typing.Literal[
                     "PROCESS_STATUS_UNSPECIFIED",
                     "RUNNING",
                     "PAUSED",
@@ -133,7 +132,7 @@ class ScriptResource(googleapiclient.discovery.Resource):
                 ]
             ]
             | None = ...,
-            scriptProcessFilter_types: typing_extensions.Literal[
+            scriptProcessFilter_types: typing.Literal[
                 "PROCESS_TYPE_UNSPECIFIED",
                 "ADD_ON",
                 "EXECUTION_API",
@@ -146,7 +145,7 @@ class ScriptResource(googleapiclient.discovery.Resource):
                 "BATCH_TASK",
             ]
             | _list[
-                typing_extensions.Literal[
+                typing.Literal[
                     "PROCESS_TYPE_UNSPECIFIED",
                     "ADD_ON",
                     "EXECUTION_API",
@@ -160,11 +159,11 @@ class ScriptResource(googleapiclient.discovery.Resource):
                 ]
             ]
             | None = ...,
-            scriptProcessFilter_userAccessLevels: typing_extensions.Literal[
+            scriptProcessFilter_userAccessLevels: typing.Literal[
                 "USER_ACCESS_LEVEL_UNSPECIFIED", "NONE", "READ", "WRITE", "OWNER"
             ]
             | _list[
-                typing_extensions.Literal[
+                typing.Literal[
                     "USER_ACCESS_LEVEL_UNSPECIFIED", "NONE", "READ", "WRITE", "OWNER"
                 ]
             ]
@@ -250,7 +249,7 @@ class ScriptResource(googleapiclient.discovery.Resource):
             *,
             scriptId: str,
             metricsFilter_deploymentId: str | None = ...,
-            metricsGranularity: typing_extensions.Literal[
+            metricsGranularity: typing.Literal[
                 "UNSPECIFIED_GRANULARITY", "WEEKLY", "DAILY"
             ]
             | None = ...,

@@ -1,25 +1,23 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class AptRepository(typing_extensions.TypedDict, total=False):
-    archiveType: typing_extensions.Literal["ARCHIVE_TYPE_UNSPECIFIED", "DEB", "DEB_SRC"]
+class AptRepository(typing.TypedDict, total=False):
+    archiveType: typing.Literal["ARCHIVE_TYPE_UNSPECIFIED", "DEB", "DEB_SRC"]
     components: _list[str]
     distribution: str
     gpgKey: str
     uri: str
 
 @typing.type_check_only
-class AptSettings(typing_extensions.TypedDict, total=False):
+class AptSettings(typing.TypedDict, total=False):
     excludes: _list[str]
     exclusivePackages: _list[str]
-    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "DIST", "UPGRADE"]
+    type: typing.Literal["TYPE_UNSPECIFIED", "DIST", "UPGRADE"]
 
 @typing.type_check_only
-class Assignment(typing_extensions.TypedDict, total=False):
+class Assignment(typing.TypedDict, total=False):
     groupLabels: _list[AssignmentGroupLabel]
     instanceNamePrefixes: _list[str]
     instances: _list[str]
@@ -27,62 +25,58 @@ class Assignment(typing_extensions.TypedDict, total=False):
     zones: _list[str]
 
 @typing.type_check_only
-class AssignmentGroupLabel(typing_extensions.TypedDict, total=False):
+class AssignmentGroupLabel(typing.TypedDict, total=False):
     labels: dict[str, typing.Any]
 
 @typing.type_check_only
-class AssignmentOsType(typing_extensions.TypedDict, total=False):
+class AssignmentOsType(typing.TypedDict, total=False):
     osArchitecture: str
     osShortName: str
     osVersion: str
 
 @typing.type_check_only
-class CancelPatchJobRequest(typing_extensions.TypedDict, total=False): ...
+class CancelPatchJobRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class EffectiveGuestPolicy(typing_extensions.TypedDict, total=False):
+class EffectiveGuestPolicy(typing.TypedDict, total=False):
     packageRepositories: _list[EffectiveGuestPolicySourcedPackageRepository]
     packages: _list[EffectiveGuestPolicySourcedPackage]
     softwareRecipes: _list[EffectiveGuestPolicySourcedSoftwareRecipe]
 
 @typing.type_check_only
-class EffectiveGuestPolicySourcedPackage(typing_extensions.TypedDict, total=False):
+class EffectiveGuestPolicySourcedPackage(typing.TypedDict, total=False):
     package: Package
     source: str
 
 @typing.type_check_only
-class EffectiveGuestPolicySourcedPackageRepository(
-    typing_extensions.TypedDict, total=False
-):
+class EffectiveGuestPolicySourcedPackageRepository(typing.TypedDict, total=False):
     packageRepository: PackageRepository
     source: str
 
 @typing.type_check_only
-class EffectiveGuestPolicySourcedSoftwareRecipe(
-    typing_extensions.TypedDict, total=False
-):
+class EffectiveGuestPolicySourcedSoftwareRecipe(typing.TypedDict, total=False):
     softwareRecipe: SoftwareRecipe
     source: str
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class ExecStep(typing_extensions.TypedDict, total=False):
+class ExecStep(typing.TypedDict, total=False):
     linuxExecStepConfig: ExecStepConfig
     windowsExecStepConfig: ExecStepConfig
 
 @typing.type_check_only
-class ExecStepConfig(typing_extensions.TypedDict, total=False):
+class ExecStepConfig(typing.TypedDict, total=False):
     allowedSuccessCodes: _list[int]
     gcsObject: GcsObject
-    interpreter: typing_extensions.Literal[
+    interpreter: typing.Literal[
         "INTERPRETER_UNSPECIFIED", "NONE", "SHELL", "POWERSHELL"
     ]
     localPath: str
 
 @typing.type_check_only
-class ExecutePatchJobRequest(typing_extensions.TypedDict, total=False):
+class ExecutePatchJobRequest(typing.TypedDict, total=False):
     description: str
     displayName: str
     dryRun: bool
@@ -92,34 +86,32 @@ class ExecutePatchJobRequest(typing_extensions.TypedDict, total=False):
     rollout: PatchRollout
 
 @typing.type_check_only
-class FixedOrPercent(typing_extensions.TypedDict, total=False):
+class FixedOrPercent(typing.TypedDict, total=False):
     fixed: int
     percent: int
 
 @typing.type_check_only
-class GcsObject(typing_extensions.TypedDict, total=False):
+class GcsObject(typing.TypedDict, total=False):
     bucket: str
     generationNumber: str
     object: str
 
 @typing.type_check_only
-class GooRepository(typing_extensions.TypedDict, total=False):
+class GooRepository(typing.TypedDict, total=False):
     name: str
     url: str
 
 @typing.type_check_only
-class GooSettings(typing_extensions.TypedDict, total=False): ...
+class GooSettings(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
 class GoogleCloudOsconfigV1__OSPolicyAssignmentOperationMetadata(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
-    apiMethod: typing_extensions.Literal[
-        "API_METHOD_UNSPECIFIED", "CREATE", "UPDATE", "DELETE"
-    ]
+    apiMethod: typing.Literal["API_METHOD_UNSPECIFIED", "CREATE", "UPDATE", "DELETE"]
     osPolicyAssignment: str
     rolloutStartTime: str
-    rolloutState: typing_extensions.Literal[
+    rolloutState: typing.Literal[
         "ROLLOUT_STATE_UNSPECIFIED",
         "IN_PROGRESS",
         "CANCELLING",
@@ -129,9 +121,7 @@ class GoogleCloudOsconfigV1__OSPolicyAssignmentOperationMetadata(
     rolloutUpdateTime: str
 
 @typing.type_check_only
-class GoogleCloudOsconfigV2__OperationMetadata(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudOsconfigV2__OperationMetadata(typing.TypedDict, total=False):
     apiVersion: str
     createTime: str
     endTime: str
@@ -141,9 +131,7 @@ class GoogleCloudOsconfigV2__OperationMetadata(
     verb: str
 
 @typing.type_check_only
-class GoogleCloudOsconfigV2beta__OperationMetadata(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudOsconfigV2beta__OperationMetadata(typing.TypedDict, total=False):
     apiVersion: str
     createTime: str
     endTime: str
@@ -153,7 +141,7 @@ class GoogleCloudOsconfigV2beta__OperationMetadata(
     verb: str
 
 @typing.type_check_only
-class GuestPolicy(typing_extensions.TypedDict, total=False):
+class GuestPolicy(typing.TypedDict, total=False):
     assignment: Assignment
     createTime: str
     description: str
@@ -165,47 +153,45 @@ class GuestPolicy(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class ListGuestPoliciesResponse(typing_extensions.TypedDict, total=False):
+class ListGuestPoliciesResponse(typing.TypedDict, total=False):
     guestPolicies: _list[GuestPolicy]
     nextPageToken: str
 
 @typing.type_check_only
-class ListPatchDeploymentsResponse(typing_extensions.TypedDict, total=False):
+class ListPatchDeploymentsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     patchDeployments: _list[PatchDeployment]
 
 @typing.type_check_only
-class ListPatchJobInstanceDetailsResponse(typing_extensions.TypedDict, total=False):
+class ListPatchJobInstanceDetailsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     patchJobInstanceDetails: _list[PatchJobInstanceDetails]
 
 @typing.type_check_only
-class ListPatchJobsResponse(typing_extensions.TypedDict, total=False):
+class ListPatchJobsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     patchJobs: _list[PatchJob]
 
 @typing.type_check_only
-class LookupEffectiveGuestPolicyRequest(typing_extensions.TypedDict, total=False):
+class LookupEffectiveGuestPolicyRequest(typing.TypedDict, total=False):
     osArchitecture: str
     osShortName: str
     osVersion: str
 
 @typing.type_check_only
-class MessageSet(typing_extensions.TypedDict, total=False): ...
+class MessageSet(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class MonthlySchedule(typing_extensions.TypedDict, total=False):
+class MonthlySchedule(typing.TypedDict, total=False):
     monthDay: int
     weekDayOfMonth: WeekDayOfMonth
 
 @typing.type_check_only
-class OSPolicyAssignmentOperationMetadata(typing_extensions.TypedDict, total=False):
-    apiMethod: typing_extensions.Literal[
-        "API_METHOD_UNSPECIFIED", "CREATE", "UPDATE", "DELETE"
-    ]
+class OSPolicyAssignmentOperationMetadata(typing.TypedDict, total=False):
+    apiMethod: typing.Literal["API_METHOD_UNSPECIFIED", "CREATE", "UPDATE", "DELETE"]
     osPolicyAssignment: str
     rolloutStartTime: str
-    rolloutState: typing_extensions.Literal[
+    rolloutState: typing.Literal[
         "ROLLOUT_STATE_UNSPECIFIED",
         "IN_PROGRESS",
         "CANCELLING",
@@ -215,34 +201,32 @@ class OSPolicyAssignmentOperationMetadata(typing_extensions.TypedDict, total=Fal
     rolloutUpdateTime: str
 
 @typing.type_check_only
-class OneTimeSchedule(typing_extensions.TypedDict, total=False):
+class OneTimeSchedule(typing.TypedDict, total=False):
     executeTime: str
 
 @typing.type_check_only
-class Package(typing_extensions.TypedDict, total=False):
-    desiredState: typing_extensions.Literal[
+class Package(typing.TypedDict, total=False):
+    desiredState: typing.Literal[
         "DESIRED_STATE_UNSPECIFIED", "INSTALLED", "UPDATED", "REMOVED"
     ]
-    manager: typing_extensions.Literal[
-        "MANAGER_UNSPECIFIED", "ANY", "APT", "YUM", "ZYPPER", "GOO"
-    ]
+    manager: typing.Literal["MANAGER_UNSPECIFIED", "ANY", "APT", "YUM", "ZYPPER", "GOO"]
     name: str
 
 @typing.type_check_only
-class PackageRepository(typing_extensions.TypedDict, total=False):
+class PackageRepository(typing.TypedDict, total=False):
     apt: AptRepository
     goo: GooRepository
     yum: YumRepository
     zypper: ZypperRepository
 
 @typing.type_check_only
-class PatchConfig(typing_extensions.TypedDict, total=False):
+class PatchConfig(typing.TypedDict, total=False):
     apt: AptSettings
     goo: GooSettings
     migInstancesAllowed: bool
     postStep: ExecStep
     preStep: ExecStep
-    rebootConfig: typing_extensions.Literal[
+    rebootConfig: typing.Literal[
         "REBOOT_CONFIG_UNSPECIFIED", "DEFAULT", "ALWAYS", "NEVER"
     ]
     skipUnpatchableVms: bool
@@ -251,7 +235,7 @@ class PatchConfig(typing_extensions.TypedDict, total=False):
     zypper: ZypperSettings
 
 @typing.type_check_only
-class PatchDeployment(typing_extensions.TypedDict, total=False):
+class PatchDeployment(typing.TypedDict, total=False):
     createTime: str
     description: str
     duration: str
@@ -262,11 +246,11 @@ class PatchDeployment(typing_extensions.TypedDict, total=False):
     patchConfig: PatchConfig
     recurringSchedule: RecurringSchedule
     rollout: PatchRollout
-    state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "PAUSED"]
+    state: typing.Literal["STATE_UNSPECIFIED", "ACTIVE", "PAUSED"]
     updateTime: str
 
 @typing.type_check_only
-class PatchInstanceFilter(typing_extensions.TypedDict, total=False):
+class PatchInstanceFilter(typing.TypedDict, total=False):
     all: bool
     groupLabels: _list[PatchInstanceFilterGroupLabel]
     instanceNamePrefixes: _list[str]
@@ -274,11 +258,11 @@ class PatchInstanceFilter(typing_extensions.TypedDict, total=False):
     zones: _list[str]
 
 @typing.type_check_only
-class PatchInstanceFilterGroupLabel(typing_extensions.TypedDict, total=False):
+class PatchInstanceFilterGroupLabel(typing.TypedDict, total=False):
     labels: dict[str, typing.Any]
 
 @typing.type_check_only
-class PatchJob(typing_extensions.TypedDict, total=False):
+class PatchJob(typing.TypedDict, total=False):
     createTime: str
     description: str
     displayName: str
@@ -292,7 +276,7 @@ class PatchJob(typing_extensions.TypedDict, total=False):
     patchDeployment: str
     percentComplete: float
     rollout: PatchRollout
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "STARTED",
         "INSTANCE_LOOKUP",
@@ -306,12 +290,12 @@ class PatchJob(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class PatchJobInstanceDetails(typing_extensions.TypedDict, total=False):
+class PatchJobInstanceDetails(typing.TypedDict, total=False):
     attemptCount: str
     failureReason: str
     instanceSystemId: str
     name: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "PATCH_STATE_UNSPECIFIED",
         "PENDING",
         "INACTIVE",
@@ -332,7 +316,7 @@ class PatchJobInstanceDetails(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class PatchJobInstanceDetailsSummary(typing_extensions.TypedDict, total=False):
+class PatchJobInstanceDetailsSummary(typing.TypedDict, total=False):
     ackedInstanceCount: str
     applyingPatchesInstanceCount: str
     downloadingPatchesInstanceCount: str
@@ -351,21 +335,17 @@ class PatchJobInstanceDetailsSummary(typing_extensions.TypedDict, total=False):
     timedOutInstanceCount: str
 
 @typing.type_check_only
-class PatchRollout(typing_extensions.TypedDict, total=False):
+class PatchRollout(typing.TypedDict, total=False):
     disruptionBudget: FixedOrPercent
-    mode: typing_extensions.Literal[
-        "MODE_UNSPECIFIED", "ZONE_BY_ZONE", "CONCURRENT_ZONES"
-    ]
+    mode: typing.Literal["MODE_UNSPECIFIED", "ZONE_BY_ZONE", "CONCURRENT_ZONES"]
 
 @typing.type_check_only
-class PausePatchDeploymentRequest(typing_extensions.TypedDict, total=False): ...
+class PausePatchDeploymentRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class RecurringSchedule(typing_extensions.TypedDict, total=False):
+class RecurringSchedule(typing.TypedDict, total=False):
     endTime: str
-    frequency: typing_extensions.Literal[
-        "FREQUENCY_UNSPECIFIED", "WEEKLY", "MONTHLY", "DAILY"
-    ]
+    frequency: typing.Literal["FREQUENCY_UNSPECIFIED", "WEEKLY", "MONTHLY", "DAILY"]
     lastExecuteTime: str
     monthly: MonthlySchedule
     nextExecuteTime: str
@@ -375,12 +355,12 @@ class RecurringSchedule(typing_extensions.TypedDict, total=False):
     weekly: WeeklySchedule
 
 @typing.type_check_only
-class ResumePatchDeploymentRequest(typing_extensions.TypedDict, total=False): ...
+class ResumePatchDeploymentRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class SoftwareRecipe(typing_extensions.TypedDict, total=False):
+class SoftwareRecipe(typing.TypedDict, total=False):
     artifacts: _list[SoftwareRecipeArtifact]
-    desiredState: typing_extensions.Literal[
+    desiredState: typing.Literal[
         "DESIRED_STATE_UNSPECIFIED", "INSTALLED", "UPDATED", "REMOVED"
     ]
     installSteps: _list[SoftwareRecipeStep]
@@ -389,25 +369,25 @@ class SoftwareRecipe(typing_extensions.TypedDict, total=False):
     version: str
 
 @typing.type_check_only
-class SoftwareRecipeArtifact(typing_extensions.TypedDict, total=False):
+class SoftwareRecipeArtifact(typing.TypedDict, total=False):
     allowInsecure: bool
     gcs: SoftwareRecipeArtifactGcs
     id: str
     remote: SoftwareRecipeArtifactRemote
 
 @typing.type_check_only
-class SoftwareRecipeArtifactGcs(typing_extensions.TypedDict, total=False):
+class SoftwareRecipeArtifactGcs(typing.TypedDict, total=False):
     bucket: str
     generation: str
     object: str
 
 @typing.type_check_only
-class SoftwareRecipeArtifactRemote(typing_extensions.TypedDict, total=False):
+class SoftwareRecipeArtifactRemote(typing.TypedDict, total=False):
     checksum: str
     uri: str
 
 @typing.type_check_only
-class SoftwareRecipeStep(typing_extensions.TypedDict, total=False):
+class SoftwareRecipeStep(typing.TypedDict, total=False):
     archiveExtraction: SoftwareRecipeStepExtractArchive
     dpkgInstallation: SoftwareRecipeStepInstallDpkg
     fileCopy: SoftwareRecipeStepCopyFile
@@ -417,24 +397,24 @@ class SoftwareRecipeStep(typing_extensions.TypedDict, total=False):
     scriptRun: SoftwareRecipeStepRunScript
 
 @typing.type_check_only
-class SoftwareRecipeStepCopyFile(typing_extensions.TypedDict, total=False):
+class SoftwareRecipeStepCopyFile(typing.TypedDict, total=False):
     artifactId: str
     destination: str
     overwrite: bool
     permissions: str
 
 @typing.type_check_only
-class SoftwareRecipeStepExecFile(typing_extensions.TypedDict, total=False):
+class SoftwareRecipeStepExecFile(typing.TypedDict, total=False):
     allowedExitCodes: _list[int]
     args: _list[str]
     artifactId: str
     localPath: str
 
 @typing.type_check_only
-class SoftwareRecipeStepExtractArchive(typing_extensions.TypedDict, total=False):
+class SoftwareRecipeStepExtractArchive(typing.TypedDict, total=False):
     artifactId: str
     destination: str
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "ARCHIVE_TYPE_UNSPECIFIED",
         "TAR",
         "TAR_GZIP",
@@ -445,29 +425,27 @@ class SoftwareRecipeStepExtractArchive(typing_extensions.TypedDict, total=False)
     ]
 
 @typing.type_check_only
-class SoftwareRecipeStepInstallDpkg(typing_extensions.TypedDict, total=False):
+class SoftwareRecipeStepInstallDpkg(typing.TypedDict, total=False):
     artifactId: str
 
 @typing.type_check_only
-class SoftwareRecipeStepInstallMsi(typing_extensions.TypedDict, total=False):
+class SoftwareRecipeStepInstallMsi(typing.TypedDict, total=False):
     allowedExitCodes: _list[int]
     artifactId: str
     flags: _list[str]
 
 @typing.type_check_only
-class SoftwareRecipeStepInstallRpm(typing_extensions.TypedDict, total=False):
+class SoftwareRecipeStepInstallRpm(typing.TypedDict, total=False):
     artifactId: str
 
 @typing.type_check_only
-class SoftwareRecipeStepRunScript(typing_extensions.TypedDict, total=False):
+class SoftwareRecipeStepRunScript(typing.TypedDict, total=False):
     allowedExitCodes: _list[int]
-    interpreter: typing_extensions.Literal[
-        "INTERPRETER_UNSPECIFIED", "SHELL", "POWERSHELL"
-    ]
+    interpreter: typing.Literal["INTERPRETER_UNSPECIFIED", "SHELL", "POWERSHELL"]
     script: str
 
 @typing.type_check_only
-class StatusProto(typing_extensions.TypedDict, total=False):
+class StatusProto(typing.TypedDict, total=False):
     canonicalCode: int
     code: int
     message: str
@@ -475,20 +453,20 @@ class StatusProto(typing_extensions.TypedDict, total=False):
     space: str
 
 @typing.type_check_only
-class TimeOfDay(typing_extensions.TypedDict, total=False):
+class TimeOfDay(typing.TypedDict, total=False):
     hours: int
     minutes: int
     nanos: int
     seconds: int
 
 @typing.type_check_only
-class TimeZone(typing_extensions.TypedDict, total=False):
+class TimeZone(typing.TypedDict, total=False):
     id: str
     version: str
 
 @typing.type_check_only
-class WeekDayOfMonth(typing_extensions.TypedDict, total=False):
-    dayOfWeek: typing_extensions.Literal[
+class WeekDayOfMonth(typing.TypedDict, total=False):
+    dayOfWeek: typing.Literal[
         "DAY_OF_WEEK_UNSPECIFIED",
         "MONDAY",
         "TUESDAY",
@@ -502,8 +480,8 @@ class WeekDayOfMonth(typing_extensions.TypedDict, total=False):
     weekOrdinal: int
 
 @typing.type_check_only
-class WeeklySchedule(typing_extensions.TypedDict, total=False):
-    dayOfWeek: typing_extensions.Literal[
+class WeeklySchedule(typing.TypedDict, total=False):
+    dayOfWeek: typing.Literal[
         "DAY_OF_WEEK_UNSPECIFIED",
         "MONDAY",
         "TUESDAY",
@@ -515,9 +493,9 @@ class WeeklySchedule(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class WindowsUpdateSettings(typing_extensions.TypedDict, total=False):
+class WindowsUpdateSettings(typing.TypedDict, total=False):
     classifications: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "CLASSIFICATION_UNSPECIFIED",
             "CRITICAL",
             "SECURITY",
@@ -534,28 +512,28 @@ class WindowsUpdateSettings(typing_extensions.TypedDict, total=False):
     exclusivePatches: _list[str]
 
 @typing.type_check_only
-class YumRepository(typing_extensions.TypedDict, total=False):
+class YumRepository(typing.TypedDict, total=False):
     baseUrl: str
     displayName: str
     gpgKeys: _list[str]
     id: str
 
 @typing.type_check_only
-class YumSettings(typing_extensions.TypedDict, total=False):
+class YumSettings(typing.TypedDict, total=False):
     excludes: _list[str]
     exclusivePackages: _list[str]
     minimal: bool
     security: bool
 
 @typing.type_check_only
-class ZypperRepository(typing_extensions.TypedDict, total=False):
+class ZypperRepository(typing.TypedDict, total=False):
     baseUrl: str
     displayName: str
     gpgKeys: _list[str]
     id: str
 
 @typing.type_check_only
-class ZypperSettings(typing_extensions.TypedDict, total=False):
+class ZypperSettings(typing.TypedDict, total=False):
     categories: _list[str]
     excludes: _list[str]
     exclusivePatches: _list[str]

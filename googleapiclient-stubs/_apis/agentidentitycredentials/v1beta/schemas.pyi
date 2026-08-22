@@ -1,17 +1,15 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
 class GoogleCloudAgentidentitycredentialsV1beta_ConsentRejected(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ): ...
 
 @typing.type_check_only
 class GoogleCloudAgentidentitycredentialsV1beta_FinalizeCredentialsRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     consentNonce: str
     userId: str
@@ -19,17 +17,17 @@ class GoogleCloudAgentidentitycredentialsV1beta_FinalizeCredentialsRequest(
 
 @typing.type_check_only
 class GoogleCloudAgentidentitycredentialsV1beta_FinalizeCredentialsResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ): ...
 
 @typing.type_check_only
 class GoogleCloudAgentidentitycredentialsV1beta_Pending(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ): ...
 
 @typing.type_check_only
 class GoogleCloudAgentidentitycredentialsV1beta_RetrieveCredentialsRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     continueUri: str
     forceRefreshToken: str
@@ -38,7 +36,7 @@ class GoogleCloudAgentidentitycredentialsV1beta_RetrieveCredentialsRequest(
 
 @typing.type_check_only
 class GoogleCloudAgentidentitycredentialsV1beta_RetrieveCredentialsResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     consentRejected: GoogleCloudAgentidentitycredentialsV1beta_ConsentRejected
     pending: GoogleCloudAgentidentitycredentialsV1beta_Pending
@@ -46,9 +44,7 @@ class GoogleCloudAgentidentitycredentialsV1beta_RetrieveCredentialsResponse(
     uriConsentRequired: GoogleCloudAgentidentitycredentialsV1beta_UriConsentRequired
 
 @typing.type_check_only
-class GoogleCloudAgentidentitycredentialsV1beta_Success(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudAgentidentitycredentialsV1beta_Success(typing.TypedDict, total=False):
     expireTime: str
     header: str
     scopes: _list[str]
@@ -56,7 +52,7 @@ class GoogleCloudAgentidentitycredentialsV1beta_Success(
 
 @typing.type_check_only
 class GoogleCloudAgentidentitycredentialsV1beta_UriConsentRequired(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     authorizationUri: str
     consentNonce: str

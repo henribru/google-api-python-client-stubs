@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -70,8 +69,7 @@ class CloudDebuggerResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     debuggeeId: str,
-                    action_value: typing_extensions.Literal["CAPTURE", "LOG"]
-                    | None = ...,
+                    action_value: typing.Literal["CAPTURE", "LOG"] | None = ...,
                     clientVersion: str | None = ...,
                     includeAllUsers: bool | None = ...,
                     includeInactive: bool | None = ...,
@@ -84,7 +82,7 @@ class CloudDebuggerResource(googleapiclient.discovery.Resource):
                     *,
                     debuggeeId: str,
                     body: Breakpoint,
-                    canaryOption: typing_extensions.Literal[
+                    canaryOption: typing.Literal[
                         "CANARY_OPTION_UNSPECIFIED",
                         "CANARY_OPTION_TRY_ENABLE",
                         "CANARY_OPTION_TRY_DISABLE",

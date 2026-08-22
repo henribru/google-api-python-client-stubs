@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -51,7 +50,7 @@ class MigrationCenterAPIResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    view: typing_extensions.Literal[
+                    view: typing.Literal[
                         "ASSET_VIEW_UNSPECIFIED",
                         "ASSET_VIEW_BASIC",
                         "ASSET_VIEW_FULL",
@@ -69,7 +68,7 @@ class MigrationCenterAPIResource(googleapiclient.discovery.Resource):
                     pageSize: int | None = ...,
                     pageToken: str | None = ...,
                     showHidden: bool | None = ...,
-                    view: typing_extensions.Literal[
+                    view: typing.Literal[
                         "ASSET_VIEW_UNSPECIFIED",
                         "ASSET_VIEW_BASIC",
                         "ASSET_VIEW_FULL",
@@ -312,7 +311,7 @@ class MigrationCenterAPIResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    view: typing_extensions.Literal[
+                    view: typing.Literal[
                         "IMPORT_JOB_VIEW_UNSPECIFIED",
                         "IMPORT_JOB_VIEW_BASIC",
                         "IMPORT_JOB_VIEW_FULL",
@@ -328,7 +327,7 @@ class MigrationCenterAPIResource(googleapiclient.discovery.Resource):
                     orderBy: str | None = ...,
                     pageSize: int | None = ...,
                     pageToken: str | None = ...,
-                    view: typing_extensions.Literal[
+                    view: typing.Literal[
                         "IMPORT_JOB_VIEW_UNSPECIFIED",
                         "IMPORT_JOB_VIEW_BASIC",
                         "IMPORT_JOB_VIEW_FULL",
@@ -525,7 +524,7 @@ class MigrationCenterAPIResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        view: typing_extensions.Literal[
+                        view: typing.Literal[
                             "REPORT_VIEW_UNSPECIFIED",
                             "REPORT_VIEW_BASIC",
                             "REPORT_VIEW_FULL",
@@ -542,7 +541,7 @@ class MigrationCenterAPIResource(googleapiclient.discovery.Resource):
                         orderBy: str | None = ...,
                         pageSize: int | None = ...,
                         pageToken: str | None = ...,
-                        view: typing_extensions.Literal[
+                        view: typing.Literal[
                             "REPORT_VIEW_UNSPECIFIED",
                             "REPORT_VIEW_BASIC",
                             "REPORT_VIEW_FULL",
@@ -603,7 +602,7 @@ class MigrationCenterAPIResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        view: typing_extensions.Literal[
+                        view: typing.Literal[
                             "ERROR_FRAME_VIEW_UNSPECIFIED",
                             "ERROR_FRAME_VIEW_BASIC",
                             "ERROR_FRAME_VIEW_FULL",
@@ -617,7 +616,7 @@ class MigrationCenterAPIResource(googleapiclient.discovery.Resource):
                         parent: str,
                         pageSize: int | None = ...,
                         pageToken: str | None = ...,
-                        view: typing_extensions.Literal[
+                        view: typing.Literal[
                             "ERROR_FRAME_VIEW_UNSPECIFIED",
                             "ERROR_FRAME_VIEW_BASIC",
                             "ERROR_FRAME_VIEW_FULL",

@@ -1,49 +1,45 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class Accelerator(typing_extensions.TypedDict, total=False):
-    acceleratorType: typing_extensions.Literal[
+class Accelerator(typing.TypedDict, total=False):
+    acceleratorType: typing.Literal[
         "ACCELERATOR_TYPE_UNSPECIFIED",
         "CDC",
         "HEALTHCARE",
         "CCAI_INSIGHTS",
         "CLOUDSEARCH",
     ]
-    state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "ENABLED", "DISABLED", "UNKNOWN"
-    ]
+    state: typing.Literal["STATE_UNSPECIFIED", "ENABLED", "DISABLED", "UNKNOWN"]
 
 @typing.type_check_only
-class AuditConfig(typing_extensions.TypedDict, total=False):
+class AuditConfig(typing.TypedDict, total=False):
     auditLogConfigs: _list[AuditLogConfig]
     service: str
 
 @typing.type_check_only
-class AuditLogConfig(typing_extensions.TypedDict, total=False):
+class AuditLogConfig(typing.TypedDict, total=False):
     exemptedMembers: _list[str]
-    logType: typing_extensions.Literal[
+    logType: typing.Literal[
         "LOG_TYPE_UNSPECIFIED", "ADMIN_READ", "DATA_WRITE", "DATA_READ"
     ]
 
 @typing.type_check_only
-class Binding(typing_extensions.TypedDict, total=False):
+class Binding(typing.TypedDict, total=False):
     condition: Expr
     members: _list[str]
     role: str
 
 @typing.type_check_only
-class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
+class CancelOperationRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class CryptoKeyConfig(typing_extensions.TypedDict, total=False):
+class CryptoKeyConfig(typing.TypedDict, total=False):
     keyReference: str
 
 @typing.type_check_only
-class DnsPeering(typing_extensions.TypedDict, total=False):
+class DnsPeering(typing.TypedDict, total=False):
     description: str
     domain: str
     name: str
@@ -51,27 +47,27 @@ class DnsPeering(typing_extensions.TypedDict, total=False):
     targetProject: str
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class EventPublishConfig(typing_extensions.TypedDict, total=False):
+class EventPublishConfig(typing.TypedDict, total=False):
     enabled: bool
     topic: str
 
 @typing.type_check_only
-class Expr(typing_extensions.TypedDict, total=False):
+class Expr(typing.TypedDict, total=False):
     description: str
     expression: str
     location: str
     title: str
 
 @typing.type_check_only
-class IAMPolicy(typing_extensions.TypedDict, total=False):
+class IAMPolicy(typing.TypedDict, total=False):
     policy: Policy
     status: Status
 
 @typing.type_check_only
-class Instance(typing_extensions.TypedDict, total=False):
+class Instance(typing.TypedDict, total=False):
     accelerators: _list[Accelerator]
     apiEndpoint: str
     availableVersion: _list[Version]
@@ -81,7 +77,7 @@ class Instance(typing_extensions.TypedDict, total=False):
     dataprocServiceAccount: str
     description: str
     disabledReason: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "DISABLED_REASON_UNSPECIFIED", "KMS_KEY_ISSUE", "PROJECT_STATE_OFF"
         ]
     ]
@@ -107,7 +103,7 @@ class Instance(typing_extensions.TypedDict, total=False):
     satisfiesPzs: bool
     serviceAccount: str
     serviceEndpoint: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "CREATING",
         "RUNNING",
@@ -124,49 +120,47 @@ class Instance(typing_extensions.TypedDict, total=False):
     stateMessage: str
     tags: dict[str, typing.Any]
     tenantProjectId: str
-    type: typing_extensions.Literal[
-        "TYPE_UNSPECIFIED", "BASIC", "ENTERPRISE", "DEVELOPER"
-    ]
+    type: typing.Literal["TYPE_UNSPECIFIED", "BASIC", "ENTERPRISE", "DEVELOPER"]
     updateTime: str
     version: str
     workforceIdentityServiceEndpoint: str
     zone: str
 
 @typing.type_check_only
-class ListAvailableVersionsResponse(typing_extensions.TypedDict, total=False):
+class ListAvailableVersionsResponse(typing.TypedDict, total=False):
     availableVersions: _list[Version]
     nextPageToken: str
     versions: _list[Version]
 
 @typing.type_check_only
-class ListDnsPeeringsResponse(typing_extensions.TypedDict, total=False):
+class ListDnsPeeringsResponse(typing.TypedDict, total=False):
     dnsPeerings: _list[DnsPeering]
     nextPageToken: str
 
 @typing.type_check_only
-class ListInstancesResponse(typing_extensions.TypedDict, total=False):
+class ListInstancesResponse(typing.TypedDict, total=False):
     instances: _list[Instance]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListLocationsResponse(typing_extensions.TypedDict, total=False):
+class ListLocationsResponse(typing.TypedDict, total=False):
     locations: _list[Location]
     nextPageToken: str
 
 @typing.type_check_only
-class ListNamespacesResponse(typing_extensions.TypedDict, total=False):
+class ListNamespacesResponse(typing.TypedDict, total=False):
     namespaces: _list[Namespace]
     nextPageToken: str
 
 @typing.type_check_only
-class ListOperationsResponse(typing_extensions.TypedDict, total=False):
+class ListOperationsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
     unreachable: _list[str]
 
 @typing.type_check_only
-class Location(typing_extensions.TypedDict, total=False):
+class Location(typing.TypedDict, total=False):
     displayName: str
     labels: dict[str, typing.Any]
     locationId: str
@@ -174,39 +168,37 @@ class Location(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class LoggingConfig(typing_extensions.TypedDict, total=False):
+class LoggingConfig(typing.TypedDict, total=False):
     enableInstanceV2Logs: bool
     instanceCloudLoggingDisabled: bool
 
 @typing.type_check_only
-class MaintenanceEvent(typing_extensions.TypedDict, total=False):
+class MaintenanceEvent(typing.TypedDict, total=False):
     endTime: str
     startTime: str
-    state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "SCHEDULED", "STARTED", "COMPLETED"
-    ]
+    state: typing.Literal["STATE_UNSPECIFIED", "SCHEDULED", "STARTED", "COMPLETED"]
 
 @typing.type_check_only
-class MaintenancePolicy(typing_extensions.TypedDict, total=False):
+class MaintenancePolicy(typing.TypedDict, total=False):
     maintenanceExclusionWindow: TimeWindow
     maintenanceWindow: MaintenanceWindow
 
 @typing.type_check_only
-class MaintenanceWindow(typing_extensions.TypedDict, total=False):
+class MaintenanceWindow(typing.TypedDict, total=False):
     recurringTimeWindow: RecurringTimeWindow
 
 @typing.type_check_only
-class MonitoringConfig(typing_extensions.TypedDict, total=False):
+class MonitoringConfig(typing.TypedDict, total=False):
     enableInstanceV2Metrics: bool
 
 @typing.type_check_only
-class Namespace(typing_extensions.TypedDict, total=False):
+class Namespace(typing.TypedDict, total=False):
     iamPolicy: IAMPolicy
     name: str
 
 @typing.type_check_only
-class NetworkConfig(typing_extensions.TypedDict, total=False):
-    connectionType: typing_extensions.Literal[
+class NetworkConfig(typing.TypedDict, total=False):
+    connectionType: typing.Literal[
         "CONNECTION_TYPE_UNSPECIFIED",
         "VPC_PEERING",
         "PRIVATE_SERVICE_CONNECT_INTERFACES",
@@ -216,7 +208,7 @@ class NetworkConfig(typing_extensions.TypedDict, total=False):
     privateServiceConnectConfig: PrivateServiceConnectConfig
 
 @typing.type_check_only
-class Operation(typing_extensions.TypedDict, total=False):
+class Operation(typing.TypedDict, total=False):
     done: bool
     error: Status
     metadata: dict[str, typing.Any]
@@ -224,7 +216,7 @@ class Operation(typing_extensions.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
-class OperationMetadata(typing_extensions.TypedDict, total=False):
+class OperationMetadata(typing.TypedDict, total=False):
     additionalStatus: dict[str, typing.Any]
     apiVersion: str
     createTime: str
@@ -235,64 +227,64 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     verb: str
 
 @typing.type_check_only
-class Policy(typing_extensions.TypedDict, total=False):
+class Policy(typing.TypedDict, total=False):
     auditConfigs: _list[AuditConfig]
     bindings: _list[Binding]
     etag: str
     version: int
 
 @typing.type_check_only
-class PrivateServiceConnectConfig(typing_extensions.TypedDict, total=False):
+class PrivateServiceConnectConfig(typing.TypedDict, total=False):
     effectiveUnreachableCidrBlock: str
     networkAttachment: str
     unreachableCidrBlock: str
 
 @typing.type_check_only
-class RecurringTimeWindow(typing_extensions.TypedDict, total=False):
+class RecurringTimeWindow(typing.TypedDict, total=False):
     recurrence: str
     window: TimeWindow
 
 @typing.type_check_only
-class RemoveIamPolicyRequest(typing_extensions.TypedDict, total=False): ...
+class RemoveIamPolicyRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class RemoveIamPolicyResponse(typing_extensions.TypedDict, total=False): ...
+class RemoveIamPolicyResponse(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class RestartInstanceRequest(typing_extensions.TypedDict, total=False): ...
+class RestartInstanceRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
+class SetIamPolicyRequest(typing.TypedDict, total=False):
     policy: Policy
     updateMask: str
 
 @typing.type_check_only
-class Status(typing_extensions.TypedDict, total=False):
+class Status(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
-class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
+class TestIamPermissionsRequest(typing.TypedDict, total=False):
     permissions: _list[str]
 
 @typing.type_check_only
-class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
+class TestIamPermissionsResponse(typing.TypedDict, total=False):
     permissions: _list[str]
 
 @typing.type_check_only
-class TimeWindow(typing_extensions.TypedDict, total=False):
+class TimeWindow(typing.TypedDict, total=False):
     endTime: str
     startTime: str
 
 @typing.type_check_only
-class UpgradeInstanceRequest(typing_extensions.TypedDict, total=False): ...
+class UpgradeInstanceRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Version(typing_extensions.TypedDict, total=False):
+class Version(typing.TypedDict, total=False):
     availableFeatures: _list[str]
     defaultVersion: bool
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "TYPE_UNSPECIFIED",
         "TYPE_PREVIEW",
         "TYPE_GENERAL_AVAILABILITY",

@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -195,7 +194,7 @@ class AdsenseResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     currencyCode: str | None = ...,
-                    dateRange: typing_extensions.Literal[
+                    dateRange: typing.Literal[
                         "REPORTING_DATE_RANGE_UNSPECIFIED",
                         "CUSTOM",
                         "TODAY",
@@ -210,7 +209,7 @@ class AdsenseResource(googleapiclient.discovery.Resource):
                     endDate_month: int | None = ...,
                     endDate_year: int | None = ...,
                     languageCode: str | None = ...,
-                    reportingTimeZone: typing_extensions.Literal[
+                    reportingTimeZone: typing.Literal[
                         "REPORTING_TIME_ZONE_UNSPECIFIED",
                         "ACCOUNT_TIME_ZONE",
                         "GOOGLE_TIME_ZONE",
@@ -226,7 +225,7 @@ class AdsenseResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     currencyCode: str | None = ...,
-                    dateRange: typing_extensions.Literal[
+                    dateRange: typing.Literal[
                         "REPORTING_DATE_RANGE_UNSPECIFIED",
                         "CUSTOM",
                         "TODAY",
@@ -241,7 +240,7 @@ class AdsenseResource(googleapiclient.discovery.Resource):
                     endDate_month: int | None = ...,
                     endDate_year: int | None = ...,
                     languageCode: str | None = ...,
-                    reportingTimeZone: typing_extensions.Literal[
+                    reportingTimeZone: typing.Literal[
                         "REPORTING_TIME_ZONE_UNSPECIFIED",
                         "ACCOUNT_TIME_ZONE",
                         "GOOGLE_TIME_ZONE",
@@ -271,7 +270,7 @@ class AdsenseResource(googleapiclient.discovery.Resource):
                 *,
                 account: str,
                 currencyCode: str | None = ...,
-                dateRange: typing_extensions.Literal[
+                dateRange: typing.Literal[
                     "REPORTING_DATE_RANGE_UNSPECIFIED",
                     "CUSTOM",
                     "TODAY",
@@ -282,7 +281,7 @@ class AdsenseResource(googleapiclient.discovery.Resource):
                     "LAST_30_DAYS",
                 ]
                 | None = ...,
-                dimensions: typing_extensions.Literal[
+                dimensions: typing.Literal[
                     "DIMENSION_UNSPECIFIED",
                     "DATE",
                     "WEEK",
@@ -342,7 +341,7 @@ class AdsenseResource(googleapiclient.discovery.Resource):
                     "WEBVIEW_TYPE_CODE",
                 ]
                 | _list[
-                    typing_extensions.Literal[
+                    typing.Literal[
                         "DIMENSION_UNSPECIFIED",
                         "DATE",
                         "WEEK",
@@ -409,7 +408,7 @@ class AdsenseResource(googleapiclient.discovery.Resource):
                 filters: str | _list[str] | None = ...,
                 languageCode: str | None = ...,
                 limit: int | None = ...,
-                metrics: typing_extensions.Literal[
+                metrics: typing.Literal[
                     "METRIC_UNSPECIFIED",
                     "PAGE_VIEWS",
                     "AD_REQUESTS",
@@ -449,7 +448,7 @@ class AdsenseResource(googleapiclient.discovery.Resource):
                     "FUNNEL_RPM",
                 ]
                 | _list[
-                    typing_extensions.Literal[
+                    typing.Literal[
                         "METRIC_UNSPECIFIED",
                         "PAGE_VIEWS",
                         "AD_REQUESTS",
@@ -491,7 +490,7 @@ class AdsenseResource(googleapiclient.discovery.Resource):
                 ]
                 | None = ...,
                 orderBy: str | _list[str] | None = ...,
-                reportingTimeZone: typing_extensions.Literal[
+                reportingTimeZone: typing.Literal[
                     "REPORTING_TIME_ZONE_UNSPECIFIED",
                     "ACCOUNT_TIME_ZONE",
                     "GOOGLE_TIME_ZONE",
@@ -507,7 +506,7 @@ class AdsenseResource(googleapiclient.discovery.Resource):
                 *,
                 account: str,
                 currencyCode: str | None = ...,
-                dateRange: typing_extensions.Literal[
+                dateRange: typing.Literal[
                     "REPORTING_DATE_RANGE_UNSPECIFIED",
                     "CUSTOM",
                     "TODAY",
@@ -518,7 +517,7 @@ class AdsenseResource(googleapiclient.discovery.Resource):
                     "LAST_30_DAYS",
                 ]
                 | None = ...,
-                dimensions: typing_extensions.Literal[
+                dimensions: typing.Literal[
                     "DIMENSION_UNSPECIFIED",
                     "DATE",
                     "WEEK",
@@ -578,7 +577,7 @@ class AdsenseResource(googleapiclient.discovery.Resource):
                     "WEBVIEW_TYPE_CODE",
                 ]
                 | _list[
-                    typing_extensions.Literal[
+                    typing.Literal[
                         "DIMENSION_UNSPECIFIED",
                         "DATE",
                         "WEEK",
@@ -645,7 +644,7 @@ class AdsenseResource(googleapiclient.discovery.Resource):
                 filters: str | _list[str] | None = ...,
                 languageCode: str | None = ...,
                 limit: int | None = ...,
-                metrics: typing_extensions.Literal[
+                metrics: typing.Literal[
                     "METRIC_UNSPECIFIED",
                     "PAGE_VIEWS",
                     "AD_REQUESTS",
@@ -685,7 +684,7 @@ class AdsenseResource(googleapiclient.discovery.Resource):
                     "FUNNEL_RPM",
                 ]
                 | _list[
-                    typing_extensions.Literal[
+                    typing.Literal[
                         "METRIC_UNSPECIFIED",
                         "PAGE_VIEWS",
                         "AD_REQUESTS",
@@ -727,7 +726,7 @@ class AdsenseResource(googleapiclient.discovery.Resource):
                 ]
                 | None = ...,
                 orderBy: str | _list[str] | None = ...,
-                reportingTimeZone: typing_extensions.Literal[
+                reportingTimeZone: typing.Literal[
                     "REPORTING_TIME_ZONE_UNSPECIFIED",
                     "ACCOUNT_TIME_ZONE",
                     "GOOGLE_TIME_ZONE",

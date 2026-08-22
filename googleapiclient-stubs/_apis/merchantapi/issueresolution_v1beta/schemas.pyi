@@ -1,11 +1,9 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class Action(typing_extensions.TypedDict, total=False):
+class Action(typing.TypedDict, total=False):
     builtinSimpleAction: BuiltInSimpleAction
     builtinUserInputAction: BuiltInUserInputAction
     buttonLabel: str
@@ -14,7 +12,7 @@ class Action(typing_extensions.TypedDict, total=False):
     reasons: _list[Reason]
 
 @typing.type_check_only
-class ActionFlow(typing_extensions.TypedDict, total=False):
+class ActionFlow(typing.TypedDict, total=False):
     dialogButtonLabel: str
     dialogCallout: Callout
     dialogMessage: TextWithTooltip
@@ -24,21 +22,21 @@ class ActionFlow(typing_extensions.TypedDict, total=False):
     label: str
 
 @typing.type_check_only
-class ActionInput(typing_extensions.TypedDict, total=False):
+class ActionInput(typing.TypedDict, total=False):
     actionFlowId: str
     inputValues: _list[InputValue]
 
 @typing.type_check_only
-class AdditionalContent(typing_extensions.TypedDict, total=False):
+class AdditionalContent(typing.TypedDict, total=False):
     paragraphs: _list[str]
     title: str
 
 @typing.type_check_only
-class AggregateProductStatus(typing_extensions.TypedDict, total=False):
+class AggregateProductStatus(typing.TypedDict, total=False):
     country: str
     itemLevelIssues: _list[ItemLevelIssue]
     name: str
-    reportingContext: typing_extensions.Literal[
+    reportingContext: typing.Literal[
         "REPORTING_CONTEXT_ENUM_UNSPECIFIED",
         "SHOPPING_ADS",
         "DISCOVERY_ADS",
@@ -63,15 +61,15 @@ class AggregateProductStatus(typing_extensions.TypedDict, total=False):
     stats: Stats
 
 @typing.type_check_only
-class Breakdown(typing_extensions.TypedDict, total=False):
+class Breakdown(typing.TypedDict, total=False):
     details: _list[str]
     regions: _list[Region]
 
 @typing.type_check_only
-class BuiltInSimpleAction(typing_extensions.TypedDict, total=False):
+class BuiltInSimpleAction(typing.TypedDict, total=False):
     additionalContent: AdditionalContent
     attributeCode: str
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "BUILT_IN_SIMPLE_ACTION_TYPE_UNSPECIFIED",
         "VERIFY_PHONE",
         "CLAIM_WEBSITE",
@@ -85,41 +83,41 @@ class BuiltInSimpleAction(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class BuiltInUserInputAction(typing_extensions.TypedDict, total=False):
+class BuiltInUserInputAction(typing.TypedDict, total=False):
     actionContext: str
     flows: _list[ActionFlow]
 
 @typing.type_check_only
-class Callout(typing_extensions.TypedDict, total=False):
+class Callout(typing.TypedDict, total=False):
     fullMessage: TextWithTooltip
-    styleHint: typing_extensions.Literal[
+    styleHint: typing.Literal[
         "CALLOUT_STYLE_HINT_UNSPECIFIED", "ERROR", "WARNING", "INFO"
     ]
 
 @typing.type_check_only
-class CheckboxInput(typing_extensions.TypedDict, total=False): ...
+class CheckboxInput(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class CheckboxInputValue(typing_extensions.TypedDict, total=False):
+class CheckboxInputValue(typing.TypedDict, total=False):
     value: bool
 
 @typing.type_check_only
-class ChoiceInput(typing_extensions.TypedDict, total=False):
+class ChoiceInput(typing.TypedDict, total=False):
     options: _list[ChoiceInputOption]
 
 @typing.type_check_only
-class ChoiceInputOption(typing_extensions.TypedDict, total=False):
+class ChoiceInputOption(typing.TypedDict, total=False):
     additionalInput: InputField
     id: str
     label: TextWithTooltip
 
 @typing.type_check_only
-class ChoiceInputValue(typing_extensions.TypedDict, total=False):
+class ChoiceInputValue(typing.TypedDict, total=False):
     choiceInputOptionId: str
 
 @typing.type_check_only
-class ExternalAction(typing_extensions.TypedDict, total=False):
-    type: typing_extensions.Literal[
+class ExternalAction(typing.TypedDict, total=False):
+    type: typing.Literal[
         "EXTERNAL_ACTION_TYPE_UNSPECIFIED",
         "REVIEW_PRODUCT_ISSUE_IN_MERCHANT_CENTER",
         "REVIEW_ACCOUNT_ISSUE_IN_MERCHANT_CENTER",
@@ -130,15 +128,13 @@ class ExternalAction(typing_extensions.TypedDict, total=False):
     uri: str
 
 @typing.type_check_only
-class Impact(typing_extensions.TypedDict, total=False):
+class Impact(typing.TypedDict, total=False):
     breakdowns: _list[Breakdown]
     message: str
-    severity: typing_extensions.Literal[
-        "SEVERITY_UNSPECIFIED", "ERROR", "WARNING", "INFO"
-    ]
+    severity: typing.Literal["SEVERITY_UNSPECIFIED", "ERROR", "WARNING", "INFO"]
 
 @typing.type_check_only
-class InputField(typing_extensions.TypedDict, total=False):
+class InputField(typing.TypedDict, total=False):
     checkboxInput: CheckboxInput
     choiceInput: ChoiceInput
     id: str
@@ -147,38 +143,38 @@ class InputField(typing_extensions.TypedDict, total=False):
     textInput: TextInput
 
 @typing.type_check_only
-class InputValue(typing_extensions.TypedDict, total=False):
+class InputValue(typing.TypedDict, total=False):
     checkboxInputValue: CheckboxInputValue
     choiceInputValue: ChoiceInputValue
     inputFieldId: str
     textInputValue: TextInputValue
 
 @typing.type_check_only
-class ItemLevelIssue(typing_extensions.TypedDict, total=False):
+class ItemLevelIssue(typing.TypedDict, total=False):
     attribute: str
     code: str
     description: str
     detail: str
     documentationUri: str
     productCount: str
-    resolution: typing_extensions.Literal[
+    resolution: typing.Literal[
         "RESOLUTION_UNSPECIFIED", "MERCHANT_ACTION", "PENDING_PROCESSING"
     ]
-    severity: typing_extensions.Literal[
+    severity: typing.Literal[
         "SEVERITY_UNSPECIFIED", "NOT_IMPACTED", "DEMOTED", "DISAPPROVED"
     ]
 
 @typing.type_check_only
-class ListAggregateProductStatusesResponse(typing_extensions.TypedDict, total=False):
+class ListAggregateProductStatusesResponse(typing.TypedDict, total=False):
     aggregateProductStatuses: _list[AggregateProductStatus]
     nextPageToken: str
 
 @typing.type_check_only
-class ProductChange(typing_extensions.TypedDict, total=False):
+class ProductChange(typing.TypedDict, total=False):
     newValue: str
     oldValue: str
     regionCode: str
-    reportingContext: typing_extensions.Literal[
+    reportingContext: typing.Literal[
         "REPORTING_CONTEXT_ENUM_UNSPECIFIED",
         "SHOPPING_ADS",
         "DISCOVERY_ADS",
@@ -202,51 +198,47 @@ class ProductChange(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class ProductStatusChangeMessage(typing_extensions.TypedDict, total=False):
+class ProductStatusChangeMessage(typing.TypedDict, total=False):
     account: str
-    attribute: typing_extensions.Literal["ATTRIBUTE_UNSPECIFIED", "STATUS"]
+    attribute: typing.Literal["ATTRIBUTE_UNSPECIFIED", "STATUS"]
     changes: _list[ProductChange]
     eventTime: str
     expirationTime: str
     managingAccount: str
     resource: str
     resourceId: str
-    resourceType: typing_extensions.Literal[
-        "RESOURCE_UNSPECIFIED", "PRODUCT", "ACCOUNT_SERVICE"
-    ]
+    resourceType: typing.Literal["RESOURCE_UNSPECIFIED", "PRODUCT", "ACCOUNT_SERVICE"]
 
 @typing.type_check_only
-class Reason(typing_extensions.TypedDict, total=False):
+class Reason(typing.TypedDict, total=False):
     action: Action
     detail: str
     message: str
 
 @typing.type_check_only
-class Region(typing_extensions.TypedDict, total=False):
+class Region(typing.TypedDict, total=False):
     code: str
     name: str
 
 @typing.type_check_only
-class RenderAccountIssuesResponse(typing_extensions.TypedDict, total=False):
+class RenderAccountIssuesResponse(typing.TypedDict, total=False):
     renderedIssues: _list[RenderedIssue]
 
 @typing.type_check_only
-class RenderIssuesRequestPayload(typing_extensions.TypedDict, total=False):
-    contentOption: typing_extensions.Literal[
-        "CONTENT_OPTION_UNSPECIFIED", "PRE_RENDERED_HTML"
-    ]
-    userInputActionOption: typing_extensions.Literal[
+class RenderIssuesRequestPayload(typing.TypedDict, total=False):
+    contentOption: typing.Literal["CONTENT_OPTION_UNSPECIFIED", "PRE_RENDERED_HTML"]
+    userInputActionOption: typing.Literal[
         "USER_INPUT_ACTION_RENDERING_OPTION_UNSPECIFIED",
         "REDIRECT_TO_MERCHANT_CENTER",
         "BUILT_IN_USER_INPUT_ACTIONS",
     ]
 
 @typing.type_check_only
-class RenderProductIssuesResponse(typing_extensions.TypedDict, total=False):
+class RenderProductIssuesResponse(typing.TypedDict, total=False):
     renderedIssues: _list[RenderedIssue]
 
 @typing.type_check_only
-class RenderedIssue(typing_extensions.TypedDict, total=False):
+class RenderedIssue(typing.TypedDict, total=False):
     actions: _list[Action]
     impact: Impact
     prerenderedContent: str
@@ -254,38 +246,38 @@ class RenderedIssue(typing_extensions.TypedDict, total=False):
     title: str
 
 @typing.type_check_only
-class Stats(typing_extensions.TypedDict, total=False):
+class Stats(typing.TypedDict, total=False):
     activeCount: str
     disapprovedCount: str
     expiringCount: str
     pendingCount: str
 
 @typing.type_check_only
-class TextInput(typing_extensions.TypedDict, total=False):
+class TextInput(typing.TypedDict, total=False):
     additionalInfo: TextWithTooltip
     ariaLabel: str
     formatInfo: str
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "TEXT_INPUT_TYPE_UNSPECIFIED", "GENERIC_SHORT_TEXT", "GENERIC_LONG_TEXT"
     ]
 
 @typing.type_check_only
-class TextInputValue(typing_extensions.TypedDict, total=False):
+class TextInputValue(typing.TypedDict, total=False):
     value: str
 
 @typing.type_check_only
-class TextWithTooltip(typing_extensions.TypedDict, total=False):
+class TextWithTooltip(typing.TypedDict, total=False):
     simpleTooltipValue: str
     simpleValue: str
-    tooltipIconStyle: typing_extensions.Literal[
+    tooltipIconStyle: typing.Literal[
         "TOOLTIP_ICON_STYLE_UNSPECIFIED", "INFO", "QUESTION"
     ]
 
 @typing.type_check_only
-class TriggerActionPayload(typing_extensions.TypedDict, total=False):
+class TriggerActionPayload(typing.TypedDict, total=False):
     actionContext: str
     actionInput: ActionInput
 
 @typing.type_check_only
-class TriggerActionResponse(typing_extensions.TypedDict, total=False):
+class TriggerActionResponse(typing.TypedDict, total=False):
     message: str

@@ -1,26 +1,24 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class DownloadModelResponse(typing_extensions.TypedDict, total=False):
+class DownloadModelResponse(typing.TypedDict, total=False):
     downloadUri: str
     expireTime: str
-    modelFormat: typing_extensions.Literal["MODEL_FORMAT_UNSPECIFIED", "TFLITE"]
+    modelFormat: typing.Literal["MODEL_FORMAT_UNSPECIFIED", "TFLITE"]
     sizeBytes: str
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class ListModelsResponse(typing_extensions.TypedDict, total=False):
+class ListModelsResponse(typing.TypedDict, total=False):
     models: _list[Model]
     nextPageToken: str
 
 @typing.type_check_only
-class Model(typing_extensions.TypedDict, total=False):
+class Model(typing.TypedDict, total=False):
     activeOperations: _list[Operation]
     createTime: str
     displayName: str
@@ -33,8 +31,8 @@ class Model(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class ModelOperationMetadata(typing_extensions.TypedDict, total=False):
-    basicOperationStatus: typing_extensions.Literal[
+class ModelOperationMetadata(typing.TypedDict, total=False):
+    basicOperationStatus: typing.Literal[
         "BASIC_OPERATION_STATUS_UNSPECIFIED",
         "BASIC_OPERATION_STATUS_UPLOADING",
         "BASIC_OPERATION_STATUS_VERIFYING",
@@ -42,12 +40,12 @@ class ModelOperationMetadata(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class ModelState(typing_extensions.TypedDict, total=False):
+class ModelState(typing.TypedDict, total=False):
     published: bool
     validationError: Status
 
 @typing.type_check_only
-class Operation(typing_extensions.TypedDict, total=False):
+class Operation(typing.TypedDict, total=False):
     done: bool
     error: Status
     metadata: dict[str, typing.Any]
@@ -55,13 +53,13 @@ class Operation(typing_extensions.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
-class Status(typing_extensions.TypedDict, total=False):
+class Status(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
-class TfLiteModel(typing_extensions.TypedDict, total=False):
+class TfLiteModel(typing.TypedDict, total=False):
     automlModel: str
     gcsTfliteUri: str
     sizeBytes: str

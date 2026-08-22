@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -27,7 +26,7 @@ class ClouderrorreportingResource(googleapiclient.discovery.Resource):
                 serviceFilter_resourceType: str | None = ...,
                 serviceFilter_service: str | None = ...,
                 serviceFilter_version: str | None = ...,
-                timeRange_period: typing_extensions.Literal[
+                timeRange_period: typing.Literal[
                     "PERIOD_UNSPECIFIED",
                     "PERIOD_1_HOUR",
                     "PERIOD_6_HOURS",
@@ -57,7 +56,7 @@ class ClouderrorreportingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 projectName: str,
-                alignment: typing_extensions.Literal[
+                alignment: typing.Literal[
                     "ERROR_COUNT_ALIGNMENT_UNSPECIFIED",
                     "ALIGNMENT_EQUAL_ROUNDED",
                     "ALIGNMENT_EQUAL_AT_END",
@@ -65,7 +64,7 @@ class ClouderrorreportingResource(googleapiclient.discovery.Resource):
                 | None = ...,
                 alignmentTime: str | None = ...,
                 groupId: str | _list[str] | None = ...,
-                order: typing_extensions.Literal[
+                order: typing.Literal[
                     "GROUP_ORDER_UNSPECIFIED",
                     "COUNT_DESC",
                     "LAST_SEEN_DESC",
@@ -78,7 +77,7 @@ class ClouderrorreportingResource(googleapiclient.discovery.Resource):
                 serviceFilter_resourceType: str | None = ...,
                 serviceFilter_service: str | None = ...,
                 serviceFilter_version: str | None = ...,
-                timeRange_period: typing_extensions.Literal[
+                timeRange_period: typing.Literal[
                     "PERIOD_UNSPECIFIED",
                     "PERIOD_1_HOUR",
                     "PERIOD_6_HOURS",
@@ -119,7 +118,7 @@ class ClouderrorreportingResource(googleapiclient.discovery.Resource):
                     serviceFilter_resourceType: str | None = ...,
                     serviceFilter_service: str | None = ...,
                     serviceFilter_version: str | None = ...,
-                    timeRange_period: typing_extensions.Literal[
+                    timeRange_period: typing.Literal[
                         "PERIOD_UNSPECIFIED",
                         "PERIOD_1_HOUR",
                         "PERIOD_6_HOURS",
@@ -142,7 +141,7 @@ class ClouderrorreportingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     projectName: str,
-                    alignment: typing_extensions.Literal[
+                    alignment: typing.Literal[
                         "ERROR_COUNT_ALIGNMENT_UNSPECIFIED",
                         "ALIGNMENT_EQUAL_ROUNDED",
                         "ALIGNMENT_EQUAL_AT_END",
@@ -150,7 +149,7 @@ class ClouderrorreportingResource(googleapiclient.discovery.Resource):
                     | None = ...,
                     alignmentTime: str | None = ...,
                     groupId: str | _list[str] | None = ...,
-                    order: typing_extensions.Literal[
+                    order: typing.Literal[
                         "GROUP_ORDER_UNSPECIFIED",
                         "COUNT_DESC",
                         "LAST_SEEN_DESC",
@@ -163,7 +162,7 @@ class ClouderrorreportingResource(googleapiclient.discovery.Resource):
                     serviceFilter_resourceType: str | None = ...,
                     serviceFilter_service: str | None = ...,
                     serviceFilter_version: str | None = ...,
-                    timeRange_period: typing_extensions.Literal[
+                    timeRange_period: typing.Literal[
                         "PERIOD_UNSPECIFIED",
                         "PERIOD_1_HOUR",
                         "PERIOD_6_HOURS",

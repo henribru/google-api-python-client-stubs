@@ -1,88 +1,84 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class BatchRunPivotReportsRequest(typing_extensions.TypedDict, total=False):
+class BatchRunPivotReportsRequest(typing.TypedDict, total=False):
     entity: Entity
     requests: _list[RunPivotReportRequest]
 
 @typing.type_check_only
-class BatchRunPivotReportsResponse(typing_extensions.TypedDict, total=False):
+class BatchRunPivotReportsResponse(typing.TypedDict, total=False):
     pivotReports: _list[RunPivotReportResponse]
 
 @typing.type_check_only
-class BatchRunReportsRequest(typing_extensions.TypedDict, total=False):
+class BatchRunReportsRequest(typing.TypedDict, total=False):
     entity: Entity
     requests: _list[RunReportRequest]
 
 @typing.type_check_only
-class BatchRunReportsResponse(typing_extensions.TypedDict, total=False):
+class BatchRunReportsResponse(typing.TypedDict, total=False):
     reports: _list[RunReportResponse]
 
 @typing.type_check_only
-class BetweenFilter(typing_extensions.TypedDict, total=False):
+class BetweenFilter(typing.TypedDict, total=False):
     fromValue: NumericValue
     toValue: NumericValue
 
 @typing.type_check_only
-class CaseExpression(typing_extensions.TypedDict, total=False):
+class CaseExpression(typing.TypedDict, total=False):
     dimensionName: str
 
 @typing.type_check_only
-class Cohort(typing_extensions.TypedDict, total=False):
+class Cohort(typing.TypedDict, total=False):
     dateRange: DateRange
     dimension: str
     name: str
 
 @typing.type_check_only
-class CohortReportSettings(typing_extensions.TypedDict, total=False):
+class CohortReportSettings(typing.TypedDict, total=False):
     accumulate: bool
 
 @typing.type_check_only
-class CohortSpec(typing_extensions.TypedDict, total=False):
+class CohortSpec(typing.TypedDict, total=False):
     cohortReportSettings: CohortReportSettings
     cohorts: _list[Cohort]
     cohortsRange: CohortsRange
 
 @typing.type_check_only
-class CohortsRange(typing_extensions.TypedDict, total=False):
+class CohortsRange(typing.TypedDict, total=False):
     endOffset: int
-    granularity: typing_extensions.Literal[
-        "GRANULARITY_UNSPECIFIED", "DAILY", "WEEKLY", "MONTHLY"
-    ]
+    granularity: typing.Literal["GRANULARITY_UNSPECIFIED", "DAILY", "WEEKLY", "MONTHLY"]
     startOffset: int
 
 @typing.type_check_only
-class ConcatenateExpression(typing_extensions.TypedDict, total=False):
+class ConcatenateExpression(typing.TypedDict, total=False):
     delimiter: str
     dimensionNames: _list[str]
 
 @typing.type_check_only
-class DateRange(typing_extensions.TypedDict, total=False):
+class DateRange(typing.TypedDict, total=False):
     endDate: str
     name: str
     startDate: str
 
 @typing.type_check_only
-class Dimension(typing_extensions.TypedDict, total=False):
+class Dimension(typing.TypedDict, total=False):
     dimensionExpression: DimensionExpression
     name: str
 
 @typing.type_check_only
-class DimensionExpression(typing_extensions.TypedDict, total=False):
+class DimensionExpression(typing.TypedDict, total=False):
     concatenate: ConcatenateExpression
     lowerCase: CaseExpression
     upperCase: CaseExpression
 
 @typing.type_check_only
-class DimensionHeader(typing_extensions.TypedDict, total=False):
+class DimensionHeader(typing.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class DimensionMetadata(typing_extensions.TypedDict, total=False):
+class DimensionMetadata(typing.TypedDict, total=False):
     apiName: str
     customDefinition: bool
     deprecatedApiNames: _list[str]
@@ -90,9 +86,9 @@ class DimensionMetadata(typing_extensions.TypedDict, total=False):
     uiName: str
 
 @typing.type_check_only
-class DimensionOrderBy(typing_extensions.TypedDict, total=False):
+class DimensionOrderBy(typing.TypedDict, total=False):
     dimensionName: str
-    orderType: typing_extensions.Literal[
+    orderType: typing.Literal[
         "ORDER_TYPE_UNSPECIFIED",
         "ALPHANUMERIC",
         "CASE_INSENSITIVE_ALPHANUMERIC",
@@ -100,15 +96,15 @@ class DimensionOrderBy(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class DimensionValue(typing_extensions.TypedDict, total=False):
+class DimensionValue(typing.TypedDict, total=False):
     value: str
 
 @typing.type_check_only
-class Entity(typing_extensions.TypedDict, total=False):
+class Entity(typing.TypedDict, total=False):
     propertyId: str
 
 @typing.type_check_only
-class Filter(typing_extensions.TypedDict, total=False):
+class Filter(typing.TypedDict, total=False):
     betweenFilter: BetweenFilter
     fieldName: str
     inListFilter: InListFilter
@@ -116,37 +112,37 @@ class Filter(typing_extensions.TypedDict, total=False):
     stringFilter: StringFilter
 
 @typing.type_check_only
-class FilterExpression(typing_extensions.TypedDict, total=False):
+class FilterExpression(typing.TypedDict, total=False):
     andGroup: FilterExpressionList
     filter: Filter
     notExpression: FilterExpression
     orGroup: FilterExpressionList
 
 @typing.type_check_only
-class FilterExpressionList(typing_extensions.TypedDict, total=False):
+class FilterExpressionList(typing.TypedDict, total=False):
     expressions: _list[FilterExpression]
 
 @typing.type_check_only
-class InListFilter(typing_extensions.TypedDict, total=False):
+class InListFilter(typing.TypedDict, total=False):
     caseSensitive: bool
     values: _list[str]
 
 @typing.type_check_only
-class Metadata(typing_extensions.TypedDict, total=False):
+class Metadata(typing.TypedDict, total=False):
     dimensions: _list[DimensionMetadata]
     metrics: _list[MetricMetadata]
     name: str
 
 @typing.type_check_only
-class Metric(typing_extensions.TypedDict, total=False):
+class Metric(typing.TypedDict, total=False):
     expression: str
     invisible: bool
     name: str
 
 @typing.type_check_only
-class MetricHeader(typing_extensions.TypedDict, total=False):
+class MetricHeader(typing.TypedDict, total=False):
     name: str
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "METRIC_TYPE_UNSPECIFIED",
         "TYPE_INTEGER",
         "TYPE_FLOAT",
@@ -163,13 +159,13 @@ class MetricHeader(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class MetricMetadata(typing_extensions.TypedDict, total=False):
+class MetricMetadata(typing.TypedDict, total=False):
     apiName: str
     customDefinition: bool
     deprecatedApiNames: _list[str]
     description: str
     expression: str
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "METRIC_TYPE_UNSPECIFIED",
         "TYPE_INTEGER",
         "TYPE_FLOAT",
@@ -187,16 +183,16 @@ class MetricMetadata(typing_extensions.TypedDict, total=False):
     uiName: str
 
 @typing.type_check_only
-class MetricOrderBy(typing_extensions.TypedDict, total=False):
+class MetricOrderBy(typing.TypedDict, total=False):
     metricName: str
 
 @typing.type_check_only
-class MetricValue(typing_extensions.TypedDict, total=False):
+class MetricValue(typing.TypedDict, total=False):
     value: str
 
 @typing.type_check_only
-class NumericFilter(typing_extensions.TypedDict, total=False):
-    operation: typing_extensions.Literal[
+class NumericFilter(typing.TypedDict, total=False):
+    operation: typing.Literal[
         "OPERATION_UNSPECIFIED",
         "EQUAL",
         "LESS_THAN",
@@ -207,23 +203,23 @@ class NumericFilter(typing_extensions.TypedDict, total=False):
     value: NumericValue
 
 @typing.type_check_only
-class NumericValue(typing_extensions.TypedDict, total=False):
+class NumericValue(typing.TypedDict, total=False):
     doubleValue: float
     int64Value: str
 
 @typing.type_check_only
-class OrderBy(typing_extensions.TypedDict, total=False):
+class OrderBy(typing.TypedDict, total=False):
     desc: bool
     dimension: DimensionOrderBy
     metric: MetricOrderBy
     pivot: PivotOrderBy
 
 @typing.type_check_only
-class Pivot(typing_extensions.TypedDict, total=False):
+class Pivot(typing.TypedDict, total=False):
     fieldNames: _list[str]
     limit: str
     metricAggregations: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "METRIC_AGGREGATION_UNSPECIFIED", "TOTAL", "MINIMUM", "MAXIMUM", "COUNT"
         ]
     ]
@@ -231,47 +227,47 @@ class Pivot(typing_extensions.TypedDict, total=False):
     orderBys: _list[OrderBy]
 
 @typing.type_check_only
-class PivotDimensionHeader(typing_extensions.TypedDict, total=False):
+class PivotDimensionHeader(typing.TypedDict, total=False):
     dimensionValues: _list[DimensionValue]
 
 @typing.type_check_only
-class PivotHeader(typing_extensions.TypedDict, total=False):
+class PivotHeader(typing.TypedDict, total=False):
     pivotDimensionHeaders: _list[PivotDimensionHeader]
     rowCount: int
 
 @typing.type_check_only
-class PivotOrderBy(typing_extensions.TypedDict, total=False):
+class PivotOrderBy(typing.TypedDict, total=False):
     metricName: str
     pivotSelections: _list[PivotSelection]
 
 @typing.type_check_only
-class PivotSelection(typing_extensions.TypedDict, total=False):
+class PivotSelection(typing.TypedDict, total=False):
     dimensionName: str
     dimensionValue: str
 
 @typing.type_check_only
-class PropertyQuota(typing_extensions.TypedDict, total=False):
+class PropertyQuota(typing.TypedDict, total=False):
     concurrentRequests: QuotaStatus
     serverErrorsPerProjectPerHour: QuotaStatus
     tokensPerDay: QuotaStatus
     tokensPerHour: QuotaStatus
 
 @typing.type_check_only
-class QuotaStatus(typing_extensions.TypedDict, total=False):
+class QuotaStatus(typing.TypedDict, total=False):
     consumed: int
     remaining: int
 
 @typing.type_check_only
-class ResponseMetaData(typing_extensions.TypedDict, total=False):
+class ResponseMetaData(typing.TypedDict, total=False):
     dataLossFromOtherRow: bool
 
 @typing.type_check_only
-class Row(typing_extensions.TypedDict, total=False):
+class Row(typing.TypedDict, total=False):
     dimensionValues: _list[DimensionValue]
     metricValues: _list[MetricValue]
 
 @typing.type_check_only
-class RunPivotReportRequest(typing_extensions.TypedDict, total=False):
+class RunPivotReportRequest(typing.TypedDict, total=False):
     cohortSpec: CohortSpec
     currencyCode: str
     dateRanges: _list[DateRange]
@@ -285,7 +281,7 @@ class RunPivotReportRequest(typing_extensions.TypedDict, total=False):
     returnPropertyQuota: bool
 
 @typing.type_check_only
-class RunPivotReportResponse(typing_extensions.TypedDict, total=False):
+class RunPivotReportResponse(typing.TypedDict, total=False):
     aggregates: _list[Row]
     dimensionHeaders: _list[DimensionHeader]
     metadata: ResponseMetaData
@@ -295,12 +291,12 @@ class RunPivotReportResponse(typing_extensions.TypedDict, total=False):
     rows: _list[Row]
 
 @typing.type_check_only
-class RunRealtimeReportRequest(typing_extensions.TypedDict, total=False):
+class RunRealtimeReportRequest(typing.TypedDict, total=False):
     dimensionFilter: FilterExpression
     dimensions: _list[Dimension]
     limit: str
     metricAggregations: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "METRIC_AGGREGATION_UNSPECIFIED", "TOTAL", "MINIMUM", "MAXIMUM", "COUNT"
         ]
     ]
@@ -310,7 +306,7 @@ class RunRealtimeReportRequest(typing_extensions.TypedDict, total=False):
     returnPropertyQuota: bool
 
 @typing.type_check_only
-class RunRealtimeReportResponse(typing_extensions.TypedDict, total=False):
+class RunRealtimeReportResponse(typing.TypedDict, total=False):
     dimensionHeaders: _list[DimensionHeader]
     maximums: _list[Row]
     metricHeaders: _list[MetricHeader]
@@ -321,7 +317,7 @@ class RunRealtimeReportResponse(typing_extensions.TypedDict, total=False):
     totals: _list[Row]
 
 @typing.type_check_only
-class RunReportRequest(typing_extensions.TypedDict, total=False):
+class RunReportRequest(typing.TypedDict, total=False):
     cohortSpec: CohortSpec
     currencyCode: str
     dateRanges: _list[DateRange]
@@ -331,7 +327,7 @@ class RunReportRequest(typing_extensions.TypedDict, total=False):
     keepEmptyRows: bool
     limit: str
     metricAggregations: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "METRIC_AGGREGATION_UNSPECIFIED", "TOTAL", "MINIMUM", "MAXIMUM", "COUNT"
         ]
     ]
@@ -342,7 +338,7 @@ class RunReportRequest(typing_extensions.TypedDict, total=False):
     returnPropertyQuota: bool
 
 @typing.type_check_only
-class RunReportResponse(typing_extensions.TypedDict, total=False):
+class RunReportResponse(typing.TypedDict, total=False):
     dimensionHeaders: _list[DimensionHeader]
     maximums: _list[Row]
     metadata: ResponseMetaData
@@ -354,9 +350,9 @@ class RunReportResponse(typing_extensions.TypedDict, total=False):
     totals: _list[Row]
 
 @typing.type_check_only
-class StringFilter(typing_extensions.TypedDict, total=False):
+class StringFilter(typing.TypedDict, total=False):
     caseSensitive: bool
-    matchType: typing_extensions.Literal[
+    matchType: typing.Literal[
         "MATCH_TYPE_UNSPECIFIED",
         "EXACT",
         "BEGINS_WITH",

@@ -1,11 +1,9 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class Attributes(typing_extensions.TypedDict, total=False):
+class Attributes(typing.TypedDict, total=False):
     additionalImageLinks: _list[str]
     adsGrouping: str
     adsLabels: _list[str]
@@ -103,20 +101,20 @@ class Attributes(typing_extensions.TypedDict, total=False):
     virtualModelLink: str
 
 @typing.type_check_only
-class AutomatedDiscounts(typing_extensions.TypedDict, total=False):
+class AutomatedDiscounts(typing.TypedDict, total=False):
     gadPrice: Price
     priorPrice: Price
     priorPriceProgressive: Price
 
 @typing.type_check_only
-class Certification(typing_extensions.TypedDict, total=False):
+class Certification(typing.TypedDict, total=False):
     certificationAuthority: str
     certificationCode: str
     certificationName: str
     certificationValue: str
 
 @typing.type_check_only
-class CloudExportAdditionalProperties(typing_extensions.TypedDict, total=False):
+class CloudExportAdditionalProperties(typing.TypedDict, total=False):
     boolValue: bool
     floatValue: _list[float]
     intValue: _list[str]
@@ -127,17 +125,17 @@ class CloudExportAdditionalProperties(typing_extensions.TypedDict, total=False):
     unitCode: str
 
 @typing.type_check_only
-class CustomAttribute(typing_extensions.TypedDict, total=False):
+class CustomAttribute(typing.TypedDict, total=False):
     groupValues: _list[CustomAttribute]
     name: str
     value: str
 
 @typing.type_check_only
-class DestinationStatus(typing_extensions.TypedDict, total=False):
+class DestinationStatus(typing.TypedDict, total=False):
     approvedCountries: _list[str]
     disapprovedCountries: _list[str]
     pendingCountries: _list[str]
-    reportingContext: typing_extensions.Literal[
+    reportingContext: typing.Literal[
         "REPORTING_CONTEXT_ENUM_UNSPECIFIED",
         "SHOPPING_ADS",
         "DISCOVERY_ADS",
@@ -161,34 +159,34 @@ class DestinationStatus(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class FreeShippingThreshold(typing_extensions.TypedDict, total=False):
+class FreeShippingThreshold(typing.TypedDict, total=False):
     country: str
     priceThreshold: Price
 
 @typing.type_check_only
-class Installment(typing_extensions.TypedDict, total=False):
+class Installment(typing.TypedDict, total=False):
     amount: Price
     creditType: str
     downpayment: Price
     months: str
 
 @typing.type_check_only
-class Interval(typing_extensions.TypedDict, total=False):
+class Interval(typing.TypedDict, total=False):
     endTime: str
     startTime: str
 
 @typing.type_check_only
-class ItemLevelIssue(typing_extensions.TypedDict, total=False):
+class ItemLevelIssue(typing.TypedDict, total=False):
     applicableCountries: _list[str]
     attribute: str
     code: str
     description: str
     detail: str
     documentation: str
-    reportingContext: typing_extensions.Literal[
+    reportingContext: typing.Literal[
         "REPORTING_CONTEXT_ENUM_UNSPECIFIED",
         "SHOPPING_ADS",
         "DISCOVERY_ADS",
@@ -211,23 +209,23 @@ class ItemLevelIssue(typing_extensions.TypedDict, total=False):
         "YOUTUBE_CHECKOUT",
     ]
     resolution: str
-    severity: typing_extensions.Literal[
+    severity: typing.Literal[
         "SEVERITY_UNSPECIFIED", "NOT_IMPACTED", "DEMOTED", "DISAPPROVED"
     ]
 
 @typing.type_check_only
-class ListProductsResponse(typing_extensions.TypedDict, total=False):
+class ListProductsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     products: _list[Product]
 
 @typing.type_check_only
-class LoyaltyPoints(typing_extensions.TypedDict, total=False):
+class LoyaltyPoints(typing.TypedDict, total=False):
     name: str
     pointsValue: str
     ratio: float
 
 @typing.type_check_only
-class LoyaltyProgram(typing_extensions.TypedDict, total=False):
+class LoyaltyProgram(typing.TypedDict, total=False):
     cashbackForFutureUse: Price
     loyaltyPoints: str
     memberPriceEffectiveDate: Interval
@@ -237,17 +235,17 @@ class LoyaltyProgram(typing_extensions.TypedDict, total=False):
     tierLabel: str
 
 @typing.type_check_only
-class Price(typing_extensions.TypedDict, total=False):
+class Price(typing.TypedDict, total=False):
     amountMicros: str
     currencyCode: str
 
 @typing.type_check_only
-class Product(typing_extensions.TypedDict, total=False):
+class Product(typing.TypedDict, total=False):
     archived: bool
     attributes: Attributes
     automatedDiscounts: AutomatedDiscounts
     base64EncodedName: str
-    channel: typing_extensions.Literal["CHANNEL_ENUM_UNSPECIFIED", "ONLINE", "LOCAL"]
+    channel: typing.Literal["CHANNEL_ENUM_UNSPECIFIED", "ONLINE", "LOCAL"]
     contentLanguage: str
     customAttributes: _list[CustomAttribute]
     dataSource: str
@@ -258,11 +256,11 @@ class Product(typing_extensions.TypedDict, total=False):
     versionNumber: str
 
 @typing.type_check_only
-class ProductChange(typing_extensions.TypedDict, total=False):
+class ProductChange(typing.TypedDict, total=False):
     newValue: str
     oldValue: str
     regionCode: str
-    reportingContext: typing_extensions.Literal[
+    reportingContext: typing.Literal[
         "REPORTING_CONTEXT_ENUM_UNSPECIFIED",
         "SHOPPING_ADS",
         "DISCOVERY_ADS",
@@ -286,22 +284,22 @@ class ProductChange(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class ProductDetail(typing_extensions.TypedDict, total=False):
+class ProductDetail(typing.TypedDict, total=False):
     attributeName: str
     attributeValue: str
     sectionName: str
 
 @typing.type_check_only
-class ProductDimension(typing_extensions.TypedDict, total=False):
+class ProductDimension(typing.TypedDict, total=False):
     unit: str
     value: float
 
 @typing.type_check_only
-class ProductInput(typing_extensions.TypedDict, total=False):
+class ProductInput(typing.TypedDict, total=False):
     attributes: Attributes
     base64EncodedName: str
     base64EncodedProduct: str
-    channel: typing_extensions.Literal["CHANNEL_ENUM_UNSPECIFIED", "ONLINE", "LOCAL"]
+    channel: typing.Literal["CHANNEL_ENUM_UNSPECIFIED", "ONLINE", "LOCAL"]
     contentLanguage: str
     customAttributes: _list[CustomAttribute]
     feedLabel: str
@@ -311,7 +309,7 @@ class ProductInput(typing_extensions.TypedDict, total=False):
     versionNumber: str
 
 @typing.type_check_only
-class ProductStatus(typing_extensions.TypedDict, total=False):
+class ProductStatus(typing.TypedDict, total=False):
     creationDate: str
     destinationStatuses: _list[DestinationStatus]
     googleExpirationDate: str
@@ -319,44 +317,40 @@ class ProductStatus(typing_extensions.TypedDict, total=False):
     lastUpdateDate: str
 
 @typing.type_check_only
-class ProductStatusChangeMessage(typing_extensions.TypedDict, total=False):
+class ProductStatusChangeMessage(typing.TypedDict, total=False):
     account: str
-    attribute: typing_extensions.Literal["ATTRIBUTE_UNSPECIFIED", "STATUS"]
+    attribute: typing.Literal["ATTRIBUTE_UNSPECIFIED", "STATUS"]
     changes: _list[ProductChange]
     eventTime: str
     expirationTime: str
     managingAccount: str
     resource: str
     resourceId: str
-    resourceType: typing_extensions.Literal[
-        "RESOURCE_UNSPECIFIED", "PRODUCT", "ACCOUNT_SERVICE"
-    ]
+    resourceType: typing.Literal["RESOURCE_UNSPECIFIED", "PRODUCT", "ACCOUNT_SERVICE"]
 
 @typing.type_check_only
-class ProductStructuredDescription(typing_extensions.TypedDict, total=False):
+class ProductStructuredDescription(typing.TypedDict, total=False):
     content: str
     digitalSourceType: str
 
 @typing.type_check_only
-class ProductStructuredTitle(typing_extensions.TypedDict, total=False):
+class ProductStructuredTitle(typing.TypedDict, total=False):
     content: str
     digitalSourceType: str
 
 @typing.type_check_only
-class ProductSustainabilityIncentive(typing_extensions.TypedDict, total=False):
+class ProductSustainabilityIncentive(typing.TypedDict, total=False):
     amount: Price
     percentage: float
-    type: typing_extensions.Literal[
-        "TYPE_UNSPECIFIED", "EV_TAX_CREDIT", "EV_PRICE_DISCOUNT"
-    ]
+    type: typing.Literal["TYPE_UNSPECIFIED", "EV_TAX_CREDIT", "EV_PRICE_DISCOUNT"]
 
 @typing.type_check_only
-class ProductWeight(typing_extensions.TypedDict, total=False):
+class ProductWeight(typing.TypedDict, total=False):
     unit: str
     value: float
 
 @typing.type_check_only
-class Shipping(typing_extensions.TypedDict, total=False):
+class Shipping(typing.TypedDict, total=False):
     country: str
     handlingCutoffTime: str
     handlingCutoffTimezone: str
@@ -374,25 +368,23 @@ class Shipping(typing_extensions.TypedDict, total=False):
     service: str
 
 @typing.type_check_only
-class ShippingDimension(typing_extensions.TypedDict, total=False):
+class ShippingDimension(typing.TypedDict, total=False):
     unit: str
     value: float
 
 @typing.type_check_only
-class ShippingWeight(typing_extensions.TypedDict, total=False):
+class ShippingWeight(typing.TypedDict, total=False):
     unit: str
     value: float
 
 @typing.type_check_only
-class SubscriptionCost(typing_extensions.TypedDict, total=False):
+class SubscriptionCost(typing.TypedDict, total=False):
     amount: Price
-    period: typing_extensions.Literal[
-        "SUBSCRIPTION_PERIOD_UNSPECIFIED", "MONTH", "YEAR", "WEEK"
-    ]
+    period: typing.Literal["SUBSCRIPTION_PERIOD_UNSPECIFIED", "MONTH", "YEAR", "WEEK"]
     periodLength: str
 
 @typing.type_check_only
-class Tax(typing_extensions.TypedDict, total=False):
+class Tax(typing.TypedDict, total=False):
     country: str
     locationId: str
     postalCode: str
@@ -401,11 +393,11 @@ class Tax(typing_extensions.TypedDict, total=False):
     taxShip: bool
 
 @typing.type_check_only
-class UnitPricingBaseMeasure(typing_extensions.TypedDict, total=False):
+class UnitPricingBaseMeasure(typing.TypedDict, total=False):
     unit: str
     value: str
 
 @typing.type_check_only
-class UnitPricingMeasure(typing_extensions.TypedDict, total=False):
+class UnitPricingMeasure(typing.TypedDict, total=False):
     unit: str
     value: float

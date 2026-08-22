@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -28,7 +27,7 @@ class DeploymentManagerResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             deployment: str,
-            deletePolicy: typing_extensions.Literal["DELETE", "ABANDON"] | None = ...,
+            deletePolicy: typing.Literal["DELETE", "ABANDON"] | None = ...,
             header_bypassBillingFilter: bool | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -54,8 +53,7 @@ class DeploymentManagerResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             body: Deployment,
-            createPolicy: typing_extensions.Literal["CREATE_OR_ACQUIRE", "ACQUIRE"]
-            | None = ...,
+            createPolicy: typing.Literal["CREATE_OR_ACQUIRE", "ACQUIRE"] | None = ...,
             header_bypassBillingFilter: bool | None = ...,
             preview: bool | None = ...,
             **kwargs: typing.Any,
@@ -81,9 +79,8 @@ class DeploymentManagerResource(googleapiclient.discovery.Resource):
             project: str,
             deployment: str,
             body: Deployment,
-            createPolicy: typing_extensions.Literal["CREATE_OR_ACQUIRE", "ACQUIRE"]
-            | None = ...,
-            deletePolicy: typing_extensions.Literal["DELETE", "ABANDON"] | None = ...,
+            createPolicy: typing.Literal["CREATE_OR_ACQUIRE", "ACQUIRE"] | None = ...,
+            deletePolicy: typing.Literal["DELETE", "ABANDON"] | None = ...,
             header_bypassBillingFilter: bool | None = ...,
             preview: bool | None = ...,
             **kwargs: typing.Any,
@@ -119,9 +116,8 @@ class DeploymentManagerResource(googleapiclient.discovery.Resource):
             project: str,
             deployment: str,
             body: Deployment,
-            createPolicy: typing_extensions.Literal["CREATE_OR_ACQUIRE", "ACQUIRE"]
-            | None = ...,
-            deletePolicy: typing_extensions.Literal["DELETE", "ABANDON"] | None = ...,
+            createPolicy: typing.Literal["CREATE_OR_ACQUIRE", "ACQUIRE"] | None = ...,
+            deletePolicy: typing.Literal["DELETE", "ABANDON"] | None = ...,
             header_bypassBillingFilter: bool | None = ...,
             preview: bool | None = ...,
             **kwargs: typing.Any,

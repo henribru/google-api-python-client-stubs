@@ -1,43 +1,31 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class GoogleAnalyticsAdminV1betaAccessBetweenFilter(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAnalyticsAdminV1betaAccessBetweenFilter(typing.TypedDict, total=False):
     fromValue: GoogleAnalyticsAdminV1betaNumericValue
     toValue: GoogleAnalyticsAdminV1betaNumericValue
 
 @typing.type_check_only
-class GoogleAnalyticsAdminV1betaAccessDateRange(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAnalyticsAdminV1betaAccessDateRange(typing.TypedDict, total=False):
     endDate: str
     startDate: str
 
 @typing.type_check_only
-class GoogleAnalyticsAdminV1betaAccessDimension(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAnalyticsAdminV1betaAccessDimension(typing.TypedDict, total=False):
     dimensionName: str
 
 @typing.type_check_only
-class GoogleAnalyticsAdminV1betaAccessDimensionHeader(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAnalyticsAdminV1betaAccessDimensionHeader(typing.TypedDict, total=False):
     dimensionName: str
 
 @typing.type_check_only
-class GoogleAnalyticsAdminV1betaAccessDimensionValue(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAnalyticsAdminV1betaAccessDimensionValue(typing.TypedDict, total=False):
     value: str
 
 @typing.type_check_only
-class GoogleAnalyticsAdminV1betaAccessFilter(typing_extensions.TypedDict, total=False):
+class GoogleAnalyticsAdminV1betaAccessFilter(typing.TypedDict, total=False):
     betweenFilter: GoogleAnalyticsAdminV1betaAccessBetweenFilter
     fieldName: str
     inListFilter: GoogleAnalyticsAdminV1betaAccessInListFilter
@@ -45,9 +33,7 @@ class GoogleAnalyticsAdminV1betaAccessFilter(typing_extensions.TypedDict, total=
     stringFilter: GoogleAnalyticsAdminV1betaAccessStringFilter
 
 @typing.type_check_only
-class GoogleAnalyticsAdminV1betaAccessFilterExpression(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAnalyticsAdminV1betaAccessFilterExpression(typing.TypedDict, total=False):
     accessFilter: GoogleAnalyticsAdminV1betaAccessFilter
     andGroup: GoogleAnalyticsAdminV1betaAccessFilterExpressionList
     notExpression: GoogleAnalyticsAdminV1betaAccessFilterExpression
@@ -55,38 +41,30 @@ class GoogleAnalyticsAdminV1betaAccessFilterExpression(
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1betaAccessFilterExpressionList(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     expressions: _list[GoogleAnalyticsAdminV1betaAccessFilterExpression]
 
 @typing.type_check_only
-class GoogleAnalyticsAdminV1betaAccessInListFilter(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAnalyticsAdminV1betaAccessInListFilter(typing.TypedDict, total=False):
     caseSensitive: bool
     values: _list[str]
 
 @typing.type_check_only
-class GoogleAnalyticsAdminV1betaAccessMetric(typing_extensions.TypedDict, total=False):
+class GoogleAnalyticsAdminV1betaAccessMetric(typing.TypedDict, total=False):
     metricName: str
 
 @typing.type_check_only
-class GoogleAnalyticsAdminV1betaAccessMetricHeader(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAnalyticsAdminV1betaAccessMetricHeader(typing.TypedDict, total=False):
     metricName: str
 
 @typing.type_check_only
-class GoogleAnalyticsAdminV1betaAccessMetricValue(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAnalyticsAdminV1betaAccessMetricValue(typing.TypedDict, total=False):
     value: str
 
 @typing.type_check_only
-class GoogleAnalyticsAdminV1betaAccessNumericFilter(
-    typing_extensions.TypedDict, total=False
-):
-    operation: typing_extensions.Literal[
+class GoogleAnalyticsAdminV1betaAccessNumericFilter(typing.TypedDict, total=False):
+    operation: typing.Literal[
         "OPERATION_UNSPECIFIED",
         "EQUAL",
         "LESS_THAN",
@@ -97,17 +75,17 @@ class GoogleAnalyticsAdminV1betaAccessNumericFilter(
     value: GoogleAnalyticsAdminV1betaNumericValue
 
 @typing.type_check_only
-class GoogleAnalyticsAdminV1betaAccessOrderBy(typing_extensions.TypedDict, total=False):
+class GoogleAnalyticsAdminV1betaAccessOrderBy(typing.TypedDict, total=False):
     desc: bool
     dimension: GoogleAnalyticsAdminV1betaAccessOrderByDimensionOrderBy
     metric: GoogleAnalyticsAdminV1betaAccessOrderByMetricOrderBy
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1betaAccessOrderByDimensionOrderBy(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     dimensionName: str
-    orderType: typing_extensions.Literal[
+    orderType: typing.Literal[
         "ORDER_TYPE_UNSPECIFIED",
         "ALPHANUMERIC",
         "CASE_INSENSITIVE_ALPHANUMERIC",
@@ -116,12 +94,12 @@ class GoogleAnalyticsAdminV1betaAccessOrderByDimensionOrderBy(
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1betaAccessOrderByMetricOrderBy(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     metricName: str
 
 @typing.type_check_only
-class GoogleAnalyticsAdminV1betaAccessQuota(typing_extensions.TypedDict, total=False):
+class GoogleAnalyticsAdminV1betaAccessQuota(typing.TypedDict, total=False):
     concurrentRequests: GoogleAnalyticsAdminV1betaAccessQuotaStatus
     serverErrorsPerProjectPerHour: GoogleAnalyticsAdminV1betaAccessQuotaStatus
     tokensPerDay: GoogleAnalyticsAdminV1betaAccessQuotaStatus
@@ -129,23 +107,19 @@ class GoogleAnalyticsAdminV1betaAccessQuota(typing_extensions.TypedDict, total=F
     tokensPerProjectPerHour: GoogleAnalyticsAdminV1betaAccessQuotaStatus
 
 @typing.type_check_only
-class GoogleAnalyticsAdminV1betaAccessQuotaStatus(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAnalyticsAdminV1betaAccessQuotaStatus(typing.TypedDict, total=False):
     consumed: int
     remaining: int
 
 @typing.type_check_only
-class GoogleAnalyticsAdminV1betaAccessRow(typing_extensions.TypedDict, total=False):
+class GoogleAnalyticsAdminV1betaAccessRow(typing.TypedDict, total=False):
     dimensionValues: _list[GoogleAnalyticsAdminV1betaAccessDimensionValue]
     metricValues: _list[GoogleAnalyticsAdminV1betaAccessMetricValue]
 
 @typing.type_check_only
-class GoogleAnalyticsAdminV1betaAccessStringFilter(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAnalyticsAdminV1betaAccessStringFilter(typing.TypedDict, total=False):
     caseSensitive: bool
-    matchType: typing_extensions.Literal[
+    matchType: typing.Literal[
         "MATCH_TYPE_UNSPECIFIED",
         "EXACT",
         "BEGINS_WITH",
@@ -157,7 +131,7 @@ class GoogleAnalyticsAdminV1betaAccessStringFilter(
     value: str
 
 @typing.type_check_only
-class GoogleAnalyticsAdminV1betaAccount(typing_extensions.TypedDict, total=False):
+class GoogleAnalyticsAdminV1betaAccount(typing.TypedDict, total=False):
     createTime: str
     deleted: bool
     displayName: str
@@ -167,9 +141,7 @@ class GoogleAnalyticsAdminV1betaAccount(typing_extensions.TypedDict, total=False
     updateTime: str
 
 @typing.type_check_only
-class GoogleAnalyticsAdminV1betaAccountSummary(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAnalyticsAdminV1betaAccountSummary(typing.TypedDict, total=False):
     account: str
     displayName: str
     name: str
@@ -177,32 +149,28 @@ class GoogleAnalyticsAdminV1betaAccountSummary(
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1betaAcknowledgeUserDataCollectionRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     acknowledgement: str
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1betaAcknowledgeUserDataCollectionResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ): ...
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1betaArchiveCustomDimensionRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ): ...
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1betaArchiveCustomMetricRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ): ...
 
 @typing.type_check_only
-class GoogleAnalyticsAdminV1betaChangeHistoryChange(
-    typing_extensions.TypedDict, total=False
-):
-    action: typing_extensions.Literal[
-        "ACTION_TYPE_UNSPECIFIED", "CREATED", "UPDATED", "DELETED"
-    ]
+class GoogleAnalyticsAdminV1betaChangeHistoryChange(typing.TypedDict, total=False):
+    action: typing.Literal["ACTION_TYPE_UNSPECIFIED", "CREATED", "UPDATED", "DELETED"]
     resource: str
     resourceAfterChange: (
         GoogleAnalyticsAdminV1betaChangeHistoryChangeChangeHistoryResource
@@ -213,7 +181,7 @@ class GoogleAnalyticsAdminV1betaChangeHistoryChange(
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1betaChangeHistoryChangeChangeHistoryResource(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     account: GoogleAnalyticsAdminV1betaAccount
     conversionEvent: GoogleAnalyticsAdminV1betaConversionEvent
@@ -225,12 +193,8 @@ class GoogleAnalyticsAdminV1betaChangeHistoryChangeChangeHistoryResource(
     property: GoogleAnalyticsAdminV1betaProperty
 
 @typing.type_check_only
-class GoogleAnalyticsAdminV1betaChangeHistoryEvent(
-    typing_extensions.TypedDict, total=False
-):
-    actorType: typing_extensions.Literal[
-        "ACTOR_TYPE_UNSPECIFIED", "USER", "SYSTEM", "SUPPORT"
-    ]
+class GoogleAnalyticsAdminV1betaChangeHistoryEvent(typing.TypedDict, total=False):
+    actorType: typing.Literal["ACTOR_TYPE_UNSPECIFIED", "USER", "SYSTEM", "SUPPORT"]
     changeTime: str
     changes: _list[GoogleAnalyticsAdminV1betaChangeHistoryChange]
     changesFiltered: bool
@@ -238,10 +202,8 @@ class GoogleAnalyticsAdminV1betaChangeHistoryEvent(
     userActorEmail: str
 
 @typing.type_check_only
-class GoogleAnalyticsAdminV1betaConversionEvent(
-    typing_extensions.TypedDict, total=False
-):
-    countingMethod: typing_extensions.Literal[
+class GoogleAnalyticsAdminV1betaConversionEvent(typing.TypedDict, total=False):
+    countingMethod: typing.Literal[
         "CONVERSION_COUNTING_METHOD_UNSPECIFIED", "ONCE_PER_EVENT", "ONCE_PER_SESSION"
     ]
     createTime: str
@@ -255,29 +217,25 @@ class GoogleAnalyticsAdminV1betaConversionEvent(
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1betaConversionEventDefaultConversionValue(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     currencyCode: str
     value: float
 
 @typing.type_check_only
-class GoogleAnalyticsAdminV1betaCustomDimension(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAnalyticsAdminV1betaCustomDimension(typing.TypedDict, total=False):
     description: str
     disallowAdsPersonalization: bool
     displayName: str
     name: str
     parameterName: str
-    scope: typing_extensions.Literal[
-        "DIMENSION_SCOPE_UNSPECIFIED", "EVENT", "USER", "ITEM"
-    ]
+    scope: typing.Literal["DIMENSION_SCOPE_UNSPECIFIED", "EVENT", "USER", "ITEM"]
 
 @typing.type_check_only
-class GoogleAnalyticsAdminV1betaCustomMetric(typing_extensions.TypedDict, total=False):
+class GoogleAnalyticsAdminV1betaCustomMetric(typing.TypedDict, total=False):
     description: str
     displayName: str
-    measurementUnit: typing_extensions.Literal[
+    measurementUnit: typing.Literal[
         "MEASUREMENT_UNIT_UNSPECIFIED",
         "STANDARD",
         "CURRENCY",
@@ -293,17 +251,15 @@ class GoogleAnalyticsAdminV1betaCustomMetric(typing_extensions.TypedDict, total=
     name: str
     parameterName: str
     restrictedMetricType: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "RESTRICTED_METRIC_TYPE_UNSPECIFIED", "COST_DATA", "REVENUE_DATA"
         ]
     ]
-    scope: typing_extensions.Literal["METRIC_SCOPE_UNSPECIFIED", "EVENT"]
+    scope: typing.Literal["METRIC_SCOPE_UNSPECIFIED", "EVENT"]
 
 @typing.type_check_only
-class GoogleAnalyticsAdminV1betaDataRetentionSettings(
-    typing_extensions.TypedDict, total=False
-):
-    eventDataRetention: typing_extensions.Literal[
+class GoogleAnalyticsAdminV1betaDataRetentionSettings(typing.TypedDict, total=False):
+    eventDataRetention: typing.Literal[
         "RETENTION_DURATION_UNSPECIFIED",
         "TWO_MONTHS",
         "FOURTEEN_MONTHS",
@@ -313,7 +269,7 @@ class GoogleAnalyticsAdminV1betaDataRetentionSettings(
     ]
     name: str
     resetUserDataOnNewActivity: bool
-    userDataRetention: typing_extensions.Literal[
+    userDataRetention: typing.Literal[
         "RETENTION_DURATION_UNSPECIFIED",
         "TWO_MONTHS",
         "FOURTEEN_MONTHS",
@@ -323,9 +279,7 @@ class GoogleAnalyticsAdminV1betaDataRetentionSettings(
     ]
 
 @typing.type_check_only
-class GoogleAnalyticsAdminV1betaDataSharingSettings(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAnalyticsAdminV1betaDataSharingSettings(typing.TypedDict, total=False):
     name: str
     sharingWithGoogleAnySalesEnabled: bool
     sharingWithGoogleAssignedSalesEnabled: bool
@@ -334,13 +288,13 @@ class GoogleAnalyticsAdminV1betaDataSharingSettings(
     sharingWithOthersEnabled: bool
 
 @typing.type_check_only
-class GoogleAnalyticsAdminV1betaDataStream(typing_extensions.TypedDict, total=False):
+class GoogleAnalyticsAdminV1betaDataStream(typing.TypedDict, total=False):
     androidAppStreamData: GoogleAnalyticsAdminV1betaDataStreamAndroidAppStreamData
     createTime: str
     displayName: str
     iosAppStreamData: GoogleAnalyticsAdminV1betaDataStreamIosAppStreamData
     name: str
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "DATA_STREAM_TYPE_UNSPECIFIED",
         "WEB_DATA_STREAM",
         "ANDROID_APP_DATA_STREAM",
@@ -351,34 +305,32 @@ class GoogleAnalyticsAdminV1betaDataStream(typing_extensions.TypedDict, total=Fa
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1betaDataStreamAndroidAppStreamData(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     firebaseAppId: str
     packageName: str
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1betaDataStreamIosAppStreamData(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     bundleId: str
     firebaseAppId: str
 
 @typing.type_check_only
-class GoogleAnalyticsAdminV1betaDataStreamWebStreamData(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAnalyticsAdminV1betaDataStreamWebStreamData(typing.TypedDict, total=False):
     defaultUri: str
     firebaseAppId: str
     measurementId: str
 
 @typing.type_check_only
-class GoogleAnalyticsAdminV1betaFirebaseLink(typing_extensions.TypedDict, total=False):
+class GoogleAnalyticsAdminV1betaFirebaseLink(typing.TypedDict, total=False):
     createTime: str
     name: str
     project: str
 
 @typing.type_check_only
-class GoogleAnalyticsAdminV1betaGoogleAdsLink(typing_extensions.TypedDict, total=False):
+class GoogleAnalyticsAdminV1betaGoogleAdsLink(typing.TypedDict, total=False):
     adsPersonalizationEnabled: bool
     canManageClients: bool
     createTime: str
@@ -388,8 +340,8 @@ class GoogleAnalyticsAdminV1betaGoogleAdsLink(typing_extensions.TypedDict, total
     updateTime: str
 
 @typing.type_check_only
-class GoogleAnalyticsAdminV1betaKeyEvent(typing_extensions.TypedDict, total=False):
-    countingMethod: typing_extensions.Literal[
+class GoogleAnalyticsAdminV1betaKeyEvent(typing.TypedDict, total=False):
+    countingMethod: typing.Literal[
         "COUNTING_METHOD_UNSPECIFIED", "ONCE_PER_EVENT", "ONCE_PER_SESSION"
     ]
     createTime: str
@@ -400,78 +352,70 @@ class GoogleAnalyticsAdminV1betaKeyEvent(typing_extensions.TypedDict, total=Fals
     name: str
 
 @typing.type_check_only
-class GoogleAnalyticsAdminV1betaKeyEventDefaultValue(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAnalyticsAdminV1betaKeyEventDefaultValue(typing.TypedDict, total=False):
     currencyCode: str
     numericValue: float
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1betaListAccountSummariesResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     accountSummaries: _list[GoogleAnalyticsAdminV1betaAccountSummary]
     nextPageToken: str
 
 @typing.type_check_only
-class GoogleAnalyticsAdminV1betaListAccountsResponse(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAnalyticsAdminV1betaListAccountsResponse(typing.TypedDict, total=False):
     accounts: _list[GoogleAnalyticsAdminV1betaAccount]
     nextPageToken: str
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1betaListConversionEventsResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     conversionEvents: _list[GoogleAnalyticsAdminV1betaConversionEvent]
     nextPageToken: str
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1betaListCustomDimensionsResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     customDimensions: _list[GoogleAnalyticsAdminV1betaCustomDimension]
     nextPageToken: str
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1betaListCustomMetricsResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     customMetrics: _list[GoogleAnalyticsAdminV1betaCustomMetric]
     nextPageToken: str
 
 @typing.type_check_only
-class GoogleAnalyticsAdminV1betaListDataStreamsResponse(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAnalyticsAdminV1betaListDataStreamsResponse(typing.TypedDict, total=False):
     dataStreams: _list[GoogleAnalyticsAdminV1betaDataStream]
     nextPageToken: str
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1betaListFirebaseLinksResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     firebaseLinks: _list[GoogleAnalyticsAdminV1betaFirebaseLink]
     nextPageToken: str
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1betaListGoogleAdsLinksResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     googleAdsLinks: _list[GoogleAnalyticsAdminV1betaGoogleAdsLink]
     nextPageToken: str
 
 @typing.type_check_only
-class GoogleAnalyticsAdminV1betaListKeyEventsResponse(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAnalyticsAdminV1betaListKeyEventsResponse(typing.TypedDict, total=False):
     keyEvents: _list[GoogleAnalyticsAdminV1betaKeyEvent]
     nextPageToken: str
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1betaListMeasurementProtocolSecretsResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     measurementProtocolSecrets: _list[
         GoogleAnalyticsAdminV1betaMeasurementProtocolSecret
@@ -479,34 +423,32 @@ class GoogleAnalyticsAdminV1betaListMeasurementProtocolSecretsResponse(
     nextPageToken: str
 
 @typing.type_check_only
-class GoogleAnalyticsAdminV1betaListPropertiesResponse(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAnalyticsAdminV1betaListPropertiesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     properties: _list[GoogleAnalyticsAdminV1betaProperty]
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1betaMeasurementProtocolSecret(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     displayName: str
     name: str
     secretValue: str
 
 @typing.type_check_only
-class GoogleAnalyticsAdminV1betaNumericValue(typing_extensions.TypedDict, total=False):
+class GoogleAnalyticsAdminV1betaNumericValue(typing.TypedDict, total=False):
     doubleValue: float
     int64Value: str
 
 @typing.type_check_only
-class GoogleAnalyticsAdminV1betaProperty(typing_extensions.TypedDict, total=False):
+class GoogleAnalyticsAdminV1betaProperty(typing.TypedDict, total=False):
     account: str
     createTime: str
     currencyCode: str
     deleteTime: str
     displayName: str
     expireTime: str
-    industryCategory: typing_extensions.Literal[
+    industryCategory: typing.Literal[
         "INDUSTRY_CATEGORY_UNSPECIFIED",
         "AUTOMOTIVE",
         "BUSINESS_AND_INDUSTRIAL_MARKETS",
@@ -537,27 +479,25 @@ class GoogleAnalyticsAdminV1betaProperty(typing_extensions.TypedDict, total=Fals
     ]
     name: str
     parent: str
-    propertyType: typing_extensions.Literal[
+    propertyType: typing.Literal[
         "PROPERTY_TYPE_UNSPECIFIED",
         "PROPERTY_TYPE_ORDINARY",
         "PROPERTY_TYPE_SUBPROPERTY",
         "PROPERTY_TYPE_ROLLUP",
     ]
-    serviceLevel: typing_extensions.Literal[
+    serviceLevel: typing.Literal[
         "SERVICE_LEVEL_UNSPECIFIED", "GOOGLE_ANALYTICS_STANDARD", "GOOGLE_ANALYTICS_360"
     ]
     timeZone: str
     updateTime: str
 
 @typing.type_check_only
-class GoogleAnalyticsAdminV1betaPropertySummary(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAnalyticsAdminV1betaPropertySummary(typing.TypedDict, total=False):
     canEdit: bool
     displayName: str
     parent: str
     property: str
-    propertyType: typing_extensions.Literal[
+    propertyType: typing.Literal[
         "PROPERTY_TYPE_UNSPECIFIED",
         "PROPERTY_TYPE_ORDINARY",
         "PROPERTY_TYPE_SUBPROPERTY",
@@ -566,21 +506,19 @@ class GoogleAnalyticsAdminV1betaPropertySummary(
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1betaProvisionAccountTicketRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     account: GoogleAnalyticsAdminV1betaAccount
     redirectUri: str
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1betaProvisionAccountTicketResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     accountTicketId: str
 
 @typing.type_check_only
-class GoogleAnalyticsAdminV1betaRunAccessReportRequest(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAnalyticsAdminV1betaRunAccessReportRequest(typing.TypedDict, total=False):
     dateRanges: _list[GoogleAnalyticsAdminV1betaAccessDateRange]
     dimensionFilter: GoogleAnalyticsAdminV1betaAccessFilterExpression
     dimensions: _list[GoogleAnalyticsAdminV1betaAccessDimension]
@@ -595,9 +533,7 @@ class GoogleAnalyticsAdminV1betaRunAccessReportRequest(
     timeZone: str
 
 @typing.type_check_only
-class GoogleAnalyticsAdminV1betaRunAccessReportResponse(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleAnalyticsAdminV1betaRunAccessReportResponse(typing.TypedDict, total=False):
     dimensionHeaders: _list[GoogleAnalyticsAdminV1betaAccessDimensionHeader]
     metricHeaders: _list[GoogleAnalyticsAdminV1betaAccessMetricHeader]
     quota: GoogleAnalyticsAdminV1betaAccessQuota
@@ -606,12 +542,10 @@ class GoogleAnalyticsAdminV1betaRunAccessReportResponse(
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1betaSearchChangeHistoryEventsRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     action: _list[
-        typing_extensions.Literal[
-            "ACTION_TYPE_UNSPECIFIED", "CREATED", "UPDATED", "DELETED"
-        ]
+        typing.Literal["ACTION_TYPE_UNSPECIFIED", "CREATED", "UPDATED", "DELETED"]
     ]
     actorEmail: _list[str]
     earliestChangeTime: str
@@ -620,7 +554,7 @@ class GoogleAnalyticsAdminV1betaSearchChangeHistoryEventsRequest(
     pageToken: str
     property: str
     resourceType: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "CHANGE_HISTORY_RESOURCE_TYPE_UNSPECIFIED",
             "ACCOUNT",
             "PROPERTY",
@@ -641,10 +575,10 @@ class GoogleAnalyticsAdminV1betaSearchChangeHistoryEventsRequest(
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1betaSearchChangeHistoryEventsResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     changeHistoryEvents: _list[GoogleAnalyticsAdminV1betaChangeHistoryEvent]
     nextPageToken: str
 
 @typing.type_check_only
-class GoogleProtobufEmpty(typing_extensions.TypedDict, total=False): ...
+class GoogleProtobufEmpty(typing.TypedDict, total=False): ...

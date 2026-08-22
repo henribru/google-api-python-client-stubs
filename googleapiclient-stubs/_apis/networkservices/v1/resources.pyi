@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -987,7 +986,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    view: typing_extensions.Literal[
+                    view: typing.Literal[
                         "WASM_PLUGIN_VIEW_UNSPECIFIED",
                         "WASM_PLUGIN_VIEW_BASIC",
                         "WASM_PLUGIN_VIEW_FULL",

@@ -1,33 +1,31 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class AggregationInfo(typing_extensions.TypedDict, total=False):
+class AggregationInfo(typing.TypedDict, total=False):
     aggregationCount: int
-    aggregationInterval: typing_extensions.Literal[
+    aggregationInterval: typing.Literal[
         "AGGREGATION_INTERVAL_UNSPECIFIED", "DAILY", "MONTHLY"
     ]
-    aggregationLevel: typing_extensions.Literal[
+    aggregationLevel: typing.Literal[
         "AGGREGATION_LEVEL_UNSPECIFIED", "ACCOUNT", "PROJECT"
     ]
 
 @typing.type_check_only
-class AuditConfig(typing_extensions.TypedDict, total=False):
+class AuditConfig(typing.TypedDict, total=False):
     auditLogConfigs: _list[AuditLogConfig]
     service: str
 
 @typing.type_check_only
-class AuditLogConfig(typing_extensions.TypedDict, total=False):
+class AuditLogConfig(typing.TypedDict, total=False):
     exemptedMembers: _list[str]
-    logType: typing_extensions.Literal[
+    logType: typing.Literal[
         "LOG_TYPE_UNSPECIFIED", "ADMIN_READ", "DATA_WRITE", "DATA_READ"
     ]
 
 @typing.type_check_only
-class BillingAccount(typing_extensions.TypedDict, total=False):
+class BillingAccount(typing.TypedDict, total=False):
     currencyCode: str
     displayName: str
     masterBillingAccount: str
@@ -36,71 +34,69 @@ class BillingAccount(typing_extensions.TypedDict, total=False):
     parent: str
 
 @typing.type_check_only
-class Binding(typing_extensions.TypedDict, total=False):
+class Binding(typing.TypedDict, total=False):
     condition: Expr
     members: _list[str]
     role: str
 
 @typing.type_check_only
-class Category(typing_extensions.TypedDict, total=False):
+class Category(typing.TypedDict, total=False):
     resourceFamily: str
     resourceGroup: str
     serviceDisplayName: str
     usageType: str
 
 @typing.type_check_only
-class Expr(typing_extensions.TypedDict, total=False):
+class Expr(typing.TypedDict, total=False):
     description: str
     expression: str
     location: str
     title: str
 
 @typing.type_check_only
-class GeoTaxonomy(typing_extensions.TypedDict, total=False):
+class GeoTaxonomy(typing.TypedDict, total=False):
     regions: _list[str]
-    type: typing_extensions.Literal[
-        "TYPE_UNSPECIFIED", "GLOBAL", "REGIONAL", "MULTI_REGIONAL"
-    ]
+    type: typing.Literal["TYPE_UNSPECIFIED", "GLOBAL", "REGIONAL", "MULTI_REGIONAL"]
 
 @typing.type_check_only
-class ListBillingAccountsResponse(typing_extensions.TypedDict, total=False):
+class ListBillingAccountsResponse(typing.TypedDict, total=False):
     billingAccounts: _list[BillingAccount]
     nextPageToken: str
 
 @typing.type_check_only
-class ListProjectBillingInfoResponse(typing_extensions.TypedDict, total=False):
+class ListProjectBillingInfoResponse(typing.TypedDict, total=False):
     nextPageToken: str
     projectBillingInfo: _list[ProjectBillingInfo]
 
 @typing.type_check_only
-class ListServicesResponse(typing_extensions.TypedDict, total=False):
+class ListServicesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     services: _list[Service]
 
 @typing.type_check_only
-class ListSkusResponse(typing_extensions.TypedDict, total=False):
+class ListSkusResponse(typing.TypedDict, total=False):
     nextPageToken: str
     skus: _list[Sku]
 
 @typing.type_check_only
-class Money(typing_extensions.TypedDict, total=False):
+class Money(typing.TypedDict, total=False):
     currencyCode: str
     nanos: int
     units: str
 
 @typing.type_check_only
-class MoveBillingAccountRequest(typing_extensions.TypedDict, total=False):
+class MoveBillingAccountRequest(typing.TypedDict, total=False):
     destinationParent: str
 
 @typing.type_check_only
-class Policy(typing_extensions.TypedDict, total=False):
+class Policy(typing.TypedDict, total=False):
     auditConfigs: _list[AuditConfig]
     bindings: _list[Binding]
     etag: str
     version: int
 
 @typing.type_check_only
-class PricingExpression(typing_extensions.TypedDict, total=False):
+class PricingExpression(typing.TypedDict, total=False):
     baseUnit: str
     baseUnitConversionFactor: float
     baseUnitDescription: str
@@ -110,7 +106,7 @@ class PricingExpression(typing_extensions.TypedDict, total=False):
     usageUnitDescription: str
 
 @typing.type_check_only
-class PricingInfo(typing_extensions.TypedDict, total=False):
+class PricingInfo(typing.TypedDict, total=False):
     aggregationInfo: AggregationInfo
     currencyConversionRate: float
     effectiveTime: str
@@ -118,26 +114,26 @@ class PricingInfo(typing_extensions.TypedDict, total=False):
     summary: str
 
 @typing.type_check_only
-class ProjectBillingInfo(typing_extensions.TypedDict, total=False):
+class ProjectBillingInfo(typing.TypedDict, total=False):
     billingAccountName: str
     billingEnabled: bool
     name: str
     projectId: str
 
 @typing.type_check_only
-class Service(typing_extensions.TypedDict, total=False):
+class Service(typing.TypedDict, total=False):
     businessEntityName: str
     displayName: str
     name: str
     serviceId: str
 
 @typing.type_check_only
-class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
+class SetIamPolicyRequest(typing.TypedDict, total=False):
     policy: Policy
     updateMask: str
 
 @typing.type_check_only
-class Sku(typing_extensions.TypedDict, total=False):
+class Sku(typing.TypedDict, total=False):
     category: Category
     description: str
     geoTaxonomy: GeoTaxonomy
@@ -148,14 +144,14 @@ class Sku(typing_extensions.TypedDict, total=False):
     skuId: str
 
 @typing.type_check_only
-class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
+class TestIamPermissionsRequest(typing.TypedDict, total=False):
     permissions: _list[str]
 
 @typing.type_check_only
-class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
+class TestIamPermissionsResponse(typing.TypedDict, total=False):
     permissions: _list[str]
 
 @typing.type_check_only
-class TierRate(typing_extensions.TypedDict, total=False):
+class TierRate(typing.TypedDict, total=False):
     startUsageAmount: float
     unitPrice: Money

@@ -1,57 +1,55 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class AccessKeyCredentials(typing_extensions.TypedDict, total=False):
+class AccessKeyCredentials(typing.TypedDict, total=False):
     accessKeyId: str
     secretAccessKey: str
     sessionToken: str
 
 @typing.type_check_only
-class AdaptationModifier(typing_extensions.TypedDict, total=False):
+class AdaptationModifier(typing.TypedDict, total=False):
     modifier: str
     value: str
 
 @typing.type_check_only
-class AdaptingOSStep(typing_extensions.TypedDict, total=False): ...
+class AdaptingOSStep(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class AddGroupMigrationRequest(typing_extensions.TypedDict, total=False):
+class AddGroupMigrationRequest(typing.TypedDict, total=False):
     migratingVm: str
 
 @typing.type_check_only
-class ApplianceVersion(typing_extensions.TypedDict, total=False):
+class ApplianceVersion(typing.TypedDict, total=False):
     critical: bool
     releaseNotesUri: str
     uri: str
     version: str
 
 @typing.type_check_only
-class AppliedLicense(typing_extensions.TypedDict, total=False):
+class AppliedLicense(typing.TypedDict, total=False):
     osLicense: str
-    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "NONE", "PAYG", "BYOL"]
+    type: typing.Literal["TYPE_UNSPECIFIED", "NONE", "PAYG", "BYOL"]
 
 @typing.type_check_only
-class AvailableUpdates(typing_extensions.TypedDict, total=False):
+class AvailableUpdates(typing.TypedDict, total=False):
     inPlaceUpdate: ApplianceVersion
     newDeployableAppliance: ApplianceVersion
 
 @typing.type_check_only
-class AwsDiskDetails(typing_extensions.TypedDict, total=False):
+class AwsDiskDetails(typing.TypedDict, total=False):
     diskNumber: int
     sizeGb: str
     volumeId: str
 
 @typing.type_check_only
-class AwsSecurityGroup(typing_extensions.TypedDict, total=False):
+class AwsSecurityGroup(typing.TypedDict, total=False):
     id: str
     name: str
 
 @typing.type_check_only
-class AwsSourceDetails(typing_extensions.TypedDict, total=False):
+class AwsSourceDetails(typing.TypedDict, total=False):
     accessKeyCreds: AccessKeyCredentials
     awsRegion: str
     error: Status
@@ -59,11 +57,11 @@ class AwsSourceDetails(typing_extensions.TypedDict, total=False):
     inventoryTagList: _list[Tag]
     migrationResourcesUserTags: dict[str, typing.Any]
     publicIp: str
-    state: typing_extensions.Literal["STATE_UNSPECIFIED", "PENDING", "FAILED", "ACTIVE"]
+    state: typing.Literal["STATE_UNSPECIFIED", "PENDING", "FAILED", "ACTIVE"]
 
 @typing.type_check_only
-class AwsSourceDiskDetails(typing_extensions.TypedDict, total=False):
-    diskType: typing_extensions.Literal[
+class AwsSourceDiskDetails(typing.TypedDict, total=False):
+    diskType: typing.Literal[
         "TYPE_UNSPECIFIED", "GP2", "GP3", "IO1", "IO2", "ST1", "SC1", "STANDARD"
     ]
     sizeGib: str
@@ -71,23 +69,23 @@ class AwsSourceDiskDetails(typing_extensions.TypedDict, total=False):
     volumeId: str
 
 @typing.type_check_only
-class AwsSourceVmDetails(typing_extensions.TypedDict, total=False):
-    architecture: typing_extensions.Literal[
+class AwsSourceVmDetails(typing.TypedDict, total=False):
+    architecture: typing.Literal[
         "VM_ARCHITECTURE_UNSPECIFIED",
         "VM_ARCHITECTURE_X86_FAMILY",
         "VM_ARCHITECTURE_ARM64",
     ]
     committedStorageBytes: str
     disks: _list[AwsDiskDetails]
-    firmware: typing_extensions.Literal["FIRMWARE_UNSPECIFIED", "EFI", "BIOS"]
+    firmware: typing.Literal["FIRMWARE_UNSPECIFIED", "EFI", "BIOS"]
     vmCapabilitiesInfo: VmCapabilities
 
 @typing.type_check_only
-class AwsVmDetails(typing_extensions.TypedDict, total=False):
-    architecture: typing_extensions.Literal[
+class AwsVmDetails(typing.TypedDict, total=False):
+    architecture: typing.Literal[
         "VM_ARCHITECTURE_UNSPECIFIED", "I386", "X86_64", "ARM64", "X86_64_MAC"
     ]
-    bootOption: typing_extensions.Literal["BOOT_OPTION_UNSPECIFIED", "EFI", "BIOS"]
+    bootOption: typing.Literal["BOOT_OPTION_UNSPECIFIED", "EFI", "BIOS"]
     committedStorageMb: str
     cpuCount: int
     diskCount: int
@@ -95,7 +93,7 @@ class AwsVmDetails(typing_extensions.TypedDict, total=False):
     instanceType: str
     memoryMb: int
     osDescription: str
-    powerState: typing_extensions.Literal[
+    powerState: typing.Literal[
         "POWER_STATE_UNSPECIFIED", "ON", "OFF", "SUSPENDED", "PENDING"
     ]
     securityGroups: _list[AwsSecurityGroup]
@@ -103,7 +101,7 @@ class AwsVmDetails(typing_extensions.TypedDict, total=False):
     sourceId: str
     tags: dict[str, typing.Any]
     vcpuCount: int
-    virtualizationType: typing_extensions.Literal[
+    virtualizationType: typing.Literal[
         "VM_VIRTUALIZATION_TYPE_UNSPECIFIED", "HVM", "PARAVIRTUAL"
     ]
     vmId: str
@@ -111,45 +109,45 @@ class AwsVmDetails(typing_extensions.TypedDict, total=False):
     zone: str
 
 @typing.type_check_only
-class AwsVmsDetails(typing_extensions.TypedDict, total=False):
+class AwsVmsDetails(typing.TypedDict, total=False):
     details: _list[AwsVmDetails]
 
 @typing.type_check_only
-class AzureDiskDetails(typing_extensions.TypedDict, total=False):
+class AzureDiskDetails(typing.TypedDict, total=False):
     diskId: str
     diskNumber: int
     sizeGb: str
 
 @typing.type_check_only
-class AzureSourceDetails(typing_extensions.TypedDict, total=False):
+class AzureSourceDetails(typing.TypedDict, total=False):
     azureLocation: str
     clientSecretCreds: ClientSecretCredentials
     error: Status
     migrationResourcesUserTags: dict[str, typing.Any]
     resourceGroupId: str
-    state: typing_extensions.Literal["STATE_UNSPECIFIED", "PENDING", "FAILED", "ACTIVE"]
+    state: typing.Literal["STATE_UNSPECIFIED", "PENDING", "FAILED", "ACTIVE"]
     subscriptionId: str
 
 @typing.type_check_only
-class AzureSourceVmDetails(typing_extensions.TypedDict, total=False):
-    architecture: typing_extensions.Literal[
+class AzureSourceVmDetails(typing.TypedDict, total=False):
+    architecture: typing.Literal[
         "VM_ARCHITECTURE_UNSPECIFIED",
         "VM_ARCHITECTURE_X86_FAMILY",
         "VM_ARCHITECTURE_ARM64",
     ]
     committedStorageBytes: str
     disks: _list[AzureDiskDetails]
-    firmware: typing_extensions.Literal["FIRMWARE_UNSPECIFIED", "EFI", "BIOS"]
+    firmware: typing.Literal["FIRMWARE_UNSPECIFIED", "EFI", "BIOS"]
     vmCapabilitiesInfo: VmCapabilities
 
 @typing.type_check_only
-class AzureVmDetails(typing_extensions.TypedDict, total=False):
-    architecture: typing_extensions.Literal[
+class AzureVmDetails(typing.TypedDict, total=False):
+    architecture: typing.Literal[
         "VM_ARCHITECTURE_UNSPECIFIED",
         "VM_ARCHITECTURE_X86_FAMILY",
         "VM_ARCHITECTURE_ARM64",
     ]
-    bootOption: typing_extensions.Literal["BOOT_OPTION_UNSPECIFIED", "EFI", "BIOS"]
+    bootOption: typing.Literal["BOOT_OPTION_UNSPECIFIED", "EFI", "BIOS"]
     committedStorageMb: str
     computerName: str
     cpuCount: int
@@ -158,7 +156,7 @@ class AzureVmDetails(typing_extensions.TypedDict, total=False):
     memoryMb: int
     osDescription: OSDescription
     osDisk: OSDisk
-    powerState: typing_extensions.Literal[
+    powerState: typing.Literal[
         "POWER_STATE_UNSPECIFIED",
         "STARTING",
         "RUNNING",
@@ -173,14 +171,14 @@ class AzureVmDetails(typing_extensions.TypedDict, total=False):
     vmSize: str
 
 @typing.type_check_only
-class AzureVmsDetails(typing_extensions.TypedDict, total=False):
+class AzureVmsDetails(typing.TypedDict, total=False):
     details: _list[AzureVmDetails]
 
 @typing.type_check_only
-class BootDiskDefaults(typing_extensions.TypedDict, total=False):
+class BootDiskDefaults(typing.TypedDict, total=False):
     deviceName: str
     diskName: str
-    diskType: typing_extensions.Literal[
+    diskType: typing.Literal[
         "COMPUTE_ENGINE_DISK_TYPE_UNSPECIFIED",
         "COMPUTE_ENGINE_DISK_TYPE_STANDARD",
         "COMPUTE_ENGINE_DISK_TYPE_SSD",
@@ -192,35 +190,35 @@ class BootDiskDefaults(typing_extensions.TypedDict, total=False):
     image: DiskImageDefaults
 
 @typing.type_check_only
-class CancelCloneJobRequest(typing_extensions.TypedDict, total=False): ...
+class CancelCloneJobRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class CancelCutoverJobRequest(typing_extensions.TypedDict, total=False): ...
+class CancelCutoverJobRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class CancelDiskMigrationJobRequest(typing_extensions.TypedDict, total=False): ...
+class CancelDiskMigrationJobRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class CancelImageImportJobRequest(typing_extensions.TypedDict, total=False): ...
+class CancelImageImportJobRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
+class CancelOperationRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class ClientSecretCredentials(typing_extensions.TypedDict, total=False):
+class ClientSecretCredentials(typing.TypedDict, total=False):
     clientId: str
     clientSecret: str
     tenantId: str
 
 @typing.type_check_only
-class CloneJob(typing_extensions.TypedDict, total=False):
+class CloneJob(typing.TypedDict, total=False):
     computeEngineDisksTargetDetails: ComputeEngineDisksTargetDetails
     computeEngineTargetDetails: ComputeEngineTargetDetails
     createTime: str
     endTime: str
     error: Status
     name: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "PENDING",
         "ACTIVE",
@@ -234,7 +232,7 @@ class CloneJob(typing_extensions.TypedDict, total=False):
     steps: _list[CloneStep]
 
 @typing.type_check_only
-class CloneStep(typing_extensions.TypedDict, total=False):
+class CloneStep(typing.TypedDict, total=False):
     adaptingOs: AdaptingOSStep
     endTime: str
     instantiatingMigratedVm: InstantiatingMigratedVMStep
@@ -242,9 +240,9 @@ class CloneStep(typing_extensions.TypedDict, total=False):
     startTime: str
 
 @typing.type_check_only
-class ComputeEngineDisk(typing_extensions.TypedDict, total=False):
+class ComputeEngineDisk(typing.TypedDict, total=False):
     diskId: str
-    diskType: typing_extensions.Literal[
+    diskType: typing.Literal[
         "COMPUTE_ENGINE_DISK_TYPE_UNSPECIFIED",
         "COMPUTE_ENGINE_DISK_TYPE_STANDARD",
         "COMPUTE_ENGINE_DISK_TYPE_SSD",
@@ -256,7 +254,7 @@ class ComputeEngineDisk(typing_extensions.TypedDict, total=False):
     zone: str
 
 @typing.type_check_only
-class ComputeEngineDisksTargetDefaults(typing_extensions.TypedDict, total=False):
+class ComputeEngineDisksTargetDefaults(typing.TypedDict, total=False):
     disks: _list[PersistentDiskDefaults]
     disksTargetDefaults: DisksMigrationDisksTargetDefaults
     targetProject: str
@@ -264,27 +262,25 @@ class ComputeEngineDisksTargetDefaults(typing_extensions.TypedDict, total=False)
     zone: str
 
 @typing.type_check_only
-class ComputeEngineDisksTargetDetails(typing_extensions.TypedDict, total=False):
+class ComputeEngineDisksTargetDetails(typing.TypedDict, total=False):
     disks: _list[PersistentDisk]
     disksTargetDetails: DisksMigrationDisksTargetDetails
     vmTargetDetails: DisksMigrationVmTargetDetails
 
 @typing.type_check_only
-class ComputeEngineTargetDefaults(typing_extensions.TypedDict, total=False):
+class ComputeEngineTargetDefaults(typing.TypedDict, total=False):
     adaptationModifiers: _list[AdaptationModifier]
     additionalLicenses: _list[str]
     appliedLicense: AppliedLicense
-    bootConversion: typing_extensions.Literal[
-        "BOOT_CONVERSION_UNSPECIFIED", "NONE", "BIOS_TO_EFI"
-    ]
-    bootOption: typing_extensions.Literal[
+    bootConversion: typing.Literal["BOOT_CONVERSION_UNSPECIFIED", "NONE", "BIOS_TO_EFI"]
+    bootOption: typing.Literal[
         "COMPUTE_ENGINE_BOOT_OPTION_UNSPECIFIED",
         "COMPUTE_ENGINE_BOOT_OPTION_EFI",
         "COMPUTE_ENGINE_BOOT_OPTION_BIOS",
     ]
     computeScheduling: ComputeScheduling
     diskReplicaZones: _list[str]
-    diskType: typing_extensions.Literal[
+    diskType: typing.Literal[
         "COMPUTE_ENGINE_DISK_TYPE_UNSPECIFIED",
         "COMPUTE_ENGINE_DISK_TYPE_STANDARD",
         "COMPUTE_ENGINE_DISK_TYPE_SSD",
@@ -298,7 +294,7 @@ class ComputeEngineTargetDefaults(typing_extensions.TypedDict, total=False):
     encryption: Encryption
     hostname: str
     labels: dict[str, typing.Any]
-    licenseType: typing_extensions.Literal[
+    licenseType: typing.Literal[
         "COMPUTE_ENGINE_LICENSE_TYPE_DEFAULT",
         "COMPUTE_ENGINE_LICENSE_TYPE_PAYG",
         "COMPUTE_ENGINE_LICENSE_TYPE_BYOL",
@@ -316,21 +312,19 @@ class ComputeEngineTargetDefaults(typing_extensions.TypedDict, total=False):
     zone: str
 
 @typing.type_check_only
-class ComputeEngineTargetDetails(typing_extensions.TypedDict, total=False):
+class ComputeEngineTargetDetails(typing.TypedDict, total=False):
     adaptationModifiers: _list[AdaptationModifier]
     additionalLicenses: _list[str]
     appliedLicense: AppliedLicense
-    bootConversion: typing_extensions.Literal[
-        "BOOT_CONVERSION_UNSPECIFIED", "NONE", "BIOS_TO_EFI"
-    ]
-    bootOption: typing_extensions.Literal[
+    bootConversion: typing.Literal["BOOT_CONVERSION_UNSPECIFIED", "NONE", "BIOS_TO_EFI"]
+    bootOption: typing.Literal[
         "COMPUTE_ENGINE_BOOT_OPTION_UNSPECIFIED",
         "COMPUTE_ENGINE_BOOT_OPTION_EFI",
         "COMPUTE_ENGINE_BOOT_OPTION_BIOS",
     ]
     computeScheduling: ComputeScheduling
     diskReplicaZones: _list[str]
-    diskType: typing_extensions.Literal[
+    diskType: typing.Literal[
         "COMPUTE_ENGINE_DISK_TYPE_UNSPECIFIED",
         "COMPUTE_ENGINE_DISK_TYPE_STANDARD",
         "COMPUTE_ENGINE_DISK_TYPE_SSD",
@@ -343,7 +337,7 @@ class ComputeEngineTargetDetails(typing_extensions.TypedDict, total=False):
     encryption: Encryption
     hostname: str
     labels: dict[str, typing.Any]
-    licenseType: typing_extensions.Literal[
+    licenseType: typing.Literal[
         "COMPUTE_ENGINE_LICENSE_TYPE_DEFAULT",
         "COMPUTE_ENGINE_LICENSE_TYPE_PAYG",
         "COMPUTE_ENGINE_LICENSE_TYPE_BYOL",
@@ -361,31 +355,31 @@ class ComputeEngineTargetDetails(typing_extensions.TypedDict, total=False):
     zone: str
 
 @typing.type_check_only
-class ComputeScheduling(typing_extensions.TypedDict, total=False):
+class ComputeScheduling(typing.TypedDict, total=False):
     minNodeCpus: int
     nodeAffinities: _list[SchedulingNodeAffinity]
-    onHostMaintenance: typing_extensions.Literal[
+    onHostMaintenance: typing.Literal[
         "ON_HOST_MAINTENANCE_UNSPECIFIED", "TERMINATE", "MIGRATE"
     ]
-    restartType: typing_extensions.Literal[
+    restartType: typing.Literal[
         "RESTART_TYPE_UNSPECIFIED", "AUTOMATIC_RESTART", "NO_AUTOMATIC_RESTART"
     ]
 
 @typing.type_check_only
-class CopyingSourceDiskSnapshotStep(typing_extensions.TypedDict, total=False): ...
+class CopyingSourceDiskSnapshotStep(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class CreatingImageStep(typing_extensions.TypedDict, total=False): ...
+class CreatingImageStep(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class CreatingSourceDiskSnapshotStep(typing_extensions.TypedDict, total=False): ...
+class CreatingSourceDiskSnapshotStep(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class CutoverForecast(typing_extensions.TypedDict, total=False):
+class CutoverForecast(typing.TypedDict, total=False):
     estimatedCutoverJobDuration: str
 
 @typing.type_check_only
-class CutoverJob(typing_extensions.TypedDict, total=False):
+class CutoverJob(typing.TypedDict, total=False):
     computeEngineDisksTargetDetails: ComputeEngineDisksTargetDetails
     computeEngineTargetDetails: ComputeEngineTargetDetails
     createTime: str
@@ -393,7 +387,7 @@ class CutoverJob(typing_extensions.TypedDict, total=False):
     error: Status
     name: str
     progressPercent: int
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "PENDING",
         "FAILED",
@@ -408,7 +402,7 @@ class CutoverJob(typing_extensions.TypedDict, total=False):
     steps: _list[CutoverStep]
 
 @typing.type_check_only
-class CutoverStep(typing_extensions.TypedDict, total=False):
+class CutoverStep(typing.TypedDict, total=False):
     endTime: str
     finalSync: ReplicationCycle
     instantiatingMigratedVm: InstantiatingMigratedVMStep
@@ -418,7 +412,7 @@ class CutoverStep(typing_extensions.TypedDict, total=False):
     startTime: str
 
 @typing.type_check_only
-class CycleStep(typing_extensions.TypedDict, total=False):
+class CycleStep(typing.TypedDict, total=False):
     endTime: str
     initializingReplication: InitializingReplicationStep
     postProcessing: PostProcessingStep
@@ -426,11 +420,11 @@ class CycleStep(typing_extensions.TypedDict, total=False):
     startTime: str
 
 @typing.type_check_only
-class DataDiskImageImport(typing_extensions.TypedDict, total=False):
+class DataDiskImageImport(typing.TypedDict, total=False):
     guestOsFeatures: _list[str]
 
 @typing.type_check_only
-class DatacenterConnector(typing_extensions.TypedDict, total=False):
+class DatacenterConnector(typing.TypedDict, total=False):
     applianceInfrastructureVersion: str
     applianceSoftwareVersion: str
     availableVersions: AvailableUpdates
@@ -440,26 +434,24 @@ class DatacenterConnector(typing_extensions.TypedDict, total=False):
     name: str
     registrationId: str
     serviceAccount: str
-    state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "PENDING", "OFFLINE", "FAILED", "ACTIVE"
-    ]
+    state: typing.Literal["STATE_UNSPECIFIED", "PENDING", "OFFLINE", "FAILED", "ACTIVE"]
     stateTime: str
     updateTime: str
     upgradeStatus: UpgradeStatus
     version: str
 
 @typing.type_check_only
-class Disk(typing_extensions.TypedDict, total=False):
+class Disk(typing.TypedDict, total=False):
     lun: int
     name: str
     sizeGb: int
 
 @typing.type_check_only
-class DiskImageDefaults(typing_extensions.TypedDict, total=False):
+class DiskImageDefaults(typing.TypedDict, total=False):
     sourceImage: str
 
 @typing.type_check_only
-class DiskImageTargetDetails(typing_extensions.TypedDict, total=False):
+class DiskImageTargetDetails(typing.TypedDict, total=False):
     additionalLicenses: _list[str]
     dataDiskImageImport: DataDiskImageImport
     description: str
@@ -472,12 +464,12 @@ class DiskImageTargetDetails(typing_extensions.TypedDict, total=False):
     targetProject: str
 
 @typing.type_check_only
-class DiskMigrationJob(typing_extensions.TypedDict, total=False):
+class DiskMigrationJob(typing.TypedDict, total=False):
     awsSourceDiskDetails: AwsSourceDiskDetails
     createTime: str
     errors: _list[Status]
     name: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "READY",
         "RUNNING",
@@ -491,14 +483,14 @@ class DiskMigrationJob(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class DiskMigrationJobTargetDetails(typing_extensions.TypedDict, total=False):
+class DiskMigrationJobTargetDetails(typing.TypedDict, total=False):
     encryption: Encryption
     labels: dict[str, typing.Any]
     targetDisk: ComputeEngineDisk
     targetProject: str
 
 @typing.type_check_only
-class DiskMigrationStep(typing_extensions.TypedDict, total=False):
+class DiskMigrationStep(typing.TypedDict, total=False):
     copyingSourceDiskSnapshot: CopyingSourceDiskSnapshotStep
     creatingSourceDiskSnapshot: CreatingSourceDiskSnapshotStep
     endTime: str
@@ -506,13 +498,13 @@ class DiskMigrationStep(typing_extensions.TypedDict, total=False):
     startTime: str
 
 @typing.type_check_only
-class DisksMigrationDisksTargetDefaults(typing_extensions.TypedDict, total=False): ...
+class DisksMigrationDisksTargetDefaults(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class DisksMigrationDisksTargetDetails(typing_extensions.TypedDict, total=False): ...
+class DisksMigrationDisksTargetDetails(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class DisksMigrationVmTargetDefaults(typing_extensions.TypedDict, total=False):
+class DisksMigrationVmTargetDefaults(typing.TypedDict, total=False):
     additionalLicenses: _list[str]
     bootDiskDefaults: BootDiskDefaults
     computeScheduling: ComputeScheduling
@@ -531,27 +523,27 @@ class DisksMigrationVmTargetDefaults(typing_extensions.TypedDict, total=False):
     vmName: str
 
 @typing.type_check_only
-class DisksMigrationVmTargetDetails(typing_extensions.TypedDict, total=False):
+class DisksMigrationVmTargetDetails(typing.TypedDict, total=False):
     vmUri: str
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Encryption(typing_extensions.TypedDict, total=False):
+class Encryption(typing.TypedDict, total=False):
     kmsKey: str
 
 @typing.type_check_only
-class Expiration(typing_extensions.TypedDict, total=False):
+class Expiration(typing.TypedDict, total=False):
     expireTime: str
     extendable: bool
     extensionCount: int
 
 @typing.type_check_only
-class ExtendMigrationRequest(typing_extensions.TypedDict, total=False): ...
+class ExtendMigrationRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class FetchInventoryResponse(typing_extensions.TypedDict, total=False):
+class FetchInventoryResponse(typing.TypedDict, total=False):
     awsVms: AwsVmsDetails
     azureVms: AzureVmsDetails
     nextPageToken: str
@@ -559,20 +551,20 @@ class FetchInventoryResponse(typing_extensions.TypedDict, total=False):
     vmwareVms: VmwareVmsDetails
 
 @typing.type_check_only
-class FetchStorageInventoryResponse(typing_extensions.TypedDict, total=False):
+class FetchStorageInventoryResponse(typing.TypedDict, total=False):
     nextPageToken: str
     resources: _list[SourceStorageResource]
     updateTime: str
 
 @typing.type_check_only
-class FinalizeMigrationRequest(typing_extensions.TypedDict, total=False): ...
+class FinalizeMigrationRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Group(typing_extensions.TypedDict, total=False):
+class Group(typing.TypedDict, total=False):
     createTime: str
     description: str
     displayName: str
-    migrationTargetType: typing_extensions.Literal[
+    migrationTargetType: typing.Literal[
         "MIGRATION_TARGET_TYPE_UNSPECIFIED",
         "MIGRATION_TARGET_TYPE_GCE",
         "MIGRATION_TARGET_TYPE_DISKS",
@@ -581,7 +573,7 @@ class Group(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class ImageImport(typing_extensions.TypedDict, total=False):
+class ImageImport(typing.TypedDict, total=False):
     cloudStorageUri: str
     createTime: str
     diskImageTargetDefaults: DiskImageTargetDetails
@@ -591,7 +583,7 @@ class ImageImport(typing_extensions.TypedDict, total=False):
     recentImageImportJobs: _list[ImageImportJob]
 
 @typing.type_check_only
-class ImageImportJob(typing_extensions.TypedDict, total=False):
+class ImageImportJob(typing.TypedDict, total=False):
     cloudStorageUri: str
     createTime: str
     createdResources: _list[str]
@@ -600,7 +592,7 @@ class ImageImportJob(typing_extensions.TypedDict, total=False):
     errors: _list[Status]
     machineImageTargetDetails: MachineImageTargetDetails
     name: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "PENDING",
         "RUNNING",
@@ -613,20 +605,18 @@ class ImageImportJob(typing_extensions.TypedDict, total=False):
     warnings: _list[MigrationWarning]
 
 @typing.type_check_only
-class ImageImportOsAdaptationParameters(typing_extensions.TypedDict, total=False):
+class ImageImportOsAdaptationParameters(typing.TypedDict, total=False):
     adaptationModifiers: _list[AdaptationModifier]
-    bootConversion: typing_extensions.Literal[
-        "BOOT_CONVERSION_UNSPECIFIED", "NONE", "BIOS_TO_EFI"
-    ]
+    bootConversion: typing.Literal["BOOT_CONVERSION_UNSPECIFIED", "NONE", "BIOS_TO_EFI"]
     generalize: bool
-    licenseType: typing_extensions.Literal[
+    licenseType: typing.Literal[
         "COMPUTE_ENGINE_LICENSE_TYPE_DEFAULT",
         "COMPUTE_ENGINE_LICENSE_TYPE_PAYG",
         "COMPUTE_ENGINE_LICENSE_TYPE_BYOL",
     ]
 
 @typing.type_check_only
-class ImageImportStep(typing_extensions.TypedDict, total=False):
+class ImageImportStep(typing.TypedDict, total=False):
     adaptingOs: AdaptingOSStep
     creatingImage: CreatingImageStep
     endTime: str
@@ -635,112 +625,112 @@ class ImageImportStep(typing_extensions.TypedDict, total=False):
     startTime: str
 
 @typing.type_check_only
-class InitializingImageImportStep(typing_extensions.TypedDict, total=False): ...
+class InitializingImageImportStep(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class InitializingReplicationStep(typing_extensions.TypedDict, total=False): ...
+class InitializingReplicationStep(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class InstantiatingMigratedVMStep(typing_extensions.TypedDict, total=False): ...
+class InstantiatingMigratedVMStep(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Link(typing_extensions.TypedDict, total=False):
+class Link(typing.TypedDict, total=False):
     description: str
     url: str
 
 @typing.type_check_only
-class ListCloneJobsResponse(typing_extensions.TypedDict, total=False):
+class ListCloneJobsResponse(typing.TypedDict, total=False):
     cloneJobs: _list[CloneJob]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListCutoverJobsResponse(typing_extensions.TypedDict, total=False):
+class ListCutoverJobsResponse(typing.TypedDict, total=False):
     cutoverJobs: _list[CutoverJob]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListDatacenterConnectorsResponse(typing_extensions.TypedDict, total=False):
+class ListDatacenterConnectorsResponse(typing.TypedDict, total=False):
     datacenterConnectors: _list[DatacenterConnector]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListDiskMigrationJobsResponse(typing_extensions.TypedDict, total=False):
+class ListDiskMigrationJobsResponse(typing.TypedDict, total=False):
     diskMigrationJobs: _list[DiskMigrationJob]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListGroupsResponse(typing_extensions.TypedDict, total=False):
+class ListGroupsResponse(typing.TypedDict, total=False):
     groups: _list[Group]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListImageImportJobsResponse(typing_extensions.TypedDict, total=False):
+class ListImageImportJobsResponse(typing.TypedDict, total=False):
     imageImportJobs: _list[ImageImportJob]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListImageImportsResponse(typing_extensions.TypedDict, total=False):
+class ListImageImportsResponse(typing.TypedDict, total=False):
     imageImports: _list[ImageImport]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListLocationsResponse(typing_extensions.TypedDict, total=False):
+class ListLocationsResponse(typing.TypedDict, total=False):
     locations: _list[Location]
     nextPageToken: str
 
 @typing.type_check_only
-class ListMigratingVmsResponse(typing_extensions.TypedDict, total=False):
+class ListMigratingVmsResponse(typing.TypedDict, total=False):
     migratingVms: _list[MigratingVm]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListOperationsResponse(typing_extensions.TypedDict, total=False):
+class ListOperationsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListReplicationCyclesResponse(typing_extensions.TypedDict, total=False):
+class ListReplicationCyclesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     replicationCycles: _list[ReplicationCycle]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListSourcesResponse(typing_extensions.TypedDict, total=False):
+class ListSourcesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     sources: _list[Source]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListTargetProjectsResponse(typing_extensions.TypedDict, total=False):
+class ListTargetProjectsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     targetProjects: _list[TargetProject]
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListUtilizationReportsResponse(typing_extensions.TypedDict, total=False):
+class ListUtilizationReportsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     unreachable: _list[str]
     utilizationReports: _list[UtilizationReport]
 
 @typing.type_check_only
-class LoadingImageSourceFilesStep(typing_extensions.TypedDict, total=False): ...
+class LoadingImageSourceFilesStep(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class LocalizedMessage(typing_extensions.TypedDict, total=False):
+class LocalizedMessage(typing.TypedDict, total=False):
     locale: str
     message: str
 
 @typing.type_check_only
-class Location(typing_extensions.TypedDict, total=False):
+class Location(typing.TypedDict, total=False):
     displayName: str
     labels: dict[str, typing.Any]
     locationId: str
@@ -748,11 +738,11 @@ class Location(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class MachineImageParametersOverrides(typing_extensions.TypedDict, total=False):
+class MachineImageParametersOverrides(typing.TypedDict, total=False):
     machineType: str
 
 @typing.type_check_only
-class MachineImageTargetDetails(typing_extensions.TypedDict, total=False):
+class MachineImageTargetDetails(typing.TypedDict, total=False):
     additionalLicenses: _list[str]
     description: str
     encryption: Encryption
@@ -769,7 +759,7 @@ class MachineImageTargetDetails(typing_extensions.TypedDict, total=False):
     targetProject: str
 
 @typing.type_check_only
-class MigratingVm(typing_extensions.TypedDict, total=False):
+class MigratingVm(typing.TypedDict, total=False):
     awsSourceVmDetails: AwsSourceVmDetails
     azureSourceVmDetails: AzureSourceVmDetails
     computeEngineDisksTargetDefaults: ComputeEngineDisksTargetDefaults
@@ -790,7 +780,7 @@ class MigratingVm(typing_extensions.TypedDict, total=False):
     recentCloneJobs: _list[CloneJob]
     recentCutoverJobs: _list[CutoverJob]
     sourceVmId: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "PENDING",
         "READY",
@@ -811,9 +801,9 @@ class MigratingVm(typing_extensions.TypedDict, total=False):
     vmwareSourceVmDetails: VmwareSourceVmDetails
 
 @typing.type_check_only
-class MigrationError(typing_extensions.TypedDict, total=False):
+class MigrationError(typing.TypedDict, total=False):
     actionItem: LocalizedMessage
-    code: typing_extensions.Literal[
+    code: typing.Literal[
         "ERROR_CODE_UNSPECIFIED",
         "UNKNOWN_ERROR",
         "SOURCE_VALIDATION_ERROR",
@@ -832,19 +822,19 @@ class MigrationError(typing_extensions.TypedDict, total=False):
     helpLinks: _list[Link]
 
 @typing.type_check_only
-class MigrationWarning(typing_extensions.TypedDict, total=False):
+class MigrationWarning(typing.TypedDict, total=False):
     actionItem: LocalizedMessage
-    code: typing_extensions.Literal["WARNING_CODE_UNSPECIFIED", "ADAPTATION_WARNING"]
+    code: typing.Literal["WARNING_CODE_UNSPECIFIED", "ADAPTATION_WARNING"]
     helpLinks: _list[Link]
     warningMessage: LocalizedMessage
     warningTime: str
 
 @typing.type_check_only
-class NetworkInterface(typing_extensions.TypedDict, total=False):
+class NetworkInterface(typing.TypedDict, total=False):
     externalIp: str
     internalIp: str
     network: str
-    networkTier: typing_extensions.Literal[
+    networkTier: typing.Literal[
         "COMPUTE_ENGINE_NETWORK_TIER_UNSPECIFIED",
         "NETWORK_TIER_STANDARD",
         "NETWORK_TIER_PREMIUM",
@@ -852,20 +842,20 @@ class NetworkInterface(typing_extensions.TypedDict, total=False):
     subnetwork: str
 
 @typing.type_check_only
-class OSDescription(typing_extensions.TypedDict, total=False):
+class OSDescription(typing.TypedDict, total=False):
     offer: str
     plan: str
     publisher: str
     type: str
 
 @typing.type_check_only
-class OSDisk(typing_extensions.TypedDict, total=False):
+class OSDisk(typing.TypedDict, total=False):
     name: str
     sizeGb: int
     type: str
 
 @typing.type_check_only
-class Operation(typing_extensions.TypedDict, total=False):
+class Operation(typing.TypedDict, total=False):
     done: bool
     error: Status
     metadata: dict[str, typing.Any]
@@ -873,7 +863,7 @@ class Operation(typing_extensions.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
-class OperationMetadata(typing_extensions.TypedDict, total=False):
+class OperationMetadata(typing.TypedDict, total=False):
     apiVersion: str
     createTime: str
     endTime: str
@@ -883,18 +873,18 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     verb: str
 
 @typing.type_check_only
-class PauseMigrationRequest(typing_extensions.TypedDict, total=False): ...
+class PauseMigrationRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class PersistentDisk(typing_extensions.TypedDict, total=False):
+class PersistentDisk(typing.TypedDict, total=False):
     diskUri: str
     sourceDiskNumber: int
 
 @typing.type_check_only
-class PersistentDiskDefaults(typing_extensions.TypedDict, total=False):
+class PersistentDiskDefaults(typing.TypedDict, total=False):
     additionalLabels: dict[str, typing.Any]
     diskName: str
-    diskType: typing_extensions.Literal[
+    diskType: typing.Literal[
         "COMPUTE_ENGINE_DISK_TYPE_UNSPECIFIED",
         "COMPUTE_ENGINE_DISK_TYPE_STANDARD",
         "COMPUTE_ENGINE_DISK_TYPE_SSD",
@@ -907,34 +897,34 @@ class PersistentDiskDefaults(typing_extensions.TypedDict, total=False):
     vmAttachmentDetails: VmAttachmentDetails
 
 @typing.type_check_only
-class PostProcessingStep(typing_extensions.TypedDict, total=False): ...
+class PostProcessingStep(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class PreparingVMDisksStep(typing_extensions.TypedDict, total=False): ...
+class PreparingVMDisksStep(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class ProvisioningTargetDiskStep(typing_extensions.TypedDict, total=False): ...
+class ProvisioningTargetDiskStep(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class RemoveGroupMigrationRequest(typing_extensions.TypedDict, total=False):
+class RemoveGroupMigrationRequest(typing.TypedDict, total=False):
     migratingVm: str
 
 @typing.type_check_only
-class ReplicatingStep(typing_extensions.TypedDict, total=False):
+class ReplicatingStep(typing.TypedDict, total=False):
     lastThirtyMinutesAverageBytesPerSecond: str
     lastTwoMinutesAverageBytesPerSecond: str
     replicatedBytes: str
     totalBytes: str
 
 @typing.type_check_only
-class ReplicationCycle(typing_extensions.TypedDict, total=False):
+class ReplicationCycle(typing.TypedDict, total=False):
     cycleNumber: int
     endTime: str
     error: Status
     name: str
     progressPercent: int
     startTime: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED", "RUNNING", "PAUSED", "FAILED", "SUCCEEDED"
     ]
     steps: _list[CycleStep]
@@ -942,45 +932,45 @@ class ReplicationCycle(typing_extensions.TypedDict, total=False):
     warnings: _list[MigrationWarning]
 
 @typing.type_check_only
-class ReplicationSync(typing_extensions.TypedDict, total=False):
+class ReplicationSync(typing.TypedDict, total=False):
     lastSyncTime: str
 
 @typing.type_check_only
-class ResumeMigrationRequest(typing_extensions.TypedDict, total=False): ...
+class ResumeMigrationRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class RunDiskMigrationJobRequest(typing_extensions.TypedDict, total=False): ...
+class RunDiskMigrationJobRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class SchedulePolicy(typing_extensions.TypedDict, total=False):
+class SchedulePolicy(typing.TypedDict, total=False):
     idleDuration: str
     skipOsAdaptation: bool
 
 @typing.type_check_only
-class SchedulingNodeAffinity(typing_extensions.TypedDict, total=False):
+class SchedulingNodeAffinity(typing.TypedDict, total=False):
     key: str
-    operator: typing_extensions.Literal["OPERATOR_UNSPECIFIED", "IN", "NOT_IN"]
+    operator: typing.Literal["OPERATOR_UNSPECIFIED", "IN", "NOT_IN"]
     values: _list[str]
 
 @typing.type_check_only
-class ServiceAccount(typing_extensions.TypedDict, total=False):
+class ServiceAccount(typing.TypedDict, total=False):
     email: str
     scopes: _list[str]
 
 @typing.type_check_only
-class ShieldedInstanceConfig(typing_extensions.TypedDict, total=False):
+class ShieldedInstanceConfig(typing.TypedDict, total=False):
     enableIntegrityMonitoring: bool
     enableVtpm: bool
-    secureBoot: typing_extensions.Literal["SECURE_BOOT_UNSPECIFIED", "TRUE", "FALSE"]
+    secureBoot: typing.Literal["SECURE_BOOT_UNSPECIFIED", "TRUE", "FALSE"]
 
 @typing.type_check_only
-class ShuttingDownSourceVMStep(typing_extensions.TypedDict, total=False): ...
+class ShuttingDownSourceVMStep(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class SkipOsAdaptation(typing_extensions.TypedDict, total=False): ...
+class SkipOsAdaptation(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Source(typing_extensions.TypedDict, total=False):
+class Source(typing.TypedDict, total=False):
     aws: AwsSourceDetails
     azure: AzureSourceDetails
     createTime: str
@@ -992,25 +982,25 @@ class Source(typing_extensions.TypedDict, total=False):
     vmware: VmwareSourceDetails
 
 @typing.type_check_only
-class SourceStorageResource(typing_extensions.TypedDict, total=False):
+class SourceStorageResource(typing.TypedDict, total=False):
     awsDiskDetails: AwsSourceDiskDetails
 
 @typing.type_check_only
-class StartMigrationRequest(typing_extensions.TypedDict, total=False): ...
+class StartMigrationRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Status(typing_extensions.TypedDict, total=False):
+class Status(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
-class Tag(typing_extensions.TypedDict, total=False):
+class Tag(typing.TypedDict, total=False):
     key: str
     value: str
 
 @typing.type_check_only
-class TargetProject(typing_extensions.TypedDict, total=False):
+class TargetProject(typing.TypedDict, total=False):
     createTime: str
     description: str
     name: str
@@ -1018,45 +1008,39 @@ class TargetProject(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class UpgradeApplianceRequest(typing_extensions.TypedDict, total=False):
+class UpgradeApplianceRequest(typing.TypedDict, total=False):
     requestId: str
 
 @typing.type_check_only
-class UpgradeStatus(typing_extensions.TypedDict, total=False):
+class UpgradeStatus(typing.TypedDict, total=False):
     error: Status
     previousVersion: str
     startTime: str
-    state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "RUNNING", "FAILED", "SUCCEEDED"
-    ]
+    state: typing.Literal["STATE_UNSPECIFIED", "RUNNING", "FAILED", "SUCCEEDED"]
     version: str
 
 @typing.type_check_only
-class UtilizationReport(typing_extensions.TypedDict, total=False):
+class UtilizationReport(typing.TypedDict, total=False):
     createTime: str
     displayName: str
     error: Status
     frameEndTime: str
     name: str
-    state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "CREATING", "SUCCEEDED", "FAILED"
-    ]
+    state: typing.Literal["STATE_UNSPECIFIED", "CREATING", "SUCCEEDED", "FAILED"]
     stateTime: str
-    timeFrame: typing_extensions.Literal[
-        "TIME_FRAME_UNSPECIFIED", "WEEK", "MONTH", "YEAR"
-    ]
+    timeFrame: typing.Literal["TIME_FRAME_UNSPECIFIED", "WEEK", "MONTH", "YEAR"]
     vmCount: int
     vms: _list[VmUtilizationInfo]
 
 @typing.type_check_only
-class VmAttachmentDetails(typing_extensions.TypedDict, total=False):
+class VmAttachmentDetails(typing.TypedDict, total=False):
     deviceName: str
 
 @typing.type_check_only
-class VmCapabilities(typing_extensions.TypedDict, total=False):
+class VmCapabilities(typing.TypedDict, total=False):
     lastOsCapabilitiesUpdateTime: str
     osCapabilities: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "OS_CAPABILITY_UNSPECIFIED",
             "OS_CAPABILITY_NVME_STORAGE_ACCESS",
             "OS_CAPABILITY_GVNIC_NETWORK_INTERFACE",
@@ -1065,13 +1049,13 @@ class VmCapabilities(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class VmUtilizationInfo(typing_extensions.TypedDict, total=False):
+class VmUtilizationInfo(typing.TypedDict, total=False):
     utilization: VmUtilizationMetrics
     vmId: str
     vmwareVmDetails: VmwareVmDetails
 
 @typing.type_check_only
-class VmUtilizationMetrics(typing_extensions.TypedDict, total=False):
+class VmUtilizationMetrics(typing.TypedDict, total=False):
     cpuAveragePercent: int
     cpuMaxPercent: int
     diskIoRateAverageKbps: str
@@ -1082,13 +1066,13 @@ class VmUtilizationMetrics(typing_extensions.TypedDict, total=False):
     networkThroughputMaxKbps: str
 
 @typing.type_check_only
-class VmwareDiskDetails(typing_extensions.TypedDict, total=False):
+class VmwareDiskDetails(typing.TypedDict, total=False):
     diskNumber: int
     label: str
     sizeGb: str
 
 @typing.type_check_only
-class VmwareSourceDetails(typing_extensions.TypedDict, total=False):
+class VmwareSourceDetails(typing.TypedDict, total=False):
     password: str
     resolvedVcenterHost: str
     thumbprint: str
@@ -1096,25 +1080,25 @@ class VmwareSourceDetails(typing_extensions.TypedDict, total=False):
     vcenterIp: str
 
 @typing.type_check_only
-class VmwareSourceVmDetails(typing_extensions.TypedDict, total=False):
-    architecture: typing_extensions.Literal[
+class VmwareSourceVmDetails(typing.TypedDict, total=False):
+    architecture: typing.Literal[
         "VM_ARCHITECTURE_UNSPECIFIED",
         "VM_ARCHITECTURE_X86_FAMILY",
         "VM_ARCHITECTURE_ARM64",
     ]
     committedStorageBytes: str
     disks: _list[VmwareDiskDetails]
-    firmware: typing_extensions.Literal["FIRMWARE_UNSPECIFIED", "EFI", "BIOS"]
+    firmware: typing.Literal["FIRMWARE_UNSPECIFIED", "EFI", "BIOS"]
     vmCapabilitiesInfo: VmCapabilities
 
 @typing.type_check_only
-class VmwareVmDetails(typing_extensions.TypedDict, total=False):
-    architecture: typing_extensions.Literal[
+class VmwareVmDetails(typing.TypedDict, total=False):
+    architecture: typing.Literal[
         "VM_ARCHITECTURE_UNSPECIFIED",
         "VM_ARCHITECTURE_X86_FAMILY",
         "VM_ARCHITECTURE_ARM64",
     ]
-    bootOption: typing_extensions.Literal["BOOT_OPTION_UNSPECIFIED", "EFI", "BIOS"]
+    bootOption: typing.Literal["BOOT_OPTION_UNSPECIFIED", "EFI", "BIOS"]
     committedStorageMb: str
     cpuCount: int
     datacenterDescription: str
@@ -1123,12 +1107,10 @@ class VmwareVmDetails(typing_extensions.TypedDict, total=False):
     displayName: str
     guestDescription: str
     memoryMb: int
-    powerState: typing_extensions.Literal[
-        "POWER_STATE_UNSPECIFIED", "ON", "OFF", "SUSPENDED"
-    ]
+    powerState: typing.Literal["POWER_STATE_UNSPECIFIED", "ON", "OFF", "SUSPENDED"]
     uuid: str
     vmId: str
 
 @typing.type_check_only
-class VmwareVmsDetails(typing_extensions.TypedDict, total=False):
+class VmwareVmsDetails(typing.TypedDict, total=False):
     details: _list[VmwareVmDetails]

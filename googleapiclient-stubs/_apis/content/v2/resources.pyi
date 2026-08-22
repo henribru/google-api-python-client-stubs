@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -372,7 +371,7 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             createdEndDate: str | None = ...,
             createdStartDate: str | None = ...,
             maxResults: int | None = ...,
-            orderBy: typing_extensions.Literal[
+            orderBy: typing.Literal[
                 "RETURN_CREATION_TIME_DESC", "RETURN_CREATION_TIME_ASC"
             ]
             | None = ...,
@@ -450,7 +449,7 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             self,
             *,
             merchantId: str,
-            templateName: typing_extensions.Literal[
+            templateName: typing.Literal[
                 "TEMPLATE1", "TEMPLATE2", "TEMPLATE1A", "TEMPLATE1B", "TEMPLATE3"
             ],
             country: str | None = ...,
@@ -474,7 +473,7 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             pageToken: str | None = ...,
             placedDateEnd: str | None = ...,
             placedDateStart: str | None = ...,
-            statuses: typing_extensions.Literal[
+            statuses: typing.Literal[
                 "ACTIVE",
                 "COMPLETED",
                 "CANCELED",
@@ -488,7 +487,7 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
                 "RETURNED",
             ]
             | _list[
-                typing_extensions.Literal[
+                typing.Literal[
                     "ACTIVE",
                     "COMPLETED",
                     "CANCELED",

@@ -1,62 +1,58 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class AsyncOptions(typing_extensions.TypedDict, total=False):
+class AsyncOptions(typing.TypedDict, total=False):
     methodMatch: str
     pollingOptions: PollingOptions
 
 @typing.type_check_only
-class AuditConfig(typing_extensions.TypedDict, total=False):
+class AuditConfig(typing.TypedDict, total=False):
     auditLogConfigs: _list[AuditLogConfig]
     service: str
 
 @typing.type_check_only
-class AuditLogConfig(typing_extensions.TypedDict, total=False):
+class AuditLogConfig(typing.TypedDict, total=False):
     exemptedMembers: _list[str]
-    logType: typing_extensions.Literal[
+    logType: typing.Literal[
         "LOG_TYPE_UNSPECIFIED", "ADMIN_READ", "DATA_WRITE", "DATA_READ"
     ]
 
 @typing.type_check_only
-class BaseType(typing_extensions.TypedDict, total=False):
+class BaseType(typing.TypedDict, total=False):
     collectionOverrides: _list[CollectionOverride]
     credential: Credential
     descriptorUrl: str
     options: Options
 
 @typing.type_check_only
-class BasicAuth(typing_extensions.TypedDict, total=False):
+class BasicAuth(typing.TypedDict, total=False):
     password: str
     user: str
 
 @typing.type_check_only
-class Binding(typing_extensions.TypedDict, total=False):
+class Binding(typing.TypedDict, total=False):
     condition: Expr
     members: _list[str]
     role: str
 
 @typing.type_check_only
-class BulkInsertOperationStatus(typing_extensions.TypedDict, total=False):
+class BulkInsertOperationStatus(typing.TypedDict, total=False):
     createdVmCount: int
     deletedVmCount: int
     failedToCreateVmCount: int
-    status: typing_extensions.Literal[
-        "STATUS_UNSPECIFIED", "CREATING", "ROLLING_BACK", "DONE"
-    ]
+    status: typing.Literal["STATUS_UNSPECIFIED", "CREATING", "ROLLING_BACK", "DONE"]
     targetVmCount: int
 
 @typing.type_check_only
-class CollectionOverride(typing_extensions.TypedDict, total=False):
+class CollectionOverride(typing.TypedDict, total=False):
     collection: str
     methodMap: MethodMap
     options: Options
 
 @typing.type_check_only
-class CompositeType(typing_extensions.TypedDict, total=False):
+class CompositeType(typing.TypedDict, total=False):
     description: str
     id: str
     insertTime: str
@@ -64,38 +60,36 @@ class CompositeType(typing_extensions.TypedDict, total=False):
     name: str
     operation: Operation
     selfLink: str
-    status: typing_extensions.Literal[
-        "UNKNOWN_STATUS", "DEPRECATED", "EXPERIMENTAL", "SUPPORTED"
-    ]
+    status: typing.Literal["UNKNOWN_STATUS", "DEPRECATED", "EXPERIMENTAL", "SUPPORTED"]
     templateContents: TemplateContents
 
 @typing.type_check_only
-class CompositeTypeLabelEntry(typing_extensions.TypedDict, total=False):
+class CompositeTypeLabelEntry(typing.TypedDict, total=False):
     key: str
     value: str
 
 @typing.type_check_only
-class CompositeTypesListResponse(typing_extensions.TypedDict, total=False):
+class CompositeTypesListResponse(typing.TypedDict, total=False):
     compositeTypes: _list[CompositeType]
     nextPageToken: str
 
 @typing.type_check_only
-class ConfigFile(typing_extensions.TypedDict, total=False):
+class ConfigFile(typing.TypedDict, total=False):
     content: str
 
 @typing.type_check_only
-class Credential(typing_extensions.TypedDict, total=False):
+class Credential(typing.TypedDict, total=False):
     basicAuth: BasicAuth
     serviceAccount: ServiceAccount
     useProjectDefault: bool
 
 @typing.type_check_only
-class DebugInfo(typing_extensions.TypedDict, total=False):
+class DebugInfo(typing.TypedDict, total=False):
     detail: str
     stackEntries: _list[str]
 
 @typing.type_check_only
-class Deployment(typing_extensions.TypedDict, total=False):
+class Deployment(typing.TypedDict, total=False):
     credential: Credential
     description: str
     fingerprint: str
@@ -112,111 +106,111 @@ class Deployment(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class DeploymentLabelEntry(typing_extensions.TypedDict, total=False):
+class DeploymentLabelEntry(typing.TypedDict, total=False):
     key: str
     value: str
 
 @typing.type_check_only
-class DeploymentOutputEntry(typing_extensions.TypedDict, total=False):
+class DeploymentOutputEntry(typing.TypedDict, total=False):
     key: str
     value: str
 
 @typing.type_check_only
-class DeploymentUpdate(typing_extensions.TypedDict, total=False):
+class DeploymentUpdate(typing.TypedDict, total=False):
     credential: Credential
     description: str
     labels: _list[DeploymentUpdateLabelEntry]
     manifest: str
 
 @typing.type_check_only
-class DeploymentUpdateLabelEntry(typing_extensions.TypedDict, total=False):
+class DeploymentUpdateLabelEntry(typing.TypedDict, total=False):
     key: str
     value: str
 
 @typing.type_check_only
-class DeploymentsCancelPreviewRequest(typing_extensions.TypedDict, total=False):
+class DeploymentsCancelPreviewRequest(typing.TypedDict, total=False):
     fingerprint: str
 
 @typing.type_check_only
-class DeploymentsListResponse(typing_extensions.TypedDict, total=False):
+class DeploymentsListResponse(typing.TypedDict, total=False):
     deployments: _list[Deployment]
     nextPageToken: str
 
 @typing.type_check_only
-class DeploymentsStopRequest(typing_extensions.TypedDict, total=False):
+class DeploymentsStopRequest(typing.TypedDict, total=False):
     fingerprint: str
 
 @typing.type_check_only
-class Diagnostic(typing_extensions.TypedDict, total=False):
+class Diagnostic(typing.TypedDict, total=False):
     field: str
-    level: typing_extensions.Literal["UNKNOWN", "INFORMATION", "WARNING", "ERROR"]
+    level: typing.Literal["UNKNOWN", "INFORMATION", "WARNING", "ERROR"]
 
 @typing.type_check_only
-class ErrorInfo(typing_extensions.TypedDict, total=False):
+class ErrorInfo(typing.TypedDict, total=False):
     domain: str
     metadatas: dict[str, typing.Any]
     reason: str
 
 @typing.type_check_only
-class Expr(typing_extensions.TypedDict, total=False):
+class Expr(typing.TypedDict, total=False):
     description: str
     expression: str
     location: str
     title: str
 
 @typing.type_check_only
-class FirewallPolicyRuleOperationMetadata(typing_extensions.TypedDict, total=False):
+class FirewallPolicyRuleOperationMetadata(typing.TypedDict, total=False):
     allocatedPriority: int
 
 @typing.type_check_only
-class GetVersionOperationMetadata(typing_extensions.TypedDict, total=False):
+class GetVersionOperationMetadata(typing.TypedDict, total=False):
     inlineSbomInfo: GetVersionOperationMetadataSbomInfo
 
 @typing.type_check_only
-class GetVersionOperationMetadataSbomInfo(typing_extensions.TypedDict, total=False):
+class GetVersionOperationMetadataSbomInfo(typing.TypedDict, total=False):
     currentComponentVersions: dict[str, typing.Any]
     targetComponentVersions: dict[str, typing.Any]
 
 @typing.type_check_only
-class GlobalSetPolicyRequest(typing_extensions.TypedDict, total=False):
+class GlobalSetPolicyRequest(typing.TypedDict, total=False):
     bindings: _list[Binding]
     etag: str
     policy: Policy
     updateMask: str
 
 @typing.type_check_only
-class Help(typing_extensions.TypedDict, total=False):
+class Help(typing.TypedDict, total=False):
     links: _list[HelpLink]
 
 @typing.type_check_only
-class HelpLink(typing_extensions.TypedDict, total=False):
+class HelpLink(typing.TypedDict, total=False):
     description: str
     url: str
 
 @typing.type_check_only
-class ImportFile(typing_extensions.TypedDict, total=False):
+class ImportFile(typing.TypedDict, total=False):
     content: str
     name: str
 
 @typing.type_check_only
-class InputMapping(typing_extensions.TypedDict, total=False):
+class InputMapping(typing.TypedDict, total=False):
     fieldName: str
-    location: typing_extensions.Literal["UNKNOWN", "PATH", "QUERY", "BODY", "HEADER"]
+    location: typing.Literal["UNKNOWN", "PATH", "QUERY", "BODY", "HEADER"]
     methodMatch: str
     value: str
 
 @typing.type_check_only
-class InstancesBulkInsertOperationMetadata(typing_extensions.TypedDict, total=False):
+class InstancesBulkInsertOperationMetadata(typing.TypedDict, total=False):
     machineType: str
     perLocationStatus: dict[str, typing.Any]
 
 @typing.type_check_only
-class LocalizedMessage(typing_extensions.TypedDict, total=False):
+class LocalizedMessage(typing.TypedDict, total=False):
     locale: str
     message: str
 
 @typing.type_check_only
-class Manifest(typing_extensions.TypedDict, total=False):
+class Manifest(typing.TypedDict, total=False):
     config: ConfigFile
     expandedConfig: str
     id: str
@@ -229,12 +223,12 @@ class Manifest(typing_extensions.TypedDict, total=False):
     selfLink: str
 
 @typing.type_check_only
-class ManifestsListResponse(typing_extensions.TypedDict, total=False):
+class ManifestsListResponse(typing.TypedDict, total=False):
     manifests: _list[Manifest]
     nextPageToken: str
 
 @typing.type_check_only
-class MethodMap(typing_extensions.TypedDict, total=False):
+class MethodMap(typing.TypedDict, total=False):
     create: str
     delete: str
     get: str
@@ -242,7 +236,7 @@ class MethodMap(typing_extensions.TypedDict, total=False):
     update: str
 
 @typing.type_check_only
-class Operation(typing_extensions.TypedDict, total=False):
+class Operation(typing.TypedDict, total=False):
     clientOperationId: str
     creationTimestamp: str
     description: str
@@ -268,7 +262,7 @@ class Operation(typing_extensions.TypedDict, total=False):
         SetCommonInstanceMetadataOperationMetadata
     )
     startTime: str
-    status: typing_extensions.Literal["PENDING", "RUNNING", "DONE"]
+    status: typing.Literal["PENDING", "RUNNING", "DONE"]
     statusMessage: str
     targetId: str
     targetLink: str
@@ -277,26 +271,26 @@ class Operation(typing_extensions.TypedDict, total=False):
     zone: str
 
 @typing.type_check_only
-class OperationsListResponse(typing_extensions.TypedDict, total=False):
+class OperationsListResponse(typing.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
 
 @typing.type_check_only
-class Options(typing_extensions.TypedDict, total=False):
+class Options(typing.TypedDict, total=False):
     asyncOptions: _list[AsyncOptions]
     inputMappings: _list[InputMapping]
     nameProperty: str
     validationOptions: ValidationOptions
 
 @typing.type_check_only
-class Policy(typing_extensions.TypedDict, total=False):
+class Policy(typing.TypedDict, total=False):
     auditConfigs: _list[AuditConfig]
     bindings: _list[Binding]
     etag: str
     version: int
 
 @typing.type_check_only
-class PollingOptions(typing_extensions.TypedDict, total=False):
+class PollingOptions(typing.TypedDict, total=False):
     diagnostics: _list[Diagnostic]
     failCondition: str
     finishCondition: str
@@ -304,18 +298,16 @@ class PollingOptions(typing_extensions.TypedDict, total=False):
     targetLink: str
 
 @typing.type_check_only
-class QuotaExceededInfo(typing_extensions.TypedDict, total=False):
+class QuotaExceededInfo(typing.TypedDict, total=False):
     dimensions: dict[str, typing.Any]
     futureLimit: float
     limit: float
     limitName: str
     metricName: str
-    rolloutStatus: typing_extensions.Literal[
-        "ROLLOUT_STATUS_UNSPECIFIED", "IN_PROGRESS"
-    ]
+    rolloutStatus: typing.Literal["ROLLOUT_STATUS_UNSPECIFIED", "IN_PROGRESS"]
 
 @typing.type_check_only
-class Resource(typing_extensions.TypedDict, total=False):
+class Resource(typing.TypedDict, total=False):
     accessControl: ResourceAccessControl
     finalProperties: str
     id: str
@@ -325,9 +317,7 @@ class Resource(typing_extensions.TypedDict, total=False):
     name: str
     properties: str
     runtimePolicies: _list[
-        typing_extensions.Literal[
-            "CREATE", "DELETE", "UPDATE_ON_CHANGE", "UPDATE_ALWAYS"
-        ]
+        typing.Literal["CREATE", "DELETE", "UPDATE_ON_CHANGE", "UPDATE_ALWAYS"]
     ]
     type: str
     update: ResourceUpdate
@@ -336,89 +326,83 @@ class Resource(typing_extensions.TypedDict, total=False):
     warnings: _list[dict[str, typing.Any]]
 
 @typing.type_check_only
-class ResourceAccessControl(typing_extensions.TypedDict, total=False):
+class ResourceAccessControl(typing.TypedDict, total=False):
     gcpIamPolicy: str
 
 @typing.type_check_only
-class ResourceUpdate(typing_extensions.TypedDict, total=False):
+class ResourceUpdate(typing.TypedDict, total=False):
     accessControl: ResourceAccessControl
     credential: Credential
     error: dict[str, typing.Any]
     finalProperties: str
-    intent: typing_extensions.Literal[
+    intent: typing.Literal[
         "CREATE_OR_ACQUIRE", "DELETE", "ACQUIRE", "UPDATE", "ABANDON", "CREATE"
     ]
     manifest: str
     properties: str
     runtimePolicies: _list[
-        typing_extensions.Literal[
-            "CREATE", "DELETE", "UPDATE_ON_CHANGE", "UPDATE_ALWAYS"
-        ]
+        typing.Literal["CREATE", "DELETE", "UPDATE_ON_CHANGE", "UPDATE_ALWAYS"]
     ]
-    state: typing_extensions.Literal[
-        "PENDING", "IN_PROGRESS", "IN_PREVIEW", "FAILED", "ABORTED"
-    ]
+    state: typing.Literal["PENDING", "IN_PROGRESS", "IN_PREVIEW", "FAILED", "ABORTED"]
     warnings: _list[dict[str, typing.Any]]
 
 @typing.type_check_only
-class ResourcesListResponse(typing_extensions.TypedDict, total=False):
+class ResourcesListResponse(typing.TypedDict, total=False):
     nextPageToken: str
     resources: _list[Resource]
 
 @typing.type_check_only
-class ServiceAccount(typing_extensions.TypedDict, total=False):
+class ServiceAccount(typing.TypedDict, total=False):
     email: str
 
 @typing.type_check_only
-class SetAutoscalerLinkOperationMetadata(typing_extensions.TypedDict, total=False):
+class SetAutoscalerLinkOperationMetadata(typing.TypedDict, total=False):
     zonalIgmIds: _list[str]
     zoneToIgmIds: dict[str, typing.Any]
 
 @typing.type_check_only
-class SetCommonInstanceMetadataOperationMetadata(
-    typing_extensions.TypedDict, total=False
-):
+class SetCommonInstanceMetadataOperationMetadata(typing.TypedDict, total=False):
     clientOperationId: str
     perLocationOperations: dict[str, typing.Any]
 
 @typing.type_check_only
 class SetCommonInstanceMetadataOperationMetadataPerLocationOperationInfo(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     error: Status
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "UNSPECIFIED", "PROPAGATING", "PROPAGATED", "ABANDONED", "FAILED", "DONE"
     ]
 
 @typing.type_check_only
-class Status(typing_extensions.TypedDict, total=False):
+class Status(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
-class TargetConfiguration(typing_extensions.TypedDict, total=False):
+class TargetConfiguration(typing.TypedDict, total=False):
     config: ConfigFile
     imports: _list[ImportFile]
 
 @typing.type_check_only
-class TemplateContents(typing_extensions.TypedDict, total=False):
+class TemplateContents(typing.TypedDict, total=False):
     imports: _list[ImportFile]
-    interpreter: typing_extensions.Literal["UNKNOWN_INTERPRETER", "PYTHON", "JINJA"]
+    interpreter: typing.Literal["UNKNOWN_INTERPRETER", "PYTHON", "JINJA"]
     mainTemplate: str
     schema: str
     template: str
 
 @typing.type_check_only
-class TestPermissionsRequest(typing_extensions.TypedDict, total=False):
+class TestPermissionsRequest(typing.TypedDict, total=False):
     permissions: _list[str]
 
 @typing.type_check_only
-class TestPermissionsResponse(typing_extensions.TypedDict, total=False):
+class TestPermissionsResponse(typing.TypedDict, total=False):
     permissions: _list[str]
 
 @typing.type_check_only
-class Type(typing_extensions.TypedDict, total=False):
+class Type(typing.TypedDict, total=False):
     base: BaseType
     description: str
     id: str
@@ -429,7 +413,7 @@ class Type(typing_extensions.TypedDict, total=False):
     selfLink: str
 
 @typing.type_check_only
-class TypeInfo(typing_extensions.TypedDict, total=False):
+class TypeInfo(typing.TypedDict, total=False):
     description: str
     documentationLink: str
     kind: str
@@ -439,17 +423,17 @@ class TypeInfo(typing_extensions.TypedDict, total=False):
     title: str
 
 @typing.type_check_only
-class TypeInfoSchemaInfo(typing_extensions.TypedDict, total=False):
+class TypeInfoSchemaInfo(typing.TypedDict, total=False):
     input: str
     output: str
 
 @typing.type_check_only
-class TypeLabelEntry(typing_extensions.TypedDict, total=False):
+class TypeLabelEntry(typing.TypedDict, total=False):
     key: str
     value: str
 
 @typing.type_check_only
-class TypeProvider(typing_extensions.TypedDict, total=False):
+class TypeProvider(typing.TypedDict, total=False):
     collectionOverrides: _list[CollectionOverride]
     credential: Credential
     customCertificateAuthorityRoots: _list[str]
@@ -464,31 +448,31 @@ class TypeProvider(typing_extensions.TypedDict, total=False):
     selfLink: str
 
 @typing.type_check_only
-class TypeProviderLabelEntry(typing_extensions.TypedDict, total=False):
+class TypeProviderLabelEntry(typing.TypedDict, total=False):
     key: str
     value: str
 
 @typing.type_check_only
-class TypeProvidersListResponse(typing_extensions.TypedDict, total=False):
+class TypeProvidersListResponse(typing.TypedDict, total=False):
     nextPageToken: str
     typeProviders: _list[TypeProvider]
 
 @typing.type_check_only
-class TypeProvidersListTypesResponse(typing_extensions.TypedDict, total=False):
+class TypeProvidersListTypesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     types: _list[TypeInfo]
 
 @typing.type_check_only
-class TypesListResponse(typing_extensions.TypedDict, total=False):
+class TypesListResponse(typing.TypedDict, total=False):
     nextPageToken: str
     types: _list[Type]
 
 @typing.type_check_only
-class ValidationOptions(typing_extensions.TypedDict, total=False):
-    schemaValidation: typing_extensions.Literal[
+class ValidationOptions(typing.TypedDict, total=False):
+    schemaValidation: typing.Literal[
         "UNKNOWN", "IGNORE", "IGNORE_WITH_WARNINGS", "FAIL"
     ]
-    undeclaredProperties: typing_extensions.Literal[
+    undeclaredProperties: typing.Literal[
         "UNKNOWN",
         "INCLUDE",
         "IGNORE",

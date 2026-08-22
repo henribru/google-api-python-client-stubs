@@ -1,71 +1,67 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class ActivatePretargetingConfigRequest(typing_extensions.TypedDict, total=False): ...
+class ActivatePretargetingConfigRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class AdTechnologyProviders(typing_extensions.TypedDict, total=False):
+class AdTechnologyProviders(typing.TypedDict, total=False):
     detectedGvlIds: _list[str]
     detectedProviderIds: _list[str]
     unidentifiedProviderDomains: _list[str]
 
 @typing.type_check_only
-class AddTargetedAppsRequest(typing_extensions.TypedDict, total=False):
+class AddTargetedAppsRequest(typing.TypedDict, total=False):
     appIds: _list[str]
-    targetingMode: typing_extensions.Literal[
+    targetingMode: typing.Literal[
         "TARGETING_MODE_UNSPECIFIED", "INCLUSIVE", "EXCLUSIVE"
     ]
 
 @typing.type_check_only
-class AddTargetedPublishersRequest(typing_extensions.TypedDict, total=False):
+class AddTargetedPublishersRequest(typing.TypedDict, total=False):
     publisherIds: _list[str]
-    targetingMode: typing_extensions.Literal[
+    targetingMode: typing.Literal[
         "TARGETING_MODE_UNSPECIFIED", "INCLUSIVE", "EXCLUSIVE"
     ]
 
 @typing.type_check_only
-class AddTargetedSitesRequest(typing_extensions.TypedDict, total=False):
+class AddTargetedSitesRequest(typing.TypedDict, total=False):
     sites: _list[str]
-    targetingMode: typing_extensions.Literal[
+    targetingMode: typing.Literal[
         "TARGETING_MODE_UNSPECIFIED", "INCLUSIVE", "EXCLUSIVE"
     ]
 
 @typing.type_check_only
-class AdvertiserAndBrand(typing_extensions.TypedDict, total=False):
+class AdvertiserAndBrand(typing.TypedDict, total=False):
     advertiserId: str
     advertiserName: str
     brandId: str
     brandName: str
 
 @typing.type_check_only
-class AppTargeting(typing_extensions.TypedDict, total=False):
+class AppTargeting(typing.TypedDict, total=False):
     mobileAppCategoryTargeting: NumericTargetingDimension
     mobileAppTargeting: StringTargetingDimension
 
 @typing.type_check_only
-class BatchApprovePublisherConnectionsRequest(typing_extensions.TypedDict, total=False):
+class BatchApprovePublisherConnectionsRequest(typing.TypedDict, total=False):
     names: _list[str]
 
 @typing.type_check_only
-class BatchApprovePublisherConnectionsResponse(
-    typing_extensions.TypedDict, total=False
-):
+class BatchApprovePublisherConnectionsResponse(typing.TypedDict, total=False):
     publisherConnections: _list[PublisherConnection]
 
 @typing.type_check_only
-class BatchRejectPublisherConnectionsRequest(typing_extensions.TypedDict, total=False):
+class BatchRejectPublisherConnectionsRequest(typing.TypedDict, total=False):
     names: _list[str]
 
 @typing.type_check_only
-class BatchRejectPublisherConnectionsResponse(typing_extensions.TypedDict, total=False):
+class BatchRejectPublisherConnectionsResponse(typing.TypedDict, total=False):
     publisherConnections: _list[PublisherConnection]
 
 @typing.type_check_only
-class Bidder(typing_extensions.TypedDict, total=False):
+class Bidder(typing.TypedDict, total=False):
     bypassNonguaranteedDealsPretargeting: bool
     cookieMatchingNetworkId: str
     cookieMatchingUrl: str
@@ -73,7 +69,7 @@ class Bidder(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class Buyer(typing_extensions.TypedDict, total=False):
+class Buyer(typing.TypedDict, total=False):
     activeCreativeCount: str
     bidder: str
     billingIds: _list[str]
@@ -82,23 +78,23 @@ class Buyer(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class CloseUserListRequest(typing_extensions.TypedDict, total=False): ...
+class CloseUserListRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Creative(typing_extensions.TypedDict, total=False):
+class Creative(typing.TypedDict, total=False):
     accountId: str
     adChoicesDestinationUrl: str
     advertiserName: str
     agencyId: str
     apiUpdateTime: str
-    creativeFormat: typing_extensions.Literal[
+    creativeFormat: typing.Literal[
         "CREATIVE_FORMAT_UNSPECIFIED", "HTML", "VIDEO", "NATIVE"
     ]
     creativeId: str
     creativeServingDecision: CreativeServingDecision
     dealIds: _list[str]
     declaredAttributes: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "ATTRIBUTE_UNSPECIFIED",
             "IMAGE_RICH_MEDIA",
             "ADOBE_FLASH_FLV",
@@ -142,7 +138,7 @@ class Creative(typing_extensions.TypedDict, total=False):
     ]
     declaredClickThroughUrls: _list[str]
     declaredRestrictedCategories: _list[
-        typing_extensions.Literal["RESTRICTED_CATEGORY_UNSPECIFIED", "ALCOHOL"]
+        typing.Literal["RESTRICTED_CATEGORY_UNSPECIFIED", "ALCOHOL"]
     ]
     declaredVendorIds: _list[int]
     html: HtmlContent
@@ -151,24 +147,24 @@ class Creative(typing_extensions.TypedDict, total=False):
     native: NativeContent
     renderUrl: str
     restrictedCategories: _list[
-        typing_extensions.Literal["RESTRICTED_CATEGORY_UNSPECIFIED", "ALCOHOL"]
+        typing.Literal["RESTRICTED_CATEGORY_UNSPECIFIED", "ALCOHOL"]
     ]
     version: int
     video: VideoContent
 
 @typing.type_check_only
-class CreativeDimensions(typing_extensions.TypedDict, total=False):
+class CreativeDimensions(typing.TypedDict, total=False):
     height: str
     width: str
 
 @typing.type_check_only
-class CreativeServingDecision(typing_extensions.TypedDict, total=False):
+class CreativeServingDecision(typing.TypedDict, total=False):
     adTechnologyProviders: AdTechnologyProviders
     chinaPolicyCompliance: PolicyCompliance
     dealsPolicyCompliance: PolicyCompliance
     detectedAdvertisers: _list[AdvertiserAndBrand]
     detectedAttributes: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "ATTRIBUTE_UNSPECIFIED",
             "IMAGE_RICH_MEDIA",
             "ADOBE_FLASH_FLV",
@@ -211,7 +207,7 @@ class CreativeServingDecision(typing_extensions.TypedDict, total=False):
         ]
     ]
     detectedCategories: _list[str]
-    detectedCategoriesTaxonomy: typing_extensions.Literal[
+    detectedCategoriesTaxonomy: typing.Literal[
         "AD_CATEGORY_TAXONOMY_UNSPECIFIED",
         "GOOGLE_AD_CATEGORY_TAXONOMY",
         "IAB_CONTENT_1_0",
@@ -228,16 +224,16 @@ class CreativeServingDecision(typing_extensions.TypedDict, total=False):
     russiaPolicyCompliance: PolicyCompliance
 
 @typing.type_check_only
-class Date(typing_extensions.TypedDict, total=False):
+class Date(typing.TypedDict, total=False):
     day: int
     month: int
     year: int
 
 @typing.type_check_only
-class DestinationNotCrawlableEvidence(typing_extensions.TypedDict, total=False):
+class DestinationNotCrawlableEvidence(typing.TypedDict, total=False):
     crawlTime: str
     crawledUrl: str
-    reason: typing_extensions.Literal[
+    reason: typing.Literal[
         "REASON_UNSPECIFIED",
         "UNREACHABLE_ROBOTS",
         "TIMEOUT_ROBOTS",
@@ -246,27 +242,25 @@ class DestinationNotCrawlableEvidence(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class DestinationNotWorkingEvidence(typing_extensions.TypedDict, total=False):
-    dnsError: typing_extensions.Literal[
+class DestinationNotWorkingEvidence(typing.TypedDict, total=False):
+    dnsError: typing.Literal[
         "DNS_ERROR_UNSPECIFIED", "ERROR_DNS", "GOOGLE_CRAWLER_DNS_ISSUE"
     ]
     expandedUrl: str
     httpError: int
-    invalidPage: typing_extensions.Literal[
-        "INVALID_PAGE_UNSPECIFIED", "EMPTY_OR_ERROR_PAGE"
-    ]
+    invalidPage: typing.Literal["INVALID_PAGE_UNSPECIFIED", "EMPTY_OR_ERROR_PAGE"]
     lastCheckTime: str
-    platform: typing_extensions.Literal[
+    platform: typing.Literal[
         "PLATFORM_UNSPECIFIED", "PERSONAL_COMPUTER", "ANDROID", "IOS"
     ]
-    redirectionError: typing_extensions.Literal[
+    redirectionError: typing.Literal[
         "REDIRECTION_ERROR_UNSPECIFIED",
         "TOO_MANY_REDIRECTS",
         "INVALID_REDIRECT",
         "EMPTY_REDIRECT",
         "REDIRECT_ERROR_UNKNOWN",
     ]
-    urlRejected: typing_extensions.Literal[
+    urlRejected: typing.Literal[
         "URL_REJECTED_UNSPECIFIED",
         "BAD_REQUEST",
         "MALFORMED_URL",
@@ -274,103 +268,103 @@ class DestinationNotWorkingEvidence(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class DestinationUrlEvidence(typing_extensions.TypedDict, total=False):
+class DestinationUrlEvidence(typing.TypedDict, total=False):
     destinationUrl: str
 
 @typing.type_check_only
-class DomainCallEvidence(typing_extensions.TypedDict, total=False):
+class DomainCallEvidence(typing.TypedDict, total=False):
     topHttpCallDomains: _list[DomainCalls]
     totalHttpCallCount: int
 
 @typing.type_check_only
-class DomainCalls(typing_extensions.TypedDict, total=False):
+class DomainCalls(typing.TypedDict, total=False):
     domain: str
     httpCallCount: int
 
 @typing.type_check_only
-class DownloadSizeEvidence(typing_extensions.TypedDict, total=False):
+class DownloadSizeEvidence(typing.TypedDict, total=False):
     topUrlDownloadSizeBreakdowns: _list[UrlDownloadSize]
     totalDownloadSizeKb: int
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Endpoint(typing_extensions.TypedDict, total=False):
-    bidProtocol: typing_extensions.Literal[
+class Endpoint(typing.TypedDict, total=False):
+    bidProtocol: typing.Literal[
         "BID_PROTOCOL_UNSPECIFIED", "GOOGLE_RTB", "OPENRTB_JSON", "OPENRTB_PROTOBUF"
     ]
     maximumQps: str
     name: str
-    tradingLocation: typing_extensions.Literal[
+    tradingLocation: typing.Literal[
         "TRADING_LOCATION_UNSPECIFIED", "US_WEST", "US_EAST", "EUROPE", "ASIA"
     ]
     url: str
 
 @typing.type_check_only
-class GetRemarketingTagResponse(typing_extensions.TypedDict, total=False):
+class GetRemarketingTagResponse(typing.TypedDict, total=False):
     snippet: str
 
 @typing.type_check_only
-class HtmlContent(typing_extensions.TypedDict, total=False):
+class HtmlContent(typing.TypedDict, total=False):
     height: int
     snippet: str
     width: int
 
 @typing.type_check_only
-class HttpCallEvidence(typing_extensions.TypedDict, total=False):
+class HttpCallEvidence(typing.TypedDict, total=False):
     urls: _list[str]
 
 @typing.type_check_only
-class HttpCookieEvidence(typing_extensions.TypedDict, total=False):
+class HttpCookieEvidence(typing.TypedDict, total=False):
     cookieNames: _list[str]
     maxCookieCount: int
 
 @typing.type_check_only
-class Image(typing_extensions.TypedDict, total=False):
+class Image(typing.TypedDict, total=False):
     height: int
     url: str
     width: int
 
 @typing.type_check_only
-class ListBiddersResponse(typing_extensions.TypedDict, total=False):
+class ListBiddersResponse(typing.TypedDict, total=False):
     bidders: _list[Bidder]
     nextPageToken: str
 
 @typing.type_check_only
-class ListBuyersResponse(typing_extensions.TypedDict, total=False):
+class ListBuyersResponse(typing.TypedDict, total=False):
     buyers: _list[Buyer]
     nextPageToken: str
 
 @typing.type_check_only
-class ListCreativesResponse(typing_extensions.TypedDict, total=False):
+class ListCreativesResponse(typing.TypedDict, total=False):
     creatives: _list[Creative]
     nextPageToken: str
 
 @typing.type_check_only
-class ListEndpointsResponse(typing_extensions.TypedDict, total=False):
+class ListEndpointsResponse(typing.TypedDict, total=False):
     endpoints: _list[Endpoint]
     nextPageToken: str
 
 @typing.type_check_only
-class ListPretargetingConfigsResponse(typing_extensions.TypedDict, total=False):
+class ListPretargetingConfigsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     pretargetingConfigs: _list[PretargetingConfig]
 
 @typing.type_check_only
-class ListPublisherConnectionsResponse(typing_extensions.TypedDict, total=False):
+class ListPublisherConnectionsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     publisherConnections: _list[PublisherConnection]
 
 @typing.type_check_only
-class ListUserListsResponse(typing_extensions.TypedDict, total=False):
+class ListUserListsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     userLists: _list[UserList]
 
 @typing.type_check_only
-class MediaFile(typing_extensions.TypedDict, total=False):
+class MediaFile(typing.TypedDict, total=False):
     bitrate: str
-    mimeType: typing_extensions.Literal[
+    mimeType: typing.Literal[
         "VIDEO_MIME_TYPE_UNSPECIFIED",
         "MIME_VIDEO_XFLV",
         "MIME_VIDEO_WEBM",
@@ -392,7 +386,7 @@ class MediaFile(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class NativeContent(typing_extensions.TypedDict, total=False):
+class NativeContent(typing.TypedDict, total=False):
     advertiserName: str
     appIcon: Image
     body: str
@@ -408,16 +402,16 @@ class NativeContent(typing_extensions.TypedDict, total=False):
     videoVastXml: str
 
 @typing.type_check_only
-class NumericTargetingDimension(typing_extensions.TypedDict, total=False):
+class NumericTargetingDimension(typing.TypedDict, total=False):
     excludedIds: _list[str]
     includedIds: _list[str]
 
 @typing.type_check_only
-class OpenUserListRequest(typing_extensions.TypedDict, total=False): ...
+class OpenUserListRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class PolicyCompliance(typing_extensions.TypedDict, total=False):
-    status: typing_extensions.Literal[
+class PolicyCompliance(typing.TypedDict, total=False):
+    status: typing.Literal[
         "STATUS_UNSPECIFIED",
         "PENDING_REVIEW",
         "DISAPPROVED",
@@ -427,14 +421,14 @@ class PolicyCompliance(typing_extensions.TypedDict, total=False):
     topics: _list[PolicyTopicEntry]
 
 @typing.type_check_only
-class PolicyTopicEntry(typing_extensions.TypedDict, total=False):
+class PolicyTopicEntry(typing.TypedDict, total=False):
     evidences: _list[PolicyTopicEvidence]
     helpCenterUrl: str
     missingCertificate: bool
     policyTopic: str
 
 @typing.type_check_only
-class PolicyTopicEvidence(typing_extensions.TypedDict, total=False):
+class PolicyTopicEvidence(typing.TypedDict, total=False):
     destinationNotCrawlable: DestinationNotCrawlableEvidence
     destinationNotWorking: DestinationNotWorkingEvidence
     destinationUrl: DestinationUrlEvidence
@@ -444,9 +438,9 @@ class PolicyTopicEvidence(typing_extensions.TypedDict, total=False):
     httpCookie: HttpCookieEvidence
 
 @typing.type_check_only
-class PretargetingConfig(typing_extensions.TypedDict, total=False):
+class PretargetingConfig(typing.TypedDict, total=False):
     allowedUserTargetingModes: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "USER_TARGETING_MODE_UNSPECIFIED",
             "REMARKETING_ADS",
             "INTEREST_BASED_TARGETING",
@@ -458,18 +452,14 @@ class PretargetingConfig(typing_extensions.TypedDict, total=False):
     excludedContentLabelIds: _list[str]
     geoTargeting: NumericTargetingDimension
     includedCreativeDimensions: _list[CreativeDimensions]
-    includedEnvironments: _list[
-        typing_extensions.Literal["ENVIRONMENT_UNSPECIFIED", "APP", "WEB"]
-    ]
+    includedEnvironments: _list[typing.Literal["ENVIRONMENT_UNSPECIFIED", "APP", "WEB"]]
     includedFormats: _list[
-        typing_extensions.Literal[
-            "CREATIVE_FORMAT_UNSPECIFIED", "HTML", "VAST", "NATIVE"
-        ]
+        typing.Literal["CREATIVE_FORMAT_UNSPECIFIED", "HTML", "VAST", "NATIVE"]
     ]
     includedLanguages: _list[str]
     includedMobileOperatingSystemIds: _list[str]
     includedPlatforms: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "PLATFORM_UNSPECIFIED",
             "PERSONAL_COMPUTER",
             "PHONE",
@@ -478,7 +468,7 @@ class PretargetingConfig(typing_extensions.TypedDict, total=False):
         ]
     ]
     includedUserIdTypes: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "USER_ID_TYPE_UNSPECIFIED",
             "HOSTED_MATCH_DATA",
             "GOOGLE_COOKIE",
@@ -487,7 +477,7 @@ class PretargetingConfig(typing_extensions.TypedDict, total=False):
             "PUBLISHER_FIRST_PARTY_ID",
         ]
     ]
-    interstitialTargeting: typing_extensions.Literal[
+    interstitialTargeting: typing.Literal[
         "INTERSTITIAL_TARGETING_UNSPECIFIED",
         "ONLY_INTERSTITIAL_REQUESTS",
         "ONLY_NON_INTERSTITIAL_REQUESTS",
@@ -497,54 +487,52 @@ class PretargetingConfig(typing_extensions.TypedDict, total=False):
     minimumViewabilityDecile: int
     name: str
     publisherTargeting: StringTargetingDimension
-    state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "SUSPENDED"]
+    state: typing.Literal["STATE_UNSPECIFIED", "ACTIVE", "SUSPENDED"]
     userListTargeting: NumericTargetingDimension
     verticalTargeting: NumericTargetingDimension
     webTargeting: StringTargetingDimension
 
 @typing.type_check_only
-class PublisherConnection(typing_extensions.TypedDict, total=False):
-    biddingState: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "PENDING", "REJECTED", "APPROVED"
-    ]
+class PublisherConnection(typing.TypedDict, total=False):
+    biddingState: typing.Literal["STATE_UNSPECIFIED", "PENDING", "REJECTED", "APPROVED"]
     createTime: str
     displayName: str
     name: str
-    publisherPlatform: typing_extensions.Literal[
+    publisherPlatform: typing.Literal[
         "PUBLISHER_PLATFORM_UNSPECIFIED", "GOOGLE_AD_MANAGER", "ADMOB"
     ]
 
 @typing.type_check_only
-class RemoveTargetedAppsRequest(typing_extensions.TypedDict, total=False):
+class RemoveTargetedAppsRequest(typing.TypedDict, total=False):
     appIds: _list[str]
 
 @typing.type_check_only
-class RemoveTargetedPublishersRequest(typing_extensions.TypedDict, total=False):
+class RemoveTargetedPublishersRequest(typing.TypedDict, total=False):
     publisherIds: _list[str]
 
 @typing.type_check_only
-class RemoveTargetedSitesRequest(typing_extensions.TypedDict, total=False):
+class RemoveTargetedSitesRequest(typing.TypedDict, total=False):
     sites: _list[str]
 
 @typing.type_check_only
-class StringTargetingDimension(typing_extensions.TypedDict, total=False):
-    targetingMode: typing_extensions.Literal[
+class StringTargetingDimension(typing.TypedDict, total=False):
+    targetingMode: typing.Literal[
         "TARGETING_MODE_UNSPECIFIED", "INCLUSIVE", "EXCLUSIVE"
     ]
     values: _list[str]
 
 @typing.type_check_only
-class SuspendPretargetingConfigRequest(typing_extensions.TypedDict, total=False): ...
+class SuspendPretargetingConfigRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class UrlDownloadSize(typing_extensions.TypedDict, total=False):
+class UrlDownloadSize(typing.TypedDict, total=False):
     downloadSizeKb: int
     normalizedUrl: str
 
 @typing.type_check_only
-class UrlRestriction(typing_extensions.TypedDict, total=False):
+class UrlRestriction(typing.TypedDict, total=False):
     endDate: Date
-    restrictionType: typing_extensions.Literal[
+    restrictionType: typing.Literal[
         "RESTRICTION_TYPE_UNSPECIFIED",
         "CONTAINS",
         "EQUALS",
@@ -559,28 +547,28 @@ class UrlRestriction(typing_extensions.TypedDict, total=False):
     url: str
 
 @typing.type_check_only
-class UserList(typing_extensions.TypedDict, total=False):
+class UserList(typing.TypedDict, total=False):
     description: str
     displayName: str
     membershipDurationDays: str
     name: str
-    status: typing_extensions.Literal["STATUS_UNSPECIFIED", "OPEN", "CLOSED"]
+    status: typing.Literal["STATUS_UNSPECIFIED", "OPEN", "CLOSED"]
     urlRestriction: UrlRestriction
 
 @typing.type_check_only
-class VideoContent(typing_extensions.TypedDict, total=False):
+class VideoContent(typing.TypedDict, total=False):
     videoMetadata: VideoMetadata
     videoUrl: str
     videoVastXml: str
 
 @typing.type_check_only
-class VideoMetadata(typing_extensions.TypedDict, total=False):
+class VideoMetadata(typing.TypedDict, total=False):
     duration: str
     isValidVast: bool
     isVpaid: bool
     mediaFiles: _list[MediaFile]
     skipOffset: str
-    vastVersion: typing_extensions.Literal[
+    vastVersion: typing.Literal[
         "VAST_VERSION_UNSPECIFIED",
         "VAST_VERSION_1_0",
         "VAST_VERSION_2_0",
@@ -589,9 +577,9 @@ class VideoMetadata(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class WatchCreativesRequest(typing_extensions.TypedDict, total=False): ...
+class WatchCreativesRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class WatchCreativesResponse(typing_extensions.TypedDict, total=False):
+class WatchCreativesResponse(typing.TypedDict, total=False):
     subscription: str
     topic: str

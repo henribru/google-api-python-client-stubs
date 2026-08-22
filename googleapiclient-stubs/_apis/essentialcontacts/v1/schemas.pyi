@@ -1,23 +1,21 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
 class GoogleCloudEssentialcontactsV1ComputeContactsResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     contacts: _list[GoogleCloudEssentialcontactsV1Contact]
     nextPageToken: str
 
 @typing.type_check_only
-class GoogleCloudEssentialcontactsV1Contact(typing_extensions.TypedDict, total=False):
+class GoogleCloudEssentialcontactsV1Contact(typing.TypedDict, total=False):
     email: str
     languageTag: str
     name: str
     notificationCategorySubscriptions: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "NOTIFICATION_CATEGORY_UNSPECIFIED",
             "ALL",
             "SUSPENSION",
@@ -30,23 +28,19 @@ class GoogleCloudEssentialcontactsV1Contact(typing_extensions.TypedDict, total=F
         ]
     ]
     validateTime: str
-    validationState: typing_extensions.Literal[
-        "VALIDATION_STATE_UNSPECIFIED", "VALID", "INVALID"
-    ]
+    validationState: typing.Literal["VALIDATION_STATE_UNSPECIFIED", "VALID", "INVALID"]
 
 @typing.type_check_only
-class GoogleCloudEssentialcontactsV1ListContactsResponse(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleCloudEssentialcontactsV1ListContactsResponse(typing.TypedDict, total=False):
     contacts: _list[GoogleCloudEssentialcontactsV1Contact]
     nextPageToken: str
 
 @typing.type_check_only
 class GoogleCloudEssentialcontactsV1SendTestMessageRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     contacts: _list[str]
-    notificationCategory: typing_extensions.Literal[
+    notificationCategory: typing.Literal[
         "NOTIFICATION_CATEGORY_UNSPECIFIED",
         "ALL",
         "SUSPENSION",
@@ -59,4 +53,4 @@ class GoogleCloudEssentialcontactsV1SendTestMessageRequest(
     ]
 
 @typing.type_check_only
-class GoogleProtobufEmpty(typing_extensions.TypedDict, total=False): ...
+class GoogleProtobufEmpty(typing.TypedDict, total=False): ...

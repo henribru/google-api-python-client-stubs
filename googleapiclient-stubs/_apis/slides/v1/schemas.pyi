@@ -1,87 +1,83 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class AffineTransform(typing_extensions.TypedDict, total=False):
+class AffineTransform(typing.TypedDict, total=False):
     scaleX: float
     scaleY: float
     shearX: float
     shearY: float
     translateX: float
     translateY: float
-    unit: typing_extensions.Literal["UNIT_UNSPECIFIED", "EMU", "PT"]
+    unit: typing.Literal["UNIT_UNSPECIFIED", "EMU", "PT"]
 
 @typing.type_check_only
-class AutoText(typing_extensions.TypedDict, total=False):
+class AutoText(typing.TypedDict, total=False):
     content: str
     style: TextStyle
-    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "SLIDE_NUMBER"]
+    type: typing.Literal["TYPE_UNSPECIFIED", "SLIDE_NUMBER"]
 
 @typing.type_check_only
-class Autofit(typing_extensions.TypedDict, total=False):
-    autofitType: typing_extensions.Literal[
+class Autofit(typing.TypedDict, total=False):
+    autofitType: typing.Literal[
         "AUTOFIT_TYPE_UNSPECIFIED", "NONE", "TEXT_AUTOFIT", "SHAPE_AUTOFIT"
     ]
     fontScale: float
     lineSpacingReduction: float
 
 @typing.type_check_only
-class BatchUpdatePresentationRequest(typing_extensions.TypedDict, total=False):
+class BatchUpdatePresentationRequest(typing.TypedDict, total=False):
     requests: _list[Request]
     writeControl: WriteControl
 
 @typing.type_check_only
-class BatchUpdatePresentationResponse(typing_extensions.TypedDict, total=False):
+class BatchUpdatePresentationResponse(typing.TypedDict, total=False):
     presentationId: str
     replies: _list[Response]
     writeControl: WriteControl
 
 @typing.type_check_only
-class Bullet(typing_extensions.TypedDict, total=False):
+class Bullet(typing.TypedDict, total=False):
     bulletStyle: TextStyle
     glyph: str
     listId: str
     nestingLevel: int
 
 @typing.type_check_only
-class ColorScheme(typing_extensions.TypedDict, total=False):
+class ColorScheme(typing.TypedDict, total=False):
     colors: _list[ThemeColorPair]
 
 @typing.type_check_only
-class ColorStop(typing_extensions.TypedDict, total=False):
+class ColorStop(typing.TypedDict, total=False):
     alpha: float
     color: OpaqueColor
     position: float
 
 @typing.type_check_only
-class CreateImageRequest(typing_extensions.TypedDict, total=False):
+class CreateImageRequest(typing.TypedDict, total=False):
     elementProperties: PageElementProperties
     objectId: str
     url: str
 
 @typing.type_check_only
-class CreateImageResponse(typing_extensions.TypedDict, total=False):
+class CreateImageResponse(typing.TypedDict, total=False):
     objectId: str
 
 @typing.type_check_only
-class CreateLineRequest(typing_extensions.TypedDict, total=False):
-    category: typing_extensions.Literal[
-        "LINE_CATEGORY_UNSPECIFIED", "STRAIGHT", "BENT", "CURVED"
-    ]
+class CreateLineRequest(typing.TypedDict, total=False):
+    category: typing.Literal["LINE_CATEGORY_UNSPECIFIED", "STRAIGHT", "BENT", "CURVED"]
     elementProperties: PageElementProperties
-    lineCategory: typing_extensions.Literal["STRAIGHT", "BENT", "CURVED"]
+    lineCategory: typing.Literal["STRAIGHT", "BENT", "CURVED"]
     objectId: str
 
 @typing.type_check_only
-class CreateLineResponse(typing_extensions.TypedDict, total=False):
+class CreateLineResponse(typing.TypedDict, total=False):
     objectId: str
 
 @typing.type_check_only
-class CreateParagraphBulletsRequest(typing_extensions.TypedDict, total=False):
-    bulletPreset: typing_extensions.Literal[
+class CreateParagraphBulletsRequest(typing.TypedDict, total=False):
+    bulletPreset: typing.Literal[
         "BULLET_DISC_CIRCLE_SQUARE",
         "BULLET_DIAMONDX_ARROW3D_SQUARE",
         "BULLET_CHECKBOX",
@@ -103,10 +99,10 @@ class CreateParagraphBulletsRequest(typing_extensions.TypedDict, total=False):
     textRange: Range
 
 @typing.type_check_only
-class CreateShapeRequest(typing_extensions.TypedDict, total=False):
+class CreateShapeRequest(typing.TypedDict, total=False):
     elementProperties: PageElementProperties
     objectId: str
-    shapeType: typing_extensions.Literal[
+    shapeType: typing.Literal[
         "TYPE_UNSPECIFIED",
         "TEXT_BOX",
         "RECTANGLE",
@@ -253,56 +249,56 @@ class CreateShapeRequest(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class CreateShapeResponse(typing_extensions.TypedDict, total=False):
+class CreateShapeResponse(typing.TypedDict, total=False):
     objectId: str
 
 @typing.type_check_only
-class CreateSheetsChartRequest(typing_extensions.TypedDict, total=False):
+class CreateSheetsChartRequest(typing.TypedDict, total=False):
     chartId: int
     elementProperties: PageElementProperties
-    linkingMode: typing_extensions.Literal["NOT_LINKED_IMAGE", "LINKED"]
+    linkingMode: typing.Literal["NOT_LINKED_IMAGE", "LINKED"]
     objectId: str
     spreadsheetId: str
 
 @typing.type_check_only
-class CreateSheetsChartResponse(typing_extensions.TypedDict, total=False):
+class CreateSheetsChartResponse(typing.TypedDict, total=False):
     objectId: str
 
 @typing.type_check_only
-class CreateSlideRequest(typing_extensions.TypedDict, total=False):
+class CreateSlideRequest(typing.TypedDict, total=False):
     insertionIndex: int
     objectId: str
     placeholderIdMappings: _list[LayoutPlaceholderIdMapping]
     slideLayoutReference: LayoutReference
 
 @typing.type_check_only
-class CreateSlideResponse(typing_extensions.TypedDict, total=False):
+class CreateSlideResponse(typing.TypedDict, total=False):
     objectId: str
 
 @typing.type_check_only
-class CreateTableRequest(typing_extensions.TypedDict, total=False):
+class CreateTableRequest(typing.TypedDict, total=False):
     columns: int
     elementProperties: PageElementProperties
     objectId: str
     rows: int
 
 @typing.type_check_only
-class CreateTableResponse(typing_extensions.TypedDict, total=False):
+class CreateTableResponse(typing.TypedDict, total=False):
     objectId: str
 
 @typing.type_check_only
-class CreateVideoRequest(typing_extensions.TypedDict, total=False):
+class CreateVideoRequest(typing.TypedDict, total=False):
     elementProperties: PageElementProperties
     id: str
     objectId: str
-    source: typing_extensions.Literal["SOURCE_UNSPECIFIED", "YOUTUBE", "DRIVE"]
+    source: typing.Literal["SOURCE_UNSPECIFIED", "YOUTUBE", "DRIVE"]
 
 @typing.type_check_only
-class CreateVideoResponse(typing_extensions.TypedDict, total=False):
+class CreateVideoResponse(typing.TypedDict, total=False):
     objectId: str
 
 @typing.type_check_only
-class CropProperties(typing_extensions.TypedDict, total=False):
+class CropProperties(typing.TypedDict, total=False):
     angle: float
     bottomOffset: float
     leftOffset: float
@@ -310,67 +306,67 @@ class CropProperties(typing_extensions.TypedDict, total=False):
     topOffset: float
 
 @typing.type_check_only
-class DeleteObjectRequest(typing_extensions.TypedDict, total=False):
+class DeleteObjectRequest(typing.TypedDict, total=False):
     objectId: str
 
 @typing.type_check_only
-class DeleteParagraphBulletsRequest(typing_extensions.TypedDict, total=False):
-    cellLocation: TableCellLocation
-    objectId: str
-    textRange: Range
-
-@typing.type_check_only
-class DeleteTableColumnRequest(typing_extensions.TypedDict, total=False):
-    cellLocation: TableCellLocation
-    tableObjectId: str
-
-@typing.type_check_only
-class DeleteTableRowRequest(typing_extensions.TypedDict, total=False):
-    cellLocation: TableCellLocation
-    tableObjectId: str
-
-@typing.type_check_only
-class DeleteTextRequest(typing_extensions.TypedDict, total=False):
+class DeleteParagraphBulletsRequest(typing.TypedDict, total=False):
     cellLocation: TableCellLocation
     objectId: str
     textRange: Range
 
 @typing.type_check_only
-class Dimension(typing_extensions.TypedDict, total=False):
+class DeleteTableColumnRequest(typing.TypedDict, total=False):
+    cellLocation: TableCellLocation
+    tableObjectId: str
+
+@typing.type_check_only
+class DeleteTableRowRequest(typing.TypedDict, total=False):
+    cellLocation: TableCellLocation
+    tableObjectId: str
+
+@typing.type_check_only
+class DeleteTextRequest(typing.TypedDict, total=False):
+    cellLocation: TableCellLocation
+    objectId: str
+    textRange: Range
+
+@typing.type_check_only
+class Dimension(typing.TypedDict, total=False):
     magnitude: float
-    unit: typing_extensions.Literal["UNIT_UNSPECIFIED", "EMU", "PT"]
+    unit: typing.Literal["UNIT_UNSPECIFIED", "EMU", "PT"]
 
 @typing.type_check_only
-class DuplicateObjectRequest(typing_extensions.TypedDict, total=False):
+class DuplicateObjectRequest(typing.TypedDict, total=False):
     objectId: str
     objectIds: dict[str, typing.Any]
 
 @typing.type_check_only
-class DuplicateObjectResponse(typing_extensions.TypedDict, total=False):
+class DuplicateObjectResponse(typing.TypedDict, total=False):
     objectId: str
 
 @typing.type_check_only
-class Group(typing_extensions.TypedDict, total=False):
+class Group(typing.TypedDict, total=False):
     children: _list[PageElement]
 
 @typing.type_check_only
-class GroupObjectsRequest(typing_extensions.TypedDict, total=False):
+class GroupObjectsRequest(typing.TypedDict, total=False):
     childrenObjectIds: _list[str]
     groupObjectId: str
 
 @typing.type_check_only
-class GroupObjectsResponse(typing_extensions.TypedDict, total=False):
+class GroupObjectsResponse(typing.TypedDict, total=False):
     objectId: str
 
 @typing.type_check_only
-class Image(typing_extensions.TypedDict, total=False):
+class Image(typing.TypedDict, total=False):
     contentUrl: str
     imageProperties: ImageProperties
     placeholder: Placeholder
     sourceUrl: str
 
 @typing.type_check_only
-class ImageProperties(typing_extensions.TypedDict, total=False):
+class ImageProperties(typing.TypedDict, total=False):
     brightness: float
     contrast: float
     cropProperties: CropProperties
@@ -381,42 +377,42 @@ class ImageProperties(typing_extensions.TypedDict, total=False):
     transparency: float
 
 @typing.type_check_only
-class InsertTableColumnsRequest(typing_extensions.TypedDict, total=False):
+class InsertTableColumnsRequest(typing.TypedDict, total=False):
     cellLocation: TableCellLocation
     insertRight: bool
     number: int
     tableObjectId: str
 
 @typing.type_check_only
-class InsertTableRowsRequest(typing_extensions.TypedDict, total=False):
+class InsertTableRowsRequest(typing.TypedDict, total=False):
     cellLocation: TableCellLocation
     insertBelow: bool
     number: int
     tableObjectId: str
 
 @typing.type_check_only
-class InsertTextRequest(typing_extensions.TypedDict, total=False):
+class InsertTextRequest(typing.TypedDict, total=False):
     cellLocation: TableCellLocation
     insertionIndex: int
     objectId: str
     text: str
 
 @typing.type_check_only
-class LayoutPlaceholderIdMapping(typing_extensions.TypedDict, total=False):
+class LayoutPlaceholderIdMapping(typing.TypedDict, total=False):
     layoutPlaceholder: Placeholder
     layoutPlaceholderObjectId: str
     objectId: str
 
 @typing.type_check_only
-class LayoutProperties(typing_extensions.TypedDict, total=False):
+class LayoutProperties(typing.TypedDict, total=False):
     displayName: str
     masterObjectId: str
     name: str
 
 @typing.type_check_only
-class LayoutReference(typing_extensions.TypedDict, total=False):
+class LayoutReference(typing.TypedDict, total=False):
     layoutId: str
-    predefinedLayout: typing_extensions.Literal[
+    predefinedLayout: typing.Literal[
         "PREDEFINED_LAYOUT_UNSPECIFIED",
         "BLANK",
         "CAPTION_ONLY",
@@ -432,12 +428,12 @@ class LayoutReference(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class Line(typing_extensions.TypedDict, total=False):
-    lineCategory: typing_extensions.Literal[
+class Line(typing.TypedDict, total=False):
+    lineCategory: typing.Literal[
         "LINE_CATEGORY_UNSPECIFIED", "STRAIGHT", "BENT", "CURVED"
     ]
     lineProperties: LineProperties
-    lineType: typing_extensions.Literal[
+    lineType: typing.Literal[
         "TYPE_UNSPECIFIED",
         "STRAIGHT_CONNECTOR_1",
         "BENT_CONNECTOR_2",
@@ -452,17 +448,17 @@ class Line(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class LineConnection(typing_extensions.TypedDict, total=False):
+class LineConnection(typing.TypedDict, total=False):
     connectedObjectId: str
     connectionSiteIndex: int
 
 @typing.type_check_only
-class LineFill(typing_extensions.TypedDict, total=False):
+class LineFill(typing.TypedDict, total=False):
     solidFill: SolidFill
 
 @typing.type_check_only
-class LineProperties(typing_extensions.TypedDict, total=False):
-    dashStyle: typing_extensions.Literal[
+class LineProperties(typing.TypedDict, total=False):
+    dashStyle: typing.Literal[
         "DASH_STYLE_UNSPECIFIED",
         "SOLID",
         "DOT",
@@ -471,7 +467,7 @@ class LineProperties(typing_extensions.TypedDict, total=False):
         "LONG_DASH",
         "LONG_DASH_DOT",
     ]
-    endArrow: typing_extensions.Literal[
+    endArrow: typing.Literal[
         "ARROW_STYLE_UNSPECIFIED",
         "NONE",
         "STEALTH_ARROW",
@@ -487,7 +483,7 @@ class LineProperties(typing_extensions.TypedDict, total=False):
     endConnection: LineConnection
     lineFill: LineFill
     link: Link
-    startArrow: typing_extensions.Literal[
+    startArrow: typing.Literal[
         "ARROW_STYLE_UNSPECIFIED",
         "NONE",
         "STEALTH_ARROW",
@@ -504,9 +500,9 @@ class LineProperties(typing_extensions.TypedDict, total=False):
     weight: Dimension
 
 @typing.type_check_only
-class Link(typing_extensions.TypedDict, total=False):
+class Link(typing.TypedDict, total=False):
     pageObjectId: str
-    relativeLink: typing_extensions.Literal[
+    relativeLink: typing.Literal[
         "RELATIVE_SLIDE_LINK_UNSPECIFIED",
         "NEXT_SLIDE",
         "PREVIOUS_SLIDE",
@@ -517,31 +513,31 @@ class Link(typing_extensions.TypedDict, total=False):
     url: str
 
 @typing.type_check_only
-class List(typing_extensions.TypedDict, total=False):
+class List(typing.TypedDict, total=False):
     listId: str
     nestingLevel: dict[str, typing.Any]
 
 @typing.type_check_only
-class MasterProperties(typing_extensions.TypedDict, total=False):
+class MasterProperties(typing.TypedDict, total=False):
     displayName: str
 
 @typing.type_check_only
-class MergeTableCellsRequest(typing_extensions.TypedDict, total=False):
+class MergeTableCellsRequest(typing.TypedDict, total=False):
     objectId: str
     tableRange: TableRange
 
 @typing.type_check_only
-class NestingLevel(typing_extensions.TypedDict, total=False):
+class NestingLevel(typing.TypedDict, total=False):
     bulletStyle: TextStyle
 
 @typing.type_check_only
-class NotesProperties(typing_extensions.TypedDict, total=False):
+class NotesProperties(typing.TypedDict, total=False):
     speakerNotesObjectId: str
 
 @typing.type_check_only
-class OpaqueColor(typing_extensions.TypedDict, total=False):
+class OpaqueColor(typing.TypedDict, total=False):
     rgbColor: RgbColor
-    themeColor: typing_extensions.Literal[
+    themeColor: typing.Literal[
         "THEME_COLOR_TYPE_UNSPECIFIED",
         "DARK1",
         "LIGHT1",
@@ -562,12 +558,12 @@ class OpaqueColor(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class OptionalColor(typing_extensions.TypedDict, total=False):
+class OptionalColor(typing.TypedDict, total=False):
     opaqueColor: OpaqueColor
 
 @typing.type_check_only
-class Outline(typing_extensions.TypedDict, total=False):
-    dashStyle: typing_extensions.Literal[
+class Outline(typing.TypedDict, total=False):
+    dashStyle: typing.Literal[
         "DASH_STYLE_UNSPECIFIED",
         "SOLID",
         "DOT",
@@ -577,35 +573,33 @@ class Outline(typing_extensions.TypedDict, total=False):
         "LONG_DASH_DOT",
     ]
     outlineFill: OutlineFill
-    propertyState: typing_extensions.Literal["RENDERED", "NOT_RENDERED", "INHERIT"]
+    propertyState: typing.Literal["RENDERED", "NOT_RENDERED", "INHERIT"]
     weight: Dimension
 
 @typing.type_check_only
-class OutlineFill(typing_extensions.TypedDict, total=False):
+class OutlineFill(typing.TypedDict, total=False):
     solidFill: SolidFill
 
 @typing.type_check_only
-class Page(typing_extensions.TypedDict, total=False):
+class Page(typing.TypedDict, total=False):
     layoutProperties: LayoutProperties
     masterProperties: MasterProperties
     notesProperties: NotesProperties
     objectId: str
     pageElements: _list[PageElement]
     pageProperties: PageProperties
-    pageType: typing_extensions.Literal[
-        "SLIDE", "MASTER", "LAYOUT", "NOTES", "NOTES_MASTER"
-    ]
+    pageType: typing.Literal["SLIDE", "MASTER", "LAYOUT", "NOTES", "NOTES_MASTER"]
     revisionId: str
     slideProperties: SlideProperties
 
 @typing.type_check_only
-class PageBackgroundFill(typing_extensions.TypedDict, total=False):
-    propertyState: typing_extensions.Literal["RENDERED", "NOT_RENDERED", "INHERIT"]
+class PageBackgroundFill(typing.TypedDict, total=False):
+    propertyState: typing.Literal["RENDERED", "NOT_RENDERED", "INHERIT"]
     solidFill: SolidFill
     stretchedPictureFill: StretchedPictureFill
 
 @typing.type_check_only
-class PageElement(typing_extensions.TypedDict, total=False):
+class PageElement(typing.TypedDict, total=False):
     description: str
     elementGroup: Group
     image: Image
@@ -622,27 +616,27 @@ class PageElement(typing_extensions.TypedDict, total=False):
     wordArt: WordArt
 
 @typing.type_check_only
-class PageElementProperties(typing_extensions.TypedDict, total=False):
+class PageElementProperties(typing.TypedDict, total=False):
     pageObjectId: str
     size: Size
     transform: AffineTransform
 
 @typing.type_check_only
-class PageProperties(typing_extensions.TypedDict, total=False):
+class PageProperties(typing.TypedDict, total=False):
     colorScheme: ColorScheme
     pageBackgroundFill: PageBackgroundFill
 
 @typing.type_check_only
-class ParagraphMarker(typing_extensions.TypedDict, total=False):
+class ParagraphMarker(typing.TypedDict, total=False):
     bullet: Bullet
     style: ParagraphStyle
 
 @typing.type_check_only
-class ParagraphStyle(typing_extensions.TypedDict, total=False):
-    alignment: typing_extensions.Literal[
+class ParagraphStyle(typing.TypedDict, total=False):
+    alignment: typing.Literal[
         "ALIGNMENT_UNSPECIFIED", "START", "CENTER", "END", "JUSTIFIED"
     ]
-    direction: typing_extensions.Literal[
+    direction: typing.Literal[
         "TEXT_DIRECTION_UNSPECIFIED", "LEFT_TO_RIGHT", "RIGHT_TO_LEFT"
     ]
     indentEnd: Dimension
@@ -651,15 +645,15 @@ class ParagraphStyle(typing_extensions.TypedDict, total=False):
     lineSpacing: float
     spaceAbove: Dimension
     spaceBelow: Dimension
-    spacingMode: typing_extensions.Literal[
+    spacingMode: typing.Literal[
         "SPACING_MODE_UNSPECIFIED", "NEVER_COLLAPSE", "COLLAPSE_LISTS"
     ]
 
 @typing.type_check_only
-class Placeholder(typing_extensions.TypedDict, total=False):
+class Placeholder(typing.TypedDict, total=False):
     index: int
     parentObjectId: str
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "NONE",
         "BODY",
         "CHART",
@@ -680,7 +674,7 @@ class Placeholder(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class Presentation(typing_extensions.TypedDict, total=False):
+class Presentation(typing.TypedDict, total=False):
     layouts: _list[Page]
     locale: str
     masters: _list[Page]
@@ -692,16 +686,16 @@ class Presentation(typing_extensions.TypedDict, total=False):
     title: str
 
 @typing.type_check_only
-class Range(typing_extensions.TypedDict, total=False):
+class Range(typing.TypedDict, total=False):
     endIndex: int
     startIndex: int
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "RANGE_TYPE_UNSPECIFIED", "FIXED_RANGE", "FROM_START_INDEX", "ALL"
     ]
 
 @typing.type_check_only
-class Recolor(typing_extensions.TypedDict, total=False):
-    name: typing_extensions.Literal[
+class Recolor(typing.TypedDict, total=False):
+    name: typing.Literal[
         "NONE",
         "LIGHT1",
         "LIGHT2",
@@ -731,55 +725,55 @@ class Recolor(typing_extensions.TypedDict, total=False):
     recolorStops: _list[ColorStop]
 
 @typing.type_check_only
-class RefreshSheetsChartRequest(typing_extensions.TypedDict, total=False):
+class RefreshSheetsChartRequest(typing.TypedDict, total=False):
     objectId: str
 
 @typing.type_check_only
-class ReplaceAllShapesWithImageRequest(typing_extensions.TypedDict, total=False):
+class ReplaceAllShapesWithImageRequest(typing.TypedDict, total=False):
     containsText: SubstringMatchCriteria
-    imageReplaceMethod: typing_extensions.Literal[
+    imageReplaceMethod: typing.Literal[
         "IMAGE_REPLACE_METHOD_UNSPECIFIED", "CENTER_INSIDE", "CENTER_CROP"
     ]
     imageUrl: str
     pageObjectIds: _list[str]
-    replaceMethod: typing_extensions.Literal["CENTER_INSIDE", "CENTER_CROP"]
+    replaceMethod: typing.Literal["CENTER_INSIDE", "CENTER_CROP"]
 
 @typing.type_check_only
-class ReplaceAllShapesWithImageResponse(typing_extensions.TypedDict, total=False):
+class ReplaceAllShapesWithImageResponse(typing.TypedDict, total=False):
     occurrencesChanged: int
 
 @typing.type_check_only
-class ReplaceAllShapesWithSheetsChartRequest(typing_extensions.TypedDict, total=False):
+class ReplaceAllShapesWithSheetsChartRequest(typing.TypedDict, total=False):
     chartId: int
     containsText: SubstringMatchCriteria
-    linkingMode: typing_extensions.Literal["NOT_LINKED_IMAGE", "LINKED"]
+    linkingMode: typing.Literal["NOT_LINKED_IMAGE", "LINKED"]
     pageObjectIds: _list[str]
     spreadsheetId: str
 
 @typing.type_check_only
-class ReplaceAllShapesWithSheetsChartResponse(typing_extensions.TypedDict, total=False):
+class ReplaceAllShapesWithSheetsChartResponse(typing.TypedDict, total=False):
     occurrencesChanged: int
 
 @typing.type_check_only
-class ReplaceAllTextRequest(typing_extensions.TypedDict, total=False):
+class ReplaceAllTextRequest(typing.TypedDict, total=False):
     containsText: SubstringMatchCriteria
     pageObjectIds: _list[str]
     replaceText: str
 
 @typing.type_check_only
-class ReplaceAllTextResponse(typing_extensions.TypedDict, total=False):
+class ReplaceAllTextResponse(typing.TypedDict, total=False):
     occurrencesChanged: int
 
 @typing.type_check_only
-class ReplaceImageRequest(typing_extensions.TypedDict, total=False):
+class ReplaceImageRequest(typing.TypedDict, total=False):
     imageObjectId: str
-    imageReplaceMethod: typing_extensions.Literal[
+    imageReplaceMethod: typing.Literal[
         "IMAGE_REPLACE_METHOD_UNSPECIFIED", "CENTER_INSIDE", "CENTER_CROP"
     ]
     url: str
 
 @typing.type_check_only
-class Request(typing_extensions.TypedDict, total=False):
+class Request(typing.TypedDict, total=False):
     createImage: CreateImageRequest
     createLine: CreateLineRequest
     createParagraphBullets: CreateParagraphBulletsRequest
@@ -826,11 +820,11 @@ class Request(typing_extensions.TypedDict, total=False):
     updateVideoProperties: UpdateVideoPropertiesRequest
 
 @typing.type_check_only
-class RerouteLineRequest(typing_extensions.TypedDict, total=False):
+class RerouteLineRequest(typing.TypedDict, total=False):
     objectId: str
 
 @typing.type_check_only
-class Response(typing_extensions.TypedDict, total=False):
+class Response(typing.TypedDict, total=False):
     createImage: CreateImageResponse
     createLine: CreateLineResponse
     createShape: CreateShapeResponse
@@ -845,14 +839,14 @@ class Response(typing_extensions.TypedDict, total=False):
     replaceAllText: ReplaceAllTextResponse
 
 @typing.type_check_only
-class RgbColor(typing_extensions.TypedDict, total=False):
+class RgbColor(typing.TypedDict, total=False):
     blue: float
     green: float
     red: float
 
 @typing.type_check_only
-class Shadow(typing_extensions.TypedDict, total=False):
-    alignment: typing_extensions.Literal[
+class Shadow(typing.TypedDict, total=False):
+    alignment: typing.Literal[
         "RECTANGLE_POSITION_UNSPECIFIED",
         "TOP_LEFT",
         "TOP_CENTER",
@@ -867,16 +861,16 @@ class Shadow(typing_extensions.TypedDict, total=False):
     alpha: float
     blurRadius: Dimension
     color: OpaqueColor
-    propertyState: typing_extensions.Literal["RENDERED", "NOT_RENDERED", "INHERIT"]
+    propertyState: typing.Literal["RENDERED", "NOT_RENDERED", "INHERIT"]
     rotateWithShape: bool
     transform: AffineTransform
-    type: typing_extensions.Literal["SHADOW_TYPE_UNSPECIFIED", "OUTER"]
+    type: typing.Literal["SHADOW_TYPE_UNSPECIFIED", "OUTER"]
 
 @typing.type_check_only
-class Shape(typing_extensions.TypedDict, total=False):
+class Shape(typing.TypedDict, total=False):
     placeholder: Placeholder
     shapeProperties: ShapeProperties
-    shapeType: typing_extensions.Literal[
+    shapeType: typing.Literal[
         "TYPE_UNSPECIFIED",
         "TEXT_BOX",
         "RECTANGLE",
@@ -1024,14 +1018,14 @@ class Shape(typing_extensions.TypedDict, total=False):
     text: TextContent
 
 @typing.type_check_only
-class ShapeBackgroundFill(typing_extensions.TypedDict, total=False):
-    propertyState: typing_extensions.Literal["RENDERED", "NOT_RENDERED", "INHERIT"]
+class ShapeBackgroundFill(typing.TypedDict, total=False):
+    propertyState: typing.Literal["RENDERED", "NOT_RENDERED", "INHERIT"]
     solidFill: SolidFill
 
 @typing.type_check_only
-class ShapeProperties(typing_extensions.TypedDict, total=False):
+class ShapeProperties(typing.TypedDict, total=False):
     autofit: Autofit
-    contentAlignment: typing_extensions.Literal[
+    contentAlignment: typing.Literal[
         "CONTENT_ALIGNMENT_UNSPECIFIED",
         "CONTENT_ALIGNMENT_UNSUPPORTED",
         "TOP",
@@ -1044,55 +1038,55 @@ class ShapeProperties(typing_extensions.TypedDict, total=False):
     shapeBackgroundFill: ShapeBackgroundFill
 
 @typing.type_check_only
-class SheetsChart(typing_extensions.TypedDict, total=False):
+class SheetsChart(typing.TypedDict, total=False):
     chartId: int
     contentUrl: str
     sheetsChartProperties: SheetsChartProperties
     spreadsheetId: str
 
 @typing.type_check_only
-class SheetsChartProperties(typing_extensions.TypedDict, total=False):
+class SheetsChartProperties(typing.TypedDict, total=False):
     chartImageProperties: ImageProperties
 
 @typing.type_check_only
-class Size(typing_extensions.TypedDict, total=False):
+class Size(typing.TypedDict, total=False):
     height: Dimension
     width: Dimension
 
 @typing.type_check_only
-class SlideProperties(typing_extensions.TypedDict, total=False):
+class SlideProperties(typing.TypedDict, total=False):
     isSkipped: bool
     layoutObjectId: str
     masterObjectId: str
     notesPage: Page
 
 @typing.type_check_only
-class SolidFill(typing_extensions.TypedDict, total=False):
+class SolidFill(typing.TypedDict, total=False):
     alpha: float
     color: OpaqueColor
 
 @typing.type_check_only
-class SpeakerSpotlight(typing_extensions.TypedDict, total=False):
+class SpeakerSpotlight(typing.TypedDict, total=False):
     speakerSpotlightProperties: SpeakerSpotlightProperties
 
 @typing.type_check_only
-class SpeakerSpotlightProperties(typing_extensions.TypedDict, total=False):
+class SpeakerSpotlightProperties(typing.TypedDict, total=False):
     outline: Outline
     shadow: Shadow
 
 @typing.type_check_only
-class StretchedPictureFill(typing_extensions.TypedDict, total=False):
+class StretchedPictureFill(typing.TypedDict, total=False):
     contentUrl: str
     size: Size
 
 @typing.type_check_only
-class SubstringMatchCriteria(typing_extensions.TypedDict, total=False):
+class SubstringMatchCriteria(typing.TypedDict, total=False):
     matchCase: bool
     searchByRegex: bool
     text: str
 
 @typing.type_check_only
-class Table(typing_extensions.TypedDict, total=False):
+class Table(typing.TypedDict, total=False):
     columns: int
     horizontalBorderRows: _list[TableBorderRow]
     rows: int
@@ -1101,17 +1095,17 @@ class Table(typing_extensions.TypedDict, total=False):
     verticalBorderRows: _list[TableBorderRow]
 
 @typing.type_check_only
-class TableBorderCell(typing_extensions.TypedDict, total=False):
+class TableBorderCell(typing.TypedDict, total=False):
     location: TableCellLocation
     tableBorderProperties: TableBorderProperties
 
 @typing.type_check_only
-class TableBorderFill(typing_extensions.TypedDict, total=False):
+class TableBorderFill(typing.TypedDict, total=False):
     solidFill: SolidFill
 
 @typing.type_check_only
-class TableBorderProperties(typing_extensions.TypedDict, total=False):
-    dashStyle: typing_extensions.Literal[
+class TableBorderProperties(typing.TypedDict, total=False):
+    dashStyle: typing.Literal[
         "DASH_STYLE_UNSPECIFIED",
         "SOLID",
         "DOT",
@@ -1124,11 +1118,11 @@ class TableBorderProperties(typing_extensions.TypedDict, total=False):
     weight: Dimension
 
 @typing.type_check_only
-class TableBorderRow(typing_extensions.TypedDict, total=False):
+class TableBorderRow(typing.TypedDict, total=False):
     tableBorderCells: _list[TableBorderCell]
 
 @typing.type_check_only
-class TableCell(typing_extensions.TypedDict, total=False):
+class TableCell(typing.TypedDict, total=False):
     columnSpan: int
     location: TableCellLocation
     rowSpan: int
@@ -1136,18 +1130,18 @@ class TableCell(typing_extensions.TypedDict, total=False):
     text: TextContent
 
 @typing.type_check_only
-class TableCellBackgroundFill(typing_extensions.TypedDict, total=False):
-    propertyState: typing_extensions.Literal["RENDERED", "NOT_RENDERED", "INHERIT"]
+class TableCellBackgroundFill(typing.TypedDict, total=False):
+    propertyState: typing.Literal["RENDERED", "NOT_RENDERED", "INHERIT"]
     solidFill: SolidFill
 
 @typing.type_check_only
-class TableCellLocation(typing_extensions.TypedDict, total=False):
+class TableCellLocation(typing.TypedDict, total=False):
     columnIndex: int
     rowIndex: int
 
 @typing.type_check_only
-class TableCellProperties(typing_extensions.TypedDict, total=False):
-    contentAlignment: typing_extensions.Literal[
+class TableCellProperties(typing.TypedDict, total=False):
+    contentAlignment: typing.Literal[
         "CONTENT_ALIGNMENT_UNSPECIFIED",
         "CONTENT_ALIGNMENT_UNSUPPORTED",
         "TOP",
@@ -1157,32 +1151,32 @@ class TableCellProperties(typing_extensions.TypedDict, total=False):
     tableCellBackgroundFill: TableCellBackgroundFill
 
 @typing.type_check_only
-class TableColumnProperties(typing_extensions.TypedDict, total=False):
+class TableColumnProperties(typing.TypedDict, total=False):
     columnWidth: Dimension
 
 @typing.type_check_only
-class TableRange(typing_extensions.TypedDict, total=False):
+class TableRange(typing.TypedDict, total=False):
     columnSpan: int
     location: TableCellLocation
     rowSpan: int
 
 @typing.type_check_only
-class TableRow(typing_extensions.TypedDict, total=False):
+class TableRow(typing.TypedDict, total=False):
     rowHeight: Dimension
     tableCells: _list[TableCell]
     tableRowProperties: TableRowProperties
 
 @typing.type_check_only
-class TableRowProperties(typing_extensions.TypedDict, total=False):
+class TableRowProperties(typing.TypedDict, total=False):
     minRowHeight: Dimension
 
 @typing.type_check_only
-class TextContent(typing_extensions.TypedDict, total=False):
+class TextContent(typing.TypedDict, total=False):
     lists: dict[str, typing.Any]
     textElements: _list[TextElement]
 
 @typing.type_check_only
-class TextElement(typing_extensions.TypedDict, total=False):
+class TextElement(typing.TypedDict, total=False):
     autoText: AutoText
     endIndex: int
     paragraphMarker: ParagraphMarker
@@ -1190,14 +1184,14 @@ class TextElement(typing_extensions.TypedDict, total=False):
     textRun: TextRun
 
 @typing.type_check_only
-class TextRun(typing_extensions.TypedDict, total=False):
+class TextRun(typing.TypedDict, total=False):
     content: str
     style: TextStyle
 
 @typing.type_check_only
-class TextStyle(typing_extensions.TypedDict, total=False):
+class TextStyle(typing.TypedDict, total=False):
     backgroundColor: OptionalColor
-    baselineOffset: typing_extensions.Literal[
+    baselineOffset: typing.Literal[
         "BASELINE_OFFSET_UNSPECIFIED", "NONE", "SUPERSCRIPT", "SUBSCRIPT"
     ]
     bold: bool
@@ -1212,9 +1206,9 @@ class TextStyle(typing_extensions.TypedDict, total=False):
     weightedFontFamily: WeightedFontFamily
 
 @typing.type_check_only
-class ThemeColorPair(typing_extensions.TypedDict, total=False):
+class ThemeColorPair(typing.TypedDict, total=False):
     color: RgbColor
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "THEME_COLOR_TYPE_UNSPECIFIED",
         "DARK1",
         "LIGHT1",
@@ -1235,56 +1229,54 @@ class ThemeColorPair(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class Thumbnail(typing_extensions.TypedDict, total=False):
+class Thumbnail(typing.TypedDict, total=False):
     contentUrl: str
     height: int
     width: int
 
 @typing.type_check_only
-class UngroupObjectsRequest(typing_extensions.TypedDict, total=False):
+class UngroupObjectsRequest(typing.TypedDict, total=False):
     objectIds: _list[str]
 
 @typing.type_check_only
-class UnmergeTableCellsRequest(typing_extensions.TypedDict, total=False):
+class UnmergeTableCellsRequest(typing.TypedDict, total=False):
     objectId: str
     tableRange: TableRange
 
 @typing.type_check_only
-class UpdateImagePropertiesRequest(typing_extensions.TypedDict, total=False):
+class UpdateImagePropertiesRequest(typing.TypedDict, total=False):
     fields: str
     imageProperties: ImageProperties
     objectId: str
 
 @typing.type_check_only
-class UpdateLineCategoryRequest(typing_extensions.TypedDict, total=False):
-    lineCategory: typing_extensions.Literal[
+class UpdateLineCategoryRequest(typing.TypedDict, total=False):
+    lineCategory: typing.Literal[
         "LINE_CATEGORY_UNSPECIFIED", "STRAIGHT", "BENT", "CURVED"
     ]
     objectId: str
 
 @typing.type_check_only
-class UpdateLinePropertiesRequest(typing_extensions.TypedDict, total=False):
+class UpdateLinePropertiesRequest(typing.TypedDict, total=False):
     fields: str
     lineProperties: LineProperties
     objectId: str
 
 @typing.type_check_only
-class UpdatePageElementAltTextRequest(typing_extensions.TypedDict, total=False):
+class UpdatePageElementAltTextRequest(typing.TypedDict, total=False):
     description: str
     objectId: str
     title: str
 
 @typing.type_check_only
-class UpdatePageElementTransformRequest(typing_extensions.TypedDict, total=False):
-    applyMode: typing_extensions.Literal[
-        "APPLY_MODE_UNSPECIFIED", "RELATIVE", "ABSOLUTE"
-    ]
+class UpdatePageElementTransformRequest(typing.TypedDict, total=False):
+    applyMode: typing.Literal["APPLY_MODE_UNSPECIFIED", "RELATIVE", "ABSOLUTE"]
     objectId: str
     transform: AffineTransform
 
 @typing.type_check_only
-class UpdatePageElementsZOrderRequest(typing_extensions.TypedDict, total=False):
-    operation: typing_extensions.Literal[
+class UpdatePageElementsZOrderRequest(typing.TypedDict, total=False):
+    operation: typing.Literal[
         "Z_ORDER_OPERATION_UNSPECIFIED",
         "BRING_TO_FRONT",
         "BRING_FORWARD",
@@ -1294,13 +1286,13 @@ class UpdatePageElementsZOrderRequest(typing_extensions.TypedDict, total=False):
     pageElementObjectIds: _list[str]
 
 @typing.type_check_only
-class UpdatePagePropertiesRequest(typing_extensions.TypedDict, total=False):
+class UpdatePagePropertiesRequest(typing.TypedDict, total=False):
     fields: str
     objectId: str
     pageProperties: PageProperties
 
 @typing.type_check_only
-class UpdateParagraphStyleRequest(typing_extensions.TypedDict, total=False):
+class UpdateParagraphStyleRequest(typing.TypedDict, total=False):
     cellLocation: TableCellLocation
     fields: str
     objectId: str
@@ -1308,25 +1300,25 @@ class UpdateParagraphStyleRequest(typing_extensions.TypedDict, total=False):
     textRange: Range
 
 @typing.type_check_only
-class UpdateShapePropertiesRequest(typing_extensions.TypedDict, total=False):
+class UpdateShapePropertiesRequest(typing.TypedDict, total=False):
     fields: str
     objectId: str
     shapeProperties: ShapeProperties
 
 @typing.type_check_only
-class UpdateSlidePropertiesRequest(typing_extensions.TypedDict, total=False):
+class UpdateSlidePropertiesRequest(typing.TypedDict, total=False):
     fields: str
     objectId: str
     slideProperties: SlideProperties
 
 @typing.type_check_only
-class UpdateSlidesPositionRequest(typing_extensions.TypedDict, total=False):
+class UpdateSlidesPositionRequest(typing.TypedDict, total=False):
     insertionIndex: int
     slideObjectIds: _list[str]
 
 @typing.type_check_only
-class UpdateTableBorderPropertiesRequest(typing_extensions.TypedDict, total=False):
-    borderPosition: typing_extensions.Literal[
+class UpdateTableBorderPropertiesRequest(typing.TypedDict, total=False):
+    borderPosition: typing.Literal[
         "ALL",
         "BOTTOM",
         "INNER",
@@ -1343,28 +1335,28 @@ class UpdateTableBorderPropertiesRequest(typing_extensions.TypedDict, total=Fals
     tableRange: TableRange
 
 @typing.type_check_only
-class UpdateTableCellPropertiesRequest(typing_extensions.TypedDict, total=False):
+class UpdateTableCellPropertiesRequest(typing.TypedDict, total=False):
     fields: str
     objectId: str
     tableCellProperties: TableCellProperties
     tableRange: TableRange
 
 @typing.type_check_only
-class UpdateTableColumnPropertiesRequest(typing_extensions.TypedDict, total=False):
+class UpdateTableColumnPropertiesRequest(typing.TypedDict, total=False):
     columnIndices: _list[int]
     fields: str
     objectId: str
     tableColumnProperties: TableColumnProperties
 
 @typing.type_check_only
-class UpdateTableRowPropertiesRequest(typing_extensions.TypedDict, total=False):
+class UpdateTableRowPropertiesRequest(typing.TypedDict, total=False):
     fields: str
     objectId: str
     rowIndices: _list[int]
     tableRowProperties: TableRowProperties
 
 @typing.type_check_only
-class UpdateTextStyleRequest(typing_extensions.TypedDict, total=False):
+class UpdateTextStyleRequest(typing.TypedDict, total=False):
     cellLocation: TableCellLocation
     fields: str
     objectId: str
@@ -1372,20 +1364,20 @@ class UpdateTextStyleRequest(typing_extensions.TypedDict, total=False):
     textRange: Range
 
 @typing.type_check_only
-class UpdateVideoPropertiesRequest(typing_extensions.TypedDict, total=False):
+class UpdateVideoPropertiesRequest(typing.TypedDict, total=False):
     fields: str
     objectId: str
     videoProperties: VideoProperties
 
 @typing.type_check_only
-class Video(typing_extensions.TypedDict, total=False):
+class Video(typing.TypedDict, total=False):
     id: str
-    source: typing_extensions.Literal["SOURCE_UNSPECIFIED", "YOUTUBE", "DRIVE"]
+    source: typing.Literal["SOURCE_UNSPECIFIED", "YOUTUBE", "DRIVE"]
     url: str
     videoProperties: VideoProperties
 
 @typing.type_check_only
-class VideoProperties(typing_extensions.TypedDict, total=False):
+class VideoProperties(typing.TypedDict, total=False):
     autoPlay: bool
     end: int
     mute: bool
@@ -1393,14 +1385,14 @@ class VideoProperties(typing_extensions.TypedDict, total=False):
     start: int
 
 @typing.type_check_only
-class WeightedFontFamily(typing_extensions.TypedDict, total=False):
+class WeightedFontFamily(typing.TypedDict, total=False):
     fontFamily: str
     weight: int
 
 @typing.type_check_only
-class WordArt(typing_extensions.TypedDict, total=False):
+class WordArt(typing.TypedDict, total=False):
     renderedText: str
 
 @typing.type_check_only
-class WriteControl(typing_extensions.TypedDict, total=False):
+class WriteControl(typing.TypedDict, total=False):
     requiredRevisionId: str

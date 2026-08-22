@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -24,7 +23,7 @@ class RealTimeBiddingResource(googleapiclient.discovery.Resource):
                 filter: str | None = ...,
                 pageSize: int | None = ...,
                 pageToken: str | None = ...,
-                view: typing_extensions.Literal[
+                view: typing.Literal[
                     "CREATIVE_VIEW_UNSPECIFIED", "SERVING_DECISION_ONLY", "FULL"
                 ]
                 | None = ...,
@@ -219,7 +218,7 @@ class RealTimeBiddingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                view: typing_extensions.Literal[
+                view: typing.Literal[
                     "CREATIVE_VIEW_UNSPECIFIED", "SERVING_DECISION_ONLY", "FULL"
                 ]
                 | None = ...,
@@ -232,7 +231,7 @@ class RealTimeBiddingResource(googleapiclient.discovery.Resource):
                 filter: str | None = ...,
                 pageSize: int | None = ...,
                 pageToken: str | None = ...,
-                view: typing_extensions.Literal[
+                view: typing.Literal[
                     "CREATIVE_VIEW_UNSPECIFIED", "SERVING_DECISION_ONLY", "FULL"
                 ]
                 | None = ...,

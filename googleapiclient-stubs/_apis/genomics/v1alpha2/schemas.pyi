@@ -1,37 +1,35 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
+class CancelOperationRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class ComputeEngine(typing_extensions.TypedDict, total=False):
+class ComputeEngine(typing.TypedDict, total=False):
     diskNames: _list[str]
     instanceName: str
     machineType: str
     zone: str
 
 @typing.type_check_only
-class ContainerKilledEvent(typing_extensions.TypedDict, total=False):
+class ContainerKilledEvent(typing.TypedDict, total=False):
     actionId: int
 
 @typing.type_check_only
-class ContainerStartedEvent(typing_extensions.TypedDict, total=False):
+class ContainerStartedEvent(typing.TypedDict, total=False):
     actionId: int
     ipAddress: str
     portMappings: dict[str, typing.Any]
 
 @typing.type_check_only
-class ContainerStoppedEvent(typing_extensions.TypedDict, total=False):
+class ContainerStoppedEvent(typing.TypedDict, total=False):
     actionId: int
     exitStatus: int
     stderr: str
 
 @typing.type_check_only
-class ControllerConfig(typing_extensions.TypedDict, total=False):
+class ControllerConfig(typing.TypedDict, total=False):
     cmd: str
     disks: dict[str, typing.Any]
     gcsLogPath: str
@@ -42,40 +40,40 @@ class ControllerConfig(typing_extensions.TypedDict, total=False):
     vars: dict[str, typing.Any]
 
 @typing.type_check_only
-class DelayedEvent(typing_extensions.TypedDict, total=False):
+class DelayedEvent(typing.TypedDict, total=False):
     cause: str
     metrics: _list[str]
 
 @typing.type_check_only
-class Disk(typing_extensions.TypedDict, total=False):
+class Disk(typing.TypedDict, total=False):
     autoDelete: bool
     mountPoint: str
     name: str
     readOnly: bool
     sizeGb: int
     source: str
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "TYPE_UNSPECIFIED", "PERSISTENT_HDD", "PERSISTENT_SSD", "LOCAL_SSD"
     ]
 
 @typing.type_check_only
-class DockerExecutor(typing_extensions.TypedDict, total=False):
+class DockerExecutor(typing.TypedDict, total=False):
     cmd: str
     imageName: str
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Event(typing_extensions.TypedDict, total=False):
+class Event(typing.TypedDict, total=False):
     description: str
     details: dict[str, typing.Any]
     timestamp: str
 
 @typing.type_check_only
-class FailedEvent(typing_extensions.TypedDict, total=False):
+class FailedEvent(typing.TypedDict, total=False):
     cause: str
-    code: typing_extensions.Literal[
+    code: typing.Literal[
         "OK",
         "CANCELLED",
         "UNKNOWN",
@@ -96,26 +94,26 @@ class FailedEvent(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class ListOperationsResponse(typing_extensions.TypedDict, total=False):
+class ListOperationsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
 
 @typing.type_check_only
-class ListPipelinesResponse(typing_extensions.TypedDict, total=False):
+class ListPipelinesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     pipelines: _list[Pipeline]
 
 @typing.type_check_only
-class LocalCopy(typing_extensions.TypedDict, total=False):
+class LocalCopy(typing.TypedDict, total=False):
     disk: str
     path: str
 
 @typing.type_check_only
-class LoggingOptions(typing_extensions.TypedDict, total=False):
+class LoggingOptions(typing.TypedDict, total=False):
     gcsPath: str
 
 @typing.type_check_only
-class Operation(typing_extensions.TypedDict, total=False):
+class Operation(typing.TypedDict, total=False):
     done: bool
     error: Status
     metadata: dict[str, typing.Any]
@@ -123,13 +121,13 @@ class Operation(typing_extensions.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
-class OperationEvent(typing_extensions.TypedDict, total=False):
+class OperationEvent(typing.TypedDict, total=False):
     description: str
     endTime: str
     startTime: str
 
 @typing.type_check_only
-class OperationMetadata(typing_extensions.TypedDict, total=False):
+class OperationMetadata(typing.TypedDict, total=False):
     clientId: str
     createTime: str
     endTime: str
@@ -141,7 +139,7 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     startTime: str
 
 @typing.type_check_only
-class Pipeline(typing_extensions.TypedDict, total=False):
+class Pipeline(typing.TypedDict, total=False):
     description: str
     docker: DockerExecutor
     inputParameters: _list[PipelineParameter]
@@ -152,14 +150,14 @@ class Pipeline(typing_extensions.TypedDict, total=False):
     resources: PipelineResources
 
 @typing.type_check_only
-class PipelineParameter(typing_extensions.TypedDict, total=False):
+class PipelineParameter(typing.TypedDict, total=False):
     defaultValue: str
     description: str
     localCopy: LocalCopy
     name: str
 
 @typing.type_check_only
-class PipelineResources(typing_extensions.TypedDict, total=False):
+class PipelineResources(typing.TypedDict, total=False):
     acceleratorCount: str
     acceleratorType: str
     bootDiskSizeGb: int
@@ -171,19 +169,19 @@ class PipelineResources(typing_extensions.TypedDict, total=False):
     zones: _list[str]
 
 @typing.type_check_only
-class PullStartedEvent(typing_extensions.TypedDict, total=False):
+class PullStartedEvent(typing.TypedDict, total=False):
     imageUri: str
 
 @typing.type_check_only
-class PullStoppedEvent(typing_extensions.TypedDict, total=False):
+class PullStoppedEvent(typing.TypedDict, total=False):
     imageUri: str
 
 @typing.type_check_only
-class RepeatedString(typing_extensions.TypedDict, total=False):
+class RepeatedString(typing.TypedDict, total=False):
     values: _list[str]
 
 @typing.type_check_only
-class RunPipelineArgs(typing_extensions.TypedDict, total=False):
+class RunPipelineArgs(typing.TypedDict, total=False):
     clientId: str
     inputs: dict[str, typing.Any]
     keepVmAliveOnFailureDuration: str
@@ -195,26 +193,26 @@ class RunPipelineArgs(typing_extensions.TypedDict, total=False):
     serviceAccount: ServiceAccount
 
 @typing.type_check_only
-class RunPipelineRequest(typing_extensions.TypedDict, total=False):
+class RunPipelineRequest(typing.TypedDict, total=False):
     ephemeralPipeline: Pipeline
     pipelineArgs: RunPipelineArgs
     pipelineId: str
 
 @typing.type_check_only
-class RunPipelineResponse(typing_extensions.TypedDict, total=False): ...
+class RunPipelineResponse(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class RuntimeMetadata(typing_extensions.TypedDict, total=False):
+class RuntimeMetadata(typing.TypedDict, total=False):
     computeEngine: ComputeEngine
 
 @typing.type_check_only
-class ServiceAccount(typing_extensions.TypedDict, total=False):
+class ServiceAccount(typing.TypedDict, total=False):
     email: str
     scopes: _list[str]
 
 @typing.type_check_only
-class SetOperationStatusRequest(typing_extensions.TypedDict, total=False):
-    errorCode: typing_extensions.Literal[
+class SetOperationStatusRequest(typing.TypedDict, total=False):
+    errorCode: typing.Literal[
         "OK",
         "CANCELLED",
         "UNKNOWN",
@@ -239,28 +237,28 @@ class SetOperationStatusRequest(typing_extensions.TypedDict, total=False):
     validationToken: str
 
 @typing.type_check_only
-class Status(typing_extensions.TypedDict, total=False):
+class Status(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
-class TimestampEvent(typing_extensions.TypedDict, total=False):
+class TimestampEvent(typing.TypedDict, total=False):
     description: str
     timestamp: str
 
 @typing.type_check_only
-class UnexpectedExitStatusEvent(typing_extensions.TypedDict, total=False):
+class UnexpectedExitStatusEvent(typing.TypedDict, total=False):
     actionId: int
     exitStatus: int
 
 @typing.type_check_only
-class WorkerAssignedEvent(typing_extensions.TypedDict, total=False):
+class WorkerAssignedEvent(typing.TypedDict, total=False):
     instance: str
     machineType: str
     zone: str
 
 @typing.type_check_only
-class WorkerReleasedEvent(typing_extensions.TypedDict, total=False):
+class WorkerReleasedEvent(typing.TypedDict, total=False):
     instance: str
     zone: str

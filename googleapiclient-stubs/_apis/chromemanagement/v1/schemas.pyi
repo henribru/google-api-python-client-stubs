@@ -1,21 +1,17 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class GoogleChromeManagementV1AndroidAppInfo(typing_extensions.TypedDict, total=False):
+class GoogleChromeManagementV1AndroidAppInfo(typing.TypedDict, total=False):
     permissions: _list[GoogleChromeManagementV1AndroidAppPermission]
 
 @typing.type_check_only
-class GoogleChromeManagementV1AndroidAppPermission(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleChromeManagementV1AndroidAppPermission(typing.TypedDict, total=False):
     type: str
 
 @typing.type_check_only
-class GoogleChromeManagementV1AppDetails(typing_extensions.TypedDict, total=False):
+class GoogleChromeManagementV1AppDetails(typing.TypedDict, total=False):
     androidAppInfo: GoogleChromeManagementV1AndroidAppInfo
     appId: str
     categoryIds: _list[str]
@@ -35,20 +31,18 @@ class GoogleChromeManagementV1AppDetails(typing_extensions.TypedDict, total=Fals
     reviewRating: float
     revisionId: str
     serviceError: GoogleRpcStatus
-    type: typing_extensions.Literal[
-        "APP_ITEM_TYPE_UNSPECIFIED", "CHROME", "ANDROID", "WEB"
-    ]
+    type: typing.Literal["APP_ITEM_TYPE_UNSPECIFIED", "CHROME", "ANDROID", "WEB"]
 
 @typing.type_check_only
-class GoogleChromeManagementV1AppReport(typing_extensions.TypedDict, total=False):
+class GoogleChromeManagementV1AppReport(typing.TypedDict, total=False):
     reportTime: str
     usageData: _list[GoogleChromeManagementV1AppUsageData]
 
 @typing.type_check_only
-class GoogleChromeManagementV1AppUsageData(typing_extensions.TypedDict, total=False):
+class GoogleChromeManagementV1AppUsageData(typing.TypedDict, total=False):
     appId: str
     appInstanceId: str
-    appType: typing_extensions.Literal[
+    appType: typing.Literal[
         "TELEMETRY_APPLICATION_TYPE_UNSPECIFIED",
         "APPLICATION_TYPE_ARC",
         "APPLICATION_TYPE_BUILT_IN",
@@ -69,9 +63,7 @@ class GoogleChromeManagementV1AppUsageData(typing_extensions.TypedDict, total=Fa
     runningDuration: str
 
 @typing.type_check_only
-class GoogleChromeManagementV1AudioStatusReport(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleChromeManagementV1AudioStatusReport(typing.TypedDict, total=False):
     inputDevice: str
     inputGain: int
     inputMute: bool
@@ -81,7 +73,7 @@ class GoogleChromeManagementV1AudioStatusReport(
     reportTime: str
 
 @typing.type_check_only
-class GoogleChromeManagementV1BatteryInfo(typing_extensions.TypedDict, total=False):
+class GoogleChromeManagementV1BatteryInfo(typing.TypedDict, total=False):
     designCapacity: str
     designMinVoltage: int
     manufactureDate: GoogleTypeDate
@@ -90,9 +82,7 @@ class GoogleChromeManagementV1BatteryInfo(typing_extensions.TypedDict, total=Fal
     technology: str
 
 @typing.type_check_only
-class GoogleChromeManagementV1BatterySampleReport(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleChromeManagementV1BatterySampleReport(typing.TypedDict, total=False):
     chargeRate: int
     current: str
     dischargeRate: int
@@ -103,10 +93,8 @@ class GoogleChromeManagementV1BatterySampleReport(
     voltage: str
 
 @typing.type_check_only
-class GoogleChromeManagementV1BatteryStatusReport(
-    typing_extensions.TypedDict, total=False
-):
-    batteryHealth: typing_extensions.Literal[
+class GoogleChromeManagementV1BatteryStatusReport(typing.TypedDict, total=False):
+    batteryHealth: typing.Literal[
         "BATTERY_HEALTH_UNSPECIFIED",
         "BATTERY_HEALTH_NORMAL",
         "BATTERY_REPLACE_SOON",
@@ -119,14 +107,12 @@ class GoogleChromeManagementV1BatteryStatusReport(
     serialNumber: str
 
 @typing.type_check_only
-class GoogleChromeManagementV1BootPerformanceReport(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleChromeManagementV1BootPerformanceReport(typing.TypedDict, total=False):
     bootUpDuration: str
     bootUpTime: str
     reportTime: str
     shutdownDuration: str
-    shutdownReason: typing_extensions.Literal[
+    shutdownReason: typing.Literal[
         "SHUTDOWN_REASON_UNSPECIFIED",
         "USER_REQUEST",
         "SYSTEM_UPDATE",
@@ -136,13 +122,13 @@ class GoogleChromeManagementV1BootPerformanceReport(
     shutdownTime: str
 
 @typing.type_check_only
-class GoogleChromeManagementV1BrowserVersion(typing_extensions.TypedDict, total=False):
-    channel: typing_extensions.Literal[
+class GoogleChromeManagementV1BrowserVersion(typing.TypedDict, total=False):
+    channel: typing.Literal[
         "RELEASE_CHANNEL_UNSPECIFIED", "CANARY", "DEV", "BETA", "STABLE"
     ]
     count: str
     deviceOsVersion: str
-    system: typing_extensions.Literal[
+    system: typing.Literal[
         "DEVICE_SYSTEM_UNSPECIFIED",
         "SYSTEM_OTHER",
         "SYSTEM_ANDROID",
@@ -155,7 +141,7 @@ class GoogleChromeManagementV1BrowserVersion(typing_extensions.TypedDict, total=
     version: str
 
 @typing.type_check_only
-class GoogleChromeManagementV1ChromeAppInfo(typing_extensions.TypedDict, total=False):
+class GoogleChromeManagementV1ChromeAppInfo(typing.TypedDict, total=False):
     googleOwned: bool
     isCwsHosted: bool
     isExtensionPolicySupported: bool
@@ -167,20 +153,16 @@ class GoogleChromeManagementV1ChromeAppInfo(typing_extensions.TypedDict, total=F
     permissions: _list[GoogleChromeManagementV1ChromeAppPermission]
     siteAccess: _list[GoogleChromeManagementV1ChromeAppSiteAccess]
     supportEnabled: bool
-    type: typing_extensions.Literal["ITEM_TYPE_UNSPECIFIED", "EXTENSION", "OTHERS"]
+    type: typing.Literal["ITEM_TYPE_UNSPECIFIED", "EXTENSION", "OTHERS"]
 
 @typing.type_check_only
-class GoogleChromeManagementV1ChromeAppPermission(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleChromeManagementV1ChromeAppPermission(typing.TypedDict, total=False):
     accessUserData: bool
     documentationUri: str
     type: str
 
 @typing.type_check_only
-class GoogleChromeManagementV1ChromeAppRequest(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleChromeManagementV1ChromeAppRequest(typing.TypedDict, total=False):
     appDetails: str
     appId: str
     detailUri: str
@@ -190,21 +172,17 @@ class GoogleChromeManagementV1ChromeAppRequest(
     requestCount: str
 
 @typing.type_check_only
-class GoogleChromeManagementV1ChromeAppSiteAccess(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleChromeManagementV1ChromeAppSiteAccess(typing.TypedDict, total=False):
     hostMatch: str
 
 @typing.type_check_only
-class GoogleChromeManagementV1CountActiveDevicesResponse(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleChromeManagementV1CountActiveDevicesResponse(typing.TypedDict, total=False):
     sevenDaysCount: str
     thirtyDaysCount: str
 
 @typing.type_check_only
 class GoogleChromeManagementV1CountChromeAppRequestsResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     nextPageToken: str
     requestedApps: _list[GoogleChromeManagementV1ChromeAppRequest]
@@ -212,7 +190,7 @@ class GoogleChromeManagementV1CountChromeAppRequestsResponse(
 
 @typing.type_check_only
 class GoogleChromeManagementV1CountChromeBrowsersNeedingAttentionResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     noRecentActivityCount: str
     pendingBrowserUpdateCount: str
@@ -220,7 +198,7 @@ class GoogleChromeManagementV1CountChromeBrowsersNeedingAttentionResponse(
 
 @typing.type_check_only
 class GoogleChromeManagementV1CountChromeCrashEventsResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     crashEventCounts: _list[
         GoogleChromeManagementV1CountChromeCrashEventsResponseCrashEventCount
@@ -228,7 +206,7 @@ class GoogleChromeManagementV1CountChromeCrashEventsResponse(
 
 @typing.type_check_only
 class GoogleChromeManagementV1CountChromeCrashEventsResponseCrashEventCount(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     browserVersion: str
     count: str
@@ -236,13 +214,13 @@ class GoogleChromeManagementV1CountChromeCrashEventsResponseCrashEventCount(
 
 @typing.type_check_only
 class GoogleChromeManagementV1CountChromeDevicesReachingAutoExpirationDateResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     deviceAueCountReports: _list[GoogleChromeManagementV1DeviceAueCountReport]
 
 @typing.type_check_only
 class GoogleChromeManagementV1CountChromeDevicesThatNeedAttentionResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     noRecentPolicySyncCount: str
     noRecentUserActivityCount: str
@@ -252,7 +230,7 @@ class GoogleChromeManagementV1CountChromeDevicesThatNeedAttentionResponse(
 
 @typing.type_check_only
 class GoogleChromeManagementV1CountChromeHardwareFleetDevicesResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     cpuReports: _list[GoogleChromeManagementV1DeviceHardwareCountReport]
     memoryReports: _list[GoogleChromeManagementV1DeviceHardwareCountReport]
@@ -261,7 +239,7 @@ class GoogleChromeManagementV1CountChromeHardwareFleetDevicesResponse(
 
 @typing.type_check_only
 class GoogleChromeManagementV1CountChromeProfileVersionsResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     nextPageToken: str
     profileBrowserVersions: _list[GoogleChromeManagementV1BrowserVersion]
@@ -269,7 +247,7 @@ class GoogleChromeManagementV1CountChromeProfileVersionsResponse(
 
 @typing.type_check_only
 class GoogleChromeManagementV1CountChromeVersionsResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     browserVersions: _list[GoogleChromeManagementV1BrowserVersion]
     nextPageToken: str
@@ -277,7 +255,7 @@ class GoogleChromeManagementV1CountChromeVersionsResponse(
 
 @typing.type_check_only
 class GoogleChromeManagementV1CountDevicesPerBootTypeResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     devBootTypeCount: str
     unreportedBootTypeCount: str
@@ -285,7 +263,7 @@ class GoogleChromeManagementV1CountDevicesPerBootTypeResponse(
 
 @typing.type_check_only
 class GoogleChromeManagementV1CountDevicesPerReleaseChannelResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     betaChannelCount: str
     canaryChannelCount: str
@@ -297,16 +275,14 @@ class GoogleChromeManagementV1CountDevicesPerReleaseChannelResponse(
     unsupportedChannelCount: str
 
 @typing.type_check_only
-class GoogleChromeManagementV1CountInstalledAppsResponse(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleChromeManagementV1CountInstalledAppsResponse(typing.TypedDict, total=False):
     installedApps: _list[GoogleChromeManagementV1InstalledApp]
     nextPageToken: str
     totalSize: int
 
 @typing.type_check_only
 class GoogleChromeManagementV1CountPrintJobsByPrinterResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     nextPageToken: str
     printerReports: _list[GoogleChromeManagementV1PrinterReport]
@@ -314,53 +290,47 @@ class GoogleChromeManagementV1CountPrintJobsByPrinterResponse(
 
 @typing.type_check_only
 class GoogleChromeManagementV1CountPrintJobsByUserResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     nextPageToken: str
     totalSize: str
     userPrintReports: _list[GoogleChromeManagementV1UserPrintReport]
 
 @typing.type_check_only
-class GoogleChromeManagementV1CpuInfo(typing_extensions.TypedDict, total=False):
-    architecture: typing_extensions.Literal["ARCHITECTURE_UNSPECIFIED", "X64"]
+class GoogleChromeManagementV1CpuInfo(typing.TypedDict, total=False):
+    architecture: typing.Literal["ARCHITECTURE_UNSPECIFIED", "X64"]
     keylockerConfigured: bool
     keylockerSupported: bool
     maxClockSpeed: int
     model: str
 
 @typing.type_check_only
-class GoogleChromeManagementV1CpuStatusReport(typing_extensions.TypedDict, total=False):
+class GoogleChromeManagementV1CpuStatusReport(typing.TypedDict, total=False):
     cpuTemperatureInfo: _list[GoogleChromeManagementV1CpuTemperatureInfo]
     cpuUtilizationPct: int
     reportTime: str
     sampleFrequency: str
 
 @typing.type_check_only
-class GoogleChromeManagementV1CpuTemperatureInfo(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleChromeManagementV1CpuTemperatureInfo(typing.TypedDict, total=False):
     label: str
     temperatureCelsius: int
 
 @typing.type_check_only
-class GoogleChromeManagementV1Device(typing_extensions.TypedDict, total=False):
+class GoogleChromeManagementV1Device(typing.TypedDict, total=False):
     deviceId: str
     machine: str
 
 @typing.type_check_only
-class GoogleChromeManagementV1DeviceActivityReport(
-    typing_extensions.TypedDict, total=False
-):
-    deviceActivityState: typing_extensions.Literal[
+class GoogleChromeManagementV1DeviceActivityReport(typing.TypedDict, total=False):
+    deviceActivityState: typing.Literal[
         "DEVICE_ACTIVITY_STATE_UNSPECIFIED", "ACTIVE", "IDLE", "LOCKED"
     ]
     reportTime: str
 
 @typing.type_check_only
-class GoogleChromeManagementV1DeviceAueCountReport(
-    typing_extensions.TypedDict, total=False
-):
-    aueMonth: typing_extensions.Literal[
+class GoogleChromeManagementV1DeviceAueCountReport(typing.TypedDict, total=False):
+    aueMonth: typing.Literal[
         "MONTH_UNSPECIFIED",
         "JANUARY",
         "FEBRUARY",
@@ -381,21 +351,19 @@ class GoogleChromeManagementV1DeviceAueCountReport(
     model: str
 
 @typing.type_check_only
-class GoogleChromeManagementV1DeviceHardwareCountReport(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleChromeManagementV1DeviceHardwareCountReport(typing.TypedDict, total=False):
     bucket: str
     count: str
 
 @typing.type_check_only
 class GoogleChromeManagementV1DeviceRequestingExtensionDetails(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     deviceName: str
     justification: str
 
 @typing.type_check_only
-class GoogleChromeManagementV1DiskInfo(typing_extensions.TypedDict, total=False):
+class GoogleChromeManagementV1DiskInfo(typing.TypedDict, total=False):
     bytesReadThisSession: str
     bytesWrittenThisSession: str
     discardTimeThisSession: str
@@ -411,7 +379,7 @@ class GoogleChromeManagementV1DiskInfo(typing_extensions.TypedDict, total=False)
     writeTimeThisSession: str
 
 @typing.type_check_only
-class GoogleChromeManagementV1DisplayDevice(typing_extensions.TypedDict, total=False):
+class GoogleChromeManagementV1DisplayDevice(typing.TypedDict, total=False):
     displayHeightMm: int
     displayName: str
     displayWidthMm: int
@@ -423,7 +391,7 @@ class GoogleChromeManagementV1DisplayDevice(typing_extensions.TypedDict, total=F
     serialNumber: int
 
 @typing.type_check_only
-class GoogleChromeManagementV1DisplayInfo(typing_extensions.TypedDict, total=False):
+class GoogleChromeManagementV1DisplayInfo(typing.TypedDict, total=False):
     deviceId: str
     displayName: str
     edidVersion: str
@@ -434,16 +402,14 @@ class GoogleChromeManagementV1DisplayInfo(typing_extensions.TypedDict, total=Fal
     serialNumber: int
 
 @typing.type_check_only
-class GoogleChromeManagementV1EnumeratePrintJobsResponse(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleChromeManagementV1EnumeratePrintJobsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     printJobs: _list[GoogleChromeManagementV1PrintJob]
     totalSize: str
 
 @typing.type_check_only
 class GoogleChromeManagementV1FetchDevicesRequestingExtensionResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     deviceDetails: _list[GoogleChromeManagementV1DeviceRequestingExtensionDetails]
     nextPageToken: str
@@ -451,7 +417,7 @@ class GoogleChromeManagementV1FetchDevicesRequestingExtensionResponse(
 
 @typing.type_check_only
 class GoogleChromeManagementV1FetchUsersRequestingExtensionResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     nextPageToken: str
     totalSize: int
@@ -459,7 +425,7 @@ class GoogleChromeManagementV1FetchUsersRequestingExtensionResponse(
 
 @typing.type_check_only
 class GoogleChromeManagementV1FindInstalledAppDevicesResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     devices: _list[GoogleChromeManagementV1Device]
     nextPageToken: str
@@ -467,49 +433,41 @@ class GoogleChromeManagementV1FindInstalledAppDevicesResponse(
 
 @typing.type_check_only
 class GoogleChromeManagementV1FindInstalledAppProfilesResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     nextPageToken: str
     profiles: _list[GoogleChromeManagementV1ProfileAppInstallInstance]
     totalSize: int
 
 @typing.type_check_only
-class GoogleChromeManagementV1GraphicsAdapterInfo(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleChromeManagementV1GraphicsAdapterInfo(typing.TypedDict, total=False):
     adapter: str
     deviceId: str
     driverVersion: str
 
 @typing.type_check_only
-class GoogleChromeManagementV1GraphicsInfo(typing_extensions.TypedDict, total=False):
+class GoogleChromeManagementV1GraphicsInfo(typing.TypedDict, total=False):
     adapterInfo: GoogleChromeManagementV1GraphicsAdapterInfo
     displayDevices: _list[GoogleChromeManagementV1DisplayDevice]
     eprivacySupported: bool
     touchScreenInfo: GoogleChromeManagementV1TouchScreenInfo
 
 @typing.type_check_only
-class GoogleChromeManagementV1GraphicsStatusReport(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleChromeManagementV1GraphicsStatusReport(typing.TypedDict, total=False):
     displays: _list[GoogleChromeManagementV1DisplayInfo]
     reportTime: str
 
 @typing.type_check_only
-class GoogleChromeManagementV1HeartbeatStatusReport(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleChromeManagementV1HeartbeatStatusReport(typing.TypedDict, total=False):
     reportTime: str
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED", "UNKNOWN", "ONLINE", "OFFLINE", "DEVICE_OUTDATED"
     ]
 
 @typing.type_check_only
-class GoogleChromeManagementV1HttpsLatencyRoutineData(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleChromeManagementV1HttpsLatencyRoutineData(typing.TypedDict, total=False):
     latency: str
-    problem: typing_extensions.Literal[
+    problem: typing.Literal[
         "HTTPS_LATENCY_PROBLEM_UNSPECIFIED",
         "FAILED_DNS_RESOLUTIONS",
         "FAILED_HTTPS_REQUESTS",
@@ -518,9 +476,9 @@ class GoogleChromeManagementV1HttpsLatencyRoutineData(
     ]
 
 @typing.type_check_only
-class GoogleChromeManagementV1InstalledApp(typing_extensions.TypedDict, total=False):
+class GoogleChromeManagementV1InstalledApp(typing.TypedDict, total=False):
     appId: str
-    appInstallType: typing_extensions.Literal[
+    appInstallType: typing.Literal[
         "APP_INSTALL_TYPE_UNSPECIFIED",
         "MULTIPLE",
         "NORMAL",
@@ -529,10 +487,8 @@ class GoogleChromeManagementV1InstalledApp(typing_extensions.TypedDict, total=Fa
         "SIDELOAD",
         "OTHER",
     ]
-    appSource: typing_extensions.Literal[
-        "APP_SOURCE_UNSPECIFIED", "CHROME_WEBSTORE", "PLAY_STORE"
-    ]
-    appType: typing_extensions.Literal[
+    appSource: typing.Literal["APP_SOURCE_UNSPECIFIED", "CHROME_WEBSTORE", "PLAY_STORE"]
+    appType: typing.Literal[
         "APP_TYPE_UNSPECIFIED", "EXTENSION", "APP", "THEME", "HOSTED_APP", "ANDROID_APP"
     ]
     browserDeviceCount: str
@@ -546,30 +502,28 @@ class GoogleChromeManagementV1InstalledApp(typing_extensions.TypedDict, total=Fa
     riskAssessment: GoogleChromeManagementV1RiskAssessmentData
 
 @typing.type_check_only
-class GoogleChromeManagementV1KioskAppStatusReport(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleChromeManagementV1KioskAppStatusReport(typing.TypedDict, total=False):
     appId: str
     appVersion: str
     reportTime: str
 
 @typing.type_check_only
 class GoogleChromeManagementV1ListTelemetryDevicesResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     devices: _list[GoogleChromeManagementV1TelemetryDevice]
     nextPageToken: str
 
 @typing.type_check_only
 class GoogleChromeManagementV1ListTelemetryEventsResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     nextPageToken: str
     telemetryEvents: _list[GoogleChromeManagementV1TelemetryEvent]
 
 @typing.type_check_only
 class GoogleChromeManagementV1ListTelemetryNotificationConfigsResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     nextPageToken: str
     telemetryNotificationConfigs: _list[
@@ -577,42 +531,36 @@ class GoogleChromeManagementV1ListTelemetryNotificationConfigsResponse(
     ]
 
 @typing.type_check_only
-class GoogleChromeManagementV1ListTelemetryUsersResponse(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleChromeManagementV1ListTelemetryUsersResponse(typing.TypedDict, total=False):
     nextPageToken: str
     telemetryUsers: _list[GoogleChromeManagementV1TelemetryUser]
 
 @typing.type_check_only
-class GoogleChromeManagementV1MemoryInfo(typing_extensions.TypedDict, total=False):
+class GoogleChromeManagementV1MemoryInfo(typing.TypedDict, total=False):
     availableRamBytes: str
     totalMemoryEncryption: GoogleChromeManagementV1TotalMemoryEncryptionInfo
     totalRamBytes: str
 
 @typing.type_check_only
-class GoogleChromeManagementV1MemoryStatusReport(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleChromeManagementV1MemoryStatusReport(typing.TypedDict, total=False):
     pageFaults: int
     reportTime: str
     sampleFrequency: str
     systemRamFreeBytes: str
 
 @typing.type_check_only
-class GoogleChromeManagementV1NetworkBandwidthReport(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleChromeManagementV1NetworkBandwidthReport(typing.TypedDict, total=False):
     downloadSpeedKbps: str
     reportTime: str
 
 @typing.type_check_only
-class GoogleChromeManagementV1NetworkDevice(typing_extensions.TypedDict, total=False):
+class GoogleChromeManagementV1NetworkDevice(typing.TypedDict, total=False):
     iccid: str
     imei: str
     macAddress: str
     mdn: str
     meid: str
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "NETWORK_DEVICE_TYPE_UNSPECIFIED",
         "CELLULAR_DEVICE",
         "ETHERNET_DEVICE",
@@ -620,21 +568,17 @@ class GoogleChromeManagementV1NetworkDevice(typing_extensions.TypedDict, total=F
     ]
 
 @typing.type_check_only
-class GoogleChromeManagementV1NetworkDiagnosticsReport(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleChromeManagementV1NetworkDiagnosticsReport(typing.TypedDict, total=False):
     httpsLatencyData: GoogleChromeManagementV1HttpsLatencyRoutineData
     reportTime: str
 
 @typing.type_check_only
-class GoogleChromeManagementV1NetworkInfo(typing_extensions.TypedDict, total=False):
+class GoogleChromeManagementV1NetworkInfo(typing.TypedDict, total=False):
     networkDevices: _list[GoogleChromeManagementV1NetworkDevice]
 
 @typing.type_check_only
-class GoogleChromeManagementV1NetworkStatusReport(
-    typing_extensions.TypedDict, total=False
-):
-    connectionState: typing_extensions.Literal[
+class GoogleChromeManagementV1NetworkStatusReport(typing.TypedDict, total=False):
+    connectionState: typing.Literal[
         "NETWORK_CONNECTION_STATE_UNSPECIFIED",
         "ONLINE",
         "CONNECTED",
@@ -642,7 +586,7 @@ class GoogleChromeManagementV1NetworkStatusReport(
         "CONNECTING",
         "NOT_CONNECTED",
     ]
-    connectionType: typing_extensions.Literal[
+    connectionType: typing.Literal[
         "NETWORK_TYPE_UNSPECIFIED", "CELLULAR", "ETHERNET", "TETHER", "VPN", "WIFI"
     ]
     encryptionOn: bool
@@ -663,13 +607,13 @@ class GoogleChromeManagementV1NetworkStatusReport(
     wifiPowerManagementEnabled: bool
 
 @typing.type_check_only
-class GoogleChromeManagementV1OsUpdateStatus(typing_extensions.TypedDict, total=False):
+class GoogleChromeManagementV1OsUpdateStatus(typing.TypedDict, total=False):
     lastRebootTime: str
     lastUpdateCheckTime: str
     lastUpdateTime: str
     newPlatformVersion: str
     newRequestedPlatformVersion: str
-    updateState: typing_extensions.Literal[
+    updateState: typing.Literal[
         "UPDATE_STATE_UNSPECIFIED",
         "OS_IMAGE_DOWNLOAD_NOT_STARTED",
         "OS_IMAGE_DOWNLOAD_IN_PROGRESS",
@@ -677,22 +621,18 @@ class GoogleChromeManagementV1OsUpdateStatus(typing_extensions.TypedDict, total=
     ]
 
 @typing.type_check_only
-class GoogleChromeManagementV1PeripheralsReport(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleChromeManagementV1PeripheralsReport(typing.TypedDict, total=False):
     reportTime: str
     usbPeripheralReport: _list[GoogleChromeManagementV1UsbPeripheralReport]
 
 @typing.type_check_only
-class GoogleChromeManagementV1PrintJob(typing_extensions.TypedDict, total=False):
-    colorMode: typing_extensions.Literal[
-        "COLOR_MODE_UNSPECIFIED", "BLACK_AND_WHITE", "COLOR"
-    ]
+class GoogleChromeManagementV1PrintJob(typing.TypedDict, total=False):
+    colorMode: typing.Literal["COLOR_MODE_UNSPECIFIED", "BLACK_AND_WHITE", "COLOR"]
     completeTime: str
     copyCount: int
     createTime: str
     documentPageCount: int
-    duplexMode: typing_extensions.Literal[
+    duplexMode: typing.Literal[
         "DUPLEX_MODE_UNSPECIFIED",
         "ONE_SIDED",
         "TWO_SIDED_LONG_EDGE",
@@ -701,15 +641,13 @@ class GoogleChromeManagementV1PrintJob(typing_extensions.TypedDict, total=False)
     id: str
     printer: str
     printerId: str
-    state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "PRINTED", "CANCELLED", "FAILED"
-    ]
+    state: typing.Literal["STATE_UNSPECIFIED", "PRINTED", "CANCELLED", "FAILED"]
     title: str
     userEmail: str
     userId: str
 
 @typing.type_check_only
-class GoogleChromeManagementV1PrinterReport(typing_extensions.TypedDict, total=False):
+class GoogleChromeManagementV1PrinterReport(typing.TypedDict, total=False):
     deviceCount: str
     jobCount: str
     printer: str
@@ -718,26 +656,22 @@ class GoogleChromeManagementV1PrinterReport(typing_extensions.TypedDict, total=F
     userCount: str
 
 @typing.type_check_only
-class GoogleChromeManagementV1ProfileAppInstallInstance(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleChromeManagementV1ProfileAppInstallInstance(typing.TypedDict, total=False):
     email: str
     profileId: str
     profileOrgUnitId: str
     profilePermanentId: str
 
 @typing.type_check_only
-class GoogleChromeManagementV1RiskAssessment(typing_extensions.TypedDict, total=False):
+class GoogleChromeManagementV1RiskAssessment(typing.TypedDict, total=False):
     assessment: str
     detailsUrl: str
     version: str
 
 @typing.type_check_only
-class GoogleChromeManagementV1RiskAssessmentData(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleChromeManagementV1RiskAssessmentData(typing.TypedDict, total=False):
     entries: _list[GoogleChromeManagementV1RiskAssessmentEntry]
-    overallRiskLevel: typing_extensions.Literal[
+    overallRiskLevel: typing.Literal[
         "RISK_LEVEL_UNSPECIFIED",
         "RISK_LEVEL_LOW",
         "RISK_LEVEL_MEDIUM",
@@ -745,10 +679,8 @@ class GoogleChromeManagementV1RiskAssessmentData(
     ]
 
 @typing.type_check_only
-class GoogleChromeManagementV1RiskAssessmentEntry(
-    typing_extensions.TypedDict, total=False
-):
-    provider: typing_extensions.Literal[
+class GoogleChromeManagementV1RiskAssessmentEntry(typing.TypedDict, total=False):
+    provider: typing.Literal[
         "RISK_ASSESSMENT_PROVIDER_UNSPECIFIED",
         "RISK_ASSESSMENT_PROVIDER_CRXCAVATOR",
         "RISK_ASSESSMENT_PROVIDER_SPIN_AI",
@@ -756,7 +688,7 @@ class GoogleChromeManagementV1RiskAssessmentEntry(
         "RISK_ASSESSMENT_PROVIDER_SPIN_AI_V2",
     ]
     riskAssessment: GoogleChromeManagementV1RiskAssessment
-    riskLevel: typing_extensions.Literal[
+    riskLevel: typing.Literal[
         "RISK_LEVEL_UNSPECIFIED",
         "RISK_LEVEL_LOW",
         "RISK_LEVEL_MEDIUM",
@@ -764,9 +696,7 @@ class GoogleChromeManagementV1RiskAssessmentEntry(
     ]
 
 @typing.type_check_only
-class GoogleChromeManagementV1RuntimeCountersReport(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleChromeManagementV1RuntimeCountersReport(typing.TypedDict, total=False):
     enterHibernationCount: str
     enterPoweroffCount: str
     enterSleepCount: str
@@ -774,32 +704,26 @@ class GoogleChromeManagementV1RuntimeCountersReport(
     uptimeRuntimeDuration: str
 
 @typing.type_check_only
-class GoogleChromeManagementV1StorageInfo(typing_extensions.TypedDict, total=False):
+class GoogleChromeManagementV1StorageInfo(typing.TypedDict, total=False):
     availableDiskBytes: str
     totalDiskBytes: str
     volume: _list[GoogleChromeManagementV1StorageInfoDiskVolume]
 
 @typing.type_check_only
-class GoogleChromeManagementV1StorageInfoDiskVolume(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleChromeManagementV1StorageInfoDiskVolume(typing.TypedDict, total=False):
     storageFreeBytes: str
     storageTotalBytes: str
     volumeId: str
 
 @typing.type_check_only
-class GoogleChromeManagementV1StorageStatusReport(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleChromeManagementV1StorageStatusReport(typing.TypedDict, total=False):
     disk: _list[GoogleChromeManagementV1DiskInfo]
     reportTime: str
 
 @typing.type_check_only
-class GoogleChromeManagementV1TelemetryAppInstallEvent(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleChromeManagementV1TelemetryAppInstallEvent(typing.TypedDict, total=False):
     appId: str
-    appInstallReason: typing_extensions.Literal[
+    appInstallReason: typing.Literal[
         "APPLICATION_INSTALL_REASON_UNSPECIFIED",
         "APPLICATION_INSTALL_REASON_SYSTEM",
         "APPLICATION_INSTALL_REASON_POLICY",
@@ -811,7 +735,7 @@ class GoogleChromeManagementV1TelemetryAppInstallEvent(
         "APPLICATION_INSTALL_REASON_KIOSK",
         "APPLICATION_INSTALL_REASON_COMMAND_LINE",
     ]
-    appInstallSource: typing_extensions.Literal[
+    appInstallSource: typing.Literal[
         "APPLICATION_INSTALL_SOURCE_UNSPECIFIED",
         "APPLICATION_INSTALL_SOURCE_SYSTEM",
         "APPLICATION_INSTALL_SOURCE_SYNC",
@@ -819,12 +743,12 @@ class GoogleChromeManagementV1TelemetryAppInstallEvent(
         "APPLICATION_INSTALL_SOURCE_CHROME_WEB_STORE",
         "APPLICATION_INSTALL_SOURCE_BROWSER",
     ]
-    appInstallTime: typing_extensions.Literal[
+    appInstallTime: typing.Literal[
         "APPLICATION_INSTALL_TIME_UNSPECIFIED",
         "APPLICATION_INSTALL_TIME_INIT",
         "APPLICATION_INSTALL_TIME_RUNNING",
     ]
-    appType: typing_extensions.Literal[
+    appType: typing.Literal[
         "TELEMETRY_APPLICATION_TYPE_UNSPECIFIED",
         "APPLICATION_TYPE_ARC",
         "APPLICATION_TYPE_BUILT_IN",
@@ -844,11 +768,9 @@ class GoogleChromeManagementV1TelemetryAppInstallEvent(
     ]
 
 @typing.type_check_only
-class GoogleChromeManagementV1TelemetryAppLaunchEvent(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleChromeManagementV1TelemetryAppLaunchEvent(typing.TypedDict, total=False):
     appId: str
-    appLaunchSource: typing_extensions.Literal[
+    appLaunchSource: typing.Literal[
         "APPLICATION_LAUNCH_SOURCE_UNSPECIFIED",
         "APPLICATION_LAUNCH_SOURCE_APP_LIST_GRID",
         "APPLICATION_LAUNCH_SOURCE_APP_LIST_GRID_CONTEXT_MENU",
@@ -894,7 +816,7 @@ class GoogleChromeManagementV1TelemetryAppLaunchEvent(
         "APPLICATION_LAUNCH_SOURCE_NAVIGATION_CAPTURING",
         "APPLICATION_LAUNCH_SOURCE_WEB_INSTALL_API",
     ]
-    appType: typing_extensions.Literal[
+    appType: typing.Literal[
         "TELEMETRY_APPLICATION_TYPE_UNSPECIFIED",
         "APPLICATION_TYPE_ARC",
         "APPLICATION_TYPE_BUILT_IN",
@@ -914,11 +836,9 @@ class GoogleChromeManagementV1TelemetryAppLaunchEvent(
     ]
 
 @typing.type_check_only
-class GoogleChromeManagementV1TelemetryAppUninstallEvent(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleChromeManagementV1TelemetryAppUninstallEvent(typing.TypedDict, total=False):
     appId: str
-    appType: typing_extensions.Literal[
+    appType: typing.Literal[
         "TELEMETRY_APPLICATION_TYPE_UNSPECIFIED",
         "APPLICATION_TYPE_ARC",
         "APPLICATION_TYPE_BUILT_IN",
@@ -936,7 +856,7 @@ class GoogleChromeManagementV1TelemetryAppUninstallEvent(
         "APPLICATION_TYPE_STANDALONE_BROWSER_EXTENSION",
         "APPLICATION_TYPE_BRUSCHETTA",
     ]
-    appUninstallSource: typing_extensions.Literal[
+    appUninstallSource: typing.Literal[
         "APPLICATION_UNINSTALL_SOURCE_UNSPECIFIED",
         "APPLICATION_UNINSTALL_SOURCE_APP_LIST",
         "APPLICATION_UNINSTALL_SOURCE_APP_MANAGEMENT",
@@ -946,11 +866,11 @@ class GoogleChromeManagementV1TelemetryAppUninstallEvent(
 
 @typing.type_check_only
 class GoogleChromeManagementV1TelemetryAudioSevereUnderrunEvent(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ): ...
 
 @typing.type_check_only
-class GoogleChromeManagementV1TelemetryDevice(typing_extensions.TypedDict, total=False):
+class GoogleChromeManagementV1TelemetryDevice(typing.TypedDict, total=False):
     appReport: _list[GoogleChromeManagementV1AppReport]
     audioStatusReport: _list[GoogleChromeManagementV1AudioStatusReport]
     batteryInfo: _list[GoogleChromeManagementV1BatteryInfo]
@@ -981,20 +901,18 @@ class GoogleChromeManagementV1TelemetryDevice(typing_extensions.TypedDict, total
     thunderboltInfo: _list[GoogleChromeManagementV1ThunderboltInfo]
 
 @typing.type_check_only
-class GoogleChromeManagementV1TelemetryDeviceInfo(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleChromeManagementV1TelemetryDeviceInfo(typing.TypedDict, total=False):
     deviceId: str
     orgUnitId: str
 
 @typing.type_check_only
-class GoogleChromeManagementV1TelemetryEvent(typing_extensions.TypedDict, total=False):
+class GoogleChromeManagementV1TelemetryEvent(typing.TypedDict, total=False):
     appInstallEvent: GoogleChromeManagementV1TelemetryAppInstallEvent
     appLaunchEvent: GoogleChromeManagementV1TelemetryAppLaunchEvent
     appUninstallEvent: GoogleChromeManagementV1TelemetryAppUninstallEvent
     audioSevereUnderrunEvent: GoogleChromeManagementV1TelemetryAudioSevereUnderrunEvent
     device: GoogleChromeManagementV1TelemetryDeviceInfo
-    eventType: typing_extensions.Literal[
+    eventType: typing.Literal[
         "EVENT_TYPE_UNSPECIFIED",
         "AUDIO_SEVERE_UNDERRUN",
         "NETWORK_STATE_CHANGE",
@@ -1028,10 +946,10 @@ class GoogleChromeManagementV1TelemetryEvent(typing_extensions.TypedDict, total=
 
 @typing.type_check_only
 class GoogleChromeManagementV1TelemetryEventNotificationFilter(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     eventTypes: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "EVENT_TYPE_UNSPECIFIED",
             "AUDIO_SEVERE_UNDERRUN",
             "NETWORK_STATE_CHANGE",
@@ -1052,7 +970,7 @@ class GoogleChromeManagementV1TelemetryEventNotificationFilter(
 
 @typing.type_check_only
 class GoogleChromeManagementV1TelemetryExternalDisplayData(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     displayName: str
     edidVersion: str
@@ -1063,24 +981,24 @@ class GoogleChromeManagementV1TelemetryExternalDisplayData(
 
 @typing.type_check_only
 class GoogleChromeManagementV1TelemetryExternalDisplayEvent(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     externalDisplayData: _list[GoogleChromeManagementV1TelemetryExternalDisplayData]
 
 @typing.type_check_only
 class GoogleChromeManagementV1TelemetryHttpsLatencyChangeEvent(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     httpsLatencyRoutineData: GoogleChromeManagementV1HttpsLatencyRoutineData
-    httpsLatencyState: typing_extensions.Literal[
+    httpsLatencyState: typing.Literal[
         "HTTPS_LATENCY_STATE_UNSPECIFIED", "RECOVERY", "PROBLEM"
     ]
 
 @typing.type_check_only
 class GoogleChromeManagementV1TelemetryNetworkConnectionStateChangeEvent(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
-    connectionState: typing_extensions.Literal[
+    connectionState: typing.Literal[
         "NETWORK_CONNECTION_STATE_UNSPECIFIED",
         "ONLINE",
         "CONNECTED",
@@ -1092,14 +1010,14 @@ class GoogleChromeManagementV1TelemetryNetworkConnectionStateChangeEvent(
 
 @typing.type_check_only
 class GoogleChromeManagementV1TelemetryNetworkSignalStrengthEvent(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     guid: str
     signalStrengthDbm: int
 
 @typing.type_check_only
 class GoogleChromeManagementV1TelemetryNotificationConfig(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     customer: str
     filter: GoogleChromeManagementV1TelemetryNotificationFilter
@@ -1108,7 +1026,7 @@ class GoogleChromeManagementV1TelemetryNotificationConfig(
 
 @typing.type_check_only
 class GoogleChromeManagementV1TelemetryNotificationFilter(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     deviceId: str
     deviceOrgUnitId: str
@@ -1119,14 +1037,12 @@ class GoogleChromeManagementV1TelemetryNotificationFilter(
     userOrgUnitId: str
 
 @typing.type_check_only
-class GoogleChromeManagementV1TelemetryOsCrashEvent(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleChromeManagementV1TelemetryOsCrashEvent(typing.TypedDict, total=False):
     crashId: str
-    crashType: typing_extensions.Literal[
+    crashType: typing.Literal[
         "CRASH_TYPE_UNSPECIFIED", "CRASH_TYPE_KERNEL", "CRASH_TYPE_EMBEDDED_CONTROLLER"
     ]
-    sessionType: typing_extensions.Literal[
+    sessionType: typing.Literal[
         "SESSION_TYPE_UNSPECIFIED",
         "SESSION_TYPE_SIGNED_IN_USER",
         "SESSION_TYPE_KIOSK",
@@ -1136,12 +1052,12 @@ class GoogleChromeManagementV1TelemetryOsCrashEvent(
 
 @typing.type_check_only
 class GoogleChromeManagementV1TelemetryUsbPeripheralsEvent(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     usbPeripheralReport: _list[GoogleChromeManagementV1UsbPeripheralReport]
 
 @typing.type_check_only
-class GoogleChromeManagementV1TelemetryUser(typing_extensions.TypedDict, total=False):
+class GoogleChromeManagementV1TelemetryUser(typing.TypedDict, total=False):
     customer: str
     name: str
     orgUnitId: str
@@ -1150,9 +1066,7 @@ class GoogleChromeManagementV1TelemetryUser(typing_extensions.TypedDict, total=F
     userId: str
 
 @typing.type_check_only
-class GoogleChromeManagementV1TelemetryUserDevice(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleChromeManagementV1TelemetryUserDevice(typing.TypedDict, total=False):
     appReport: _list[GoogleChromeManagementV1AppReport]
     audioStatusReport: _list[GoogleChromeManagementV1AudioStatusReport]
     deviceActivityReport: _list[GoogleChromeManagementV1DeviceActivityReport]
@@ -1161,15 +1075,13 @@ class GoogleChromeManagementV1TelemetryUserDevice(
     peripheralsReport: _list[GoogleChromeManagementV1PeripheralsReport]
 
 @typing.type_check_only
-class GoogleChromeManagementV1TelemetryUserInfo(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleChromeManagementV1TelemetryUserInfo(typing.TypedDict, total=False):
     email: str
     orgUnitId: str
 
 @typing.type_check_only
-class GoogleChromeManagementV1ThunderboltInfo(typing_extensions.TypedDict, total=False):
-    securityLevel: typing_extensions.Literal[
+class GoogleChromeManagementV1ThunderboltInfo(typing.TypedDict, total=False):
+    securityLevel: typing.Literal[
         "THUNDERBOLT_SECURITY_LEVEL_UNSPECIFIED",
         "THUNDERBOLT_SECURITY_NONE_LEVEL",
         "THUNDERBOLT_SECURITY_USER_LEVEL",
@@ -1180,16 +1092,14 @@ class GoogleChromeManagementV1ThunderboltInfo(typing_extensions.TypedDict, total
     ]
 
 @typing.type_check_only
-class GoogleChromeManagementV1TotalMemoryEncryptionInfo(
-    typing_extensions.TypedDict, total=False
-):
-    encryptionAlgorithm: typing_extensions.Literal[
+class GoogleChromeManagementV1TotalMemoryEncryptionInfo(typing.TypedDict, total=False):
+    encryptionAlgorithm: typing.Literal[
         "MEMORY_ENCRYPTION_ALGORITHM_UNSPECIFIED",
         "MEMORY_ENCRYPTION_ALGORITHM_UNKNOWN",
         "MEMORY_ENCRYPTION_ALGORITHM_AES_XTS_128",
         "MEMORY_ENCRYPTION_ALGORITHM_AES_XTS_256",
     ]
-    encryptionState: typing_extensions.Literal[
+    encryptionState: typing.Literal[
         "MEMORY_ENCRYPTION_STATE_UNSPECIFIED",
         "MEMORY_ENCRYPTION_STATE_UNKNOWN",
         "MEMORY_ENCRYPTION_STATE_DISABLED",
@@ -1200,22 +1110,18 @@ class GoogleChromeManagementV1TotalMemoryEncryptionInfo(
     maxKeys: str
 
 @typing.type_check_only
-class GoogleChromeManagementV1TouchScreenDevice(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleChromeManagementV1TouchScreenDevice(typing.TypedDict, total=False):
     displayName: str
     stylusCapable: bool
     touchPointCount: int
 
 @typing.type_check_only
-class GoogleChromeManagementV1TouchScreenInfo(typing_extensions.TypedDict, total=False):
+class GoogleChromeManagementV1TouchScreenInfo(typing.TypedDict, total=False):
     devices: _list[GoogleChromeManagementV1TouchScreenDevice]
     touchpadLibrary: str
 
 @typing.type_check_only
-class GoogleChromeManagementV1UsbPeripheralReport(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleChromeManagementV1UsbPeripheralReport(typing.TypedDict, total=False):
     categories: _list[str]
     classId: int
     firmwareVersion: str
@@ -1226,7 +1132,7 @@ class GoogleChromeManagementV1UsbPeripheralReport(
     vid: int
 
 @typing.type_check_only
-class GoogleChromeManagementV1UserPrintReport(typing_extensions.TypedDict, total=False):
+class GoogleChromeManagementV1UserPrintReport(typing.TypedDict, total=False):
     deviceCount: str
     jobCount: str
     printerCount: str
@@ -1235,25 +1141,25 @@ class GoogleChromeManagementV1UserPrintReport(typing_extensions.TypedDict, total
 
 @typing.type_check_only
 class GoogleChromeManagementV1UserRequestingExtensionDetails(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     email: str
     justification: str
 
 @typing.type_check_only
 class GoogleChromeManagementVersionsV1AttestationCredential(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     keyRotationTime: str
-    keyTrustLevel: typing_extensions.Literal[
+    keyTrustLevel: typing.Literal[
         "KEY_TRUST_LEVEL_UNSPECIFIED", "CHROME_BROWSER_HW_KEY", "CHROME_BROWSER_OS_KEY"
     ]
-    keyType: typing_extensions.Literal["KEY_TYPE_UNSPECIFIED", "RSA_KEY", "EC_KEY"]
+    keyType: typing.Literal["KEY_TYPE_UNSPECIFIED", "RSA_KEY", "EC_KEY"]
     publicKey: str
 
 @typing.type_check_only
 class GoogleChromeManagementVersionsV1CertificateProvisioningProcess(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     chromeOsDevice: GoogleChromeManagementVersionsV1ChromeOsDevice
     chromeOsUserSession: GoogleChromeManagementVersionsV1ChromeOsUserSession
@@ -1267,7 +1173,7 @@ class GoogleChromeManagementVersionsV1CertificateProvisioningProcess(
     scepProfile: GoogleChromeManagementVersionsV1ScepProfile
     signData: str
     signature: str
-    signatureAlgorithm: typing_extensions.Literal[
+    signatureAlgorithm: typing.Literal[
         "SIGNATURE_ALGORITHM_UNSPECIFIED",
         "SIGNATURE_ALGORITHM_RSA_PKCS1_V1_5_SHA256",
         "SIGNATURE_ALGORITHM_ECDSA_SHA256",
@@ -1277,17 +1183,17 @@ class GoogleChromeManagementVersionsV1CertificateProvisioningProcess(
 
 @typing.type_check_only
 class GoogleChromeManagementVersionsV1CheckEnablementStatusResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
-    insightsState: typing_extensions.Literal[
+    insightsState: typing.Literal[
         "INSIGHTS_ENABLEMENT_STATE_UNSPECIFIED", "INSIGHTS_ENABLED", "INSIGHTS_DISABLED"
     ]
 
 @typing.type_check_only
 class GoogleChromeManagementVersionsV1ChromeBrowserProfile(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
-    affiliationState: typing_extensions.Literal[
+    affiliationState: typing.Literal[
         "AFFILIATION_STATE_UNSPECIFIED",
         "UNAFFILIATED_GENERIC",
         "PROFILE_ONLY",
@@ -1305,7 +1211,7 @@ class GoogleChromeManagementVersionsV1ChromeBrowserProfile(
     etag: str
     extensionCount: str
     firstEnrollmentTime: str
-    identityProvider: typing_extensions.Literal[
+    identityProvider: typing.Literal[
         "IDENTITY_PROVIDER_UNSPECIFIED",
         "GOOGLE_IDENTITY_PROVIDER",
         "EXTERNAL_IDENTITY_PROVIDER",
@@ -1328,12 +1234,12 @@ class GoogleChromeManagementVersionsV1ChromeBrowserProfile(
 
 @typing.type_check_only
 class GoogleChromeManagementVersionsV1ChromeBrowserProfileCommand(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     commandResult: (
         GoogleChromeManagementVersionsV1ChromeBrowserProfileCommandCommandResult
     )
-    commandState: typing_extensions.Literal[
+    commandState: typing.Literal[
         "COMMAND_STATE_UNSPECIFIED", "PENDING", "EXPIRED", "EXECUTED_BY_CLIENT"
     ]
     commandType: str
@@ -1344,24 +1250,22 @@ class GoogleChromeManagementVersionsV1ChromeBrowserProfileCommand(
 
 @typing.type_check_only
 class GoogleChromeManagementVersionsV1ChromeBrowserProfileCommandCommandResult(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     clientExecutionTime: str
     resultCode: str
-    resultType: typing_extensions.Literal[
+    resultType: typing.Literal[
         "COMMAND_RESULT_TYPE_UNSPECIFIED", "IGNORED", "FAILURE", "SUCCESS"
     ]
 
 @typing.type_check_only
-class GoogleChromeManagementVersionsV1ChromeOsDevice(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleChromeManagementVersionsV1ChromeOsDevice(typing.TypedDict, total=False):
     deviceDirectoryApiId: str
     serialNumber: str
 
 @typing.type_check_only
 class GoogleChromeManagementVersionsV1ChromeOsUserSession(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     chromeOsDevice: GoogleChromeManagementVersionsV1ChromeOsDevice
     userDirectoryApiId: str
@@ -1369,24 +1273,22 @@ class GoogleChromeManagementVersionsV1ChromeOsUserSession(
 
 @typing.type_check_only
 class GoogleChromeManagementVersionsV1ClaimCertificateProvisioningProcessRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     callerInstanceId: str
 
 @typing.type_check_only
 class GoogleChromeManagementVersionsV1ClaimCertificateProvisioningProcessResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ): ...
 
 @typing.type_check_only
-class GoogleChromeManagementVersionsV1ConnectorConfig(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleChromeManagementVersionsV1ConnectorConfig(typing.TypedDict, total=False):
     details: GoogleChromeManagementVersionsV1ConnectorConfigDetails
     displayName: str
     name: str
     status: GoogleChromeManagementVersionsV1ConnectorConfigStatus
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "CONNECTOR_TYPE_UNSPECIFIED",
         "REPORTING",
         "DEVICE_TRUST",
@@ -1399,7 +1301,7 @@ class GoogleChromeManagementVersionsV1ConnectorConfig(
 
 @typing.type_check_only
 class GoogleChromeManagementVersionsV1ConnectorConfigDetails(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     crowdStrikeConfig: GoogleChromeManagementVersionsV1CrowdStrikeConfig
     crowdStrikeFalconNextGenConfig: (
@@ -1416,17 +1318,15 @@ class GoogleChromeManagementVersionsV1ConnectorConfigDetails(
 
 @typing.type_check_only
 class GoogleChromeManagementVersionsV1ConnectorConfigStatus(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     failureStartTime: str
-    state: typing_extensions.Literal[
-        "CONFIG_STATE_UNKNOWN", "ENABLED", "DISABLED_BY_FAILURES"
-    ]
+    state: typing.Literal["CONFIG_STATE_UNKNOWN", "ENABLED", "DISABLED_BY_FAILURES"]
     updateTime: str
 
 @typing.type_check_only
 class GoogleChromeManagementVersionsV1ContentTransfersBreakdown(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     contentCategory: str
     eventDomain: str
@@ -1435,10 +1335,10 @@ class GoogleChromeManagementVersionsV1ContentTransfersBreakdown(
 
 @typing.type_check_only
 class GoogleChromeManagementVersionsV1ContentTransfersSummary(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     count: str
-    metric: typing_extensions.Literal[
+    metric: typing.Literal[
         "CONTENT_TRANSFERS_METRIC_UNSPECIFIED",
         "CONTENT_TRANSFERS_METRIC_TOTAL_TRANSFERS",
         "CONTENT_TRANSFERS_METRIC_TOTAL_UPLOADS",
@@ -1451,16 +1351,14 @@ class GoogleChromeManagementVersionsV1ContentTransfersSummary(
     ]
 
 @typing.type_check_only
-class GoogleChromeManagementVersionsV1CrowdStrikeConfig(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleChromeManagementVersionsV1CrowdStrikeConfig(typing.TypedDict, total=False):
     apiKey: str
     host: str
     reportingSettings: GoogleChromeManagementVersionsV1ReportingSettings
 
 @typing.type_check_only
 class GoogleChromeManagementVersionsV1CrowdStrikeFalconNextGenConfig(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     apiKey: str
     host: str
@@ -1468,33 +1366,29 @@ class GoogleChromeManagementVersionsV1CrowdStrikeFalconNextGenConfig(
 
 @typing.type_check_only
 class GoogleChromeManagementVersionsV1CrowdStrikeXdrConfig(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     apiKey: str
     host: str
     xdrSettings: GoogleChromeManagementVersionsV1XdrSettings
 
 @typing.type_check_only
-class GoogleChromeManagementVersionsV1DeviceInfo(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleChromeManagementVersionsV1DeviceInfo(typing.TypedDict, total=False):
     affiliatedDeviceId: str
-    deviceType: typing_extensions.Literal["DEVICE_TYPE_UNSPECIFIED", "CHROME_BROWSER"]
+    deviceType: typing.Literal["DEVICE_TYPE_UNSPECIFIED", "CHROME_BROWSER"]
     hostname: str
     machine: str
 
 @typing.type_check_only
-class GoogleChromeManagementVersionsV1DeviceTrustConfig(
-    typing_extensions.TypedDict, total=False
-):
-    scope: typing_extensions.Literal[
+class GoogleChromeManagementVersionsV1DeviceTrustConfig(typing.TypedDict, total=False):
+    scope: typing.Literal[
         "BROWSER_ENFORCEMENT_SCOPE_UNSPECIFIED",
         "BROWSERS_ONLY",
         "PROFILES_ONLY",
         "BROWSERS_AND_PROFILES",
     ]
     serviceAccounts: _list[str]
-    serviceProvider: typing_extensions.Literal[
+    serviceProvider: typing.Literal[
         "SERVICE_PROVIDER_UNSPECIFIED",
         "UNIVERSAL_DEVICE_TRUST",
         "OKTA",
@@ -1509,54 +1403,50 @@ class GoogleChromeManagementVersionsV1DeviceTrustConfig(
 
 @typing.type_check_only
 class GoogleChromeManagementVersionsV1DisableInsightsRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ): ...
 
 @typing.type_check_only
 class GoogleChromeManagementVersionsV1DisableInsightsResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
-    insightsState: typing_extensions.Literal[
+    insightsState: typing.Literal[
         "INSIGHTS_ENABLEMENT_STATE_UNSPECIFIED", "INSIGHTS_ENABLED", "INSIGHTS_DISABLED"
     ]
 
 @typing.type_check_only
 class GoogleChromeManagementVersionsV1EnableInsightsRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     targetOus: _list[str]
 
 @typing.type_check_only
 class GoogleChromeManagementVersionsV1EnableInsightsResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
-    insightsState: typing_extensions.Literal[
+    insightsState: typing.Literal[
         "INSIGHTS_ENABLEMENT_STATE_UNSPECIFIED", "INSIGHTS_ENABLED", "INSIGHTS_DISABLED"
     ]
 
 @typing.type_check_only
 class GoogleChromeManagementVersionsV1GenericCaConnection(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     caConnectionAdapterConfigReference: str
 
 @typing.type_check_only
-class GoogleChromeManagementVersionsV1GenericProfile(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleChromeManagementVersionsV1GenericProfile(typing.TypedDict, total=False):
     profileAdapterConfigReference: str
 
 @typing.type_check_only
-class GoogleChromeManagementVersionsV1GoogleSecOpsConfig(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleChromeManagementVersionsV1GoogleSecOpsConfig(typing.TypedDict, total=False):
     apiKey: str
     host: str
     reportingSettings: GoogleChromeManagementVersionsV1ReportingSettings
 
 @typing.type_check_only
 class GoogleChromeManagementVersionsV1ListChromeBrowserProfileCommandsResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     chromeBrowserProfileCommands: _list[
         GoogleChromeManagementVersionsV1ChromeBrowserProfileCommand
@@ -1566,7 +1456,7 @@ class GoogleChromeManagementVersionsV1ListChromeBrowserProfileCommandsResponse(
 
 @typing.type_check_only
 class GoogleChromeManagementVersionsV1ListChromeBrowserProfilesResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     chromeBrowserProfiles: _list[GoogleChromeManagementVersionsV1ChromeBrowserProfile]
     nextPageToken: str
@@ -1574,55 +1464,49 @@ class GoogleChromeManagementVersionsV1ListChromeBrowserProfilesResponse(
 
 @typing.type_check_only
 class GoogleChromeManagementVersionsV1ListConnectorConfigsResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     connectorConfigs: _list[GoogleChromeManagementVersionsV1ConnectorConfig]
     nextPageToken: str
 
 @typing.type_check_only
-class GoogleChromeManagementVersionsV1MipLabelConfig(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleChromeManagementVersionsV1MipLabelConfig(typing.TypedDict, total=False):
     domains: _list[str]
     microsoftTenantId: str
 
 @typing.type_check_only
 class GoogleChromeManagementVersionsV1MoveThirdPartyProfileUserRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     destinationOrgUnit: str
 
 @typing.type_check_only
 class GoogleChromeManagementVersionsV1MoveThirdPartyProfileUserResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     thirdPartyProfileUser: GoogleChromeManagementVersionsV1ThirdPartyProfileUser
 
 @typing.type_check_only
 class GoogleChromeManagementVersionsV1PaloAltoNetworksConfig(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     apiKey: str
     host: str
     reportingSettings: GoogleChromeManagementVersionsV1ReportingSettings
 
 @typing.type_check_only
-class GoogleChromeManagementVersionsV1PubSubConfig(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleChromeManagementVersionsV1PubSubConfig(typing.TypedDict, total=False):
     reportingSettings: GoogleChromeManagementVersionsV1ReportingSettings
     topicFullPath: str
 
 @typing.type_check_only
-class GoogleChromeManagementVersionsV1PubSubXdrConfig(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleChromeManagementVersionsV1PubSubXdrConfig(typing.TypedDict, total=False):
     topicFullPath: str
     xdrSettings: GoogleChromeManagementVersionsV1XdrSettings
 
 @typing.type_check_only
 class GoogleChromeManagementVersionsV1QueryContentTransfersBreakdownsResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     contentTransfersBreakdowns: _list[
         GoogleChromeManagementVersionsV1ContentTransfersBreakdown
@@ -1631,27 +1515,25 @@ class GoogleChromeManagementVersionsV1QueryContentTransfersBreakdownsResponse(
 
 @typing.type_check_only
 class GoogleChromeManagementVersionsV1QueryContentTransfersResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     summaries: _list[GoogleChromeManagementVersionsV1ContentTransfersSummary]
 
 @typing.type_check_only
 class GoogleChromeManagementVersionsV1QueryUrlVisitsBreakdownsResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     nextPageToken: str
     urlVisitsBreakdowns: _list[GoogleChromeManagementVersionsV1UrlVisitsBreakdown]
 
 @typing.type_check_only
 class GoogleChromeManagementVersionsV1QueryUrlVisitsResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     summaries: _list[GoogleChromeManagementVersionsV1UrlVisitsSummary]
 
 @typing.type_check_only
-class GoogleChromeManagementVersionsV1ReportingData(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleChromeManagementVersionsV1ReportingData(typing.TypedDict, total=False):
     browserExecutablePath: str
     extensionData: _list[GoogleChromeManagementVersionsV1ReportingDataExtensionData]
     extensionPolicyData: _list[
@@ -1663,9 +1545,9 @@ class GoogleChromeManagementVersionsV1ReportingData(
 
 @typing.type_check_only
 class GoogleChromeManagementVersionsV1ReportingDataConflictingPolicyData(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
-    source: typing_extensions.Literal[
+    source: typing.Literal[
         "POLICY_SOURCE_UNSPECIFIED",
         "MACHINE_PLATFORM",
         "USER_PLATFORM",
@@ -1676,15 +1558,15 @@ class GoogleChromeManagementVersionsV1ReportingDataConflictingPolicyData(
 
 @typing.type_check_only
 class GoogleChromeManagementVersionsV1ReportingDataExtensionData(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     description: str
     extensionId: str
-    extensionType: typing_extensions.Literal[
+    extensionType: typing.Literal[
         "EXTENSION_TYPE_UNSPECIFIED", "EXTENSION", "APP", "THEME", "HOSTED_APP"
     ]
     homepageUri: str
-    installationType: typing_extensions.Literal[
+    installationType: typing.Literal[
         "INSTALLATION_TYPE_UNSPECIFIED",
         "MULTIPLE",
         "NORMAL",
@@ -1702,7 +1584,7 @@ class GoogleChromeManagementVersionsV1ReportingDataExtensionData(
 
 @typing.type_check_only
 class GoogleChromeManagementVersionsV1ReportingDataExtensionPolicyData(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     extensionId: str
     extensionName: str
@@ -1710,12 +1592,12 @@ class GoogleChromeManagementVersionsV1ReportingDataExtensionPolicyData(
 
 @typing.type_check_only
 class GoogleChromeManagementVersionsV1ReportingDataPolicyData(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     conflicts: _list[GoogleChromeManagementVersionsV1ReportingDataConflictingPolicyData]
     error: str
     name: str
-    source: typing_extensions.Literal[
+    source: typing.Literal[
         "POLICY_SOURCE_UNSPECIFIED",
         "MACHINE_PLATFORM",
         "USER_PLATFORM",
@@ -1726,11 +1608,9 @@ class GoogleChromeManagementVersionsV1ReportingDataPolicyData(
     value: str
 
 @typing.type_check_only
-class GoogleChromeManagementVersionsV1ReportingSettings(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleChromeManagementVersionsV1ReportingSettings(typing.TypedDict, total=False):
     enabledDefaultEvents: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "DEFAULT_EVENT_UNSPECIFIED",
             "ALL_DEFAULT_EVENTS",
             "BROWSER_CRASH_EVENT",
@@ -1748,7 +1628,7 @@ class GoogleChromeManagementVersionsV1ReportingSettings(
         ]
     ]
     enabledDeviceEvents: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "DEVICE_EVENT_UNSPECIFIED",
             "ALL_DEVICE_EVENTS",
             "ADD_REMOVE_USER_EVENT",
@@ -1758,7 +1638,7 @@ class GoogleChromeManagementVersionsV1ReportingSettings(
         ]
     ]
     enabledOptInEvents: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "OPT_IN_EVENT_UNSPECIFIED",
             "ALL_OPT_IN_EVENTS",
             "LOGIN_EVENT",
@@ -1769,19 +1649,15 @@ class GoogleChromeManagementVersionsV1ReportingSettings(
     ]
 
 @typing.type_check_only
-class GoogleChromeManagementVersionsV1ScepCaConnection(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleChromeManagementVersionsV1ScepCaConnection(typing.TypedDict, total=False):
     caConnectionAdapterConfigReference: str
 
 @typing.type_check_only
-class GoogleChromeManagementVersionsV1ScepProfile(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleChromeManagementVersionsV1ScepProfile(typing.TypedDict, total=False):
     certificateTemplateName: str
     country: str
     keyUsages: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "KEY_USAGE_UNSPECIFIED", "KEY_USAGE_SIGNING", "KEY_USAGE_KEY_ENCIPHERMENT"
         ]
     ]
@@ -1793,45 +1669,35 @@ class GoogleChromeManagementVersionsV1ScepProfile(
     subjectCommonName: str
 
 @typing.type_check_only
-class GoogleChromeManagementVersionsV1SetFailureRequest(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleChromeManagementVersionsV1SetFailureRequest(typing.TypedDict, total=False):
     errorMessage: str
 
 @typing.type_check_only
 class GoogleChromeManagementVersionsV1SetFailureResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ): ...
 
 @typing.type_check_only
-class GoogleChromeManagementVersionsV1SignDataMetadata(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleChromeManagementVersionsV1SignDataMetadata(typing.TypedDict, total=False):
     startTime: str
 
 @typing.type_check_only
-class GoogleChromeManagementVersionsV1SignDataRequest(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleChromeManagementVersionsV1SignDataRequest(typing.TypedDict, total=False):
     signData: str
-    signatureAlgorithm: typing_extensions.Literal[
+    signatureAlgorithm: typing.Literal[
         "SIGNATURE_ALGORITHM_UNSPECIFIED",
         "SIGNATURE_ALGORITHM_RSA_PKCS1_V1_5_SHA256",
         "SIGNATURE_ALGORITHM_ECDSA_SHA256",
     ]
 
 @typing.type_check_only
-class GoogleChromeManagementVersionsV1SignDataResponse(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleChromeManagementVersionsV1SignDataResponse(typing.TypedDict, total=False):
     certificateProvisioningProcess: (
         GoogleChromeManagementVersionsV1CertificateProvisioningProcess
     )
 
 @typing.type_check_only
-class GoogleChromeManagementVersionsV1SplunkConfig(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleChromeManagementVersionsV1SplunkConfig(typing.TypedDict, total=False):
     hecToken: str
     host: str
     portNumber: int
@@ -1840,10 +1706,8 @@ class GoogleChromeManagementVersionsV1SplunkConfig(
     unsecureScheme: bool
 
 @typing.type_check_only
-class GoogleChromeManagementVersionsV1SubjectAltName(
-    typing_extensions.TypedDict, total=False
-):
-    type: typing_extensions.Literal[
+class GoogleChromeManagementVersionsV1SubjectAltName(typing.TypedDict, total=False):
+    type: typing.Literal[
         "SUBJECT_ALT_NAME_TYPE_UNSPECIFIED",
         "RFC822_NAME",
         "DNS_NAME",
@@ -1854,36 +1718,32 @@ class GoogleChromeManagementVersionsV1SubjectAltName(
 
 @typing.type_check_only
 class GoogleChromeManagementVersionsV1ThirdPartyProfileUser(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     name: str
     orgUnitId: str
 
 @typing.type_check_only
 class GoogleChromeManagementVersionsV1UploadCertificateRequest(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     certificatePem: str
 
 @typing.type_check_only
 class GoogleChromeManagementVersionsV1UploadCertificateResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ): ...
 
 @typing.type_check_only
-class GoogleChromeManagementVersionsV1UrlVisitsBreakdown(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleChromeManagementVersionsV1UrlVisitsBreakdown(typing.TypedDict, total=False):
     eventDomain: str
     summary: GoogleChromeManagementVersionsV1UrlVisitsSummary
     user: str
 
 @typing.type_check_only
-class GoogleChromeManagementVersionsV1UrlVisitsSummary(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleChromeManagementVersionsV1UrlVisitsSummary(typing.TypedDict, total=False):
     count: str
-    metric: typing_extensions.Literal[
+    metric: typing.Literal[
         "URL_VISITS_METRIC_UNSPECIFIED",
         "URL_VISITS_METRIC_TOTAL_SUSPICIOUS_URL_VISITS",
         "URL_VISITS_METRIC_HIGH_RISK_URL_VISITS",
@@ -1892,24 +1752,20 @@ class GoogleChromeManagementVersionsV1UrlVisitsSummary(
     ]
 
 @typing.type_check_only
-class GoogleChromeManagementVersionsV1XdrSettings(
-    typing_extensions.TypedDict, total=False
-):
+class GoogleChromeManagementVersionsV1XdrSettings(typing.TypedDict, total=False):
     enableAllXdrEvents: bool
 
 @typing.type_check_only
-class GoogleLongrunningCancelOperationRequest(
-    typing_extensions.TypedDict, total=False
-): ...
+class GoogleLongrunningCancelOperationRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class GoogleLongrunningListOperationsResponse(typing_extensions.TypedDict, total=False):
+class GoogleLongrunningListOperationsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     operations: _list[GoogleLongrunningOperation]
     unreachable: _list[str]
 
 @typing.type_check_only
-class GoogleLongrunningOperation(typing_extensions.TypedDict, total=False):
+class GoogleLongrunningOperation(typing.TypedDict, total=False):
     done: bool
     error: GoogleRpcStatus
     metadata: dict[str, typing.Any]
@@ -1917,16 +1773,16 @@ class GoogleLongrunningOperation(typing_extensions.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
-class GoogleProtobufEmpty(typing_extensions.TypedDict, total=False): ...
+class GoogleProtobufEmpty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class GoogleRpcStatus(typing_extensions.TypedDict, total=False):
+class GoogleRpcStatus(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
-class GoogleTypeDate(typing_extensions.TypedDict, total=False):
+class GoogleTypeDate(typing.TypedDict, total=False):
     day: int
     month: int
     year: int

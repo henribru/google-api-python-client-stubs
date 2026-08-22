@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -261,11 +260,11 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                                 *,
                                 name: str,
                                 imageId: str | None = ...,
-                                processedDocumentFormat: typing_extensions.Literal[
+                                processedDocumentFormat: typing.Literal[
                                     "PROCESSED_DOCUMENT_FORMAT_UNSPECIFIED", "JSON"
                                 ]
                                 | None = ...,
-                                processedDocumentType: typing_extensions.Literal[
+                                processedDocumentType: typing.Literal[
                                     "PROCESSED_DOCUMENT_TYPE_UNSPECIFIED",
                                     "PARSED_DOCUMENT",
                                     "CHUNKED_DOCUMENT",
@@ -363,7 +362,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             name: str,
-                            view: typing_extensions.Literal[
+                            view: typing.Literal[
                                 "BRANCH_VIEW_UNSPECIFIED",
                                 "BRANCH_VIEW_BASIC",
                                 "BRANCH_VIEW_FULL",
@@ -375,7 +374,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             parent: str,
-                            view: typing_extensions.Literal[
+                            view: typing.Literal[
                                 "BRANCH_VIEW_UNSPECIFIED",
                                 "BRANCH_VIEW_BASIC",
                                 "BRANCH_VIEW_FULL",
@@ -1035,7 +1034,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                             getWidgetConfigRequestOption_turnOffCollectionComponents: bool
                             | None = ...,
                             languageCode: str | None = ...,
-                            modelInfoView: typing_extensions.Literal[
+                            modelInfoView: typing.Literal[
                                 "MODEL_INFO_VIEW_UNSPECIFIED", "END_USER_WEB", "ADMIN"
                             ]
                             | None = ...,
@@ -1097,7 +1096,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        view: typing_extensions.Literal[
+                        view: typing.Literal[
                             "DATA_STORE_VIEW_UNSPECIFIED",
                             "DATA_STORE_VIEW_BASIC",
                             "DATA_STORE_VIEW_FULL",
@@ -1125,7 +1124,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                         filter: str | None = ...,
                         pageSize: int | None = ...,
                         pageToken: str | None = ...,
-                        view: typing_extensions.Literal[
+                        view: typing.Literal[
                             "DATA_STORE_VIEW_UNSPECIFIED",
                             "DATA_STORE_VIEW_BASIC",
                             "DATA_STORE_VIEW_FULL",
@@ -1661,7 +1660,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                                     orderBy: str | None = ...,
                                     pageSize: int | None = ...,
                                     pageToken: str | None = ...,
-                                    stateFilter: typing_extensions.Literal[
+                                    stateFilter: typing.Literal[
                                         "PROGRAM_STATE_UNSPECIFIED",
                                         "INITIALIZED",
                                         "GENERATING",
@@ -1844,7 +1843,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                             getWidgetConfigRequestOption_turnOffCollectionComponents: bool
                             | None = ...,
                             languageCode: str | None = ...,
-                            modelInfoView: typing_extensions.Literal[
+                            modelInfoView: typing.Literal[
                                 "MODEL_INFO_VIEW_UNSPECIFIED", "END_USER_WEB", "ADMIN"
                             ]
                             | None = ...,
@@ -2086,11 +2085,11 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                             *,
                             name: str,
                             imageId: str | None = ...,
-                            processedDocumentFormat: typing_extensions.Literal[
+                            processedDocumentFormat: typing.Literal[
                                 "PROCESSED_DOCUMENT_FORMAT_UNSPECIFIED", "JSON"
                             ]
                             | None = ...,
-                            processedDocumentType: typing_extensions.Literal[
+                            processedDocumentType: typing.Literal[
                                 "PROCESSED_DOCUMENT_TYPE_UNSPECIFIED",
                                 "PARSED_DOCUMENT",
                                 "CHUNKED_DOCUMENT",
@@ -2185,7 +2184,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
-                        view: typing_extensions.Literal[
+                        view: typing.Literal[
                             "BRANCH_VIEW_UNSPECIFIED",
                             "BRANCH_VIEW_BASIC",
                             "BRANCH_VIEW_FULL",
@@ -2197,7 +2196,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        view: typing_extensions.Literal[
+                        view: typing.Literal[
                             "BRANCH_VIEW_UNSPECIFIED",
                             "BRANCH_VIEW_BASIC",
                             "BRANCH_VIEW_FULL",
@@ -2730,7 +2729,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                         getWidgetConfigRequestOption_turnOffCollectionComponents: bool
                         | None = ...,
                         languageCode: str | None = ...,
-                        modelInfoView: typing_extensions.Literal[
+                        modelInfoView: typing.Literal[
                             "MODEL_INFO_VIEW_UNSPECIFIED", "END_USER_WEB", "ADMIN"
                         ]
                         | None = ...,
@@ -2790,7 +2789,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    view: typing_extensions.Literal[
+                    view: typing.Literal[
                         "DATA_STORE_VIEW_UNSPECIFIED",
                         "DATA_STORE_VIEW_BASIC",
                         "DATA_STORE_VIEW_FULL",
@@ -2816,7 +2815,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                     filter: str | None = ...,
                     pageSize: int | None = ...,
                     pageToken: str | None = ...,
-                    view: typing_extensions.Literal[
+                    view: typing.Literal[
                         "DATA_STORE_VIEW_UNSPECIFIED",
                         "DATA_STORE_VIEW_BASIC",
                         "DATA_STORE_VIEW_FULL",
@@ -3429,7 +3428,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                entityTypeFilter: typing_extensions.Literal[
+                entityTypeFilter: typing.Literal[
                     "ENTITY_TYPE_FILTER_UNSPECIFIED", "USERS", "GROUPS"
                 ]
                 | None = ...,
@@ -3472,7 +3471,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                 *,
                 project: str,
                 location: str,
-                metricTypes: typing_extensions.Literal[
+                metricTypes: typing.Literal[
                     "BILLING_METRIC_TYPE_UNSPECIFIED",
                     "DAILY_MDN_QPM",
                     "DAILY_MIN_QPM",
@@ -3481,7 +3480,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                     "TOTAL_STORAGE",
                 ]
                 | _list[
-                    typing_extensions.Literal[
+                    typing.Literal[
                         "BILLING_METRIC_TYPE_UNSPECIFIED",
                         "DAILY_MDN_QPM",
                         "DAILY_MIN_QPM",

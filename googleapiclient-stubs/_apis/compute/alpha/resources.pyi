@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -1516,9 +1515,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             forwardingRule: str,
-            view: typing_extensions.Literal[
-                "BASIC", "FORWARDING_RULE_VIEW_UNSPECIFIED", "FULL"
-            ]
+            view: typing.Literal["BASIC", "FORWARDING_RULE_VIEW_UNSPECIFIED", "FULL"]
             | None = ...,
             **kwargs: typing.Any,
         ) -> ForwardingRuleHttpRequest: ...
@@ -1776,9 +1773,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             forwardingRule: str,
-            view: typing_extensions.Literal[
-                "BASIC", "FORWARDING_RULE_VIEW_UNSPECIFIED", "FULL"
-            ]
+            view: typing.Literal["BASIC", "FORWARDING_RULE_VIEW_UNSPECIFIED", "FULL"]
             | None = ...,
             **kwargs: typing.Any,
         ) -> ForwardingRuleHttpRequest: ...
@@ -3131,9 +3126,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             instanceTemplate: str,
-            view: typing_extensions.Literal[
-                "BASIC", "FULL", "INSTANCE_VIEW_UNSPECIFIED"
-            ]
+            view: typing.Literal["BASIC", "FULL", "INSTANCE_VIEW_UNSPECIFIED"]
             | None = ...,
             **kwargs: typing.Any,
         ) -> InstanceTemplateHttpRequest: ...
@@ -3162,9 +3155,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             orderBy: str | None = ...,
             pageToken: str | None = ...,
             returnPartialSuccess: bool | None = ...,
-            view: typing_extensions.Literal[
-                "BASIC", "FULL", "INSTANCE_VIEW_UNSPECIFIED"
-            ]
+            view: typing.Literal["BASIC", "FULL", "INSTANCE_VIEW_UNSPECIFIED"]
             | None = ...,
             **kwargs: typing.Any,
         ) -> InstanceTemplateListHttpRequest: ...
@@ -3308,9 +3299,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             instance: str,
-            view: typing_extensions.Literal[
-                "BASIC", "FULL", "INSTANCE_VIEW_UNSPECIFIED"
-            ]
+            view: typing.Literal["BASIC", "FULL", "INSTANCE_VIEW_UNSPECIFIED"]
             | None = ...,
             **kwargs: typing.Any,
         ) -> InstanceHttpRequest: ...
@@ -3400,9 +3389,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             orderBy: str | None = ...,
             pageToken: str | None = ...,
             returnPartialSuccess: bool | None = ...,
-            view: typing_extensions.Literal[
-                "BASIC", "FULL", "INSTANCE_VIEW_UNSPECIFIED"
-            ]
+            view: typing.Literal["BASIC", "FULL", "INSTANCE_VIEW_UNSPECIFIED"]
             | None = ...,
             **kwargs: typing.Any,
         ) -> InstanceListHttpRequest: ...
@@ -3726,11 +3713,9 @@ class ComputeResource(googleapiclient.discovery.Resource):
             body: Instance,
             clearSecureTag: bool | None = ...,
             discardLocalSsd: bool | None = ...,
-            minimalAction: typing_extensions.Literal[
-                "INVALID", "NO_EFFECT", "REFRESH", "RESTART"
-            ]
+            minimalAction: typing.Literal["INVALID", "NO_EFFECT", "REFRESH", "RESTART"]
             | None = ...,
-            mostDisruptiveAllowedAction: typing_extensions.Literal[
+            mostDisruptiveAllowedAction: typing.Literal[
                 "INVALID", "NO_EFFECT", "REFRESH", "RESTART"
             ]
             | None = ...,
@@ -5229,7 +5214,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             network: str,
-            direction: typing_extensions.Literal["INCOMING", "OUTGOING"] | None = ...,
+            direction: typing.Literal["INCOMING", "OUTGOING"] | None = ...,
             filter: str | None = ...,
             maxResults: int | None = ...,
             orderBy: str | None = ...,
@@ -7979,9 +7964,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             instanceTemplate: str,
-            view: typing_extensions.Literal[
-                "BASIC", "FULL", "INSTANCE_VIEW_UNSPECIFIED"
-            ]
+            view: typing.Literal["BASIC", "FULL", "INSTANCE_VIEW_UNSPECIFIED"]
             | None = ...,
             **kwargs: typing.Any,
         ) -> InstanceTemplateHttpRequest: ...
@@ -8004,9 +7987,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             orderBy: str | None = ...,
             pageToken: str | None = ...,
             returnPartialSuccess: bool | None = ...,
-            view: typing_extensions.Literal[
-                "BASIC", "FULL", "INSTANCE_VIEW_UNSPECIFIED"
-            ]
+            view: typing.Literal["BASIC", "FULL", "INSTANCE_VIEW_UNSPECIFIED"]
             | None = ...,
             **kwargs: typing.Any,
         ) -> InstanceTemplateListHttpRequest: ...
@@ -9552,7 +9533,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             zone: str,
             reservation: str,
             reservationBlock: str,
-            view: typing_extensions.Literal["BASIC", "BLOCK_VIEW_UNSPECIFIED", "FULL"]
+            view: typing.Literal["BASIC", "BLOCK_VIEW_UNSPECIFIED", "FULL"]
             | None = ...,
             **kwargs: typing.Any,
         ) -> ReservationBlocksGetResponseHttpRequest: ...
@@ -9678,7 +9659,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             zone: str,
             parentName: str,
             reservationSubBlock: str,
-            view: typing_extensions.Literal[
+            view: typing.Literal[
                 "SUB_BLOCK_VIEW_BASIC",
                 "SUB_BLOCK_VIEW_FULL",
                 "SUB_BLOCK_VIEW_UNSPECIFIED",
@@ -10206,9 +10187,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             router: str,
-            addressFamily: typing_extensions.Literal[
-                "IPV4", "IPV6", "UNSPECIFIED_IP_VERSION"
-            ]
+            addressFamily: typing.Literal["IPV4", "IPV6", "UNSPECIFIED_IP_VERSION"]
             | None = ...,
             destinationPrefix: str | None = ...,
             filter: str | None = ...,
@@ -10218,9 +10197,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             peer: str | None = ...,
             policyApplied: bool | None = ...,
             returnPartialSuccess: bool | None = ...,
-            routeType: typing_extensions.Literal[
-                "ADVERTISED", "LEARNED", "UNSPECIFIED_ROUTE_TYPE"
-            ]
+            routeType: typing.Literal["ADVERTISED", "LEARNED", "UNSPECIFIED_ROUTE_TYPE"]
             | None = ...,
             **kwargs: typing.Any,
         ) -> RoutersListBgpRoutesHttpRequest: ...
@@ -11155,8 +11132,8 @@ class ComputeResource(googleapiclient.discovery.Resource):
             pageToken: str | None = ...,
             returnPartialSuccess: bool | None = ...,
             serviceProjectNumber: str | None = ...,
-            views: typing_extensions.Literal["DEFAULT", "WITH_UTILIZATION"]
-            | _list[typing_extensions.Literal["DEFAULT", "WITH_UTILIZATION"]]
+            views: typing.Literal["DEFAULT", "WITH_UTILIZATION"]
+            | _list[typing.Literal["DEFAULT", "WITH_UTILIZATION"]]
             | None = ...,
             **kwargs: typing.Any,
         ) -> SubnetworkAggregatedListHttpRequest: ...
@@ -11190,8 +11167,8 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             subnetwork: str,
-            views: typing_extensions.Literal["DEFAULT", "WITH_UTILIZATION"]
-            | _list[typing_extensions.Literal["DEFAULT", "WITH_UTILIZATION"]]
+            views: typing.Literal["DEFAULT", "WITH_UTILIZATION"]
+            | _list[typing.Literal["DEFAULT", "WITH_UTILIZATION"]]
             | None = ...,
             **kwargs: typing.Any,
         ) -> SubnetworkHttpRequest: ...
@@ -11223,8 +11200,8 @@ class ComputeResource(googleapiclient.discovery.Resource):
             orderBy: str | None = ...,
             pageToken: str | None = ...,
             returnPartialSuccess: bool | None = ...,
-            views: typing_extensions.Literal["DEFAULT", "WITH_UTILIZATION"]
-            | _list[typing_extensions.Literal["DEFAULT", "WITH_UTILIZATION"]]
+            views: typing.Literal["DEFAULT", "WITH_UTILIZATION"]
+            | _list[typing.Literal["DEFAULT", "WITH_UTILIZATION"]]
             | None = ...,
             **kwargs: typing.Any,
         ) -> SubnetworkListHttpRequest: ...

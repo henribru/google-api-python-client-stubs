@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -51,7 +50,7 @@ class ConfigResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    deploymentReferencePolicy: typing_extensions.Literal[
+                    deploymentReferencePolicy: typing.Literal[
                         "DEPLOYMENT_REFERENCE_POLICY_UNSPECIFIED",
                         "FAIL_IF_ANY_REFERENCES_EXIST",
                         "FAIL_IF_METADATA_REFERENCES_EXIST",
@@ -170,7 +169,7 @@ class ConfigResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    deletePolicy: typing_extensions.Literal[
+                    deletePolicy: typing.Literal[
                         "DELETE_POLICY_UNSPECIFIED", "DELETE", "ABANDON"
                     ]
                     | None = ...,

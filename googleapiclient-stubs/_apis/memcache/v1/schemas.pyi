@@ -1,60 +1,58 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class ApplyParametersRequest(typing_extensions.TypedDict, total=False):
+class ApplyParametersRequest(typing.TypedDict, total=False):
     applyAll: bool
     nodeIds: _list[str]
 
 @typing.type_check_only
-class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
+class CancelOperationRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class DailyCycle(typing_extensions.TypedDict, total=False):
+class DailyCycle(typing.TypedDict, total=False):
     duration: str
     startTime: TimeOfDay
 
 @typing.type_check_only
-class Date(typing_extensions.TypedDict, total=False):
+class Date(typing.TypedDict, total=False):
     day: int
     month: int
     year: int
 
 @typing.type_check_only
-class DenyMaintenancePeriod(typing_extensions.TypedDict, total=False):
+class DenyMaintenancePeriod(typing.TypedDict, total=False):
     endDate: Date
     startDate: Date
     time: TimeOfDay
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class GetTagsRequest(typing_extensions.TypedDict, total=False):
+class GetTagsRequest(typing.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class GetTagsResponse(typing_extensions.TypedDict, total=False):
+class GetTagsResponse(typing.TypedDict, total=False):
     etag: str
     name: str
     tags: dict[str, typing.Any]
 
 @typing.type_check_only
-class GoogleCloudMemcacheV1LocationMetadata(typing_extensions.TypedDict, total=False):
+class GoogleCloudMemcacheV1LocationMetadata(typing.TypedDict, total=False):
     availableZones: dict[str, typing.Any]
 
 @typing.type_check_only
-class GoogleCloudMemcacheV1MaintenancePolicy(typing_extensions.TypedDict, total=False):
+class GoogleCloudMemcacheV1MaintenancePolicy(typing.TypedDict, total=False):
     createTime: str
     description: str
     updateTime: str
     weeklyMaintenanceWindow: _list[WeeklyMaintenanceWindow]
 
 @typing.type_check_only
-class GoogleCloudMemcacheV1OperationMetadata(typing_extensions.TypedDict, total=False):
+class GoogleCloudMemcacheV1OperationMetadata(typing.TypedDict, total=False):
     apiVersion: str
     cancelRequested: bool
     createTime: str
@@ -64,19 +62,17 @@ class GoogleCloudMemcacheV1OperationMetadata(typing_extensions.TypedDict, total=
     verb: str
 
 @typing.type_check_only
-class GoogleCloudMemcacheV1UpgradeInstanceRequest(
-    typing_extensions.TypedDict, total=False
-):
-    memcacheVersion: typing_extensions.Literal[
+class GoogleCloudMemcacheV1UpgradeInstanceRequest(typing.TypedDict, total=False):
+    memcacheVersion: typing.Literal[
         "MEMCACHE_VERSION_UNSPECIFIED", "MEMCACHE_1_5", "MEMCACHE_1_6_15"
     ]
 
 @typing.type_check_only
-class GoogleCloudMemcacheV1ZoneMetadata(typing_extensions.TypedDict, total=False): ...
+class GoogleCloudMemcacheV1ZoneMetadata(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
 class GoogleCloudSaasacceleratorManagementProvidersV1Instance(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     consumerDefinedName: str
     consumerProjectNumber: str
@@ -97,7 +93,7 @@ class GoogleCloudSaasacceleratorManagementProvidersV1Instance(
     slmInstanceTemplate: str
     sloMetadata: GoogleCloudSaasacceleratorManagementProvidersV1SloMetadata
     softwareVersions: dict[str, typing.Any]
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "CREATING",
         "READY",
@@ -111,7 +107,7 @@ class GoogleCloudSaasacceleratorManagementProvidersV1Instance(
 
 @typing.type_check_only
 class GoogleCloudSaasacceleratorManagementProvidersV1MaintenanceSchedule(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     canReschedule: bool
     endTime: str
@@ -121,7 +117,7 @@ class GoogleCloudSaasacceleratorManagementProvidersV1MaintenanceSchedule(
 
 @typing.type_check_only
 class GoogleCloudSaasacceleratorManagementProvidersV1MaintenanceSettings(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     exclude: bool
     isRollback: bool
@@ -129,7 +125,7 @@ class GoogleCloudSaasacceleratorManagementProvidersV1MaintenanceSettings(
 
 @typing.type_check_only
 class GoogleCloudSaasacceleratorManagementProvidersV1NodeSloMetadata(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     location: str
     nodeId: str
@@ -139,33 +135,33 @@ class GoogleCloudSaasacceleratorManagementProvidersV1NodeSloMetadata(
 
 @typing.type_check_only
 class GoogleCloudSaasacceleratorManagementProvidersV1NotificationParameter(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     values: _list[str]
 
 @typing.type_check_only
 class GoogleCloudSaasacceleratorManagementProvidersV1PerSliSloEligibility(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     eligibilities: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleCloudSaasacceleratorManagementProvidersV1ProvisionedResource(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     resourceType: str
     resourceUrl: str
 
 @typing.type_check_only
 class GoogleCloudSaasacceleratorManagementProvidersV1SloEligibility(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     eligible: bool
     reason: str
 
 @typing.type_check_only
 class GoogleCloudSaasacceleratorManagementProvidersV1SloMetadata(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     nodes: _list[GoogleCloudSaasacceleratorManagementProvidersV1NodeSloMetadata]
     perSliEligibility: (
@@ -174,7 +170,7 @@ class GoogleCloudSaasacceleratorManagementProvidersV1SloMetadata(
     tier: str
 
 @typing.type_check_only
-class Instance(typing_extensions.TypedDict, total=False):
+class Instance(typing.TypedDict, total=False):
     authorizedNetwork: str
     availableMaintenanceVersions: _list[str]
     createTime: str
@@ -188,7 +184,7 @@ class Instance(typing_extensions.TypedDict, total=False):
     maintenanceVersion: str
     memcacheFullVersion: str
     memcacheNodes: _list[Node]
-    memcacheVersion: typing_extensions.Literal[
+    memcacheVersion: typing.Literal[
         "MEMCACHE_VERSION_UNSPECIFIED", "MEMCACHE_1_5", "MEMCACHE_1_6_15"
     ]
     name: str
@@ -198,7 +194,7 @@ class Instance(typing_extensions.TypedDict, total=False):
     reservedIpRangeId: _list[str]
     satisfiesPzi: bool
     satisfiesPzs: bool
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED",
         "CREATING",
         "READY",
@@ -211,29 +207,29 @@ class Instance(typing_extensions.TypedDict, total=False):
     zones: _list[str]
 
 @typing.type_check_only
-class InstanceMessage(typing_extensions.TypedDict, total=False):
-    code: typing_extensions.Literal["CODE_UNSPECIFIED", "ZONE_DISTRIBUTION_UNBALANCED"]
+class InstanceMessage(typing.TypedDict, total=False):
+    code: typing.Literal["CODE_UNSPECIFIED", "ZONE_DISTRIBUTION_UNBALANCED"]
     message: str
 
 @typing.type_check_only
-class ListInstancesResponse(typing_extensions.TypedDict, total=False):
+class ListInstancesResponse(typing.TypedDict, total=False):
     instances: _list[Instance]
     nextPageToken: str
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListLocationsResponse(typing_extensions.TypedDict, total=False):
+class ListLocationsResponse(typing.TypedDict, total=False):
     locations: _list[Location]
     nextPageToken: str
 
 @typing.type_check_only
-class ListOperationsResponse(typing_extensions.TypedDict, total=False):
+class ListOperationsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
     unreachable: _list[str]
 
 @typing.type_check_only
-class Location(typing_extensions.TypedDict, total=False):
+class Location(typing.TypedDict, total=False):
     displayName: str
     labels: dict[str, typing.Any]
     locationId: str
@@ -241,57 +237,57 @@ class Location(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class LocationMetadata(typing_extensions.TypedDict, total=False):
+class LocationMetadata(typing.TypedDict, total=False):
     availableZones: dict[str, typing.Any]
 
 @typing.type_check_only
-class MaintenancePolicy(typing_extensions.TypedDict, total=False):
+class MaintenancePolicy(typing.TypedDict, total=False):
     createTime: str
     description: str
     labels: dict[str, typing.Any]
     name: str
-    state: typing_extensions.Literal["STATE_UNSPECIFIED", "READY", "DELETING"]
+    state: typing.Literal["STATE_UNSPECIFIED", "READY", "DELETING"]
     updatePolicy: UpdatePolicy
     updateTime: str
 
 @typing.type_check_only
-class MaintenanceSchedule(typing_extensions.TypedDict, total=False):
+class MaintenanceSchedule(typing.TypedDict, total=False):
     endTime: str
     scheduleDeadlineTime: str
     startTime: str
 
 @typing.type_check_only
-class MaintenanceWindow(typing_extensions.TypedDict, total=False):
+class MaintenanceWindow(typing.TypedDict, total=False):
     dailyCycle: DailyCycle
     weeklyCycle: WeeklyCycle
 
 @typing.type_check_only
-class MemcacheParameters(typing_extensions.TypedDict, total=False):
+class MemcacheParameters(typing.TypedDict, total=False):
     id: str
     params: dict[str, typing.Any]
 
 @typing.type_check_only
-class Node(typing_extensions.TypedDict, total=False):
+class Node(typing.TypedDict, total=False):
     host: str
     memcacheFullVersion: str
-    memcacheVersion: typing_extensions.Literal[
+    memcacheVersion: typing.Literal[
         "MEMCACHE_VERSION_UNSPECIFIED", "MEMCACHE_1_5", "MEMCACHE_1_6_15"
     ]
     nodeId: str
     parameters: MemcacheParameters
     port: int
-    state: typing_extensions.Literal[
+    state: typing.Literal[
         "STATE_UNSPECIFIED", "CREATING", "READY", "DELETING", "UPDATING"
     ]
     zone: str
 
 @typing.type_check_only
-class NodeConfig(typing_extensions.TypedDict, total=False):
+class NodeConfig(typing.TypedDict, total=False):
     cpuCount: int
     memorySizeMb: int
 
 @typing.type_check_only
-class Operation(typing_extensions.TypedDict, total=False):
+class Operation(typing.TypedDict, total=False):
     done: bool
     error: Status
     metadata: dict[str, typing.Any]
@@ -299,7 +295,7 @@ class Operation(typing_extensions.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
-class OperationMetadata(typing_extensions.TypedDict, total=False):
+class OperationMetadata(typing.TypedDict, total=False):
     apiVersion: str
     cancelRequested: bool
     createTime: str
@@ -309,8 +305,8 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     verb: str
 
 @typing.type_check_only
-class RescheduleMaintenanceRequest(typing_extensions.TypedDict, total=False):
-    rescheduleType: typing_extensions.Literal[
+class RescheduleMaintenanceRequest(typing.TypedDict, total=False):
+    rescheduleType: typing.Literal[
         "RESCHEDULE_TYPE_UNSPECIFIED",
         "IMMEDIATE",
         "NEXT_AVAILABLE_WINDOW",
@@ -319,8 +315,8 @@ class RescheduleMaintenanceRequest(typing_extensions.TypedDict, total=False):
     scheduleTime: str
 
 @typing.type_check_only
-class Schedule(typing_extensions.TypedDict, total=False):
-    day: typing_extensions.Literal[
+class Schedule(typing.TypedDict, total=False):
+    day: typing.Literal[
         "DAY_OF_WEEK_UNSPECIFIED",
         "MONDAY",
         "TUESDAY",
@@ -334,51 +330,51 @@ class Schedule(typing_extensions.TypedDict, total=False):
     startTime: TimeOfDay
 
 @typing.type_check_only
-class SetTagsRequest(typing_extensions.TypedDict, total=False):
+class SetTagsRequest(typing.TypedDict, total=False):
     etag: str
     name: str
     requestId: str
     tags: dict[str, typing.Any]
 
 @typing.type_check_only
-class SetTagsResponse(typing_extensions.TypedDict, total=False):
+class SetTagsResponse(typing.TypedDict, total=False):
     etag: str
     name: str
     tags: dict[str, typing.Any]
 
 @typing.type_check_only
-class Status(typing_extensions.TypedDict, total=False):
+class Status(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
-class TimeOfDay(typing_extensions.TypedDict, total=False):
+class TimeOfDay(typing.TypedDict, total=False):
     hours: int
     minutes: int
     nanos: int
     seconds: int
 
 @typing.type_check_only
-class UpdateParametersRequest(typing_extensions.TypedDict, total=False):
+class UpdateParametersRequest(typing.TypedDict, total=False):
     parameters: MemcacheParameters
     updateMask: str
 
 @typing.type_check_only
-class UpdatePolicy(typing_extensions.TypedDict, total=False):
-    channel: typing_extensions.Literal[
+class UpdatePolicy(typing.TypedDict, total=False):
+    channel: typing.Literal[
         "UPDATE_CHANNEL_UNSPECIFIED", "EARLIER", "LATER", "WEEK1", "WEEK2", "WEEK5"
     ]
     denyMaintenancePeriods: _list[DenyMaintenancePeriod]
     window: MaintenanceWindow
 
 @typing.type_check_only
-class WeeklyCycle(typing_extensions.TypedDict, total=False):
+class WeeklyCycle(typing.TypedDict, total=False):
     schedule: _list[Schedule]
 
 @typing.type_check_only
-class WeeklyMaintenanceWindow(typing_extensions.TypedDict, total=False):
-    day: typing_extensions.Literal[
+class WeeklyMaintenanceWindow(typing.TypedDict, total=False):
+    day: typing.Literal[
         "DAY_OF_WEEK_UNSPECIFIED",
         "MONDAY",
         "TUESDAY",
@@ -392,4 +388,4 @@ class WeeklyMaintenanceWindow(typing_extensions.TypedDict, total=False):
     startTime: TimeOfDay
 
 @typing.type_check_only
-class ZoneMetadata(typing_extensions.TypedDict, total=False): ...
+class ZoneMetadata(typing.TypedDict, total=False): ...

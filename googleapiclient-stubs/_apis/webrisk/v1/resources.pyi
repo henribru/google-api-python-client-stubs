@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -19,7 +18,7 @@ class WebRiskResource(googleapiclient.discovery.Resource):
             self,
             *,
             hashPrefix: str | None = ...,
-            threatTypes: typing_extensions.Literal[
+            threatTypes: typing.Literal[
                 "THREAT_TYPE_UNSPECIFIED",
                 "MALWARE",
                 "SOCIAL_ENGINEERING",
@@ -27,7 +26,7 @@ class WebRiskResource(googleapiclient.discovery.Resource):
                 "SOCIAL_ENGINEERING_EXTENDED_COVERAGE",
             ]
             | _list[
-                typing_extensions.Literal[
+                typing.Literal[
                     "THREAT_TYPE_UNSPECIFIED",
                     "MALWARE",
                     "SOCIAL_ENGINEERING",
@@ -92,14 +91,12 @@ class WebRiskResource(googleapiclient.discovery.Resource):
             *,
             constraints_maxDatabaseEntries: int | None = ...,
             constraints_maxDiffEntries: int | None = ...,
-            constraints_supportedCompressions: typing_extensions.Literal[
+            constraints_supportedCompressions: typing.Literal[
                 "COMPRESSION_TYPE_UNSPECIFIED", "RAW", "RICE"
             ]
-            | _list[
-                typing_extensions.Literal["COMPRESSION_TYPE_UNSPECIFIED", "RAW", "RICE"]
-            ]
+            | _list[typing.Literal["COMPRESSION_TYPE_UNSPECIFIED", "RAW", "RICE"]]
             | None = ...,
-            threatType: typing_extensions.Literal[
+            threatType: typing.Literal[
                 "THREAT_TYPE_UNSPECIFIED",
                 "MALWARE",
                 "SOCIAL_ENGINEERING",
@@ -116,7 +113,7 @@ class WebRiskResource(googleapiclient.discovery.Resource):
         def search(
             self,
             *,
-            threatTypes: typing_extensions.Literal[
+            threatTypes: typing.Literal[
                 "THREAT_TYPE_UNSPECIFIED",
                 "MALWARE",
                 "SOCIAL_ENGINEERING",
@@ -124,7 +121,7 @@ class WebRiskResource(googleapiclient.discovery.Resource):
                 "SOCIAL_ENGINEERING_EXTENDED_COVERAGE",
             ]
             | _list[
-                typing_extensions.Literal[
+                typing.Literal[
                     "THREAT_TYPE_UNSPECIFIED",
                     "MALWARE",
                     "SOCIAL_ENGINEERING",

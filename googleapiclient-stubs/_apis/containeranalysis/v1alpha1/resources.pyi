@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -115,7 +114,7 @@ class ContainerAnalysisResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 filter: str | None = ...,
-                kind: typing_extensions.Literal[
+                kind: typing.Literal[
                     "KIND_UNSPECIFIED",
                     "PACKAGE_VULNERABILITY",
                     "BUILD_DETAILS",

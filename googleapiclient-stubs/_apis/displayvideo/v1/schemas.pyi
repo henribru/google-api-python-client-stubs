@@ -1,16 +1,14 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class ActivateManualTriggerRequest(typing_extensions.TypedDict, total=False): ...
+class ActivateManualTriggerRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class ActiveViewVideoViewabilityMetricConfig(typing_extensions.TypedDict, total=False):
+class ActiveViewVideoViewabilityMetricConfig(typing.TypedDict, total=False):
     displayName: str
-    minimumDuration: typing_extensions.Literal[
+    minimumDuration: typing.Literal[
         "VIDEO_DURATION_UNSPECIFIED",
         "VIDEO_DURATION_SECONDS_NONE",
         "VIDEO_DURATION_SECONDS_0",
@@ -33,7 +31,7 @@ class ActiveViewVideoViewabilityMetricConfig(typing_extensions.TypedDict, total=
         "VIDEO_DURATION_SECONDS_45",
         "VIDEO_DURATION_SECONDS_60",
     ]
-    minimumQuartile: typing_extensions.Literal[
+    minimumQuartile: typing.Literal[
         "VIDEO_DURATION_QUARTILE_UNSPECIFIED",
         "VIDEO_DURATION_QUARTILE_NONE",
         "VIDEO_DURATION_QUARTILE_FIRST",
@@ -41,7 +39,7 @@ class ActiveViewVideoViewabilityMetricConfig(typing_extensions.TypedDict, total=
         "VIDEO_DURATION_QUARTILE_THIRD",
         "VIDEO_DURATION_QUARTILE_FOURTH",
     ]
-    minimumViewability: typing_extensions.Literal[
+    minimumViewability: typing.Literal[
         "VIEWABILITY_PERCENT_UNSPECIFIED",
         "VIEWABILITY_PERCENT_0",
         "VIEWABILITY_PERCENT_25",
@@ -49,16 +47,16 @@ class ActiveViewVideoViewabilityMetricConfig(typing_extensions.TypedDict, total=
         "VIEWABILITY_PERCENT_75",
         "VIEWABILITY_PERCENT_100",
     ]
-    minimumVolume: typing_extensions.Literal[
+    minimumVolume: typing.Literal[
         "VIDEO_VOLUME_PERCENT_UNSPECIFIED",
         "VIDEO_VOLUME_PERCENT_0",
         "VIDEO_VOLUME_PERCENT_10",
     ]
 
 @typing.type_check_only
-class Adloox(typing_extensions.TypedDict, total=False):
+class Adloox(typing.TypedDict, total=False):
     excludedAdlooxCategories: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "ADLOOX_UNSPECIFIED",
             "ADULT_CONTENT_HARD",
             "ADULT_CONTENT_SOFT",
@@ -72,13 +70,13 @@ class Adloox(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class Advertiser(typing_extensions.TypedDict, total=False):
+class Advertiser(typing.TypedDict, total=False):
     adServerConfig: AdvertiserAdServerConfig
     advertiserId: str
     creativeConfig: AdvertiserCreativeConfig
     dataAccessConfig: AdvertiserDataAccessConfig
     displayName: str
-    entityStatus: typing_extensions.Literal[
+    entityStatus: typing.Literal[
         "ENTITY_STATUS_UNSPECIFIED",
         "ENTITY_STATUS_ACTIVE",
         "ENTITY_STATUS_ARCHIVED",
@@ -95,39 +93,39 @@ class Advertiser(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class AdvertiserAdServerConfig(typing_extensions.TypedDict, total=False):
+class AdvertiserAdServerConfig(typing.TypedDict, total=False):
     cmHybridConfig: CmHybridConfig
     thirdPartyOnlyConfig: ThirdPartyOnlyConfig
 
 @typing.type_check_only
-class AdvertiserCreativeConfig(typing_extensions.TypedDict, total=False):
+class AdvertiserCreativeConfig(typing.TypedDict, total=False):
     dynamicCreativeEnabled: bool
     iasClientId: str
     obaComplianceDisabled: bool
     videoCreativeDataSharingAuthorized: bool
 
 @typing.type_check_only
-class AdvertiserDataAccessConfig(typing_extensions.TypedDict, total=False):
+class AdvertiserDataAccessConfig(typing.TypedDict, total=False):
     sdfConfig: AdvertiserSdfConfig
 
 @typing.type_check_only
-class AdvertiserGeneralConfig(typing_extensions.TypedDict, total=False):
+class AdvertiserGeneralConfig(typing.TypedDict, total=False):
     currencyCode: str
     domainUrl: str
     timeZone: str
 
 @typing.type_check_only
-class AdvertiserSdfConfig(typing_extensions.TypedDict, total=False):
+class AdvertiserSdfConfig(typing.TypedDict, total=False):
     overridePartnerSdfConfig: bool
     sdfConfig: SdfConfig
 
 @typing.type_check_only
-class AdvertiserTargetingConfig(typing_extensions.TypedDict, total=False):
+class AdvertiserTargetingConfig(typing.TypedDict, total=False):
     exemptTvFromViewabilityTargeting: bool
 
 @typing.type_check_only
-class AgeRangeAssignedTargetingOptionDetails(typing_extensions.TypedDict, total=False):
-    ageRange: typing_extensions.Literal[
+class AgeRangeAssignedTargetingOptionDetails(typing.TypedDict, total=False):
+    ageRange: typing.Literal[
         "AGE_RANGE_UNSPECIFIED",
         "AGE_RANGE_18_24",
         "AGE_RANGE_25_34",
@@ -140,8 +138,8 @@ class AgeRangeAssignedTargetingOptionDetails(typing_extensions.TypedDict, total=
     targetingOptionId: str
 
 @typing.type_check_only
-class AgeRangeTargetingOptionDetails(typing_extensions.TypedDict, total=False):
-    ageRange: typing_extensions.Literal[
+class AgeRangeTargetingOptionDetails(typing.TypedDict, total=False):
+    ageRange: typing.Literal[
         "AGE_RANGE_UNSPECIFIED",
         "AGE_RANGE_18_24",
         "AGE_RANGE_25_34",
@@ -153,9 +151,9 @@ class AgeRangeTargetingOptionDetails(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class AppAssignedTargetingOptionDetails(typing_extensions.TypedDict, total=False):
+class AppAssignedTargetingOptionDetails(typing.TypedDict, total=False):
     appId: str
-    appPlatform: typing_extensions.Literal[
+    appPlatform: typing.Literal[
         "APP_PLATFORM_UNSPECIFIED",
         "APP_PLATFORM_IOS",
         "APP_PLATFORM_ANDROID",
@@ -172,26 +170,24 @@ class AppAssignedTargetingOptionDetails(typing_extensions.TypedDict, total=False
     negative: bool
 
 @typing.type_check_only
-class AppCategoryAssignedTargetingOptionDetails(
-    typing_extensions.TypedDict, total=False
-):
+class AppCategoryAssignedTargetingOptionDetails(typing.TypedDict, total=False):
     displayName: str
     negative: bool
     targetingOptionId: str
 
 @typing.type_check_only
-class AppCategoryTargetingOptionDetails(typing_extensions.TypedDict, total=False):
+class AppCategoryTargetingOptionDetails(typing.TypedDict, total=False):
     displayName: str
 
 @typing.type_check_only
-class Asset(typing_extensions.TypedDict, total=False):
+class Asset(typing.TypedDict, total=False):
     content: str
     mediaId: str
 
 @typing.type_check_only
-class AssetAssociation(typing_extensions.TypedDict, total=False):
+class AssetAssociation(typing.TypedDict, total=False):
     asset: Asset
-    role: typing_extensions.Literal[
+    role: typing.Literal[
         "ASSET_ROLE_UNSPECIFIED",
         "ASSET_ROLE_MAIN",
         "ASSET_ROLE_BACKUP",
@@ -212,19 +208,19 @@ class AssetAssociation(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class AssignedInventorySource(typing_extensions.TypedDict, total=False):
+class AssignedInventorySource(typing.TypedDict, total=False):
     assignedInventorySourceId: str
     inventorySourceId: str
     name: str
 
 @typing.type_check_only
-class AssignedLocation(typing_extensions.TypedDict, total=False):
+class AssignedLocation(typing.TypedDict, total=False):
     assignedLocationId: str
     name: str
     targetingOptionId: str
 
 @typing.type_check_only
-class AssignedTargetingOption(typing_extensions.TypedDict, total=False):
+class AssignedTargetingOption(typing.TypedDict, total=False):
     ageRangeDetails: AgeRangeAssignedTargetingOptionDetails
     appCategoryDetails: AppCategoryAssignedTargetingOptionDetails
     appDetails: AppAssignedTargetingOptionDetails
@@ -257,7 +253,7 @@ class AssignedTargetingOption(typing_extensions.TypedDict, total=False):
     genderDetails: GenderAssignedTargetingOptionDetails
     geoRegionDetails: GeoRegionAssignedTargetingOptionDetails
     householdIncomeDetails: HouseholdIncomeAssignedTargetingOptionDetails
-    inheritance: typing_extensions.Literal[
+    inheritance: typing.Literal[
         "INHERITANCE_UNSPECIFIED",
         "NOT_INHERITED",
         "INHERITED_FROM_PARTNER",
@@ -279,7 +275,7 @@ class AssignedTargetingOption(typing_extensions.TypedDict, total=False):
     regionalLocationListDetails: RegionalLocationListAssignedTargetingOptionDetails
     sensitiveCategoryExclusionDetails: SensitiveCategoryAssignedTargetingOptionDetails
     subExchangeDetails: SubExchangeAssignedTargetingOptionDetails
-    targetingType: typing_extensions.Literal[
+    targetingType: typing.Literal[
         "TARGETING_TYPE_UNSPECIFIED",
         "TARGETING_TYPE_CHANNEL",
         "TARGETING_TYPE_APP_CATEGORY",
@@ -334,11 +330,11 @@ class AssignedTargetingOption(typing_extensions.TypedDict, total=False):
     viewabilityDetails: ViewabilityAssignedTargetingOptionDetails
 
 @typing.type_check_only
-class AssignedUserRole(typing_extensions.TypedDict, total=False):
+class AssignedUserRole(typing.TypedDict, total=False):
     advertiserId: str
     assignedUserRoleId: str
     partnerId: str
-    userRole: typing_extensions.Literal[
+    userRole: typing.Literal[
         "USER_ROLE_UNSPECIFIED",
         "ADMIN",
         "ADMIN_PARTNER_CLIENT",
@@ -354,9 +350,7 @@ class AssignedUserRole(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class AudienceGroupAssignedTargetingOptionDetails(
-    typing_extensions.TypedDict, total=False
-):
+class AudienceGroupAssignedTargetingOptionDetails(typing.TypedDict, total=False):
     excludedFirstAndThirdPartyAudienceGroup: FirstAndThirdPartyAudienceGroup
     excludedGoogleAudienceGroup: GoogleAudienceGroup
     includedCombinedAudienceGroup: CombinedAudienceGroup
@@ -365,10 +359,8 @@ class AudienceGroupAssignedTargetingOptionDetails(
     includedGoogleAudienceGroup: GoogleAudienceGroup
 
 @typing.type_check_only
-class AudioContentTypeAssignedTargetingOptionDetails(
-    typing_extensions.TypedDict, total=False
-):
-    audioContentType: typing_extensions.Literal[
+class AudioContentTypeAssignedTargetingOptionDetails(typing.TypedDict, total=False):
+    audioContentType: typing.Literal[
         "AUDIO_CONTENT_TYPE_UNSPECIFIED",
         "AUDIO_CONTENT_TYPE_UNKNOWN",
         "AUDIO_CONTENT_TYPE_MUSIC",
@@ -378,8 +370,8 @@ class AudioContentTypeAssignedTargetingOptionDetails(
     targetingOptionId: str
 
 @typing.type_check_only
-class AudioContentTypeTargetingOptionDetails(typing_extensions.TypedDict, total=False):
-    audioContentType: typing_extensions.Literal[
+class AudioContentTypeTargetingOptionDetails(typing.TypedDict, total=False):
+    audioContentType: typing.Literal[
         "AUDIO_CONTENT_TYPE_UNSPECIFIED",
         "AUDIO_CONTENT_TYPE_UNKNOWN",
         "AUDIO_CONTENT_TYPE_MUSIC",
@@ -388,12 +380,12 @@ class AudioContentTypeTargetingOptionDetails(typing_extensions.TypedDict, total=
     ]
 
 @typing.type_check_only
-class AudioVideoOffset(typing_extensions.TypedDict, total=False):
+class AudioVideoOffset(typing.TypedDict, total=False):
     percentage: str
     seconds: str
 
 @typing.type_check_only
-class AuditAdvertiserResponse(typing_extensions.TypedDict, total=False):
+class AuditAdvertiserResponse(typing.TypedDict, total=False):
     adGroupCriteriaCount: str
     campaignCriteriaCount: str
     channelsCount: str
@@ -405,9 +397,9 @@ class AuditAdvertiserResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AuthorizedSellerStatusAssignedTargetingOptionDetails(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
-    authorizedSellerStatus: typing_extensions.Literal[
+    authorizedSellerStatus: typing.Literal[
         "AUTHORIZED_SELLER_STATUS_UNSPECIFIED",
         "AUTHORIZED_SELLER_STATUS_AUTHORIZED_DIRECT_SELLERS_ONLY",
         "AUTHORIZED_SELLER_STATUS_AUTHORIZED_AND_NON_PARTICIPATING_PUBLISHERS",
@@ -415,33 +407,31 @@ class AuthorizedSellerStatusAssignedTargetingOptionDetails(
     targetingOptionId: str
 
 @typing.type_check_only
-class AuthorizedSellerStatusTargetingOptionDetails(
-    typing_extensions.TypedDict, total=False
-):
-    authorizedSellerStatus: typing_extensions.Literal[
+class AuthorizedSellerStatusTargetingOptionDetails(typing.TypedDict, total=False):
+    authorizedSellerStatus: typing.Literal[
         "AUTHORIZED_SELLER_STATUS_UNSPECIFIED",
         "AUTHORIZED_SELLER_STATUS_AUTHORIZED_DIRECT_SELLERS_ONLY",
         "AUTHORIZED_SELLER_STATUS_AUTHORIZED_AND_NON_PARTICIPATING_PUBLISHERS",
     ]
 
 @typing.type_check_only
-class BiddingStrategy(typing_extensions.TypedDict, total=False):
+class BiddingStrategy(typing.TypedDict, total=False):
     fixedBid: FixedBidStrategy
     maximizeSpendAutoBid: MaximizeSpendBidStrategy
     performanceGoalAutoBid: PerformanceGoalBidStrategy
 
 @typing.type_check_only
-class BrowserAssignedTargetingOptionDetails(typing_extensions.TypedDict, total=False):
+class BrowserAssignedTargetingOptionDetails(typing.TypedDict, total=False):
     displayName: str
     negative: bool
     targetingOptionId: str
 
 @typing.type_check_only
-class BrowserTargetingOptionDetails(typing_extensions.TypedDict, total=False):
+class BrowserTargetingOptionDetails(typing.TypedDict, total=False):
     displayName: str
 
 @typing.type_check_only
-class BudgetSummary(typing_extensions.TypedDict, total=False):
+class BudgetSummary(typing.TypedDict, total=False):
     externalBudgetId: str
     preTaxAmountMicros: str
     prismaCpeCode: PrismaCpeCode
@@ -449,144 +439,122 @@ class BudgetSummary(typing_extensions.TypedDict, total=False):
     totalAmountMicros: str
 
 @typing.type_check_only
-class BulkEditAdvertiserAssignedTargetingOptionsRequest(
-    typing_extensions.TypedDict, total=False
-):
+class BulkEditAdvertiserAssignedTargetingOptionsRequest(typing.TypedDict, total=False):
     createRequests: _list[CreateAssignedTargetingOptionsRequest]
     deleteRequests: _list[DeleteAssignedTargetingOptionsRequest]
 
 @typing.type_check_only
-class BulkEditAdvertiserAssignedTargetingOptionsResponse(
-    typing_extensions.TypedDict, total=False
-):
+class BulkEditAdvertiserAssignedTargetingOptionsResponse(typing.TypedDict, total=False):
     createdAssignedTargetingOptions: _list[AssignedTargetingOption]
 
 @typing.type_check_only
-class BulkEditAssignedInventorySourcesRequest(typing_extensions.TypedDict, total=False):
+class BulkEditAssignedInventorySourcesRequest(typing.TypedDict, total=False):
     advertiserId: str
     createdAssignedInventorySources: _list[AssignedInventorySource]
     deletedAssignedInventorySources: _list[str]
     partnerId: str
 
 @typing.type_check_only
-class BulkEditAssignedInventorySourcesResponse(
-    typing_extensions.TypedDict, total=False
-):
+class BulkEditAssignedInventorySourcesResponse(typing.TypedDict, total=False):
     assignedInventorySources: _list[AssignedInventorySource]
 
 @typing.type_check_only
-class BulkEditAssignedLocationsRequest(typing_extensions.TypedDict, total=False):
+class BulkEditAssignedLocationsRequest(typing.TypedDict, total=False):
     createdAssignedLocations: _list[AssignedLocation]
     deletedAssignedLocations: _list[str]
 
 @typing.type_check_only
-class BulkEditAssignedLocationsResponse(typing_extensions.TypedDict, total=False):
+class BulkEditAssignedLocationsResponse(typing.TypedDict, total=False):
     assignedLocations: _list[AssignedLocation]
 
 @typing.type_check_only
-class BulkEditAssignedUserRolesRequest(typing_extensions.TypedDict, total=False):
+class BulkEditAssignedUserRolesRequest(typing.TypedDict, total=False):
     createdAssignedUserRoles: _list[AssignedUserRole]
     deletedAssignedUserRoles: _list[str]
 
 @typing.type_check_only
-class BulkEditAssignedUserRolesResponse(typing_extensions.TypedDict, total=False):
+class BulkEditAssignedUserRolesResponse(typing.TypedDict, total=False):
     createdAssignedUserRoles: _list[AssignedUserRole]
 
 @typing.type_check_only
-class BulkEditLineItemAssignedTargetingOptionsRequest(
-    typing_extensions.TypedDict, total=False
-):
+class BulkEditLineItemAssignedTargetingOptionsRequest(typing.TypedDict, total=False):
     createRequests: _list[CreateAssignedTargetingOptionsRequest]
     deleteRequests: _list[DeleteAssignedTargetingOptionsRequest]
 
 @typing.type_check_only
-class BulkEditLineItemAssignedTargetingOptionsResponse(
-    typing_extensions.TypedDict, total=False
-):
+class BulkEditLineItemAssignedTargetingOptionsResponse(typing.TypedDict, total=False):
     createdAssignedTargetingOptions: _list[AssignedTargetingOption]
 
 @typing.type_check_only
-class BulkEditNegativeKeywordsRequest(typing_extensions.TypedDict, total=False):
+class BulkEditNegativeKeywordsRequest(typing.TypedDict, total=False):
     createdNegativeKeywords: _list[NegativeKeyword]
     deletedNegativeKeywords: _list[str]
 
 @typing.type_check_only
-class BulkEditNegativeKeywordsResponse(typing_extensions.TypedDict, total=False):
+class BulkEditNegativeKeywordsResponse(typing.TypedDict, total=False):
     negativeKeywords: _list[NegativeKeyword]
 
 @typing.type_check_only
-class BulkEditPartnerAssignedTargetingOptionsRequest(
-    typing_extensions.TypedDict, total=False
-):
+class BulkEditPartnerAssignedTargetingOptionsRequest(typing.TypedDict, total=False):
     createRequests: _list[CreateAssignedTargetingOptionsRequest]
     deleteRequests: _list[DeleteAssignedTargetingOptionsRequest]
 
 @typing.type_check_only
-class BulkEditPartnerAssignedTargetingOptionsResponse(
-    typing_extensions.TypedDict, total=False
-):
+class BulkEditPartnerAssignedTargetingOptionsResponse(typing.TypedDict, total=False):
     createdAssignedTargetingOptions: _list[AssignedTargetingOption]
 
 @typing.type_check_only
-class BulkEditSitesRequest(typing_extensions.TypedDict, total=False):
+class BulkEditSitesRequest(typing.TypedDict, total=False):
     advertiserId: str
     createdSites: _list[Site]
     deletedSites: _list[str]
     partnerId: str
 
 @typing.type_check_only
-class BulkEditSitesResponse(typing_extensions.TypedDict, total=False):
+class BulkEditSitesResponse(typing.TypedDict, total=False):
     sites: _list[Site]
 
 @typing.type_check_only
-class BulkListAdvertiserAssignedTargetingOptionsResponse(
-    typing_extensions.TypedDict, total=False
-):
+class BulkListAdvertiserAssignedTargetingOptionsResponse(typing.TypedDict, total=False):
     assignedTargetingOptions: _list[AssignedTargetingOption]
     nextPageToken: str
 
 @typing.type_check_only
-class BulkListCampaignAssignedTargetingOptionsResponse(
-    typing_extensions.TypedDict, total=False
-):
+class BulkListCampaignAssignedTargetingOptionsResponse(typing.TypedDict, total=False):
     assignedTargetingOptions: _list[AssignedTargetingOption]
     nextPageToken: str
 
 @typing.type_check_only
 class BulkListInsertionOrderAssignedTargetingOptionsResponse(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     assignedTargetingOptions: _list[AssignedTargetingOption]
     nextPageToken: str
 
 @typing.type_check_only
-class BulkListLineItemAssignedTargetingOptionsResponse(
-    typing_extensions.TypedDict, total=False
-):
+class BulkListLineItemAssignedTargetingOptionsResponse(typing.TypedDict, total=False):
     assignedTargetingOptions: _list[AssignedTargetingOption]
     nextPageToken: str
 
 @typing.type_check_only
-class BusinessChainAssignedTargetingOptionDetails(
-    typing_extensions.TypedDict, total=False
-):
+class BusinessChainAssignedTargetingOptionDetails(typing.TypedDict, total=False):
     displayName: str
     proximityRadiusAmount: float
-    proximityRadiusUnit: typing_extensions.Literal[
+    proximityRadiusUnit: typing.Literal[
         "DISTANCE_UNIT_UNSPECIFIED", "DISTANCE_UNIT_MILES", "DISTANCE_UNIT_KILOMETERS"
     ]
     targetingOptionId: str
 
 @typing.type_check_only
-class BusinessChainSearchTerms(typing_extensions.TypedDict, total=False):
+class BusinessChainSearchTerms(typing.TypedDict, total=False):
     businessChainQuery: str
     regionQuery: str
 
 @typing.type_check_only
-class BusinessChainTargetingOptionDetails(typing_extensions.TypedDict, total=False):
+class BusinessChainTargetingOptionDetails(typing.TypedDict, total=False):
     businessChain: str
     geoRegion: str
-    geoRegionType: typing_extensions.Literal[
+    geoRegionType: typing.Literal[
         "GEO_REGION_TYPE_UNKNOWN",
         "GEO_REGION_TYPE_OTHER",
         "GEO_REGION_TYPE_COUNTRY",
@@ -619,14 +587,14 @@ class BusinessChainTargetingOptionDetails(typing_extensions.TypedDict, total=Fal
     ]
 
 @typing.type_check_only
-class Campaign(typing_extensions.TypedDict, total=False):
+class Campaign(typing.TypedDict, total=False):
     advertiserId: str
     campaignBudgets: _list[CampaignBudget]
     campaignFlight: CampaignFlight
     campaignGoal: CampaignGoal
     campaignId: str
     displayName: str
-    entityStatus: typing_extensions.Literal[
+    entityStatus: typing.Literal[
         "ENTITY_STATUS_UNSPECIFIED",
         "ENTITY_STATUS_ACTIVE",
         "ENTITY_STATUS_ARCHIVED",
@@ -639,16 +607,16 @@ class Campaign(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class CampaignBudget(typing_extensions.TypedDict, total=False):
+class CampaignBudget(typing.TypedDict, total=False):
     budgetAmountMicros: str
     budgetId: str
-    budgetUnit: typing_extensions.Literal[
+    budgetUnit: typing.Literal[
         "BUDGET_UNIT_UNSPECIFIED", "BUDGET_UNIT_CURRENCY", "BUDGET_UNIT_IMPRESSIONS"
     ]
     dateRange: DateRange
     displayName: str
     externalBudgetId: str
-    externalBudgetSource: typing_extensions.Literal[
+    externalBudgetSource: typing.Literal[
         "EXTERNAL_BUDGET_SOURCE_UNSPECIFIED",
         "EXTERNAL_BUDGET_SOURCE_NONE",
         "EXTERNAL_BUDGET_SOURCE_MEDIA_OCEAN",
@@ -657,13 +625,13 @@ class CampaignBudget(typing_extensions.TypedDict, total=False):
     prismaConfig: PrismaConfig
 
 @typing.type_check_only
-class CampaignFlight(typing_extensions.TypedDict, total=False):
+class CampaignFlight(typing.TypedDict, total=False):
     plannedDates: DateRange
     plannedSpendAmountMicros: str
 
 @typing.type_check_only
-class CampaignGoal(typing_extensions.TypedDict, total=False):
-    campaignGoalType: typing_extensions.Literal[
+class CampaignGoal(typing.TypedDict, total=False):
+    campaignGoalType: typing.Literal[
         "CAMPAIGN_GOAL_TYPE_UNSPECIFIED",
         "CAMPAIGN_GOAL_TYPE_APP_INSTALL",
         "CAMPAIGN_GOAL_TYPE_BRAND_AWARENESS",
@@ -673,34 +641,32 @@ class CampaignGoal(typing_extensions.TypedDict, total=False):
     performanceGoal: PerformanceGoal
 
 @typing.type_check_only
-class CarrierAndIspAssignedTargetingOptionDetails(
-    typing_extensions.TypedDict, total=False
-):
+class CarrierAndIspAssignedTargetingOptionDetails(typing.TypedDict, total=False):
     displayName: str
     negative: bool
     targetingOptionId: str
 
 @typing.type_check_only
-class CarrierAndIspTargetingOptionDetails(typing_extensions.TypedDict, total=False):
+class CarrierAndIspTargetingOptionDetails(typing.TypedDict, total=False):
     displayName: str
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "CARRIER_AND_ISP_TYPE_UNSPECIFIED",
         "CARRIER_AND_ISP_TYPE_ISP",
         "CARRIER_AND_ISP_TYPE_CARRIER",
     ]
 
 @typing.type_check_only
-class CategoryAssignedTargetingOptionDetails(typing_extensions.TypedDict, total=False):
+class CategoryAssignedTargetingOptionDetails(typing.TypedDict, total=False):
     displayName: str
     negative: bool
     targetingOptionId: str
 
 @typing.type_check_only
-class CategoryTargetingOptionDetails(typing_extensions.TypedDict, total=False):
+class CategoryTargetingOptionDetails(typing.TypedDict, total=False):
     displayName: str
 
 @typing.type_check_only
-class Channel(typing_extensions.TypedDict, total=False):
+class Channel(typing.TypedDict, total=False):
     advertiserId: str
     channelId: str
     displayName: str
@@ -710,12 +676,12 @@ class Channel(typing_extensions.TypedDict, total=False):
     positivelyTargetedLineItemCount: str
 
 @typing.type_check_only
-class ChannelAssignedTargetingOptionDetails(typing_extensions.TypedDict, total=False):
+class ChannelAssignedTargetingOptionDetails(typing.TypedDict, total=False):
     channelId: str
     negative: bool
 
 @typing.type_check_only
-class CmHybridConfig(typing_extensions.TypedDict, total=False):
+class CmHybridConfig(typing.TypedDict, total=False):
     cmAccountId: str
     cmAdvertiserIds: _list[str]
     cmFloodlightConfigId: str
@@ -725,36 +691,36 @@ class CmHybridConfig(typing_extensions.TypedDict, total=False):
     dv360ToCmDataSharingEnabled: bool
 
 @typing.type_check_only
-class CmTrackingAd(typing_extensions.TypedDict, total=False):
+class CmTrackingAd(typing.TypedDict, total=False):
     cmAdId: str
     cmCreativeId: str
     cmPlacementId: str
 
 @typing.type_check_only
-class CombinedAudience(typing_extensions.TypedDict, total=False):
+class CombinedAudience(typing.TypedDict, total=False):
     combinedAudienceId: str
     displayName: str
     name: str
 
 @typing.type_check_only
-class CombinedAudienceGroup(typing_extensions.TypedDict, total=False):
+class CombinedAudienceGroup(typing.TypedDict, total=False):
     settings: _list[CombinedAudienceTargetingSetting]
 
 @typing.type_check_only
-class CombinedAudienceTargetingSetting(typing_extensions.TypedDict, total=False):
+class CombinedAudienceTargetingSetting(typing.TypedDict, total=False):
     combinedAudienceId: str
 
 @typing.type_check_only
-class Consent(typing_extensions.TypedDict, total=False):
-    adPersonalization: typing_extensions.Literal[
+class Consent(typing.TypedDict, total=False):
+    adPersonalization: typing.Literal[
         "CONSENT_STATUS_UNSPECIFIED", "CONSENT_STATUS_GRANTED", "CONSENT_STATUS_DENIED"
     ]
-    adUserData: typing_extensions.Literal[
+    adUserData: typing.Literal[
         "CONSENT_STATUS_UNSPECIFIED", "CONSENT_STATUS_GRANTED", "CONSENT_STATUS_DENIED"
     ]
 
 @typing.type_check_only
-class ContactInfo(typing_extensions.TypedDict, total=False):
+class ContactInfo(typing.TypedDict, total=False):
     countryCode: str
     hashedEmails: _list[str]
     hashedFirstName: str
@@ -763,15 +729,13 @@ class ContactInfo(typing_extensions.TypedDict, total=False):
     zipCodes: _list[str]
 
 @typing.type_check_only
-class ContactInfoList(typing_extensions.TypedDict, total=False):
+class ContactInfoList(typing.TypedDict, total=False):
     consent: Consent
     contactInfos: _list[ContactInfo]
 
 @typing.type_check_only
-class ContentDurationAssignedTargetingOptionDetails(
-    typing_extensions.TypedDict, total=False
-):
-    contentDuration: typing_extensions.Literal[
+class ContentDurationAssignedTargetingOptionDetails(typing.TypedDict, total=False):
+    contentDuration: typing.Literal[
         "CONTENT_DURATION_UNSPECIFIED",
         "CONTENT_DURATION_UNKNOWN",
         "CONTENT_DURATION_0_TO_1_MIN",
@@ -784,8 +748,8 @@ class ContentDurationAssignedTargetingOptionDetails(
     targetingOptionId: str
 
 @typing.type_check_only
-class ContentDurationTargetingOptionDetails(typing_extensions.TypedDict, total=False):
-    contentDuration: typing_extensions.Literal[
+class ContentDurationTargetingOptionDetails(typing.TypedDict, total=False):
+    contentDuration: typing.Literal[
         "CONTENT_DURATION_UNSPECIFIED",
         "CONTENT_DURATION_UNKNOWN",
         "CONTENT_DURATION_0_TO_1_MIN",
@@ -797,25 +761,23 @@ class ContentDurationTargetingOptionDetails(typing_extensions.TypedDict, total=F
     ]
 
 @typing.type_check_only
-class ContentGenreAssignedTargetingOptionDetails(
-    typing_extensions.TypedDict, total=False
-):
+class ContentGenreAssignedTargetingOptionDetails(typing.TypedDict, total=False):
     displayName: str
     negative: bool
     targetingOptionId: str
 
 @typing.type_check_only
-class ContentGenreTargetingOptionDetails(typing_extensions.TypedDict, total=False):
+class ContentGenreTargetingOptionDetails(typing.TypedDict, total=False):
     displayName: str
 
 @typing.type_check_only
 class ContentInstreamPositionAssignedTargetingOptionDetails(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
-    adType: typing_extensions.Literal[
+    adType: typing.Literal[
         "AD_TYPE_UNSPECIFIED", "AD_TYPE_DISPLAY", "AD_TYPE_VIDEO", "AD_TYPE_AUDIO"
     ]
-    contentInstreamPosition: typing_extensions.Literal[
+    contentInstreamPosition: typing.Literal[
         "CONTENT_INSTREAM_POSITION_UNSPECIFIED",
         "CONTENT_INSTREAM_POSITION_PRE_ROLL",
         "CONTENT_INSTREAM_POSITION_MID_ROLL",
@@ -825,10 +787,8 @@ class ContentInstreamPositionAssignedTargetingOptionDetails(
     targetingOptionId: str
 
 @typing.type_check_only
-class ContentInstreamPositionTargetingOptionDetails(
-    typing_extensions.TypedDict, total=False
-):
-    contentInstreamPosition: typing_extensions.Literal[
+class ContentInstreamPositionTargetingOptionDetails(typing.TypedDict, total=False):
+    contentInstreamPosition: typing.Literal[
         "CONTENT_INSTREAM_POSITION_UNSPECIFIED",
         "CONTENT_INSTREAM_POSITION_PRE_ROLL",
         "CONTENT_INSTREAM_POSITION_MID_ROLL",
@@ -838,12 +798,12 @@ class ContentInstreamPositionTargetingOptionDetails(
 
 @typing.type_check_only
 class ContentOutstreamPositionAssignedTargetingOptionDetails(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
-    adType: typing_extensions.Literal[
+    adType: typing.Literal[
         "AD_TYPE_UNSPECIFIED", "AD_TYPE_DISPLAY", "AD_TYPE_VIDEO", "AD_TYPE_AUDIO"
     ]
-    contentOutstreamPosition: typing_extensions.Literal[
+    contentOutstreamPosition: typing.Literal[
         "CONTENT_OUTSTREAM_POSITION_UNSPECIFIED",
         "CONTENT_OUTSTREAM_POSITION_UNKNOWN",
         "CONTENT_OUTSTREAM_POSITION_IN_ARTICLE",
@@ -854,10 +814,8 @@ class ContentOutstreamPositionAssignedTargetingOptionDetails(
     targetingOptionId: str
 
 @typing.type_check_only
-class ContentOutstreamPositionTargetingOptionDetails(
-    typing_extensions.TypedDict, total=False
-):
-    contentOutstreamPosition: typing_extensions.Literal[
+class ContentOutstreamPositionTargetingOptionDetails(typing.TypedDict, total=False):
+    contentOutstreamPosition: typing.Literal[
         "CONTENT_OUTSTREAM_POSITION_UNSPECIFIED",
         "CONTENT_OUTSTREAM_POSITION_UNKNOWN",
         "CONTENT_OUTSTREAM_POSITION_IN_ARTICLE",
@@ -867,42 +825,40 @@ class ContentOutstreamPositionTargetingOptionDetails(
     ]
 
 @typing.type_check_only
-class ContentStreamTypeAssignedTargetingOptionDetails(
-    typing_extensions.TypedDict, total=False
-):
-    contentStreamType: typing_extensions.Literal[
+class ContentStreamTypeAssignedTargetingOptionDetails(typing.TypedDict, total=False):
+    contentStreamType: typing.Literal[
         "CONTENT_STREAM_TYPE_UNSPECIFIED", "CONTENT_LIVE_STREAM", "CONTENT_ON_DEMAND"
     ]
     targetingOptionId: str
 
 @typing.type_check_only
-class ContentStreamTypeTargetingOptionDetails(typing_extensions.TypedDict, total=False):
-    contentStreamType: typing_extensions.Literal[
+class ContentStreamTypeTargetingOptionDetails(typing.TypedDict, total=False):
+    contentStreamType: typing.Literal[
         "CONTENT_STREAM_TYPE_UNSPECIFIED", "CONTENT_LIVE_STREAM", "CONTENT_ON_DEMAND"
     ]
 
 @typing.type_check_only
-class ConversionCountingConfig(typing_extensions.TypedDict, total=False):
+class ConversionCountingConfig(typing.TypedDict, total=False):
     floodlightActivityConfigs: _list[TrackingFloodlightActivityConfig]
     postViewCountPercentageMillis: str
 
 @typing.type_check_only
-class CounterEvent(typing_extensions.TypedDict, total=False):
+class CounterEvent(typing.TypedDict, total=False):
     name: str
     reportingName: str
 
 @typing.type_check_only
-class CreateAssetRequest(typing_extensions.TypedDict, total=False):
+class CreateAssetRequest(typing.TypedDict, total=False):
     filename: str
 
 @typing.type_check_only
-class CreateAssetResponse(typing_extensions.TypedDict, total=False):
+class CreateAssetResponse(typing.TypedDict, total=False):
     asset: Asset
 
 @typing.type_check_only
-class CreateAssignedTargetingOptionsRequest(typing_extensions.TypedDict, total=False):
+class CreateAssignedTargetingOptionsRequest(typing.TypedDict, total=False):
     assignedTargetingOptions: _list[AssignedTargetingOption]
-    targetingType: typing_extensions.Literal[
+    targetingType: typing.Literal[
         "TARGETING_TYPE_UNSPECIFIED",
         "TARGETING_TYPE_CHANNEL",
         "TARGETING_TYPE_APP_CATEGORY",
@@ -952,13 +908,13 @@ class CreateAssignedTargetingOptionsRequest(typing_extensions.TypedDict, total=F
     ]
 
 @typing.type_check_only
-class CreateSdfDownloadTaskRequest(typing_extensions.TypedDict, total=False):
+class CreateSdfDownloadTaskRequest(typing.TypedDict, total=False):
     advertiserId: str
     idFilter: IdFilter
     inventorySourceFilter: InventorySourceFilter
     parentEntityFilter: ParentEntityFilter
     partnerId: str
-    version: typing_extensions.Literal[
+    version: typing.Literal[
         "SDF_VERSION_UNSPECIFIED",
         "SDF_VERSION_3_1",
         "SDF_VERSION_4",
@@ -975,7 +931,7 @@ class CreateSdfDownloadTaskRequest(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class Creative(typing_extensions.TypedDict, total=False):
+class Creative(typing.TypedDict, total=False):
     additionalDimensions: _list[Dimensions]
     advertiserId: str
     appendedTag: str
@@ -986,7 +942,7 @@ class Creative(typing_extensions.TypedDict, total=False):
     counterEvents: _list[CounterEvent]
     createTime: str
     creativeAttributes: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "CREATIVE_ATTRIBUTE_UNSPECIFIED",
             "CREATIVE_ATTRIBUTE_VAST",
             "CREATIVE_ATTRIBUTE_VPAID_LINEAR",
@@ -994,7 +950,7 @@ class Creative(typing_extensions.TypedDict, total=False):
         ]
     ]
     creativeId: str
-    creativeType: typing_extensions.Literal[
+    creativeType: typing.Literal[
         "CREATIVE_TYPE_UNSPECIFIED",
         "CREATIVE_TYPE_STANDARD",
         "CREATIVE_TYPE_EXPANDABLE",
@@ -1014,7 +970,7 @@ class Creative(typing_extensions.TypedDict, total=False):
     dimensions: Dimensions
     displayName: str
     dynamic: bool
-    entityStatus: typing_extensions.Literal[
+    entityStatus: typing.Literal[
         "ENTITY_STATUS_UNSPECIFIED",
         "ENTITY_STATUS_ACTIVE",
         "ENTITY_STATUS_ARCHIVED",
@@ -1024,7 +980,7 @@ class Creative(typing_extensions.TypedDict, total=False):
     ]
     exitEvents: _list[ExitEvent]
     expandOnHover: bool
-    expandingDirection: typing_extensions.Literal[
+    expandingDirection: typing.Literal[
         "EXPANDING_DIRECTION_UNSPECIFIED",
         "EXPANDING_DIRECTION_NONE",
         "EXPANDING_DIRECTION_UP",
@@ -1039,7 +995,7 @@ class Creative(typing_extensions.TypedDict, total=False):
         "EXPANDING_DIRECTION_LEFT_OR_RIGHT",
         "EXPANDING_DIRECTION_ANY_DIAGONAL",
     ]
-    hostingSource: typing_extensions.Literal[
+    hostingSource: typing.Literal[
         "HOSTING_SOURCE_UNSPECIFIED",
         "HOSTING_SOURCE_CM",
         "HOSTING_SOURCE_THIRD_PARTY",
@@ -1075,8 +1031,8 @@ class Creative(typing_extensions.TypedDict, total=False):
     vpaid: bool
 
 @typing.type_check_only
-class CreativeConfig(typing_extensions.TypedDict, total=False):
-    creativeType: typing_extensions.Literal[
+class CreativeConfig(typing.TypedDict, total=False):
+    creativeType: typing.Literal[
         "CREATIVE_TYPE_UNSPECIFIED",
         "CREATIVE_TYPE_STANDARD",
         "CREATIVE_TYPE_EXPANDABLE",
@@ -1097,20 +1053,20 @@ class CreativeConfig(typing_extensions.TypedDict, total=False):
     videoCreativeConfig: InventorySourceVideoCreativeConfig
 
 @typing.type_check_only
-class CustomBiddingAlgorithm(typing_extensions.TypedDict, total=False):
+class CustomBiddingAlgorithm(typing.TypedDict, total=False):
     advertiserId: str
     customBiddingAlgorithmId: str
-    customBiddingAlgorithmState: typing_extensions.Literal[
+    customBiddingAlgorithmState: typing.Literal[
         "STATE_UNSPECIFIED", "ENABLED", "DORMANT", "SUSPENDED"
     ]
-    customBiddingAlgorithmType: typing_extensions.Literal[
+    customBiddingAlgorithmType: typing.Literal[
         "CUSTOM_BIDDING_ALGORITHM_TYPE_UNSPECIFIED",
         "SCRIPT_BASED",
         "ADS_DATA_HUB_BASED",
         "GOAL_BUILDER_BASED",
     ]
     displayName: str
-    entityStatus: typing_extensions.Literal[
+    entityStatus: typing.Literal[
         "ENTITY_STATUS_UNSPECIFIED",
         "ENTITY_STATUS_ACTIVE",
         "ENTITY_STATUS_ARCHIVED",
@@ -1124,9 +1080,9 @@ class CustomBiddingAlgorithm(typing_extensions.TypedDict, total=False):
     sharedAdvertiserIds: _list[str]
 
 @typing.type_check_only
-class CustomBiddingModelReadinessState(typing_extensions.TypedDict, total=False):
+class CustomBiddingModelReadinessState(typing.TypedDict, total=False):
     advertiserId: str
-    readinessState: typing_extensions.Literal[
+    readinessState: typing.Literal[
         "READINESS_STATE_UNSPECIFIED",
         "READINESS_STATE_ACTIVE",
         "READINESS_STATE_INSUFFICIENT_DATA",
@@ -1135,7 +1091,7 @@ class CustomBiddingModelReadinessState(typing_extensions.TypedDict, total=False)
     ]
 
 @typing.type_check_only
-class CustomBiddingScript(typing_extensions.TypedDict, total=False):
+class CustomBiddingScript(typing.TypedDict, total=False):
     active: bool
     createTime: str
     customBiddingAlgorithmId: str
@@ -1143,44 +1099,40 @@ class CustomBiddingScript(typing_extensions.TypedDict, total=False):
     errors: _list[ScriptError]
     name: str
     script: CustomBiddingScriptRef
-    state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "ACCEPTED", "REJECTED", "PENDING"
-    ]
+    state: typing.Literal["STATE_UNSPECIFIED", "ACCEPTED", "REJECTED", "PENDING"]
 
 @typing.type_check_only
-class CustomBiddingScriptRef(typing_extensions.TypedDict, total=False):
+class CustomBiddingScriptRef(typing.TypedDict, total=False):
     resourceName: str
 
 @typing.type_check_only
-class CustomList(typing_extensions.TypedDict, total=False):
+class CustomList(typing.TypedDict, total=False):
     customListId: str
     displayName: str
     name: str
 
 @typing.type_check_only
-class CustomListGroup(typing_extensions.TypedDict, total=False):
+class CustomListGroup(typing.TypedDict, total=False):
     settings: _list[CustomListTargetingSetting]
 
 @typing.type_check_only
-class CustomListTargetingSetting(typing_extensions.TypedDict, total=False):
+class CustomListTargetingSetting(typing.TypedDict, total=False):
     customListId: str
 
 @typing.type_check_only
-class Date(typing_extensions.TypedDict, total=False):
+class Date(typing.TypedDict, total=False):
     day: int
     month: int
     year: int
 
 @typing.type_check_only
-class DateRange(typing_extensions.TypedDict, total=False):
+class DateRange(typing.TypedDict, total=False):
     endDate: Date
     startDate: Date
 
 @typing.type_check_only
-class DayAndTimeAssignedTargetingOptionDetails(
-    typing_extensions.TypedDict, total=False
-):
-    dayOfWeek: typing_extensions.Literal[
+class DayAndTimeAssignedTargetingOptionDetails(typing.TypedDict, total=False):
+    dayOfWeek: typing.Literal[
         "DAY_OF_WEEK_UNSPECIFIED",
         "MONDAY",
         "TUESDAY",
@@ -1192,19 +1144,19 @@ class DayAndTimeAssignedTargetingOptionDetails(
     ]
     endHour: int
     startHour: int
-    timeZoneResolution: typing_extensions.Literal[
+    timeZoneResolution: typing.Literal[
         "TIME_ZONE_RESOLUTION_UNSPECIFIED",
         "TIME_ZONE_RESOLUTION_END_USER",
         "TIME_ZONE_RESOLUTION_ADVERTISER",
     ]
 
 @typing.type_check_only
-class DeactivateManualTriggerRequest(typing_extensions.TypedDict, total=False): ...
+class DeactivateManualTriggerRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class DeleteAssignedTargetingOptionsRequest(typing_extensions.TypedDict, total=False):
+class DeleteAssignedTargetingOptionsRequest(typing.TypedDict, total=False):
     assignedTargetingOptionIds: _list[str]
-    targetingType: typing_extensions.Literal[
+    targetingType: typing.Literal[
         "TARGETING_TYPE_UNSPECIFIED",
         "TARGETING_TYPE_CHANNEL",
         "TARGETING_TYPE_APP_CATEGORY",
@@ -1254,22 +1206,18 @@ class DeleteAssignedTargetingOptionsRequest(typing_extensions.TypedDict, total=F
     ]
 
 @typing.type_check_only
-class DeviceMakeModelAssignedTargetingOptionDetails(
-    typing_extensions.TypedDict, total=False
-):
+class DeviceMakeModelAssignedTargetingOptionDetails(typing.TypedDict, total=False):
     displayName: str
     negative: bool
     targetingOptionId: str
 
 @typing.type_check_only
-class DeviceMakeModelTargetingOptionDetails(typing_extensions.TypedDict, total=False):
+class DeviceMakeModelTargetingOptionDetails(typing.TypedDict, total=False):
     displayName: str
 
 @typing.type_check_only
-class DeviceTypeAssignedTargetingOptionDetails(
-    typing_extensions.TypedDict, total=False
-):
-    deviceType: typing_extensions.Literal[
+class DeviceTypeAssignedTargetingOptionDetails(typing.TypedDict, total=False):
+    deviceType: typing.Literal[
         "DEVICE_TYPE_UNSPECIFIED",
         "DEVICE_TYPE_COMPUTER",
         "DEVICE_TYPE_CONNECTED_TV",
@@ -1279,8 +1227,8 @@ class DeviceTypeAssignedTargetingOptionDetails(
     targetingOptionId: str
 
 @typing.type_check_only
-class DeviceTypeTargetingOptionDetails(typing_extensions.TypedDict, total=False):
-    deviceType: typing_extensions.Literal[
+class DeviceTypeTargetingOptionDetails(typing.TypedDict, total=False):
+    deviceType: typing.Literal[
         "DEVICE_TYPE_UNSPECIFIED",
         "DEVICE_TYPE_COMPUTER",
         "DEVICE_TYPE_CONNECTED_TV",
@@ -1289,10 +1237,8 @@ class DeviceTypeTargetingOptionDetails(typing_extensions.TypedDict, total=False)
     ]
 
 @typing.type_check_only
-class DigitalContentLabelAssignedTargetingOptionDetails(
-    typing_extensions.TypedDict, total=False
-):
-    contentRatingTier: typing_extensions.Literal[
+class DigitalContentLabelAssignedTargetingOptionDetails(typing.TypedDict, total=False):
+    contentRatingTier: typing.Literal[
         "CONTENT_RATING_TIER_UNSPECIFIED",
         "CONTENT_RATING_TIER_UNRATED",
         "CONTENT_RATING_TIER_GENERAL",
@@ -1303,10 +1249,8 @@ class DigitalContentLabelAssignedTargetingOptionDetails(
     excludedTargetingOptionId: str
 
 @typing.type_check_only
-class DigitalContentLabelTargetingOptionDetails(
-    typing_extensions.TypedDict, total=False
-):
-    contentRatingTier: typing_extensions.Literal[
+class DigitalContentLabelTargetingOptionDetails(typing.TypedDict, total=False):
+    contentRatingTier: typing.Literal[
         "CONTENT_RATING_TIER_UNSPECIFIED",
         "CONTENT_RATING_TIER_UNRATED",
         "CONTENT_RATING_TIER_GENERAL",
@@ -1316,15 +1260,15 @@ class DigitalContentLabelTargetingOptionDetails(
     ]
 
 @typing.type_check_only
-class Dimensions(typing_extensions.TypedDict, total=False):
+class Dimensions(typing.TypedDict, total=False):
     heightPixels: int
     widthPixels: int
 
 @typing.type_check_only
-class DoubleVerify(typing_extensions.TypedDict, total=False):
+class DoubleVerify(typing.TypedDict, total=False):
     appStarRating: DoubleVerifyAppStarRating
     avoidedAgeRatings: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "AGE_RATING_UNSPECIFIED",
             "APP_AGE_RATE_UNKNOWN",
             "APP_AGE_RATE_4_PLUS",
@@ -1341,9 +1285,9 @@ class DoubleVerify(typing_extensions.TypedDict, total=False):
     videoViewability: DoubleVerifyVideoViewability
 
 @typing.type_check_only
-class DoubleVerifyAppStarRating(typing_extensions.TypedDict, total=False):
+class DoubleVerifyAppStarRating(typing.TypedDict, total=False):
     avoidInsufficientStarRating: bool
-    avoidedStarRating: typing_extensions.Literal[
+    avoidedStarRating: typing.Literal[
         "APP_STAR_RATE_UNSPECIFIED",
         "APP_STAR_RATE_1_POINT_5_LESS",
         "APP_STAR_RATE_2_LESS",
@@ -1355,10 +1299,10 @@ class DoubleVerifyAppStarRating(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class DoubleVerifyBrandSafetyCategories(typing_extensions.TypedDict, total=False):
+class DoubleVerifyBrandSafetyCategories(typing.TypedDict, total=False):
     avoidUnknownBrandSafetyCategory: bool
     avoidedHighSeverityCategories: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "HIGHER_SEVERITY_UNSPECIFIED",
             "ADULT_CONTENT_PORNOGRAPHY",
             "COPYRIGHT_INFRINGEMENT",
@@ -1370,7 +1314,7 @@ class DoubleVerifyBrandSafetyCategories(typing_extensions.TypedDict, total=False
         ]
     ]
     avoidedMediumSeverityCategories: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "MEDIUM_SEVERITY_UNSPECIFIED",
             "AD_SERVERS",
             "ADULT_CONTENT_SWIMSUIT",
@@ -1396,8 +1340,8 @@ class DoubleVerifyBrandSafetyCategories(typing_extensions.TypedDict, total=False
     ]
 
 @typing.type_check_only
-class DoubleVerifyDisplayViewability(typing_extensions.TypedDict, total=False):
-    iab: typing_extensions.Literal[
+class DoubleVerifyDisplayViewability(typing.TypedDict, total=False):
+    iab: typing.Literal[
         "IAB_VIEWED_RATE_UNSPECIFIED",
         "IAB_VIEWED_RATE_80_PERCENT_HIGHER",
         "IAB_VIEWED_RATE_75_PERCENT_HIGHER",
@@ -1409,7 +1353,7 @@ class DoubleVerifyDisplayViewability(typing_extensions.TypedDict, total=False):
         "IAB_VIEWED_RATE_40_PERCENT_HIGHER",
         "IAB_VIEWED_RATE_30_PERCENT_HIGHER",
     ]
-    viewableDuring: typing_extensions.Literal[
+    viewableDuring: typing.Literal[
         "AVERAGE_VIEW_DURATION_UNSPECIFIED",
         "AVERAGE_VIEW_DURATION_5_SEC",
         "AVERAGE_VIEW_DURATION_10_SEC",
@@ -1417,9 +1361,9 @@ class DoubleVerifyDisplayViewability(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class DoubleVerifyFraudInvalidTraffic(typing_extensions.TypedDict, total=False):
+class DoubleVerifyFraudInvalidTraffic(typing.TypedDict, total=False):
     avoidInsufficientOption: bool
-    avoidedFraudOption: typing_extensions.Literal[
+    avoidedFraudOption: typing.Literal[
         "FRAUD_UNSPECIFIED",
         "AD_IMPRESSION_FRAUD_100",
         "AD_IMPRESSION_FRAUD_50",
@@ -1432,15 +1376,15 @@ class DoubleVerifyFraudInvalidTraffic(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class DoubleVerifyVideoViewability(typing_extensions.TypedDict, total=False):
-    playerImpressionRate: typing_extensions.Literal[
+class DoubleVerifyVideoViewability(typing.TypedDict, total=False):
+    playerImpressionRate: typing.Literal[
         "PLAYER_SIZE_400X300_UNSPECIFIED",
         "PLAYER_SIZE_400X300_95",
         "PLAYER_SIZE_400X300_70",
         "PLAYER_SIZE_400X300_25",
         "PLAYER_SIZE_400X300_5",
     ]
-    videoIab: typing_extensions.Literal[
+    videoIab: typing.Literal[
         "VIDEO_IAB_UNSPECIFIED",
         "IAB_VIEWABILITY_80_PERCENT_HIGHER",
         "IAB_VIEWABILITY_75_PERCENT_HIGHER",
@@ -1452,7 +1396,7 @@ class DoubleVerifyVideoViewability(typing_extensions.TypedDict, total=False):
         "IAB_VIEWABILITY_40_PERCENT_HIHGER",
         "IAB_VIEWABILITY_30_PERCENT_HIHGER",
     ]
-    videoViewableRate: typing_extensions.Literal[
+    videoViewableRate: typing.Literal[
         "VIDEO_VIEWABLE_RATE_UNSPECIFIED",
         "VIEWED_PERFORMANCE_40_PERCENT_HIGHER",
         "VIEWED_PERFORMANCE_35_PERCENT_HIGHER",
@@ -1463,52 +1407,46 @@ class DoubleVerifyVideoViewability(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class EditCustomerMatchMembersRequest(typing_extensions.TypedDict, total=False):
+class EditCustomerMatchMembersRequest(typing.TypedDict, total=False):
     addedContactInfoList: ContactInfoList
     addedMobileDeviceIdList: MobileDeviceIdList
     advertiserId: str
 
 @typing.type_check_only
-class EditCustomerMatchMembersResponse(typing_extensions.TypedDict, total=False):
+class EditCustomerMatchMembersResponse(typing.TypedDict, total=False):
     firstAndThirdPartyAudienceId: str
 
 @typing.type_check_only
-class EditGuaranteedOrderReadAccessorsRequest(typing_extensions.TypedDict, total=False):
+class EditGuaranteedOrderReadAccessorsRequest(typing.TypedDict, total=False):
     addedAdvertisers: _list[str]
     partnerId: str
     readAccessInherited: bool
     removedAdvertisers: _list[str]
 
 @typing.type_check_only
-class EditGuaranteedOrderReadAccessorsResponse(
-    typing_extensions.TypedDict, total=False
-):
+class EditGuaranteedOrderReadAccessorsResponse(typing.TypedDict, total=False):
     readAccessInherited: bool
     readAdvertiserIds: _list[str]
 
 @typing.type_check_only
-class EditInventorySourceReadWriteAccessorsRequest(
-    typing_extensions.TypedDict, total=False
-):
+class EditInventorySourceReadWriteAccessorsRequest(typing.TypedDict, total=False):
     advertisersUpdate: EditInventorySourceReadWriteAccessorsRequestAdvertisersUpdate
     assignPartner: bool
     partnerId: str
 
 @typing.type_check_only
 class EditInventorySourceReadWriteAccessorsRequestAdvertisersUpdate(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     addedAdvertisers: _list[str]
     removedAdvertisers: _list[str]
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class EnvironmentAssignedTargetingOptionDetails(
-    typing_extensions.TypedDict, total=False
-):
-    environment: typing_extensions.Literal[
+class EnvironmentAssignedTargetingOptionDetails(typing.TypedDict, total=False):
+    environment: typing.Literal[
         "ENVIRONMENT_UNSPECIFIED",
         "ENVIRONMENT_WEB_OPTIMIZED",
         "ENVIRONMENT_WEB_NOT_OPTIMIZED",
@@ -1517,8 +1455,8 @@ class EnvironmentAssignedTargetingOptionDetails(
     targetingOptionId: str
 
 @typing.type_check_only
-class EnvironmentTargetingOptionDetails(typing_extensions.TypedDict, total=False):
-    environment: typing_extensions.Literal[
+class EnvironmentTargetingOptionDetails(typing.TypedDict, total=False):
+    environment: typing.Literal[
         "ENVIRONMENT_UNSPECIFIED",
         "ENVIRONMENT_WEB_OPTIMIZED",
         "ENVIRONMENT_WEB_NOT_OPTIMIZED",
@@ -1526,16 +1464,16 @@ class EnvironmentTargetingOptionDetails(typing_extensions.TypedDict, total=False
     ]
 
 @typing.type_check_only
-class ExchangeAssignedTargetingOptionDetails(typing_extensions.TypedDict, total=False):
+class ExchangeAssignedTargetingOptionDetails(typing.TypedDict, total=False):
     targetingOptionId: str
 
 @typing.type_check_only
-class ExchangeConfig(typing_extensions.TypedDict, total=False):
+class ExchangeConfig(typing.TypedDict, total=False):
     enabledExchanges: _list[ExchangeConfigEnabledExchange]
 
 @typing.type_check_only
-class ExchangeConfigEnabledExchange(typing_extensions.TypedDict, total=False):
-    exchange: typing_extensions.Literal[
+class ExchangeConfigEnabledExchange(typing.TypedDict, total=False):
+    exchange: typing.Literal[
         "EXCHANGE_UNSPECIFIED",
         "EXCHANGE_GOOGLE_AD_MANAGER",
         "EXCHANGE_APPNEXUS",
@@ -1617,8 +1555,8 @@ class ExchangeConfigEnabledExchange(typing_extensions.TypedDict, total=False):
     seatId: str
 
 @typing.type_check_only
-class ExchangeReviewStatus(typing_extensions.TypedDict, total=False):
-    exchange: typing_extensions.Literal[
+class ExchangeReviewStatus(typing.TypedDict, total=False):
+    exchange: typing.Literal[
         "EXCHANGE_UNSPECIFIED",
         "EXCHANGE_GOOGLE_AD_MANAGER",
         "EXCHANGE_APPNEXUS",
@@ -1695,7 +1633,7 @@ class ExchangeReviewStatus(typing_extensions.TypedDict, total=False):
         "EXCHANGE_RESET_DIGITAL",
         "EXCHANGE_HIVESTACK",
     ]
-    status: typing_extensions.Literal[
+    status: typing.Literal[
         "REVIEW_STATUS_UNSPECIFIED",
         "REVIEW_STATUS_APPROVED",
         "REVIEW_STATUS_REJECTED",
@@ -1703,8 +1641,8 @@ class ExchangeReviewStatus(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class ExchangeTargetingOptionDetails(typing_extensions.TypedDict, total=False):
-    exchange: typing_extensions.Literal[
+class ExchangeTargetingOptionDetails(typing.TypedDict, total=False):
+    exchange: typing.Literal[
         "EXCHANGE_UNSPECIFIED",
         "EXCHANGE_GOOGLE_AD_MANAGER",
         "EXCHANGE_APPNEXUS",
@@ -1783,10 +1721,10 @@ class ExchangeTargetingOptionDetails(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class ExitEvent(typing_extensions.TypedDict, total=False):
+class ExitEvent(typing.TypedDict, total=False):
     name: str
     reportingName: str
-    type: typing_extensions.Literal[
+    type: typing.Literal[
         "EXIT_EVENT_TYPE_UNSPECIFIED",
         "EXIT_EVENT_TYPE_DEFAULT",
         "EXIT_EVENT_TYPE_BACKUP",
@@ -1794,10 +1732,10 @@ class ExitEvent(typing_extensions.TypedDict, total=False):
     url: str
 
 @typing.type_check_only
-class FirstAndThirdPartyAudience(typing_extensions.TypedDict, total=False):
+class FirstAndThirdPartyAudience(typing.TypedDict, total=False):
     activeDisplayAudienceSize: str
     appId: str
-    audienceSource: typing_extensions.Literal[
+    audienceSource: typing.Literal[
         "AUDIENCE_SOURCE_UNSPECIFIED",
         "DISPLAY_VIDEO_360",
         "CAMPAIGN_MANAGER",
@@ -1806,7 +1744,7 @@ class FirstAndThirdPartyAudience(typing_extensions.TypedDict, total=False):
         "YOUTUBE",
         "ADS_DATA_HUB",
     ]
-    audienceType: typing_extensions.Literal[
+    audienceType: typing.Literal[
         "AUDIENCE_TYPE_UNSPECIFIED",
         "CUSTOMER_MATCH_CONTACT_INFO",
         "CUSTOMER_MATCH_DEVICE_ID",
@@ -1825,7 +1763,7 @@ class FirstAndThirdPartyAudience(typing_extensions.TypedDict, total=False):
     displayMobileWebAudienceSize: str
     displayName: str
     firstAndThirdPartyAudienceId: str
-    firstAndThirdPartyAudienceType: typing_extensions.Literal[
+    firstAndThirdPartyAudienceType: typing.Literal[
         "FIRST_AND_THIRD_PARTY_AUDIENCE_TYPE_UNSPECIFIED",
         "FIRST_AND_THIRD_PARTY_AUDIENCE_TYPE_FIRST_PARTY",
         "FIRST_AND_THIRD_PARTY_AUDIENCE_TYPE_THIRD_PARTY",
@@ -1837,15 +1775,13 @@ class FirstAndThirdPartyAudience(typing_extensions.TypedDict, total=False):
     youtubeAudienceSize: str
 
 @typing.type_check_only
-class FirstAndThirdPartyAudienceGroup(typing_extensions.TypedDict, total=False):
+class FirstAndThirdPartyAudienceGroup(typing.TypedDict, total=False):
     settings: _list[FirstAndThirdPartyAudienceTargetingSetting]
 
 @typing.type_check_only
-class FirstAndThirdPartyAudienceTargetingSetting(
-    typing_extensions.TypedDict, total=False
-):
+class FirstAndThirdPartyAudienceTargetingSetting(typing.TypedDict, total=False):
     firstAndThirdPartyAudienceId: str
-    recency: typing_extensions.Literal[
+    recency: typing.Literal[
         "RECENCY_NO_LIMIT",
         "RECENCY_1_MINUTE",
         "RECENCY_5_MINUTES",
@@ -1879,18 +1815,18 @@ class FirstAndThirdPartyAudienceTargetingSetting(
     ]
 
 @typing.type_check_only
-class FixedBidStrategy(typing_extensions.TypedDict, total=False):
+class FixedBidStrategy(typing.TypedDict, total=False):
     bidAmountMicros: str
 
 @typing.type_check_only
-class FloodlightGroup(typing_extensions.TypedDict, total=False):
+class FloodlightGroup(typing.TypedDict, total=False):
     activeViewConfig: ActiveViewVideoViewabilityMetricConfig
     customVariables: dict[str, typing.Any]
     displayName: str
     floodlightGroupId: str
     lookbackWindow: LookbackWindow
     name: str
-    webTagType: typing_extensions.Literal[
+    webTagType: typing.Literal[
         "WEB_TAG_TYPE_UNSPECIFIED",
         "WEB_TAG_TYPE_NONE",
         "WEB_TAG_TYPE_IMAGE",
@@ -1898,9 +1834,9 @@ class FloodlightGroup(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class FrequencyCap(typing_extensions.TypedDict, total=False):
+class FrequencyCap(typing.TypedDict, total=False):
     maxImpressions: int
-    timeUnit: typing_extensions.Literal[
+    timeUnit: typing.Literal[
         "TIME_UNIT_UNSPECIFIED",
         "TIME_UNIT_LIFETIME",
         "TIME_UNIT_MONTHS",
@@ -1913,23 +1849,23 @@ class FrequencyCap(typing_extensions.TypedDict, total=False):
     unlimited: bool
 
 @typing.type_check_only
-class GenderAssignedTargetingOptionDetails(typing_extensions.TypedDict, total=False):
-    gender: typing_extensions.Literal[
+class GenderAssignedTargetingOptionDetails(typing.TypedDict, total=False):
+    gender: typing.Literal[
         "GENDER_UNSPECIFIED", "GENDER_MALE", "GENDER_FEMALE", "GENDER_UNKNOWN"
     ]
     targetingOptionId: str
 
 @typing.type_check_only
-class GenderTargetingOptionDetails(typing_extensions.TypedDict, total=False):
-    gender: typing_extensions.Literal[
+class GenderTargetingOptionDetails(typing.TypedDict, total=False):
+    gender: typing.Literal[
         "GENDER_UNSPECIFIED", "GENDER_MALE", "GENDER_FEMALE", "GENDER_UNKNOWN"
     ]
 
 @typing.type_check_only
-class GenerateDefaultLineItemRequest(typing_extensions.TypedDict, total=False):
+class GenerateDefaultLineItemRequest(typing.TypedDict, total=False):
     displayName: str
     insertionOrderId: str
-    lineItemType: typing_extensions.Literal[
+    lineItemType: typing.Literal[
         "LINE_ITEM_TYPE_UNSPECIFIED",
         "LINE_ITEM_TYPE_DISPLAY_DEFAULT",
         "LINE_ITEM_TYPE_DISPLAY_MOBILE_APP_INSTALL",
@@ -1945,9 +1881,9 @@ class GenerateDefaultLineItemRequest(typing_extensions.TypedDict, total=False):
     mobileApp: MobileApp
 
 @typing.type_check_only
-class GeoRegionAssignedTargetingOptionDetails(typing_extensions.TypedDict, total=False):
+class GeoRegionAssignedTargetingOptionDetails(typing.TypedDict, total=False):
     displayName: str
-    geoRegionType: typing_extensions.Literal[
+    geoRegionType: typing.Literal[
         "GEO_REGION_TYPE_UNKNOWN",
         "GEO_REGION_TYPE_OTHER",
         "GEO_REGION_TYPE_COUNTRY",
@@ -1982,13 +1918,13 @@ class GeoRegionAssignedTargetingOptionDetails(typing_extensions.TypedDict, total
     targetingOptionId: str
 
 @typing.type_check_only
-class GeoRegionSearchTerms(typing_extensions.TypedDict, total=False):
+class GeoRegionSearchTerms(typing.TypedDict, total=False):
     geoRegionQuery: str
 
 @typing.type_check_only
-class GeoRegionTargetingOptionDetails(typing_extensions.TypedDict, total=False):
+class GeoRegionTargetingOptionDetails(typing.TypedDict, total=False):
     displayName: str
-    geoRegionType: typing_extensions.Literal[
+    geoRegionType: typing.Literal[
         "GEO_REGION_TYPE_UNKNOWN",
         "GEO_REGION_TYPE_OTHER",
         "GEO_REGION_TYPE_COUNTRY",
@@ -2021,10 +1957,10 @@ class GeoRegionTargetingOptionDetails(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class GoogleAudience(typing_extensions.TypedDict, total=False):
+class GoogleAudience(typing.TypedDict, total=False):
     displayName: str
     googleAudienceId: str
-    googleAudienceType: typing_extensions.Literal[
+    googleAudienceType: typing.Literal[
         "GOOGLE_AUDIENCE_TYPE_UNSPECIFIED",
         "GOOGLE_AUDIENCE_TYPE_AFFINITY",
         "GOOGLE_AUDIENCE_TYPE_IN_MARKET",
@@ -2036,23 +1972,23 @@ class GoogleAudience(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class GoogleAudienceGroup(typing_extensions.TypedDict, total=False):
+class GoogleAudienceGroup(typing.TypedDict, total=False):
     settings: _list[GoogleAudienceTargetingSetting]
 
 @typing.type_check_only
-class GoogleAudienceTargetingSetting(typing_extensions.TypedDict, total=False):
+class GoogleAudienceTargetingSetting(typing.TypedDict, total=False):
     googleAudienceId: str
 
 @typing.type_check_only
-class GoogleBytestreamMedia(typing_extensions.TypedDict, total=False):
+class GoogleBytestreamMedia(typing.TypedDict, total=False):
     resourceName: str
 
 @typing.type_check_only
-class GuaranteedOrder(typing_extensions.TypedDict, total=False):
+class GuaranteedOrder(typing.TypedDict, total=False):
     defaultAdvertiserId: str
     defaultCampaignId: str
     displayName: str
-    exchange: typing_extensions.Literal[
+    exchange: typing.Literal[
         "EXCHANGE_UNSPECIFIED",
         "EXCHANGE_GOOGLE_AD_MANAGER",
         "EXCHANGE_APPNEXUS",
@@ -2141,12 +2077,12 @@ class GuaranteedOrder(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class GuaranteedOrderStatus(typing_extensions.TypedDict, total=False):
-    configStatus: typing_extensions.Literal[
+class GuaranteedOrderStatus(typing.TypedDict, total=False):
+    configStatus: typing.Literal[
         "GUARANTEED_ORDER_CONFIG_STATUS_UNSPECIFIED", "PENDING", "COMPLETED"
     ]
     entityPauseReason: str
-    entityStatus: typing_extensions.Literal[
+    entityStatus: typing.Literal[
         "ENTITY_STATUS_UNSPECIFIED",
         "ENTITY_STATUS_ACTIVE",
         "ENTITY_STATUS_ARCHIVED",
@@ -2156,10 +2092,8 @@ class GuaranteedOrderStatus(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class HouseholdIncomeAssignedTargetingOptionDetails(
-    typing_extensions.TypedDict, total=False
-):
-    householdIncome: typing_extensions.Literal[
+class HouseholdIncomeAssignedTargetingOptionDetails(typing.TypedDict, total=False):
+    householdIncome: typing.Literal[
         "HOUSEHOLD_INCOME_UNSPECIFIED",
         "HOUSEHOLD_INCOME_UNKNOWN",
         "HOUSEHOLD_INCOME_LOWER_50_PERCENT",
@@ -2172,8 +2106,8 @@ class HouseholdIncomeAssignedTargetingOptionDetails(
     targetingOptionId: str
 
 @typing.type_check_only
-class HouseholdIncomeTargetingOptionDetails(typing_extensions.TypedDict, total=False):
-    householdIncome: typing_extensions.Literal[
+class HouseholdIncomeTargetingOptionDetails(typing.TypedDict, total=False):
+    householdIncome: typing.Literal[
         "HOUSEHOLD_INCOME_UNSPECIFIED",
         "HOUSEHOLD_INCOME_UNKNOWN",
         "HOUSEHOLD_INCOME_LOWER_50_PERCENT",
@@ -2185,7 +2119,7 @@ class HouseholdIncomeTargetingOptionDetails(typing_extensions.TypedDict, total=F
     ]
 
 @typing.type_check_only
-class IdFilter(typing_extensions.TypedDict, total=False):
+class IdFilter(typing.TypedDict, total=False):
     adGroupAdIds: _list[str]
     adGroupIds: _list[str]
     campaignIds: _list[str]
@@ -2194,10 +2128,10 @@ class IdFilter(typing_extensions.TypedDict, total=False):
     mediaProductIds: _list[str]
 
 @typing.type_check_only
-class InsertionOrder(typing_extensions.TypedDict, total=False):
+class InsertionOrder(typing.TypedDict, total=False):
     advertiserId: str
     bidStrategy: BiddingStrategy
-    billableOutcome: typing_extensions.Literal[
+    billableOutcome: typing.Literal[
         "BILLABLE_OUTCOME_UNSPECIFIED",
         "BILLABLE_OUTCOME_PAY_PER_IMPRESSION",
         "BILLABLE_OUTCOME_PAY_PER_CLICK",
@@ -2206,7 +2140,7 @@ class InsertionOrder(typing_extensions.TypedDict, total=False):
     budget: InsertionOrderBudget
     campaignId: str
     displayName: str
-    entityStatus: typing_extensions.Literal[
+    entityStatus: typing.Literal[
         "ENTITY_STATUS_UNSPECIFIED",
         "ENTITY_STATUS_ACTIVE",
         "ENTITY_STATUS_ARCHIVED",
@@ -2216,7 +2150,7 @@ class InsertionOrder(typing_extensions.TypedDict, total=False):
     ]
     frequencyCap: FrequencyCap
     insertionOrderId: str
-    insertionOrderType: typing_extensions.Literal[
+    insertionOrderType: typing.Literal[
         "INSERTION_ORDER_TYPE_UNSPECIFIED", "RTB", "OVER_THE_TOP"
     ]
     integrationDetails: IntegrationDetails
@@ -2224,7 +2158,7 @@ class InsertionOrder(typing_extensions.TypedDict, total=False):
     pacing: Pacing
     partnerCosts: _list[PartnerCost]
     performanceGoal: PerformanceGoal
-    reservationType: typing_extensions.Literal[
+    reservationType: typing.Literal[
         "RESERVATION_TYPE_UNSPECIFIED",
         "RESERVATION_TYPE_NOT_GUARANTEED",
         "RESERVATION_TYPE_PROGRAMMATIC_GUARANTEED",
@@ -2233,29 +2167,29 @@ class InsertionOrder(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class InsertionOrderBudget(typing_extensions.TypedDict, total=False):
-    automationType: typing_extensions.Literal[
+class InsertionOrderBudget(typing.TypedDict, total=False):
+    automationType: typing.Literal[
         "INSERTION_ORDER_AUTOMATION_TYPE_UNSPECIFIED",
         "INSERTION_ORDER_AUTOMATION_TYPE_BUDGET",
         "INSERTION_ORDER_AUTOMATION_TYPE_NONE",
         "INSERTION_ORDER_AUTOMATION_TYPE_BID_BUDGET",
     ]
     budgetSegments: _list[InsertionOrderBudgetSegment]
-    budgetUnit: typing_extensions.Literal[
+    budgetUnit: typing.Literal[
         "BUDGET_UNIT_UNSPECIFIED", "BUDGET_UNIT_CURRENCY", "BUDGET_UNIT_IMPRESSIONS"
     ]
 
 @typing.type_check_only
-class InsertionOrderBudgetSegment(typing_extensions.TypedDict, total=False):
+class InsertionOrderBudgetSegment(typing.TypedDict, total=False):
     budgetAmountMicros: str
     campaignBudgetId: str
     dateRange: DateRange
     description: str
 
 @typing.type_check_only
-class IntegralAdScience(typing_extensions.TypedDict, total=False):
+class IntegralAdScience(typing.TypedDict, total=False):
     customSegmentId: _list[str]
-    displayViewability: typing_extensions.Literal[
+    displayViewability: typing.Literal[
         "PERFORMANCE_VIEWABILITY_UNSPECIFIED",
         "PERFORMANCE_VIEWABILITY_40",
         "PERFORMANCE_VIEWABILITY_50",
@@ -2263,38 +2197,34 @@ class IntegralAdScience(typing_extensions.TypedDict, total=False):
         "PERFORMANCE_VIEWABILITY_70",
     ]
     excludeUnrateable: bool
-    excludedAdFraudRisk: typing_extensions.Literal[
+    excludedAdFraudRisk: typing.Literal[
         "SUSPICIOUS_ACTIVITY_UNSPECIFIED",
         "SUSPICIOUS_ACTIVITY_HR",
         "SUSPICIOUS_ACTIVITY_HMR",
     ]
-    excludedAdultRisk: typing_extensions.Literal[
-        "ADULT_UNSPECIFIED", "ADULT_HR", "ADULT_HMR"
-    ]
-    excludedAlcoholRisk: typing_extensions.Literal[
+    excludedAdultRisk: typing.Literal["ADULT_UNSPECIFIED", "ADULT_HR", "ADULT_HMR"]
+    excludedAlcoholRisk: typing.Literal[
         "ALCOHOL_UNSPECIFIED", "ALCOHOL_HR", "ALCOHOL_HMR"
     ]
-    excludedDrugsRisk: typing_extensions.Literal[
-        "DRUGS_UNSPECIFIED", "DRUGS_HR", "DRUGS_HMR"
-    ]
-    excludedGamblingRisk: typing_extensions.Literal[
+    excludedDrugsRisk: typing.Literal["DRUGS_UNSPECIFIED", "DRUGS_HR", "DRUGS_HMR"]
+    excludedGamblingRisk: typing.Literal[
         "GAMBLING_UNSPECIFIED", "GAMBLING_HR", "GAMBLING_HMR"
     ]
-    excludedHateSpeechRisk: typing_extensions.Literal[
+    excludedHateSpeechRisk: typing.Literal[
         "HATE_SPEECH_UNSPECIFIED", "HATE_SPEECH_HR", "HATE_SPEECH_HMR"
     ]
-    excludedIllegalDownloadsRisk: typing_extensions.Literal[
+    excludedIllegalDownloadsRisk: typing.Literal[
         "ILLEGAL_DOWNLOADS_UNSPECIFIED", "ILLEGAL_DOWNLOADS_HR", "ILLEGAL_DOWNLOADS_HMR"
     ]
-    excludedOffensiveLanguageRisk: typing_extensions.Literal[
+    excludedOffensiveLanguageRisk: typing.Literal[
         "OFFENSIVE_LANGUAGE_UNSPECIFIED",
         "OFFENSIVE_LANGUAGE_HR",
         "OFFENSIVE_LANGUAGE_HMR",
     ]
-    excludedViolenceRisk: typing_extensions.Literal[
+    excludedViolenceRisk: typing.Literal[
         "VIOLENCE_UNSPECIFIED", "VIOLENCE_HR", "VIOLENCE_HMR"
     ]
-    traqScoreOption: typing_extensions.Literal[
+    traqScoreOption: typing.Literal[
         "TRAQ_UNSPECIFIED",
         "TRAQ_250",
         "TRAQ_500",
@@ -2304,7 +2234,7 @@ class IntegralAdScience(typing_extensions.TypedDict, total=False):
         "TRAQ_875",
         "TRAQ_1000",
     ]
-    videoViewability: typing_extensions.Literal[
+    videoViewability: typing.Literal[
         "VIDEO_VIEWABILITY_UNSPECIFIED",
         "VIDEO_VIEWABILITY_40",
         "VIDEO_VIEWABILITY_50",
@@ -2313,26 +2243,26 @@ class IntegralAdScience(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class IntegrationDetails(typing_extensions.TypedDict, total=False):
+class IntegrationDetails(typing.TypedDict, total=False):
     details: str
     integrationCode: str
 
 @typing.type_check_only
-class InventorySource(typing_extensions.TypedDict, total=False):
-    commitment: typing_extensions.Literal[
+class InventorySource(typing.TypedDict, total=False):
+    commitment: typing.Literal[
         "INVENTORY_SOURCE_COMMITMENT_UNSPECIFIED",
         "INVENTORY_SOURCE_COMMITMENT_GUARANTEED",
         "INVENTORY_SOURCE_COMMITMENT_NON_GUARANTEED",
     ]
     creativeConfigs: _list[CreativeConfig]
     dealId: str
-    deliveryMethod: typing_extensions.Literal[
+    deliveryMethod: typing.Literal[
         "INVENTORY_SOURCE_DELIVERY_METHOD_UNSPECIFIED",
         "INVENTORY_SOURCE_DELIVERY_METHOD_PROGRAMMATIC",
         "INVENTORY_SOURCE_DELIVERY_METHOD_TAG",
     ]
     displayName: str
-    exchange: typing_extensions.Literal[
+    exchange: typing.Literal[
         "EXCHANGE_UNSPECIFIED",
         "EXCHANGE_GOOGLE_AD_MANAGER",
         "EXCHANGE_APPNEXUS",
@@ -2411,7 +2341,7 @@ class InventorySource(typing_extensions.TypedDict, total=False):
     ]
     guaranteedOrderId: str
     inventorySourceId: str
-    inventorySourceProductType: typing_extensions.Literal[
+    inventorySourceProductType: typing.Literal[
         "INVENTORY_SOURCE_PRODUCT_TYPE_UNSPECIFIED",
         "PREFERRED_DEAL",
         "PRIVATE_AUCTION",
@@ -2423,7 +2353,7 @@ class InventorySource(typing_extensions.TypedDict, total=False):
         "PROGRAMMATIC_TV",
         "AUCTION_PACKAGE",
     ]
-    inventorySourceType: typing_extensions.Literal[
+    inventorySourceType: typing.Literal[
         "INVENTORY_SOURCE_TYPE_UNSPECIFIED",
         "INVENTORY_SOURCE_TYPE_PRIVATE",
         "INVENTORY_SOURCE_TYPE_AUCTION_PACKAGE",
@@ -2439,55 +2369,49 @@ class InventorySource(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class InventorySourceAccessors(typing_extensions.TypedDict, total=False):
+class InventorySourceAccessors(typing.TypedDict, total=False):
     advertisers: InventorySourceAccessorsAdvertiserAccessors
     partner: InventorySourceAccessorsPartnerAccessor
 
 @typing.type_check_only
-class InventorySourceAccessorsAdvertiserAccessors(
-    typing_extensions.TypedDict, total=False
-):
+class InventorySourceAccessorsAdvertiserAccessors(typing.TypedDict, total=False):
     advertiserIds: _list[str]
 
 @typing.type_check_only
-class InventorySourceAccessorsPartnerAccessor(typing_extensions.TypedDict, total=False):
+class InventorySourceAccessorsPartnerAccessor(typing.TypedDict, total=False):
     partnerId: str
 
 @typing.type_check_only
-class InventorySourceAssignedTargetingOptionDetails(
-    typing_extensions.TypedDict, total=False
-):
+class InventorySourceAssignedTargetingOptionDetails(typing.TypedDict, total=False):
     inventorySourceId: str
 
 @typing.type_check_only
-class InventorySourceDisplayCreativeConfig(typing_extensions.TypedDict, total=False):
+class InventorySourceDisplayCreativeConfig(typing.TypedDict, total=False):
     creativeSize: Dimensions
 
 @typing.type_check_only
-class InventorySourceFilter(typing_extensions.TypedDict, total=False):
+class InventorySourceFilter(typing.TypedDict, total=False):
     inventorySourceIds: _list[str]
 
 @typing.type_check_only
-class InventorySourceGroup(typing_extensions.TypedDict, total=False):
+class InventorySourceGroup(typing.TypedDict, total=False):
     displayName: str
     inventorySourceGroupId: str
     name: str
 
 @typing.type_check_only
-class InventorySourceGroupAssignedTargetingOptionDetails(
-    typing_extensions.TypedDict, total=False
-):
+class InventorySourceGroupAssignedTargetingOptionDetails(typing.TypedDict, total=False):
     inventorySourceGroupId: str
 
 @typing.type_check_only
-class InventorySourceStatus(typing_extensions.TypedDict, total=False):
-    configStatus: typing_extensions.Literal[
+class InventorySourceStatus(typing.TypedDict, total=False):
+    configStatus: typing.Literal[
         "INVENTORY_SOURCE_CONFIG_STATUS_UNSPECIFIED",
         "INVENTORY_SOURCE_CONFIG_STATUS_PENDING",
         "INVENTORY_SOURCE_CONFIG_STATUS_COMPLETED",
     ]
     entityPauseReason: str
-    entityStatus: typing_extensions.Literal[
+    entityStatus: typing.Literal[
         "ENTITY_STATUS_UNSPECIFIED",
         "ENTITY_STATUS_ACTIVE",
         "ENTITY_STATUS_ARCHIVED",
@@ -2496,7 +2420,7 @@ class InventorySourceStatus(typing_extensions.TypedDict, total=False):
         "ENTITY_STATUS_SCHEDULED_FOR_DELETION",
     ]
     sellerPauseReason: str
-    sellerStatus: typing_extensions.Literal[
+    sellerStatus: typing.Literal[
         "ENTITY_STATUS_UNSPECIFIED",
         "ENTITY_STATUS_ACTIVE",
         "ENTITY_STATUS_ARCHIVED",
@@ -2506,11 +2430,11 @@ class InventorySourceStatus(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class InventorySourceVideoCreativeConfig(typing_extensions.TypedDict, total=False):
+class InventorySourceVideoCreativeConfig(typing.TypedDict, total=False):
     duration: str
 
 @typing.type_check_only
-class Invoice(typing_extensions.TypedDict, total=False):
+class Invoice(typing.TypedDict, total=False):
     budgetInvoiceGroupingId: str
     budgetSummaries: _list[BudgetSummary]
     correctedInvoiceId: str
@@ -2518,7 +2442,7 @@ class Invoice(typing_extensions.TypedDict, total=False):
     displayName: str
     dueDate: Date
     invoiceId: str
-    invoiceType: typing_extensions.Literal[
+    invoiceType: typing.Literal[
         "INVOICE_TYPE_UNSPECIFIED", "INVOICE_TYPE_CREDIT", "INVOICE_TYPE_INVOICE"
     ]
     issueDate: Date
@@ -2535,22 +2459,22 @@ class Invoice(typing_extensions.TypedDict, total=False):
     totalTaxAmountMicros: str
 
 @typing.type_check_only
-class KeywordAssignedTargetingOptionDetails(typing_extensions.TypedDict, total=False):
+class KeywordAssignedTargetingOptionDetails(typing.TypedDict, total=False):
     keyword: str
     negative: bool
 
 @typing.type_check_only
-class LanguageAssignedTargetingOptionDetails(typing_extensions.TypedDict, total=False):
+class LanguageAssignedTargetingOptionDetails(typing.TypedDict, total=False):
     displayName: str
     negative: bool
     targetingOptionId: str
 
 @typing.type_check_only
-class LanguageTargetingOptionDetails(typing_extensions.TypedDict, total=False):
+class LanguageTargetingOptionDetails(typing.TypedDict, total=False):
     displayName: str
 
 @typing.type_check_only
-class LineItem(typing_extensions.TypedDict, total=False):
+class LineItem(typing.TypedDict, total=False):
     advertiserId: str
     bidStrategy: BiddingStrategy
     budget: LineItemBudget
@@ -2558,7 +2482,7 @@ class LineItem(typing_extensions.TypedDict, total=False):
     conversionCounting: ConversionCountingConfig
     creativeIds: _list[str]
     displayName: str
-    entityStatus: typing_extensions.Literal[
+    entityStatus: typing.Literal[
         "ENTITY_STATUS_UNSPECIFIED",
         "ENTITY_STATUS_ACTIVE",
         "ENTITY_STATUS_ARCHIVED",
@@ -2573,7 +2497,7 @@ class LineItem(typing_extensions.TypedDict, total=False):
     integrationDetails: IntegrationDetails
     inventorySourceIds: _list[str]
     lineItemId: str
-    lineItemType: typing_extensions.Literal[
+    lineItemType: typing.Literal[
         "LINE_ITEM_TYPE_UNSPECIFIED",
         "LINE_ITEM_TYPE_DISPLAY_DEFAULT",
         "LINE_ITEM_TYPE_DISPLAY_MOBILE_APP_INSTALL",
@@ -2591,7 +2515,7 @@ class LineItem(typing_extensions.TypedDict, total=False):
     pacing: Pacing
     partnerCosts: _list[PartnerCost]
     partnerRevenueModel: PartnerRevenueModel
-    reservationType: typing_extensions.Literal[
+    reservationType: typing.Literal[
         "RESERVATION_TYPE_UNSPECIFIED",
         "RESERVATION_TYPE_NOT_GUARANTEED",
         "RESERVATION_TYPE_PROGRAMMATIC_GUARANTEED",
@@ -2600,7 +2524,7 @@ class LineItem(typing_extensions.TypedDict, total=False):
     targetingExpansion: TargetingExpansionConfig
     updateTime: str
     warningMessages: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "LINE_ITEM_WARNING_MESSAGE_UNSPECIFIED",
             "INVALID_FLIGHT_DATES",
             "EXPIRED",
@@ -2624,22 +2548,22 @@ class LineItem(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class LineItemBudget(typing_extensions.TypedDict, total=False):
-    budgetAllocationType: typing_extensions.Literal[
+class LineItemBudget(typing.TypedDict, total=False):
+    budgetAllocationType: typing.Literal[
         "LINE_ITEM_BUDGET_ALLOCATION_TYPE_UNSPECIFIED",
         "LINE_ITEM_BUDGET_ALLOCATION_TYPE_AUTOMATIC",
         "LINE_ITEM_BUDGET_ALLOCATION_TYPE_FIXED",
         "LINE_ITEM_BUDGET_ALLOCATION_TYPE_UNLIMITED",
     ]
-    budgetUnit: typing_extensions.Literal[
+    budgetUnit: typing.Literal[
         "BUDGET_UNIT_UNSPECIFIED", "BUDGET_UNIT_CURRENCY", "BUDGET_UNIT_IMPRESSIONS"
     ]
     maxAmount: str
 
 @typing.type_check_only
-class LineItemFlight(typing_extensions.TypedDict, total=False):
+class LineItemFlight(typing.TypedDict, total=False):
     dateRange: DateRange
-    flightDateType: typing_extensions.Literal[
+    flightDateType: typing.Literal[
         "LINE_ITEM_FLIGHT_DATE_TYPE_UNSPECIFIED",
         "LINE_ITEM_FLIGHT_DATE_TYPE_INHERITED",
         "LINE_ITEM_FLIGHT_DATE_TYPE_CUSTOM",
@@ -2648,176 +2572,166 @@ class LineItemFlight(typing_extensions.TypedDict, total=False):
     triggerId: str
 
 @typing.type_check_only
-class ListAdvertiserAssignedTargetingOptionsResponse(
-    typing_extensions.TypedDict, total=False
-):
+class ListAdvertiserAssignedTargetingOptionsResponse(typing.TypedDict, total=False):
     assignedTargetingOptions: _list[AssignedTargetingOption]
     nextPageToken: str
 
 @typing.type_check_only
-class ListAdvertisersResponse(typing_extensions.TypedDict, total=False):
+class ListAdvertisersResponse(typing.TypedDict, total=False):
     advertisers: _list[Advertiser]
     nextPageToken: str
 
 @typing.type_check_only
-class ListAssignedInventorySourcesResponse(typing_extensions.TypedDict, total=False):
+class ListAssignedInventorySourcesResponse(typing.TypedDict, total=False):
     assignedInventorySources: _list[AssignedInventorySource]
     nextPageToken: str
 
 @typing.type_check_only
-class ListAssignedLocationsResponse(typing_extensions.TypedDict, total=False):
+class ListAssignedLocationsResponse(typing.TypedDict, total=False):
     assignedLocations: _list[AssignedLocation]
     nextPageToken: str
 
 @typing.type_check_only
-class ListCampaignAssignedTargetingOptionsResponse(
-    typing_extensions.TypedDict, total=False
-):
+class ListCampaignAssignedTargetingOptionsResponse(typing.TypedDict, total=False):
     assignedTargetingOptions: _list[AssignedTargetingOption]
     nextPageToken: str
 
 @typing.type_check_only
-class ListCampaignsResponse(typing_extensions.TypedDict, total=False):
+class ListCampaignsResponse(typing.TypedDict, total=False):
     campaigns: _list[Campaign]
     nextPageToken: str
 
 @typing.type_check_only
-class ListChannelsResponse(typing_extensions.TypedDict, total=False):
+class ListChannelsResponse(typing.TypedDict, total=False):
     channels: _list[Channel]
     nextPageToken: str
 
 @typing.type_check_only
-class ListCombinedAudiencesResponse(typing_extensions.TypedDict, total=False):
+class ListCombinedAudiencesResponse(typing.TypedDict, total=False):
     combinedAudiences: _list[CombinedAudience]
     nextPageToken: str
 
 @typing.type_check_only
-class ListCreativesResponse(typing_extensions.TypedDict, total=False):
+class ListCreativesResponse(typing.TypedDict, total=False):
     creatives: _list[Creative]
     nextPageToken: str
 
 @typing.type_check_only
-class ListCustomBiddingAlgorithmsResponse(typing_extensions.TypedDict, total=False):
+class ListCustomBiddingAlgorithmsResponse(typing.TypedDict, total=False):
     customBiddingAlgorithms: _list[CustomBiddingAlgorithm]
     nextPageToken: str
 
 @typing.type_check_only
-class ListCustomBiddingScriptsResponse(typing_extensions.TypedDict, total=False):
+class ListCustomBiddingScriptsResponse(typing.TypedDict, total=False):
     customBiddingScripts: _list[CustomBiddingScript]
     nextPageToken: str
 
 @typing.type_check_only
-class ListCustomListsResponse(typing_extensions.TypedDict, total=False):
+class ListCustomListsResponse(typing.TypedDict, total=False):
     customLists: _list[CustomList]
     nextPageToken: str
 
 @typing.type_check_only
-class ListFirstAndThirdPartyAudiencesResponse(typing_extensions.TypedDict, total=False):
+class ListFirstAndThirdPartyAudiencesResponse(typing.TypedDict, total=False):
     firstAndThirdPartyAudiences: _list[FirstAndThirdPartyAudience]
     nextPageToken: str
 
 @typing.type_check_only
-class ListGoogleAudiencesResponse(typing_extensions.TypedDict, total=False):
+class ListGoogleAudiencesResponse(typing.TypedDict, total=False):
     googleAudiences: _list[GoogleAudience]
     nextPageToken: str
 
 @typing.type_check_only
-class ListGuaranteedOrdersResponse(typing_extensions.TypedDict, total=False):
+class ListGuaranteedOrdersResponse(typing.TypedDict, total=False):
     guaranteedOrders: _list[GuaranteedOrder]
     nextPageToken: str
 
 @typing.type_check_only
-class ListInsertionOrderAssignedTargetingOptionsResponse(
-    typing_extensions.TypedDict, total=False
-):
+class ListInsertionOrderAssignedTargetingOptionsResponse(typing.TypedDict, total=False):
     assignedTargetingOptions: _list[AssignedTargetingOption]
     nextPageToken: str
 
 @typing.type_check_only
-class ListInsertionOrdersResponse(typing_extensions.TypedDict, total=False):
+class ListInsertionOrdersResponse(typing.TypedDict, total=False):
     insertionOrders: _list[InsertionOrder]
     nextPageToken: str
 
 @typing.type_check_only
-class ListInventorySourceGroupsResponse(typing_extensions.TypedDict, total=False):
+class ListInventorySourceGroupsResponse(typing.TypedDict, total=False):
     inventorySourceGroups: _list[InventorySourceGroup]
     nextPageToken: str
 
 @typing.type_check_only
-class ListInventorySourcesResponse(typing_extensions.TypedDict, total=False):
+class ListInventorySourcesResponse(typing.TypedDict, total=False):
     inventorySources: _list[InventorySource]
     nextPageToken: str
 
 @typing.type_check_only
-class ListInvoicesResponse(typing_extensions.TypedDict, total=False):
+class ListInvoicesResponse(typing.TypedDict, total=False):
     invoices: _list[Invoice]
     nextPageToken: str
 
 @typing.type_check_only
-class ListLineItemAssignedTargetingOptionsResponse(
-    typing_extensions.TypedDict, total=False
-):
+class ListLineItemAssignedTargetingOptionsResponse(typing.TypedDict, total=False):
     assignedTargetingOptions: _list[AssignedTargetingOption]
     nextPageToken: str
 
 @typing.type_check_only
-class ListLineItemsResponse(typing_extensions.TypedDict, total=False):
+class ListLineItemsResponse(typing.TypedDict, total=False):
     lineItems: _list[LineItem]
     nextPageToken: str
 
 @typing.type_check_only
-class ListLocationListsResponse(typing_extensions.TypedDict, total=False):
+class ListLocationListsResponse(typing.TypedDict, total=False):
     locationLists: _list[LocationList]
     nextPageToken: str
 
 @typing.type_check_only
-class ListManualTriggersResponse(typing_extensions.TypedDict, total=False):
+class ListManualTriggersResponse(typing.TypedDict, total=False):
     manualTriggers: _list[ManualTrigger]
     nextPageToken: str
 
 @typing.type_check_only
-class ListNegativeKeywordListsResponse(typing_extensions.TypedDict, total=False):
+class ListNegativeKeywordListsResponse(typing.TypedDict, total=False):
     negativeKeywordLists: _list[NegativeKeywordList]
     nextPageToken: str
 
 @typing.type_check_only
-class ListNegativeKeywordsResponse(typing_extensions.TypedDict, total=False):
+class ListNegativeKeywordsResponse(typing.TypedDict, total=False):
     negativeKeywords: _list[NegativeKeyword]
     nextPageToken: str
 
 @typing.type_check_only
-class ListPartnerAssignedTargetingOptionsResponse(
-    typing_extensions.TypedDict, total=False
-):
+class ListPartnerAssignedTargetingOptionsResponse(typing.TypedDict, total=False):
     assignedTargetingOptions: _list[AssignedTargetingOption]
     nextPageToken: str
 
 @typing.type_check_only
-class ListPartnersResponse(typing_extensions.TypedDict, total=False):
+class ListPartnersResponse(typing.TypedDict, total=False):
     nextPageToken: str
     partners: _list[Partner]
 
 @typing.type_check_only
-class ListSitesResponse(typing_extensions.TypedDict, total=False):
+class ListSitesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     sites: _list[Site]
 
 @typing.type_check_only
-class ListTargetingOptionsResponse(typing_extensions.TypedDict, total=False):
+class ListTargetingOptionsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     targetingOptions: _list[TargetingOption]
 
 @typing.type_check_only
-class ListUsersResponse(typing_extensions.TypedDict, total=False):
+class ListUsersResponse(typing.TypedDict, total=False):
     nextPageToken: str
     users: _list[User]
 
 @typing.type_check_only
-class LocationList(typing_extensions.TypedDict, total=False):
+class LocationList(typing.TypedDict, total=False):
     advertiserId: str
     displayName: str
     locationListId: str
-    locationType: typing_extensions.Literal[
+    locationType: typing.Literal[
         "TARGETING_LOCATION_TYPE_UNSPECIFIED",
         "TARGETING_LOCATION_TYPE_PROXIMITY",
         "TARGETING_LOCATION_TYPE_REGIONAL",
@@ -2825,29 +2739,29 @@ class LocationList(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class LookbackWindow(typing_extensions.TypedDict, total=False):
+class LookbackWindow(typing.TypedDict, total=False):
     clickDays: int
     impressionDays: int
 
 @typing.type_check_only
-class LookupInvoiceCurrencyResponse(typing_extensions.TypedDict, total=False):
+class LookupInvoiceCurrencyResponse(typing.TypedDict, total=False):
     currencyCode: str
 
 @typing.type_check_only
-class ManualTrigger(typing_extensions.TypedDict, total=False):
+class ManualTrigger(typing.TypedDict, total=False):
     activationDurationMinutes: str
     advertiserId: str
     displayName: str
     latestActivationTime: str
     name: str
-    state: typing_extensions.Literal["STATE_UNSPECIFIED", "INACTIVE", "ACTIVE"]
+    state: typing.Literal["STATE_UNSPECIFIED", "INACTIVE", "ACTIVE"]
     triggerId: str
 
 @typing.type_check_only
-class MaximizeSpendBidStrategy(typing_extensions.TypedDict, total=False):
+class MaximizeSpendBidStrategy(typing.TypedDict, total=False):
     customBiddingAlgorithmId: str
     maxAverageCpmBidAmountMicros: str
-    performanceGoalType: typing_extensions.Literal[
+    performanceGoalType: typing.Literal[
         "BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_UNSPECIFIED",
         "BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CPA",
         "BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CPC",
@@ -2860,33 +2774,33 @@ class MaximizeSpendBidStrategy(typing_extensions.TypedDict, total=False):
     raiseBidForDeals: bool
 
 @typing.type_check_only
-class MeasurementConfig(typing_extensions.TypedDict, total=False):
+class MeasurementConfig(typing.TypedDict, total=False):
     dv360ToCmCostReportingEnabled: bool
     dv360ToCmDataSharingEnabled: bool
 
 @typing.type_check_only
-class MobileApp(typing_extensions.TypedDict, total=False):
+class MobileApp(typing.TypedDict, total=False):
     appId: str
     displayName: str
-    platform: typing_extensions.Literal["PLATFORM_UNSPECIFIED", "IOS", "ANDROID"]
+    platform: typing.Literal["PLATFORM_UNSPECIFIED", "IOS", "ANDROID"]
     publisher: str
 
 @typing.type_check_only
-class MobileDeviceIdList(typing_extensions.TypedDict, total=False):
+class MobileDeviceIdList(typing.TypedDict, total=False):
     consent: Consent
     mobileDeviceIds: _list[str]
 
 @typing.type_check_only
-class Money(typing_extensions.TypedDict, total=False):
+class Money(typing.TypedDict, total=False):
     currencyCode: str
     nanos: int
     units: str
 
 @typing.type_check_only
 class NativeContentPositionAssignedTargetingOptionDetails(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
-    contentPosition: typing_extensions.Literal[
+    contentPosition: typing.Literal[
         "NATIVE_CONTENT_POSITION_UNSPECIFIED",
         "NATIVE_CONTENT_POSITION_UNKNOWN",
         "NATIVE_CONTENT_POSITION_IN_ARTICLE",
@@ -2897,10 +2811,8 @@ class NativeContentPositionAssignedTargetingOptionDetails(
     targetingOptionId: str
 
 @typing.type_check_only
-class NativeContentPositionTargetingOptionDetails(
-    typing_extensions.TypedDict, total=False
-):
-    contentPosition: typing_extensions.Literal[
+class NativeContentPositionTargetingOptionDetails(typing.TypedDict, total=False):
+    contentPosition: typing.Literal[
         "NATIVE_CONTENT_POSITION_UNSPECIFIED",
         "NATIVE_CONTENT_POSITION_UNKNOWN",
         "NATIVE_CONTENT_POSITION_IN_ARTICLE",
@@ -2910,12 +2822,12 @@ class NativeContentPositionTargetingOptionDetails(
     ]
 
 @typing.type_check_only
-class NegativeKeyword(typing_extensions.TypedDict, total=False):
+class NegativeKeyword(typing.TypedDict, total=False):
     keywordValue: str
     name: str
 
 @typing.type_check_only
-class NegativeKeywordList(typing_extensions.TypedDict, total=False):
+class NegativeKeywordList(typing.TypedDict, total=False):
     advertiserId: str
     displayName: str
     name: str
@@ -2923,17 +2835,15 @@ class NegativeKeywordList(typing_extensions.TypedDict, total=False):
     targetedLineItemCount: str
 
 @typing.type_check_only
-class NegativeKeywordListAssignedTargetingOptionDetails(
-    typing_extensions.TypedDict, total=False
-):
+class NegativeKeywordListAssignedTargetingOptionDetails(typing.TypedDict, total=False):
     negativeKeywordListId: str
 
 @typing.type_check_only
-class ObaIcon(typing_extensions.TypedDict, total=False):
+class ObaIcon(typing.TypedDict, total=False):
     clickTrackingUrl: str
     dimensions: Dimensions
     landingPageUrl: str
-    position: typing_extensions.Literal[
+    position: typing.Literal[
         "OBA_ICON_POSITION_UNSPECIFIED",
         "OBA_ICON_POSITION_UPPER_RIGHT",
         "OBA_ICON_POSITION_UPPER_LEFT",
@@ -2946,22 +2856,20 @@ class ObaIcon(typing_extensions.TypedDict, total=False):
     viewTrackingUrl: str
 
 @typing.type_check_only
-class OmidAssignedTargetingOptionDetails(typing_extensions.TypedDict, total=False):
-    omid: typing_extensions.Literal["OMID_UNSPECIFIED", "OMID_FOR_MOBILE_DISPLAY_ADS"]
+class OmidAssignedTargetingOptionDetails(typing.TypedDict, total=False):
+    omid: typing.Literal["OMID_UNSPECIFIED", "OMID_FOR_MOBILE_DISPLAY_ADS"]
     targetingOptionId: str
 
 @typing.type_check_only
-class OmidTargetingOptionDetails(typing_extensions.TypedDict, total=False):
-    omid: typing_extensions.Literal["OMID_UNSPECIFIED", "OMID_FOR_MOBILE_DISPLAY_ADS"]
+class OmidTargetingOptionDetails(typing.TypedDict, total=False):
+    omid: typing.Literal["OMID_UNSPECIFIED", "OMID_FOR_MOBILE_DISPLAY_ADS"]
 
 @typing.type_check_only
-class OnScreenPositionAssignedTargetingOptionDetails(
-    typing_extensions.TypedDict, total=False
-):
-    adType: typing_extensions.Literal[
+class OnScreenPositionAssignedTargetingOptionDetails(typing.TypedDict, total=False):
+    adType: typing.Literal[
         "AD_TYPE_UNSPECIFIED", "AD_TYPE_DISPLAY", "AD_TYPE_VIDEO", "AD_TYPE_AUDIO"
     ]
-    onScreenPosition: typing_extensions.Literal[
+    onScreenPosition: typing.Literal[
         "ON_SCREEN_POSITION_UNSPECIFIED",
         "ON_SCREEN_POSITION_UNKNOWN",
         "ON_SCREEN_POSITION_ABOVE_THE_FOLD",
@@ -2970,8 +2878,8 @@ class OnScreenPositionAssignedTargetingOptionDetails(
     targetingOptionId: str
 
 @typing.type_check_only
-class OnScreenPositionTargetingOptionDetails(typing_extensions.TypedDict, total=False):
-    onScreenPosition: typing_extensions.Literal[
+class OnScreenPositionTargetingOptionDetails(typing.TypedDict, total=False):
+    onScreenPosition: typing.Literal[
         "ON_SCREEN_POSITION_UNSPECIFIED",
         "ON_SCREEN_POSITION_UNKNOWN",
         "ON_SCREEN_POSITION_ABOVE_THE_FOLD",
@@ -2979,19 +2887,17 @@ class OnScreenPositionTargetingOptionDetails(typing_extensions.TypedDict, total=
     ]
 
 @typing.type_check_only
-class OperatingSystemAssignedTargetingOptionDetails(
-    typing_extensions.TypedDict, total=False
-):
+class OperatingSystemAssignedTargetingOptionDetails(typing.TypedDict, total=False):
     displayName: str
     negative: bool
     targetingOptionId: str
 
 @typing.type_check_only
-class OperatingSystemTargetingOptionDetails(typing_extensions.TypedDict, total=False):
+class OperatingSystemTargetingOptionDetails(typing.TypedDict, total=False):
     displayName: str
 
 @typing.type_check_only
-class Operation(typing_extensions.TypedDict, total=False):
+class Operation(typing.TypedDict, total=False):
     done: bool
     error: Status
     metadata: dict[str, typing.Any]
@@ -2999,13 +2905,13 @@ class Operation(typing_extensions.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
-class Pacing(typing_extensions.TypedDict, total=False):
+class Pacing(typing.TypedDict, total=False):
     dailyMaxImpressions: str
     dailyMaxMicros: str
-    pacingPeriod: typing_extensions.Literal[
+    pacingPeriod: typing.Literal[
         "PACING_PERIOD_UNSPECIFIED", "PACING_PERIOD_DAILY", "PACING_PERIOD_FLIGHT"
     ]
-    pacingType: typing_extensions.Literal[
+    pacingType: typing.Literal[
         "PACING_TYPE_UNSPECIFIED",
         "PACING_TYPE_AHEAD",
         "PACING_TYPE_ASAP",
@@ -3013,9 +2919,9 @@ class Pacing(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class ParentEntityFilter(typing_extensions.TypedDict, total=False):
+class ParentEntityFilter(typing.TypedDict, total=False):
     fileType: _list[
-        typing_extensions.Literal[
+        typing.Literal[
             "FILE_TYPE_UNSPECIFIED",
             "FILE_TYPE_CAMPAIGN",
             "FILE_TYPE_MEDIA_PRODUCT",
@@ -3026,7 +2932,7 @@ class ParentEntityFilter(typing_extensions.TypedDict, total=False):
         ]
     ]
     filterIds: _list[str]
-    filterType: typing_extensions.Literal[
+    filterType: typing.Literal[
         "FILTER_TYPE_UNSPECIFIED",
         "FILTER_TYPE_NONE",
         "FILTER_TYPE_ADVERTISER_ID",
@@ -3037,10 +2943,8 @@ class ParentEntityFilter(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class ParentalStatusAssignedTargetingOptionDetails(
-    typing_extensions.TypedDict, total=False
-):
-    parentalStatus: typing_extensions.Literal[
+class ParentalStatusAssignedTargetingOptionDetails(typing.TypedDict, total=False):
+    parentalStatus: typing.Literal[
         "PARENTAL_STATUS_UNSPECIFIED",
         "PARENTAL_STATUS_PARENT",
         "PARENTAL_STATUS_NOT_A_PARENT",
@@ -3049,8 +2953,8 @@ class ParentalStatusAssignedTargetingOptionDetails(
     targetingOptionId: str
 
 @typing.type_check_only
-class ParentalStatusTargetingOptionDetails(typing_extensions.TypedDict, total=False):
-    parentalStatus: typing_extensions.Literal[
+class ParentalStatusTargetingOptionDetails(typing.TypedDict, total=False):
+    parentalStatus: typing.Literal[
         "PARENTAL_STATUS_UNSPECIFIED",
         "PARENTAL_STATUS_PARENT",
         "PARENTAL_STATUS_NOT_A_PARENT",
@@ -3058,11 +2962,11 @@ class ParentalStatusTargetingOptionDetails(typing_extensions.TypedDict, total=Fa
     ]
 
 @typing.type_check_only
-class Partner(typing_extensions.TypedDict, total=False):
+class Partner(typing.TypedDict, total=False):
     adServerConfig: PartnerAdServerConfig
     dataAccessConfig: PartnerDataAccessConfig
     displayName: str
-    entityStatus: typing_extensions.Literal[
+    entityStatus: typing.Literal[
         "ENTITY_STATUS_UNSPECIFIED",
         "ENTITY_STATUS_ACTIVE",
         "ENTITY_STATUS_ARCHIVED",
@@ -3077,12 +2981,12 @@ class Partner(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class PartnerAdServerConfig(typing_extensions.TypedDict, total=False):
+class PartnerAdServerConfig(typing.TypedDict, total=False):
     measurementConfig: MeasurementConfig
 
 @typing.type_check_only
-class PartnerCost(typing_extensions.TypedDict, total=False):
-    costType: typing_extensions.Literal[
+class PartnerCost(typing.TypedDict, total=False):
+    costType: typing.Literal[
         "PARTNER_COST_TYPE_UNSPECIFIED",
         "PARTNER_COST_TYPE_ADLOOX",
         "PARTNER_COST_TYPE_ADLOOX_PREBID",
@@ -3117,30 +3021,30 @@ class PartnerCost(typing_extensions.TypedDict, total=False):
     ]
     feeAmount: str
     feePercentageMillis: str
-    feeType: typing_extensions.Literal[
+    feeType: typing.Literal[
         "PARTNER_COST_FEE_TYPE_UNSPECIFIED",
         "PARTNER_COST_FEE_TYPE_CPM_FEE",
         "PARTNER_COST_FEE_TYPE_MEDIA_FEE",
     ]
-    invoiceType: typing_extensions.Literal[
+    invoiceType: typing.Literal[
         "PARTNER_COST_INVOICE_TYPE_UNSPECIFIED",
         "PARTNER_COST_INVOICE_TYPE_DV360",
         "PARTNER_COST_INVOICE_TYPE_PARTNER",
     ]
 
 @typing.type_check_only
-class PartnerDataAccessConfig(typing_extensions.TypedDict, total=False):
+class PartnerDataAccessConfig(typing.TypedDict, total=False):
     sdfConfig: SdfConfig
 
 @typing.type_check_only
-class PartnerGeneralConfig(typing_extensions.TypedDict, total=False):
+class PartnerGeneralConfig(typing.TypedDict, total=False):
     currencyCode: str
     timeZone: str
 
 @typing.type_check_only
-class PartnerRevenueModel(typing_extensions.TypedDict, total=False):
+class PartnerRevenueModel(typing.TypedDict, total=False):
     markupAmount: str
-    markupType: typing_extensions.Literal[
+    markupType: typing.Literal[
         "PARTNER_REVENUE_MODEL_MARKUP_TYPE_UNSPECIFIED",
         "PARTNER_REVENUE_MODEL_MARKUP_TYPE_CPM",
         "PARTNER_REVENUE_MODEL_MARKUP_TYPE_MEDIA_COST_MARKUP",
@@ -3148,11 +3052,11 @@ class PartnerRevenueModel(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class PerformanceGoal(typing_extensions.TypedDict, total=False):
+class PerformanceGoal(typing.TypedDict, total=False):
     performanceGoalAmountMicros: str
     performanceGoalPercentageMicros: str
     performanceGoalString: str
-    performanceGoalType: typing_extensions.Literal[
+    performanceGoalType: typing.Literal[
         "PERFORMANCE_GOAL_TYPE_UNSPECIFIED",
         "PERFORMANCE_GOAL_TYPE_CPM",
         "PERFORMANCE_GOAL_TYPE_CPC",
@@ -3171,11 +3075,11 @@ class PerformanceGoal(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class PerformanceGoalBidStrategy(typing_extensions.TypedDict, total=False):
+class PerformanceGoalBidStrategy(typing.TypedDict, total=False):
     customBiddingAlgorithmId: str
     maxAverageCpmBidAmountMicros: str
     performanceGoalAmountMicros: str
-    performanceGoalType: typing_extensions.Literal[
+    performanceGoalType: typing.Literal[
         "BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_UNSPECIFIED",
         "BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CPA",
         "BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CPC",
@@ -3187,30 +3091,30 @@ class PerformanceGoalBidStrategy(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class PoiAssignedTargetingOptionDetails(typing_extensions.TypedDict, total=False):
+class PoiAssignedTargetingOptionDetails(typing.TypedDict, total=False):
     displayName: str
     latitude: float
     longitude: float
     proximityRadiusAmount: float
-    proximityRadiusUnit: typing_extensions.Literal[
+    proximityRadiusUnit: typing.Literal[
         "DISTANCE_UNIT_UNSPECIFIED", "DISTANCE_UNIT_MILES", "DISTANCE_UNIT_KILOMETERS"
     ]
     targetingOptionId: str
 
 @typing.type_check_only
-class PoiSearchTerms(typing_extensions.TypedDict, total=False):
+class PoiSearchTerms(typing.TypedDict, total=False):
     poiQuery: str
 
 @typing.type_check_only
-class PoiTargetingOptionDetails(typing_extensions.TypedDict, total=False):
+class PoiTargetingOptionDetails(typing.TypedDict, total=False):
     displayName: str
     latitude: float
     longitude: float
 
 @typing.type_check_only
-class PrismaConfig(typing_extensions.TypedDict, total=False):
+class PrismaConfig(typing.TypedDict, total=False):
     prismaCpeCode: PrismaCpeCode
-    prismaType: typing_extensions.Literal[
+    prismaType: typing.Literal[
         "PRISMA_TYPE_UNSPECIFIED",
         "PRISMA_TYPE_DISPLAY",
         "PRISMA_TYPE_SEARCH",
@@ -3222,17 +3126,17 @@ class PrismaConfig(typing_extensions.TypedDict, total=False):
     supplier: str
 
 @typing.type_check_only
-class PrismaCpeCode(typing_extensions.TypedDict, total=False):
+class PrismaCpeCode(typing.TypedDict, total=False):
     prismaClientCode: str
     prismaEstimateCode: str
     prismaProductCode: str
 
 @typing.type_check_only
 class ProximityLocationListAssignedTargetingOptionDetails(
-    typing_extensions.TypedDict, total=False
+    typing.TypedDict, total=False
 ):
     proximityLocationListId: str
-    proximityRadiusRange: typing_extensions.Literal[
+    proximityRadiusRange: typing.Literal[
         "PROXIMITY_RADIUS_RANGE_UNSPECIFIED",
         "PROXIMITY_RADIUS_RANGE_SMALL",
         "PROXIMITY_RADIUS_RANGE_MEDIUM",
@@ -3240,9 +3144,9 @@ class ProximityLocationListAssignedTargetingOptionDetails(
     ]
 
 @typing.type_check_only
-class PublisherReviewStatus(typing_extensions.TypedDict, total=False):
+class PublisherReviewStatus(typing.TypedDict, total=False):
     publisherName: str
-    status: typing_extensions.Literal[
+    status: typing.Literal[
         "REVIEW_STATUS_UNSPECIFIED",
         "REVIEW_STATUS_APPROVED",
         "REVIEW_STATUS_REJECTED",
@@ -3250,8 +3154,8 @@ class PublisherReviewStatus(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class RateDetails(typing_extensions.TypedDict, total=False):
-    inventorySourceRateType: typing_extensions.Literal[
+class RateDetails(typing.TypedDict, total=False):
+    inventorySourceRateType: typing.Literal[
         "INVENTORY_SOURCE_RATE_TYPE_UNSPECIFIED",
         "INVENTORY_SOURCE_RATE_TYPE_CPM_FIXED",
         "INVENTORY_SOURCE_RATE_TYPE_CPM_FLOOR",
@@ -3263,46 +3167,44 @@ class RateDetails(typing_extensions.TypedDict, total=False):
     unitsPurchased: str
 
 @typing.type_check_only
-class RegionalLocationListAssignedTargetingOptionDetails(
-    typing_extensions.TypedDict, total=False
-):
+class RegionalLocationListAssignedTargetingOptionDetails(typing.TypedDict, total=False):
     negative: bool
     regionalLocationListId: str
 
 @typing.type_check_only
-class ReplaceNegativeKeywordsRequest(typing_extensions.TypedDict, total=False):
+class ReplaceNegativeKeywordsRequest(typing.TypedDict, total=False):
     newNegativeKeywords: _list[NegativeKeyword]
 
 @typing.type_check_only
-class ReplaceNegativeKeywordsResponse(typing_extensions.TypedDict, total=False):
+class ReplaceNegativeKeywordsResponse(typing.TypedDict, total=False):
     negativeKeywords: _list[NegativeKeyword]
 
 @typing.type_check_only
-class ReplaceSitesRequest(typing_extensions.TypedDict, total=False):
+class ReplaceSitesRequest(typing.TypedDict, total=False):
     advertiserId: str
     newSites: _list[Site]
     partnerId: str
 
 @typing.type_check_only
-class ReplaceSitesResponse(typing_extensions.TypedDict, total=False):
+class ReplaceSitesResponse(typing.TypedDict, total=False):
     sites: _list[Site]
 
 @typing.type_check_only
-class ReviewStatusInfo(typing_extensions.TypedDict, total=False):
-    approvalStatus: typing_extensions.Literal[
+class ReviewStatusInfo(typing.TypedDict, total=False):
+    approvalStatus: typing.Literal[
         "APPROVAL_STATUS_UNSPECIFIED",
         "APPROVAL_STATUS_PENDING_NOT_SERVABLE",
         "APPROVAL_STATUS_PENDING_SERVABLE",
         "APPROVAL_STATUS_APPROVED_SERVABLE",
         "APPROVAL_STATUS_REJECTED_NOT_SERVABLE",
     ]
-    contentAndPolicyReviewStatus: typing_extensions.Literal[
+    contentAndPolicyReviewStatus: typing.Literal[
         "REVIEW_STATUS_UNSPECIFIED",
         "REVIEW_STATUS_APPROVED",
         "REVIEW_STATUS_REJECTED",
         "REVIEW_STATUS_PENDING",
     ]
-    creativeAndLandingPageReviewStatus: typing_extensions.Literal[
+    creativeAndLandingPageReviewStatus: typing.Literal[
         "REVIEW_STATUS_UNSPECIFIED",
         "REVIEW_STATUS_APPROVED",
         "REVIEW_STATUS_REJECTED",
@@ -3312,18 +3214,18 @@ class ReviewStatusInfo(typing_extensions.TypedDict, total=False):
     publisherReviewStatuses: _list[PublisherReviewStatus]
 
 @typing.type_check_only
-class ScriptError(typing_extensions.TypedDict, total=False):
+class ScriptError(typing.TypedDict, total=False):
     column: str
-    errorCode: typing_extensions.Literal[
+    errorCode: typing.Literal[
         "ERROR_CODE_UNSPECIFIED", "SYNTAX_ERROR", "DEPRECATED_SYNTAX", "INTERNAL_ERROR"
     ]
     errorMessage: str
     line: str
 
 @typing.type_check_only
-class SdfConfig(typing_extensions.TypedDict, total=False):
+class SdfConfig(typing.TypedDict, total=False):
     adminEmail: str
-    version: typing_extensions.Literal[
+    version: typing.Literal[
         "SDF_VERSION_UNSPECIFIED",
         "SDF_VERSION_3_1",
         "SDF_VERSION_4",
@@ -3340,14 +3242,14 @@ class SdfConfig(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class SdfDownloadTask(typing_extensions.TypedDict, total=False):
+class SdfDownloadTask(typing.TypedDict, total=False):
     resourceName: str
 
 @typing.type_check_only
-class SdfDownloadTaskMetadata(typing_extensions.TypedDict, total=False):
+class SdfDownloadTaskMetadata(typing.TypedDict, total=False):
     createTime: str
     endTime: str
-    version: typing_extensions.Literal[
+    version: typing.Literal[
         "SDF_VERSION_UNSPECIFIED",
         "SDF_VERSION_3_1",
         "SDF_VERSION_4",
@@ -3364,7 +3266,7 @@ class SdfDownloadTaskMetadata(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class SearchTargetingOptionsRequest(typing_extensions.TypedDict, total=False):
+class SearchTargetingOptionsRequest(typing.TypedDict, total=False):
     advertiserId: str
     businessChainSearchTerms: BusinessChainSearchTerms
     geoRegionSearchTerms: GeoRegionSearchTerms
@@ -3373,16 +3275,14 @@ class SearchTargetingOptionsRequest(typing_extensions.TypedDict, total=False):
     poiSearchTerms: PoiSearchTerms
 
 @typing.type_check_only
-class SearchTargetingOptionsResponse(typing_extensions.TypedDict, total=False):
+class SearchTargetingOptionsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     targetingOptions: _list[TargetingOption]
 
 @typing.type_check_only
-class SensitiveCategoryAssignedTargetingOptionDetails(
-    typing_extensions.TypedDict, total=False
-):
+class SensitiveCategoryAssignedTargetingOptionDetails(typing.TypedDict, total=False):
     excludedTargetingOptionId: str
-    sensitiveCategory: typing_extensions.Literal[
+    sensitiveCategory: typing.Literal[
         "SENSITIVE_CATEGORY_UNSPECIFIED",
         "SENSITIVE_CATEGORY_ADULT",
         "SENSITIVE_CATEGORY_DEROGATORY",
@@ -3404,8 +3304,8 @@ class SensitiveCategoryAssignedTargetingOptionDetails(
     ]
 
 @typing.type_check_only
-class SensitiveCategoryTargetingOptionDetails(typing_extensions.TypedDict, total=False):
-    sensitiveCategory: typing_extensions.Literal[
+class SensitiveCategoryTargetingOptionDetails(typing.TypedDict, total=False):
+    sensitiveCategory: typing.Literal[
         "SENSITIVE_CATEGORY_UNSPECIFIED",
         "SENSITIVE_CATEGORY_ADULT",
         "SENSITIVE_CATEGORY_DEROGATORY",
@@ -3427,30 +3327,28 @@ class SensitiveCategoryTargetingOptionDetails(typing_extensions.TypedDict, total
     ]
 
 @typing.type_check_only
-class Site(typing_extensions.TypedDict, total=False):
+class Site(typing.TypedDict, total=False):
     name: str
     urlOrAppId: str
 
 @typing.type_check_only
-class Status(typing_extensions.TypedDict, total=False):
+class Status(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
-class SubExchangeAssignedTargetingOptionDetails(
-    typing_extensions.TypedDict, total=False
-):
+class SubExchangeAssignedTargetingOptionDetails(typing.TypedDict, total=False):
     targetingOptionId: str
 
 @typing.type_check_only
-class SubExchangeTargetingOptionDetails(typing_extensions.TypedDict, total=False):
+class SubExchangeTargetingOptionDetails(typing.TypedDict, total=False):
     displayName: str
 
 @typing.type_check_only
-class TargetingExpansionConfig(typing_extensions.TypedDict, total=False):
+class TargetingExpansionConfig(typing.TypedDict, total=False):
     excludeFirstPartyAudience: bool
-    targetingExpansionLevel: typing_extensions.Literal[
+    targetingExpansionLevel: typing.Literal[
         "TARGETING_EXPANSION_LEVEL_UNSPECIFIED",
         "NO_EXPANSION",
         "LEAST_EXPANSION",
@@ -3461,7 +3359,7 @@ class TargetingExpansionConfig(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class TargetingOption(typing_extensions.TypedDict, total=False):
+class TargetingOption(typing.TypedDict, total=False):
     ageRangeDetails: AgeRangeTargetingOptionDetails
     appCategoryDetails: AppCategoryTargetingOptionDetails
     audioContentTypeDetails: AudioContentTypeTargetingOptionDetails
@@ -3494,7 +3392,7 @@ class TargetingOption(typing_extensions.TypedDict, total=False):
     sensitiveCategoryDetails: SensitiveCategoryTargetingOptionDetails
     subExchangeDetails: SubExchangeTargetingOptionDetails
     targetingOptionId: str
-    targetingType: typing_extensions.Literal[
+    targetingType: typing.Literal[
         "TARGETING_TYPE_UNSPECIFIED",
         "TARGETING_TYPE_CHANNEL",
         "TARGETING_TYPE_APP_CATEGORY",
@@ -3547,12 +3445,12 @@ class TargetingOption(typing_extensions.TypedDict, total=False):
     viewabilityDetails: ViewabilityTargetingOptionDetails
 
 @typing.type_check_only
-class ThirdPartyOnlyConfig(typing_extensions.TypedDict, total=False):
+class ThirdPartyOnlyConfig(typing.TypedDict, total=False):
     pixelOrderIdReportingEnabled: bool
 
 @typing.type_check_only
-class ThirdPartyUrl(typing_extensions.TypedDict, total=False):
-    type: typing_extensions.Literal[
+class ThirdPartyUrl(typing.TypedDict, total=False):
+    type: typing.Literal[
         "THIRD_PARTY_URL_TYPE_UNSPECIFIED",
         "THIRD_PARTY_URL_TYPE_IMPRESSION",
         "THIRD_PARTY_URL_TYPE_CLICK_TRACKING",
@@ -3573,31 +3471,29 @@ class ThirdPartyUrl(typing_extensions.TypedDict, total=False):
     url: str
 
 @typing.type_check_only
-class ThirdPartyVerifierAssignedTargetingOptionDetails(
-    typing_extensions.TypedDict, total=False
-):
+class ThirdPartyVerifierAssignedTargetingOptionDetails(typing.TypedDict, total=False):
     adloox: Adloox
     doubleVerify: DoubleVerify
     integralAdScience: IntegralAdScience
 
 @typing.type_check_only
-class TimeRange(typing_extensions.TypedDict, total=False):
+class TimeRange(typing.TypedDict, total=False):
     endTime: str
     startTime: str
 
 @typing.type_check_only
-class TimerEvent(typing_extensions.TypedDict, total=False):
+class TimerEvent(typing.TypedDict, total=False):
     name: str
     reportingName: str
 
 @typing.type_check_only
-class TrackingFloodlightActivityConfig(typing_extensions.TypedDict, total=False):
+class TrackingFloodlightActivityConfig(typing.TypedDict, total=False):
     floodlightActivityId: str
     postClickLookbackWindowDays: int
     postViewLookbackWindowDays: int
 
 @typing.type_check_only
-class Transcode(typing_extensions.TypedDict, total=False):
+class Transcode(typing.TypedDict, total=False):
     audioBitRateKbps: str
     audioSampleRateHz: str
     bitRateKbps: str
@@ -3609,9 +3505,9 @@ class Transcode(typing_extensions.TypedDict, total=False):
     transcoded: bool
 
 @typing.type_check_only
-class UniversalAdId(typing_extensions.TypedDict, total=False):
+class UniversalAdId(typing.TypedDict, total=False):
     id: str
-    registry: typing_extensions.Literal[
+    registry: typing.Literal[
         "UNIVERSAL_AD_REGISTRY_UNSPECIFIED",
         "UNIVERSAL_AD_REGISTRY_OTHER",
         "UNIVERSAL_AD_REGISTRY_AD_ID",
@@ -3621,12 +3517,12 @@ class UniversalAdId(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class UrlAssignedTargetingOptionDetails(typing_extensions.TypedDict, total=False):
+class UrlAssignedTargetingOptionDetails(typing.TypedDict, total=False):
     negative: bool
     url: str
 
 @typing.type_check_only
-class User(typing_extensions.TypedDict, total=False):
+class User(typing.TypedDict, total=False):
     assignedUserRoles: _list[AssignedUserRole]
     displayName: str
     email: str
@@ -3635,32 +3531,26 @@ class User(typing_extensions.TypedDict, total=False):
     userId: str
 
 @typing.type_check_only
-class UserRewardedContentAssignedTargetingOptionDetails(
-    typing_extensions.TypedDict, total=False
-):
+class UserRewardedContentAssignedTargetingOptionDetails(typing.TypedDict, total=False):
     targetingOptionId: str
-    userRewardedContent: typing_extensions.Literal[
+    userRewardedContent: typing.Literal[
         "USER_REWARDED_CONTENT_UNSPECIFIED",
         "USER_REWARDED_CONTENT_USER_REWARDED",
         "USER_REWARDED_CONTENT_NOT_USER_REWARDED",
     ]
 
 @typing.type_check_only
-class UserRewardedContentTargetingOptionDetails(
-    typing_extensions.TypedDict, total=False
-):
-    userRewardedContent: typing_extensions.Literal[
+class UserRewardedContentTargetingOptionDetails(typing.TypedDict, total=False):
+    userRewardedContent: typing.Literal[
         "USER_REWARDED_CONTENT_UNSPECIFIED",
         "USER_REWARDED_CONTENT_USER_REWARDED",
         "USER_REWARDED_CONTENT_NOT_USER_REWARDED",
     ]
 
 @typing.type_check_only
-class VideoPlayerSizeAssignedTargetingOptionDetails(
-    typing_extensions.TypedDict, total=False
-):
+class VideoPlayerSizeAssignedTargetingOptionDetails(typing.TypedDict, total=False):
     targetingOptionId: str
-    videoPlayerSize: typing_extensions.Literal[
+    videoPlayerSize: typing.Literal[
         "VIDEO_PLAYER_SIZE_UNSPECIFIED",
         "VIDEO_PLAYER_SIZE_SMALL",
         "VIDEO_PLAYER_SIZE_LARGE",
@@ -3669,8 +3559,8 @@ class VideoPlayerSizeAssignedTargetingOptionDetails(
     ]
 
 @typing.type_check_only
-class VideoPlayerSizeTargetingOptionDetails(typing_extensions.TypedDict, total=False):
-    videoPlayerSize: typing_extensions.Literal[
+class VideoPlayerSizeTargetingOptionDetails(typing.TypedDict, total=False):
+    videoPlayerSize: typing.Literal[
         "VIDEO_PLAYER_SIZE_UNSPECIFIED",
         "VIDEO_PLAYER_SIZE_SMALL",
         "VIDEO_PLAYER_SIZE_LARGE",
@@ -3679,11 +3569,9 @@ class VideoPlayerSizeTargetingOptionDetails(typing_extensions.TypedDict, total=F
     ]
 
 @typing.type_check_only
-class ViewabilityAssignedTargetingOptionDetails(
-    typing_extensions.TypedDict, total=False
-):
+class ViewabilityAssignedTargetingOptionDetails(typing.TypedDict, total=False):
     targetingOptionId: str
-    viewability: typing_extensions.Literal[
+    viewability: typing.Literal[
         "VIEWABILITY_UNSPECIFIED",
         "VIEWABILITY_10_PERCENT_OR_MORE",
         "VIEWABILITY_20_PERCENT_OR_MORE",
@@ -3697,8 +3585,8 @@ class ViewabilityAssignedTargetingOptionDetails(
     ]
 
 @typing.type_check_only
-class ViewabilityTargetingOptionDetails(typing_extensions.TypedDict, total=False):
-    viewability: typing_extensions.Literal[
+class ViewabilityTargetingOptionDetails(typing.TypedDict, total=False):
+    viewability: typing.Literal[
         "VIEWABILITY_UNSPECIFIED",
         "VIEWABILITY_10_PERCENT_OR_MORE",
         "VIEWABILITY_20_PERCENT_OR_MORE",

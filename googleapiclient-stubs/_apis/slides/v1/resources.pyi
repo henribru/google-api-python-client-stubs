@@ -2,7 +2,6 @@ import collections.abc
 import typing
 
 import httplib2
-import typing_extensions
 
 import googleapiclient.discovery
 import googleapiclient.http
@@ -25,9 +24,8 @@ class SlidesResource(googleapiclient.discovery.Resource):
                 *,
                 presentationId: str,
                 pageObjectId: str,
-                thumbnailProperties_mimeType: typing_extensions.Literal["PNG"]
-                | None = ...,
-                thumbnailProperties_thumbnailSize: typing_extensions.Literal[
+                thumbnailProperties_mimeType: typing.Literal["PNG"] | None = ...,
+                thumbnailProperties_thumbnailSize: typing.Literal[
                     "THUMBNAIL_SIZE_UNSPECIFIED",
                     "LARGE",
                     "MEDIUM",

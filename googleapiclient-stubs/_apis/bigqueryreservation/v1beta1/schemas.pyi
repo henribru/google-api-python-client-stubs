@@ -1,69 +1,65 @@
 import typing
 
-import typing_extensions
-
 _list = list
 
 @typing.type_check_only
-class Assignment(typing_extensions.TypedDict, total=False):
+class Assignment(typing.TypedDict, total=False):
     assignee: str
-    jobType: typing_extensions.Literal[
-        "JOB_TYPE_UNSPECIFIED", "PIPELINE", "QUERY", "ML_EXTERNAL"
-    ]
+    jobType: typing.Literal["JOB_TYPE_UNSPECIFIED", "PIPELINE", "QUERY", "ML_EXTERNAL"]
     name: str
-    state: typing_extensions.Literal["STATE_UNSPECIFIED", "PENDING", "ACTIVE"]
+    state: typing.Literal["STATE_UNSPECIFIED", "PENDING", "ACTIVE"]
 
 @typing.type_check_only
-class BiReservation(typing_extensions.TypedDict, total=False):
+class BiReservation(typing.TypedDict, total=False):
     name: str
     preferredTables: _list[TableReference]
     size: str
     updateTime: str
 
 @typing.type_check_only
-class CapacityCommitment(typing_extensions.TypedDict, total=False):
+class CapacityCommitment(typing.TypedDict, total=False):
     commitmentEndTime: str
     commitmentStartTime: str
     failureStatus: Status
     multiRegionAuxiliary: bool
     name: str
-    plan: typing_extensions.Literal[
+    plan: typing.Literal[
         "COMMITMENT_PLAN_UNSPECIFIED", "FLEX", "TRIAL", "MONTHLY", "ANNUAL"
     ]
-    renewalPlan: typing_extensions.Literal[
+    renewalPlan: typing.Literal[
         "COMMITMENT_PLAN_UNSPECIFIED", "FLEX", "TRIAL", "MONTHLY", "ANNUAL"
     ]
     slotCount: str
-    state: typing_extensions.Literal["STATE_UNSPECIFIED", "PENDING", "ACTIVE", "FAILED"]
+    state: typing.Literal["STATE_UNSPECIFIED", "PENDING", "ACTIVE", "FAILED"]
 
 @typing.type_check_only
-class Empty(typing_extensions.TypedDict, total=False): ...
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class ListAssignmentsResponse(typing_extensions.TypedDict, total=False):
+class ListAssignmentsResponse(typing.TypedDict, total=False):
     assignments: _list[Assignment]
     nextPageToken: str
 
 @typing.type_check_only
-class ListCapacityCommitmentsResponse(typing_extensions.TypedDict, total=False):
+class ListCapacityCommitmentsResponse(typing.TypedDict, total=False):
     capacityCommitments: _list[CapacityCommitment]
     nextPageToken: str
 
 @typing.type_check_only
-class ListReservationsResponse(typing_extensions.TypedDict, total=False):
+class ListReservationsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     reservations: _list[Reservation]
 
 @typing.type_check_only
-class MergeCapacityCommitmentsRequest(typing_extensions.TypedDict, total=False):
+class MergeCapacityCommitmentsRequest(typing.TypedDict, total=False):
     capacityCommitmentIds: _list[str]
 
 @typing.type_check_only
-class MoveAssignmentRequest(typing_extensions.TypedDict, total=False):
+class MoveAssignmentRequest(typing.TypedDict, total=False):
     destinationId: str
 
 @typing.type_check_only
-class Reservation(typing_extensions.TypedDict, total=False):
+class Reservation(typing.TypedDict, total=False):
     concurrency: str
     creationTime: str
     ignoreIdleSlots: bool
@@ -73,27 +69,27 @@ class Reservation(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class SearchAssignmentsResponse(typing_extensions.TypedDict, total=False):
+class SearchAssignmentsResponse(typing.TypedDict, total=False):
     assignments: _list[Assignment]
     nextPageToken: str
 
 @typing.type_check_only
-class SplitCapacityCommitmentRequest(typing_extensions.TypedDict, total=False):
+class SplitCapacityCommitmentRequest(typing.TypedDict, total=False):
     slotCount: str
 
 @typing.type_check_only
-class SplitCapacityCommitmentResponse(typing_extensions.TypedDict, total=False):
+class SplitCapacityCommitmentResponse(typing.TypedDict, total=False):
     first: CapacityCommitment
     second: CapacityCommitment
 
 @typing.type_check_only
-class Status(typing_extensions.TypedDict, total=False):
+class Status(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
-class TableReference(typing_extensions.TypedDict, total=False):
+class TableReference(typing.TypedDict, total=False):
     datasetId: str
     projectId: str
     tableId: str
