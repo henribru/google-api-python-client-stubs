@@ -105,7 +105,7 @@ class InternalRange(typing_extensions.TypedDict, total=False):
     ]
     prefixLength: int
     rangeStatus: typing_extensions.Literal[
-        "RANGE_STATUS_UNSPECIFIED", "ACTIVE", "OBSOLETE"
+        "RANGE_STATUS_UNSPECIFIED", "ACTIVE", "OBSOLETE", "CREATING", "DELETING"
     ]
     targetCidrRange: _list[str]
     updateTime: str

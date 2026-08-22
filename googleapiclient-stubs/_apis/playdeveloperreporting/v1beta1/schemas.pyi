@@ -5,6 +5,21 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class ApiservingMcpMcpToolVisibility(typing_extensions.TypedDict, total=False):
+    fieldVisibility: _list[ApiservingMcpMcpToolVisibilityFieldVisibility]
+    visibilityEnforcementStrategy: typing_extensions.Literal[
+        "VISIBILITY_ENFORCEMENT_STRATEGY_UNSPECIFIED", "COMBINE", "OVERRIDE"
+    ]
+    visibilityRestriction: str
+
+@typing.type_check_only
+class ApiservingMcpMcpToolVisibilityFieldVisibility(
+    typing_extensions.TypedDict, total=False
+):
+    restriction: str
+    selector: str
+
+@typing.type_check_only
 class GooglePlayDeveloperReportingV1beta1Anomaly(
     typing_extensions.TypedDict, total=False
 ):
@@ -13,6 +28,13 @@ class GooglePlayDeveloperReportingV1beta1Anomaly(
     metricSet: str
     name: str
     timelineSpec: GooglePlayDeveloperReportingV1beta1TimelineSpec
+
+@typing.type_check_only
+class GooglePlayDeveloperReportingV1beta1AnonRssAndSwapMemoryUsageMetricSet(
+    typing_extensions.TypedDict, total=False
+):
+    freshnessInfo: GooglePlayDeveloperReportingV1beta1FreshnessInfo
+    name: str
 
 @typing.type_check_only
 class GooglePlayDeveloperReportingV1beta1AnrRateMetricSet(
@@ -32,6 +54,13 @@ class GooglePlayDeveloperReportingV1beta1AppVersion(
     typing_extensions.TypedDict, total=False
 ):
     versionCode: str
+
+@typing.type_check_only
+class GooglePlayDeveloperReportingV1beta1BitmapMemoryUsageMetricSet(
+    typing_extensions.TypedDict, total=False
+):
+    freshnessInfo: GooglePlayDeveloperReportingV1beta1FreshnessInfo
+    name: str
 
 @typing.type_check_only
 class GooglePlayDeveloperReportingV1beta1CrashRateMetricSet(
@@ -188,6 +217,27 @@ class GooglePlayDeveloperReportingV1beta1OsVersion(
     apiLevel: str
 
 @typing.type_check_only
+class GooglePlayDeveloperReportingV1beta1QueryAnonRssAndSwapMemoryUsageMetricSetRequest(
+    typing_extensions.TypedDict, total=False
+):
+    dimensions: _list[str]
+    filter: str
+    metrics: _list[str]
+    pageSize: int
+    pageToken: str
+    timelineSpec: GooglePlayDeveloperReportingV1beta1TimelineSpec
+    userCohort: typing_extensions.Literal[
+        "USER_COHORT_UNSPECIFIED", "OS_PUBLIC", "OS_BETA", "APP_TESTERS"
+    ]
+
+@typing.type_check_only
+class GooglePlayDeveloperReportingV1beta1QueryAnonRssAndSwapMemoryUsageMetricSetResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    rows: _list[GooglePlayDeveloperReportingV1beta1MetricsRow]
+
+@typing.type_check_only
 class GooglePlayDeveloperReportingV1beta1QueryAnrRateMetricSetRequest(
     typing_extensions.TypedDict, total=False
 ):
@@ -203,6 +253,27 @@ class GooglePlayDeveloperReportingV1beta1QueryAnrRateMetricSetRequest(
 
 @typing.type_check_only
 class GooglePlayDeveloperReportingV1beta1QueryAnrRateMetricSetResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    rows: _list[GooglePlayDeveloperReportingV1beta1MetricsRow]
+
+@typing.type_check_only
+class GooglePlayDeveloperReportingV1beta1QueryBitmapMemoryUsageMetricSetRequest(
+    typing_extensions.TypedDict, total=False
+):
+    dimensions: _list[str]
+    filter: str
+    metrics: _list[str]
+    pageSize: int
+    pageToken: str
+    timelineSpec: GooglePlayDeveloperReportingV1beta1TimelineSpec
+    userCohort: typing_extensions.Literal[
+        "USER_COHORT_UNSPECIFIED", "OS_PUBLIC", "OS_BETA", "APP_TESTERS"
+    ]
+
+@typing.type_check_only
+class GooglePlayDeveloperReportingV1beta1QueryBitmapMemoryUsageMetricSetResponse(
     typing_extensions.TypedDict, total=False
 ):
     nextPageToken: str

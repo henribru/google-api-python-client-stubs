@@ -5,6 +5,12 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class AlloydbClhErrorsAlloyDbInternalDebugInfo(
+    typing_extensions.TypedDict, total=False
+):
+    originalError: str
+
+@typing.type_check_only
 class AuthorizedNetwork(typing_extensions.TypedDict, total=False):
     cidrRange: str
 
@@ -228,9 +234,21 @@ class ConnectionInfo(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ConnectionPoolConfig(typing_extensions.TypedDict, total=False):
     authproxyPoolerCount: int
+    authproxyPoolerScalingType: typing_extensions.Literal[
+        "POOLER_SCALING_TYPE_UNSPECIFIED",
+        "POOLER_NONE",
+        "POOLER_MACHINE_SIZED",
+        "POOLER_MANUAL_OVERRIDE",
+    ]
     enabled: bool
     flags: dict[str, typing.Any]
     poolerCount: int
+    poolerScalingType: typing_extensions.Literal[
+        "POOLER_SCALING_TYPE_UNSPECIFIED",
+        "POOLER_NONE",
+        "POOLER_MACHINE_SIZED",
+        "POOLER_MANUAL_OVERRIDE",
+    ]
 
 @typing.type_check_only
 class ContinuousBackupConfig(typing_extensions.TypedDict, total=False):
@@ -437,6 +455,7 @@ class Instance(typing_extensions.TypedDict, total=False):
     observabilityConfig: ObservabilityInstanceConfig
     outboundPublicIpAddresses: _list[str]
     pscInstanceConfig: PscInstanceConfig
+    pscInstanceInfo: PscInstanceInfo
     publicIpAddress: str
     queryInsightsConfig: QueryInsightsInstanceConfig
     readPoolConfig: ReadPoolConfig
@@ -646,10 +665,25 @@ class PscConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class PscInstanceConfig(typing_extensions.TypedDict, total=False):
     allowedConsumerProjects: _list[str]
+    pscAutoConnectionPolicyState: typing_extensions.Literal[
+        "PSC_AUTO_CONNECTION_POLICY_STATE_UNSPECIFIED", "ENABLED", "DISABLED"
+    ]
     pscAutoConnections: _list[PscAutoConnectionConfig]
+    pscAutoDnsState: typing_extensions.Literal[
+        "PSC_AUTO_DNS_STATE_UNSPECIFIED",
+        "PSC_AUTO_DNS_STATE_ENABLED",
+        "PSC_AUTO_DNS_STATE_DISABLED",
+    ]
     pscDnsName: str
     pscInterfaceConfigs: _list[PscInterfaceConfig]
     serviceAttachmentLink: str
+
+@typing.type_check_only
+class PscInstanceInfo(typing_extensions.TypedDict, total=False):
+    effectivePscAutoConnectionPolicy: bool
+    effectivePscAutoDnsEnabled: bool
+    pscAutoDnsNames: _list[str]
+    serviceConnectionPolicy: str
 
 @typing.type_check_only
 class PscInterfaceConfig(typing_extensions.TypedDict, total=False):
@@ -1062,6 +1096,9 @@ class StorageDatabasecenterPartnerapiV1mainDatabaseResourceHealthSignalData(
         "SIGNAL_TYPE_EXTENDED_SUPPORT",
         "SIGNAL_TYPE_PERFORMANCE_KPI_CHANGE",
         "SIGNAL_TYPE_VERSION_NEARING_END_OF_LIFE",
+        "SIGNAL_TYPE_HIGH_MAINTENANCE_DOWNTIME_RISK",
+        "SIGNAL_TYPE_LOW_CACHE_HIT_AND_MAINTENANCE_DOWNTIME",
+        "SIGNAL_TYPE_MISSING_ENHANCED_PROTECTION",
     ]
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "RESOLVED", "MUTED"]
 
@@ -1150,6 +1187,8 @@ class StorageDatabasecenterPartnerapiV1mainDatabaseResourceMetadata(
             "MODE_NATIVE",
             "MODE_MONGODB_COMPATIBLE",
             "MODE_DATASTORE",
+            "MODE_CLUSTER_ENABLED",
+            "MODE_CLUSTER_DISABLED",
         ]
     ]
     primaryResourceId: StorageDatabasecenterPartnerapiV1mainDatabaseResourceId
@@ -1293,6 +1332,9 @@ class StorageDatabasecenterPartnerapiV1mainDatabaseResourceRecommendationSignalD
         "SIGNAL_TYPE_EXTENDED_SUPPORT",
         "SIGNAL_TYPE_PERFORMANCE_KPI_CHANGE",
         "SIGNAL_TYPE_VERSION_NEARING_END_OF_LIFE",
+        "SIGNAL_TYPE_HIGH_MAINTENANCE_DOWNTIME_RISK",
+        "SIGNAL_TYPE_LOW_CACHE_HIT_AND_MAINTENANCE_DOWNTIME",
+        "SIGNAL_TYPE_MISSING_ENHANCED_PROTECTION",
     ]
 
 @typing.type_check_only
@@ -1524,7 +1566,7 @@ class StorageDatabasecenterProtoCommonProduct(typing_extensions.TypedDict, total
         "ENGINE_CLOUD_SPANNER_WITH_GOOGLESQL_DIALECT",
         "ENGINE_MEMORYSTORE_FOR_REDIS",
         "ENGINE_MEMORYSTORE_FOR_REDIS_CLUSTER",
-        "ENGINE_MEMORSTORE_FOR_VALKEY",
+        "ENGINE_MEMORYSTORE_FOR_VALKEY",
         "ENGINE_OTHER",
         "ENGINE_FIRESTORE_WITH_NATIVE_MODE",
         "ENGINE_FIRESTORE_WITH_DATASTORE_MODE",
@@ -1564,6 +1606,7 @@ class StorageDatabasecenterProtoCommonTypedValue(
 @typing.type_check_only
 class StringRestrictions(typing_extensions.TypedDict, total=False):
     allowedValues: _list[str]
+    caseAgnostic: bool
 
 @typing.type_check_only
 class SupportedDatabaseFlag(typing_extensions.TypedDict, total=False):
@@ -1681,7 +1724,12 @@ class User(typing_extensions.TypedDict, total=False):
     name: str
     password: str
     userType: typing_extensions.Literal[
-        "USER_TYPE_UNSPECIFIED", "ALLOYDB_BUILT_IN", "ALLOYDB_IAM_USER"
+        "USER_TYPE_UNSPECIFIED",
+        "ALLOYDB_BUILT_IN",
+        "ALLOYDB_IAM_USER",
+        "ALLOYDB_IAM_GROUP",
+        "ALLOYDB_IAM_GROUP_USER",
+        "ALLOYDB_IAM_GROUP_SERVICE_ACCOUNT",
     ]
 
 @typing.type_check_only

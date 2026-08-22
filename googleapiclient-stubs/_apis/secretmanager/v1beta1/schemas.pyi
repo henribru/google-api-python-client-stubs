@@ -120,6 +120,11 @@ class Replication(typing_extensions.TypedDict, total=False):
     userManaged: UserManaged
 
 @typing.type_check_only
+class ResourcePolicyMember(typing_extensions.TypedDict, total=False):
+    iamPolicyNamePrincipal: str
+    iamPolicyUidPrincipal: str
+
+@typing.type_check_only
 class Secret(typing_extensions.TypedDict, total=False):
     createTime: str
     labels: dict[str, typing.Any]

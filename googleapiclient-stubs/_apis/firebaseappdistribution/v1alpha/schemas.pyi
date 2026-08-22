@@ -18,14 +18,35 @@ class AndroidxCrawlerOutputRectangle(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GoogleFirebaseAppdistroV1Release(typing_extensions.TypedDict, total=False):
+    acceptedInvitationCount: int
+    androidPackageRegistrationState: typing_extensions.Literal[
+        "ANDROID_PACKAGE_REGISTRATION_STATE_UNSPECIFIED",
+        "REGISTERED",
+        "NOT_REGISTERED",
+        "REGISTERED_WITH_ANOTHER_CERTIFICATE_FINGERPRINT",
+    ]
     binaryDownloadUri: str
+    binaryType: typing_extensions.Literal[
+        "BINARY_TYPE_UNSPECIFIED", "IPA", "APK", "AAB"
+    ]
     buildVersion: str
     createTime: str
     displayVersion: str
     expireTime: str
+    feedbackCount: int
     firebaseConsoleUri: str
+    installationCount: int
     name: str
+    openInvitationCount: int
     releaseNotes: GoogleFirebaseAppdistroV1ReleaseNotes
+    testState: typing_extensions.Literal[
+        "TEST_STATE_UNSPECIFIED",
+        "NO_TESTS_REQUESTED",
+        "IN_PROGRESS",
+        "PASSED",
+        "FAILED",
+        "INCONCLUSIVE",
+    ]
     testingUri: str
     updateTime: str
 
@@ -326,6 +347,7 @@ class GoogleFirebaseAppdistroV1alphaGetUploadStatusResponse(
         "APP_NOT_FOUND",
         "AAB_ADHOC_SHARING_KEY_NOT_REGISTERED",
         "AAB_ANDROID_DEVELOPER_CONSOLE_ACCOUNT_NOT_FOUND",
+        "AAB_ANDROID_DEVELOPER_CONSOLE_PACKAGE_NOT_FOUND",
     ]
     message: str
     release: GoogleFirebaseAppdistroV1alphaRelease

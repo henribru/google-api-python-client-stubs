@@ -40,6 +40,12 @@ class Binding(typing_extensions.TypedDict, total=False):
     role: str
 
 @typing.type_check_only
+class CloudSQLSingleUserCredentials(typing_extensions.TypedDict, total=False):
+    instanceId: str
+    password: str
+    username: str
+
+@typing.type_check_only
 class CustomerManagedEncryption(typing_extensions.TypedDict, total=False):
     kmsKeyName: str
 
@@ -57,6 +63,10 @@ class DisableSecretVersionRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class EnableManagedRotationRequest(typing_extensions.TypedDict, total=False):
+    cloudSqlSingleUserCredentials: CloudSQLSingleUserCredentials
 
 @typing.type_check_only
 class EnableSecretVersionRequest(typing_extensions.TypedDict, total=False):
@@ -93,6 +103,11 @@ class Location(typing_extensions.TypedDict, total=False):
     locationId: str
     metadata: dict[str, typing.Any]
     name: str
+
+@typing.type_check_only
+class ManagedRotationStatus(typing_extensions.TypedDict, total=False):
+    error: Status
+    state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "INACTIVE"]
 
 @typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
@@ -147,7 +162,16 @@ class ReplicationStatus(typing_extensions.TypedDict, total=False):
     userManaged: UserManagedStatus
 
 @typing.type_check_only
+class ResourcePolicyMember(typing_extensions.TypedDict, total=False):
+    iamPolicyNamePrincipal: str
+    iamPolicyUidPrincipal: str
+
+@typing.type_check_only
+class RotateSecretRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class Rotation(typing_extensions.TypedDict, total=False):
+    managedRotationStatus: ManagedRotationStatus
     nextRotationTime: str
     rotationPeriod: str
 
@@ -160,8 +184,17 @@ class Secret(typing_extensions.TypedDict, total=False):
     expireTime: str
     labels: dict[str, typing.Any]
     name: str
+    policyMember: ResourcePolicyMember
     replication: Replication
     rotation: Rotation
+    secretType: typing_extensions.Literal[
+        "SECRET_TYPE_UNSPECIFIED",
+        "CLOUD_SQL_DB_CREDENTIALS",
+        "ACCESS_KEY",
+        "CERTIFICATE",
+        "OTHER_DB_CREDENTIALS",
+        "OTHER",
+    ]
     tags: dict[str, typing.Any]
     topics: _list[Topic]
     ttl: str

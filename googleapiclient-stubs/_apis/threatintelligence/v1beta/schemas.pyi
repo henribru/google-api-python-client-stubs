@@ -101,6 +101,7 @@ class Configuration(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ConfigurationDetail(typing_extensions.TypedDict, total=False):
+    customThreatScenario: CustomThreatScenarioConfig
     customerProfile: CustomerProfileConfig
     detailType: str
     technologyWatchlist: TechnologyWatchListConfig
@@ -110,6 +111,10 @@ class ConfigurationRevision(typing_extensions.TypedDict, total=False):
     createTime: str
     name: str
     snapshot: Configuration
+
+@typing.type_check_only
+class CustomThreatScenarioConfig(typing_extensions.TypedDict, total=False):
+    documentCondition: str
 
 @typing.type_check_only
 class CustomerProfileCitation(typing_extensions.TypedDict, total=False):
@@ -266,6 +271,10 @@ class FindingDetail(typing_extensions.TypedDict, total=False):
 class GenerateOrgProfileConfigurationRequest(typing_extensions.TypedDict, total=False):
     displayName: str
     domain: str
+
+@typing.type_check_only
+class GetPasswordResponse(typing_extensions.TypedDict, total=False):
+    password: str
 
 @typing.type_check_only
 class InitialAccessBrokerAlertDetail(typing_extensions.TypedDict, total=False):

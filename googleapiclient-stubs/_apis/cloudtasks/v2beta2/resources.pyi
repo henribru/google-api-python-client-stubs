@@ -28,6 +28,12 @@ class CloudTasksResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
+            class OperationsResource(googleapiclient.discovery.Resource):
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+
+            @typing.type_check_only
             class QueuesResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class TasksResource(googleapiclient.discovery.Resource):
@@ -38,6 +44,20 @@ class CloudTasksResource(googleapiclient.discovery.Resource):
                         body: AcknowledgeTaskRequest,
                         **kwargs: typing.Any,
                     ) -> EmptyHttpRequest: ...
+                    def batchCreate(
+                        self,
+                        *,
+                        parent: str,
+                        body: BatchCreateTasksRequest,
+                        **kwargs: typing.Any,
+                    ) -> OperationHttpRequest: ...
+                    def batchDelete(
+                        self,
+                        *,
+                        parent: str,
+                        body: BatchDeleteTasksRequest,
+                        **kwargs: typing.Any,
+                    ) -> OperationHttpRequest: ...
                     def buffer(
                         self,
                         *,
@@ -201,6 +221,7 @@ class CloudTasksResource(googleapiclient.discovery.Resource):
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> CmekConfigHttpRequest: ...
+            def operations(self) -> OperationsResource: ...
             def queues(self) -> QueuesResource: ...
 
         def locations(self) -> LocationsResource: ...
@@ -283,6 +304,14 @@ class LocationHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Location: ...
+
+@typing.type_check_only
+class OperationHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> Operation: ...
 
 @typing.type_check_only
 class PolicyHttpRequest(googleapiclient.http.HttpRequest):

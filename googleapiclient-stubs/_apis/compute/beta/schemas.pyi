@@ -1262,7 +1262,9 @@ class CircuitBreakers(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Commitment(typing_extensions.TypedDict, total=False):
     autoRenew: bool
-    category: typing_extensions.Literal["CATEGORY_UNSPECIFIED", "LICENSE", "MACHINE"]
+    category: typing_extensions.Literal[
+        "CATEGORY_UNSPECIFIED", "LICENSE", "MACHINE", "PERSISTENT_DISK"
+    ]
     creationTimestamp: str
     customEndTimestamp: str
     description: str
@@ -1274,6 +1276,7 @@ class Commitment(typing_extensions.TypedDict, total=False):
     mergeSourceCommitments: _list[str]
     name: str
     params: CommitmentParams
+    persistentDiskResources: _list[PersistentDiskResourceCommitment]
     plan: typing_extensions.Literal["INVALID", "THIRTY_SIX_MONTH", "TWELVE_MONTH"]
     region: str
     reservations: _list[Reservation]
@@ -1325,6 +1328,10 @@ class Commitment(typing_extensions.TypedDict, total=False):
         "MEMORY_OPTIMIZED_X4_480_8T",
         "MEMORY_OPTIMIZED_X4_960_12T",
         "MEMORY_OPTIMIZED_X4_960_16T",
+        "NETWORK_OPTIMIZED_C4N",
+        "NETWORK_OPTIMIZED_U4C",
+        "NETWORK_OPTIMIZED_U4P",
+        "NETWORK_OPTIMIZED_U4S",
         "STORAGE_OPTIMIZED_Z3",
         "TYPE_UNSPECIFIED",
     ]
@@ -2145,6 +2152,7 @@ class FutureReservation(typing_extensions.TypedDict, total=False):
         "CALENDAR", "DEFAULT", "RESERVATION_MODE_UNSPECIFIED"
     ]
     reservationName: str
+    resourceName: str
     schedulingType: typing_extensions.Literal[
         "GROUPED", "GROUP_MAINTENANCE_TYPE_UNSPECIFIED", "INDEPENDENT"
     ]
@@ -2154,6 +2162,7 @@ class FutureReservation(typing_extensions.TypedDict, total=False):
     specificReservationRequired: bool
     specificSkuProperties: FutureReservationSpecificSKUProperties
     status: FutureReservationStatus
+    storagePoolProperties: FutureReservationStoragePoolProperties
     timeWindow: FutureReservationTimeWindow
     zone: str
 
@@ -2186,6 +2195,7 @@ class FutureReservationStatus(typing_extensions.TypedDict, total=False):
         "AMENDMENT_STATUS_UNSPECIFIED",
     ]
     autoCreatedReservations: _list[str]
+    exapoolProvisionedCapacityGb: StoragePoolExapoolProvisionedCapacityGb
     existingMatchingUsageInfo: FutureReservationStatusExistingMatchingUsageInfo
     fulfilledCount: str
     lastKnownGoodState: FutureReservationStatusLastKnownGoodState
@@ -2206,6 +2216,7 @@ class FutureReservationStatus(typing_extensions.TypedDict, total=False):
         "PROVISIONING",
     ]
     specificSkuProperties: FutureReservationStatusSpecificSKUProperties
+    storagePoolProvisionedCapacity: FutureReservationStoragePoolProvisionedCapacity
 
 @typing.type_check_only
 class FutureReservationStatusExistingMatchingUsageInfo(
@@ -2254,6 +2265,22 @@ class FutureReservationStatusSpecificSKUProperties(
     typing_extensions.TypedDict, total=False
 ):
     sourceInstanceTemplateId: str
+
+@typing.type_check_only
+class FutureReservationStoragePoolProperties(typing_extensions.TypedDict, total=False):
+    requestedExapoolProvisionedCapacityGb: StoragePoolExapoolProvisionedCapacityGb
+    requestedStoragePoolProvisionedCapacity: (
+        FutureReservationStoragePoolProvisionedCapacity
+    )
+    storagePoolType: str
+
+@typing.type_check_only
+class FutureReservationStoragePoolProvisionedCapacity(
+    typing_extensions.TypedDict, total=False
+):
+    poolProvisionedCapacityGb: str
+    poolProvisionedIops: str
+    poolProvisionedThroughput: str
 
 @typing.type_check_only
 class FutureReservationTimeWindow(typing_extensions.TypedDict, total=False):
@@ -3168,6 +3195,11 @@ class Instance(typing_extensions.TypedDict, total=False):
     lastStartTimestamp: str
     lastStopTimestamp: str
     lastSuspendedTimestamp: str
+    localSsdEncryptionMode: typing_extensions.Literal[
+        "EPHEMERAL_KEY_ENCRYPTION",
+        "LOCAL_SSD_ENCRYPTION_MODE_UNSPECIFIED",
+        "STANDARD_ENCRYPTION",
+    ]
     machineType: str
     metadata: Metadata
     minCpuPlatform: str
@@ -3250,6 +3282,7 @@ class InstanceFlexibilityPolicyInstanceSelection(
 ):
     disks: _list[AttachedDisk]
     machineTypes: _list[str]
+    minCpuPlatform: str
     rank: str
 
 @typing.type_check_only
@@ -3890,6 +3923,11 @@ class InstanceProperties(typing_extensions.TypedDict, total=False):
         "KEY_REVOCATION_ACTION_TYPE_UNSPECIFIED", "NONE", "STOP"
     ]
     labels: dict[str, typing.Any]
+    localSsdEncryptionMode: typing_extensions.Literal[
+        "EPHEMERAL_KEY_ENCRYPTION",
+        "LOCAL_SSD_ENCRYPTION_MODE_UNSPECIFIED",
+        "STANDARD_ENCRYPTION",
+    ]
     machineType: str
     metadata: Metadata
     minCpuPlatform: str
@@ -5310,6 +5348,24 @@ class ManagedInstanceVersion(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
+class ManagedRuleset(typing_extensions.TypedDict, total=False):
+    changeLog: str
+    creationTimestamp: str
+    description: str
+    id: str
+    name: str
+    ruleIds: _list[str]
+    rulesetId: str
+    selfLink: str
+
+@typing.type_check_only
+class ManagedRulesetList(typing_extensions.TypedDict, total=False):
+    id: str
+    items: _list[ManagedRuleset]
+    nextPageToken: str
+    warning: dict[str, typing.Any]
+
+@typing.type_check_only
 class Metadata(typing_extensions.TypedDict, total=False):
     fingerprint: str
     items: _list[dict[str, typing.Any]]
@@ -6611,6 +6667,21 @@ class PeriodicPartialMaintenanceSchedule(typing_extensions.TypedDict, total=Fals
     windowStartTime: DateTime
 
 @typing.type_check_only
+class PersistentDiskResourceCommitment(typing_extensions.TypedDict, total=False):
+    amount: str
+    dimensionType: typing_extensions.Literal[
+        "CAPACITY_OPTIMIZED",
+        "DIMENSION_TYPE_UNSPECIFIED",
+        "READ_OPTIMIZED",
+        "WRITE_OPTIMIZED",
+    ]
+    productType: typing_extensions.Literal[
+        "HYPERDISK_EXAPOOL_BALANCED",
+        "HYPERDISK_EXAPOOL_THROUGHPUT",
+        "PRODUCT_TYPE_UNSPECIFIED",
+    ]
+
+@typing.type_check_only
 class Policy(typing_extensions.TypedDict, total=False):
     auditConfigs: _list[AuditConfig]
     bindings: _list[Binding]
@@ -6777,6 +6848,9 @@ class PublicAdvertisedPrefix(typing_extensions.TypedDict, total=False):
     ipv6AccessType: typing_extensions.Literal["EXTERNAL", "INTERNAL"]
     kind: str
     name: str
+    networkTier: typing_extensions.Literal[
+        "FIXED_STANDARD", "PREMIUM", "STANDARD", "STANDARD_OVERRIDES_FIXED_STANDARD"
+    ]
     pdpScope: typing_extensions.Literal["GLOBAL", "GLOBAL_AND_REGIONAL", "REGIONAL"]
     publicDelegatedPrefixs: _list[PublicAdvertisedPrefixPublicDelegatedPrefix]
     selfLink: str
@@ -6832,6 +6906,9 @@ class PublicDelegatedPrefix(typing_extensions.TypedDict, total=False):
         "INTERNAL_IPV6_SUBNETWORK_CREATION",
     ]
     name: str
+    networkTier: typing_extensions.Literal[
+        "FIXED_STANDARD", "PREMIUM", "STANDARD", "STANDARD_OVERRIDES_FIXED_STANDARD"
+    ]
     parentPrefix: str
     publicDelegatedSubPrefixs: _list[PublicDelegatedPrefixPublicDelegatedSubPrefix]
     purpose: typing_extensions.Literal[
@@ -7091,6 +7168,11 @@ class Reference(typing_extensions.TypedDict, total=False):
     referenceType: str
     referrer: str
     target: str
+
+@typing.type_check_only
+class RegexRewrite(typing_extensions.TypedDict, total=False):
+    pathPattern: str
+    pathSubstitution: str
 
 @typing.type_check_only
 class Region(typing_extensions.TypedDict, total=False):
@@ -7425,6 +7507,28 @@ class RegionTargetHttpsProxiesSetSslCertificatesRequest(
 @typing.type_check_only
 class RegionUrlMapsValidateRequest(typing_extensions.TypedDict, total=False):
     resource: UrlMap
+
+@typing.type_check_only
+class ReliabilityRisk(typing_extensions.TypedDict, total=False):
+    creationTimestamp: str
+    description: str
+    details: RiskDetails
+    id: str
+    kind: str
+    name: str
+    recommendation: RiskRecommendation
+    selfLink: str
+    selfLinkWithId: str
+
+@typing.type_check_only
+class ReliabilityRisksListResponse(typing_extensions.TypedDict, total=False):
+    etag: str
+    id: str
+    items: _list[ReliabilityRisk]
+    nextPageToken: str
+    selfLink: str
+    unreachables: _list[str]
+    warning: dict[str, typing.Any]
 
 @typing.type_check_only
 class RequestMirrorPolicy(typing_extensions.TypedDict, total=False):
@@ -7944,6 +8048,7 @@ class ResourceStatusPhysicalHostTopologyAdditionalAttributes(
     typing_extensions.TypedDict, total=False
 ):
     acceleratorTopologyIds: dict[str, typing.Any]
+    networkTopologyIds: dict[str, typing.Any]
 
 @typing.type_check_only
 class ResourceStatusReservationConsumptionInfo(
@@ -7956,6 +8061,7 @@ class ResourceStatusReservationConsumptionInfo(
 @typing.type_check_only
 class ResourceStatusScheduling(typing_extensions.TypedDict, total=False):
     availabilityDomain: int
+    gracefulShutdownTimestamp: str
     terminationTimestamp: str
 
 @typing.type_check_only
@@ -7964,6 +8070,28 @@ class ResourceStatusShutdownDetails(typing_extensions.TypedDict, total=False):
     requestTimestamp: str
     stopState: typing_extensions.Literal["PENDING_STOP", "STOPPING"]
     targetState: typing_extensions.Literal["DELETED", "STOPPED"]
+
+@typing.type_check_only
+class RiskDetails(typing_extensions.TypedDict, total=False):
+    duration: str
+    globalDnsInsight: RiskDetailsGlobalDnsInsight
+    lastUpdateTimestamp: str
+    severity: typing_extensions.Literal[
+        "CRITICAL", "HIGH", "LOW", "MEDIUM", "SEVERITY_UNSPECIFIED"
+    ]
+    type: typing_extensions.Literal["GLOBAL_DNS", "RISK_TYPE_UNSPECIFIED"]
+
+@typing.type_check_only
+class RiskDetailsGlobalDnsInsight(typing_extensions.TypedDict, total=False):
+    projectDefaultIsGlobalDns: bool
+    queryObservationWindow: str
+    riskyQueryCount: str
+    totalQueryCount: str
+
+@typing.type_check_only
+class RiskRecommendation(typing_extensions.TypedDict, total=False):
+    content: str
+    referenceUrl: str
 
 @typing.type_check_only
 class Rollout(typing_extensions.TypedDict, total=False):
@@ -8402,6 +8530,7 @@ class RouterStatus(typing_extensions.TypedDict, total=False):
 class RouterStatusBgpPeerStatus(typing_extensions.TypedDict, total=False):
     advertisedRoutes: _list[Route]
     bfdStatus: BfdStatus
+    depreferenced: bool
     enableIpv4: bool
     enableIpv6: bool
     ipAddress: str
@@ -8883,6 +9012,7 @@ class SecurityPolicyRuleRateLimitOptions(typing_extensions.TypedDict, total=Fals
     enforceOnKey: typing_extensions.Literal[
         "ALL",
         "ALL_IPS",
+        "ASN",
         "HTTP_COOKIE",
         "HTTP_HEADER",
         "HTTP_PATH",
@@ -8908,6 +9038,7 @@ class SecurityPolicyRuleRateLimitOptionsEnforceOnKeyConfig(
     enforceOnKeyType: typing_extensions.Literal[
         "ALL",
         "ALL_IPS",
+        "ASN",
         "HTTP_COOKIE",
         "HTTP_HEADER",
         "HTTP_PATH",
@@ -9479,6 +9610,7 @@ class StoragePool(typing_extensions.TypedDict, total=False):
     resourceStatus: StoragePoolResourceStatus
     selfLink: str
     selfLinkWithId: str
+    shareSettings: StoragePoolShareSettings
     state: typing_extensions.Literal["CREATING", "DELETING", "FAILED", "READY"]
     status: StoragePoolResourceStatus
     storagePoolType: str
@@ -9561,6 +9693,14 @@ class StoragePoolResourceStatus(typing_extensions.TypedDict, total=False):
     totalProvisionedDiskThroughput: str
 
 @typing.type_check_only
+class StoragePoolShareSettings(typing_extensions.TypedDict, total=False):
+    projectMap: dict[str, typing.Any]
+
+@typing.type_check_only
+class StoragePoolShareSettingsProjectConfig(typing_extensions.TypedDict, total=False):
+    projectId: str
+
+@typing.type_check_only
 class StoragePoolType(typing_extensions.TypedDict, total=False):
     creationTimestamp: str
     deprecated: DeprecationStatus
@@ -9628,6 +9768,9 @@ class Subnetwork(typing_extensions.TypedDict, total=False):
     ipv6AccessType: typing_extensions.Literal["EXTERNAL", "INTERNAL"]
     ipv6CidrRange: str
     ipv6GceEndpoint: typing_extensions.Literal["VM_AND_FR", "VM_ONLY"]
+    ipv6NetworkTier: typing_extensions.Literal[
+        "FIXED_STANDARD", "PREMIUM", "STANDARD", "STANDARD_OVERRIDES_FIXED_STANDARD"
+    ]
     kind: str
     logConfig: SubnetworkLogConfig
     name: str
@@ -10320,6 +10463,7 @@ class UrlRewrite(typing_extensions.TypedDict, total=False):
     hostRewrite: str
     pathPrefixRewrite: str
     pathTemplateRewrite: str
+    regexRewrite: RegexRewrite
 
 @typing.type_check_only
 class UsableSubnetwork(typing_extensions.TypedDict, total=False):

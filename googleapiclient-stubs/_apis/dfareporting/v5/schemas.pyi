@@ -496,6 +496,11 @@ class ClickThroughUrlSuffixProperties(typing_extensions.TypedDict, total=False):
     overrideInheritedSuffix: bool
 
 @typing.type_check_only
+class ColumnHeader(typing_extensions.TypedDict, total=False):
+    name: str
+    type: typing_extensions.Literal["COLUMN_TYPE_UNSPECIFIED", "DIMENSION", "METRIC"]
+
+@typing.type_check_only
 class CompanionClickThroughOverride(typing_extensions.TypedDict, total=False):
     clickThroughUrl: ClickThroughUrl
     creativeId: str
@@ -812,6 +817,11 @@ class Creative(typing_extensions.TypedDict, total=False):
     studioCreativeId: str
     studioTraffickedCreativeId: str
     subaccountId: str
+    syntheticContentAttestationStatus: typing_extensions.Literal[
+        "SYNTHETIC_CONTENT_ATTESTATION_STATUS_UNSPECIFIED",
+        "IS_SYNTHETIC",
+        "NOT_SYNTHETIC",
+    ]
     thirdPartyBackupImageImpressionsUrl: str
     thirdPartyRichMediaImpressionsUrl: str
     thirdPartyUrls: _list[ThirdPartyTrackingUrl]
@@ -2858,6 +2868,27 @@ class ReportCompatibleFields(typing_extensions.TypedDict, total=False):
     pivotedActivityMetrics: _list[Metric]
 
 @typing.type_check_only
+class ReportDataQueryRequest(typing_extensions.TypedDict, total=False):
+    dateRange: DateRange
+    dimensionFilters: _list[DimensionValue]
+    dimensionNames: _list[str]
+    maxResults: int
+    metricNames: _list[str]
+    pageToken: str
+    sortBys: _list[SortBy]
+
+@typing.type_check_only
+class ReportDataResponse(typing_extensions.TypedDict, total=False):
+    columnHeaders: _list[ColumnHeader]
+    nextPageToken: str
+    rows: _list[ReportDataRow]
+    totalRow: ReportDataRow
+
+@typing.type_check_only
+class ReportDataRow(typing_extensions.TypedDict, total=False):
+    values: _list[str]
+
+@typing.type_check_only
 class ReportList(typing_extensions.TypedDict, total=False):
     etag: str
     items: _list[Report]
@@ -2980,6 +3011,11 @@ class SkippableSetting(typing_extensions.TypedDict, total=False):
     progressOffset: VideoOffset
     skipOffset: VideoOffset
     skippable: bool
+
+@typing.type_check_only
+class SortBy(typing_extensions.TypedDict, total=False):
+    name: str
+    sortOrder: typing_extensions.Literal["ASCENDING", "DESCENDING"]
 
 @typing.type_check_only
 class SortedDimension(typing_extensions.TypedDict, total=False):

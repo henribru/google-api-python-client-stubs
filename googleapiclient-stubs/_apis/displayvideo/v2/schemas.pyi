@@ -93,6 +93,8 @@ class Advertiser(typing_extensions.TypedDict, total=False):
     ]
     creativeConfig: AdvertiserCreativeConfig
     dataAccessConfig: AdvertiserDataAccessConfig
+    defaultBusinessName: str
+    defaultLogoAssetId: str
     displayName: str
     entityStatus: typing_extensions.Literal[
         "ENTITY_STATUS_UNSPECIFIED",
@@ -703,6 +705,27 @@ class BusinessChainTargetingOptionDetails(typing_extensions.TypedDict, total=Fal
         "GEO_REGION_TYPE_COLLOQUIAL_AREA",
         "GEO_REGION_TYPE_POST_TOWN",
         "GEO_REGION_TYPE_WARD",
+        "GEO_REGION_TYPE_TOWN",
+        "GEO_REGION_TYPE_VILLAGE",
+        "GEO_REGION_TYPE_CITY_DISTRICT",
+        "GEO_REGION_TYPE_SUBURB",
+        "GEO_REGION_TYPE_HAMLET",
+        "GEO_REGION_TYPE_MUNICIPAL_DISTRICT",
+        "GEO_REGION_TYPE_COMMUNITY",
+        "GEO_REGION_TYPE_TOWNSHIP",
+        "GEO_REGION_TYPE_URBAN_DISTRICT",
+        "GEO_REGION_TYPE_RESIDENTIAL_AREA",
+        "GEO_REGION_TYPE_INDEPENDENT_CITY",
+        "GEO_REGION_TYPE_SECTOR",
+        "GEO_REGION_TYPE_AREA",
+        "GEO_REGION_TYPE_ESTATE",
+        "GEO_REGION_TYPE_PARISH",
+        "GEO_REGION_TYPE_SETTLEMENT",
+        "GEO_REGION_TYPE_ZONE",
+        "GEO_REGION_TYPE_COLONY",
+        "GEO_REGION_TYPE_INDUSTRIAL_AREA",
+        "GEO_REGION_TYPE_PROVINCIAL_CITY",
+        "GEO_REGION_TYPE_RURAL_DISTRICT",
     ]
 
 @typing.type_check_only
@@ -1056,6 +1079,7 @@ class CreateSdfDownloadTaskRequest(typing_extensions.TypedDict, total=False):
         "SDF_VERSION_9_1",
         "SDF_VERSION_9_2",
         "SDF_VERSION_10",
+        "SDF_VERSION_10_1",
     ]
 
 @typing.type_check_only
@@ -1149,6 +1173,11 @@ class Creative(typing_extensions.TypedDict, total=False):
     reviewStatus: ReviewStatusInfo
     skipOffset: AudioVideoOffset
     skippable: bool
+    syntheticContentAttestationStatus: typing_extensions.Literal[
+        "SYNTHETIC_CONTENT_ATTESTATION_STATUS_UNSPECIFIED",
+        "NOT_SYNTHETIC",
+        "IS_SYNTHETIC",
+    ]
     thirdPartyTag: str
     thirdPartyUrls: _list[ThirdPartyUrl]
     timerEvents: _list[TimerEvent]
@@ -2133,6 +2162,27 @@ class GeoRegionAssignedTargetingOptionDetails(typing_extensions.TypedDict, total
         "GEO_REGION_TYPE_COLLOQUIAL_AREA",
         "GEO_REGION_TYPE_POST_TOWN",
         "GEO_REGION_TYPE_WARD",
+        "GEO_REGION_TYPE_TOWN",
+        "GEO_REGION_TYPE_VILLAGE",
+        "GEO_REGION_TYPE_CITY_DISTRICT",
+        "GEO_REGION_TYPE_SUBURB",
+        "GEO_REGION_TYPE_HAMLET",
+        "GEO_REGION_TYPE_MUNICIPAL_DISTRICT",
+        "GEO_REGION_TYPE_COMMUNITY",
+        "GEO_REGION_TYPE_TOWNSHIP",
+        "GEO_REGION_TYPE_URBAN_DISTRICT",
+        "GEO_REGION_TYPE_RESIDENTIAL_AREA",
+        "GEO_REGION_TYPE_INDEPENDENT_CITY",
+        "GEO_REGION_TYPE_SECTOR",
+        "GEO_REGION_TYPE_AREA",
+        "GEO_REGION_TYPE_ESTATE",
+        "GEO_REGION_TYPE_PARISH",
+        "GEO_REGION_TYPE_SETTLEMENT",
+        "GEO_REGION_TYPE_ZONE",
+        "GEO_REGION_TYPE_COLONY",
+        "GEO_REGION_TYPE_INDUSTRIAL_AREA",
+        "GEO_REGION_TYPE_PROVINCIAL_CITY",
+        "GEO_REGION_TYPE_RURAL_DISTRICT",
     ]
     negative: bool
     targetingOptionId: str
@@ -2185,6 +2235,27 @@ class GeoRegionTargetingOptionDetails(typing_extensions.TypedDict, total=False):
         "GEO_REGION_TYPE_COLLOQUIAL_AREA",
         "GEO_REGION_TYPE_POST_TOWN",
         "GEO_REGION_TYPE_WARD",
+        "GEO_REGION_TYPE_TOWN",
+        "GEO_REGION_TYPE_VILLAGE",
+        "GEO_REGION_TYPE_CITY_DISTRICT",
+        "GEO_REGION_TYPE_SUBURB",
+        "GEO_REGION_TYPE_HAMLET",
+        "GEO_REGION_TYPE_MUNICIPAL_DISTRICT",
+        "GEO_REGION_TYPE_COMMUNITY",
+        "GEO_REGION_TYPE_TOWNSHIP",
+        "GEO_REGION_TYPE_URBAN_DISTRICT",
+        "GEO_REGION_TYPE_RESIDENTIAL_AREA",
+        "GEO_REGION_TYPE_INDEPENDENT_CITY",
+        "GEO_REGION_TYPE_SECTOR",
+        "GEO_REGION_TYPE_AREA",
+        "GEO_REGION_TYPE_ESTATE",
+        "GEO_REGION_TYPE_PARISH",
+        "GEO_REGION_TYPE_SETTLEMENT",
+        "GEO_REGION_TYPE_ZONE",
+        "GEO_REGION_TYPE_COLONY",
+        "GEO_REGION_TYPE_INDUSTRIAL_AREA",
+        "GEO_REGION_TYPE_PROVINCIAL_CITY",
+        "GEO_REGION_TYPE_RURAL_DISTRICT",
     ]
 
 @typing.type_check_only
@@ -3403,6 +3474,7 @@ class SdfConfig(typing_extensions.TypedDict, total=False):
         "SDF_VERSION_9_1",
         "SDF_VERSION_9_2",
         "SDF_VERSION_10",
+        "SDF_VERSION_10_1",
     ]
 
 @typing.type_check_only
@@ -3434,6 +3506,7 @@ class SdfDownloadTaskMetadata(typing_extensions.TypedDict, total=False):
         "SDF_VERSION_9_1",
         "SDF_VERSION_9_2",
         "SDF_VERSION_10",
+        "SDF_VERSION_10_1",
     ]
 
 @typing.type_check_only

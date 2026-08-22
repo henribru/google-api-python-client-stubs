@@ -38,7 +38,15 @@ class ApiKeysServiceResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
-                    self, *, name: str, etag: str | None = ..., **kwargs: typing.Any
+                    self,
+                    *,
+                    name: str,
+                    checkExistingUsage: typing_extensions.Literal[
+                        "CHECK_EXISTING_USAGE_UNSPECIFIED", "SKIP", "CHECK"
+                    ]
+                    | None = ...,
+                    etag: str | None = ...,
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
@@ -65,6 +73,10 @@ class ApiKeysServiceResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: V2Key,
+                    checkExistingUsage: typing_extensions.Literal[
+                        "CHECK_EXISTING_USAGE_UNSPECIFIED", "SKIP", "CHECK"
+                    ]
+                    | None = ...,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...

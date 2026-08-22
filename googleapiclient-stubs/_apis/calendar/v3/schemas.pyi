@@ -29,6 +29,7 @@ class Calendar(typing_extensions.TypedDict, total=False):
     etag: str
     id: str
     kind: str
+    labelProperties: LabelProperties
     location: str
     summary: str
     timeZone: str
@@ -170,6 +171,7 @@ class Event(typing_extensions.TypedDict, total=False):
     end: EventDateTime
     endTimeUnspecified: bool
     etag: str
+    eventLabelId: str
     eventType: str
     extendedProperties: dict[str, typing.Any]
     focusTimeProperties: EventFocusTimeProperties
@@ -242,7 +244,10 @@ class EventFocusTimeProperties(typing_extensions.TypedDict, total=False):
     declineMessage: str
 
 @typing.type_check_only
-class EventLabel(dict[str, typing.Any]): ...
+class EventLabel(typing_extensions.TypedDict, total=False):
+    backgroundColor: str
+    id: str
+    name: str
 
 @typing.type_check_only
 class EventOutOfOfficeProperties(typing_extensions.TypedDict, total=False):
@@ -307,7 +312,8 @@ class FreeBusyResponse(typing_extensions.TypedDict, total=False):
     timeMin: str
 
 @typing.type_check_only
-class LabelProperties(dict[str, typing.Any]): ...
+class LabelProperties(typing_extensions.TypedDict, total=False):
+    eventLabels: _list[EventLabel]
 
 @typing.type_check_only
 class Setting(typing_extensions.TypedDict, total=False):

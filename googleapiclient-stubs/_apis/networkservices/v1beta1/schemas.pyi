@@ -5,7 +5,30 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class AgentConnectivityTemplate(typing_extensions.TypedDict, total=False):
+    accessPath: typing_extensions.Literal[
+        "ACCESS_PATH_UNSPECIFIED", "CLIENT_TO_AGENT", "AGENT_TO_ANYWHERE"
+    ]
+    accessTypes: _list[
+        typing_extensions.Literal["ACCESS_TYPE_UNSPECIFIED", "PUBLIC", "PRIVATE"]
+    ]
+    agentCompute: typing_extensions.Literal[
+        "AGENT_COMPUTE_UNSPECIFIED", "GKE", "CLOUD_RUN", "BORG"
+    ]
+    createTime: str
+    deploymentModel: typing_extensions.Literal[
+        "DEPLOYMENT_MODEL_UNSPECIFIED", "CENTRALIZED", "AMBIENT"
+    ]
+    description: str
+    egressNetworkConfig: EgressNetworkConfig
+    etag: str
+    labels: dict[str, typing.Any]
+    name: str
+    updateTime: str
+
+@typing.type_check_only
 class AgentGateway(typing_extensions.TypedDict, total=False):
+    agentConnectivityTemplate: str
     agentGatewayCard: AgentGatewayAgentGatewayOutputCard
     createTime: str
     description: str
@@ -47,17 +70,11 @@ class AgentGatewayNetworkConfigDnsPeeringConfig(
 @typing.type_check_only
 class AgentGatewayNetworkConfigEgress(typing_extensions.TypedDict, total=False):
     networkAttachment: str
-    trustConfig: AgentGatewayNetworkConfigEgressTrustConfig
-
-@typing.type_check_only
-class AgentGatewayNetworkConfigEgressTrustConfig(
-    typing_extensions.TypedDict, total=False
-):
-    pemCertificates: _list[str]
 
 @typing.type_check_only
 class AgentGatewaySelfManaged(typing_extensions.TypedDict, total=False):
     resourceUri: str
+    resourceUris: _list[str]
 
 @typing.type_check_only
 class AuthzExtension(typing_extensions.TypedDict, total=False):
@@ -84,6 +101,20 @@ class AuthzExtension(typing_extensions.TypedDict, total=False):
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class DnsPeeringConfig(typing_extensions.TypedDict, total=False):
+    domain: str
+    targetNetwork: str
+
+@typing.type_check_only
+class EgressNetworkConfig(typing_extensions.TypedDict, total=False):
+    dnsPeeringConfig: DnsPeeringConfig
+    networkAttachment: str
+    trustConfig: str
+    vpcEgress: typing_extensions.Literal[
+        "VPC_EGRESS_UNSPECIFIED", "ALL_TRAFFIC", "PRIVATE_RANGES_ONLY"
+    ]
+
+@typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -106,6 +137,76 @@ class EndpointPolicy(typing_extensions.TypedDict, total=False):
         "ENDPOINT_POLICY_TYPE_UNSPECIFIED", "SIDECAR_PROXY", "GRPC_SERVER"
     ]
     updateTime: str
+
+@typing.type_check_only
+class ExtensionBinding(typing_extensions.TypedDict, total=False):
+    createTime: str
+    description: str
+    etag: str
+    failOpen: bool
+    labels: dict[str, typing.Any]
+    matchConditions: _list[ExtensionBindingMatchCondition]
+    name: str
+    priority: int
+    producerExtension: str
+    producerMetadata: dict[str, typing.Any]
+    target: ExtensionBindingTarget
+    updateTime: str
+
+@typing.type_check_only
+class ExtensionBindingMatchCondition(typing_extensions.TypedDict, total=False):
+    to: ExtensionBindingMatchConditionTo
+
+@typing.type_check_only
+class ExtensionBindingMatchConditionHeaderMatch(
+    typing_extensions.TypedDict, total=False
+):
+    name: str
+    value: ExtensionBindingMatchConditionStringMatch
+
+@typing.type_check_only
+class ExtensionBindingMatchConditionStringMatch(
+    typing_extensions.TypedDict, total=False
+):
+    contains: str
+    exact: str
+    ignoreCase: bool
+    prefix: str
+    suffix: str
+
+@typing.type_check_only
+class ExtensionBindingMatchConditionTo(typing_extensions.TypedDict, total=False):
+    destination: ExtensionBindingMatchConditionToDestination
+    notDestination: ExtensionBindingMatchConditionToDestination
+
+@typing.type_check_only
+class ExtensionBindingMatchConditionToDestination(
+    typing_extensions.TypedDict, total=False
+):
+    headerSet: ExtensionBindingMatchConditionToDestinationHeaderSet
+    hosts: _list[ExtensionBindingMatchConditionStringMatch]
+    paths: _list[ExtensionBindingMatchConditionStringMatch]
+    resources: _list[ExtensionBindingMatchConditionStringMatch]
+
+@typing.type_check_only
+class ExtensionBindingMatchConditionToDestinationHeaderSet(
+    typing_extensions.TypedDict, total=False
+):
+    headers: _list[ExtensionBindingMatchConditionHeaderMatch]
+
+@typing.type_check_only
+class ExtensionBindingTarget(typing_extensions.TypedDict, total=False):
+    resources: _list[str]
+    scope: ExtensionBindingTargetScope
+
+@typing.type_check_only
+class ExtensionBindingTargetScope(typing_extensions.TypedDict, total=False):
+    parent: str
+    resourceTypes: _list[
+        typing_extensions.Literal[
+            "RESOURCE_TYPE_UNSPECIFIED", "AI_APPLICATION", "AGENT_GATEWAY"
+        ]
+    ]
 
 @typing.type_check_only
 class ExtensionChain(typing_extensions.TypedDict, total=False):
@@ -465,6 +566,12 @@ class LbTrafficExtension(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
+class ListAgentConnectivityTemplatesResponse(typing_extensions.TypedDict, total=False):
+    agentConnectivityTemplates: _list[AgentConnectivityTemplate]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
 class ListAgentGatewaysResponse(typing_extensions.TypedDict, total=False):
     agentGateways: _list[AgentGateway]
     nextPageToken: str
@@ -479,6 +586,12 @@ class ListAuthzExtensionsResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ListEndpointPoliciesResponse(typing_extensions.TypedDict, total=False):
     endpointPolicies: _list[EndpointPolicy]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
+class ListExtensionBindingsResponse(typing_extensions.TypedDict, total=False):
+    extensionBindings: _list[ExtensionBinding]
     nextPageToken: str
     unreachable: _list[str]
 
@@ -551,6 +664,12 @@ class ListMeshesResponse(typing_extensions.TypedDict, total=False):
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
+    unreachable: _list[str]
+
+@typing.type_check_only
+class ListProducerExtensionsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    producerExtensions: _list[ProducerExtension]
     unreachable: _list[str]
 
 @typing.type_check_only
@@ -662,6 +781,34 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     statusMessage: str
     target: str
     verb: str
+
+@typing.type_check_only
+class ProducerExtension(typing_extensions.TypedDict, total=False):
+    createTime: str
+    description: str
+    etag: str
+    extensionSettings: ProducerExtensionExtensionSettings
+    labels: dict[str, typing.Any]
+    name: str
+    phase: typing_extensions.Literal["PHASE_UNSPECIFIED", "TRAFFIC", "AUTHZ"]
+    updateTime: str
+
+@typing.type_check_only
+class ProducerExtensionExtensionSettings(typing_extensions.TypedDict, total=False):
+    authority: str
+    observabilityMode: bool
+    service: str
+    supportedEvents: _list[
+        typing_extensions.Literal[
+            "EVENT_TYPE_UNSPECIFIED",
+            "REQUEST_HEADERS",
+            "REQUEST_BODY",
+            "RESPONSE_HEADERS",
+            "RESPONSE_BODY",
+            "REQUEST_TRAILERS",
+            "RESPONSE_TRAILERS",
+        ]
+    ]
 
 @typing.type_check_only
 class RetryFilterPerRouteConfig(typing_extensions.TypedDict, total=False):

@@ -93,6 +93,7 @@ class ConnectorConfiguration(typing_extensions.TypedDict, total=False):
     endpoint: ConnectorConfigurationEndpoint
     network: ConnectorConfigurationNetwork
     parameters: dict[str, typing.Any]
+    tls: ConnectorConfigurationTls
 
 @typing.type_check_only
 class ConnectorConfigurationAsset(typing_extensions.TypedDict, total=False):
@@ -131,6 +132,25 @@ class ConnectorConfigurationPrivateServiceConnect(
 class ConnectorConfigurationSecret(typing_extensions.TypedDict, total=False):
     plaintext: str
     secretType: typing_extensions.Literal["SECRET_TYPE_UNSPECIFIED", "PLAINTEXT"]
+
+@typing.type_check_only
+class ConnectorConfigurationTls(typing_extensions.TypedDict, total=False):
+    mode: typing_extensions.Literal[
+        "MODE_UNSPECIFIED",
+        "DISABLE",
+        "ENCRYPT_VERIFY_NONE",
+        "ENCRYPT_VERIFY_CA",
+        "ENCRYPT_VERIFY_CA_AND_HOST",
+    ]
+    privatePki: ConnectorConfigurationTlsPrivatePki
+    webPki: ConnectorConfigurationTlsWebPki
+
+@typing.type_check_only
+class ConnectorConfigurationTlsPrivatePki(typing_extensions.TypedDict, total=False):
+    trustedCertificatesPem: str
+
+@typing.type_check_only
+class ConnectorConfigurationTlsWebPki(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class ConnectorConfigurationUsernamePassword(typing_extensions.TypedDict, total=False):

@@ -35,6 +35,13 @@ class DomainProperty(typing_extensions.TypedDict, total=False):
     url: str
 
 @typing.type_check_only
+class GeneratePlatformSiteTokensRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class GeneratePlatformSiteTokensResponse(typing_extensions.TypedDict, total=False):
+    siteTokens: _list[SiteToken]
+
+@typing.type_check_only
 class ListCtasResponse(typing_extensions.TypedDict, total=False):
     ctas: _list[Cta]
     nextPageToken: str
@@ -49,6 +56,7 @@ class NewsletterConfig(typing_extensions.TypedDict, total=False):
     customConsentText: str
     customMessage: str
     nameRequired: bool
+    optInRequired: bool
     title: str
 
 @typing.type_check_only
@@ -73,6 +81,9 @@ class Publication(typing_extensions.TypedDict, total=False):
     publicationId: str
     publicationPrivacyPolicyUrl: str
     publicationTosUrl: str
+    publicationType: typing_extensions.Literal[
+        "PUBLICATION_TYPE_UNSPECIFIED", "FOR_PROFIT", "NON_PROFIT"
+    ]
     regionCode: str
     rrmProduct: RrmProduct
     slProduct: SlProduct
@@ -84,12 +95,18 @@ class RrmProduct(typing_extensions.TypedDict, total=False):
     tosAcceptance: TosAcceptance
 
 @typing.type_check_only
+class SiteToken(typing_extensions.TypedDict, total=False):
+    domain: str
+    token: str
+
+@typing.type_check_only
 class SlProduct(typing_extensions.TypedDict, total=False):
     enabled: bool
     gcpProjectNumber: str
 
 @typing.type_check_only
 class TosAcceptance(typing_extensions.TypedDict, total=False):
+    emailOptIn: bool
     signer: str
     signerTitle: str
     userAccepted: bool

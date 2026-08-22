@@ -204,6 +204,7 @@ class OAuthToken(typing_extensions.TypedDict, total=False):
     accessToken: str
     email: str
     expireTime: str
+    expiresIn: str
     scopes: str
 
 @typing.type_check_only
@@ -293,6 +294,11 @@ class StopWorkstationRequest(typing_extensions.TypedDict, total=False):
     validateOnly: bool
 
 @typing.type_check_only
+class SuspendWorkstationRequest(typing_extensions.TypedDict, total=False):
+    etag: str
+    validateOnly: bool
+
+@typing.type_check_only
 class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
     permissions: _list[str]
 
@@ -328,6 +334,8 @@ class Workstation(typing_extensions.TypedDict, total=False):
         "STATE_RUNNING",
         "STATE_STOPPING",
         "STATE_STOPPED",
+        "STATE_SUSPENDING",
+        "STATE_SUSPENDED",
     ]
     uid: str
     updateTime: str
@@ -382,6 +390,7 @@ class WorkstationConfig(typing_extensions.TypedDict, total=False):
     grantWorkstationAdminRoleOnCreate: bool
     host: Host
     httpOptions: HttpOptions
+    idleAction: typing_extensions.Literal["IDLE_ACTION_UNSPECIFIED", "STOP", "SUSPEND"]
     idleTimeout: str
     labels: dict[str, typing.Any]
     maxUsableWorkstations: int

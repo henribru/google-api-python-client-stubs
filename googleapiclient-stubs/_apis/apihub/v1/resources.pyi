@@ -749,6 +749,16 @@ class APIHubResource(googleapiclient.discovery.Resource):
                     | None
                 ): ...
 
+            @typing.type_check_only
+            class ServersResource(googleapiclient.discovery.Resource):
+                def configureAndDeployServer(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoogleCloudApihubV1ConfigureAndDeployServerRequest,
+                    **kwargs: typing.Any,
+                ) -> GoogleLongrunningOperationHttpRequest: ...
+
             def collectApiData(
                 self,
                 *,
@@ -826,6 +836,7 @@ class APIHubResource(googleapiclient.discovery.Resource):
             def runtimeProjectAttachments(
                 self,
             ) -> RuntimeProjectAttachmentsResource: ...
+            def servers(self) -> ServersResource: ...
 
         def locations(self) -> LocationsResource: ...
 

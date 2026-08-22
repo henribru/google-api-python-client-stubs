@@ -22,6 +22,21 @@ class GoogleCloudAssuredworkloadsV1beta1AcknowledgeViolationResponse(
 ): ...
 
 @typing.type_check_only
+class GoogleCloudAssuredworkloadsV1beta1AggregateDbFrameworkComplianceReportResponse(
+    typing_extensions.TypedDict, total=False
+):
+    aggregatedComplianceReports: _list[
+        GoogleCloudAssuredworkloadsV1beta1AggregatedComplianceReport
+    ]
+
+@typing.type_check_only
+class GoogleCloudAssuredworkloadsV1beta1AggregatedComplianceReport(
+    typing_extensions.TypedDict, total=False
+):
+    controlAssessmentDetails: GoogleCloudAssuredworkloadsV1beta1ControlAssessmentDetails
+    reportTime: str
+
+@typing.type_check_only
 class GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -74,22 +89,67 @@ class GoogleCloudAssuredworkloadsV1beta1AssetMoveAnalysis(
     assetType: str
 
 @typing.type_check_only
-class GoogleCloudAssuredworkloadsV1beta1BatchAcknowledgeViolationsRequest(
+class GoogleCloudAssuredworkloadsV1beta1CELExpression(
     typing_extensions.TypedDict, total=False
 ):
-    acknowledgeType: typing_extensions.Literal[
-        "ACKNOWLEDGE_TYPE_UNSPECIFIED",
-        "SINGLE_VIOLATION",
-        "EXISTING_CHILD_RESOURCE_VIOLATIONS",
-    ]
-    comment: str
-    names: _list[str]
+    expression: str
+    resourceTypesValues: GoogleCloudAssuredworkloadsV1beta1StringList
 
 @typing.type_check_only
-class GoogleCloudAssuredworkloadsV1beta1BatchAcknowledgeViolationsResponse(
+class GoogleCloudAssuredworkloadsV1beta1CloudControlAssessmentDetails(
     typing_extensions.TypedDict, total=False
 ):
-    acknowledgedViolationsCount: int
+    evaluationState: typing_extensions.Literal[
+        "EVALUATION_STATE_UNSPECIFIED",
+        "EVALUATION_STATE_PASSED",
+        "EVALUATION_STATE_FAILED",
+        "EVALUATION_STATE_NOT_ASSESSED",
+    ]
+    findingsCount: int
+
+@typing.type_check_only
+class GoogleCloudAssuredworkloadsV1beta1CloudControlReport(
+    typing_extensions.TypedDict, total=False
+):
+    categories: _list[str]
+    cloudControl: str
+    cloudControlAssessmentDetails: (
+        GoogleCloudAssuredworkloadsV1beta1CloudControlAssessmentDetails
+    )
+    cloudControlDeployment: str
+    cloudControlType: typing_extensions.Literal[
+        "TYPE_UNSPECIFIED", "CUSTOM", "BUILT_IN"
+    ]
+    description: str
+    displayName: str
+    enforcementMode: typing_extensions.Literal[
+        "ENFORCEMENT_MODE_UNSPECIFIED", "PREVENTIVE", "DETECTIVE", "AUDIT"
+    ]
+    findingCategory: str
+    findingSeverity: typing_extensions.Literal[
+        "SEVERITY_UNSPECIFIED", "CRITICAL", "HIGH", "MEDIUM", "LOW"
+    ]
+    frameworkMajorRevisionIds: _list[str]
+    majorRevisionId: str
+    manualCloudControlAssessmentDetails: (
+        GoogleCloudAssuredworkloadsV1beta1ManualCloudControlAssessmentDetails
+    )
+    minorRevisionId: str
+    rules: _list[GoogleCloudAssuredworkloadsV1beta1Rule]
+    similarControls: _list[GoogleCloudAssuredworkloadsV1beta1SimilarControls]
+
+@typing.type_check_only
+class GoogleCloudAssuredworkloadsV1beta1ControlAssessmentDetails(
+    typing_extensions.TypedDict, total=False
+):
+    assessedPassingControlIds: _list[str]
+    assessedPassingControls: int
+    failingControlIds: _list[str]
+    failingControls: int
+    notAssessedControlIds: _list[str]
+    notAssessedControls: int
+    passingControlIds: _list[str]
+    passingControls: int
 
 @typing.type_check_only
 class GoogleCloudAssuredworkloadsV1beta1CreateWorkloadOperationMetadata(
@@ -149,6 +209,91 @@ class GoogleCloudAssuredworkloadsV1beta1CreateWorkloadOperationMetadata(
     resourceSettings: _list[GoogleCloudAssuredworkloadsV1beta1WorkloadResourceSettings]
 
 @typing.type_check_only
+class GoogleCloudAssuredworkloadsV1beta1DbControlComplianceSummary(
+    typing_extensions.TypedDict, total=False
+):
+    cloudControlReports: _list[GoogleCloudAssuredworkloadsV1beta1CloudControlReport]
+    complianceFrameworks: _list[str]
+    control: str
+    controlResponsibilityType: typing_extensions.Literal[
+        "REGULATORY_CONTROL_RESPONSIBILITY_TYPE_UNSPECIFIED",
+        "GOOGLE",
+        "CUSTOMER",
+        "SHARED",
+    ]
+    description: str
+    displayName: str
+    isFakeControl: bool
+    name: str
+    overallEvaluationState: typing_extensions.Literal[
+        "EVALUATION_STATE_UNSPECIFIED",
+        "EVALUATION_STATE_PASSED",
+        "EVALUATION_STATE_FAILED",
+        "EVALUATION_STATE_NOT_ASSESSED",
+    ]
+    similarControls: _list[GoogleCloudAssuredworkloadsV1beta1SimilarControls]
+    totalFindingsCount: int
+
+@typing.type_check_only
+class GoogleCloudAssuredworkloadsV1beta1DbFindingSummary(
+    typing_extensions.TypedDict, total=False
+):
+    findingCategory: str
+    findingClass: typing_extensions.Literal[
+        "FINDING_CLASS_UNSPECIFIED",
+        "THREAT",
+        "VULNERABILITY",
+        "MISCONFIGURATION",
+        "OBSERVATION",
+        "SCC_ERROR",
+        "POSTURE_VIOLATION",
+        "TOXIC_COMBINATION",
+        "SENSITIVE_DATA_RISK",
+        "CHOKEPOINT",
+    ]
+    findingCount: str
+    name: str
+    organizationPolicyFindingCount: str
+    relatedFrameworks: _list[str]
+    resourceFindingCount: str
+    severity: typing_extensions.Literal[
+        "SEVERITY_UNSPECIFIED", "CRITICAL", "HIGH", "MEDIUM", "LOW"
+    ]
+    updateTime: str
+
+@typing.type_check_only
+class GoogleCloudAssuredworkloadsV1beta1DbFrameworkComplianceSummary(
+    typing_extensions.TypedDict, total=False
+):
+    controlAssessmentDetails: GoogleCloudAssuredworkloadsV1beta1ControlAssessmentDetails
+    controlsPassingTrend: GoogleCloudAssuredworkloadsV1beta1Trend
+    findingCount: str
+    framework: str
+    frameworkCategories: _list[
+        typing_extensions.Literal[
+            "FRAMEWORK_CATEGORY_UNSPECIFIED",
+            "INDUSTRY_DEFINED_STANDARD",
+            "ASSURED_WORKLOADS",
+            "DATA_SECURITY",
+            "GOOGLE_BEST_PRACTICES",
+            "CUSTOM_FRAMEWORK",
+        ]
+    ]
+    frameworkDisplayName: str
+    frameworkType: typing_extensions.Literal[
+        "FRAMEWORK_TYPE_UNSPECIFIED", "BUILT_IN", "CUSTOM"
+    ]
+    majorRevisionId: str
+    minorRevisionId: str
+    name: str
+    supportedCloudProviders: _list[
+        typing_extensions.Literal["CLOUD_PROVIDER_UNSPECIFIED", "AWS", "AZURE", "GCP"]
+    ]
+    targetResourceDetails: _list[
+        GoogleCloudAssuredworkloadsV1beta1TargetResourceDetails
+    ]
+
+@typing.type_check_only
 class GoogleCloudAssuredworkloadsV1beta1EnableComplianceUpdatesResponse(
     typing_extensions.TypedDict, total=False
 ): ...
@@ -157,6 +302,63 @@ class GoogleCloudAssuredworkloadsV1beta1EnableComplianceUpdatesResponse(
 class GoogleCloudAssuredworkloadsV1beta1EnableResourceMonitoringResponse(
     typing_extensions.TypedDict, total=False
 ): ...
+
+@typing.type_check_only
+class GoogleCloudAssuredworkloadsV1beta1FetchDbFrameworkComplianceReportResponse(
+    typing_extensions.TypedDict, total=False
+):
+    controlAssessmentDetails: GoogleCloudAssuredworkloadsV1beta1ControlAssessmentDetails
+    framework: str
+    frameworkCategories: _list[
+        typing_extensions.Literal[
+            "FRAMEWORK_CATEGORY_UNSPECIFIED",
+            "INDUSTRY_DEFINED_STANDARD",
+            "ASSURED_WORKLOADS",
+            "DATA_SECURITY",
+            "GOOGLE_BEST_PRACTICES",
+            "CUSTOM_FRAMEWORK",
+        ]
+    ]
+    frameworkDescription: str
+    frameworkDisplayName: str
+    frameworkType: typing_extensions.Literal[
+        "FRAMEWORK_TYPE_UNSPECIFIED", "BUILT_IN", "CUSTOM"
+    ]
+    majorRevisionId: str
+    minorRevisionId: str
+    name: str
+    supportedCloudProviders: _list[
+        typing_extensions.Literal["CLOUD_PROVIDER_UNSPECIFIED", "AWS", "AZURE", "GCP"]
+    ]
+    targetResourceDetails: _list[
+        GoogleCloudAssuredworkloadsV1beta1TargetResourceDetails
+    ]
+    updateTime: str
+
+@typing.type_check_only
+class GoogleCloudAssuredworkloadsV1beta1ListDbControlComplianceSummariesResponse(
+    typing_extensions.TypedDict, total=False
+):
+    dbControlComplianceSummaries: _list[
+        GoogleCloudAssuredworkloadsV1beta1DbControlComplianceSummary
+    ]
+    nextPageToken: str
+
+@typing.type_check_only
+class GoogleCloudAssuredworkloadsV1beta1ListDbFindingSummariesResponse(
+    typing_extensions.TypedDict, total=False
+):
+    dbFindingSummaries: _list[GoogleCloudAssuredworkloadsV1beta1DbFindingSummary]
+    nextPageToken: str
+
+@typing.type_check_only
+class GoogleCloudAssuredworkloadsV1beta1ListDbFrameworkComplianceSummariesResponse(
+    typing_extensions.TypedDict, total=False
+):
+    dbFrameworkComplianceSummaries: _list[
+        GoogleCloudAssuredworkloadsV1beta1DbFrameworkComplianceSummary
+    ]
+    nextPageToken: str
 
 @typing.type_check_only
 class GoogleCloudAssuredworkloadsV1beta1ListViolationsResponse(
@@ -179,6 +381,12 @@ class GoogleCloudAssuredworkloadsV1beta1ListWorkloadsResponse(
 ):
     nextPageToken: str
     workloads: _list[GoogleCloudAssuredworkloadsV1beta1Workload]
+
+@typing.type_check_only
+class GoogleCloudAssuredworkloadsV1beta1ManualCloudControlAssessmentDetails(
+    typing_extensions.TypedDict, total=False
+):
+    manualCloudControlGuide: _list[str]
 
 @typing.type_check_only
 class GoogleCloudAssuredworkloadsV1beta1MoveAnalysisGroup(
@@ -266,6 +474,49 @@ class GoogleCloudAssuredworkloadsV1beta1RevertArchivedResourceEventsResponse(
     typing_extensions.TypedDict, total=False
 ):
     movedEventsCount: int
+
+@typing.type_check_only
+class GoogleCloudAssuredworkloadsV1beta1Rule(typing_extensions.TypedDict, total=False):
+    celExpression: GoogleCloudAssuredworkloadsV1beta1CELExpression
+    description: str
+    ruleActionTypes: _list[
+        typing_extensions.Literal[
+            "RULE_ACTION_TYPE_UNSPECIFIED",
+            "RULE_ACTION_TYPE_PREVENTIVE",
+            "RULE_ACTION_TYPE_DETECTIVE",
+            "RULE_ACTION_TYPE_AUDIT",
+        ]
+    ]
+
+@typing.type_check_only
+class GoogleCloudAssuredworkloadsV1beta1SimilarControls(
+    typing_extensions.TypedDict, total=False
+):
+    controlId: str
+    framework: str
+
+@typing.type_check_only
+class GoogleCloudAssuredworkloadsV1beta1StringList(
+    typing_extensions.TypedDict, total=False
+):
+    values: _list[str]
+
+@typing.type_check_only
+class GoogleCloudAssuredworkloadsV1beta1TargetResourceDetails(
+    typing_extensions.TypedDict, total=False
+):
+    createTime: str
+    frameworkDeployment: str
+    majorRevisionId: str
+    minorRevisionId: str
+    targetResource: str
+    targetResourceDisplayName: str
+    updateTime: str
+
+@typing.type_check_only
+class GoogleCloudAssuredworkloadsV1beta1Trend(typing_extensions.TypedDict, total=False):
+    duration: str
+    valuePercent: float
 
 @typing.type_check_only
 class GoogleCloudAssuredworkloadsV1beta1UpdateDetails(

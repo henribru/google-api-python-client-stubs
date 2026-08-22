@@ -133,6 +133,12 @@ class ApksListResponse(typing_extensions.TypedDict, total=False):
     kind: str
 
 @typing.type_check_only
+class AppContactInformation(typing_extensions.TypedDict, total=False):
+    contactEmail: str
+    phoneNumber: str
+    websiteUrl: str
+
+@typing.type_check_only
 class AppDetails(typing_extensions.TypedDict, total=False):
     contactEmail: str
     contactPhone: str
@@ -161,6 +167,36 @@ class AppRecoveryAction(typing_extensions.TypedDict, total=False):
         "RECOVERY_STATUS_GENERATION_FAILED",
     ]
     targeting: Targeting
+
+@typing.type_check_only
+class AppStoreAppActiveApkSet(typing_extensions.TypedDict, total=False):
+    baseApkId: str
+    splitApkId: _list[str]
+
+@typing.type_check_only
+class AppStoreAppActiveApks(typing_extensions.TypedDict, total=False):
+    activeApkSets: _list[AppStoreAppActiveApkSet]
+
+@typing.type_check_only
+class AppStoreAppDetails(typing_extensions.TypedDict, total=False):
+    contactEmail: str
+    developerName: str
+    developerWebsite: str
+
+@typing.type_check_only
+class AppStoreAppPolicyDeclaration(typing_extensions.TypedDict, total=False):
+    declarationId: str
+    responses: _list[PolicyResponse]
+
+@typing.type_check_only
+class AppStoreAppStoreListing(typing_extensions.TypedDict, total=False):
+    appIconId: str
+    appName: str
+    fullDescription: str
+    languageCode: str
+    screenshotId: _list[str]
+    shortDescription: str
+    videoLink: str
 
 @typing.type_check_only
 class AppVersionList(typing_extensions.TypedDict, total=False):
@@ -427,9 +463,95 @@ class CancellationEvent(typing_extensions.TypedDict, total=False):
     eventTime: str
 
 @typing.type_check_only
+class CatalogAppView(typing_extensions.TypedDict, total=False):
+    activeVersionNames: _list[str]
+    appCategory: typing_extensions.Literal["APP_CATEGORY_UNSPECIFIED", "GAME", "APP"]
+    appContactInformation: AppContactInformation
+    appSubcategory: str
+    deliveryToken: str
+    developerDetails: DeveloperDetails
+    deviceCompatibilityRequirements: _list[DeviceCompatibilityRequirements]
+    excludedDevicesByIdentifier: _list[DeviceIdentifier]
+    excludedDevicesBySelector: _list[CatalogDeviceSelector]
+    firstReleaseDate: Date
+    hasInAppAds: bool
+    hasInAppPurchases: bool
+    iarcCertificateId: str
+    isAdultOnlyAudience: bool
+    lastPublishTime: str
+    localizedStoreListings: LocalizedStoreListings
+    packageName: str
+    permissions: _list[CatalogPermission]
+    permissionsSdk23: _list[CatalogPermission]
+    priceInTheUnitedStates: Money
+    privacyPolicyUrl: str
+    salePriceInTheUnitedStates: Money
+
+@typing.type_check_only
+class CatalogDeviceSelector(typing_extensions.TypedDict, total=False):
+    deviceTypeSelector: typing_extensions.Literal[
+        "DEVICE_TYPE_SELECTOR_UNSPECIFIED", "ANDROID_GO"
+    ]
+    ramSelector: RamSelector
+    socSelectors: _list[SocSelector]
+
+@typing.type_check_only
+class CatalogPermission(typing_extensions.TypedDict, total=False):
+    maxSdkVersion: int
+    name: str
+
+@typing.type_check_only
+class CatalogSdkVersion(typing_extensions.TypedDict, total=False):
+    maxSdkVersion: str
+    minSdkVersion: str
+    targetSdkVersion: str
+
+@typing.type_check_only
+class CoarseLocation(typing_extensions.TypedDict, total=False):
+    administrativeArea: str
+    locality: str
+    regionCode: str
+    sublocality: str
+
+@typing.type_check_only
 class Comment(typing_extensions.TypedDict, total=False):
     developerComment: DeveloperComment
     userComment: UserComment
+
+@typing.type_check_only
+class CompatibleScreen(typing_extensions.TypedDict, total=False):
+    density: typing_extensions.Literal[
+        "DENSITY_UNSPECIFIED",
+        "DENSITY_NODPI",
+        "DENSITY_LDPI",
+        "DENSITY_MDPI",
+        "DENSITY_TVDPI",
+        "DENSITY_HDPI",
+        "DENSITY_280",
+        "DENSITY_XHDPI",
+        "DENSITY_360",
+        "DENSITY_400",
+        "DENSITY_420",
+        "DENSITY_XXHDPI",
+        "DENSITY_560",
+        "DENSITY_XXXHDPI",
+    ]
+    screenSize: typing_extensions.Literal[
+        "SCREEN_SIZE_UNSPECIFIED",
+        "SCREEN_SIZE_SMALL",
+        "SCREEN_SIZE_NORMAL",
+        "SCREEN_SIZE_LARGE",
+        "SCREEN_SIZE_EXTRA_LARGE",
+    ]
+
+@typing.type_check_only
+class ConsumptionUsageEvent(typing_extensions.TypedDict, total=False):
+    consumptionItemDescription: str
+    consumptionTime: str
+    ipAddress: str
+    location: CoarseLocation
+    obfuscatedAccountId: str
+    obfuscatedProfileId: str
 
 @typing.type_check_only
 class ConvertRegionPricesRequest(typing_extensions.TypedDict, total=False):
@@ -459,9 +581,22 @@ class CountryTargeting(typing_extensions.TypedDict, total=False):
     includeRestOfWorld: bool
 
 @typing.type_check_only
+class CreateAppStoreHostedAppRequest(typing_extensions.TypedDict, total=False):
+    packageName: str
+
+@typing.type_check_only
+class CreateAppStoreHostedAppResponse(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class CreateDraftAppRecoveryRequest(typing_extensions.TypedDict, total=False):
     remoteInAppUpdate: RemoteInAppUpdate
     targeting: Targeting
+
+@typing.type_check_only
+class Date(typing_extensions.TypedDict, total=False):
+    day: int
+    month: int
+    year: int
 
 @typing.type_check_only
 class DeactivateBasePlanRequest(typing_extensions.TypedDict, total=False):
@@ -586,7 +721,40 @@ class DeveloperComment(typing_extensions.TypedDict, total=False):
     text: str
 
 @typing.type_check_only
+class DeveloperDetails(typing_extensions.TypedDict, total=False):
+    address: str
+    contactEmail: str
+    developerName: str
+    phoneNumber: str
+    website: str
+
+@typing.type_check_only
 class DeveloperInitiatedCancellation(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class DeviceCompatibilityRequirements(typing_extensions.TypedDict, total=False):
+    compatibleScreens: _list[CompatibleScreen]
+    glEsVersion: int
+    isScreenRequired: bool
+    nativePlatforms: _list[str]
+    requiredSoftwareLibraries: _list[str]
+    requiredSystemFeatures: _list[str]
+    requiresSmallestWidthDp: str
+    sdkVersion: CatalogSdkVersion
+    supportedGlTextures: _list[str]
+    supportedScreens: _list[
+        typing_extensions.Literal[
+            "SCREEN_SIZE_UNSPECIFIED",
+            "SCREEN_SIZE_SMALL",
+            "SCREEN_SIZE_NORMAL",
+            "SCREEN_SIZE_LARGE",
+            "SCREEN_SIZE_EXTRA_LARGE",
+        ]
+    ]
+    use32BitAbi: typing_extensions.Literal[
+        "USE_32_BIT_ABI_UNSPECIFIED", "USE_32_BIT_ABI_TRUE", "USE_32_BIT_ABI_OTHER"
+    ]
+    usesConfigurations: _list[UsesConfiguration]
 
 @typing.type_check_only
 class DeviceFeature(typing_extensions.TypedDict, total=False):
@@ -606,6 +774,11 @@ class DeviceGroup(typing_extensions.TypedDict, total=False):
 class DeviceId(typing_extensions.TypedDict, total=False):
     buildBrand: str
     buildDevice: str
+
+@typing.type_check_only
+class DeviceIdentifier(typing_extensions.TypedDict, total=False):
+    deviceBrand: str
+    deviceModel: str
 
 @typing.type_check_only
 class DeviceMetadata(typing_extensions.TypedDict, total=False):
@@ -843,6 +1016,10 @@ class Grant(typing_extensions.TypedDict, total=False):
     packageName: str
 
 @typing.type_check_only
+class Group(typing_extensions.TypedDict, total=False):
+    responses: _list[NestedPolicyResponse]
+
+@typing.type_check_only
 class Image(typing_extensions.TypedDict, total=False):
     aiGeneratedState: typing_extensions.Literal[
         "aiGeneratedStateUnspecified",
@@ -853,6 +1030,10 @@ class Image(typing_extensions.TypedDict, total=False):
     sha1: str
     sha256: str
     url: str
+
+@typing.type_check_only
+class ImageAsset(typing_extensions.TypedDict, total=False):
+    imageUrl: str
 
 @typing.type_check_only
 class ImagesDeleteAllResponse(typing_extensions.TypedDict, total=False):
@@ -979,13 +1160,6 @@ class InternalAppSharingArtifact(typing_extensions.TypedDict, total=False):
 class IntroductoryPriceDetails(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
-class IntroductoryPriceInfo(typing_extensions.TypedDict, total=False):
-    introductoryPriceAmountMicros: str
-    introductoryPriceCurrencyCode: str
-    introductoryPriceCycles: int
-    introductoryPricePeriod: str
-
-@typing.type_check_only
 class IntroductoryPriceOfferPhase(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -1007,6 +1181,11 @@ class ItemReplacement(typing_extensions.TypedDict, total=False):
         "DEFERRED",
         "KEEP_EXISTING",
     ]
+
+@typing.type_check_only
+class KeyedGroup(typing_extensions.TypedDict, total=False):
+    key: str
+    responses: _list[NestedPolicyResponse]
 
 @typing.type_check_only
 class LanguageTargeting(typing_extensions.TypedDict, total=False):
@@ -1044,6 +1223,11 @@ class ListOneTimeProductsResponse(typing_extensions.TypedDict, total=False):
     oneTimeProducts: _list[OneTimeProduct]
 
 @typing.type_check_only
+class ListRecentUpdateEventsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    recentUpdateEvents: _list[RecentUpdateEvent]
+
+@typing.type_check_only
 class ListReleaseSummariesResponse(typing_extensions.TypedDict, total=False):
     releases: _list[ReleaseSummary]
 
@@ -1074,6 +1258,24 @@ class Listing(typing_extensions.TypedDict, total=False):
 class ListingsListResponse(typing_extensions.TypedDict, total=False):
     kind: str
     listings: _list[Listing]
+
+@typing.type_check_only
+class LocalizedStoreListing(typing_extensions.TypedDict, total=False):
+    appName: str
+    featureGraphic: ImageAsset
+    fullDescription: str
+    icon: ImageAsset
+    languageCode: str
+    phoneScreenshots: ScreenshotSet
+    shortDescription: str
+    tabletRegularScreenshots: ScreenshotSet
+    tabletSmallScreenshots: ScreenshotSet
+    video: VideoAsset
+
+@typing.type_check_only
+class LocalizedStoreListings(typing_extensions.TypedDict, total=False):
+    defaultLanguageCode: str
+    localizedStoreListings: _list[LocalizedStoreListing]
 
 @typing.type_check_only
 class LocalizedText(typing_extensions.TypedDict, total=False):
@@ -1138,6 +1340,15 @@ class MultiAbi(typing_extensions.TypedDict, total=False):
 class MultiAbiTargeting(typing_extensions.TypedDict, total=False):
     alternatives: _list[MultiAbi]
     value: _list[MultiAbi]
+
+@typing.type_check_only
+class NestedPolicyResponse(typing_extensions.TypedDict, total=False):
+    booleanResponse: PolicyBooleanResponse
+    documentResponse: PolicyDocumentResponse
+    multipleChoiceResponse: PolicyMultipleChoiceResponse
+    questionId: str
+    singleChoiceResponse: PolicySingleChoiceResponse
+    stringResponse: PolicyStringResponse
 
 @typing.type_check_only
 class OfferDetails(typing_extensions.TypedDict, total=False):
@@ -1350,6 +1561,16 @@ class OrderHistory(typing_extensions.TypedDict, total=False):
     refundEvent: RefundEvent
 
 @typing.type_check_only
+class OrdersReviewRefundRequest(typing_extensions.TypedDict, total=False):
+    consumptionPercentageMilliunits: int
+    consumptionUsageEvents: _list[ConsumptionUsageEvent]
+    pendingRefundToken: str
+    refundPreference: typing_extensions.Literal[
+        "REFUND_PREFERENCE_UNSPECIFIED", "DECLINE", "APPROVE", "NEUTRAL"
+    ]
+    sampleContentProvided: bool
+
+@typing.type_check_only
 class OtherRecurringProduct(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -1424,6 +1645,47 @@ class PointsDetails(typing_extensions.TypedDict, total=False):
     pointsDiscountRateMicros: str
     pointsOfferId: str
     pointsSpent: str
+
+@typing.type_check_only
+class PolicyBooleanResponse(typing_extensions.TypedDict, total=False):
+    value: bool
+
+@typing.type_check_only
+class PolicyDocumentResponse(typing_extensions.TypedDict, total=False):
+    documentId: str
+    expiryDate: Date
+    nonExpiring: bool
+
+@typing.type_check_only
+class PolicyGroupResponse(typing_extensions.TypedDict, total=False):
+    groups: _list[Group]
+
+@typing.type_check_only
+class PolicyKeyedGroupResponse(typing_extensions.TypedDict, total=False):
+    groups: _list[KeyedGroup]
+
+@typing.type_check_only
+class PolicyMultipleChoiceResponse(typing_extensions.TypedDict, total=False):
+    values: _list[str]
+
+@typing.type_check_only
+class PolicyResponse(typing_extensions.TypedDict, total=False):
+    booleanResponse: PolicyBooleanResponse
+    documentResponse: PolicyDocumentResponse
+    groupResponse: PolicyGroupResponse
+    keyedGroupResponse: PolicyKeyedGroupResponse
+    multipleChoiceResponse: PolicyMultipleChoiceResponse
+    questionId: str
+    singleChoiceResponse: PolicySingleChoiceResponse
+    stringResponse: PolicyStringResponse
+
+@typing.type_check_only
+class PolicySingleChoiceResponse(typing_extensions.TypedDict, total=False):
+    value: str
+
+@typing.type_check_only
+class PolicyStringResponse(typing_extensions.TypedDict, total=False):
+    value: str
 
 @typing.type_check_only
 class PreorderDetails(typing_extensions.TypedDict, total=False): ...
@@ -1544,6 +1806,22 @@ class PurchaseOptionTaxAndComplianceSettings(typing_extensions.TypedDict, total=
 class PurchaseStateContext(typing_extensions.TypedDict, total=False):
     purchaseState: typing_extensions.Literal[
         "PURCHASE_STATE_UNSPECIFIED", "PURCHASED", "CANCELLED", "PENDING"
+    ]
+
+@typing.type_check_only
+class RamSelector(typing_extensions.TypedDict, total=False):
+    ramMbLessThanOrEqual: str
+
+@typing.type_check_only
+class RecentAppView(typing_extensions.TypedDict, total=False):
+    appView: CatalogAppView
+
+@typing.type_check_only
+class RecentUpdateEvent(typing_extensions.TypedDict, total=False):
+    eventTime: str
+    playAppPackageName: str
+    updateType: typing_extensions.Literal[
+        "UPDATE_TYPE_UNSPECIFIED", "MODIFICATION", "DELETION"
     ]
 
 @typing.type_check_only
@@ -1795,6 +2073,10 @@ class ScreenDensityTargeting(typing_extensions.TypedDict, total=False):
     value: _list[ScreenDensity]
 
 @typing.type_check_only
+class ScreenshotSet(typing_extensions.TypedDict, total=False):
+    screenshots: _list[ImageAsset]
+
+@typing.type_check_only
 class SdkVersion(typing_extensions.TypedDict, total=False):
     min: int
 
@@ -1807,6 +2089,11 @@ class SdkVersionTargeting(typing_extensions.TypedDict, total=False):
 class SignupPromotion(typing_extensions.TypedDict, total=False):
     oneTimeCode: OneTimeCode
     vanityCode: VanityCode
+
+@typing.type_check_only
+class SocSelector(typing_extensions.TypedDict, total=False):
+    socMake: str
+    socModel: str
 
 @typing.type_check_only
 class SplitApkMetadata(typing_extensions.TypedDict, total=False):
@@ -1840,11 +2127,6 @@ class Subscription(typing_extensions.TypedDict, total=False):
     productId: str
     restrictedPaymentCountries: RestrictedPaymentCountries
     taxAndComplianceSettings: SubscriptionTaxAndComplianceSettings
-
-@typing.type_check_only
-class SubscriptionCancelSurveyResult(typing_extensions.TypedDict, total=False):
-    cancelSurveyReason: int
-    userInputCancelReason: str
 
 @typing.type_check_only
 class SubscriptionDeferralInfo(typing_extensions.TypedDict, total=False):
@@ -1913,43 +2195,6 @@ class SubscriptionOfferTargeting(typing_extensions.TypedDict, total=False):
     upgradeRule: UpgradeTargetingRule
 
 @typing.type_check_only
-class SubscriptionPriceChange(typing_extensions.TypedDict, total=False):
-    newPrice: Price
-    state: int
-
-@typing.type_check_only
-class SubscriptionPurchase(typing_extensions.TypedDict, total=False):
-    acknowledgementState: int
-    autoRenewing: bool
-    autoResumeTimeMillis: str
-    cancelReason: int
-    cancelSurveyResult: SubscriptionCancelSurveyResult
-    countryCode: str
-    developerPayload: str
-    emailAddress: str
-    expiryTimeMillis: str
-    externalAccountId: str
-    familyName: str
-    givenName: str
-    introductoryPriceInfo: IntroductoryPriceInfo
-    kind: str
-    linkedPurchaseToken: str
-    obfuscatedExternalAccountId: str
-    obfuscatedExternalProfileId: str
-    orderId: str
-    paymentState: int
-    priceAmountMicros: str
-    priceChange: SubscriptionPriceChange
-    priceCurrencyCode: str
-    profileId: str
-    profileName: str
-    promotionCode: str
-    promotionType: int
-    purchaseType: int
-    startTimeMillis: str
-    userCancellationTimeMillis: str
-
-@typing.type_check_only
 class SubscriptionPurchaseLineItem(typing_extensions.TypedDict, total=False):
     autoRenewingPlan: AutoRenewingPlan
     deferredItemRemoval: DeferredItemRemoval
@@ -1975,7 +2220,6 @@ class SubscriptionPurchaseV2(typing_extensions.TypedDict, total=False):
     externalAccountIdentifiers: ExternalAccountIdentifiers
     inGracePeriodStateContext: InGracePeriodStateContext
     kind: str
-    latestOrderId: str
     lineItems: _list[SubscriptionPurchaseLineItem]
     linkedPurchaseToken: str
     onHoldStateContext: OnHoldStateContext
@@ -2161,6 +2405,32 @@ class TracksListResponse(typing_extensions.TypedDict, total=False):
     tracks: _list[Track]
 
 @typing.type_check_only
+class UpdateAppStoreHostedAppPublishStatusRequest(
+    typing_extensions.TypedDict, total=False
+):
+    publishState: typing_extensions.Literal[
+        "APP_STORE_APP_PUBLISH_STATE_UNSPECIFIED",
+        "APP_STORE_APP_PUBLISH_STATE_PUBLISHED",
+        "APP_STORE_APP_PUBLISH_STATE_UNPUBLISHED",
+    ]
+
+@typing.type_check_only
+class UpdateAppStoreHostedAppPublishStatusResponse(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class UpdateAppStoreHostedAppRequest(typing_extensions.TypedDict, total=False):
+    activeApks: AppStoreAppActiveApks
+    activeLocalizedStoreListings: _list[AppStoreAppStoreListing]
+    appDetails: AppStoreAppDetails
+    packageName: str
+    policyDeclarations: _list[AppStoreAppPolicyDeclaration]
+
+@typing.type_check_only
+class UpdateAppStoreHostedAppResponse(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class UpdateBasePlanStateRequest(typing_extensions.TypedDict, total=False):
     activateBasePlanRequest: ActivateBasePlanRequest
     deactivateBasePlanRequest: DeactivateBasePlanRequest
@@ -2236,6 +2506,34 @@ class UpgradeTargetingRule(typing_extensions.TypedDict, total=False):
     scope: TargetingRuleScope
 
 @typing.type_check_only
+class UploadApkRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class UploadApkResponse(typing_extensions.TypedDict, total=False):
+    apkId: str
+
+@typing.type_check_only
+class UploadAppStoreAppPolicyDeclarationFileRequest(
+    typing_extensions.TypedDict, total=False
+):
+    fileType: typing_extensions.Literal[
+        "DECLARATION_FILE_TYPE_UNSPECIFIED", "DECLARATION_FILE_TYPE_DOCUMENT"
+    ]
+
+@typing.type_check_only
+class UploadAppStoreAppPolicyDeclarationFileResponse(
+    typing_extensions.TypedDict, total=False
+):
+    fileId: str
+
+@typing.type_check_only
+class UploadImageRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class UploadImageResponse(typing_extensions.TypedDict, total=False):
+    imageId: str
+
+@typing.type_check_only
 class User(typing_extensions.TypedDict, total=False):
     accessState: typing_extensions.Literal[
         "ACCESS_STATE_UNSPECIFIED",
@@ -2306,6 +2604,33 @@ class UserInitiatedCancellation(typing_extensions.TypedDict, total=False):
     cancelTime: str
 
 @typing.type_check_only
+class UsesConfiguration(typing_extensions.TypedDict, total=False):
+    requiredKeyboardType: typing_extensions.Literal[
+        "KEYBOARD_TYPE_UNSPECIFIED",
+        "KEYBOARD_TYPE_UNDEFINED",
+        "KEYBOARD_TYPE_NO_KEYS",
+        "KEYBOARD_TYPE_QWERTY",
+        "KEYBOARD_TYPE_TWELVE_KEY",
+    ]
+    requiredNavigationType: typing_extensions.Literal[
+        "NAVIGATION_TYPE_UNSPECIFIED",
+        "NAVIGATION_TYPE_UNDEFINED",
+        "NAVIGATION_TYPE_NO_NAVIGATION",
+        "NAVIGATION_TYPE_DPAD",
+        "NAVIGATION_TYPE_TRACKBALL",
+        "NAVIGATION_TYPE_WHEEL",
+    ]
+    requiredTouchscreenType: typing_extensions.Literal[
+        "TOUCHSCREEN_TYPE_UNSPECIFIED",
+        "TOUCHSCREEN_TYPE_UNDEFINED",
+        "TOUCHSCREEN_TYPE_NO_TOUCHSCREEN",
+        "TOUCHSCREEN_TYPE_STYLUS",
+        "TOUCHSCREEN_TYPE_FINGER",
+    ]
+    requiresFiveWayNavigation: bool
+    requiresHardwareKeyboard: bool
+
+@typing.type_check_only
 class UsesPermission(typing_extensions.TypedDict, total=False):
     maxSdkVersion: int
     name: str
@@ -2327,6 +2652,10 @@ class VariantTargeting(typing_extensions.TypedDict, total=False):
     screenDensityTargeting: ScreenDensityTargeting
     sdkVersionTargeting: SdkVersionTargeting
     textureCompressionFormatTargeting: TextureCompressionFormatTargeting
+
+@typing.type_check_only
+class VideoAsset(typing_extensions.TypedDict, total=False):
+    videoUrl: str
 
 @typing.type_check_only
 class VoidedPurchase(typing_extensions.TypedDict, total=False):

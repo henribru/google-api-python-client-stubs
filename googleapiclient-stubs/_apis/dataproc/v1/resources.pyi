@@ -92,6 +92,21 @@ class DataprocResource(googleapiclient.discovery.Resource):
                         parent: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> AccessSparkApplicationJobResponseHttpRequest: ...
+                    def accessNativeBuildInfo(
+                        self,
+                        *,
+                        name: str,
+                        parent: str | None = ...,
+                        **kwargs: typing.Any,
+                    ) -> AccessSparkApplicationNativeBuildInfoResponseHttpRequest: ...
+                    def accessNativeSqlQuery(
+                        self,
+                        *,
+                        name: str,
+                        executionId: str | None = ...,
+                        parent: str | None = ...,
+                        **kwargs: typing.Any,
+                    ) -> AccessSparkApplicationNativeSqlQueryResponseHttpRequest: ...
                     def accessSqlPlan(
                         self,
                         *,
@@ -130,6 +145,15 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     ) -> (
                         AccessSparkApplicationStageRddOperationGraphResponseHttpRequest
                     ): ...
+                    def computeTuningConfig(
+                        self,
+                        *,
+                        name: str,
+                        executionId: str | None = ...,
+                        parent: str | None = ...,
+                        semanticQueryId: str | None = ...,
+                        **kwargs: typing.Any,
+                    ) -> ComputeTuningConfigResponseHttpRequest: ...
                     def search(
                         self,
                         *,
@@ -216,6 +240,22 @@ class DataprocResource(googleapiclient.discovery.Resource):
                         previous_request: SearchSparkApplicationJobsResponseHttpRequest,
                         previous_response: SearchSparkApplicationJobsResponse,
                     ) -> SearchSparkApplicationJobsResponseHttpRequest | None: ...
+                    def searchNativeSqlQueries(
+                        self,
+                        *,
+                        name: str,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
+                        parent: str | None = ...,
+                        **kwargs: typing.Any,
+                    ) -> SearchSparkApplicationNativeSqlQueriesResponseHttpRequest: ...
+                    def searchNativeSqlQueries_next(
+                        self,
+                        previous_request: SearchSparkApplicationNativeSqlQueriesResponseHttpRequest,
+                        previous_response: SearchSparkApplicationNativeSqlQueriesResponse,
+                    ) -> (
+                        SearchSparkApplicationNativeSqlQueriesResponseHttpRequest | None
+                    ): ...
                     def searchSqlQueries(
                         self,
                         *,
@@ -462,6 +502,25 @@ class DataprocResource(googleapiclient.discovery.Resource):
                         parent: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> AccessSessionSparkApplicationJobResponseHttpRequest: ...
+                    def accessNativeBuildInfo(
+                        self,
+                        *,
+                        name: str,
+                        parent: str | None = ...,
+                        **kwargs: typing.Any,
+                    ) -> (
+                        AccessSessionSparkApplicationNativeBuildInfoResponseHttpRequest
+                    ): ...
+                    def accessNativeSqlQuery(
+                        self,
+                        *,
+                        name: str,
+                        executionId: str | None = ...,
+                        parent: str | None = ...,
+                        **kwargs: typing.Any,
+                    ) -> (
+                        AccessSessionSparkApplicationNativeSqlQueryResponseHttpRequest
+                    ): ...
                     def accessSqlPlan(
                         self,
                         *,
@@ -588,6 +647,25 @@ class DataprocResource(googleapiclient.discovery.Resource):
                         previous_response: SearchSessionSparkApplicationJobsResponse,
                     ) -> (
                         SearchSessionSparkApplicationJobsResponseHttpRequest | None
+                    ): ...
+                    def searchNativeSqlQueries(
+                        self,
+                        *,
+                        name: str,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
+                        parent: str | None = ...,
+                        **kwargs: typing.Any,
+                    ) -> (
+                        SearchSessionSparkApplicationNativeSqlQueriesResponseHttpRequest
+                    ): ...
+                    def searchNativeSqlQueries_next(
+                        self,
+                        previous_request: SearchSessionSparkApplicationNativeSqlQueriesResponseHttpRequest,
+                        previous_response: SearchSessionSparkApplicationNativeSqlQueriesResponse,
+                    ) -> (
+                        SearchSessionSparkApplicationNativeSqlQueriesResponseHttpRequest
+                        | None
                     ): ...
                     def searchSqlQueries(
                         self,
@@ -1302,6 +1380,26 @@ class AccessSessionSparkApplicationJobResponseHttpRequest(
     ) -> AccessSessionSparkApplicationJobResponse: ...
 
 @typing.type_check_only
+class AccessSessionSparkApplicationNativeBuildInfoResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> AccessSessionSparkApplicationNativeBuildInfoResponse: ...
+
+@typing.type_check_only
+class AccessSessionSparkApplicationNativeSqlQueryResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> AccessSessionSparkApplicationNativeSqlQueryResponse: ...
+
+@typing.type_check_only
 class AccessSessionSparkApplicationResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -1368,6 +1466,26 @@ class AccessSparkApplicationJobResponseHttpRequest(googleapiclient.http.HttpRequ
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> AccessSparkApplicationJobResponse: ...
+
+@typing.type_check_only
+class AccessSparkApplicationNativeBuildInfoResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> AccessSparkApplicationNativeBuildInfoResponse: ...
+
+@typing.type_check_only
+class AccessSparkApplicationNativeSqlQueryResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> AccessSparkApplicationNativeSqlQueryResponse: ...
 
 @typing.type_check_only
 class AccessSparkApplicationResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -1440,6 +1558,14 @@ class ClusterHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Cluster: ...
+
+@typing.type_check_only
+class ComputeTuningConfigResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ComputeTuningConfigResponse: ...
 
 @typing.type_check_only
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):
@@ -1576,6 +1702,16 @@ class SearchSessionSparkApplicationJobsResponseHttpRequest(
     ) -> SearchSessionSparkApplicationJobsResponse: ...
 
 @typing.type_check_only
+class SearchSessionSparkApplicationNativeSqlQueriesResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> SearchSessionSparkApplicationNativeSqlQueriesResponse: ...
+
+@typing.type_check_only
 class SearchSessionSparkApplicationSqlQueriesResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -1652,6 +1788,16 @@ class SearchSparkApplicationJobsResponseHttpRequest(googleapiclient.http.HttpReq
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> SearchSparkApplicationJobsResponse: ...
+
+@typing.type_check_only
+class SearchSparkApplicationNativeSqlQueriesResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> SearchSparkApplicationNativeSqlQueriesResponse: ...
 
 @typing.type_check_only
 class SearchSparkApplicationSqlQueriesResponseHttpRequest(

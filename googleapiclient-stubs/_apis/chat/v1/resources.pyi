@@ -155,12 +155,29 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
             def delete(
                 self, *, name: str, force: bool | None = ..., **kwargs: typing.Any
             ) -> EmptyHttpRequest: ...
-            def get(self, *, name: str, **kwargs: typing.Any) -> MessageHttpRequest: ...
+            def get(
+                self,
+                *,
+                name: str,
+                markupSyntax: typing_extensions.Literal[
+                    "MARKUP_SYNTAX_UNSPECIFIED",
+                    "MARKUP_SYNTAX_CHAT",
+                    "MARKUP_SYNTAX_MARKDOWN",
+                ]
+                | None = ...,
+                **kwargs: typing.Any,
+            ) -> MessageHttpRequest: ...
             def list(
                 self,
                 *,
                 parent: str,
                 filter: str | None = ...,
+                markupSyntax: typing_extensions.Literal[
+                    "MARKUP_SYNTAX_UNSPECIFIED",
+                    "MARKUP_SYNTAX_CHAT",
+                    "MARKUP_SYNTAX_MARKDOWN",
+                ]
+                | None = ...,
                 orderBy: str | None = ...,
                 pageSize: int | None = ...,
                 pageToken: str | None = ...,
@@ -181,6 +198,14 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> MessageHttpRequest: ...
+            def search(
+                self, *, parent: str, body: SearchMessagesRequest, **kwargs: typing.Any
+            ) -> SearchMessagesResponseHttpRequest: ...
+            def search_next(
+                self,
+                previous_request: SearchMessagesResponseHttpRequest,
+                previous_response: SearchMessagesResponse,
+            ) -> SearchMessagesResponseHttpRequest | None: ...
             def update(
                 self,
                 *,
@@ -295,7 +320,7 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
     class UsersResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class AvailabilityResource(googleapiclient.discovery.Resource):
-            def getAvailability(
+            def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> AvailabilityHttpRequest: ...
             def markAsActive(
@@ -311,7 +336,7 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
                 body: MarkAsDoNotDisturbRequest,
                 **kwargs: typing.Any,
             ) -> AvailabilityHttpRequest: ...
-            def updateAvailability(
+            def patch(
                 self,
                 *,
                 name: str,
@@ -602,6 +627,14 @@ class ReactionHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Reaction: ...
+
+@typing.type_check_only
+class SearchMessagesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> SearchMessagesResponse: ...
 
 @typing.type_check_only
 class SearchSpacesResponseHttpRequest(googleapiclient.http.HttpRequest):

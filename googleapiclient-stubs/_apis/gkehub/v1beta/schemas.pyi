@@ -156,6 +156,7 @@ class CommonFeatureState(typing_extensions.TypedDict, total=False):
     clusterupgrade: ClusterUpgradeFleetState
     fleetobservability: FleetObservabilityFeatureState
     rbacrolebindingactuation: RBACRoleBindingActuationFeatureState
+    servicemesh: ServiceMeshFeatureState
     state: FeatureState
     workloadidentity: WorkloadIdentityFeatureState
 
@@ -1416,6 +1417,7 @@ class ServiceMeshCondition(typing_extensions.TypedDict, total=False):
         "MODERNIZATION_MODERNIZED_SOAKING",
         "MODERNIZATION_FINALIZED",
         "MODERNIZATION_ROLLING_BACK_FLEET",
+        "MODERNIZATION_MODERNIZED",
         "MODERNIZATION_COMPATIBLE",
         "MODERNIZATION_INCOMPATIBLE",
         "MODERNIZATION_INCOMPATIBLE_FLEET_SCALE",
@@ -1461,12 +1463,94 @@ class ServiceMeshDataPlaneManagement(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class ServiceMeshFeatureCondition(typing_extensions.TypedDict, total=False):
+    code: typing_extensions.Literal[
+        "CODE_UNSPECIFIED",
+        "MESH_IAM_PERMISSION_DENIED",
+        "MESH_IAM_CROSS_PROJECT_PERMISSION_DENIED",
+        "CNI_CONFIG_UNSUPPORTED",
+        "GKE_SANDBOX_UNSUPPORTED",
+        "NODEPOOL_WORKLOAD_IDENTITY_FEDERATION_REQUIRED",
+        "CNI_INSTALLATION_FAILED",
+        "CNI_POD_UNSCHEDULABLE",
+        "CLUSTER_HAS_ZERO_NODES",
+        "CANONICAL_SERVICE_ERROR",
+        "UNSUPPORTED_MULTIPLE_CONTROL_PLANES",
+        "VPCSC_GA_SUPPORTED",
+        "DEPRECATED_SPEC_CONTROL_PLANE_MANAGEMENT",
+        "DEPRECATED_SPEC_CONTROL_PLANE_MANAGEMENT_SAFE",
+        "CONFIG_APPLY_INTERNAL_ERROR",
+        "CONFIG_VALIDATION_ERROR",
+        "CONFIG_VALIDATION_WARNING",
+        "QUOTA_EXCEEDED_BACKEND_SERVICES",
+        "QUOTA_EXCEEDED_HEALTH_CHECKS",
+        "QUOTA_EXCEEDED_HTTP_ROUTES",
+        "QUOTA_EXCEEDED_TCP_ROUTES",
+        "QUOTA_EXCEEDED_TLS_ROUTES",
+        "QUOTA_EXCEEDED_TRAFFIC_POLICIES",
+        "QUOTA_EXCEEDED_ENDPOINT_POLICIES",
+        "QUOTA_EXCEEDED_GATEWAYS",
+        "QUOTA_EXCEEDED_MESHES",
+        "QUOTA_EXCEEDED_SERVER_TLS_POLICIES",
+        "QUOTA_EXCEEDED_CLIENT_TLS_POLICIES",
+        "QUOTA_EXCEEDED_SERVICE_LB_POLICIES",
+        "QUOTA_EXCEEDED_HTTP_FILTERS",
+        "QUOTA_EXCEEDED_TCP_FILTERS",
+        "QUOTA_EXCEEDED_NETWORK_ENDPOINT_GROUPS",
+        "CONFIG_APPLY_BLOCKED",
+        "LEGACY_MC_SECRETS",
+        "WORKLOAD_IDENTITY_REQUIRED",
+        "NON_STANDARD_BINARY_USAGE",
+        "UNSUPPORTED_GATEWAY_CLASS",
+        "MANAGED_CNI_NOT_ENABLED",
+        "MISSING_CONTROL_PLANE_CONFIG",
+        "SHARED_VPC_MISSING_PERMISSIONS",
+        "REQUIRED_ORG_POLICY_DISABLED",
+        "MODERNIZATION_INCOMPATIBLE_POD_ANNOTATION",
+        "MODERNIZATION_INCOMPATIBLE_CONFIG",
+        "MODERNIZATION_INCOMPATIBLE_GATEWAY_POD_SCALE",
+        "MODERNIZATION_SCHEDULED",
+        "MODERNIZATION_IN_PROGRESS",
+        "MODERNIZATION_COMPLETED",
+        "MODERNIZATION_ABORTED",
+        "MODERNIZATION_PREPARING",
+        "MODERNIZATION_STALLED",
+        "MODERNIZATION_PREPARED",
+        "MODERNIZATION_MIGRATING_WORKLOADS",
+        "MODERNIZATION_ROLLING_BACK_CLUSTER",
+        "MODERNIZATION_WILL_BE_SCHEDULED",
+        "MODERNIZATION_MANUAL",
+        "MODERNIZATION_ELIGIBLE",
+        "MODERNIZATION_MODERNIZING",
+        "MODERNIZATION_MODERNIZED_SOAKING",
+        "MODERNIZATION_FINALIZED",
+        "MODERNIZATION_ROLLING_BACK_FLEET",
+        "MODERNIZATION_MODERNIZED",
+        "MODERNIZATION_COMPATIBLE",
+        "MODERNIZATION_INCOMPATIBLE",
+        "MODERNIZATION_INCOMPATIBLE_FLEET_SCALE",
+        "MODERNIZATION_INCOMPATIBLE_FLEET_QUOTA",
+    ]
+    details: str
+    documentationLink: str
+    severity: typing_extensions.Literal[
+        "SEVERITY_UNSPECIFIED", "ERROR", "WARNING", "INFO"
+    ]
+
+@typing.type_check_only
 class ServiceMeshFeatureSpec(typing_extensions.TypedDict, total=False):
     modernizationCompatibility: typing_extensions.Literal[
         "MODERNIZATION_COMPATIBILITY_UNSPECIFIED",
         "VALIDATION_ENABLED",
         "VALIDATION_DISABLED",
     ]
+    modernizationStrategy: typing_extensions.Literal[
+        "MODERNIZATION_STRATEGY_UNSPECIFIED", "AUTOMATIC", "DEFERRED"
+    ]
+
+@typing.type_check_only
+class ServiceMeshFeatureState(typing_extensions.TypedDict, total=False):
+    conditions: _list[ServiceMeshFeatureCondition]
 
 @typing.type_check_only
 class ServiceMeshMembershipSpec(typing_extensions.TypedDict, total=False):

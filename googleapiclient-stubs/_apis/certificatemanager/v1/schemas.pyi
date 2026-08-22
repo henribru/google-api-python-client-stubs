@@ -45,6 +45,7 @@ class Certificate(typing_extensions.TypedDict, total=False):
         "DEFAULT", "EDGE_CACHE", "ALL_REGIONS", "CLIENT_AUTH"
     ]
     selfManaged: SelfManagedCertificate
+    tags: dict[str, typing.Any]
     updateTime: str
     usedBy: _list[UsedBy]
 
@@ -68,6 +69,7 @@ class CertificateIssuanceConfig(typing_extensions.TypedDict, total=False):
     lifetime: str
     name: str
     rotationWindowPercentage: int
+    tags: dict[str, typing.Any]
     updateTime: str
 
 @typing.type_check_only
@@ -77,6 +79,7 @@ class CertificateMap(typing_extensions.TypedDict, total=False):
     gclbTargets: _list[GclbTarget]
     labels: dict[str, typing.Any]
     name: str
+    tags: dict[str, typing.Any]
     updateTime: str
 
 @typing.type_check_only
@@ -99,6 +102,7 @@ class DnsAuthorization(typing_extensions.TypedDict, total=False):
     domain: str
     labels: dict[str, typing.Any]
     name: str
+    tags: dict[str, typing.Any]
     type: typing_extensions.Literal[
         "TYPE_UNSPECIFIED", "FIXED_RECORD", "PER_PROJECT_RECORD"
     ]
@@ -272,6 +276,7 @@ class TrustConfig(typing_extensions.TypedDict, total=False):
     labels: dict[str, typing.Any]
     name: str
     spiffeTrustStores: dict[str, typing.Any]
+    tags: dict[str, typing.Any]
     trustStores: _list[TrustStore]
     updateTime: str
 

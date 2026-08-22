@@ -39,6 +39,16 @@ class AutoscalingEvent(typing_extensions.TypedDict, total=False):
     workerPool: str
 
 @typing.type_check_only
+class AutoscalingSchedule(typing_extensions.TypedDict, total=False):
+    crontab: str
+    duration: str
+    name: str
+    parameters: Parameters
+    priority: str
+    timeZone: str
+    updateTime: str
+
+@typing.type_check_only
 class AutoscalingSettings(typing_extensions.TypedDict, total=False):
     algorithm: typing_extensions.Literal[
         "AUTOSCALING_ALGORITHM_UNKNOWN",
@@ -864,6 +874,13 @@ class ParameterMetadataEnumOption(typing_extensions.TypedDict, total=False):
     value: str
 
 @typing.type_check_only
+class Parameters(typing_extensions.TypedDict, total=False):
+    cpuUtilizationTarget: float
+    latencyTarget: str
+    maxWorkerCount: int
+    minWorkerCount: int
+
+@typing.type_check_only
 class PartialGroupByKeyInstruction(typing_extensions.TypedDict, total=False):
     input: InstructionInput
     inputElementCodec: dict[str, typing.Any]
@@ -1003,6 +1020,7 @@ class RuntimeUpdatableParams(typing_extensions.TypedDict, total=False):
     latencyTier: str
     maxNumWorkers: int
     minNumWorkers: int
+    schedules: _list[AutoscalingSchedule]
     workerUtilizationHint: float
 
 @typing.type_check_only

@@ -421,6 +421,9 @@ class GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeaders(
     deviceInfo: (
         GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeadersDelegatedDeviceInfo
     )
+    dispatchInfo: (
+        GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeadersDelegatedDispatchInfo
+    )
     groupInfo: (
         GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeadersDelegatedGroupInfo
     )
@@ -431,6 +434,14 @@ class GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeaders(
 
 @typing.type_check_only
 class GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeadersDelegatedDeviceInfo(
+    typing_extensions.TypedDict, total=False
+):
+    outputType: typing_extensions.Literal[
+        "OUTPUT_TYPE_UNSPECIFIED", "PROTOBUF", "JSON", "NONE"
+    ]
+
+@typing.type_check_only
+class GoogleCloudBeyondcorpSecuritygatewaysV1ContextualHeadersDelegatedDispatchInfo(
     typing_extensions.TypedDict, total=False
 ):
     outputType: typing_extensions.Literal[

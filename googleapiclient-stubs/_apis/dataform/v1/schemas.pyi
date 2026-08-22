@@ -67,6 +67,7 @@ class CodeCompilationConfig(typing_extensions.TypedDict, total=False):
     defaultLocation: str
     defaultNotebookRuntimeOptions: NotebookRuntimeOptions
     defaultSchema: str
+    pipelineConfig: PipelineConfig
     schemaSuffix: str
     tablePrefix: str
     vars: dict[str, typing.Any]
@@ -127,6 +128,7 @@ class CompilationResult(typing_extensions.TypedDict, total=False):
     createTime: str
     dataEncryptionState: DataEncryptionState
     dataformCoreVersion: str
+    gcsRepositorySnapshotMetadata: GcsRepositorySnapshotMetadata
     gitCommitish: str
     internalMetadata: str
     name: str
@@ -274,6 +276,16 @@ class FolderContentsEntry(typing_extensions.TypedDict, total=False):
     repository: Repository
 
 @typing.type_check_only
+class GcsRepositorySnapshotDestination(typing_extensions.TypedDict, total=False):
+    repositorySnapshotUri: str
+
+@typing.type_check_only
+class GcsRepositorySnapshotMetadata(typing_extensions.TypedDict, total=False):
+    crc32cChecksum: str
+    generation: str
+    repositorySnapshotUri: str
+
+@typing.type_check_only
 class GitRemoteSettings(typing_extensions.TypedDict, total=False):
     authenticationTokenSecretVersion: str
     defaultBranch: str
@@ -304,7 +316,8 @@ class IncrementalTableConfig(typing_extensions.TypedDict, total=False):
     updatePartitionFilter: str
 
 @typing.type_check_only
-class InstallNpmPackagesRequest(typing_extensions.TypedDict, total=False): ...
+class InstallNpmPackagesRequest(typing_extensions.TypedDict, total=False):
+    pipelineConfig: PipelineConfig
 
 @typing.type_check_only
 class InstallNpmPackagesResponse(typing_extensions.TypedDict, total=False): ...
@@ -429,12 +442,14 @@ class Notebook(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class NotebookAction(typing_extensions.TypedDict, total=False):
     contents: str
+    filePath: str
     jobId: str
 
 @typing.type_check_only
 class NotebookRuntimeOptions(typing_extensions.TypedDict, total=False):
     aiPlatformNotebookRuntimeTemplate: str
     gcsOutputBucket: str
+    gcsRepositorySnapshotDestination: GcsRepositorySnapshotDestination
 
 @typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
@@ -462,6 +477,13 @@ class Operations(typing_extensions.TypedDict, total=False):
     queries: _list[str]
     relationDescriptor: RelationDescriptor
     tags: _list[str]
+
+@typing.type_check_only
+class PipelineConfig(typing_extensions.TypedDict, total=False):
+    path: str
+    pipelineType: typing_extensions.Literal[
+        "PIPELINE_TYPE_UNSPECIFIED", "DATAFORM", "SQL", "NOTEBOOK"
+    ]
 
 @typing.type_check_only
 class Policy(typing_extensions.TypedDict, total=False):
@@ -739,6 +761,7 @@ class WorkflowInvocation(typing_extensions.TypedDict, total=False):
     invocationConfig: InvocationConfig
     invocationTiming: Interval
     name: str
+    pipelineConfig: PipelineConfig
     privateResourceMetadata: PrivateResourceMetadata
     resolvedCompilationResult: str
     state: typing_extensions.Literal[

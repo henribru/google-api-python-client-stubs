@@ -52,6 +52,14 @@ class BackendMetastore(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
+class BackfillStatus(typing_extensions.TypedDict, total=False):
+    migrationSummary: MigrationSummary
+    reportPath: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "PENDING", "RUNNING", "SUCCEEDED", "FAILED"
+    ]
+
+@typing.type_check_only
 class Backup(typing_extensions.TypedDict, total=False):
     createTime: str
     description: str
@@ -62,6 +70,18 @@ class Backup(typing_extensions.TypedDict, total=False):
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "CREATING", "DELETING", "ACTIVE", "FAILED", "RESTORING"
     ]
+
+@typing.type_check_only
+class BigLakeMetastoreMigrationConfig(typing_extensions.TypedDict, total=False):
+    backfillStatus: BackfillStatus
+    conflictPolicy: typing_extensions.Literal[
+        "CONFLICT_POLICY_UNSPECIFIED", "SKIP", "OVERWRITE"
+    ]
+    dryRun: bool
+    hiveConfig: HiveConfig
+    icebergConfig: IcebergConfig
+    mode: typing_extensions.Literal["MIGRATION_MODE_UNSPECIFIED", "BACKFILL"]
+    reportPath: str
 
 @typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
@@ -78,6 +98,22 @@ class CancelMigrationResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class CatalogReport(typing_extensions.TypedDict, total=False):
+    catalog: str
+    catalogType: typing_extensions.Literal[
+        "CATALOG_TYPE_UNSPECIFIED", "HIVE", "ICEBERG"
+    ]
+    databaseReports: dict[str, typing.Any]
+
+@typing.type_check_only
+class CatalogSummary(typing_extensions.TypedDict, total=False):
+    catalog: str
+    catalogType: typing_extensions.Literal[
+        "CATALOG_TYPE_UNSPECIFIED", "HIVE", "ICEBERG"
+    ]
+    databaseSummaries: _list[DatabaseSummary]
 
 @typing.type_check_only
 class CdcConfig(typing_extensions.TypedDict, total=False):
@@ -141,6 +177,24 @@ class DatabaseDump(typing_extensions.TypedDict, total=False):
     type: typing_extensions.Literal["TYPE_UNSPECIFIED", "MYSQL", "AVRO"]
 
 @typing.type_check_only
+class DatabaseReport(typing_extensions.TypedDict, total=False):
+    database: str
+    executionPlan: ExecutionPlan
+    executionResult: ExecutionResult
+    tableReports: dict[str, typing.Any]
+
+@typing.type_check_only
+class DatabaseSummary(typing_extensions.TypedDict, total=False):
+    database: str
+    planAction: typing_extensions.Literal[
+        "ACTION_UNSPECIFIED", "CREATE", "UPDATE", "SKIP", "DEPENDENCY_FAILURE", "ERROR"
+    ]
+    resultStatus: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "SUCCEEDED", "FAILED", "SKIPPED"
+    ]
+    tableSummary: TableSummary
+
+@typing.type_check_only
 class DataplexConfig(typing_extensions.TypedDict, total=False):
     lakeResources: dict[str, typing.Any]
 
@@ -155,6 +209,22 @@ class EncryptionConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ErrorDetails(typing_extensions.TypedDict, total=False):
     details: dict[str, typing.Any]
+
+@typing.type_check_only
+class ExecutionPlan(typing_extensions.TypedDict, total=False):
+    action: typing_extensions.Literal[
+        "ACTION_UNSPECIFIED", "CREATE", "UPDATE", "SKIP", "DEPENDENCY_FAILURE", "ERROR"
+    ]
+    diffs: dict[str, typing.Any]
+    reason: str
+
+@typing.type_check_only
+class ExecutionResult(typing_extensions.TypedDict, total=False):
+    errorMessage: str
+    remediation: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "SUCCEEDED", "FAILED", "SKIPPED"
+    ]
 
 @typing.type_check_only
 class ExportMetadataRequest(typing_extensions.TypedDict, total=False):
@@ -186,6 +256,11 @@ class Federation(typing_extensions.TypedDict, total=False):
     version: str
 
 @typing.type_check_only
+class HiveConfig(typing_extensions.TypedDict, total=False):
+    catalog: str
+    databases: _list[str]
+
+@typing.type_check_only
 class HiveMetastoreConfig(typing_extensions.TypedDict, total=False):
     auxiliaryVersions: dict[str, typing.Any]
     configOverrides: dict[str, typing.Any]
@@ -199,6 +274,11 @@ class HiveMetastoreConfig(typing_extensions.TypedDict, total=False):
 class HiveMetastoreVersion(typing_extensions.TypedDict, total=False):
     isDefault: bool
     version: str
+
+@typing.type_check_only
+class IcebergConfig(typing_extensions.TypedDict, total=False):
+    catalog: str
+    namespaces: _list[str]
 
 @typing.type_check_only
 class KerberosConfig(typing_extensions.TypedDict, total=False):
@@ -330,6 +410,7 @@ class MetadataManagementActivity(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class MigrationExecution(typing_extensions.TypedDict, total=False):
+    biglakeMetastoreMigrationConfig: BigLakeMetastoreMigrationConfig
     cloudSqlMigrationConfig: CloudSQLMigrationConfig
     createTime: str
     endTime: str
@@ -345,8 +426,21 @@ class MigrationExecution(typing_extensions.TypedDict, total=False):
         "FAILED",
         "CANCELLED",
         "DELETING",
+        "ROLLED_BACK",
     ]
     stateMessage: str
+
+@typing.type_check_only
+class MigrationReport(typing_extensions.TypedDict, total=False):
+    catalogReports: _list[CatalogReport]
+    summary: MigrationSummary
+
+@typing.type_check_only
+class MigrationSummary(typing_extensions.TypedDict, total=False):
+    catalogSummaries: _list[CatalogSummary]
+    createTime: str
+    dryRun: bool
+    service: str
 
 @typing.type_check_only
 class MoveTableToDatabaseRequest(typing_extensions.TypedDict, total=False):
@@ -390,6 +484,14 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     statusMessage: str
     target: str
     verb: str
+
+@typing.type_check_only
+class PartitionReport(typing_extensions.TypedDict, total=False):
+    partitionFailedCount: str
+    partitionSuccessCount: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "SUCCEEDED", "PARTIALLY_SUCCEEDED", "FAILED"
+    ]
 
 @typing.type_check_only
 class Policy(typing_extensions.TypedDict, total=False):
@@ -502,6 +604,7 @@ class Service(typing_extensions.TypedDict, total=False):
         "ERROR",
         "AUTOSCALING",
         "MIGRATING",
+        "PROXY",
     ]
     stateMessage: str
     tags: dict[str, typing.Any]
@@ -535,6 +638,22 @@ class StatusProto(typing_extensions.TypedDict, total=False):
     space: str
 
 @typing.type_check_only
+class TableReport(typing_extensions.TypedDict, total=False):
+    executionPlan: ExecutionPlan
+    executionResult: ExecutionResult
+    partitionDiscoveredCount: str
+    partitionReport: PartitionReport
+    table: str
+
+@typing.type_check_only
+class TableSummary(typing_extensions.TypedDict, total=False):
+    partitionDiscoveredCount: str
+    partitionFailedCount: str
+    partitionSuccessCount: str
+    planCounts: dict[str, typing.Any]
+    resultCounts: dict[str, typing.Any]
+
+@typing.type_check_only
 class TelemetryConfig(typing_extensions.TypedDict, total=False):
     logFormat: typing_extensions.Literal["LOG_FORMAT_UNSPECIFIED", "LEGACY", "JSON"]
 
@@ -545,3 +664,8 @@ class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
     permissions: _list[str]
+
+@typing.type_check_only
+class ValueDiff(typing_extensions.TypedDict, total=False):
+    sourceValue: str
+    targetValue: str

@@ -78,14 +78,7 @@ class CreateServiceAccountRequest(typing_extensions.TypedDict, total=False):
     serviceAccount: ServiceAccount
 
 @typing.type_check_only
-class DisableServiceAccountKeyRequest(typing_extensions.TypedDict, total=False):
-    extendedStatusMessage: str
-    serviceAccountKeyDisableReason: typing_extensions.Literal[
-        "SERVICE_ACCOUNT_KEY_DISABLE_REASON_UNSPECIFIED",
-        "SERVICE_ACCOUNT_KEY_DISABLE_REASON_USER_INITIATED",
-        "SERVICE_ACCOUNT_KEY_DISABLE_REASON_EXPOSED",
-        "SERVICE_ACCOUNT_KEY_DISABLE_REASON_COMPROMISE_DETECTED",
-    ]
+class DisableServiceAccountKeyRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class DisableServiceAccountRequest(typing_extensions.TypedDict, total=False): ...

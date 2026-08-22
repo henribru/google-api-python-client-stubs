@@ -39,6 +39,45 @@ class GoogleCloudAiplatformV1beta1AudioResponseFormat(
     sampleRate: int
 
 @typing.type_check_only
+class GoogleCloudAiplatformV1beta1AudioTranscription(
+    typing_extensions.TypedDict, total=False
+):
+    speakerLabel: str
+    text: str
+    words: _list[GoogleCloudAiplatformV1beta1AudioTranscriptionWordInfo]
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1AudioTranscriptionConfig(
+    typing_extensions.TypedDict, total=False
+):
+    adaptationPhrases: _list[str]
+    customVocabulary: _list[str]
+    diarization: bool
+    languageAuto: GoogleCloudAiplatformV1beta1AudioTranscriptionConfigLanguageAuto
+    languageCodes: _list[str]
+    languageHints: GoogleCloudAiplatformV1beta1AudioTranscriptionConfigLanguageHints
+    wordTimestamp: bool
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1AudioTranscriptionConfigLanguageAuto(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1AudioTranscriptionConfigLanguageHints(
+    typing_extensions.TypedDict, total=False
+):
+    languageCodes: _list[str]
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1AudioTranscriptionWordInfo(
+    typing_extensions.TypedDict, total=False
+):
+    endOffset: str
+    startOffset: str
+    word: str
+
+@typing.type_check_only
 class GoogleCloudAiplatformV1beta1AuthConfig(typing_extensions.TypedDict, total=False):
     apiKeyConfig: GoogleCloudAiplatformV1beta1AuthConfigApiKeyConfig
     authType: typing_extensions.Literal[
@@ -155,6 +194,7 @@ class GoogleCloudAiplatformV1beta1CitationMetadata(
 class GoogleCloudAiplatformV1beta1CodeExecutionResult(
     typing_extensions.TypedDict, total=False
 ):
+    id: str
     outcome: typing_extensions.Literal[
         "OUTCOME_UNSPECIFIED",
         "OUTCOME_OK",
@@ -214,6 +254,7 @@ class GoogleCloudAiplatformV1beta1ExecutableCode(
     typing_extensions.TypedDict, total=False
 ):
     code: str
+    id: str
     language: typing_extensions.Literal["LANGUAGE_UNSPECIFIED", "PYTHON"]
 
 @typing.type_check_only
@@ -374,6 +415,7 @@ class GoogleCloudAiplatformV1beta1GenerateContentResponseUsageMetadata(
         "ON_DEMAND",
         "ON_DEMAND_PRIORITY",
         "ON_DEMAND_FLEX",
+        "ON_DEMAND_OFFPEAK",
         "PROVISIONED_THROUGHPUT",
     ]
 
@@ -382,6 +424,7 @@ class GoogleCloudAiplatformV1beta1GenerationConfig(
     typing_extensions.TypedDict, total=False
 ):
     audioTimestamp: bool
+    audioTranscriptionConfig: GoogleCloudAiplatformV1beta1AudioTranscriptionConfig
     candidateCount: int
     enableAffectiveDialog: bool
     frequencyPenalty: float
@@ -462,6 +505,24 @@ class GoogleCloudAiplatformV1beta1GenerationConfigThinkingConfig(
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1GoogleMaps(typing_extensions.TypedDict, total=False):
     enableWidget: bool
+    groundingTypes: GoogleCloudAiplatformV1beta1GoogleMapsGroundingTypes
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1GoogleMapsGroundingTypes(
+    typing_extensions.TypedDict, total=False
+):
+    places: GoogleCloudAiplatformV1beta1GoogleMapsPlaces
+    routing: GoogleCloudAiplatformV1beta1GoogleMapsRouting
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1GoogleMapsPlaces(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1GoogleMapsRouting(
+    typing_extensions.TypedDict, total=False
+): ...
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1GoogleSearchRetrieval(
@@ -669,6 +730,7 @@ class GoogleCloudAiplatformV1beta1MultiSpeakerVoiceConfig(
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1Part(typing_extensions.TypedDict, total=False):
+    audioTranscription: GoogleCloudAiplatformV1beta1AudioTranscription
     codeExecutionResult: GoogleCloudAiplatformV1beta1CodeExecutionResult
     executableCode: GoogleCloudAiplatformV1beta1ExecutableCode
     fileData: GoogleCloudAiplatformV1beta1FileData
@@ -1104,6 +1166,7 @@ class GoogleCloudAiplatformV1beta1VideoResponseFormat(
     delivery: typing_extensions.Literal["DELIVERY_UNSPECIFIED", "INLINE", "URI"]
     duration: str
     gcsUri: str
+    resolution: str
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1VoiceConfig(typing_extensions.TypedDict, total=False):

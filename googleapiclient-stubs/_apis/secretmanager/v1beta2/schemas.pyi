@@ -147,6 +147,11 @@ class ReplicationStatus(typing_extensions.TypedDict, total=False):
     userManaged: UserManagedStatus
 
 @typing.type_check_only
+class ResourcePolicyMember(typing_extensions.TypedDict, total=False):
+    iamPolicyNamePrincipal: str
+    iamPolicyUidPrincipal: str
+
+@typing.type_check_only
 class Rotation(typing_extensions.TypedDict, total=False):
     nextRotationTime: str
     rotationPeriod: str

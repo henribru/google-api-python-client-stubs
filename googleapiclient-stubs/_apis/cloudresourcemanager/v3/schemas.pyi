@@ -113,6 +113,11 @@ class Expr(typing_extensions.TypedDict, total=False):
     title: str
 
 @typing.type_check_only
+class FetchResourceSemanticsResponse(typing_extensions.TypedDict, total=False):
+    fullResourceName: str
+    semantics: dict[str, typing.Any]
+
+@typing.type_check_only
 class Folder(typing_extensions.TypedDict, total=False):
     configuredCapabilities: _list[str]
     createTime: str

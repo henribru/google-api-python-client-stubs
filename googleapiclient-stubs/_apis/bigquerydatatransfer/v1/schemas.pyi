@@ -281,7 +281,6 @@ class TransferRun(typing_extensions.TypedDict, total=False):
     emailPreferences: EmailPreferences
     endTime: str
     errorStatus: Status
-    metadataDestination: MetadataDestination
     name: str
     notificationPubsubTopic: str
     params: dict[str, typing.Any]

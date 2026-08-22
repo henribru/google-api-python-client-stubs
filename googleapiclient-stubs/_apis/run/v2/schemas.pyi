@@ -63,6 +63,13 @@ class GoogleCloudRunV2Condition(typing_extensions.TypedDict, total=False):
         "DELETED",
         "DELAYED_START_PENDING",
     ]
+    instanceReason: typing_extensions.Literal[
+        "INSTANCE_REASON_UNSPECIFIED",
+        "INSTANCE_DELETED",
+        "INSTANCE_STOPPED",
+        "INSTANCE_STOPPING",
+        "INSTANCE_NON_ZERO_EXIT_CODE",
+    ]
     lastTransitionTime: str
     message: str
     reason: typing_extensions.Literal[
@@ -643,6 +650,7 @@ class GoogleCloudRunV2Service(typing_extensions.TypedDict, total=False):
     reconciling: bool
     satisfiesPzs: bool
     scaling: GoogleCloudRunV2ServiceScaling
+    sshEnabled: bool
     template: GoogleCloudRunV2RevisionTemplate
     terminalCondition: GoogleCloudRunV2Condition
     threatDetectionEnabled: bool
@@ -809,6 +817,14 @@ class GoogleCloudRunV2TrafficTargetStatus(typing_extensions.TypedDict, total=Fal
         "TRAFFIC_TARGET_ALLOCATION_TYPE_REVISION",
     ]
     uri: str
+
+@typing.type_check_only
+class GoogleCloudRunV2UploadSourceRequest(typing_extensions.TypedDict, total=False):
+    service: str
+
+@typing.type_check_only
+class GoogleCloudRunV2UploadSourceResponse(typing_extensions.TypedDict, total=False):
+    cloudStorageSource: GoogleCloudRunV2CloudStorageSource
 
 @typing.type_check_only
 class GoogleCloudRunV2VersionToPath(typing_extensions.TypedDict, total=False):

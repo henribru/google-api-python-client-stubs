@@ -424,6 +424,9 @@ class Location(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class LocationMetadata(typing_extensions.TypedDict, total=False):
+    flexPerformanceTier: typing_extensions.Literal[
+        "FLEX_PERFORMANCE_TIER_UNSPECIFIED", "LIMITED"
+    ]
     hasOntapProxy: bool
     hasVcp: bool
     supportedFlexPerformance: _list[

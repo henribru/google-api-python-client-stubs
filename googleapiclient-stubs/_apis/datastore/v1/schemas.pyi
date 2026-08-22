@@ -36,6 +36,7 @@ class AggregationResultBatch(typing_extensions.TypedDict, total=False):
 class AllocateIdsRequest(typing_extensions.TypedDict, total=False):
     databaseId: str
     keys: _list[Key]
+    requestOptions: RequestOptions
 
 @typing.type_check_only
 class AllocateIdsResponse(typing_extensions.TypedDict, total=False):
@@ -52,6 +53,7 @@ class Avg(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class BeginTransactionRequest(typing_extensions.TypedDict, total=False):
     databaseId: str
+    requestOptions: RequestOptions
     transactionOptions: TransactionOptions
 
 @typing.type_check_only
@@ -65,6 +67,7 @@ class CommitRequest(typing_extensions.TypedDict, total=False):
         "MODE_UNSPECIFIED", "TRANSACTIONAL", "NON_TRANSACTIONAL"
     ]
     mutations: _list[Mutation]
+    requestOptions: RequestOptions
     singleUseTransaction: TransactionOptions
     transaction: str
 
@@ -409,6 +412,7 @@ class LookupRequest(typing_extensions.TypedDict, total=False):
     keys: _list[Key]
     propertyMask: PropertyMask
     readOptions: ReadOptions
+    requestOptions: RequestOptions
 
 @typing.type_check_only
 class LookupResponse(typing_extensions.TypedDict, total=False):
@@ -555,9 +559,14 @@ class ReadWrite(typing_extensions.TypedDict, total=False):
     previousTransaction: str
 
 @typing.type_check_only
+class RequestOptions(typing_extensions.TypedDict, total=False):
+    requestTags: _list[str]
+
+@typing.type_check_only
 class ReserveIdsRequest(typing_extensions.TypedDict, total=False):
     databaseId: str
     keys: _list[Key]
+    requestOptions: RequestOptions
 
 @typing.type_check_only
 class ReserveIdsResponse(typing_extensions.TypedDict, total=False): ...
@@ -565,6 +574,7 @@ class ReserveIdsResponse(typing_extensions.TypedDict, total=False): ...
 @typing.type_check_only
 class RollbackRequest(typing_extensions.TypedDict, total=False):
     databaseId: str
+    requestOptions: RequestOptions
     transaction: str
 
 @typing.type_check_only
@@ -578,6 +588,7 @@ class RunAggregationQueryRequest(typing_extensions.TypedDict, total=False):
     gqlQuery: GqlQuery
     partitionId: PartitionId
     readOptions: ReadOptions
+    requestOptions: RequestOptions
 
 @typing.type_check_only
 class RunAggregationQueryResponse(typing_extensions.TypedDict, total=False):
@@ -595,6 +606,7 @@ class RunQueryRequest(typing_extensions.TypedDict, total=False):
     propertyMask: PropertyMask
     query: Query
     readOptions: ReadOptions
+    requestOptions: RequestOptions
 
 @typing.type_check_only
 class RunQueryResponse(typing_extensions.TypedDict, total=False):

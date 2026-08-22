@@ -126,6 +126,9 @@ class AdIdentifiers(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AddressInfo(typing_extensions.TypedDict, total=False):
+    addressLine: str
+    administrativeArea: str
+    city: str
     familyName: str
     givenName: str
     postalCode: str
@@ -136,8 +139,10 @@ class AudienceMember(typing_extensions.TypedDict, total=False):
     compositeData: CompositeData
     consent: Consent
     destinationReferences: _list[str]
+    googleUserIdData: GoogleUserIdData
     mobileData: MobileData
     pairData: PairData
+    partnerProvidedIdData: PartnerProvidedIdData
     ppidData: PpidData
     userData: UserData
     userIdData: UserIdData
@@ -301,6 +306,7 @@ class ErrorCount(typing_extensions.TypedDict, total=False):
         "PROCESSING_ERROR_REASON_INVALID_CLICK",
         "PROCESSING_ERROR_REASON_INVALID_OPERATING_ACCOUNT_FOR_CLICK",
         "PROCESSING_ERROR_REASON_CLICK_NOT_FOUND",
+        "PROCESSING_ERROR_REASON_EXTERNAL_ATTRIBUTION_DATA_MISSING",
     ]
     recordCount: str
 
@@ -362,11 +368,37 @@ class ExperimentalField(typing_extensions.TypedDict, total=False):
     value: str
 
 @typing.type_check_only
+class FieldWarning(typing_extensions.TypedDict, total=False):
+    description: str
+    field: str
+    reason: typing_extensions.Literal[
+        "WARNING_REASON_UNSPECIFIED",
+        "WARNING_REASON_CUSTOM_VARIABLE_NOT_ENABLED",
+        "WARNING_REASON_CUSTOM_VARIABLE_NOT_PREDEFINED",
+        "WARNING_REASON_CART_DATA_NOT_SUPPORTED_WITH_GBRAID_OR_WBRAID",
+        "WARNING_REASON_CART_DATA_ITEM_MERCHANT_PRODUCT_ID_MISSING",
+        "WARNING_REASON_CART_DATA_ITEM_UNIT_PRICE_MISSING",
+        "WARNING_REASON_GENERIC",
+        "WARNING_REASON_INVALID_CLIENT_ID",
+        "WARNING_REASON_INVALID_SUBDIVISION_CODE",
+        "WARNING_REASON_INVALID_REGION_CODE",
+        "WARNING_REASON_INVALID_SUBCONTINENT_CODE",
+        "WARNING_REASON_INVALID_CONTINENT_CODE",
+        "WARNING_REASON_INVALID_DEVICE_CATEGORY",
+        "WARNING_REASON_INVALID_DEVICE_SCREEN_RESOLUTION",
+        "WARNING_REASON_INVALID_MERCHANT_ID",
+    ]
+
+@typing.type_check_only
 class GcpWrappedKeyInfo(typing_extensions.TypedDict, total=False):
     encryptedDek: str
     kekUri: str
     keyType: typing_extensions.Literal["KEY_TYPE_UNSPECIFIED", "XCHACHA20_POLY1305"]
     wipProvider: str
+
+@typing.type_check_only
+class GoogleUserIdData(typing_extensions.TypedDict, total=False):
+    googleUserIds: _list[str]
 
 @typing.type_check_only
 class IngestAdEventsRequest(typing_extensions.TypedDict, total=False):
@@ -389,13 +421,16 @@ class IngestAudienceMembersRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class IngestAudienceMembersResponse(typing_extensions.TypedDict, total=False):
+    fieldWarnings: _list[FieldWarning]
     requestId: str
 
 @typing.type_check_only
 class IngestAudienceMembersStatus(typing_extensions.TypedDict, total=False):
     compositeDataIngestionStatus: IngestCompositeDataStatus
+    googleUserIdDataIngestionStatus: IngestGoogleUserIdDataStatus
     mobileDataIngestionStatus: IngestMobileDataStatus
     pairDataIngestionStatus: IngestPairDataStatus
+    partnerProvidedIdDataIngestionStatus: IngestPartnerProvidedIdDataStatus
     ppidDataIngestionStatus: IngestPpidDataStatus
     userDataIngestionStatus: IngestUserDataStatus
     userIdDataIngestionStatus: IngestUserIdDataStatus
@@ -429,10 +464,16 @@ class IngestEventsRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class IngestEventsResponse(typing_extensions.TypedDict, total=False):
+    fieldWarnings: _list[FieldWarning]
     requestId: str
 
 @typing.type_check_only
 class IngestEventsStatus(typing_extensions.TypedDict, total=False):
+    recordCount: str
+
+@typing.type_check_only
+class IngestGoogleUserIdDataStatus(typing_extensions.TypedDict, total=False):
+    googleUserIdCount: str
     recordCount: str
 
 @typing.type_check_only
@@ -443,6 +484,11 @@ class IngestMobileDataStatus(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class IngestPairDataStatus(typing_extensions.TypedDict, total=False):
     pairIdCount: str
+    recordCount: str
+
+@typing.type_check_only
+class IngestPartnerProvidedIdDataStatus(typing_extensions.TypedDict, total=False):
+    partnerProvidedIdCount: str
     recordCount: str
 
 @typing.type_check_only
@@ -641,6 +687,10 @@ class PartnerLinkMetadata(typing_extensions.TypedDict, total=False):
     implicitAccounts: _list[PartnerCustomerAccount]
 
 @typing.type_check_only
+class PartnerProvidedIdData(typing_extensions.TypedDict, total=False):
+    partnerProvidedIds: _list[str]
+
+@typing.type_check_only
 class PpidData(typing_extensions.TypedDict, total=False):
     ppids: _list[str]
 
@@ -673,6 +723,19 @@ class PseudonymousIdInfo(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class RemoveAllAudienceMembersRequest(typing_extensions.TypedDict, total=False):
+    destinations: _list[Destination]
+    removeAsOfTime: str
+    validateOnly: bool
+
+@typing.type_check_only
+class RemoveAllAudienceMembersResponse(typing_extensions.TypedDict, total=False):
+    requestId: str
+
+@typing.type_check_only
+class RemoveAllAudienceMembersStatus(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class RemoveAudienceMembersRequest(typing_extensions.TypedDict, total=False):
     audienceMembers: _list[AudienceMember]
     destinations: _list[Destination]
@@ -687,8 +750,10 @@ class RemoveAudienceMembersResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class RemoveAudienceMembersStatus(typing_extensions.TypedDict, total=False):
     compositeDataRemovalStatus: RemoveCompositeDataStatus
+    googleUserIdDataRemovalStatus: RemoveGoogleUserIdDataStatus
     mobileDataRemovalStatus: RemoveMobileDataStatus
     pairDataRemovalStatus: RemovePairDataStatus
+    partnerProvidedIdDataRemovalStatus: RemovePartnerProvidedIdDataStatus
     ppidDataRemovalStatus: RemovePpidDataStatus
     userDataRemovalStatus: RemoveUserDataStatus
     userIdDataRemovalStatus: RemoveUserIdDataStatus
@@ -699,6 +764,11 @@ class RemoveCompositeDataStatus(typing_extensions.TypedDict, total=False):
     recordCount: str
 
 @typing.type_check_only
+class RemoveGoogleUserIdDataStatus(typing_extensions.TypedDict, total=False):
+    googleUserIdCount: str
+    recordCount: str
+
+@typing.type_check_only
 class RemoveMobileDataStatus(typing_extensions.TypedDict, total=False):
     mobileIdCount: str
     recordCount: str
@@ -706,6 +776,11 @@ class RemoveMobileDataStatus(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class RemovePairDataStatus(typing_extensions.TypedDict, total=False):
     pairIdCount: str
+    recordCount: str
+
+@typing.type_check_only
+class RemovePartnerProvidedIdDataStatus(typing_extensions.TypedDict, total=False):
+    partnerProvidedIdCount: str
     recordCount: str
 
 @typing.type_check_only
@@ -730,6 +805,7 @@ class RequestStatusPerDestination(typing_extensions.TypedDict, total=False):
     destination: Destination
     errorInfo: ErrorInfo
     eventsIngestionStatus: IngestEventsStatus
+    removeAllAudienceMembersStatus: RemoveAllAudienceMembersStatus
     requestStatus: typing_extensions.Literal[
         "REQUEST_STATUS_UNKNOWN", "SUCCESS", "PROCESSING", "FAILED", "PARTIAL_SUCCESS"
     ]

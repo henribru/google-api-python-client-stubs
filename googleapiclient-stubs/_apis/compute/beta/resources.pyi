@@ -4048,6 +4048,28 @@ class ComputeResource(googleapiclient.discovery.Resource):
         ) -> MachineTypeListHttpRequest | None: ...
 
     @typing.type_check_only
+    class ManagedRulesetsResource(googleapiclient.discovery.Resource):
+        def get(
+            self, *, project: str, managedRuleset: str, **kwargs: typing.Any
+        ) -> ManagedRulesetHttpRequest: ...
+        def list(
+            self,
+            *,
+            project: str,
+            filter: str | None = ...,
+            maxResults: int | None = ...,
+            orderBy: str | None = ...,
+            pageToken: str | None = ...,
+            returnPartialSuccess: bool | None = ...,
+            **kwargs: typing.Any,
+        ) -> ManagedRulesetListHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ManagedRulesetListHttpRequest,
+            previous_response: ManagedRulesetList,
+        ) -> ManagedRulesetListHttpRequest | None: ...
+
+    @typing.type_check_only
     class NetworkAttachmentsResource(googleapiclient.discovery.Resource):
         def aggregatedList(
             self,
@@ -8492,6 +8514,28 @@ class ComputeResource(googleapiclient.discovery.Resource):
         ) -> RegionListHttpRequest | None: ...
 
     @typing.type_check_only
+    class ReliabilityRisksResource(googleapiclient.discovery.Resource):
+        def get(
+            self, *, project: str, reliabilityRisk: str, **kwargs: typing.Any
+        ) -> ReliabilityRiskHttpRequest: ...
+        def list(
+            self,
+            *,
+            project: str,
+            filter: str | None = ...,
+            maxResults: int | None = ...,
+            orderBy: str | None = ...,
+            pageToken: str | None = ...,
+            returnPartialSuccess: bool | None = ...,
+            **kwargs: typing.Any,
+        ) -> ReliabilityRisksListResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ReliabilityRisksListResponseHttpRequest,
+            previous_response: ReliabilityRisksListResponse,
+        ) -> ReliabilityRisksListResponseHttpRequest | None: ...
+
+    @typing.type_check_only
     class ReservationBlocksResource(googleapiclient.discovery.Resource):
         def get(
             self,
@@ -11419,6 +11463,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
     def licenses(self) -> LicensesResource: ...
     def machineImages(self) -> MachineImagesResource: ...
     def machineTypes(self) -> MachineTypesResource: ...
+    def managedRulesets(self) -> ManagedRulesetsResource: ...
     def networkAttachments(self) -> NetworkAttachmentsResource: ...
     def networkEdgeSecurityServices(self) -> NetworkEdgeSecurityServicesResource: ...
     def networkEndpointGroups(self) -> NetworkEndpointGroupsResource: ...
@@ -11480,6 +11525,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
     def regionUrlMaps(self) -> RegionUrlMapsResource: ...
     def regionZones(self) -> RegionZonesResource: ...
     def regions(self) -> RegionsResource: ...
+    def reliabilityRisks(self) -> ReliabilityRisksResource: ...
     def reservationBlocks(self) -> ReservationBlocksResource: ...
     def reservationSlots(self) -> ReservationSlotsResource: ...
     def reservationSubBlocks(self) -> ReservationSubBlocksResource: ...
@@ -12606,6 +12652,22 @@ class MachineTypeListHttpRequest(googleapiclient.http.HttpRequest):
     ) -> MachineTypeList: ...
 
 @typing.type_check_only
+class ManagedRulesetHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ManagedRuleset: ...
+
+@typing.type_check_only
+class ManagedRulesetListHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ManagedRulesetList: ...
+
+@typing.type_check_only
 class MultiMigHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -13184,6 +13246,22 @@ class RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponse: ...
+
+@typing.type_check_only
+class ReliabilityRiskHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ReliabilityRisk: ...
+
+@typing.type_check_only
+class ReliabilityRisksListResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ReliabilityRisksListResponse: ...
 
 @typing.type_check_only
 class ReservationHttpRequest(googleapiclient.http.HttpRequest):

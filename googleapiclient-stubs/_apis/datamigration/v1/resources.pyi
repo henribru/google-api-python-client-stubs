@@ -558,6 +558,7 @@ class DatabaseMigrationServiceResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
+                fetchReservedPublicIps: bool | None = ...,
                 pageSize: int | None = ...,
                 pageToken: str | None = ...,
                 **kwargs: typing.Any,

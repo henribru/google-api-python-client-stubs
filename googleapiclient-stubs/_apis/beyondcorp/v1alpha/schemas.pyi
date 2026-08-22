@@ -552,6 +552,7 @@ class GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaSubscription(
     endTime: str
     name: str
     seatCount: str
+    signupSource: str
     sku: typing_extensions.Literal["SKU_UNSPECIFIED", "BCE_STANDARD_SKU"]
     startTime: str
     state: typing_extensions.Literal[
@@ -616,6 +617,7 @@ class GoogleCloudBeyondcorpSecuritygatewaysV1alphaContextualHeaders(
     deviceInfo: (
         GoogleCloudBeyondcorpSecuritygatewaysV1alphaContextualHeadersDelegatedDeviceInfo
     )
+    dispatchInfo: GoogleCloudBeyondcorpSecuritygatewaysV1alphaContextualHeadersDelegatedDispatchInfo
     groupInfo: (
         GoogleCloudBeyondcorpSecuritygatewaysV1alphaContextualHeadersDelegatedGroupInfo
     )
@@ -628,6 +630,14 @@ class GoogleCloudBeyondcorpSecuritygatewaysV1alphaContextualHeaders(
 
 @typing.type_check_only
 class GoogleCloudBeyondcorpSecuritygatewaysV1alphaContextualHeadersDelegatedDeviceInfo(
+    typing_extensions.TypedDict, total=False
+):
+    outputType: typing_extensions.Literal[
+        "OUTPUT_TYPE_UNSPECIFIED", "PROTOBUF", "JSON", "NONE"
+    ]
+
+@typing.type_check_only
+class GoogleCloudBeyondcorpSecuritygatewaysV1alphaContextualHeadersDelegatedDispatchInfo(
     typing_extensions.TypedDict, total=False
 ):
     outputType: typing_extensions.Literal[

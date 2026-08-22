@@ -492,6 +492,21 @@ class ContentProviderEndpoint(typing_extensions.TypedDict, total=False):
     uri: str
 
 @typing.type_check_only
+class CrossDevicePolicies(typing_extensions.TypedDict, total=False):
+    nearbyAppStreaming: typing_extensions.Literal[
+        "NEARBY_APP_STREAMING_UNSPECIFIED",
+        "NEARBY_APP_STREAMING_USER_CHOICE",
+        "NEARBY_APP_STREAMING_DISABLED",
+        "NEARBY_APP_STREAMING_USER_CHOICE_SAME_MANAGED_ACCOUNT",
+    ]
+    nearbyNotificationStreaming: typing_extensions.Literal[
+        "NEARBY_NOTIFICATION_STREAMING_UNSPECIFIED",
+        "NEARBY_NOTIFICATION_STREAMING_USER_CHOICE",
+        "NEARBY_NOTIFICATION_STREAMING_DISABLED",
+        "NEARBY_NOTIFICATION_STREAMING_USER_CHOICE_SAME_MANAGED_ACCOUNT",
+    ]
+
+@typing.type_check_only
 class CrossProfilePolicies(typing_extensions.TypedDict, total=False):
     crossProfileAppFunctions: typing_extensions.Literal[
         "CROSS_PROFILE_APP_FUNCTIONS_UNSPECIFIED",
@@ -1508,6 +1523,7 @@ class Policy(typing_extensions.TypedDict, total=False):
         "CREDENTIAL_PROVIDER_DEFAULT_DISALLOWED_EXCEPT_SYSTEM",
     ]
     credentialsConfigDisabled: bool
+    crossDevicePolicies: CrossDevicePolicies
     crossProfilePolicies: CrossProfilePolicies
     dataRoamingDisabled: bool
     debuggingFeaturesAllowed: bool

@@ -172,6 +172,9 @@ class SignatureInfo(typing_extensions.TypedDict, total=False):
         "PQ_SIGN_ML_DSA_44_EXTERNAL_MU",
         "PQ_SIGN_ML_DSA_65_EXTERNAL_MU",
         "PQ_SIGN_ML_DSA_87_EXTERNAL_MU",
+        "KEM_ECDH_P256",
+        "KEM_ECDH_P384",
+        "AES_256_KWP",
     ]
     googlePublicKeyPem: str
     serializedApprovalRequest: str

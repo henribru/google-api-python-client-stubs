@@ -14,6 +14,12 @@ class ClientCache(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CloudSqlInstance(typing_extensions.TypedDict, total=False):
+    edition: typing_extensions.Literal[
+        "EDITION_UNSPECIFIED",
+        "EDITION_ENTERPRISE",
+        "EDITION_ENTERPRISE_PLUS",
+        "EDITION_DEVELOPER",
+    ]
     instance: str
 
 @typing.type_check_only
@@ -271,12 +277,15 @@ class Schema(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Service(typing_extensions.TypedDict, total=False):
     annotations: dict[str, typing.Any]
+    connectors: _list[Connector]
     createTime: str
     displayName: str
     etag: str
     labels: dict[str, typing.Any]
     name: str
     reconciling: bool
+    schemas: _list[Schema]
+    source: Source
     uid: str
     updateTime: str
 

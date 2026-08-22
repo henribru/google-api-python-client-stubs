@@ -92,7 +92,7 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any,
         ) -> ConnectSettingsHttpRequest: ...
         def resolve(
-            self, *, dnsName: str, location: str, **kwargs: typing.Any
+            self, *, location: str, dnsName: str, **kwargs: typing.Any
         ) -> ConnectSettingsHttpRequest: ...
 
     @typing.type_check_only
@@ -280,6 +280,8 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
             project: str,
             instance: str,
             body: DatabaseInstance,
+            reconcilePscNetworking: bool | None = ...,
+            reconcilePscNetworkingForce: bool | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def pointInTimeRestore(
@@ -376,16 +378,27 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class OperationsResource(googleapiclient.discovery.Resource):
         def cancel(
-            self, *, project: str, operation: str, **kwargs: typing.Any
+            self,
+            *,
+            project: str,
+            operation: str,
+            location: str | None = ...,
+            **kwargs: typing.Any,
         ) -> EmptyHttpRequest: ...
         def get(
-            self, *, project: str, operation: str, **kwargs: typing.Any
+            self,
+            *,
+            project: str,
+            operation: str,
+            location: str | None = ...,
+            **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def list(
             self,
             *,
             project: str,
             instance: str | None = ...,
+            location: str | None = ...,
             maxResults: int | None = ...,
             pageToken: str | None = ...,
             **kwargs: typing.Any,
@@ -534,6 +547,8 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
             host: str | None = ...,
             name: str | None = ...,
             revokeExistingRoles: bool | None = ...,
+            revokeExistingServerRoles: bool | None = ...,
+            serverRoles: str | _list[str] | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
 

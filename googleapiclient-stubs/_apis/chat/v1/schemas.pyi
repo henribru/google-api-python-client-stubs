@@ -5,7 +5,17 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class AccessPermissionSetting(typing_extensions.TypedDict, total=False):
+    principals: _list[Principal]
+
+@typing.type_check_only
+class AccessPermissionSettings(typing_extensions.TypedDict, total=False):
+    discoverSpaceSetting: AccessPermissionSetting
+    joinSpaceSetting: AccessPermissionSetting
+
+@typing.type_check_only
 class AccessSettings(typing_extensions.TypedDict, total=False):
+    accessPermissionSettings: AccessPermissionSettings
     accessState: typing_extensions.Literal[
         "ACCESS_STATE_UNSPECIFIED", "PRIVATE", "DISCOVERABLE"
     ]
@@ -78,7 +88,10 @@ class Annotation(typing_extensions.TypedDict, total=False):
 class AppCommandMetadata(typing_extensions.TypedDict, total=False):
     appCommandId: int
     appCommandType: typing_extensions.Literal[
-        "APP_COMMAND_TYPE_UNSPECIFIED", "SLASH_COMMAND", "QUICK_COMMAND"
+        "APP_COMMAND_TYPE_UNSPECIFIED",
+        "SLASH_COMMAND",
+        "QUICK_COMMAND",
+        "MESSAGE_ACTION",
     ]
 
 @typing.type_check_only
@@ -102,6 +115,10 @@ class Attachment(typing_extensions.TypedDict, total=False):
 class AttachmentDataRef(typing_extensions.TypedDict, total=False):
     attachmentUploadToken: str
     resourceName: str
+
+@typing.type_check_only
+class Audience(typing_extensions.TypedDict, total=False):
+    name: str
 
 @typing.type_check_only
 class Availability(typing_extensions.TypedDict, total=False):
@@ -975,6 +992,9 @@ class Message(typing_extensions.TypedDict, total=False):
     fallbackText: str
     formattedText: str
     lastUpdateTime: str
+    markupSyntax: typing_extensions.Literal[
+        "MARKUP_SYNTAX_UNSPECIFIED", "MARKUP_SYNTAX_CHAT", "MARKUP_SYNTAX_MARKDOWN"
+    ]
     matchedUrl: MatchedUrl
     name: str
     privateMessageViewer: User
@@ -1055,6 +1075,10 @@ class PositionSectionResponse(typing_extensions.TypedDict, total=False):
     section: GoogleChatV1Section
 
 @typing.type_check_only
+class Principal(typing_extensions.TypedDict, total=False):
+    audience: Audience
+
+@typing.type_check_only
 class QuotedMessageMetadata(typing_extensions.TypedDict, total=False):
     forwardedMetadata: ForwardedMetadata
     lastUpdateTime: str
@@ -1109,8 +1133,41 @@ class RichLinkMetadata(typing_extensions.TypedDict, total=False):
     uri: str
 
 @typing.type_check_only
+class SearchMessageResult(typing_extensions.TypedDict, total=False):
+    message: Message
+    read: bool
+    spaceMuteSetting: typing_extensions.Literal[
+        "MUTE_SETTING_UNSPECIFIED", "UNMUTED", "MUTED"
+    ]
+
+@typing.type_check_only
+class SearchMessagesRequest(typing_extensions.TypedDict, total=False):
+    filter: str
+    markupSyntax: typing_extensions.Literal[
+        "MARKUP_SYNTAX_UNSPECIFIED", "MARKUP_SYNTAX_CHAT", "MARKUP_SYNTAX_MARKDOWN"
+    ]
+    orderBy: str
+    pageSize: int
+    pageToken: str
+    view: typing_extensions.Literal[
+        "SEARCH_MESSAGES_VIEW_UNSPECIFIED",
+        "SEARCH_MESSAGES_VIEW_BASIC",
+        "SEARCH_MESSAGES_VIEW_FULL",
+    ]
+
+@typing.type_check_only
+class SearchMessagesResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    results: _list[SearchMessageResult]
+
+@typing.type_check_only
+class SearchSpaceResult(typing_extensions.TypedDict, total=False):
+    space: Space
+
+@typing.type_check_only
 class SearchSpacesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
+    results: _list[SearchSpaceResult]
     spaces: _list[Space]
     totalSize: int
 

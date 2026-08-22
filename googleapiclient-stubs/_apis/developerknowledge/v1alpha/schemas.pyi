@@ -18,6 +18,7 @@ class AnswerCitation(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AnswerQueryRequest(typing_extensions.TypedDict, total=False):
+    filter: str
     query: str
 
 @typing.type_check_only
@@ -39,6 +40,7 @@ class CitationSource(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Document(typing_extensions.TypedDict, total=False):
     content: str
+    contentLengthBytes: int
     dataSource: str
     description: str
     name: str
@@ -58,6 +60,7 @@ class DocumentChunk(typing_extensions.TypedDict, total=False):
     document: Document
     id: str
     parent: str
+    relevanceScore: float
 
 @typing.type_check_only
 class DocumentReference(typing_extensions.TypedDict, total=False):

@@ -137,6 +137,9 @@ class DownloadParameters(typing_extensions.TypedDict, total=False):
     ignoreRange: bool
 
 @typing.type_check_only
+class Empty(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class EscalateCaseRequest(typing_extensions.TypedDict, total=False):
     escalation: Escalation
 
@@ -149,6 +152,11 @@ class Escalation(typing_extensions.TypedDict, total=False):
         "TECHNICAL_EXPERTISE",
         "BUSINESS_IMPACT",
     ]
+
+@typing.type_check_only
+class ExpungeSupportEventSubscriptionRequest(
+    typing_extensions.TypedDict, total=False
+): ...
 
 @typing.type_check_only
 class ListAttachmentsResponse(typing_extensions.TypedDict, total=False):

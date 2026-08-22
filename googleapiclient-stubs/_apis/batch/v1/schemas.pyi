@@ -347,6 +347,9 @@ class NFS(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class NetworkInterface(typing_extensions.TypedDict, total=False):
     network: str
+    nicType: typing_extensions.Literal[
+        "NIC_TYPE_UNSPECIFIED", "GVNIC", "IRDMA", "MRDMA"
+    ]
     noExternalIpAddress: bool
     subnetwork: str
 

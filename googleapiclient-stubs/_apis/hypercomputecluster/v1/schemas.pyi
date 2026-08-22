@@ -209,7 +209,12 @@ class NewBucketConfig(typing_extensions.TypedDict, total=False):
     bucket: str
     hierarchicalNamespace: GcsHierarchicalNamespaceConfig
     storageClass: typing_extensions.Literal[
-        "STORAGE_CLASS_UNSPECIFIED", "STANDARD", "NEARLINE", "COLDLINE", "ARCHIVE"
+        "STORAGE_CLASS_UNSPECIFIED",
+        "STANDARD",
+        "NEARLINE",
+        "COLDLINE",
+        "ARCHIVE",
+        "RAPID",
     ]
 
 @typing.type_check_only

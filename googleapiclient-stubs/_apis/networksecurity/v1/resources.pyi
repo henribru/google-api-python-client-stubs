@@ -112,6 +112,7 @@ class NetworkSecurityResource(googleapiclient.discovery.Resource):
                     body: FirewallEndpoint,
                     firewallEndpointId: str | None = ...,
                     requestId: str | None = ...,
+                    validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
@@ -706,6 +707,7 @@ class NetworkSecurityResource(googleapiclient.discovery.Resource):
                     body: FirewallEndpoint,
                     firewallEndpointId: str | None = ...,
                     requestId: str | None = ...,
+                    validateOnly: bool | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(

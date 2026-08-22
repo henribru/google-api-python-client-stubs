@@ -371,6 +371,11 @@ class ExpiryDetail(typing_extensions.TypedDict, total=False):
     expireTime: str
 
 @typing.type_check_only
+class ExternalId(typing_extensions.TypedDict, total=False):
+    id: str
+    namespace: str
+
+@typing.type_check_only
 class GetMembershipGraphResponse(typing_extensions.TypedDict, total=False):
     adjacencyList: _list[MembershipAdjacencyList]
     groups: _list[Group]
@@ -698,6 +703,7 @@ class Group(typing_extensions.TypedDict, total=False):
     description: str
     displayName: str
     dynamicGroupMetadata: DynamicGroupMetadata
+    externalIds: _list[ExternalId]
     groupKey: EntityKey
     labels: dict[str, typing.Any]
     name: str

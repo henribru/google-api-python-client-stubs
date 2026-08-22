@@ -295,6 +295,7 @@ class GoogleMapsPlacesV1Place(typing_extensions.TypedDict, total=False):
     dineIn: bool
     displayName: GoogleTypeLocalizedText
     editorialSummary: GoogleTypeLocalizedText
+    entrances: _list[GoogleMapsPlacesV1PlaceEntrance]
     evChargeAmenitySummary: GoogleMapsPlacesV1PlaceEvChargeAmenitySummary
     evChargeOptions: GoogleMapsPlacesV1EVChargeOptions
     formattedAddress: str
@@ -317,6 +318,7 @@ class GoogleMapsPlacesV1Place(typing_extensions.TypedDict, total=False):
     movedPlaceId: str
     name: str
     nationalPhoneNumber: str
+    navigationPoints: _list[GoogleMapsPlacesV1PlaceNavigationPoint]
     neighborhoodSummary: GoogleMapsPlacesV1PlaceNeighborhoodSummary
     openingDate: GoogleTypeDate
     outdoorSeating: bool
@@ -413,6 +415,11 @@ class GoogleMapsPlacesV1PlaceContainingPlace(typing_extensions.TypedDict, total=
     name: str
 
 @typing.type_check_only
+class GoogleMapsPlacesV1PlaceEntrance(typing_extensions.TypedDict, total=False):
+    location: GoogleTypeLatLng
+    tags: _list[typing_extensions.Literal["TAG_UNSPECIFIED", "PREFERRED"]]
+
+@typing.type_check_only
 class GoogleMapsPlacesV1PlaceEvChargeAmenitySummary(
     typing_extensions.TypedDict, total=False
 ):
@@ -438,6 +445,18 @@ class GoogleMapsPlacesV1PlaceGoogleMapsLinks(typing_extensions.TypedDict, total=
     placeUri: str
     reviewsUri: str
     writeAReviewUri: str
+
+@typing.type_check_only
+class GoogleMapsPlacesV1PlaceNavigationPoint(typing_extensions.TypedDict, total=False):
+    displayName: GoogleTypeLocalizedText
+    location: GoogleTypeLatLng
+    navigationPointToken: str
+    travelModes: _list[
+        typing_extensions.Literal["TRAVEL_MODE_UNSPECIFIED", "DRIVE", "WALK"]
+    ]
+    usages: _list[
+        typing_extensions.Literal["USAGE_UNSPECIFIED", "DROPOFF", "PICKUP", "PARKING"]
+    ]
 
 @typing.type_check_only
 class GoogleMapsPlacesV1PlaceNeighborhoodSummary(

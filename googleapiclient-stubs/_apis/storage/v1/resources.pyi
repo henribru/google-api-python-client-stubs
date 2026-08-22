@@ -458,6 +458,16 @@ class StorageResource(googleapiclient.discovery.Resource):
             userProject: str | None = ...,
             **kwargs: typing.Any,
         ) -> TestIamPermissionsResponseHttpRequest: ...
+        def update(
+            self,
+            *,
+            bucket: str,
+            managedFolder: str,
+            body: ManagedFolder,
+            ifMetagenerationMatch: str | None = ...,
+            ifMetagenerationNotMatch: str | None = ...,
+            **kwargs: typing.Any,
+        ) -> ManagedFolderHttpRequest: ...
 
     @typing.type_check_only
     class NotificationsResource(googleapiclient.discovery.Resource):
@@ -950,6 +960,39 @@ class StorageResource(googleapiclient.discovery.Resource):
         def hmacKeys(self) -> HmacKeysResource: ...
         def serviceAccount(self) -> ServiceAccountResource: ...
 
+    @typing.type_check_only
+    class RapidCachesResource(googleapiclient.discovery.Resource):
+        def disable(
+            self, *, bucket: str, rapidCacheId: str, **kwargs: typing.Any
+        ) -> GoogleLongrunningOperationHttpRequest: ...
+        def get(
+            self, *, bucket: str, rapidCacheId: str, **kwargs: typing.Any
+        ) -> RapidCacheHttpRequest: ...
+        def insert(
+            self, *, bucket: str, body: RapidCache, **kwargs: typing.Any
+        ) -> GoogleLongrunningOperationHttpRequest: ...
+        def list(
+            self,
+            *,
+            bucket: str,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
+            **kwargs: typing.Any,
+        ) -> RapidCachesHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: RapidCachesHttpRequest,
+            previous_response: RapidCaches,
+        ) -> RapidCachesHttpRequest | None: ...
+        def update(
+            self,
+            *,
+            bucket: str,
+            rapidCacheId: str,
+            body: RapidCache,
+            **kwargs: typing.Any,
+        ) -> GoogleLongrunningOperationHttpRequest: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[
@@ -974,6 +1017,7 @@ class StorageResource(googleapiclient.discovery.Resource):
     def objects(self) -> ObjectsResource: ...
     def operations(self) -> OperationsResource: ...
     def projects(self) -> ProjectsResource: ...
+    def rapidCaches(self) -> RapidCachesResource: ...
 
 @typing.type_check_only
 class AnywhereCacheHttpRequest(googleapiclient.http.HttpRequest):
@@ -1160,6 +1204,22 @@ class PolicyHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Policy: ...
+
+@typing.type_check_only
+class RapidCacheHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> RapidCache: ...
+
+@typing.type_check_only
+class RapidCachesHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> RapidCaches: ...
 
 @typing.type_check_only
 class RewriteResponseHttpRequest(googleapiclient.http.HttpRequest):

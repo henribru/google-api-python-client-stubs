@@ -218,6 +218,7 @@ class BuildOptions(typing_extensions.TypedDict, total=False):
         "E2_HIGHCPU_8",
         "E2_HIGHCPU_32",
         "E2_MEDIUM",
+        "E2_STANDARD_2",
     ]
     pool: PoolOption
     pubsubTopic: str

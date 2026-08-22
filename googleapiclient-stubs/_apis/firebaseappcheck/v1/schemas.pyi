@@ -45,12 +45,6 @@ class GoogleFirebaseAppcheckV1BatchGetRecaptchaV3ConfigsResponse(
     configs: _list[GoogleFirebaseAppcheckV1RecaptchaV3Config]
 
 @typing.type_check_only
-class GoogleFirebaseAppcheckV1BatchGetSafetyNetConfigsResponse(
-    typing_extensions.TypedDict, total=False
-):
-    configs: _list[GoogleFirebaseAppcheckV1SafetyNetConfig]
-
-@typing.type_check_only
 class GoogleFirebaseAppcheckV1BatchUpdateResourcePoliciesRequest(
     typing_extensions.TypedDict, total=False
 ):
@@ -124,6 +118,7 @@ class GoogleFirebaseAppcheckV1ExchangeCustomTokenRequest(
     typing_extensions.TypedDict, total=False
 ):
     customToken: str
+    jti: str
     limitedUse: bool
 
 @typing.type_check_only
@@ -160,12 +155,6 @@ class GoogleFirebaseAppcheckV1ExchangeRecaptchaV3TokenRequest(
 ):
     limitedUse: bool
     recaptchaV3Token: str
-
-@typing.type_check_only
-class GoogleFirebaseAppcheckV1ExchangeSafetyNetTokenRequest(
-    typing_extensions.TypedDict, total=False
-):
-    safetyNetToken: str
 
 @typing.type_check_only
 class GoogleFirebaseAppcheckV1GenerateAppAttestChallengeRequest(
@@ -291,11 +280,6 @@ class GoogleFirebaseAppcheckV1ResourcePolicy(typing_extensions.TypedDict, total=
     name: str
     targetResource: str
     updateTime: str
-
-@typing.type_check_only
-class GoogleFirebaseAppcheckV1SafetyNetConfig(typing_extensions.TypedDict, total=False):
-    name: str
-    tokenTtl: str
 
 @typing.type_check_only
 class GoogleFirebaseAppcheckV1Service(typing_extensions.TypedDict, total=False):

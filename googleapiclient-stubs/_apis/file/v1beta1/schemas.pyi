@@ -80,6 +80,7 @@ class FileShareConfig(typing_extensions.TypedDict, total=False):
     capacityGb: str
     name: str
     nfsExportOptions: _list[NfsExportOptions]
+    restoreConfig: RestoreConfig
     sourceBackup: str
     sourceBackupdrBackup: str
 
@@ -436,6 +437,10 @@ class ReplicaConfig(typing_extensions.TypedDict, total=False):
 class Replication(typing_extensions.TypedDict, total=False):
     replicas: _list[ReplicaConfig]
     role: typing_extensions.Literal["ROLE_UNSPECIFIED", "ACTIVE", "STANDBY"]
+
+@typing.type_check_only
+class RestoreConfig(typing_extensions.TypedDict, total=False):
+    pathPatterns: _list[str]
 
 @typing.type_check_only
 class RestoreInstanceRequest(typing_extensions.TypedDict, total=False):

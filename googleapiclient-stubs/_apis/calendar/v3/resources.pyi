@@ -102,6 +102,7 @@ class CalendarResource(googleapiclient.discovery.Resource):
             pageToken: str | None = ...,
             showDeleted: bool | None = ...,
             showHidden: bool | None = ...,
+            showOwnOrganizationOnly: bool | None = ...,
             syncToken: str | None = ...,
             **kwargs: typing.Any,
         ) -> CalendarListHttpRequest: ...
@@ -142,6 +143,7 @@ class CalendarResource(googleapiclient.discovery.Resource):
             pageToken: str | None = ...,
             showDeleted: bool | None = ...,
             showHidden: bool | None = ...,
+            showOwnOrganizationOnly: bool | None = ...,
             syncToken: str | None = ...,
             **kwargs: typing.Any,
         ) -> ChannelHttpRequest: ...
@@ -163,6 +165,14 @@ class CalendarResource(googleapiclient.discovery.Resource):
         def patch(
             self, *, calendarId: str, body: Calendar, **kwargs: typing.Any
         ) -> CalendarHttpRequest: ...
+        def transferOwnership(
+            self,
+            *,
+            calendarId: str,
+            newDataOwner: str,
+            useAdminAccess: bool,
+            **kwargs: typing.Any,
+        ) -> googleapiclient.http.HttpRequest: ...
         def update(
             self, *, calendarId: str, body: Calendar, **kwargs: typing.Any
         ) -> CalendarHttpRequest: ...
@@ -205,6 +215,7 @@ class CalendarResource(googleapiclient.discovery.Resource):
             calendarId: str,
             body: Event,
             conferenceDataVersion: int | None = ...,
+            eventLabelVersion: int | None = ...,
             supportsAttachments: bool | None = ...,
             **kwargs: typing.Any,
         ) -> EventHttpRequest: ...
@@ -214,6 +225,7 @@ class CalendarResource(googleapiclient.discovery.Resource):
             calendarId: str,
             body: Event,
             conferenceDataVersion: int | None = ...,
+            eventLabelVersion: int | None = ...,
             maxAttendees: int | None = ...,
             sendNotifications: bool | None = ...,
             sendUpdates: typing_extensions.Literal["all", "externalOnly", "none"]
@@ -304,6 +316,7 @@ class CalendarResource(googleapiclient.discovery.Resource):
             body: Event,
             alwaysIncludeEmail: bool | None = ...,
             conferenceDataVersion: int | None = ...,
+            eventLabelVersion: int | None = ...,
             maxAttendees: int | None = ...,
             sendNotifications: bool | None = ...,
             sendUpdates: typing_extensions.Literal["all", "externalOnly", "none"]
@@ -329,6 +342,7 @@ class CalendarResource(googleapiclient.discovery.Resource):
             body: Event,
             alwaysIncludeEmail: bool | None = ...,
             conferenceDataVersion: int | None = ...,
+            eventLabelVersion: int | None = ...,
             maxAttendees: int | None = ...,
             sendNotifications: bool | None = ...,
             sendUpdates: typing_extensions.Literal["all", "externalOnly", "none"]

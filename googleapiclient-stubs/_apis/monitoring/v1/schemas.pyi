@@ -226,6 +226,8 @@ class EventAnnotation(typing_extensions.TypedDict, total=False):
         "SAP_OPERATIONS",
         "INTERCONNECT_MAINTENANCE_STARTED",
         "INTERCONNECT_MAINTENANCE_COMPLETED",
+        "VPN_TRAFFIC_SELECTOR_NARROWING",
+        "VPN_MAINTENANCE",
     ]
     filter: str
     resourceNames: _list[str]

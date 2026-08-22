@@ -247,6 +247,7 @@ class AccessContextManagerResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
+                filter: str | None = ...,
                 pageSize: int | None = ...,
                 pageToken: str | None = ...,
                 **kwargs: typing.Any,

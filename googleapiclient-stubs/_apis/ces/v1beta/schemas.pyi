@@ -92,7 +92,6 @@ class AgentTool(typing_extensions.TypedDict, total=False):
     agent: str
     description: str
     name: str
-    rootAgent: str
 
 @typing.type_check_only
 class AgentTransfer(typing_extensions.TypedDict, total=False):
@@ -313,15 +312,27 @@ class ChannelProfile(typing_extensions.TypedDict, total=False):
         "TWILIO",
         "GOOGLE_TELEPHONY_PLATFORM",
         "CONTACT_CENTER_AS_A_SERVICE",
+        "CONTACT_CENTER_AS_A_SERVICE_CHAT",
         "FIVE9",
         "CONTACT_CENTER_INTEGRATION",
+        "WHATSAPP",
+        "INSTAGRAM",
     ]
     disableBargeInControl: bool
     disableDtmf: bool
+    instagramConfig: ChannelProfileInstagramConfig
     noiseSuppressionLevel: str
     personaProperty: ChannelProfilePersonaProperty
     profileId: str
     webWidgetConfig: ChannelProfileWebWidgetConfig
+    whatsappConfig: ChannelProfileWhatsAppConfig
+
+@typing.type_check_only
+class ChannelProfileInstagramConfig(typing_extensions.TypedDict, total=False):
+    description: str
+    displayName: str
+    instagramAccountId: str
+    thumbnailUrl: str
 
 @typing.type_check_only
 class ChannelProfilePersonaProperty(typing_extensions.TypedDict, total=False):
@@ -350,6 +361,15 @@ class ChannelProfileWebWidgetConfigSecuritySettings(
     enableRecaptcha: bool
 
 @typing.type_check_only
+class ChannelProfileWhatsAppConfig(typing_extensions.TypedDict, total=False):
+    description: str
+    displayName: str
+    phoneNumber: str
+    phoneNumberId: str
+    thumbnailUrl: str
+    wabaId: str
+
+@typing.type_check_only
 class Chunk(typing_extensions.TypedDict, total=False):
     agentTransfer: AgentTransfer
     blob: Blob
@@ -368,6 +388,7 @@ class Citations(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CitationsCitedChunk(typing_extensions.TypedDict, total=False):
+    requiresAttribution: bool
     text: str
     title: str
     uri: str
@@ -446,7 +467,10 @@ class ConversationLoggingSettings(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ConversationTurn(typing_extensions.TypedDict, total=False):
     messages: _list[Message]
+    resolvedDeveloperInstruction: str
     rootSpan: Span
+    templateAttributes: dict[str, typing.Any]
+    userIntendedText: str
 
 @typing.type_check_only
 class DataStore(typing_extensions.TypedDict, total=False):
@@ -552,6 +576,7 @@ class DataStoreToolModalityConfig(typing_extensions.TypedDict, total=False):
         "MODALITY_TYPE_UNSPECIFIED", "TEXT", "AUDIO"
     ]
     rewriterConfig: DataStoreToolRewriterConfig
+    snippetsConfig: DataStoreToolSnippetsConfig
     summarizationConfig: DataStoreToolSummarizationConfig
 
 @typing.type_check_only
@@ -559,6 +584,10 @@ class DataStoreToolRewriterConfig(typing_extensions.TypedDict, total=False):
     disabled: bool
     modelSettings: ModelSettings
     prompt: str
+
+@typing.type_check_only
+class DataStoreToolSnippetsConfig(typing_extensions.TypedDict, total=False):
+    enableSnippets: bool
 
 @typing.type_check_only
 class DataStoreToolSummarizationConfig(typing_extensions.TypedDict, total=False):
@@ -579,8 +608,14 @@ class Deployment(typing_extensions.TypedDict, total=False):
     displayName: str
     etag: str
     experimentConfig: ExperimentConfig
+    instagramCredentials: InstagramCredentials
+    modality: typing_extensions.Literal[
+        "MODALITY_UNSPECIFIED", "MODALITY_TEXT", "MODALITY_VOICE", "MODALITY_VIDEO"
+    ]
+    modelSettings: ModelSettings
     name: str
     updateTime: str
+    whatsappCredentials: WhatsAppCredentials
 
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
@@ -722,8 +757,12 @@ class EvaluationGoldenExpectation(typing_extensions.TypedDict, total=False):
         EvaluationMetricsConfigSemanticSimilarityMetricsConfig
     )
     agentTransfer: AgentTransfer
+    comparisonType: typing_extensions.Literal[
+        "COMPARISON_TYPE_UNSPECIFIED", "EQUALS", "CONTAINS", "SEMANTIC_SIMILARITY"
+    ]
     expectationLevelMetricsThresholdsOverride: EvaluationMetricsThresholdsGoldenEvaluationMetricsThresholdsExpectationLevelMetricsThresholds
     mockToolResponse: ToolResponse
+    noToolCalls: bool
     note: str
     skipEvaluation: bool
     toolCall: ToolCall
@@ -877,7 +916,12 @@ class EvaluationResult(typing_extensions.TypedDict, total=False):
         "OUTCOME_UNSPECIFIED", "PASS", "FAIL", "SKIPPED"
     ]
     executionState: typing_extensions.Literal[
-        "EXECUTION_STATE_UNSPECIFIED", "RUNNING", "COMPLETED", "ERROR"
+        "EXECUTION_STATE_UNSPECIFIED",
+        "QUEUED",
+        "RUNNING",
+        "COMPLETED",
+        "ERROR",
+        "CANCELLED",
     ]
     goldenResult: EvaluationResultGoldenResult
     goldenRunMethod: typing_extensions.Literal[
@@ -885,7 +929,11 @@ class EvaluationResult(typing_extensions.TypedDict, total=False):
     ]
     initiatedBy: str
     name: str
+    outcomeMetadata: typing_extensions.Literal[
+        "OUTCOME_METADATA_UNSPECIFIED", "GRACEFUL_HANDOFF"
+    ]
     persona: EvaluationPersona
+    rootSpan: Span
     scenarioResult: EvaluationResultScenarioResult
 
 @typing.type_check_only
@@ -1067,7 +1115,18 @@ class EvaluationRun(typing_extensions.TypedDict, total=False):
     runCount: int
     scheduledEvaluationRun: str
     state: typing_extensions.Literal[
-        "EVALUATION_RUN_STATE_UNSPECIFIED", "RUNNING", "COMPLETED", "ERROR"
+        "EVALUATION_RUN_STATE_UNSPECIFIED",
+        "QUEUED",
+        "RUNNING",
+        "COMPLETED",
+        "ERROR",
+        "CANCELLED",
+    ]
+
+@typing.type_check_only
+class EvaluationRunCachingSettings(typing_extensions.TypedDict, total=False):
+    runCachingMode: typing_extensions.Literal[
+        "EVALUATION_RUN_CACHING_MODE_UNSPECIFIED", "FORCE_RUN", "SKIP_IF_UNCHANGED"
     ]
 
 @typing.type_check_only
@@ -1078,6 +1137,7 @@ class EvaluationRunEvaluationRunSummary(typing_extensions.TypedDict, total=False
 
 @typing.type_check_only
 class EvaluationRunProgress(typing_extensions.TypedDict, total=False):
+    cancelledCount: int
     completedCount: int
     errorCount: int
     failedCount: int
@@ -1089,6 +1149,9 @@ class EvaluationScenario(typing_extensions.TypedDict, total=False):
     evaluationExpectations: _list[str]
     maxTurns: int
     rubrics: _list[str]
+    scenarioExecutionMode: typing_extensions.Literal[
+        "SCENARIO_EXECUTION_MODE_UNSPECIFIED", "QUALITY_OPTIMIZED", "SPEED_OPTIMIZED"
+    ]
     scenarioExpectations: _list[EvaluationScenarioExpectation]
     task: str
     taskCompletionBehavior: typing_extensions.Literal[
@@ -1122,6 +1185,7 @@ class EvaluationScenarioUserFact(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class EvaluationSettings(typing_extensions.TypedDict, total=False):
+    evaluationRunCachingSettings: EvaluationRunCachingSettings
     goldenEvaluationToolCallBehaviour: typing_extensions.Literal[
         "EVALUATION_TOOL_CALL_BEHAVIOUR_UNSPECIFIED", "REAL", "FAKE"
     ]
@@ -1134,6 +1198,9 @@ class EvaluationSettings(typing_extensions.TypedDict, total=False):
     ]
     scenarioEvaluationToolCallBehaviour: typing_extensions.Literal[
         "EVALUATION_TOOL_CALL_BEHAVIOUR_UNSPECIFIED", "REAL", "FAKE"
+    ]
+    scenarioExecutionMode: typing_extensions.Literal[
+        "SCENARIO_EXECUTION_MODE_UNSPECIFIED", "QUALITY_OPTIMIZED", "SPEED_OPTIMIZED"
     ]
 
 @typing.type_check_only
@@ -1169,6 +1236,8 @@ class ExecuteToolRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ExecuteToolResponse(typing_extensions.TypedDict, total=False):
+    citations: Citations
+    googleSearchSuggestions: GoogleSearchSuggestions
     response: dict[str, typing.Any]
     tool: str
     toolsetTool: ToolsetTool
@@ -1269,6 +1338,7 @@ class FileSearchTool(typing_extensions.TypedDict, total=False):
 class GenerateAppResourceRequest(typing_extensions.TypedDict, total=False):
     agent: Agent
     appGenerationConfig: GenerateAppResourceRequestAppGenerationConfig
+    appVersionContext: GenerateAppResourceRequestAppVersionContext
     evaluationGenerationConfig: GenerateAppResourceRequestEvaluationGenerationConfig
     evaluationPersonasGenerationConfig: (
         GenerateAppResourceRequestEvaluationPersonasGenerationConfig
@@ -1293,6 +1363,13 @@ class GenerateAppResourceRequestAppGenerationConfig(
     generateEvaluations: bool
 
 @typing.type_check_only
+class GenerateAppResourceRequestAppVersionContext(
+    typing_extensions.TypedDict, total=False
+):
+    agentResourceName: str
+    appVersion: str
+
+@typing.type_check_only
 class GenerateAppResourceRequestEvaluationGenerationConfig(
     typing_extensions.TypedDict, total=False
 ):
@@ -1313,6 +1390,9 @@ class GenerateAppResourceRequestHillClimbingFixConfig(
 class GenerateAppResourceRequestQualityReportGenerationConfig(
     typing_extensions.TypedDict, total=False
 ):
+    algorithm: typing_extensions.Literal[
+        "LOSS_ATTRIBUTION_ALGORITHM_UNSPECIFIED", "APP_CENTRIC", "AGENT_CENTRIC"
+    ]
     evaluationRun: str
 
 @typing.type_check_only
@@ -1398,6 +1478,9 @@ class GenerateEvaluationOperationMetadata(typing_extensions.TypedDict, total=Fal
 
 @typing.type_check_only
 class GenerateEvaluationRequest(typing_extensions.TypedDict, total=False):
+    evaluationType: typing_extensions.Literal[
+        "EVALUATION_TYPE_UNSPECIFIED", "GOLDEN", "SCENARIO"
+    ]
     source: typing_extensions.Literal[
         "SOURCE_UNSPECIFIED", "LIVE", "SIMULATOR", "EVAL", "AGENT_TOOL"
     ]
@@ -1524,6 +1607,7 @@ class ImportAppRequestImportOptions(typing_extensions.TypedDict, total=False):
     conflictResolutionStrategy: typing_extensions.Literal[
         "CONFLICT_RESOLUTION_STRATEGY_UNSPECIFIED", "REPLACE", "OVERWRITE"
     ]
+    validateOnly: bool
 
 @typing.type_check_only
 class ImportAppResponse(typing_extensions.TypedDict, total=False):
@@ -1574,6 +1658,11 @@ class InputAudioConfig(typing_extensions.TypedDict, total=False):
     sampleRateHertz: int
 
 @typing.type_check_only
+class InstagramCredentials(typing_extensions.TypedDict, total=False):
+    authCode: str
+    conversationProfileId: str
+
+@typing.type_check_only
 class LanguageSettings(typing_extensions.TypedDict, total=False):
     defaultLanguageCode: str
     enableMultilingualSupport: bool
@@ -1619,6 +1708,72 @@ class LatencyReportToolLatency(typing_extensions.TypedDict, total=False):
     toolsetTool: ToolsetTool
 
 @typing.type_check_only
+class LfA2aV1APIKeySecurityScheme(typing_extensions.TypedDict, total=False):
+    description: str
+    location: str
+    name: str
+
+@typing.type_check_only
+class LfA2aV1AgentCapabilities(typing_extensions.TypedDict, total=False):
+    extendedAgentCard: bool
+    extensions: _list[LfA2aV1AgentExtension]
+    pushNotifications: bool
+    streaming: bool
+
+@typing.type_check_only
+class LfA2aV1AgentCard(typing_extensions.TypedDict, total=False):
+    capabilities: LfA2aV1AgentCapabilities
+    defaultInputModes: _list[str]
+    defaultOutputModes: _list[str]
+    description: str
+    documentationUrl: str
+    iconUrl: str
+    name: str
+    provider: LfA2aV1AgentProvider
+    securityRequirements: _list[LfA2aV1SecurityRequirement]
+    securitySchemes: dict[str, typing.Any]
+    signatures: _list[LfA2aV1AgentCardSignature]
+    skills: _list[LfA2aV1AgentSkill]
+    supportedInterfaces: _list[LfA2aV1AgentInterface]
+    version: str
+
+@typing.type_check_only
+class LfA2aV1AgentCardSignature(typing_extensions.TypedDict, total=False):
+    header: dict[str, typing.Any]
+    protected: str
+    signature: str
+
+@typing.type_check_only
+class LfA2aV1AgentExtension(typing_extensions.TypedDict, total=False):
+    description: str
+    params: dict[str, typing.Any]
+    required: bool
+    uri: str
+
+@typing.type_check_only
+class LfA2aV1AgentInterface(typing_extensions.TypedDict, total=False):
+    protocolBinding: str
+    protocolVersion: str
+    tenant: str
+    url: str
+
+@typing.type_check_only
+class LfA2aV1AgentProvider(typing_extensions.TypedDict, total=False):
+    organization: str
+    url: str
+
+@typing.type_check_only
+class LfA2aV1AgentSkill(typing_extensions.TypedDict, total=False):
+    description: str
+    examples: _list[str]
+    id: str
+    inputModes: _list[str]
+    name: str
+    outputModes: _list[str]
+    securityRequirements: _list[LfA2aV1SecurityRequirement]
+    tags: _list[str]
+
+@typing.type_check_only
 class LfA2aV1Artifact(typing_extensions.TypedDict, total=False):
     artifactId: str
     description: str
@@ -1633,6 +1788,39 @@ class LfA2aV1AuthenticationInfo(typing_extensions.TypedDict, total=False):
     scheme: str
 
 @typing.type_check_only
+class LfA2aV1AuthorizationCodeOAuthFlow(typing_extensions.TypedDict, total=False):
+    authorizationUrl: str
+    pkceRequired: bool
+    refreshUrl: str
+    scopes: dict[str, typing.Any]
+    tokenUrl: str
+
+@typing.type_check_only
+class LfA2aV1ClientCredentialsOAuthFlow(typing_extensions.TypedDict, total=False):
+    refreshUrl: str
+    scopes: dict[str, typing.Any]
+    tokenUrl: str
+
+@typing.type_check_only
+class LfA2aV1DeviceCodeOAuthFlow(typing_extensions.TypedDict, total=False):
+    deviceAuthorizationUrl: str
+    refreshUrl: str
+    scopes: dict[str, typing.Any]
+    tokenUrl: str
+
+@typing.type_check_only
+class LfA2aV1HTTPAuthSecurityScheme(typing_extensions.TypedDict, total=False):
+    bearerFormat: str
+    description: str
+    scheme: str
+
+@typing.type_check_only
+class LfA2aV1ImplicitOAuthFlow(typing_extensions.TypedDict, total=False):
+    authorizationUrl: str
+    refreshUrl: str
+    scopes: dict[str, typing.Any]
+
+@typing.type_check_only
 class LfA2aV1Message(typing_extensions.TypedDict, total=False):
     contextId: str
     extensions: _list[str]
@@ -1644,6 +1832,29 @@ class LfA2aV1Message(typing_extensions.TypedDict, total=False):
     taskId: str
 
 @typing.type_check_only
+class LfA2aV1MutualTlsSecurityScheme(typing_extensions.TypedDict, total=False):
+    description: str
+
+@typing.type_check_only
+class LfA2aV1OAuth2SecurityScheme(typing_extensions.TypedDict, total=False):
+    description: str
+    flows: LfA2aV1OAuthFlows
+    oauth2MetadataUrl: str
+
+@typing.type_check_only
+class LfA2aV1OAuthFlows(typing_extensions.TypedDict, total=False):
+    authorizationCode: LfA2aV1AuthorizationCodeOAuthFlow
+    clientCredentials: LfA2aV1ClientCredentialsOAuthFlow
+    deviceCode: LfA2aV1DeviceCodeOAuthFlow
+    implicit: LfA2aV1ImplicitOAuthFlow
+    password: LfA2aV1PasswordOAuthFlow
+
+@typing.type_check_only
+class LfA2aV1OpenIdConnectSecurityScheme(typing_extensions.TypedDict, total=False):
+    description: str
+    openIdConnectUrl: str
+
+@typing.type_check_only
 class LfA2aV1Part(typing_extensions.TypedDict, total=False):
     data: typing.Any
     filename: str
@@ -1652,6 +1863,24 @@ class LfA2aV1Part(typing_extensions.TypedDict, total=False):
     raw: str
     text: str
     url: str
+
+@typing.type_check_only
+class LfA2aV1PasswordOAuthFlow(typing_extensions.TypedDict, total=False):
+    refreshUrl: str
+    scopes: dict[str, typing.Any]
+    tokenUrl: str
+
+@typing.type_check_only
+class LfA2aV1SecurityRequirement(typing_extensions.TypedDict, total=False):
+    schemes: dict[str, typing.Any]
+
+@typing.type_check_only
+class LfA2aV1SecurityScheme(typing_extensions.TypedDict, total=False):
+    apiKeySecurityScheme: LfA2aV1APIKeySecurityScheme
+    httpAuthSecurityScheme: LfA2aV1HTTPAuthSecurityScheme
+    mtlsSecurityScheme: LfA2aV1MutualTlsSecurityScheme
+    oauth2SecurityScheme: LfA2aV1OAuth2SecurityScheme
+    openIdConnectSecurityScheme: LfA2aV1OpenIdConnectSecurityScheme
 
 @typing.type_check_only
 class LfA2aV1SendMessageConfiguration(typing_extensions.TypedDict, total=False):
@@ -1670,6 +1899,10 @@ class LfA2aV1SendMessageRequest(typing_extensions.TypedDict, total=False):
 class LfA2aV1SendMessageResponse(typing_extensions.TypedDict, total=False):
     message: LfA2aV1Message
     task: LfA2aV1Task
+
+@typing.type_check_only
+class LfA2aV1StringList(typing_extensions.TypedDict, total=False):
+    list: _list[str]
 
 @typing.type_check_only
 class LfA2aV1Task(typing_extensions.TypedDict, total=False):
@@ -1815,6 +2048,7 @@ class LoggingSettings(typing_extensions.TypedDict, total=False):
     metricAnalysisSettings: MetricAnalysisSettings
     redactionConfig: RedactionConfig
     unredactedAudioRecordingConfig: AudioRecordingConfig
+    unredactedBigqueryExportSettings: BigQueryExportSettings
 
 @typing.type_check_only
 class McpTool(typing_extensions.TypedDict, total=False):
@@ -2022,6 +2256,7 @@ class RunEvaluationRequest(typing_extensions.TypedDict, total=False):
     config: EvaluationConfig
     displayName: str
     evaluationDataset: str
+    evaluationRunCachingSettings: EvaluationRunCachingSettings
     evaluations: _list[str]
     generateLatencyReport: bool
     goldenRunMethod: typing_extensions.Literal[
@@ -2031,6 +2266,13 @@ class RunEvaluationRequest(typing_extensions.TypedDict, total=False):
     personaRunConfigs: _list[PersonaRunConfig]
     runCount: int
     scheduledEvaluationRun: str
+
+@typing.type_check_only
+class RunEvaluationResultMetricsRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class RunEvaluationResultMetricsResponse(typing_extensions.TypedDict, total=False):
+    status: typing_extensions.Literal["OUTCOME_UNSPECIFIED", "PASS", "FAIL", "SKIPPED"]
 
 @typing.type_check_only
 class RunSessionRequest(typing_extensions.TypedDict, total=False):
@@ -2115,6 +2357,7 @@ class SessionConfig(typing_extensions.TypedDict, total=False):
     deployment: str
     enableTextStreaming: bool
     entryAgent: str
+    excludeDiagnosticInfo: bool
     historicalContexts: _list[Message]
     inputAudioConfig: InputAudioConfig
     outputAudioConfig: OutputAudioConfig
@@ -2146,6 +2389,7 @@ class SessionInput(typing_extensions.TypedDict, total=False):
 class SessionOutput(typing_extensions.TypedDict, total=False):
     audio: str
     citations: Citations
+    context: _list[dict[str, typing.Any]]
     diagnosticInfo: SessionOutputDiagnosticInfo
     endSession: EndSession
     googleSearchSuggestions: GoogleSearchSuggestions
@@ -2177,8 +2421,12 @@ class Status(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SynthesizeSpeechConfig(typing_extensions.TypedDict, total=False):
+    consentAudioGcsUri: str
+    instruction: str
+    model: str
     speakingRate: float
     voice: str
+    voiceSampleGcsUri: str
 
 @typing.type_check_only
 class SystemTool(typing_extensions.TypedDict, total=False):
@@ -2275,6 +2523,7 @@ class Toolset(typing_extensions.TypedDict, total=False):
     mcpToolset: McpToolset
     name: str
     openApiToolset: OpenApiToolset
+    timeout: str
     toolFakeConfig: ToolFakeConfig
     updateTime: str
 
@@ -2343,6 +2592,15 @@ class VpcScSettings(typing_extensions.TypedDict, total=False):
 class WebSearchQuery(typing_extensions.TypedDict, total=False):
     query: str
     uri: str
+
+@typing.type_check_only
+class WhatsAppCredentials(typing_extensions.TypedDict, total=False):
+    authCode: str
+    businessAccountId: str
+    conversationProfileId: str
+    phoneNumber: str
+    pin: str
+    wabaId: str
 
 @typing.type_check_only
 class WidgetTool(typing_extensions.TypedDict, total=False):

@@ -31,10 +31,14 @@ class CriteriaTargeting(typing_extensions.TypedDict, total=False):
 class CuratedPackage(typing_extensions.TypedDict, total=False):
     accessSettings: AccessControlSettings
     createTime: str
+    curationFeeVisibility: typing_extensions.Literal[
+        "CURATION_FEE_VISIBILITY_UNSPECIFIED", "DISCLOSED", "NON_DISCLOSED"
+    ]
     description: str
     displayName: str
     feeCpm: Money
     floorPriceCpm: Money
+    millipercentOfMediaFee: str
     name: str
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "INACTIVE"]
     targeting: PackageTargeting
@@ -44,8 +48,11 @@ class CuratedPackage(typing_extensions.TypedDict, total=False):
 class DataSegment(typing_extensions.TypedDict, total=False):
     cpmFee: Money
     createTime: str
+    millipercentOfMediaFee: str
     name: str
-    state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "INACTIVE"]
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "ACTIVE", "INACTIVE", "SUSPENDED"
+    ]
     updateTime: str
 
 @typing.type_check_only

@@ -40,6 +40,16 @@ class Attempt(typing_extensions.TypedDict, total=False):
     scheduleTime: str
 
 @typing.type_check_only
+class BatchCreateTasksRequest(typing_extensions.TypedDict, total=False):
+    requestId: str
+    requests: _list[CreateTaskRequest]
+
+@typing.type_check_only
+class BatchDeleteTasksRequest(typing_extensions.TypedDict, total=False):
+    names: _list[str]
+    requestId: str
+
+@typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
     condition: Expr
     members: _list[str]
@@ -60,6 +70,7 @@ class CmekConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CreateTaskRequest(typing_extensions.TypedDict, total=False):
+    parent: str
     responseView: typing_extensions.Literal["VIEW_UNSPECIFIED", "BASIC", "FULL"]
     task: Task
 
@@ -165,6 +176,14 @@ class OidcToken(typing_extensions.TypedDict, total=False):
     serviceAccountEmail: str
 
 @typing.type_check_only
+class Operation(typing_extensions.TypedDict, total=False):
+    done: bool
+    error: Status
+    metadata: dict[str, typing.Any]
+    name: str
+    response: dict[str, typing.Any]
+
+@typing.type_check_only
 class PathOverride(typing_extensions.TypedDict, total=False):
     path: str
 
@@ -261,6 +280,7 @@ class Task(typing_extensions.TypedDict, total=False):
     name: str
     pullMessage: PullMessage
     responseCount: int
+    retryConfig: RetryConfig
     scheduleTime: str
     view: typing_extensions.Literal["VIEW_UNSPECIFIED", "BASIC", "FULL"]
 

@@ -882,6 +882,7 @@ class GoogleCloudDialogflowCxV3FulfillIntentResponse(
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3Fulfillment(typing_extensions.TypedDict, total=False):
     advancedSettings: GoogleCloudDialogflowCxV3AdvancedSettings
+    codeBlockFunction: str
     conditionalCases: _list[GoogleCloudDialogflowCxV3FulfillmentConditionalCases]
     enableGenerativeFallback: bool
     generators: _list[GoogleCloudDialogflowCxV3FulfillmentGeneratorSettings]
@@ -2904,6 +2905,7 @@ class GoogleCloudDialogflowCxV3beta1Fulfillment(
     typing_extensions.TypedDict, total=False
 ):
     advancedSettings: GoogleCloudDialogflowCxV3beta1AdvancedSettings
+    codeBlockFunction: str
     conditionalCases: _list[GoogleCloudDialogflowCxV3beta1FulfillmentConditionalCases]
     enableGenerativeFallback: bool
     generators: _list[GoogleCloudDialogflowCxV3beta1FulfillmentGeneratorSettings]
@@ -4427,6 +4429,10 @@ class GoogleCloudDialogflowV2KnowledgeAssistDebugInfoQueryGenerationDebugInfo(
 ):
     candidatesTokenCount: int
     promptTokenCount: int
+    similarityToLastQuery: float
+    similarityToLastQueryThreshold: float
+    thinkingBudgetTokens: int
+    thinkingLevel: str
     totalTokenCount: int
 
 @typing.type_check_only
@@ -4574,7 +4580,13 @@ class GoogleCloudDialogflowV2StreamingRecognitionResult(
     isFinal: bool
     languageCode: str
     messageType: typing_extensions.Literal[
-        "MESSAGE_TYPE_UNSPECIFIED", "TRANSCRIPT", "END_OF_SINGLE_UTTERANCE"
+        "MESSAGE_TYPE_UNSPECIFIED",
+        "TRANSCRIPT",
+        "DTMF_DIGITS",
+        "END_OF_SINGLE_UTTERANCE",
+        "PARTIAL_DTMF_DIGITS",
+        "SPEECH_ACTIVITY_BEGIN",
+        "SPEECH_ACTIVITY_END",
     ]
     speechEndOffset: str
     speechWordInfo: _list[GoogleCloudDialogflowV2SpeechWordInfo]
@@ -5649,6 +5661,10 @@ class GoogleCloudDialogflowV2beta1KnowledgeAssistDebugInfoQueryGenerationDebugIn
 ):
     candidatesTokenCount: int
     promptTokenCount: int
+    similarityToLastQuery: float
+    similarityToLastQueryThreshold: float
+    thinkingBudgetTokens: int
+    thinkingLevel: str
     totalTokenCount: int
 
 @typing.type_check_only
@@ -5852,6 +5868,8 @@ class GoogleCloudDialogflowV2beta1StreamingRecognitionResult(
         "END_OF_SINGLE_UTTERANCE",
         "DTMF_DIGITS",
         "PARTIAL_DTMF_DIGITS",
+        "SPEECH_ACTIVITY_BEGIN",
+        "SPEECH_ACTIVITY_END",
     ]
     speechEndOffset: str
     speechWordInfo: _list[GoogleCloudDialogflowV2beta1SpeechWordInfo]

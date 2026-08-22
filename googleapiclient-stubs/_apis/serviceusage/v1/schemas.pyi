@@ -23,12 +23,11 @@ class AdminQuotaPolicy(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Analysis(typing_extensions.TypedDict, total=False):
-    analysis: AnalysisResult
+    analysisResult: AnalysisResult
     analysisType: typing_extensions.Literal[
         "ANALYSIS_TYPE_UNSPECIFIED",
         "ANALYSIS_TYPE_DEPENDENCY",
         "ANALYSIS_TYPE_RESOURCE_USAGE",
-        "ANALYSIS_TYPE_RESOURCE_EXISTENCE",
     ]
     displayName: str
     service: str
@@ -207,7 +206,7 @@ class CommonLanguageSettings(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ConsumerPolicy(typing_extensions.TypedDict, total=False):
-    annotations: dict[str, typing.Any]
+    createTime: str
     enableRules: _list[EnableRule]
     etag: str
     name: str
@@ -319,7 +318,6 @@ class EnableRule(typing_extensions.TypedDict, total=False):
     enableType: typing_extensions.Literal[
         "ENABLE_TYPE_UNSPECIFIED", "CLIENT", "RESOURCE", "V1_COMPATIBLE"
     ]
-    groups: _list[str]
     services: _list[str]
     values: _list[str]
 
@@ -490,6 +488,36 @@ class GoogleApiServiceusageV1beta1ServiceIdentity(
     uniqueId: str
 
 @typing.type_check_only
+class GoogleApiServiceusageV2alphaAnalysis(typing_extensions.TypedDict, total=False):
+    analysisResult: GoogleApiServiceusageV2alphaAnalysisResult
+    analysisType: typing_extensions.Literal[
+        "ANALYSIS_TYPE_UNSPECIFIED",
+        "ANALYSIS_TYPE_DEPENDENCY",
+        "ANALYSIS_TYPE_RESOURCE_USAGE",
+        "ANALYSIS_TYPE_RESOURCE_EXISTENCE",
+    ]
+    displayName: str
+    service: str
+
+@typing.type_check_only
+class GoogleApiServiceusageV2alphaAnalysisResult(
+    typing_extensions.TypedDict, total=False
+):
+    blockers: _list[GoogleApiServiceusageV2alphaImpact]
+    warnings: _list[GoogleApiServiceusageV2alphaImpact]
+
+@typing.type_check_only
+class GoogleApiServiceusageV2alphaAnalyzeConsumerPolicyMetadata(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleApiServiceusageV2alphaAnalyzeConsumerPolicyResponse(
+    typing_extensions.TypedDict, total=False
+):
+    analysis: _list[GoogleApiServiceusageV2alphaAnalysis]
+
+@typing.type_check_only
 class GoogleApiServiceusageV2alphaConsumerPolicy(
     typing_extensions.TypedDict, total=False
 ):
@@ -503,6 +531,16 @@ class GoogleApiServiceusageV2alphaConsumerPolicy(
 @typing.type_check_only
 class GoogleApiServiceusageV2alphaEnableRule(typing_extensions.TypedDict, total=False):
     services: _list[str]
+
+@typing.type_check_only
+class GoogleApiServiceusageV2alphaImpact(typing_extensions.TypedDict, total=False):
+    detail: str
+    impactType: typing_extensions.Literal[
+        "IMPACT_TYPE_UNSPECIFIED",
+        "DEPENDENCY_MISSING_DEPENDENCIES",
+        "RESOURCE_EXISTENCE_PROJECT",
+    ]
+    parent: str
 
 @typing.type_check_only
 class GoogleApiServiceusageV2alphaUpdateConsumerPolicyMetadata(
@@ -610,11 +648,9 @@ class HttpRule(typing_extensions.TypedDict, total=False):
 class Impact(typing_extensions.TypedDict, total=False):
     detail: str
     impactType: typing_extensions.Literal[
-        "IMPACT_TYPE_UNSPECIFIED",
-        "DEPENDENCY_MISSING_DEPENDENCIES",
-        "RESOURCE_EXISTENCE_PROJECT",
+        "IMPACT_TYPE_UNSPECIFIED", "DEPENDENCY_MISSING_DEPENDENCIES"
     ]
-    parent: str
+    missingDependency: str
 
 @typing.type_check_only
 class ImportAdminOverridesMetadata(typing_extensions.TypedDict, total=False): ...
@@ -774,7 +810,9 @@ class MetricDescriptorMetadata(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class MetricRule(typing_extensions.TypedDict, total=False):
+    agenticMetricCosts: dict[str, typing.Any]
     metricCosts: dict[str, typing.Any]
+    nonagenticMetricCosts: dict[str, typing.Any]
     selector: str
 
 @typing.type_check_only
@@ -890,6 +928,11 @@ class QuotaLimit(typing_extensions.TypedDict, total=False):
     maxLimit: str
     metric: str
     name: str
+    trafficSource: typing_extensions.Literal[
+        "TRAFFIC_SOURCE_UNSPECIFIED",
+        "TRAFFIC_SOURCE_NONAGENTIC",
+        "TRAFFIC_SOURCE_AGENTIC",
+    ]
     unit: str
     values: dict[str, typing.Any]
 

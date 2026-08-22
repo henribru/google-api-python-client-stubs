@@ -2503,6 +2503,13 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                 body: GoogleCloudDiscoveryengineV1betaObtainCrawlRateRequest,
                 **kwargs: typing.Any,
             ) -> GoogleCloudDiscoveryengineV1betaObtainCrawlRateResponseHttpRequest: ...
+            def provision(
+                self,
+                *,
+                name: str,
+                body: GoogleCloudDiscoveryengineV1betaProvisionProjectRequest,
+                **kwargs: typing.Any,
+            ) -> GoogleLongrunningOperationHttpRequest: ...
             def removeDedicatedCrawlRate(
                 self,
                 *,

@@ -1107,6 +1107,7 @@ class PrivateConnection(typing_extensions.TypedDict, total=False):
     labels: dict[str, typing.Any]
     name: str
     pscInterfaceConfig: PscInterfaceConfig
+    reservedPublicIpConfig: ReservedPublicIpConfig
     satisfiesPzi: bool
     satisfiesPzs: bool
     state: typing_extensions.Literal[
@@ -1156,6 +1157,11 @@ class QuotaFailureViolation(typing_extensions.TypedDict, total=False):
 class RequestInfo(typing_extensions.TypedDict, total=False):
     requestId: str
     servingData: str
+
+@typing.type_check_only
+class ReservedPublicIpConfig(typing_extensions.TypedDict, total=False):
+    egressPublicIps: _list[str]
+    natIpsCount: int
 
 @typing.type_check_only
 class ResourceInfo(typing_extensions.TypedDict, total=False):

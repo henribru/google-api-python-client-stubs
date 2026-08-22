@@ -35,6 +35,11 @@ class AccessSettings(typing_extensions.TypedDict, total=False):
     sessionSettings: SessionSettings
 
 @typing.type_check_only
+class AddRequestHeader(typing_extensions.TypedDict, total=False):
+    key: str
+    value: str
+
+@typing.type_check_only
 class ApiOperation(typing_extensions.TypedDict, total=False):
     methodSelectors: _list[MethodSelector]
     serviceName: str
@@ -89,6 +94,7 @@ class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
 @typing.type_check_only
 class ClientScope(typing_extensions.TypedDict, total=False):
     restrictedClientApplication: Application
+    restrictedProject: Project
 
 @typing.type_check_only
 class CommitServicePerimetersRequest(typing_extensions.TypedDict, total=False):
@@ -155,6 +161,7 @@ class EgressPolicy(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class EgressSource(typing_extensions.TypedDict, total=False):
     accessLevel: str
+    pscEndpoint: PrivateServiceConnectEndpoint
     resource: str
 
 @typing.type_check_only
@@ -180,6 +187,7 @@ class GcpUserAccessBinding(typing_extensions.TypedDict, total=False):
     dryRunAccessLevels: _list[str]
     groupKey: str
     name: str
+    principal: Principal
     restrictedClientApplications: _list[Application]
     scopedAccessSettings: _list[ScopedAccessSettings]
     sessionSettings: SessionSettings
@@ -217,6 +225,7 @@ class IngressPolicy(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class IngressSource(typing_extensions.TypedDict, total=False):
     accessLevel: str
+    pscEndpoint: PrivateServiceConnectEndpoint
     resource: str
 
 @typing.type_check_only
@@ -272,6 +281,10 @@ class MethodSelector(typing_extensions.TypedDict, total=False):
     permission: str
 
 @typing.type_check_only
+class Modifier(typing_extensions.TypedDict, total=False):
+    addRequestHeader: AddRequestHeader
+
+@typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status
@@ -301,6 +314,20 @@ class Policy(typing_extensions.TypedDict, total=False):
     version: int
 
 @typing.type_check_only
+class Principal(typing_extensions.TypedDict, total=False):
+    federatedPrincipal: str
+    serviceAccount: str
+    serviceAccountProjectNumber: str
+
+@typing.type_check_only
+class PrivateServiceConnectEndpoint(typing_extensions.TypedDict, total=False):
+    forwardingRule: str
+
+@typing.type_check_only
+class Project(typing_extensions.TypedDict, total=False):
+    name: str
+
+@typing.type_check_only
 class ReplaceAccessLevelsRequest(typing_extensions.TypedDict, total=False):
     accessLevels: _list[AccessLevel]
     etag: str
@@ -323,6 +350,12 @@ class ScopedAccessSettings(typing_extensions.TypedDict, total=False):
     activeSettings: AccessSettings
     dryRunSettings: AccessSettings
     scope: AccessScope
+
+@typing.type_check_only
+class ServicePattern(typing_extensions.TypedDict, total=False):
+    modifiers: _list[Modifier]
+    pattern: str
+    service: str
 
 @typing.type_check_only
 class ServicePerimeter(typing_extensions.TypedDict, total=False):
@@ -398,8 +431,15 @@ class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class VpcAccessibleServices(typing_extensions.TypedDict, total=False):
+    allowedServicePatterns: _list[ServicePattern]
     allowedServices: _list[str]
     enableRestriction: bool
+    servicePatternsEnforcementScopes: _list[
+        typing_extensions.Literal[
+            "SERVICE_PATTERNS_ENFORCEMENT_SCOPE_UNSPECIFIED",
+            "GOOGLE_APIS_VIA_PRIVATE_PATH",
+        ]
+    ]
 
 @typing.type_check_only
 class VpcNetworkSource(typing_extensions.TypedDict, total=False):

@@ -85,6 +85,11 @@ class Approval(typing_extensions.TypedDict, total=False):
     completeTime: str
     createTime: str
     dueTime: str
+    fileContentChangeBehavior: typing_extensions.Literal[
+        "FILE_CONTENT_CHANGE_BEHAVIOR_UNSPECIFIED",
+        "RESET_APPROVAL",
+        "NO_APPROVAL_ACTION",
+    ]
     initiator: User
     kind: str
     modifyTime: str
@@ -480,6 +485,11 @@ class RevisionList(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class StartApprovalRequest(typing_extensions.TypedDict, total=False):
     dueTime: str
+    fileContentChangeBehavior: typing_extensions.Literal[
+        "FILE_CONTENT_CHANGE_BEHAVIOR_UNSPECIFIED",
+        "RESET_APPROVAL",
+        "NO_APPROVAL_ACTION",
+    ]
     lockFile: bool
     message: str
     reviewerEmails: _list[str]

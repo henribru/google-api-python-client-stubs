@@ -8,6 +8,7 @@ _list = list
 class AISkillAnalysisOccurrence(typing_extensions.TypedDict, total=False):
     findings: _list[Finding]
     maxSeverity: typing_extensions.Literal["SEVERITY_UNSPECIFIED", "CRITICAL", "HIGH"]
+    perScannerVerdict: PerScannerVerdict
     skillName: str
 
 @typing.type_check_only
@@ -354,7 +355,7 @@ class Finding(typing_extensions.TypedDict, total=False):
     details: str
     location: FindingLocation
     scanner: typing_extensions.Literal[
-        "SCANNER_UNSPECIFIED", "STATIC", "LLM", "WS_POLICY"
+        "SCANNER_UNSPECIFIED", "STATIC", "LLM", "WS_POLICY", "GOOGLE_ANTIVIRUS"
     ]
     severity: typing_extensions.Literal["SEVERITY_UNSPECIFIED", "CRITICAL", "HIGH"]
 
@@ -561,6 +562,27 @@ class Maintainer(typing_extensions.TypedDict, total=False):
     url: str
 
 @typing.type_check_only
+class MaliciousContentLLMResult(typing_extensions.TypedDict, total=False):
+    maxSeverity: typing_extensions.Literal["SEVERITY_UNSPECIFIED", "CRITICAL", "HIGH"]
+    scanStatus: typing_extensions.Literal[
+        "SCAN_STATUS_UNSPECIFIED", "PERFORMED", "NOT_PERFORMED"
+    ]
+
+@typing.type_check_only
+class MaliciousContentStaticResult(typing_extensions.TypedDict, total=False):
+    maxSeverity: typing_extensions.Literal["SEVERITY_UNSPECIFIED", "CRITICAL", "HIGH"]
+    scanStatus: typing_extensions.Literal[
+        "SCAN_STATUS_UNSPECIFIED", "PERFORMED", "NOT_PERFORMED"
+    ]
+
+@typing.type_check_only
+class MalwareScanResult(typing_extensions.TypedDict, total=False):
+    scanStatus: typing_extensions.Literal[
+        "SCAN_STATUS_UNSPECIFIED", "PERFORMED", "NOT_PERFORMED"
+    ]
+    verdict: typing_extensions.Literal["VERDICT_UNSPECIFIED", "PASSED", "FAILED"]
+
+@typing.type_check_only
 class Material(typing_extensions.TypedDict, total=False):
     digest: dict[str, typing.Any]
     uri: str
@@ -693,6 +715,13 @@ class PackageVersion(typing_extensions.TypedDict, total=False):
     licenses: _list[str]
     name: str
     version: str
+
+@typing.type_check_only
+class PerScannerVerdict(typing_extensions.TypedDict, total=False):
+    maliciousContentLlmResult: MaliciousContentLLMResult
+    maliciousContentStaticResult: MaliciousContentStaticResult
+    malwareScan: MalwareScanResult
+    workspacePolicy: WorkspacePolicyResult
 
 @typing.type_check_only
 class ProjectRepoId(typing_extensions.TypedDict, total=False):
@@ -975,3 +1004,10 @@ class WindowsUpdate(typing_extensions.TypedDict, total=False):
     lastPublishedTimestamp: str
     supportUrl: str
     title: str
+
+@typing.type_check_only
+class WorkspacePolicyResult(typing_extensions.TypedDict, total=False):
+    scanStatus: typing_extensions.Literal[
+        "SCAN_STATUS_UNSPECIFIED", "PERFORMED", "NOT_PERFORMED"
+    ]
+    verdict: typing_extensions.Literal["VERDICT_UNSPECIFIED", "PASSED", "FAILED"]

@@ -64,6 +64,7 @@ class ExportInstanceRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ExportMetadata(typing_extensions.TypedDict, total=False):
+    esaSourceDatasetId: str
     exportEncryptionKey: ExportMetadataEncryptionKey
     filePaths: _list[str]
     lookerEncryptionKey: str

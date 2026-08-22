@@ -2168,6 +2168,9 @@ class GoogleCloudApigeeV1RuntimeTraceConfig(typing_extensions.TypedDict, total=F
     revisionCreateTime: str
     revisionId: str
     samplingConfig: GoogleCloudApigeeV1RuntimeTraceSamplingConfig
+    spanSemantics: typing_extensions.Literal[
+        "SPAN_SEMANTICS_UNSPECIFIED", "LEGACY", "OTEL"
+    ]
     traceProtocol: typing_extensions.Literal[
         "TRACE_PROTOCOL_UNSPECIFIED", "OPEN_CENSUS", "OTLP"
     ]
@@ -2182,6 +2185,9 @@ class GoogleCloudApigeeV1RuntimeTraceConfigOverride(
     revisionCreateTime: str
     revisionId: str
     samplingConfig: GoogleCloudApigeeV1RuntimeTraceSamplingConfig
+    spanSemantics: typing_extensions.Literal[
+        "SPAN_SEMANTICS_UNSPECIFIED", "LEGACY", "OTEL"
+    ]
     traceProtocol: typing_extensions.Literal[
         "TRACE_PROTOCOL_UNSPECIFIED", "OPEN_CENSUS", "OTLP"
     ]
@@ -2777,6 +2783,9 @@ class GoogleCloudApigeeV1TraceConfig(typing_extensions.TypedDict, total=False):
         "OPEN_TELEMETRY_CLOUD_TRACE",
     ]
     samplingConfig: GoogleCloudApigeeV1TraceSamplingConfig
+    spanSemantics: typing_extensions.Literal[
+        "SPAN_SEMANTICS_UNSPECIFIED", "LEGACY", "OTEL"
+    ]
     traceProtocol: typing_extensions.Literal[
         "TRACE_PROTOCOL_UNSPECIFIED", "OPEN_CENSUS", "OTLP"
     ]

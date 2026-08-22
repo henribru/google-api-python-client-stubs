@@ -81,6 +81,13 @@ class SecretManagerResource(googleapiclient.discovery.Resource):
                 def delete(
                     self, *, name: str, etag: str | None = ..., **kwargs: typing.Any
                 ) -> EmptyHttpRequest: ...
+                def enableManagedRotation(
+                    self,
+                    *,
+                    parent: str,
+                    body: EnableManagedRotationRequest,
+                    **kwargs: typing.Any,
+                ) -> SecretVersionHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> SecretHttpRequest: ...
@@ -113,6 +120,13 @@ class SecretManagerResource(googleapiclient.discovery.Resource):
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> SecretHttpRequest: ...
+                def rotateSecret(
+                    self,
+                    *,
+                    parent: str,
+                    body: RotateSecretRequest,
+                    **kwargs: typing.Any,
+                ) -> SecretVersionHttpRequest: ...
                 def setIamPolicy(
                     self,
                     *,
@@ -213,6 +227,13 @@ class SecretManagerResource(googleapiclient.discovery.Resource):
             def delete(
                 self, *, name: str, etag: str | None = ..., **kwargs: typing.Any
             ) -> EmptyHttpRequest: ...
+            def enableManagedRotation(
+                self,
+                *,
+                parent: str,
+                body: EnableManagedRotationRequest,
+                **kwargs: typing.Any,
+            ) -> SecretVersionHttpRequest: ...
             def get(self, *, name: str, **kwargs: typing.Any) -> SecretHttpRequest: ...
             def getIamPolicy(
                 self,
@@ -243,6 +264,9 @@ class SecretManagerResource(googleapiclient.discovery.Resource):
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> SecretHttpRequest: ...
+            def rotateSecret(
+                self, *, parent: str, body: RotateSecretRequest, **kwargs: typing.Any
+            ) -> SecretVersionHttpRequest: ...
             def setIamPolicy(
                 self, *, resource: str, body: SetIamPolicyRequest, **kwargs: typing.Any
             ) -> PolicyHttpRequest: ...

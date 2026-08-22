@@ -560,10 +560,19 @@ class GoogleCloudRetailV2alphaCompleteQueryResponseAttributeResult(
 class GoogleCloudRetailV2alphaCompleteQueryResponseCompletionResult(
     typing_extensions.TypedDict, total=False
 ):
+    agentPrompts: _list[
+        GoogleCloudRetailV2alphaCompleteQueryResponseCompletionResultAgentPrompt
+    ]
     attributes: dict[str, typing.Any]
     facets: _list[GoogleCloudRetailV2alphaSearchResponseFacet]
     suggestion: str
     totalProductCount: int
+
+@typing.type_check_only
+class GoogleCloudRetailV2alphaCompleteQueryResponseCompletionResultAgentPrompt(
+    typing_extensions.TypedDict, total=False
+):
+    prompt: str
 
 @typing.type_check_only
 class GoogleCloudRetailV2alphaCompleteQueryResponseRecentSearchResult(
@@ -1717,11 +1726,13 @@ class GoogleCloudRetailV2alphaSearchRequest(typing_extensions.TypedDict, total=F
     conversationalSearchSpec: (
         GoogleCloudRetailV2alphaSearchRequestConversationalSearchSpec
     )
+    dynamicControls: _list[GoogleCloudRetailV2alphaControl]
     dynamicFacetSpec: GoogleCloudRetailV2alphaSearchRequestDynamicFacetSpec
     entity: str
     experimentId: str
     facetSpecs: _list[GoogleCloudRetailV2alphaSearchRequestFacetSpec]
     filter: str
+    ignoredControlIds: _list[str]
     labels: dict[str, typing.Any]
     languageCode: str
     offset: int

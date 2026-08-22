@@ -238,7 +238,13 @@ class GmailResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class KeypairsResource(googleapiclient.discovery.Resource):
                     def create(
-                        self, *, userId: str, body: CseKeyPair, **kwargs: typing.Any
+                        self,
+                        *,
+                        userId: str,
+                        body: CseKeyPair,
+                        chainValidation: typing_extensions.Literal["all", "none"]
+                        | None = ...,
+                        **kwargs: typing.Any,
                     ) -> CseKeyPairHttpRequest: ...
                     def disable(
                         self,

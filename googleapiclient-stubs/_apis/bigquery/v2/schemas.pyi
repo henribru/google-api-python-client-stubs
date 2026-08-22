@@ -22,12 +22,17 @@ class AggregationThresholdPolicy(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Argument(typing_extensions.TypedDict, total=False):
     argumentKind: typing_extensions.Literal[
-        "ARGUMENT_KIND_UNSPECIFIED", "FIXED_TYPE", "ANY_TYPE"
+        "ARGUMENT_KIND_UNSPECIFIED",
+        "FIXED_TYPE",
+        "ANY_TYPE",
+        "FIXED_TABLE",
+        "ANY_TABLE",
     ]
     dataType: StandardSqlDataType
     isAggregate: bool
     mode: typing_extensions.Literal["MODE_UNSPECIFIED", "IN", "OUT", "INOUT"]
     name: str
+    tableType: StandardSqlTableType
 
 @typing.type_check_only
 class ArimaCoefficients(typing_extensions.TypedDict, total=False):
@@ -129,6 +134,26 @@ class ArimaSingleModelForecastingMetrics(typing_extensions.TypedDict, total=Fals
     ]
     timeSeriesId: str
     timeSeriesIds: _list[str]
+
+@typing.type_check_only
+class ArrowRecordBatch(typing_extensions.TypedDict, total=False):
+    serializedRecordBatch: str
+
+@typing.type_check_only
+class ArrowSchema(typing_extensions.TypedDict, total=False):
+    serializedSchema: str
+
+@typing.type_check_only
+class ArrowSerializationOptions(typing_extensions.TypedDict, total=False):
+    bufferCompression: typing_extensions.Literal[
+        "COMPRESSION_UNSPECIFIED", "LZ4_FRAME", "ZSTD"
+    ]
+    picosTimestampPrecision: typing_extensions.Literal[
+        "PICOS_TIMESTAMP_PRECISION_UNSPECIFIED",
+        "TIMESTAMP_PRECISION_MICROS",
+        "TIMESTAMP_PRECISION_NANOS",
+        "TIMESTAMP_PRECISION_PICOS",
+    ]
 
 @typing.type_check_only
 class AuditConfig(typing_extensions.TypedDict, total=False):
@@ -1037,8 +1062,10 @@ class JobStatistics(typing_extensions.TypedDict, total=False):
     endTime: str
     extract: JobStatistics4
     finalExecutionDurationMs: str
+    globalQueryRemoteRegions: _list[str]
     load: JobStatistics3
     numChildJobs: str
+    parentGlobalQueryJob: JobReference
     parentJobId: str
     query: JobStatistics2
     quotaDeferments: _list[str]
@@ -1082,6 +1109,7 @@ class JobStatistics2(typing_extensions.TypedDict, total=False):
     modelTrainingCurrentIteration: int
     modelTrainingExpectedTotalIteration: str
     numDmlAffectedRows: str
+    objectStorageStats: _list[ObjectStorageStats]
     performanceInsights: PerformanceInsights
     queryInfo: QueryInfo
     queryPlan: _list[ExplainQueryStage]
@@ -1123,6 +1151,7 @@ class JobStatistics4(typing_extensions.TypedDict, total=False):
 class JobStatistics5(typing_extensions.TypedDict, total=False):
     copiedLogicalBytes: str
     copiedRows: str
+    remoteDestinationRegion: str
 
 @typing.type_check_only
 class JobStatus(typing_extensions.TypedDict, total=False):
@@ -1343,6 +1372,14 @@ class MultiClassClassificationMetrics(typing_extensions.TypedDict, total=False):
     confusionMatrixList: _list[ConfusionMatrix]
 
 @typing.type_check_only
+class ObjectStorageStats(typing_extensions.TypedDict, total=False):
+    cacheBytesRead: str
+    cloudProvider: typing_extensions.Literal[
+        "CLOUD_PROVIDER_UNSPECIFIED", "GCP", "AWS", "AZURE"
+    ]
+    objectStorageBytesRead: str
+
+@typing.type_check_only
 class ParquetOptions(typing_extensions.TypedDict, total=False):
     enableListInference: bool
     enumAsString: bool
@@ -1445,6 +1482,7 @@ class QueryParameterValue(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class QueryRequest(typing_extensions.TypedDict, total=False):
+    arrowSerializationOptions: ArrowSerializationOptions
     connectionProperties: _list[ConnectionProperty]
     continuous: bool
     createSession: bool
@@ -1468,6 +1506,9 @@ class QueryRequest(typing_extensions.TypedDict, total=False):
     preserveNulls: bool
     query: str
     queryParameters: _list[QueryParameter]
+    queryResultsFormat: typing_extensions.Literal[
+        "QUERY_RESULTS_FORMAT_UNSPECIFIED", "STRUCT_ENCODING", "ARROW"
+    ]
     requestId: str
     reservation: str
     timeoutMs: int
@@ -1477,6 +1518,8 @@ class QueryRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class QueryResponse(typing_extensions.TypedDict, total=False):
+    arrowRecordBatch: ArrowRecordBatch
+    arrowSchema: ArrowSchema
     cacheHit: bool
     creationTime: str
     dmlStats: DmlStatistics
@@ -1488,12 +1531,14 @@ class QueryResponse(typing_extensions.TypedDict, total=False):
     kind: str
     location: str
     numDmlAffectedRows: str
+    pageRowCount: str
     pageToken: str
     queryId: str
     rows: _list[TableRow]
     schema: TableSchema
     sessionInfo: SessionInfo
     startTime: str
+    statementType: str
     totalBytesBilled: str
     totalBytesProcessed: str
     totalRows: str
@@ -1690,6 +1735,9 @@ class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SkewSource(typing_extensions.TypedDict, total=False):
+    outputBytesMax: str
+    outputBytesMedian: str
+    outputBytesP95: str
     stageId: str
 
 @typing.type_check_only

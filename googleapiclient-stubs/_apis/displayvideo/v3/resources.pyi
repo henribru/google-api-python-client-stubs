@@ -1649,56 +1649,6 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
         ) -> ListCustomListsResponseHttpRequest | None: ...
 
     @typing.type_check_only
-    class FirstAndThirdPartyAudiencesResource(googleapiclient.discovery.Resource):
-        def create(
-            self,
-            *,
-            body: FirstAndThirdPartyAudience,
-            advertiserId: str | None = ...,
-            **kwargs: typing.Any,
-        ) -> FirstAndThirdPartyAudienceHttpRequest: ...
-        def editCustomerMatchMembers(
-            self,
-            *,
-            firstAndThirdPartyAudienceId: str,
-            body: EditCustomerMatchMembersRequest,
-            **kwargs: typing.Any,
-        ) -> EditCustomerMatchMembersResponseHttpRequest: ...
-        def get(
-            self,
-            *,
-            firstAndThirdPartyAudienceId: str,
-            advertiserId: str | None = ...,
-            partnerId: str | None = ...,
-            **kwargs: typing.Any,
-        ) -> FirstAndThirdPartyAudienceHttpRequest: ...
-        def list(
-            self,
-            *,
-            advertiserId: str | None = ...,
-            filter: str | None = ...,
-            orderBy: str | None = ...,
-            pageSize: int | None = ...,
-            pageToken: str | None = ...,
-            partnerId: str | None = ...,
-            **kwargs: typing.Any,
-        ) -> ListFirstAndThirdPartyAudiencesResponseHttpRequest: ...
-        def list_next(
-            self,
-            previous_request: ListFirstAndThirdPartyAudiencesResponseHttpRequest,
-            previous_response: ListFirstAndThirdPartyAudiencesResponse,
-        ) -> ListFirstAndThirdPartyAudiencesResponseHttpRequest | None: ...
-        def patch(
-            self,
-            *,
-            firstAndThirdPartyAudienceId: str,
-            body: FirstAndThirdPartyAudience,
-            advertiserId: str | None = ...,
-            updateMask: str | None = ...,
-            **kwargs: typing.Any,
-        ) -> FirstAndThirdPartyAudienceHttpRequest: ...
-
-    @typing.type_check_only
     class FloodlightGroupsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class FloodlightActivitiesResource(googleapiclient.discovery.Resource):
@@ -2585,7 +2535,6 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
     def combinedAudiences(self) -> CombinedAudiencesResource: ...
     def customBiddingAlgorithms(self) -> CustomBiddingAlgorithmsResource: ...
     def customLists(self) -> CustomListsResource: ...
-    def firstAndThirdPartyAudiences(self) -> FirstAndThirdPartyAudiencesResource: ...
     def floodlightGroups(self) -> FloodlightGroupsResource: ...
     def googleAudiences(self) -> GoogleAudiencesResource: ...
     def guaranteedOrders(self) -> GuaranteedOrdersResource: ...
@@ -2869,14 +2818,6 @@ class DuplicateLineItemResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> DuplicateLineItemResponse: ...
 
 @typing.type_check_only
-class EditCustomerMatchMembersResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> EditCustomerMatchMembersResponse: ...
-
-@typing.type_check_only
 class EditGuaranteedOrderReadAccessorsResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -2893,14 +2834,6 @@ class EmptyHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Empty: ...
-
-@typing.type_check_only
-class FirstAndThirdPartyAudienceHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> FirstAndThirdPartyAudience: ...
 
 @typing.type_check_only
 class FloodlightActivityHttpRequest(googleapiclient.http.HttpRequest):
@@ -3091,16 +3024,6 @@ class ListCustomListsResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListCustomListsResponse: ...
-
-@typing.type_check_only
-class ListFirstAndThirdPartyAudiencesResponseHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> ListFirstAndThirdPartyAudiencesResponse: ...
 
 @typing.type_check_only
 class ListFloodlightActivitiesResponseHttpRequest(googleapiclient.http.HttpRequest):

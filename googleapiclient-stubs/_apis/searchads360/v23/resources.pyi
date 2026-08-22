@@ -1165,6 +1165,16 @@ class SA360Resource(googleapiclient.discovery.Resource):
             ): ...
 
         @typing.type_check_only
+        class SearchAds360CampaignsResource(googleapiclient.discovery.Resource):
+            def mutate(
+                self,
+                *,
+                customerId: str,
+                body: GoogleAdsSearchads360V23Services__MutateSearchAds360CampaignsRequest,
+                **kwargs: typing.Any,
+            ) -> GoogleAdsSearchads360V23Services__MutateSearchAds360CampaignsResponseHttpRequest: ...
+
+        @typing.type_check_only
         class SharedCriteriaResource(googleapiclient.discovery.Resource):
             def mutate(
                 self,
@@ -1410,6 +1420,31 @@ class SA360Resource(googleapiclient.discovery.Resource):
         ) -> (
             GoogleAdsSearchads360V23Services__SuggestTravelAssetsResponseHttpRequest
         ): ...
+        def uploadCallConversions(
+            self,
+            *,
+            customerId: str,
+            body: GoogleAdsSearchads360V23Services__UploadCallConversionsRequest,
+            **kwargs: typing.Any,
+        ) -> (
+            GoogleAdsSearchads360V23Services__UploadCallConversionsResponseHttpRequest
+        ): ...
+        def uploadClickConversions(
+            self,
+            *,
+            customerId: str,
+            body: GoogleAdsSearchads360V23Services__UploadClickConversionsRequest,
+            **kwargs: typing.Any,
+        ) -> (
+            GoogleAdsSearchads360V23Services__UploadClickConversionsResponseHttpRequest
+        ): ...
+        def uploadConversionAdjustments(
+            self,
+            *,
+            customerId: str,
+            body: GoogleAdsSearchads360V23Services__UploadConversionAdjustmentsRequest,
+            **kwargs: typing.Any,
+        ) -> GoogleAdsSearchads360V23Services__UploadConversionAdjustmentsResponseHttpRequest: ...
         def uploadUserData(
             self,
             *,
@@ -1519,6 +1554,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
         def recommendations(self) -> RecommendationsResource: ...
         def remarketingActions(self) -> RemarketingActionsResource: ...
         def searchAds360(self) -> SearchAds360Resource: ...
+        def searchAds360Campaigns(self) -> SearchAds360CampaignsResource: ...
         def sharedCriteria(self) -> SharedCriteriaResource: ...
         def sharedSets(self) -> SharedSetsResource: ...
         def smartCampaignSettings(self) -> SmartCampaignSettingsResource: ...
@@ -2939,6 +2975,16 @@ class GoogleAdsSearchads360V23Services__MutateRemarketingActionsResponseHttpRequ
     ) -> GoogleAdsSearchads360V23Services__MutateRemarketingActionsResponse: ...
 
 @typing.type_check_only
+class GoogleAdsSearchads360V23Services__MutateSearchAds360CampaignsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleAdsSearchads360V23Services__MutateSearchAds360CampaignsResponse: ...
+
+@typing.type_check_only
 class GoogleAdsSearchads360V23Services__MutateSearchAds360ResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -3159,6 +3205,36 @@ class GoogleAdsSearchads360V23Services__UpdateProductLinkInvitationResponseHttpR
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleAdsSearchads360V23Services__UpdateProductLinkInvitationResponse: ...
+
+@typing.type_check_only
+class GoogleAdsSearchads360V23Services__UploadCallConversionsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleAdsSearchads360V23Services__UploadCallConversionsResponse: ...
+
+@typing.type_check_only
+class GoogleAdsSearchads360V23Services__UploadClickConversionsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleAdsSearchads360V23Services__UploadClickConversionsResponse: ...
+
+@typing.type_check_only
+class GoogleAdsSearchads360V23Services__UploadConversionAdjustmentsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleAdsSearchads360V23Services__UploadConversionAdjustmentsResponse: ...
 
 @typing.type_check_only
 class GoogleAdsSearchads360V23Services__UploadUserDataResponseHttpRequest(

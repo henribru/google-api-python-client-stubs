@@ -511,6 +511,12 @@ class ListPolicyBasedRoutesResponse(typing_extensions.TypedDict, total=False):
     unreachable: _list[str]
 
 @typing.type_check_only
+class ListPscAuthorizationPoliciesResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    pscAuthorizationPolicies: _list[PscAuthorizationPolicy]
+    unreachable: _list[str]
+
+@typing.type_check_only
 class ListRegionalEndpointsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     regionalEndpoints: _list[RegionalEndpoint]
@@ -681,6 +687,22 @@ class PolicyBasedRoute(typing_extensions.TypedDict, total=False):
 class ProducerPscConfig(typing_extensions.TypedDict, total=False):
     automatedDnsCreationSpec: AutomatedDnsCreationSpec
     serviceAttachmentUri: str
+
+@typing.type_check_only
+class PscAuthorizationPolicy(typing_extensions.TypedDict, total=False):
+    authorizationMode: typing_extensions.Literal[
+        "AUTHORIZATION_MODE_UNSPECIFIED",
+        "AUTHORIZATION_MODE_TRANSITIVE_TO_SERVICE_ATTACHMENT",
+    ]
+    authorizedClientResources: _list[str]
+    createTime: str
+    description: str
+    etag: str
+    labels: dict[str, typing.Any]
+    name: str
+    targetResourceUri: str
+    uid: str
+    updateTime: str
 
 @typing.type_check_only
 class PscConfig(typing_extensions.TypedDict, total=False):

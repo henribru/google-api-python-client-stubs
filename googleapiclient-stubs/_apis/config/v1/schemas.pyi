@@ -137,6 +137,7 @@ class DeploymentGroupRevision(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class DeploymentOperationMetadata(typing_extensions.TypedDict, total=False):
     applyResults: ApplyResults
+    applyResultsAvailable: bool
     build: str
     logs: str
     step: typing_extensions.Literal[

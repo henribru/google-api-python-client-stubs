@@ -266,9 +266,6 @@ class GenerateEnterpriseUpgradeUrlResponse(typing_extensions.TypedDict, total=Fa
 
 @typing.type_check_only
 class GoogleAuthenticationSettings(typing_extensions.TypedDict, total=False):
-    dedicatedDevicesAllowed: typing_extensions.Literal[
-        "dedicatedDevicesAllowedUnspecified", "disallowed", "allowed"
-    ]
     googleAuthenticationRequired: typing_extensions.Literal[
         "googleAuthenticationRequiredUnspecified", "notRequired", "required"
     ]

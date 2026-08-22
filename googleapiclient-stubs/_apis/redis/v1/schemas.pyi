@@ -12,13 +12,40 @@ class AOFConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AclPolicy(typing_extensions.TypedDict, total=False):
+    clusterAclPolicyAttachments: _list[ClusterAclPolicyAttachment]
+    createTime: str
     etag: str
     name: str
     rules: _list[AclRule]
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "ACTIVE", "UPDATING", "DELETING"
     ]
+    updateTime: str
     version: str
+
+@typing.type_check_only
+class AclPolicyInfo(typing_extensions.TypedDict, total=False):
+    aclPolicyRevisionStatuses: _list[AclPolicyRevisionStatus]
+    appliedAclPolicy: str
+    appliedAclPolicyRevision: str
+    appliedAclPolicyRevisionNumber: str
+
+@typing.type_check_only
+class AclPolicyRevision(typing_extensions.TypedDict, total=False):
+    attachedClusters: _list[str]
+    createTime: str
+    name: str
+    revisionNumber: str
+    snapshot: AclPolicy
+
+@typing.type_check_only
+class AclPolicyRevisionStatus(typing_extensions.TypedDict, total=False):
+    aclPolicyRevision: str
+    aclPolicyRevisionNumber: str
+    errorMessage: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "APPLYING", "APPLIED", "FAILED"
+    ]
 
 @typing.type_check_only
 class AclRule(typing_extensions.TypedDict, total=False):
@@ -157,6 +184,7 @@ class CertificateAuthority(typing_extensions.TypedDict, total=False):
 class Cluster(typing_extensions.TypedDict, total=False):
     aclPolicy: str
     aclPolicyInSync: bool
+    aclPolicyInfo: AclPolicyInfo
     allowFewerZonesDeployment: bool
     asyncClusterEndpointsDeletionEnabled: bool
     authorizationMode: typing_extensions.Literal[
@@ -225,6 +253,11 @@ class Cluster(typing_extensions.TypedDict, total=False):
     ]
     uid: str
     zoneDistributionConfig: ZoneDistributionConfig
+
+@typing.type_check_only
+class ClusterAclPolicyAttachment(typing_extensions.TypedDict, total=False):
+    aclPolicyRevisionStatuses: _list[AclPolicyRevisionStatus]
+    cluster: str
 
 @typing.type_check_only
 class ClusterEndpoint(typing_extensions.TypedDict, total=False):
@@ -472,6 +505,7 @@ class DatabaseResourceHealthSignalData(typing_extensions.TypedDict, total=False)
         "SIGNAL_TYPE_VERSION_NEARING_END_OF_LIFE",
         "SIGNAL_TYPE_HIGH_MAINTENANCE_DOWNTIME_RISK",
         "SIGNAL_TYPE_LOW_CACHE_HIT_AND_MAINTENANCE_DOWNTIME",
+        "SIGNAL_TYPE_MISSING_ENHANCED_PROTECTION",
     ]
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "RESOLVED", "MUTED"]
 
@@ -701,6 +735,7 @@ class DatabaseResourceRecommendationSignalData(
         "SIGNAL_TYPE_VERSION_NEARING_END_OF_LIFE",
         "SIGNAL_TYPE_HIGH_MAINTENANCE_DOWNTIME_RISK",
         "SIGNAL_TYPE_LOW_CACHE_HIT_AND_MAINTENANCE_DOWNTIME",
+        "SIGNAL_TYPE_MISSING_ENHANCED_PROTECTION",
     ]
 
 @typing.type_check_only
@@ -915,6 +950,12 @@ class IpAddress(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ListAclPoliciesResponse(typing_extensions.TypedDict, total=False):
     aclPolicies: _list[AclPolicy]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
+class ListAclPolicyRevisionsResponse(typing_extensions.TypedDict, total=False):
+    aclPolicyRevisions: _list[AclPolicyRevision]
     nextPageToken: str
     unreachable: _list[str]
 

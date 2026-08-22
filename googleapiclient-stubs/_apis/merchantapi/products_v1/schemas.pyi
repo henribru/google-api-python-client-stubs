@@ -254,6 +254,14 @@ class ItemLevelIssue(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class LeaseTerm(typing_extensions.TypedDict, total=False):
+    durationUnit: typing_extensions.Literal[
+        "DURATION_UNIT_UNSPECIFIED", "MONTHS", "WEEKS"
+    ]
+    durationValue: str
+    type: typing_extensions.Literal["LEASE_TERM_TYPE_UNSPECIFIED", "FIXED_TERM"]
+
+@typing.type_check_only
 class ListProductsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     products: _list[Product]
@@ -526,6 +534,7 @@ class ProductAttributes(typing_extensions.TypedDict, total=False):
     itemGroupId: str
     itemGroupTitle: str
     latitude: float
+    leaseTerm: LeaseTerm
     lifestyleImageLinks: _list[str]
     link: str
     linkTemplate: str
@@ -618,6 +627,7 @@ class ProductAttributes(typing_extensions.TypedDict, total=False):
     questionsAndAnswers: _list[QuestionAndAnswer]
     relatedProducts: _list[RelatedProduct]
     returnPolicyLabel: str
+    returns: _list[Returns]
     salePrice: Price
     salePriceEffectiveDate: Interval
     sellOnGoogleQuantity: str
@@ -852,6 +862,45 @@ class RelatedProduct(typing_extensions.TypedDict, total=False):
         "SUBSTITUTE",
         "DIFFERENT_BRAND",
         "ACCESSORY",
+    ]
+
+@typing.type_check_only
+class Returns(typing_extensions.TypedDict, total=False):
+    countries: _list[str]
+    itemConditions: _list[
+        typing_extensions.Literal[
+            "ITEM_CONDITION_UNSPECIFIED", "NEW", "LIKE_NEW", "USED", "DEFECTIVE_ONLY"
+        ]
+    ]
+    methods: _list[
+        typing_extensions.Literal[
+            "RETURN_METHOD_UNSPECIFIED",
+            "BY_MAIL",
+            "IN_STORE",
+            "AT_A_KIOSK",
+            "DROP_OFF_LOCATION",
+        ]
+    ]
+    outcomes: _list[
+        typing_extensions.Literal[
+            "RETURN_OUTCOME_UNSPECIFIED", "REFUND", "EXCHANGE", "STORE_CREDIT"
+        ]
+    ]
+    policyUrl: str
+    restockingFee: Price
+    restockingPercentageFee: float
+    shippingFee: Price
+    shippingFeeType: typing_extensions.Literal[
+        "RETURN_SHIPPING_FEE_TYPE_UNSPECIFIED",
+        "CUSTOMER_RESPONSIBILITY",
+        "DEDUCTED_FROM_REFUND",
+    ]
+    windowDays: str
+    windowType: typing_extensions.Literal[
+        "RETURN_WINDOW_TYPE_UNSPECIFIED",
+        "FINITE_RETURN_WINDOW",
+        "NO_RETURNS",
+        "LIFETIME",
     ]
 
 @typing.type_check_only

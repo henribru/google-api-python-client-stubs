@@ -182,6 +182,12 @@ class CloneDetails(typing_extensions.TypedDict, total=False):
     sharedSpaceGib: str
     sourceSnapshot: str
     sourceVolume: str
+    splitState: typing_extensions.Literal[
+        "SPLIT_STATE_UNSPECIFIED",
+        "SPLIT_STATE_NOT_SPLITTING",
+        "SPLIT_STATE_IN_PROGRESS",
+        "SPLIT_STATE_FAILED",
+    ]
 
 @typing.type_check_only
 class DailySchedule(typing_extensions.TypedDict, total=False):
@@ -417,6 +423,9 @@ class Location(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class LocationMetadata(typing_extensions.TypedDict, total=False):
+    flexPerformanceTier: typing_extensions.Literal[
+        "FLEX_PERFORMANCE_TIER_UNSPECIFIED", "LIMITED"
+    ]
     hasOntapProxy: bool
     hasVcp: bool
     supportedFlexPerformance: _list[
@@ -621,6 +630,20 @@ class SnapshotPolicy(typing_extensions.TypedDict, total=False):
     hourlySchedule: HourlySchedule
     monthlySchedule: MonthlySchedule
     weeklySchedule: WeeklySchedule
+
+@typing.type_check_only
+class SplitStatus(typing_extensions.TypedDict, total=False):
+    progressPercent: int
+    splitState: typing_extensions.Literal[
+        "SPLIT_STATE_UNSPECIFIED",
+        "SPLIT_STATE_NOT_SPLITTING",
+        "SPLIT_STATE_IN_PROGRESS",
+        "SPLIT_STATE_FAILED",
+    ]
+    stateDetails: str
+
+@typing.type_check_only
+class StartSplitRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):

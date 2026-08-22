@@ -287,6 +287,8 @@ class DropInfo(typing_extensions.TypedDict, total=False):
         "NO_TRAFFIC_SELECTOR_TO_GCP_DESTINATION",
         "NO_KNOWN_ROUTE_FROM_PEERED_NETWORK_TO_DESTINATION",
         "PRIVATE_NAT_TO_PSC_ENDPOINT_UNSUPPORTED",
+        "PRIVATE_NAT_SOURCE_IP_IN_EXCLUDED_RANGE",
+        "PRIVATE_NAT_SOURCE_IP_IS_A_LINK_LOCAL_IP_IN_GKE",
         "PSC_PORT_MAPPING_PORT_MISMATCH",
         "PSC_PORT_MAPPING_WITHOUT_PSC_CONNECTION_UNSUPPORTED",
         "UNSUPPORTED_ROUTE_MATCHED_FOR_NAT64_DESTINATION",
@@ -475,6 +477,13 @@ class ForwardInfo(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ForwardingRuleInfo(typing_extensions.TypedDict, total=False):
     displayName: str
+    envoyHealthCheckFirewallsConfigState: typing_extensions.Literal[
+        "HEALTH_CHECK_FIREWALLS_CONFIG_STATE_UNSPECIFIED",
+        "FIREWALLS_CONFIGURED",
+        "FIREWALLS_PARTIALLY_CONFIGURED",
+        "FIREWALLS_NOT_CONFIGURED",
+        "FIREWALLS_UNSUPPORTED",
+    ]
     loadBalancerName: str
     matchedPortRange: str
     matchedProtocol: str
@@ -767,6 +776,7 @@ class NatInfo(typing_extensions.TypedDict, total=False):
     oldSourcePort: int
     protocol: str
     routerUri: str
+    ruleNumber: int
     type: typing_extensions.Literal[
         "TYPE_UNSPECIFIED",
         "INTERNAL_TO_EXTERNAL",

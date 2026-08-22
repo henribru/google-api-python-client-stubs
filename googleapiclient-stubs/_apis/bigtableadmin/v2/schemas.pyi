@@ -145,6 +145,8 @@ class ColumnFamilyStats(typing_extensions.TypedDict, total=False):
     averageCellsPerColumn: float
     averageColumnsPerRow: float
     logicalDataBytes: str
+    logicalDataHddBytes: str
+    logicalDataSsdBytes: str
 
 @typing.type_check_only
 class CopyBackupMetadata(typing_extensions.TypedDict, total=False):
@@ -229,6 +231,7 @@ class CreateMaterializedViewMetadata(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CreateMaterializedViewRequest(typing_extensions.TypedDict, total=False):
+    ignoreWarnings: bool
     materializedView: MaterializedView
     materializedViewId: str
     parent: str

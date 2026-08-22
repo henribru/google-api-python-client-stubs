@@ -142,10 +142,36 @@ class ActivitySnippet(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class AvailabilityConfig(typing_extensions.TypedDict, total=False):
+    globalConfig: AvailabilityConfigGlobalConfig
+    regionsConfig: AvailabilityConfigRegionsConfig
+
+@typing.type_check_only
+class AvailabilityConfigGlobalConfig(typing_extensions.TypedDict, total=False):
+    excludedRegionCodes: _list[str]
+    interval: Interval
+
+@typing.type_check_only
+class AvailabilityConfigRegionsConfig(typing_extensions.TypedDict, total=False):
+    regionIntervals: _list[AvailabilityConfigRegionsConfigRegionInterval]
+
+@typing.type_check_only
+class AvailabilityConfigRegionsConfigRegionInterval(
+    typing_extensions.TypedDict, total=False
+):
+    interval: Interval
+    regionCode: str
+
+@typing.type_check_only
 class BatchGetStatsResponse(typing_extensions.TypedDict, total=False):
     etag: str
     items: _list[VideoStat]
     kind: str
+
+@typing.type_check_only
+class BrandPartner(typing_extensions.TypedDict, total=False):
+    channelHandle: str
+    channelId: str
 
 @typing.type_check_only
 class Caption(typing_extensions.TypedDict, total=False):
@@ -1271,6 +1297,11 @@ class IngestionInfo(typing_extensions.TypedDict, total=False):
     streamName: str
 
 @typing.type_check_only
+class Interval(typing_extensions.TypedDict, total=False):
+    endTime: str
+    startTime: str
+
+@typing.type_check_only
 class InvideoBranding(typing_extensions.TypedDict, total=False):
     imageBytes: str
     imageUrl: str
@@ -1312,6 +1343,7 @@ class LiveBroadcast(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class LiveBroadcastContentDetails(typing_extensions.TypedDict, total=False):
+    availabilityConfig: AvailabilityConfig
     boundStreamId: str
     boundStreamLastUpdateTimeMs: str
     closedCaptionsType: typing_extensions.Literal[
@@ -2097,6 +2129,7 @@ class TokenPagination(typing_extensions.TypedDict, total=False): ...
 @typing.type_check_only
 class Video(typing_extensions.TypedDict, total=False):
     ageGating: VideoAgeGating
+    brandPartner: BrandPartner
     contentDetails: VideoContentDetails
     etag: str
     fileDetails: VideoFileDetails

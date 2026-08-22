@@ -458,6 +458,16 @@ class CloudVmClusterProperties(typing_extensions.TypedDict, total=False):
     storageSizeGb: int
     systemVersion: str
     timeZone: TimeZone
+    vmBackupStorageType: typing_extensions.Literal[
+        "VM_BACKUP_STORAGE_TYPE_UNSPECIFIED",
+        "VM_BACKUP_STORAGE_TYPE_LOCAL",
+        "VM_BACKUP_STORAGE_TYPE_EXASCALE",
+    ]
+    vmFileSystemStorageType: typing_extensions.Literal[
+        "VM_FILE_SYSTEM_STORAGE_TYPE_UNSPECIFIED",
+        "VM_FILE_SYSTEM_STORAGE_TYPE_LOCAL",
+        "VM_FILE_SYSTEM_STORAGE_TYPE_EXASCALE",
+    ]
 
 @typing.type_check_only
 class ConfigureExascaleCloudExadataInfrastructureRequest(
@@ -465,6 +475,7 @@ class ConfigureExascaleCloudExadataInfrastructureRequest(
 ):
     requestId: str
     totalStorageSizeGb: int
+    totalVmStorageSizeGb: int
 
 @typing.type_check_only
 class CustomerContact(typing_extensions.TypedDict, total=False):
@@ -770,9 +781,11 @@ class DbSystemProperties(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class DbSystemShape(typing_extensions.TypedDict, total=False):
+    availableCoreCount: int
     availableCoreCountPerNode: int
     availableDataStorageTb: int
     availableMemoryPerNodeGb: int
+    coreCountIncrement: int
     maxNodeCount: int
     maxStorageCount: int
     minCoreCountPerNode: int
@@ -780,6 +793,7 @@ class DbSystemShape(typing_extensions.TypedDict, total=False):
     minMemoryPerNodeGb: int
     minNodeCount: int
     minStorageCount: int
+    minimumCoreCount: int
     name: str
     shape: str
 
@@ -847,6 +861,7 @@ class ExadbVmCluster(typing_extensions.TypedDict, total=False):
     displayName: str
     entitlementId: str
     gcpOracleZone: str
+    identityConnector: IdentityConnector
     labels: dict[str, typing.Any]
     name: str
     odbNetwork: str
@@ -895,7 +910,9 @@ class ExadbVmClusterStorageDetails(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ExascaleConfig(typing_extensions.TypedDict, total=False):
     availableStorageSizeGb: int
+    availableVmStorageSizeGb: int
     totalStorageSizeGb: int
+    totalVmStorageSizeGb: int
 
 @typing.type_check_only
 class ExascaleDbStorageDetails(typing_extensions.TypedDict, total=False):

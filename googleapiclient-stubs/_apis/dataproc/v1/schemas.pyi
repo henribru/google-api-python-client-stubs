@@ -22,6 +22,18 @@ class AccessSessionSparkApplicationJobResponse(
     jobData: JobData
 
 @typing.type_check_only
+class AccessSessionSparkApplicationNativeBuildInfoResponse(
+    typing_extensions.TypedDict, total=False
+):
+    executionData: NativeBuildInfoUiData
+
+@typing.type_check_only
+class AccessSessionSparkApplicationNativeSqlQueryResponse(
+    typing_extensions.TypedDict, total=False
+):
+    executionData: NativeSqlExecutionUiData
+
+@typing.type_check_only
 class AccessSessionSparkApplicationResponse(typing_extensions.TypedDict, total=False):
     application: ApplicationInfo
 
@@ -58,6 +70,18 @@ class AccessSparkApplicationEnvironmentInfoResponse(
 @typing.type_check_only
 class AccessSparkApplicationJobResponse(typing_extensions.TypedDict, total=False):
     jobData: JobData
+
+@typing.type_check_only
+class AccessSparkApplicationNativeBuildInfoResponse(
+    typing_extensions.TypedDict, total=False
+):
+    buildInfo: NativeBuildInfoUiData
+
+@typing.type_check_only
+class AccessSparkApplicationNativeSqlQueryResponse(
+    typing_extensions.TypedDict, total=False
+):
+    executionData: NativeSqlExecutionUiData
 
 @typing.type_check_only
 class AccessSparkApplicationResponse(typing_extensions.TypedDict, total=False):
@@ -167,6 +191,19 @@ class AttachedDiskConfig(typing_extensions.TypedDict, total=False):
     ]
     provisionedIops: str
     provisionedThroughput: str
+
+@typing.type_check_only
+class AttachmentOperationMetadata(typing_extensions.TypedDict, total=False):
+    attachment: str
+    attachmentUuid: str
+    createTime: str
+    description: str
+    doneTime: str
+    labels: dict[str, typing.Any]
+    operationType: typing_extensions.Literal[
+        "ATTACHMENT_OPERATION_TYPE_UNSPECIFIED", "CREATE", "UPDATE", "DELETE"
+    ]
+    warnings: _list[str]
 
 @typing.type_check_only
 class AuthenticationConfig(typing_extensions.TypedDict, total=False):
@@ -390,6 +427,10 @@ class CohortInfo(typing_extensions.TypedDict, total=False):
     cohortSource: typing_extensions.Literal[
         "COHORT_SOURCE_UNSPECIFIED", "USER_PROVIDED", "AIRFLOW"
     ]
+
+@typing.type_check_only
+class ComputeTuningConfigResponse(typing_extensions.TypedDict, total=False):
+    recommendedProperties: dict[str, typing.Any]
 
 @typing.type_check_only
 class ConfidentialInstanceConfig(typing_extensions.TypedDict, total=False):
@@ -702,6 +743,7 @@ class HiveJob(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class IdentityConfig(typing_extensions.TypedDict, total=False):
+    enableSsh: bool
     userServiceAccountMapping: dict[str, typing.Any]
 
 @typing.type_check_only
@@ -1379,6 +1421,13 @@ class SearchSessionSparkApplicationJobsResponse(
     sparkApplicationJobs: _list[JobData]
 
 @typing.type_check_only
+class SearchSessionSparkApplicationNativeSqlQueriesResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    sparkApplicationNativeSqlQueries: _list[NativeSqlExecutionUiData]
+
+@typing.type_check_only
 class SearchSessionSparkApplicationSqlQueriesResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -1427,6 +1476,13 @@ class SearchSparkApplicationExecutorsResponse(typing_extensions.TypedDict, total
 class SearchSparkApplicationJobsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     sparkApplicationJobs: _list[JobData]
+
+@typing.type_check_only
+class SearchSparkApplicationNativeSqlQueriesResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    sparkApplicationNativeSqlQueries: _list[NativeSqlExecutionUiData]
 
 @typing.type_check_only
 class SearchSparkApplicationSqlQueriesResponse(

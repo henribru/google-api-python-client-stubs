@@ -151,6 +151,7 @@ class CryptoKey(typing_extensions.TypedDict, total=False):
         "RAW_ENCRYPT_DECRYPT",
         "MAC",
         "KEY_ENCAPSULATION",
+        "AES_WRAPPING",
     ]
     rotationPeriod: str
     versionTemplate: CryptoKeyVersionTemplate
@@ -205,6 +206,9 @@ class CryptoKeyVersion(typing_extensions.TypedDict, total=False):
         "PQ_SIGN_ML_DSA_44_EXTERNAL_MU",
         "PQ_SIGN_ML_DSA_65_EXTERNAL_MU",
         "PQ_SIGN_ML_DSA_87_EXTERNAL_MU",
+        "KEM_ECDH_P256",
+        "KEM_ECDH_P384",
+        "AES_256_KWP",
     ]
     attestation: KeyOperationAttestation
     createTime: str
@@ -214,6 +218,7 @@ class CryptoKeyVersion(typing_extensions.TypedDict, total=False):
     externalProtectionLevelOptions: ExternalProtectionLevelOptions
     generateTime: str
     generationFailureReason: str
+    hsmTrusted: bool
     importFailureReason: str
     importJob: str
     importTime: str
@@ -240,6 +245,7 @@ class CryptoKeyVersion(typing_extensions.TypedDict, total=False):
         "PENDING_EXTERNAL_DESTRUCTION",
         "EXTERNAL_DESTRUCTION_FAILED",
     ]
+    trustedWrappingEnabled: bool
 
 @typing.type_check_only
 class CryptoKeyVersionTemplate(typing_extensions.TypedDict, total=False):
@@ -291,6 +297,9 @@ class CryptoKeyVersionTemplate(typing_extensions.TypedDict, total=False):
         "PQ_SIGN_ML_DSA_44_EXTERNAL_MU",
         "PQ_SIGN_ML_DSA_65_EXTERNAL_MU",
         "PQ_SIGN_ML_DSA_87_EXTERNAL_MU",
+        "KEM_ECDH_P256",
+        "KEM_ECDH_P384",
+        "AES_256_KWP",
     ]
     protectionLevel: typing_extensions.Literal[
         "PROTECTION_LEVEL_UNSPECIFIED",
@@ -409,6 +418,13 @@ class ExecuteSingleTenantHsmInstanceProposalRequest(
 ): ...
 
 @typing.type_check_only
+class ExportTrustedKeyWrappedCryptoKeyVersionResponse(
+    typing_extensions.TypedDict, total=False
+):
+    wrappedKey: str
+    wrappedKeyCrc32c: str
+
+@typing.type_check_only
 class Expr(typing_extensions.TypedDict, total=False):
     description: str
     expression: str
@@ -417,6 +433,7 @@ class Expr(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ExternalProtectionLevelOptions(typing_extensions.TypedDict, total=False):
+    ekmConnectionBackendOverride: str
     ekmConnectionKeyPath: str
     externalKeyUri: str
 
@@ -487,10 +504,14 @@ class ImportCryptoKeyVersionRequest(typing_extensions.TypedDict, total=False):
         "PQ_SIGN_ML_DSA_44_EXTERNAL_MU",
         "PQ_SIGN_ML_DSA_65_EXTERNAL_MU",
         "PQ_SIGN_ML_DSA_87_EXTERNAL_MU",
+        "KEM_ECDH_P256",
+        "KEM_ECDH_P384",
+        "AES_256_KWP",
     ]
     cryptoKeyVersion: str
     importJob: str
     rsaAesWrappedKey: str
+    trustedWrappingEnabled: bool
     wrappedKey: str
 
 @typing.type_check_only
@@ -529,6 +550,66 @@ class ImportJob(typing_extensions.TypedDict, total=False):
     state: typing_extensions.Literal[
         "IMPORT_JOB_STATE_UNSPECIFIED", "PENDING_GENERATION", "ACTIVE", "EXPIRED"
     ]
+
+@typing.type_check_only
+class ImportTrustedKeyWrappedCryptoKeyVersionRequest(
+    typing_extensions.TypedDict, total=False
+):
+    algorithm: typing_extensions.Literal[
+        "CRYPTO_KEY_VERSION_ALGORITHM_UNSPECIFIED",
+        "GOOGLE_SYMMETRIC_ENCRYPTION",
+        "AES_128_GCM",
+        "AES_256_GCM",
+        "AES_128_CBC",
+        "AES_256_CBC",
+        "AES_128_CTR",
+        "AES_256_CTR",
+        "RSA_SIGN_PSS_2048_SHA256",
+        "RSA_SIGN_PSS_3072_SHA256",
+        "RSA_SIGN_PSS_4096_SHA256",
+        "RSA_SIGN_PSS_4096_SHA512",
+        "RSA_SIGN_PKCS1_2048_SHA256",
+        "RSA_SIGN_PKCS1_3072_SHA256",
+        "RSA_SIGN_PKCS1_4096_SHA256",
+        "RSA_SIGN_PKCS1_4096_SHA512",
+        "RSA_SIGN_RAW_PKCS1_2048",
+        "RSA_SIGN_RAW_PKCS1_3072",
+        "RSA_SIGN_RAW_PKCS1_4096",
+        "RSA_DECRYPT_OAEP_2048_SHA256",
+        "RSA_DECRYPT_OAEP_3072_SHA256",
+        "RSA_DECRYPT_OAEP_4096_SHA256",
+        "RSA_DECRYPT_OAEP_4096_SHA512",
+        "RSA_DECRYPT_OAEP_2048_SHA1",
+        "RSA_DECRYPT_OAEP_3072_SHA1",
+        "RSA_DECRYPT_OAEP_4096_SHA1",
+        "EC_SIGN_P256_SHA256",
+        "EC_SIGN_P384_SHA384",
+        "EC_SIGN_SECP256K1_SHA256",
+        "EC_SIGN_ED25519",
+        "HMAC_SHA256",
+        "HMAC_SHA1",
+        "HMAC_SHA384",
+        "HMAC_SHA512",
+        "HMAC_SHA224",
+        "EXTERNAL_SYMMETRIC_ENCRYPTION",
+        "ML_KEM_768",
+        "ML_KEM_1024",
+        "KEM_XWING",
+        "PQ_SIGN_ML_DSA_44",
+        "PQ_SIGN_ML_DSA_65",
+        "PQ_SIGN_ML_DSA_87",
+        "PQ_SIGN_SLH_DSA_SHA2_128S",
+        "PQ_SIGN_HASH_SLH_DSA_SHA2_128S_SHA256",
+        "PQ_SIGN_ML_DSA_44_EXTERNAL_MU",
+        "PQ_SIGN_ML_DSA_65_EXTERNAL_MU",
+        "PQ_SIGN_ML_DSA_87_EXTERNAL_MU",
+        "KEM_ECDH_P256",
+        "KEM_ECDH_P384",
+        "AES_256_KWP",
+    ]
+    cryptoKeyVersion: str
+    importingKey: str
+    wrappedKey: str
 
 @typing.type_check_only
 class KeyAccessJustificationsEnrollmentConfig(typing_extensions.TypedDict, total=False):
@@ -761,6 +842,9 @@ class PublicKey(typing_extensions.TypedDict, total=False):
         "PQ_SIGN_ML_DSA_44_EXTERNAL_MU",
         "PQ_SIGN_ML_DSA_65_EXTERNAL_MU",
         "PQ_SIGN_ML_DSA_87_EXTERNAL_MU",
+        "KEM_ECDH_P256",
+        "KEM_ECDH_P384",
+        "AES_256_KWP",
     ]
     name: str
     pem: str
@@ -898,6 +982,13 @@ class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ShowEffectiveAutokeyConfigResponse(typing_extensions.TypedDict, total=False):
     keyProject: str
+    keyProjectResolutionMode: typing_extensions.Literal[
+        "KEY_PROJECT_RESOLUTION_MODE_UNSPECIFIED",
+        "DEDICATED_KEY_PROJECT",
+        "RESOURCE_PROJECT",
+        "DISABLED",
+    ]
+    source: Source
 
 @typing.type_check_only
 class ShowEffectiveKeyAccessJustificationsEnrollmentConfigResponse(
@@ -962,6 +1053,11 @@ class SingleTenantHsmInstanceProposal(typing_extensions.TypedDict, total=False):
         "DELETED",
     ]
     ttl: str
+    upgradeKeyTrust: UpgradeKeyTrust
+
+@typing.type_check_only
+class Source(typing_extensions.TypedDict, total=False):
+    name: str
 
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
@@ -980,6 +1076,11 @@ class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class UpdateCryptoKeyPrimaryVersionRequest(typing_extensions.TypedDict, total=False):
     cryptoKeyVersionId: str
+
+@typing.type_check_only
+class UpgradeKeyTrust(typing_extensions.TypedDict, total=False):
+    name: str
+    twoFactorPublicKeyPem: str
 
 @typing.type_check_only
 class VerifyConnectivityResponse(typing_extensions.TypedDict, total=False): ...

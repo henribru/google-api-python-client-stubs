@@ -74,6 +74,7 @@ class GoogleCloudKmsV1CryptoKey(typing_extensions.TypedDict, total=False):
         "RAW_ENCRYPT_DECRYPT",
         "MAC",
         "KEY_ENCAPSULATION",
+        "AES_WRAPPING",
     ]
     rotationPeriod: str
     versionTemplate: GoogleCloudKmsV1CryptoKeyVersionTemplate
@@ -128,6 +129,9 @@ class GoogleCloudKmsV1CryptoKeyVersion(typing_extensions.TypedDict, total=False)
         "PQ_SIGN_ML_DSA_44_EXTERNAL_MU",
         "PQ_SIGN_ML_DSA_65_EXTERNAL_MU",
         "PQ_SIGN_ML_DSA_87_EXTERNAL_MU",
+        "KEM_ECDH_P256",
+        "KEM_ECDH_P384",
+        "AES_256_KWP",
     ]
     attestation: GoogleCloudKmsV1KeyOperationAttestation
     createTime: str
@@ -137,6 +141,7 @@ class GoogleCloudKmsV1CryptoKeyVersion(typing_extensions.TypedDict, total=False)
     externalProtectionLevelOptions: GoogleCloudKmsV1ExternalProtectionLevelOptions
     generateTime: str
     generationFailureReason: str
+    hsmTrusted: bool
     importFailureReason: str
     importJob: str
     importTime: str
@@ -163,6 +168,7 @@ class GoogleCloudKmsV1CryptoKeyVersion(typing_extensions.TypedDict, total=False)
         "PENDING_EXTERNAL_DESTRUCTION",
         "EXTERNAL_DESTRUCTION_FAILED",
     ]
+    trustedWrappingEnabled: bool
 
 @typing.type_check_only
 class GoogleCloudKmsV1CryptoKeyVersionTemplate(
@@ -216,6 +222,9 @@ class GoogleCloudKmsV1CryptoKeyVersionTemplate(
         "PQ_SIGN_ML_DSA_44_EXTERNAL_MU",
         "PQ_SIGN_ML_DSA_65_EXTERNAL_MU",
         "PQ_SIGN_ML_DSA_87_EXTERNAL_MU",
+        "KEM_ECDH_P256",
+        "KEM_ECDH_P384",
+        "AES_256_KWP",
     ]
     protectionLevel: typing_extensions.Literal[
         "PROTECTION_LEVEL_UNSPECIFIED",
@@ -230,6 +239,7 @@ class GoogleCloudKmsV1CryptoKeyVersionTemplate(
 class GoogleCloudKmsV1ExternalProtectionLevelOptions(
     typing_extensions.TypedDict, total=False
 ):
+    ekmConnectionBackendOverride: str
     ekmConnectionKeyPath: str
     externalKeyUri: str
 

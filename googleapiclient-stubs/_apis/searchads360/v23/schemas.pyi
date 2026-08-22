@@ -102,6 +102,7 @@ class GoogleAdsSearchads360V0Errors__ErrorCode(
         "CANNOT_SET_DATE_TO_PAST",
         "AFTER_MAXIMUM_ALLOWABLE_DATE",
         "CANNOT_MODIFY_START_DATE_IF_ALREADY_STARTED",
+        "REQUESTED_DATE_GRANULARITY_NOT_SUPPORTED",
     ]
     distinctError: typing_extensions.Literal[
         "UNSPECIFIED", "UNKNOWN", "DUPLICATE_ELEMENT", "DUPLICATE_TYPE"
@@ -263,6 +264,27 @@ class GoogleAdsSearchads360V0Errors__SearchAds360Failure(
 ):
     errors: _list[GoogleAdsSearchads360V0Errors__SearchAds360Error]
     requestId: str
+
+@typing.type_check_only
+class GoogleAdsSearchads360V23Common_CampaignGoalSettings_CampaignLoyaltyRetentionGoalSettings(
+    typing_extensions.TypedDict, total=False
+):
+    enableBidAdjustmentsForLoyaltyMembers: bool
+    showTargetedLoyaltyMemberBenefitsInPla: bool
+    valueSettingsOverride: (
+        GoogleAdsSearchads360V23Common__CustomerLifecycleOptimizationValueSettings
+    )
+
+@typing.type_check_only
+class GoogleAdsSearchads360V23Common_CampaignGoalSettings_CampaignNewCustomerAcquisitionGoalSettings(
+    typing_extensions.TypedDict, total=False
+):
+    targetOption: typing_extensions.Literal[
+        "UNSPECIFIED", "UNKNOWN", "TARGET_ALL", "TARGET_SPECIFIC"
+    ]
+    valueSettingsOverride: (
+        GoogleAdsSearchads360V23Common__CustomerLifecycleOptimizationValueSettings
+    )
 
 @typing.type_check_only
 class GoogleAdsSearchads360V23Common_CampaignGoalSettings_CampaignRetentionGoalSettings(
@@ -3472,6 +3494,9 @@ class GoogleAdsSearchads360V23Common__Segments(
     geoTargetRegion: str
     hour: int
     keyword: GoogleAdsSearchads360V23Common__Keyword
+    mobileDevicePlatform: typing_extensions.Literal[
+        "UNSPECIFIED", "UNKNOWN", "ANDROID", "IOS", "OTHER_MOBILE", "DESKTOP"
+    ]
     month: str
     productBiddingCategoryLevel1: str
     productBiddingCategoryLevel2: str
@@ -3638,6 +3663,28 @@ class GoogleAdsSearchads360V23Common__StructuredSnippetAsset(
 ):
     header: str
     values: _list[str]
+
+@typing.type_check_only
+class GoogleAdsSearchads360V23Common__SyntheticContentAttestation(
+    typing_extensions.TypedDict, total=False
+):
+    source: typing_extensions.Literal[
+        "UNSPECIFIED",
+        "UNKNOWN",
+        "ADVERTISER_ATTESTED",
+        "GOOGLE_GENERATED_ADVERTISER_REVIEWED",
+        "GOOGLE_GENERATED_FULLY_AUTOMATED",
+    ]
+    status: typing_extensions.Literal[
+        "UNSPECIFIED", "UNKNOWN", "NOT_SYNTHETIC", "IS_SYNTHETIC"
+    ]
+
+@typing.type_check_only
+class GoogleAdsSearchads360V23Common__SyntheticContentInfo(
+    typing_extensions.TypedDict, total=False
+):
+    advertiserAttestation: GoogleAdsSearchads360V23Common__SyntheticContentAttestation
+    systemAttestation: GoogleAdsSearchads360V23Common__SyntheticContentAttestation
 
 @typing.type_check_only
 class GoogleAdsSearchads360V23Common__TagSnippet(
@@ -4872,6 +4919,9 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "METRIC_ACCESS_DENIED",
         "CLOUD_PROJECT_NOT_UNDER_ORGANIZATION",
         "ACTION_NOT_PERMITTED_FOR_SUSPENDED_ACCOUNT",
+        "SEARCH_ADS360_OTHER_ENGINE_MUTATE_DENIED",
+        "SEARCH_ADS360_MUTATE_ALLOWLIST_DENIED",
+        "SEARCH_ADS360_MUTATE_FIELD_DENIED",
     ]
     automaticallyCreatedAssetRemovalError: typing_extensions.Literal[
         "UNSPECIFIED",
@@ -5187,6 +5237,10 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "HIGH_LIFETIME_VALUE_LESS_THAN_OR_EQUAL_TO_VALUE",
         "CUSTOMER_LIFECYCLE_OPTIMIZATION_CAMPAIGN_TYPE_NOT_SUPPORTED",
         "CUSTOMER_NOT_ALLOWLISTED_FOR_RETENTION_ONLY",
+        "CAMPAIGN_OVERRIDE_VALUES_SET_FOR_NEW_CUSTOMER_ACQUISITION_TARGET_SPECIFIC_OPTION",
+        "CAMPAIGN_OVERRIDE_HIGH_LIFETIME_VALUE_NOT_SUPPORTED_FOR_CAMPAIGN_TYPE",
+        "CANNOT_USE_INCOMPATIBLE_CLO_GOALS",
+        "LOYALTY_RETENTION_GOAL_INVALID_MODE",
     ]
     campaignLifecycleGoalError: typing_extensions.Literal[
         "UNSPECIFIED",
@@ -5712,6 +5766,7 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "CANNOT_SET_DATE_TO_PAST",
         "AFTER_MAXIMUM_ALLOWABLE_DATE",
         "CANNOT_MODIFY_START_DATE_IF_ALREADY_STARTED",
+        "REQUESTED_DATE_GRANULARITY_NOT_SUPPORTED",
     ]
     distinctError: typing_extensions.Literal[
         "UNSPECIFIED", "UNKNOWN", "DUPLICATE_ELEMENT", "DUPLICATE_TYPE"
@@ -7461,6 +7516,7 @@ class GoogleAdsSearchads360V23Resources_Campaign_AssetAutomationSetting(
         "GENERATE_VERTICAL_YOUTUBE_VIDEOS",
         "GENERATE_SHORTER_YOUTUBE_VIDEOS",
         "GENERATE_LANDING_PAGE_PREVIEW",
+        "GENERATE_LANDING_PAGE_TEXT",
         "GENERATE_ENHANCED_YOUTUBE_VIDEOS",
         "GENERATE_IMAGE_ENHANCEMENT",
         "GENERATE_IMAGE_EXTRACTION",
@@ -8786,6 +8842,7 @@ class GoogleAdsSearchads360V23Resources__Ad(typing_extensions.TypedDict, total=F
     shoppingProductAd: GoogleAdsSearchads360V23Common__ShoppingProductAdInfo
     shoppingSmartAd: GoogleAdsSearchads360V23Common__ShoppingSmartAdInfo
     smartCampaignAd: GoogleAdsSearchads360V23Common__SmartCampaignAdInfo
+    syntheticContentInfo: GoogleAdsSearchads360V23Common__SyntheticContentInfo
     systemManagedResourceSource: typing_extensions.Literal[
         "UNSPECIFIED", "UNKNOWN", "AD_VARIATIONS"
     ]
@@ -9138,6 +9195,7 @@ class GoogleAdsSearchads360V23Resources__AdGroupAdAssetAutomationSetting(
         "GENERATE_VERTICAL_YOUTUBE_VIDEOS",
         "GENERATE_SHORTER_YOUTUBE_VIDEOS",
         "GENERATE_LANDING_PAGE_PREVIEW",
+        "GENERATE_LANDING_PAGE_TEXT",
         "GENERATE_ENHANCED_YOUTUBE_VIDEOS",
         "GENERATE_IMAGE_ENHANCEMENT",
         "GENERATE_IMAGE_EXTRACTION",
@@ -9920,6 +9978,7 @@ class GoogleAdsSearchads360V23Resources__Asset(
         "PENDING_SYSTEM_GENERATED",
     ]
     structuredSnippetAsset: GoogleAdsSearchads360V23Common__StructuredSnippetAsset
+    syntheticContentInfo: GoogleAdsSearchads360V23Common__SyntheticContentInfo
     textAsset: GoogleAdsSearchads360V23Common__TextAsset
     trackingUrlTemplate: str
     type: typing_extensions.Literal[
@@ -11300,6 +11359,8 @@ class GoogleAdsSearchads360V23Resources__CampaignGoalConfig(
     typing_extensions.TypedDict, total=False
 ):
     campaign: str
+    campaignLoyaltyRetentionSettings: GoogleAdsSearchads360V23Common_CampaignGoalSettings_CampaignLoyaltyRetentionGoalSettings
+    campaignNewCustomerAcquisitionSettings: GoogleAdsSearchads360V23Common_CampaignGoalSettings_CampaignNewCustomerAcquisitionGoalSettings
     campaignRetentionSettings: GoogleAdsSearchads360V23Common_CampaignGoalSettings_CampaignRetentionGoalSettings
     goal: str
     goalType: typing_extensions.Literal["UNSPECIFIED", "UNKNOWN", "CUSTOMER_RETENTION"]
@@ -14873,6 +14934,14 @@ class GoogleAdsSearchads360V23Services_CampaignToForecast_CampaignBiddingStrateg
     )
 
 @typing.type_check_only
+class GoogleAdsSearchads360V23Services_CartData_Item(
+    typing_extensions.TypedDict, total=False
+):
+    productId: str
+    quantity: int
+    unitPrice: float
+
+@typing.type_check_only
 class GoogleAdsSearchads360V23Services_DismissRecommendationRequest_DismissRecommendationOperation(
     typing_extensions.TypedDict, total=False
 ):
@@ -15609,6 +15678,28 @@ class GoogleAdsSearchads360V23Services__BrandCampaignAssets(
     logoAsset: _list[str]
 
 @typing.type_check_only
+class GoogleAdsSearchads360V23Services__CallConversion(
+    typing_extensions.TypedDict, total=False
+):
+    callStartDateTime: str
+    callerId: str
+    consent: GoogleAdsSearchads360V23Common__Consent
+    conversionAction: str
+    conversionDateTime: str
+    conversionValue: float
+    currencyCode: str
+    customVariables: _list[GoogleAdsSearchads360V23Services__CustomVariable]
+
+@typing.type_check_only
+class GoogleAdsSearchads360V23Services__CallConversionResult(
+    typing_extensions.TypedDict, total=False
+):
+    callStartDateTime: str
+    callerId: str
+    conversionAction: str
+    conversionDateTime: str
+
+@typing.type_check_only
 class GoogleAdsSearchads360V23Services__CampaignAssetOperation(
     typing_extensions.TypedDict, total=False
 ):
@@ -15754,6 +15845,56 @@ class GoogleAdsSearchads360V23Services__CampaignToForecast(
     negativeKeywords: _list[GoogleAdsSearchads360V23Common__KeywordInfo]
 
 @typing.type_check_only
+class GoogleAdsSearchads360V23Services__CartData(
+    typing_extensions.TypedDict, total=False
+):
+    feedCountryCode: str
+    feedLanguageCode: str
+    items: _list[GoogleAdsSearchads360V23Services_CartData_Item]
+    localTransactionCost: float
+    merchantId: str
+
+@typing.type_check_only
+class GoogleAdsSearchads360V23Services__ClickConversion(
+    typing_extensions.TypedDict, total=False
+):
+    cartData: GoogleAdsSearchads360V23Services__CartData
+    consent: GoogleAdsSearchads360V23Common__Consent
+    conversionAction: str
+    conversionDateTime: str
+    conversionEnvironment: typing_extensions.Literal[
+        "UNSPECIFIED", "UNKNOWN", "APP", "WEB"
+    ]
+    conversionValue: float
+    currencyCode: str
+    customVariables: _list[GoogleAdsSearchads360V23Services__CustomVariable]
+    customerType: typing_extensions.Literal[
+        "UNSPECIFIED", "UNKNOWN", "NEW", "RETURNING"
+    ]
+    externalAttributionData: GoogleAdsSearchads360V23Services__ExternalAttributionData
+    gbraid: str
+    gclid: str
+    orderId: str
+    sessionAttributesEncoded: str
+    sessionAttributesKeyValuePairs: (
+        GoogleAdsSearchads360V23Services__SessionAttributesKeyValuePairs
+    )
+    userIdentifiers: _list[GoogleAdsSearchads360V23Common__UserIdentifier]
+    userIpAddress: str
+    wbraid: str
+
+@typing.type_check_only
+class GoogleAdsSearchads360V23Services__ClickConversionResult(
+    typing_extensions.TypedDict, total=False
+):
+    conversionAction: str
+    conversionDateTime: str
+    gbraid: str
+    gclid: str
+    userIdentifiers: _list[GoogleAdsSearchads360V23Common__UserIdentifier]
+    wbraid: str
+
+@typing.type_check_only
 class GoogleAdsSearchads360V23Services__ConfigureCampaignLifecycleGoalsRequest(
     typing_extensions.TypedDict, total=False
 ):
@@ -15813,6 +15954,33 @@ class GoogleAdsSearchads360V23Services__ConversionActionOperation(
     remove: str
     update: GoogleAdsSearchads360V23Resources__ConversionAction
     updateMask: str
+
+@typing.type_check_only
+class GoogleAdsSearchads360V23Services__ConversionAdjustment(
+    typing_extensions.TypedDict, total=False
+):
+    adjustmentDateTime: str
+    adjustmentType: typing_extensions.Literal[
+        "UNSPECIFIED", "UNKNOWN", "RETRACTION", "RESTATEMENT", "ENHANCEMENT"
+    ]
+    conversionAction: str
+    gclidDateTimePair: GoogleAdsSearchads360V23Services__GclidDateTimePair
+    orderId: str
+    restatementValue: GoogleAdsSearchads360V23Services__RestatementValue
+    userAgent: str
+    userIdentifiers: _list[GoogleAdsSearchads360V23Common__UserIdentifier]
+
+@typing.type_check_only
+class GoogleAdsSearchads360V23Services__ConversionAdjustmentResult(
+    typing_extensions.TypedDict, total=False
+):
+    adjustmentDateTime: str
+    adjustmentType: typing_extensions.Literal[
+        "UNSPECIFIED", "UNKNOWN", "RETRACTION", "RESTATEMENT", "ENHANCEMENT"
+    ]
+    conversionAction: str
+    gclidDateTimePair: GoogleAdsSearchads360V23Services__GclidDateTimePair
+    orderId: str
 
 @typing.type_check_only
 class GoogleAdsSearchads360V23Services__ConversionCustomDimensionHeader(
@@ -15997,6 +16165,13 @@ class GoogleAdsSearchads360V23Services__CustomInterestOperation(
     create: GoogleAdsSearchads360V23Resources__CustomInterest
     update: GoogleAdsSearchads360V23Resources__CustomInterest
     updateMask: str
+
+@typing.type_check_only
+class GoogleAdsSearchads360V23Services__CustomVariable(
+    typing_extensions.TypedDict, total=False
+):
+    conversionCustomVariable: str
+    value: str
 
 @typing.type_check_only
 class GoogleAdsSearchads360V23Services__CustomerAssetOperation(
@@ -16225,6 +16400,13 @@ class GoogleAdsSearchads360V23Services__ExperimentOperation(
     updateMask: str
 
 @typing.type_check_only
+class GoogleAdsSearchads360V23Services__ExternalAttributionData(
+    typing_extensions.TypedDict, total=False
+):
+    externalAttributionCredit: float
+    externalAttributionModel: str
+
+@typing.type_check_only
 class GoogleAdsSearchads360V23Services__FetchIncentiveResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -16271,6 +16453,13 @@ class GoogleAdsSearchads360V23Services__FrequencyCap(
     timeUnit: typing_extensions.Literal[
         "UNSPECIFIED", "UNKNOWN", "DAY", "WEEK", "MONTH"
     ]
+
+@typing.type_check_only
+class GoogleAdsSearchads360V23Services__GclidDateTimePair(
+    typing_extensions.TypedDict, total=False
+):
+    conversionDateTime: str
+    gclid: str
 
 @typing.type_check_only
 class GoogleAdsSearchads360V23Services__GenerateAdGroupThemesRequest(
@@ -19319,6 +19508,23 @@ class GoogleAdsSearchads360V23Services__MutateSearchAds360CampaignResult(
     searchAds360Campaign: GoogleAdsSearchads360V23Resources__SearchAds360Campaign
 
 @typing.type_check_only
+class GoogleAdsSearchads360V23Services__MutateSearchAds360CampaignsRequest(
+    typing_extensions.TypedDict, total=False
+):
+    operations: _list[GoogleAdsSearchads360V23Services__SearchAds360CampaignOperation]
+    partialFailure: bool
+    responseContentType: typing_extensions.Literal[
+        "UNSPECIFIED", "RESOURCE_NAME_ONLY", "MUTABLE_RESOURCE"
+    ]
+    validateOnly: bool
+
+@typing.type_check_only
+class GoogleAdsSearchads360V23Services__MutateSearchAds360CampaignsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    results: _list[GoogleAdsSearchads360V23Services__MutateSearchAds360CampaignResult]
+
+@typing.type_check_only
 class GoogleAdsSearchads360V23Services__MutateSearchAds360Request(
     typing_extensions.TypedDict, total=False
 ):
@@ -19861,6 +20067,13 @@ class GoogleAdsSearchads360V23Services__RemoveProductLinkResponse(
     resourceName: str
 
 @typing.type_check_only
+class GoogleAdsSearchads360V23Services__RestatementValue(
+    typing_extensions.TypedDict, total=False
+):
+    adjustedValue: float
+    currencyCode: str
+
+@typing.type_check_only
 class GoogleAdsSearchads360V23Services__RunBatchJobRequest(
     typing_extensions.TypedDict, total=False
 ): ...
@@ -20214,6 +20427,19 @@ class GoogleAdsSearchads360V23Services__SearchSettings(
     omitResults: bool
     returnSummaryRow: bool
     returnTotalResultsCount: bool
+
+@typing.type_check_only
+class GoogleAdsSearchads360V23Services__SessionAttributeKeyValuePair(
+    typing_extensions.TypedDict, total=False
+):
+    sessionAttributeKey: str
+    sessionAttributeValue: str
+
+@typing.type_check_only
+class GoogleAdsSearchads360V23Services__SessionAttributesKeyValuePairs(
+    typing_extensions.TypedDict, total=False
+):
+    keyValuePairs: _list[GoogleAdsSearchads360V23Services__SessionAttributeKeyValuePair]
 
 @typing.type_check_only
 class GoogleAdsSearchads360V23Services__SharedCriterionOperation(
@@ -20576,6 +20802,55 @@ class GoogleAdsSearchads360V23Services__UpdateProductLinkInvitationResponse(
     typing_extensions.TypedDict, total=False
 ):
     resourceName: str
+
+@typing.type_check_only
+class GoogleAdsSearchads360V23Services__UploadCallConversionsRequest(
+    typing_extensions.TypedDict, total=False
+):
+    conversions: _list[GoogleAdsSearchads360V23Services__CallConversion]
+    partialFailure: bool
+    validateOnly: bool
+
+@typing.type_check_only
+class GoogleAdsSearchads360V23Services__UploadCallConversionsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    partialFailureError: GoogleRpc__Status
+    results: _list[GoogleAdsSearchads360V23Services__CallConversionResult]
+
+@typing.type_check_only
+class GoogleAdsSearchads360V23Services__UploadClickConversionsRequest(
+    typing_extensions.TypedDict, total=False
+):
+    conversions: _list[GoogleAdsSearchads360V23Services__ClickConversion]
+    jobId: int
+    partialFailure: bool
+    validateOnly: bool
+
+@typing.type_check_only
+class GoogleAdsSearchads360V23Services__UploadClickConversionsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    jobId: str
+    partialFailureError: GoogleRpc__Status
+    results: _list[GoogleAdsSearchads360V23Services__ClickConversionResult]
+
+@typing.type_check_only
+class GoogleAdsSearchads360V23Services__UploadConversionAdjustmentsRequest(
+    typing_extensions.TypedDict, total=False
+):
+    conversionAdjustments: _list[GoogleAdsSearchads360V23Services__ConversionAdjustment]
+    jobId: int
+    partialFailure: bool
+    validateOnly: bool
+
+@typing.type_check_only
+class GoogleAdsSearchads360V23Services__UploadConversionAdjustmentsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    jobId: str
+    partialFailureError: GoogleRpc__Status
+    results: _list[GoogleAdsSearchads360V23Services__ConversionAdjustmentResult]
 
 @typing.type_check_only
 class GoogleAdsSearchads360V23Services__UploadUserDataRequest(

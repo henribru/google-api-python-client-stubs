@@ -380,6 +380,11 @@ class SchedulerResource(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SoftwareConfig(typing_extensions.TypedDict, total=False):
     airflowConfigOverrides: dict[str, typing.Any]
+    auditLogsReplicationMode: typing_extensions.Literal[
+        "AUDIT_LOGS_REPLICATION_MODE_UNSPECIFIED",
+        "AUDIT_LOGS_REPLICATION_DISABLED",
+        "AUDIT_LOGS_REPLICATION_ENABLED",
+    ]
     cloudDataLineageIntegration: CloudDataLineageIntegration
     envVariables: dict[str, typing.Any]
     imageVersion: str

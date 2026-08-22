@@ -217,6 +217,7 @@ class ManagedFolder(typing_extensions.TypedDict, total=False):
     kind: str
     metageneration: str
     name: str
+    rapidCacheConfig: RapidCacheConfig
     selfLink: str
     updateTime: str
 
@@ -325,6 +326,38 @@ class Policy(typing_extensions.TypedDict, total=False):
     kind: str
     resourceId: str
     version: int
+
+@typing.type_check_only
+class RapidCache(typing_extensions.TypedDict, total=False):
+    admissionPolicy: str
+    bucket: str
+    cacheType: str
+    createTime: str
+    id: str
+    ingestOnWrite: bool
+    kind: str
+    pendingUpdate: bool
+    rapidCacheId: str
+    selfLink: str
+    state: str
+    ttl: str
+    updateTime: str
+    zone: str
+
+@typing.type_check_only
+class RapidCacheConfig(typing_extensions.TypedDict, total=False):
+    policies: dict[str, typing.Any]
+
+@typing.type_check_only
+class RapidCachePolicy(typing_extensions.TypedDict, total=False):
+    ingestOnWrite: typing_extensions.Literal["enabled", "unspecified"]
+    rapidCacheId: str
+
+@typing.type_check_only
+class RapidCaches(typing_extensions.TypedDict, total=False):
+    items: _list[RapidCache]
+    kind: str
+    nextPageToken: str
 
 @typing.type_check_only
 class RelocateBucketRequest(typing_extensions.TypedDict, total=False):

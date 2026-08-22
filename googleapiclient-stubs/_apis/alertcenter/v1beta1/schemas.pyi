@@ -425,7 +425,9 @@ class RuleInfo(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class RuleViolationInfo(typing_extensions.TypedDict, total=False):
-    agentType: typing_extensions.Literal["AGENT_TYPE_UNSPECIFIED", "STUDIO"]
+    agentType: typing_extensions.Literal[
+        "AGENT_TYPE_UNSPECIFIED", "STUDIO", "WORK_AGENT"
+    ]
     dataSource: typing_extensions.Literal[
         "DATA_SOURCE_UNSPECIFIED", "DRIVE", "GMAIL", "CHROME", "CHAT"
     ]
@@ -464,6 +466,7 @@ class RuleViolationInfo(typing_extensions.TypedDict, total=False):
             "CHROME_STORE_CONTENT",
             "CHROME_WATERMARK",
             "CHROME_FORCE_SAVE_TO_CLOUD",
+            "CHROME_KEEP_IN_MANAGED_CHROME",
             "DELETE_WEBPROTECT_EVIDENCE",
             "CHAT_BLOCK_CONTENT",
             "CHAT_WARN_USER",
@@ -486,6 +489,7 @@ class RuleViolationInfo(typing_extensions.TypedDict, total=False):
         "CHROMEOS_FILE_TRANSFER",
         "GEMINI_ACCESS",
         "AGENT_EXECUTION",
+        "CHROME_DATA_COPIED",
     ]
     triggeredActionInfo: _list[ActionInfo]
     triggeredActionTypes: _list[
@@ -516,6 +520,7 @@ class RuleViolationInfo(typing_extensions.TypedDict, total=False):
             "CHROME_STORE_CONTENT",
             "CHROME_WATERMARK",
             "CHROME_FORCE_SAVE_TO_CLOUD",
+            "CHROME_KEEP_IN_MANAGED_CHROME",
             "DELETE_WEBPROTECT_EVIDENCE",
             "CHAT_BLOCK_CONTENT",
             "CHAT_WARN_USER",

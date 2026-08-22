@@ -18,6 +18,7 @@ class Assignment(typing_extensions.TypedDict, total=False):
         "BACKGROUND_CHANGE_DATA_CAPTURE",
         "BACKGROUND_COLUMN_METADATA_INDEX",
         "BACKGROUND_SEARCH_INDEX_REFRESH",
+        "AUTOMATIC_MATERIALIZED_VIEW_REFRESH",
     ]
     name: str
     principal: str
@@ -167,6 +168,7 @@ class Reservation(typing_extensions.TypedDict, total=False):
     primaryLocation: str
     replicationStatus: ReplicationStatus
     reservationGroup: str
+    reservationGroupPath: _list[str]
     scalingMode: typing_extensions.Literal[
         "SCALING_MODE_UNSPECIFIED", "AUTOSCALE_ONLY", "IDLE_SLOTS_ONLY", "ALL_SLOTS"
     ]
@@ -178,6 +180,7 @@ class Reservation(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ReservationGroup(typing_extensions.TypedDict, total=False):
     name: str
+    parentGroup: str
 
 @typing.type_check_only
 class SchedulingPolicy(typing_extensions.TypedDict, total=False):

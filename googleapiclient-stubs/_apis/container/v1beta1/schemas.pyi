@@ -428,6 +428,7 @@ class ClusterUpdate(typing_extensions.TypedDict, total=False):
     desiredDefaultSnatStatus: DefaultSnatStatus
     desiredDisableL4LbFirewallReconciliation: bool
     desiredDnsConfig: DNSConfig
+    desiredEmulatedVersion: str
     desiredEnableCiliumClusterwideNetworkPolicy: bool
     desiredEnableFqdnNetworkPolicy: bool
     desiredEnableMultiNetworking: bool
@@ -710,6 +711,11 @@ class DesiredEnterpriseConfig(typing_extensions.TypedDict, total=False):
     desiredTier: typing_extensions.Literal[
         "CLUSTER_TIER_UNSPECIFIED", "STANDARD", "ENTERPRISE"
     ]
+
+@typing.type_check_only
+class DiskIoScheduler(typing_extensions.TypedDict, total=False):
+    nodeAttachedDiskIoScheduler: str
+    nodeSystemIoScheduler: str
 
 @typing.type_check_only
 class DisruptionBudget(typing_extensions.TypedDict, total=False):
@@ -1022,6 +1028,11 @@ class KalmConfig(typing_extensions.TypedDict, total=False):
     enabled: bool
 
 @typing.type_check_only
+class KubeletCertInfo(typing_extensions.TypedDict, total=False):
+    nonTpmBootstrapCertExpireTime: str
+    tpmBootstrapCertExpireTime: str
+
+@typing.type_check_only
 class KubernetesDashboard(typing_extensions.TypedDict, total=False):
     disabled: bool
 
@@ -1036,8 +1047,10 @@ class LinuxNodeConfig(typing_extensions.TypedDict, total=False):
         "CGROUP_MODE_UNSPECIFIED", "CGROUP_MODE_V1", "CGROUP_MODE_V2"
     ]
     customNodeInit: CustomNodeInit
+    diskIoScheduler: DiskIoScheduler
     hugepages: HugepagesConfig
     nodeKernelModuleLoading: NodeKernelModuleLoading
+    nodeVfioConfig: NodeVfioConfig
     swapConfig: SwapConfig
     sysctls: dict[str, typing.Any]
     transparentHugepageDefrag: typing_extensions.Literal[
@@ -1444,6 +1457,7 @@ class NodePool(typing_extensions.TypedDict, total=False):
     etag: str
     initialNodeCount: int
     instanceGroupUrls: _list[str]
+    kubeletCertInfo: KubeletCertInfo
     locations: _list[str]
     maintenancePolicy: NodePoolMaintenancePolicy
     management: NodeManagement
@@ -1542,6 +1556,10 @@ class NodeTaint(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class NodeTaints(typing_extensions.TypedDict, total=False):
     taints: _list[NodeTaint]
+
+@typing.type_check_only
+class NodeVfioConfig(typing_extensions.TypedDict, total=False):
+    dmaEntryLimit: int
 
 @typing.type_check_only
 class NotificationConfig(typing_extensions.TypedDict, total=False):
@@ -1749,6 +1767,7 @@ class ReleaseChannelConfig(typing_extensions.TypedDict, total=False):
     channel: typing_extensions.Literal[
         "UNSPECIFIED", "RAPID", "REGULAR", "STABLE", "EXTENDED"
     ]
+    customVersions: _list[str]
     defaultVersion: str
     upgradeTargetVersion: str
     validVersions: _list[str]

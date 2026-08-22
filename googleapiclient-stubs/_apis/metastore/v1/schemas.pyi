@@ -322,6 +322,7 @@ class MigrationExecution(typing_extensions.TypedDict, total=False):
         "FAILED",
         "CANCELLED",
         "DELETING",
+        "ROLLED_BACK",
     ]
     stateMessage: str
 
@@ -459,6 +460,7 @@ class Service(typing_extensions.TypedDict, total=False):
         "ERROR",
         "AUTOSCALING",
         "MIGRATING",
+        "PROXY",
     ]
     stateMessage: str
     tags: dict[str, typing.Any]

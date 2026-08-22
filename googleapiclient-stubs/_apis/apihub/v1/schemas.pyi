@@ -165,6 +165,14 @@ class GoogleCloudApihubV1ApigeeXHybridConfig(typing_extensions.TypedDict, total=
     environmentFilter: GoogleCloudApihubV1EnvironmentFilter
 
 @typing.type_check_only
+class GoogleCloudApihubV1ApigeeXTargetDetails(typing_extensions.TypedDict, total=False):
+    deployedRevision: str
+    environment: str
+    metadata: GoogleCloudApihubV1MetaData
+    proxy: str
+    targetProject: str
+
+@typing.type_check_only
 class GoogleCloudApihubV1ApplicationIntegrationEndpointDetails(
     typing_extensions.TypedDict, total=False
 ):
@@ -304,6 +312,12 @@ class GoogleCloudApihubV1ConfigVariableTemplate(
         "MULTI_STRING",
         "MULTI_INT",
     ]
+
+@typing.type_check_only
+class GoogleCloudApihubV1ConfigureAndDeployServerRequest(
+    typing_extensions.TypedDict, total=False
+):
+    mcpServerConfig: GoogleCloudApihubV1McpServerConfig
 
 @typing.type_check_only
 class GoogleCloudApihubV1Curation(typing_extensions.TypedDict, total=False):
@@ -585,6 +599,22 @@ class GoogleCloudApihubV1HttpOperation(typing_extensions.TypedDict, total=False)
     path: GoogleCloudApihubV1Path
 
 @typing.type_check_only
+class GoogleCloudApihubV1HttpOperationConfig(typing_extensions.TypedDict, total=False):
+    method: typing_extensions.Literal[
+        "METHOD_UNSPECIFIED",
+        "GET",
+        "PUT",
+        "POST",
+        "DELETE",
+        "OPTIONS",
+        "HEAD",
+        "PATCH",
+        "TRACE",
+    ]
+    path: str
+    spec: str
+
+@typing.type_check_only
 class GoogleCloudApihubV1HttpOperationDetails(typing_extensions.TypedDict, total=False):
     httpOperation: GoogleCloudApihubV1HttpOperation
     pathParams: _list[GoogleCloudApihubV1PathParam]
@@ -782,6 +812,11 @@ class GoogleCloudApihubV1MatchResult(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
+class GoogleCloudApihubV1McpServerConfig(typing_extensions.TypedDict, total=False):
+    apigeeXTargetDetails: GoogleCloudApihubV1ApigeeXTargetDetails
+    tools: _list[GoogleCloudApihubV1McpToolConfig]
+
+@typing.type_check_only
 class GoogleCloudApihubV1McpTool(typing_extensions.TypedDict, total=False):
     annotations: GoogleCloudApihubV1ToolAnnotations
     description: str
@@ -789,6 +824,17 @@ class GoogleCloudApihubV1McpTool(typing_extensions.TypedDict, total=False):
     name: str
     outputSchema: GoogleCloudApihubV1OperationSchema
     title: str
+
+@typing.type_check_only
+class GoogleCloudApihubV1McpToolConfig(typing_extensions.TypedDict, total=False):
+    description: str
+    operation: GoogleCloudApihubV1OperationConfig
+    toolId: str
+
+@typing.type_check_only
+class GoogleCloudApihubV1MetaData(typing_extensions.TypedDict, total=False):
+    description: str
+    displayName: str
 
 @typing.type_check_only
 class GoogleCloudApihubV1MultiIntValues(typing_extensions.TypedDict, total=False):
@@ -819,6 +865,11 @@ class GoogleCloudApihubV1OpenApiSpecDetails(typing_extensions.TypedDict, total=F
     ]
     owner: GoogleCloudApihubV1Owner
     version: str
+
+@typing.type_check_only
+class GoogleCloudApihubV1OperationConfig(typing_extensions.TypedDict, total=False):
+    httpOperation: GoogleCloudApihubV1HttpOperationConfig
+    operation: str
 
 @typing.type_check_only
 class GoogleCloudApihubV1OperationDetails(typing_extensions.TypedDict, total=False):
@@ -876,6 +927,8 @@ class GoogleCloudApihubV1Plugin(typing_extensions.TypedDict, total=False):
         "CLOUD_ENDPOINTS",
         "API_DISCOVERY",
         "OTHERS",
+        "AWS_API_GATEWAY",
+        "AZURE_API_MANAGEMENT",
     ]
     hostingService: GoogleCloudApihubV1HostingService
     name: str

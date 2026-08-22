@@ -429,6 +429,9 @@ class MavenRepositoryConfig(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class NoCacheFetching(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class NpmPackage(typing_extensions.TypedDict, total=False):
     createTime: str
     name: str
@@ -550,6 +553,7 @@ class RemoteRepositoryConfig(typing_extensions.TypedDict, total=False):
     disableUpstreamValidation: bool
     dockerRepository: DockerRepository
     mavenRepository: MavenRepository
+    noCache: NoCacheFetching
     npmRepository: NpmRepository
     pythonRepository: PythonRepository
     upstreamCredentials: UpstreamCredentials

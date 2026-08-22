@@ -61,6 +61,7 @@ class BDRBackupRestoreJobLog(typing_extensions.TypedDict, total=False):
     sourceResourceLocation: str
     sourceResourceName: str
     startTime: str
+    storageTier: str
     targetResourceType: str
 
 @typing.type_check_only
@@ -207,6 +208,7 @@ class BackupRuleDetail(typing_extensions.TypedDict, total=False):
     recurrenceSchedule: str
     retentionDays: int
     ruleName: str
+    storageTier: str
 
 @typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):

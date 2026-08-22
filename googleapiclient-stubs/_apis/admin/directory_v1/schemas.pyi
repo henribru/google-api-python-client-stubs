@@ -441,6 +441,11 @@ class Domains2(typing_extensions.TypedDict, total=False):
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class ExternalId(typing_extensions.TypedDict, total=False):
+    id: str
+    namespace: str
+
+@typing.type_check_only
 class FailureInfo(typing_extensions.TypedDict, total=False):
     errorCode: typing_extensions.Literal[
         "OK",
@@ -498,6 +503,7 @@ class Group(typing_extensions.TypedDict, total=False):
     directMembersCount: str
     email: str
     etag: str
+    externalIds: _list[ExternalId]
     id: str
     kind: str
     name: str

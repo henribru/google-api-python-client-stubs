@@ -42,6 +42,7 @@ class GoogleIdentityStsV1ExchangeTokenResponse(
 
 @typing.type_check_only
 class GoogleIdentityStsV1Jwk(typing_extensions.TypedDict, total=False):
+    alg: str
     e: str
     kid: str
     kty: str

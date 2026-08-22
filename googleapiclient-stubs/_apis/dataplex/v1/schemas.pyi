@@ -89,6 +89,7 @@ class GoogleCloudDataplexV1ActionUnauthorizedResource(
 class GoogleCloudDataplexV1ApproveChangeRequestRequest(
     typing_extensions.TypedDict, total=False
 ):
+    comment: str
     etag: str
 
 @typing.type_check_only
@@ -351,6 +352,7 @@ class GoogleCloudDataplexV1ChangeRequest(typing_extensions.TypedDict, total=Fals
     name: str
     rejectionComment: str
     resource: str
+    reviewerComment: str
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "NEW", "APPROVED", "REJECTED", "EXPIRED", "REVOKED"
     ]
@@ -646,6 +648,7 @@ class GoogleCloudDataplexV1DataDomain(typing_extensions.TypedDict, total=False):
     labels: dict[str, typing.Any]
     name: str
     parentDataDomain: str
+    policyMember: GoogleIamV1ResourcePolicyMember
     uid: str
     updateTime: str
 
@@ -1573,6 +1576,17 @@ class GoogleCloudDataplexV1EntryLinkEvent(typing_extensions.TypedDict, total=Fal
     resource: str
 
 @typing.type_check_only
+class GoogleCloudDataplexV1EntryLinkTypeEvent(typing_extensions.TypedDict, total=False):
+    entryLinkTypeId: str
+    eventType: typing_extensions.Literal[
+        "EVENT_TYPE_UNSPECIFIED",
+        "ENTRY_LINK_TYPE_CREATE",
+        "ENTRY_LINK_TYPE_UPDATE",
+        "ENTRY_LINK_TYPE_DELETE",
+    ]
+    message: str
+
+@typing.type_check_only
 class GoogleCloudDataplexV1EntrySource(typing_extensions.TypedDict, total=False):
     ancestors: _list[GoogleCloudDataplexV1EntrySourceAncestor]
     createTime: str
@@ -2094,7 +2108,6 @@ class GoogleCloudDataplexV1ListZonesResponse(typing_extensions.TypedDict, total=
 class GoogleCloudDataplexV1LookupContextRequest(
     typing_extensions.TypedDict, total=False
 ):
-    context: str
     options: dict[str, typing.Any]
     resources: _list[str]
 
@@ -2720,6 +2733,11 @@ class GoogleIamV1Policy(typing_extensions.TypedDict, total=False):
     bindings: _list[GoogleIamV1Binding]
     etag: str
     version: int
+
+@typing.type_check_only
+class GoogleIamV1ResourcePolicyMember(typing_extensions.TypedDict, total=False):
+    iamPolicyNamePrincipal: str
+    iamPolicyUidPrincipal: str
 
 @typing.type_check_only
 class GoogleIamV1SetIamPolicyRequest(typing_extensions.TypedDict, total=False):

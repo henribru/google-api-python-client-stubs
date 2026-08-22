@@ -1622,6 +1622,17 @@ class DfareportingResource(googleapiclient.discovery.Resource):
         ) -> RemarketingListHttpRequest: ...
 
     @typing.type_check_only
+    class ReportDataResource(googleapiclient.discovery.Resource):
+        def query(
+            self, *, profileId: str, body: ReportDataQueryRequest, **kwargs: typing.Any
+        ) -> ReportDataResponseHttpRequest: ...
+        def query_next(
+            self,
+            previous_request: ReportDataResponseHttpRequest,
+            previous_response: ReportDataResponse,
+        ) -> ReportDataResponseHttpRequest | None: ...
+
+    @typing.type_check_only
     class ReportsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class CompatibleFieldsResource(googleapiclient.discovery.Resource):
@@ -2071,6 +2082,7 @@ class DfareportingResource(googleapiclient.discovery.Resource):
     def regions(self) -> RegionsResource: ...
     def remarketingListShares(self) -> RemarketingListSharesResource: ...
     def remarketingLists(self) -> RemarketingListsResource: ...
+    def reportData(self) -> ReportDataResource: ...
     def reports(self) -> ReportsResource: ...
     def sites(self) -> SitesResource: ...
     def sizes(self) -> SizesResource: ...
@@ -2842,6 +2854,14 @@ class ReportHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Report: ...
+
+@typing.type_check_only
+class ReportDataResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ReportDataResponse: ...
 
 @typing.type_check_only
 class ReportListHttpRequest(googleapiclient.http.HttpRequest):

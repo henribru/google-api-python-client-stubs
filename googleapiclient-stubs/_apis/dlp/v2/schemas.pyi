@@ -1675,6 +1675,7 @@ class GooglePrivacyDlpV2InfoTypeCategory(typing_extensions.TypedDict, total=Fals
 class GooglePrivacyDlpV2InfoTypeCondition(typing_extensions.TypedDict, total=False):
     anyInfoType: GoogleProtobufEmpty
     infoTypes: GooglePrivacyDlpV2InfoTypes
+    minCount: str
 
 @typing.type_check_only
 class GooglePrivacyDlpV2InfoTypeDescription(typing_extensions.TypedDict, total=False):

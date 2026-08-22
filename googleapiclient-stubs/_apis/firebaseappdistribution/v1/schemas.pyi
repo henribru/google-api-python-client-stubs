@@ -140,6 +140,7 @@ class GoogleFirebaseAppdistroV1AabInfo(typing_extensions.TypedDict, total=False)
         "ADHOC_SHARING_KEY_NOT_GENERATED",
         "ADHOC_SHARING_KEY_NOT_REGISTERED",
         "PLAY_ANDROID_DEVELOPER_CONSOLE_ACCOUNT_NOT_FOUND",
+        "PLAY_ANDROID_DEVELOPER_CONSOLE_PACKAGE_NOT_FOUND",
     ]
     name: str
     testCertificate: GoogleFirebaseAppdistroV1TestCertificate
@@ -236,6 +237,7 @@ class GoogleFirebaseAppdistroV1ListReleasesResponse(
 ):
     nextPageToken: str
     releases: _list[GoogleFirebaseAppdistroV1Release]
+    totalSize: int
 
 @typing.type_check_only
 class GoogleFirebaseAppdistroV1ListTestersResponse(
@@ -246,14 +248,35 @@ class GoogleFirebaseAppdistroV1ListTestersResponse(
 
 @typing.type_check_only
 class GoogleFirebaseAppdistroV1Release(typing_extensions.TypedDict, total=False):
+    acceptedInvitationCount: int
+    androidPackageRegistrationState: typing_extensions.Literal[
+        "ANDROID_PACKAGE_REGISTRATION_STATE_UNSPECIFIED",
+        "REGISTERED",
+        "NOT_REGISTERED",
+        "REGISTERED_WITH_ANOTHER_CERTIFICATE_FINGERPRINT",
+    ]
     binaryDownloadUri: str
+    binaryType: typing_extensions.Literal[
+        "BINARY_TYPE_UNSPECIFIED", "IPA", "APK", "AAB"
+    ]
     buildVersion: str
     createTime: str
     displayVersion: str
     expireTime: str
+    feedbackCount: int
     firebaseConsoleUri: str
+    installationCount: int
     name: str
+    openInvitationCount: int
     releaseNotes: GoogleFirebaseAppdistroV1ReleaseNotes
+    testState: typing_extensions.Literal[
+        "TEST_STATE_UNSPECIFIED",
+        "NO_TESTS_REQUESTED",
+        "IN_PROGRESS",
+        "PASSED",
+        "FAILED",
+        "INCONCLUSIVE",
+    ]
     testingUri: str
     updateTime: str
 

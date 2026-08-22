@@ -56,6 +56,12 @@ class DeveloperKnowledgeResource(googleapiclient.discovery.Resource):
             previous_response: SearchDocumentChunksResponse,
         ) -> SearchDocumentChunksResponseHttpRequest | None: ...
 
+    @typing.type_check_only
+    class V1Resource(googleapiclient.discovery.Resource):
+        def answerQuery(
+            self, *, body: AnswerQueryRequest, **kwargs: typing.Any
+        ) -> AnswerQueryResponseHttpRequest: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[
@@ -69,6 +75,15 @@ class DeveloperKnowledgeResource(googleapiclient.discovery.Resource):
         | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def documents(self) -> DocumentsResource: ...
+    def v1(self) -> V1Resource: ...
+
+@typing.type_check_only
+class AnswerQueryResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> AnswerQueryResponse: ...
 
 @typing.type_check_only
 class BatchGetDocumentsResponseHttpRequest(googleapiclient.http.HttpRequest):

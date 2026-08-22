@@ -58,6 +58,27 @@ class PlaydeveloperreportingResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class VitalsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
+        class AnonrssandswapmemoryusageResource(googleapiclient.discovery.Resource):
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GooglePlayDeveloperReportingV1beta1AnonRssAndSwapMemoryUsageMetricSetHttpRequest: ...
+            def query(
+                self,
+                *,
+                name: str,
+                body: GooglePlayDeveloperReportingV1beta1QueryAnonRssAndSwapMemoryUsageMetricSetRequest,
+                **kwargs: typing.Any,
+            ) -> GooglePlayDeveloperReportingV1beta1QueryAnonRssAndSwapMemoryUsageMetricSetResponseHttpRequest: ...
+            def query_next(
+                self,
+                previous_request: GooglePlayDeveloperReportingV1beta1QueryAnonRssAndSwapMemoryUsageMetricSetResponseHttpRequest,
+                previous_response: GooglePlayDeveloperReportingV1beta1QueryAnonRssAndSwapMemoryUsageMetricSetResponse,
+            ) -> (
+                GooglePlayDeveloperReportingV1beta1QueryAnonRssAndSwapMemoryUsageMetricSetResponseHttpRequest
+                | None
+            ): ...
+
+        @typing.type_check_only
         class AnrrateResource(googleapiclient.discovery.Resource):
             def get(
                 self, *, name: str, **kwargs: typing.Any
@@ -75,6 +96,29 @@ class PlaydeveloperreportingResource(googleapiclient.discovery.Resource):
                 previous_response: GooglePlayDeveloperReportingV1beta1QueryAnrRateMetricSetResponse,
             ) -> (
                 GooglePlayDeveloperReportingV1beta1QueryAnrRateMetricSetResponseHttpRequest
+                | None
+            ): ...
+
+        @typing.type_check_only
+        class BitmapmemoryusageResource(googleapiclient.discovery.Resource):
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> (
+                GooglePlayDeveloperReportingV1beta1BitmapMemoryUsageMetricSetHttpRequest
+            ): ...
+            def query(
+                self,
+                *,
+                name: str,
+                body: GooglePlayDeveloperReportingV1beta1QueryBitmapMemoryUsageMetricSetRequest,
+                **kwargs: typing.Any,
+            ) -> GooglePlayDeveloperReportingV1beta1QueryBitmapMemoryUsageMetricSetResponseHttpRequest: ...
+            def query_next(
+                self,
+                previous_request: GooglePlayDeveloperReportingV1beta1QueryBitmapMemoryUsageMetricSetResponseHttpRequest,
+                previous_response: GooglePlayDeveloperReportingV1beta1QueryBitmapMemoryUsageMetricSetResponse,
+            ) -> (
+                GooglePlayDeveloperReportingV1beta1QueryBitmapMemoryUsageMetricSetResponseHttpRequest
                 | None
             ): ...
 
@@ -319,7 +363,9 @@ class PlaydeveloperreportingResource(googleapiclient.discovery.Resource):
                 | None
             ): ...
 
+        def anonrssandswapmemoryusage(self) -> AnonrssandswapmemoryusageResource: ...
         def anrrate(self) -> AnrrateResource: ...
+        def bitmapmemoryusage(self) -> BitmapmemoryusageResource: ...
         def crashrate(self) -> CrashrateResource: ...
         def errors(self) -> ErrorsResource: ...
         def excessivewakeuprate(self) -> ExcessivewakeuprateResource: ...
@@ -347,6 +393,16 @@ class PlaydeveloperreportingResource(googleapiclient.discovery.Resource):
     def vitals(self) -> VitalsResource: ...
 
 @typing.type_check_only
+class GooglePlayDeveloperReportingV1beta1AnonRssAndSwapMemoryUsageMetricSetHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GooglePlayDeveloperReportingV1beta1AnonRssAndSwapMemoryUsageMetricSet: ...
+
+@typing.type_check_only
 class GooglePlayDeveloperReportingV1beta1AnrRateMetricSetHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -355,6 +411,16 @@ class GooglePlayDeveloperReportingV1beta1AnrRateMetricSetHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GooglePlayDeveloperReportingV1beta1AnrRateMetricSet: ...
+
+@typing.type_check_only
+class GooglePlayDeveloperReportingV1beta1BitmapMemoryUsageMetricSetHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GooglePlayDeveloperReportingV1beta1BitmapMemoryUsageMetricSet: ...
 
 @typing.type_check_only
 class GooglePlayDeveloperReportingV1beta1CrashRateMetricSetHttpRequest(
@@ -407,6 +473,16 @@ class GooglePlayDeveloperReportingV1beta1LmkRateMetricSetHttpRequest(
     ) -> GooglePlayDeveloperReportingV1beta1LmkRateMetricSet: ...
 
 @typing.type_check_only
+class GooglePlayDeveloperReportingV1beta1QueryAnonRssAndSwapMemoryUsageMetricSetResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GooglePlayDeveloperReportingV1beta1QueryAnonRssAndSwapMemoryUsageMetricSetResponse: ...
+
+@typing.type_check_only
 class GooglePlayDeveloperReportingV1beta1QueryAnrRateMetricSetResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -415,6 +491,16 @@ class GooglePlayDeveloperReportingV1beta1QueryAnrRateMetricSetResponseHttpReques
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GooglePlayDeveloperReportingV1beta1QueryAnrRateMetricSetResponse: ...
+
+@typing.type_check_only
+class GooglePlayDeveloperReportingV1beta1QueryBitmapMemoryUsageMetricSetResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GooglePlayDeveloperReportingV1beta1QueryBitmapMemoryUsageMetricSetResponse: ...
 
 @typing.type_check_only
 class GooglePlayDeveloperReportingV1beta1QueryCrashRateMetricSetResponseHttpRequest(

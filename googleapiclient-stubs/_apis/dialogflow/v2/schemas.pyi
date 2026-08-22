@@ -262,6 +262,7 @@ class GoogleCloudDialogflowCxV3FormParameterFillBehavior(
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3Fulfillment(typing_extensions.TypedDict, total=False):
     advancedSettings: GoogleCloudDialogflowCxV3AdvancedSettings
+    codeBlockFunction: str
     conditionalCases: _list[GoogleCloudDialogflowCxV3FulfillmentConditionalCases]
     enableGenerativeFallback: bool
     generators: _list[GoogleCloudDialogflowCxV3FulfillmentGeneratorSettings]
@@ -1135,6 +1136,7 @@ class GoogleCloudDialogflowCxV3beta1Fulfillment(
     typing_extensions.TypedDict, total=False
 ):
     advancedSettings: GoogleCloudDialogflowCxV3beta1AdvancedSettings
+    codeBlockFunction: str
     conditionalCases: _list[GoogleCloudDialogflowCxV3beta1FulfillmentConditionalCases]
     enableGenerativeFallback: bool
     generators: _list[GoogleCloudDialogflowCxV3beta1FulfillmentGeneratorSettings]
@@ -3225,6 +3227,7 @@ class GoogleCloudDialogflowV2InputAudioConfig(typing_extensions.TypedDict, total
     ]
     disableNoSpeechRecognizedEvent: bool
     enableAutomaticPunctuation: bool
+    enableVoiceActivityEvents: bool
     enableWordInfo: bool
     languageCode: str
     model: str
@@ -3734,6 +3737,10 @@ class GoogleCloudDialogflowV2KnowledgeAssistDebugInfoQueryGenerationDebugInfo(
 ):
     candidatesTokenCount: int
     promptTokenCount: int
+    similarityToLastQuery: float
+    similarityToLastQueryThreshold: float
+    thinkingBudgetTokens: int
+    thinkingLevel: str
     totalTokenCount: int
 
 @typing.type_check_only
@@ -3984,6 +3991,14 @@ class GoogleCloudDialogflowV2Participant(typing_extensions.TypedDict, total=Fals
     sipRecordingMediaLabel: str
 
 @typing.type_check_only
+class GoogleCloudDialogflowV2ProbeDetails(typing_extensions.TypedDict, total=False):
+    initTime: str
+    optionsLatency: str
+    probeStatus: typing_extensions.Literal[
+        "PROBE_STATUS_UNSPECIFIED", "PROBE_STATUS_SUCCESS", "PROBE_STATUS_FAILED"
+    ]
+
+@typing.type_check_only
 class GoogleCloudDialogflowV2QueryInput(typing_extensions.TypedDict, total=False):
     audioConfig: GoogleCloudDialogflowV2InputAudioConfig
     event: GoogleCloudDialogflowV2EventInput
@@ -4091,6 +4106,7 @@ class GoogleCloudDialogflowV2SearchKnowledgeAnswerAnswerSource(
 class GoogleCloudDialogflowV2SearchKnowledgeDebugInfo(
     typing_extensions.TypedDict, total=False
 ):
+    cesDebugInfo: dict[str, typing.Any]
     datastoreResponseReason: typing_extensions.Literal[
         "DATASTORE_RESPONSE_REASON_UNSPECIFIED",
         "NONE",
@@ -4294,11 +4310,48 @@ class GoogleCloudDialogflowV2SipConfig(typing_extensions.TypedDict, total=False)
     maxAudioRecordingDuration: str
 
 @typing.type_check_only
+class GoogleCloudDialogflowV2SipHostname(typing_extensions.TypedDict, total=False):
+    connectionState: typing_extensions.Literal[
+        "CONNECTION_STATE_UNSPECIFIED",
+        "CONNECTED",
+        "DISCONNECTED",
+        "AUTHENTICATION_FAILED",
+        "KEEPALIVE",
+    ]
+    enabledSipPing: bool
+    errorDetails: GoogleCloudDialogflowV2SipHostnameHostnameErrorDetails
+    peerHostname: str
+    peerSocketAddress: str
+    pingInterval: str
+    probeDetails: GoogleCloudDialogflowV2ProbeDetails
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2SipHostnameHostnameErrorDetails(
+    typing_extensions.TypedDict, total=False
+):
+    certificateState: typing_extensions.Literal[
+        "HOSTNAME_CERTIFICATE_STATE_UNSPECIFIED",
+        "VALID",
+        "INVALID",
+        "EXPIRED",
+        "HOSTNAME_NOT_FOUND",
+        "UNAUTHENTICATED",
+        "TRUST_STORE_NOT_FOUND",
+        "HOSTNAME_INVALID_FORMAT",
+        "QUOTA_EXCEEDED",
+    ]
+    errorMessage: str
+
+@typing.type_check_only
 class GoogleCloudDialogflowV2SipTrunk(typing_extensions.TypedDict, total=False):
     connections: _list[GoogleCloudDialogflowV2Connection]
     displayName: str
     expectedHostname: _list[str]
+    googleRootCertFile: typing_extensions.Literal[
+        "CERT_FILE_UNSPECIFIED", "EXTERNAL_PRIVATE_CA"
+    ]
     name: str
+    peerHostnames: _list[GoogleCloudDialogflowV2SipHostname]
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2SmartReplyAnswer(typing_extensions.TypedDict, total=False):
@@ -4379,7 +4432,13 @@ class GoogleCloudDialogflowV2StreamingRecognitionResult(
     isFinal: bool
     languageCode: str
     messageType: typing_extensions.Literal[
-        "MESSAGE_TYPE_UNSPECIFIED", "TRANSCRIPT", "END_OF_SINGLE_UTTERANCE"
+        "MESSAGE_TYPE_UNSPECIFIED",
+        "TRANSCRIPT",
+        "DTMF_DIGITS",
+        "END_OF_SINGLE_UTTERANCE",
+        "PARTIAL_DTMF_DIGITS",
+        "SPEECH_ACTIVITY_BEGIN",
+        "SPEECH_ACTIVITY_END",
     ]
     speechEndOffset: str
     speechWordInfo: _list[GoogleCloudDialogflowV2SpeechWordInfo]
@@ -5936,6 +5995,10 @@ class GoogleCloudDialogflowV2beta1KnowledgeAssistDebugInfoQueryGenerationDebugIn
 ):
     candidatesTokenCount: int
     promptTokenCount: int
+    similarityToLastQuery: float
+    similarityToLastQueryThreshold: float
+    thinkingBudgetTokens: int
+    thinkingLevel: str
     totalTokenCount: int
 
 @typing.type_check_only
@@ -6139,6 +6202,8 @@ class GoogleCloudDialogflowV2beta1StreamingRecognitionResult(
         "END_OF_SINGLE_UTTERANCE",
         "DTMF_DIGITS",
         "PARTIAL_DTMF_DIGITS",
+        "SPEECH_ACTIVITY_BEGIN",
+        "SPEECH_ACTIVITY_END",
     ]
     speechEndOffset: str
     speechWordInfo: _list[GoogleCloudDialogflowV2beta1SpeechWordInfo]

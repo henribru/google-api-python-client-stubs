@@ -654,6 +654,26 @@ class UrlMap(typing_extensions.TypedDict, total=False):
 class Version(typing_extensions.TypedDict, total=False):
     apiConfig: ApiConfigHandler
     appEngineApis: bool
+    appEngineBundledServices: _list[
+        typing_extensions.Literal[
+            "BUNDLED_SERVICE_TYPE_UNSPECIFIED",
+            "BUNDLED_SERVICE_TYPE_APP_IDENTITY_SERVICE",
+            "BUNDLED_SERVICE_TYPE_BLOBSTORE",
+            "BUNDLED_SERVICE_TYPE_CAPABILITY_SERVICE",
+            "BUNDLED_SERVICE_TYPE_DATASTORE_V3",
+            "BUNDLED_SERVICE_TYPE_DEFERRED",
+            "BUNDLED_SERVICE_TYPE_IMAGES",
+            "BUNDLED_SERVICE_TYPE_MAIL",
+            "BUNDLED_SERVICE_TYPE_MEMCACHE",
+            "BUNDLED_SERVICE_TYPE_MODULES",
+            "BUNDLED_SERVICE_TYPE_NAMESPACES",
+            "BUNDLED_SERVICE_TYPE_NDB",
+            "BUNDLED_SERVICE_TYPE_SEARCH",
+            "BUNDLED_SERVICE_TYPE_TASKQUEUES",
+            "BUNDLED_SERVICE_TYPE_URLFETCH",
+            "BUNDLED_SERVICE_TYPE_USERS",
+        ]
+    ]
     automaticScaling: AutomaticScaling
     basicScaling: BasicScaling
     betaSettings: dict[str, typing.Any]

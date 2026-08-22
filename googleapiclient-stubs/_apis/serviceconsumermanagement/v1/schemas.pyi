@@ -471,7 +471,9 @@ class MetricDescriptorMetadata(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class MetricRule(typing_extensions.TypedDict, total=False):
+    agenticMetricCosts: dict[str, typing.Any]
     metricCosts: dict[str, typing.Any]
+    nonagenticMetricCosts: dict[str, typing.Any]
     selector: str
 
 @typing.type_check_only
@@ -588,6 +590,11 @@ class QuotaLimit(typing_extensions.TypedDict, total=False):
     maxLimit: str
     metric: str
     name: str
+    trafficSource: typing_extensions.Literal[
+        "TRAFFIC_SOURCE_UNSPECIFIED",
+        "TRAFFIC_SOURCE_NONAGENTIC",
+        "TRAFFIC_SOURCE_AGENTIC",
+    ]
     unit: str
     values: dict[str, typing.Any]
 
@@ -700,6 +707,7 @@ class TenantProjectPolicy(typing_extensions.TypedDict, total=False):
 class TenantResource(typing_extensions.TypedDict, total=False):
     migratedTenantProject: str
     resource: str
+    sourceTenantProject: str
     status: typing_extensions.Literal[
         "STATUS_UNSPECIFIED",
         "PENDING_CREATE",

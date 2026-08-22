@@ -120,6 +120,12 @@ class CustomerEngagementSuiteResource(googleapiclient.discovery.Resource):
                             "AGENT_TOOL",
                         ]
                         | None = ...,
+                        view: typing_extensions.Literal[
+                            "CONVERSATION_VIEW_UNSPECIFIED",
+                            "CONVERSATION_VIEW_BASIC",
+                            "CONVERSATION_VIEW_FULL",
+                        ]
+                        | None = ...,
                         **kwargs: typing.Any,
                     ) -> ConversationHttpRequest: ...
                     def list(
@@ -164,6 +170,16 @@ class CustomerEngagementSuiteResource(googleapiclient.discovery.Resource):
 
                 @typing.type_check_only
                 class DeploymentsResource(googleapiclient.discovery.Resource):
+                    @typing.type_check_only
+                    class MessageResource(googleapiclient.discovery.Resource):
+                        def send(
+                            self,
+                            *,
+                            tenant: str,
+                            body: LfA2aV1SendMessageRequest,
+                            **kwargs: typing.Any,
+                        ) -> LfA2aV1SendMessageResponseHttpRequest: ...
+
                     def create(
                         self,
                         *,
@@ -178,6 +194,9 @@ class CustomerEngagementSuiteResource(googleapiclient.discovery.Resource):
                     def get(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> DeploymentHttpRequest: ...
+                    def getExtendedAgentCard(
+                        self, *, tenant: str, **kwargs: typing.Any
+                    ) -> LfA2aV1AgentCardHttpRequest: ...
                     def list(
                         self,
                         *,
@@ -200,6 +219,7 @@ class CustomerEngagementSuiteResource(googleapiclient.discovery.Resource):
                         updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> DeploymentHttpRequest: ...
+                    def message(self) -> MessageResource: ...
 
                 @typing.type_check_only
                 class ExamplesResource(googleapiclient.discovery.Resource):
@@ -419,6 +439,16 @@ class CustomerEngagementSuiteResource(googleapiclient.discovery.Resource):
 
                 @typing.type_check_only
                 class VersionsResource(googleapiclient.discovery.Resource):
+                    @typing.type_check_only
+                    class MessageResource(googleapiclient.discovery.Resource):
+                        def send(
+                            self,
+                            *,
+                            tenant: str,
+                            body: LfA2aV1SendMessageRequest,
+                            **kwargs: typing.Any,
+                        ) -> LfA2aV1SendMessageResponseHttpRequest: ...
+
                     def create(
                         self,
                         *,
@@ -433,6 +463,9 @@ class CustomerEngagementSuiteResource(googleapiclient.discovery.Resource):
                     def get(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> AppVersionHttpRequest: ...
+                    def getExtendedAgentCard(
+                        self, *, tenant: str, **kwargs: typing.Any
+                    ) -> LfA2aV1AgentCardHttpRequest: ...
                     def list(
                         self,
                         *,
@@ -455,6 +488,7 @@ class CustomerEngagementSuiteResource(googleapiclient.discovery.Resource):
                         body: RestoreAppVersionRequest,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
+                    def message(self) -> MessageResource: ...
 
                 def create(
                     self,
@@ -474,6 +508,9 @@ class CustomerEngagementSuiteResource(googleapiclient.discovery.Resource):
                     self, *, name: str, body: ExportAppRequest, **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
                 def get(self, *, name: str, **kwargs: typing.Any) -> AppHttpRequest: ...
+                def getExtendedAgentCard(
+                    self, *, tenant: str, **kwargs: typing.Any
+                ) -> LfA2aV1AgentCardHttpRequest: ...
                 def importApp(
                     self, *, parent: str, body: ImportAppRequest, **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
@@ -674,6 +711,14 @@ class GuardrailHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Guardrail: ...
+
+@typing.type_check_only
+class LfA2aV1AgentCardHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> LfA2aV1AgentCard: ...
 
 @typing.type_check_only
 class LfA2aV1SendMessageResponseHttpRequest(googleapiclient.http.HttpRequest):

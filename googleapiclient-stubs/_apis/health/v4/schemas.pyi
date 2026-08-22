@@ -354,8 +354,11 @@ class DataPoint(typing_extensions.TypedDict, total=False):
     height: Height
     hydrationLog: HydrationLog
     irregularRhythmNotification: IrregularRhythmNotification
+    menstrualPeriod: MenstrualPeriod
+    moods: Moods
     name: str
     nutritionLog: NutritionLog
+    ovulationTest: OvulationTest
     oxygenSaturation: OxygenSaturation
     respiratoryRateSleepSummary: RespiratoryRateSleepSummary
     runVo2Max: RunVO2Max
@@ -363,6 +366,7 @@ class DataPoint(typing_extensions.TypedDict, total=False):
     sleep: Sleep
     steps: Steps
     swimLengthsData: SwimLengthsData
+    symptoms: Symptoms
     timeInHeartRateZone: TimeInHeartRateZone
     vo2Max: VO2Max
     weight: Weight
@@ -840,6 +844,12 @@ class Height(typing_extensions.TypedDict, total=False):
     sampleTime: ObservationSampleTime
 
 @typing.type_check_only
+class HttpBody(typing_extensions.TypedDict, total=False):
+    contentType: str
+    data: str
+    extensions: _list[dict[str, typing.Any]]
+
+@typing.type_check_only
 class HttpHeader(typing_extensions.TypedDict, total=False):
     key: str
     value: str
@@ -906,12 +916,23 @@ class ListSubscriptionsResponse(typing_extensions.TypedDict, total=False):
     subscriptions: _list[Subscription]
 
 @typing.type_check_only
+class ManifestParams(typing_extensions.TypedDict, total=False):
+    embeddedLengthMax: int
+    passcode: str
+    recipient: str
+
+@typing.type_check_only
 class MedicalDeviceInfo(typing_extensions.TypedDict, total=False):
     algorithmVersion: str
     deviceModel: str
     featureVersion: str
     firmwareVersion: str
     serviceVersion: str
+
+@typing.type_check_only
+class MenstrualPeriod(typing_extensions.TypedDict, total=False):
+    interval: ObservationTimeInterval
+    notes: str
 
 @typing.type_check_only
 class MetricsSummary(typing_extensions.TypedDict, total=False):
@@ -935,6 +956,76 @@ class MobilityMetrics(typing_extensions.TypedDict, total=False):
     avgStrideLengthMillimeters: str
     avgVerticalOscillationMillimeters: str
     avgVerticalRatio: float
+
+@typing.type_check_only
+class Moods(typing_extensions.TypedDict, total=False):
+    moods: _list[
+        typing_extensions.Literal[
+            "MOOD_UNSPECIFIED",
+            "AMAZED",
+            "AMUSED",
+            "ANGRY",
+            "ANNOYED",
+            "ANXIOUS",
+            "HAPPY",
+            "CONTENT",
+            "SAD",
+            "WORRIED",
+            "FRUSTRATED",
+            "EXCITED",
+            "CALM",
+            "STRESSED",
+            "ASHAMED",
+            "BRAVE",
+            "CONFIDENT",
+            "DISAPPOINTED",
+            "DISCOURAGED",
+            "DISGUSTED",
+            "DRAINED",
+            "EMBARRASSED",
+            "GRATEFUL",
+            "GUILTY",
+            "HOPEFUL",
+            "HOPELESS",
+            "INDIFFERENT",
+            "IRRITATED",
+            "JEALOUS",
+            "JOYFUL",
+            "LONELY",
+            "OVERWHELMED",
+            "PASSIONATE",
+            "PEACEFUL",
+            "PROUD",
+            "RELIEVED",
+            "SATISFIED",
+            "SCARED",
+            "SURPRISED",
+            "ENERGIZED",
+            "FATIGUED",
+            "VERY_CALM",
+            "VERY_STRESSED",
+            "NEUTRAL",
+            "AFRAID",
+            "HURTING",
+            "BORED",
+            "BITTER",
+            "ENVIOUS",
+            "CONFUSED",
+            "CURIOUS",
+            "AWESTRUCK",
+            "INSPIRED",
+            "LONGING",
+            "ACCOMPLISHED",
+            "LOVING",
+            "COMPASSIONATE",
+        ]
+    ]
+    sampleTime: ObservationSampleTime
+    valences: _list[
+        typing_extensions.Literal[
+            "VALENCE_UNSPECIFIED", "UNPLEASANT", "BASELINE", "PLEASANT"
+        ]
+    ]
 
 @typing.type_check_only
 class NutrientQuantity(typing_extensions.TypedDict, total=False):
@@ -1089,6 +1180,18 @@ class OutOfBedSegment(typing_extensions.TypedDict, total=False):
     endUtcOffset: str
     startTime: str
     startUtcOffset: str
+
+@typing.type_check_only
+class OvulationTest(typing_extensions.TypedDict, total=False):
+    result: typing_extensions.Literal[
+        "OVULATION_TEST_RESULT_UNSPECIFIED",
+        "NEGATIVE",
+        "LUTEINIZING_HORMONE_SURGE",
+        "ESTROGEN_SURGE",
+        "POSITIVE",
+        "INDETERMINATE",
+    ]
+    sampleTime: ObservationSampleTime
 
 @typing.type_check_only
 class OxygenSaturation(typing_extensions.TypedDict, total=False):
@@ -1306,6 +1409,7 @@ class Sleep(typing_extensions.TypedDict, total=False):
     interval: SessionTimeInterval
     metadata: SleepMetadata
     outOfBedSegments: _list[OutOfBedSegment]
+    shortAwakenings: _list[SleepStage]
     stages: _list[SleepStage]
     summary: SleepSummary
     type: typing_extensions.Literal["SLEEP_TYPE_UNSPECIFIED", "CLASSIC", "STAGES"]
@@ -1314,6 +1418,7 @@ class Sleep(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SleepMetadata(typing_extensions.TypedDict, total=False):
     externalId: str
+    mainSleep: bool
     manuallyEdited: bool
     nap: bool
     processed: bool
@@ -1438,6 +1543,44 @@ class SwimLengthsData(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SwimLengthsDataRollupValue(typing_extensions.TypedDict, total=False):
     strokeCountSum: str
+
+@typing.type_check_only
+class Symptoms(typing_extensions.TypedDict, total=False):
+    sampleTime: ObservationSampleTime
+    symptoms: _list[
+        typing_extensions.Literal[
+            "SYMPTOM_VALUE_UNSPECIFIED",
+            "CRAMPS",
+            "HEADACHE",
+            "TENDER_BREASTS",
+            "ACNE",
+            "SICK",
+            "BLOATED",
+            "HOT_FLASHES",
+            "PMS",
+            "COUGH",
+            "FEVER",
+            "DIFFICULTY_BREATHING",
+            "BACK_PAIN",
+            "SHAKINESS",
+            "HUNGER",
+            "SWEATING",
+            "ANXIETY",
+            "THIRST",
+            "FREQUENT_URINATION",
+            "BLURRED_VISION",
+            "OTHER",
+            "SEX_DRIVE_HIGH",
+            "SEX_DRIVE_MEDIUM",
+            "SEX_DRIVE_LOW",
+            "HEART_PALPITATIONS",
+            "FAINTING",
+            "CHEST_PAIN",
+            "FATIGUE",
+            "CONFUSION",
+            "DIZZINESS",
+        ]
+    ]
 
 @typing.type_check_only
 class TimeInHeartRateZone(typing_extensions.TypedDict, total=False):

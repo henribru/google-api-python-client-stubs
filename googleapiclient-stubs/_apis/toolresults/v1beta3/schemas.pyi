@@ -42,6 +42,9 @@ class AndroidTest(typing_extensions.TypedDict, total=False):
 class AndroidTestLoop(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class AntiTamperingTermination(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class Any(typing_extensions.TypedDict, total=False):
     typeUrl: str
     value: str
@@ -662,6 +665,7 @@ class TestIssue(typing_extensions.TypedDict, total=False):
         "detectedAppSplashScreen",
         "assetIssue",
         "licensingProtectionTermination",
+        "antiTamperingTermination",
     ]
     warning_migration: Any
 

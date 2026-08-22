@@ -121,6 +121,7 @@ class ConnectionProfile(typing_extensions.TypedDict, total=False):
     sqlServerProfile: SqlServerProfile
     staticServiceIpConnectivity: StaticServiceIpConnectivity
     updateTime: str
+    workdayProfile: WorkdayProfile
 
 @typing.type_check_only
 class CustomizationRule(typing_extensions.TypedDict, total=False):
@@ -501,6 +502,11 @@ class OauthClientCredentials(typing_extensions.TypedDict, total=False):
     clientSecret: Secret
 
 @typing.type_check_only
+class OauthRefreshTokenCredentials(typing_extensions.TypedDict, total=False):
+    oauthClientCredentials: OauthClientCredentials
+    refreshToken: Secret
+
+@typing.type_check_only
 class ObjectFilter(typing_extensions.TypedDict, total=False):
     sourceObjectIdentifier: SourceObjectIdentifier
 
@@ -837,6 +843,7 @@ class SourceConfig(typing_extensions.TypedDict, total=False):
     sourceConnectionProfile: str
     spannerSourceConfig: SpannerSourceConfig
     sqlServerSourceConfig: SqlServerSourceConfig
+    workdaySourceConfig: WorkdaySourceConfig
 
 @typing.type_check_only
 class SourceHierarchyDatasets(typing_extensions.TypedDict, total=False):
@@ -1108,3 +1115,15 @@ class ValidationResult(typing_extensions.TypedDict, total=False):
 class VpcPeeringConfig(typing_extensions.TypedDict, total=False):
     subnet: str
     vpc: str
+
+@typing.type_check_only
+class WorkdayProfile(typing_extensions.TypedDict, total=False):
+    host: str
+    oauthRefreshTokenCredentials: OauthRefreshTokenCredentials
+    tenant: str
+
+@typing.type_check_only
+class WorkdaySourceConfig(typing_extensions.TypedDict, total=False):
+    excludeObjects: SourceCatalog
+    includeObjects: SourceCatalog
+    pollingInterval: str

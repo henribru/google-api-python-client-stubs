@@ -1504,6 +1504,7 @@ class ServiceMeshCondition(typing_extensions.TypedDict, total=False):
         "MODERNIZATION_MODERNIZED_SOAKING",
         "MODERNIZATION_FINALIZED",
         "MODERNIZATION_ROLLING_BACK_FLEET",
+        "MODERNIZATION_MODERNIZED",
         "MODERNIZATION_COMPATIBLE",
         "MODERNIZATION_INCOMPATIBLE",
         "MODERNIZATION_INCOMPATIBLE_FLEET_SCALE",
@@ -1611,6 +1612,7 @@ class ServiceMeshFeatureCondition(typing_extensions.TypedDict, total=False):
         "MODERNIZATION_MODERNIZED_SOAKING",
         "MODERNIZATION_FINALIZED",
         "MODERNIZATION_ROLLING_BACK_FLEET",
+        "MODERNIZATION_MODERNIZED",
         "MODERNIZATION_COMPATIBLE",
         "MODERNIZATION_INCOMPATIBLE",
         "MODERNIZATION_INCOMPATIBLE_FLEET_SCALE",
@@ -1628,6 +1630,9 @@ class ServiceMeshFeatureSpec(typing_extensions.TypedDict, total=False):
         "MODERNIZATION_COMPATIBILITY_UNSPECIFIED",
         "VALIDATION_ENABLED",
         "VALIDATION_DISABLED",
+    ]
+    modernizationStrategy: typing_extensions.Literal[
+        "MODERNIZATION_STRATEGY_UNSPECIFIED", "AUTOMATIC", "DEFERRED"
     ]
 
 @typing.type_check_only

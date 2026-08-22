@@ -116,6 +116,18 @@ class ApplicationVerifyResponse(typing_extensions.TypedDict, total=False):
     player_id: str
 
 @typing.type_check_only
+class BatchRecordEventsRequest(typing_extensions.TypedDict, total=False):
+    droidGuardBlob: str
+    events: _list[PlayerGameEvent]
+    packageName: str
+    requestTime: str
+    salt: str
+
+@typing.type_check_only
+class BatchRecordEventsResponse(typing_extensions.TypedDict, total=False):
+    failedRequests: dict[str, typing.Any]
+
+@typing.type_check_only
 class Category(typing_extensions.TypedDict, total=False):
     category: str
     experiencePoints: str
@@ -402,6 +414,13 @@ class PlayerExperienceInfo(typing_extensions.TypedDict, total=False):
     nextLevel: PlayerLevel
 
 @typing.type_check_only
+class PlayerGameEvent(typing_extensions.TypedDict, total=False):
+    eventId: str
+    eventName: str
+    eventProperties: dict[str, typing.Any]
+    eventTime: str
+
+@typing.type_check_only
 class PlayerLeaderboardScore(typing_extensions.TypedDict, total=False):
     friendsRank: LeaderboardScoreRank
     kind: str
@@ -470,6 +489,15 @@ class ProfileSettings(typing_extensions.TypedDict, total=False):
     ]
     kind: str
     profileVisible: bool
+
+@typing.type_check_only
+class PropertyValue(typing_extensions.TypedDict, total=False):
+    boolValue: bool
+    doubleValue: float
+    durationValue: str
+    intValue: str
+    stringValue: str
+    timestampValue: str
 
 @typing.type_check_only
 class RecallToken(typing_extensions.TypedDict, total=False):
@@ -559,6 +587,12 @@ class StatsResponse(typing_extensions.TypedDict, total=False):
     spend_percentile: float
     spend_probability: float
     total_spend_next_28_days: float
+
+@typing.type_check_only
+class Status(typing_extensions.TypedDict, total=False):
+    code: int
+    details: _list[dict[str, typing.Any]]
+    message: str
 
 @typing.type_check_only
 class UnlinkPersonaRequest(typing_extensions.TypedDict, total=False):

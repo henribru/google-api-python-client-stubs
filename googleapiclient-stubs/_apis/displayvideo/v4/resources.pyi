@@ -49,6 +49,15 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                 previous_request: ListAdAssetsResponseHttpRequest,
                 previous_response: ListAdAssetsResponse,
             ) -> ListAdAssetsResponseHttpRequest | None: ...
+            def patch(
+                self,
+                *,
+                advertiserId: str,
+                adAssetId: str,
+                body: AdAsset,
+                updateMask: str | None = ...,
+                **kwargs: typing.Any,
+            ) -> AdAssetHttpRequest: ...
             def upload(
                 self,
                 *,

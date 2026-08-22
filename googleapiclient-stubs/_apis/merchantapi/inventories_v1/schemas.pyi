@@ -5,6 +5,12 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class CustomAttribute(typing_extensions.TypedDict, total=False):
+    groupValues: _list[CustomAttribute]
+    name: str
+    value: str
+
+@typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -49,6 +55,7 @@ class LocalInventoryAttributes(typing_extensions.TypedDict, total=False):
         "ON_DISPLAY_TO_ORDER",
         "OUT_OF_STOCK",
     ]
+    customAttributes: _list[CustomAttribute]
     instoreProductLocation: str
     localShippingLabel: str
     loyaltyPrograms: _list[InventoryLoyaltyProgram]

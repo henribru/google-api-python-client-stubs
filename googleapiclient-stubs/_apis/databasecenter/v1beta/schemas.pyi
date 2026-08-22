@@ -127,6 +127,7 @@ class AdditionalDetail(typing_extensions.TypedDict, total=False):
         "SIGNAL_TYPE_VERSION_NEARING_END_OF_LIFE",
         "SIGNAL_TYPE_HIGH_MAINTENANCE_DOWNTIME_RISK",
         "SIGNAL_TYPE_LOW_CACHE_HIT_AND_MAINTENANCE_DOWNTIME",
+        "SIGNAL_TYPE_MISSING_ENHANCED_PROTECTION",
     ]
 
 @typing.type_check_only
@@ -486,6 +487,7 @@ class IssueStats(typing_extensions.TypedDict, total=False):
         "SIGNAL_TYPE_VERSION_NEARING_END_OF_LIFE",
         "SIGNAL_TYPE_HIGH_MAINTENANCE_DOWNTIME_RISK",
         "SIGNAL_TYPE_LOW_CACHE_HIT_AND_MAINTENANCE_DOWNTIME",
+        "SIGNAL_TYPE_MISSING_ENHANCED_PROTECTION",
     ]
 
 @typing.type_check_only
@@ -608,6 +610,7 @@ class QueryDatabaseResourceGroupsRequest(typing_extensions.TypedDict, total=Fals
     pageToken: str
     parent: str
     signalFilters: _list[SignalFilter]
+    signalProductsFilters: _list[SignalProductsFilters]
     signalTypeGroups: _list[SignalTypeGroup]
 
 @typing.type_check_only
@@ -858,6 +861,7 @@ class Signal(typing_extensions.TypedDict, total=False):
         "SIGNAL_TYPE_VERSION_NEARING_END_OF_LIFE",
         "SIGNAL_TYPE_HIGH_MAINTENANCE_DOWNTIME_RISK",
         "SIGNAL_TYPE_LOW_CACHE_HIT_AND_MAINTENANCE_DOWNTIME",
+        "SIGNAL_TYPE_MISSING_ENHANCED_PROTECTION",
     ]
 
 @typing.type_check_only
@@ -972,6 +976,7 @@ class SignalFilter(typing_extensions.TypedDict, total=False):
         "SIGNAL_TYPE_VERSION_NEARING_END_OF_LIFE",
         "SIGNAL_TYPE_HIGH_MAINTENANCE_DOWNTIME_RISK",
         "SIGNAL_TYPE_LOW_CACHE_HIT_AND_MAINTENANCE_DOWNTIME",
+        "SIGNAL_TYPE_MISSING_ENHANCED_PROTECTION",
     ]
 
 @typing.type_check_only
@@ -1086,6 +1091,7 @@ class SignalProductsFilters(typing_extensions.TypedDict, total=False):
         "SIGNAL_TYPE_VERSION_NEARING_END_OF_LIFE",
         "SIGNAL_TYPE_HIGH_MAINTENANCE_DOWNTIME_RISK",
         "SIGNAL_TYPE_LOW_CACHE_HIT_AND_MAINTENANCE_DOWNTIME",
+        "SIGNAL_TYPE_MISSING_ENHANCED_PROTECTION",
     ]
 
 @typing.type_check_only
@@ -1195,6 +1201,7 @@ class SignalTypeGroup(typing_extensions.TypedDict, total=False):
             "SIGNAL_TYPE_VERSION_NEARING_END_OF_LIFE",
             "SIGNAL_TYPE_HIGH_MAINTENANCE_DOWNTIME_RISK",
             "SIGNAL_TYPE_LOW_CACHE_HIT_AND_MAINTENANCE_DOWNTIME",
+            "SIGNAL_TYPE_MISSING_ENHANCED_PROTECTION",
         ]
     ]
 

@@ -18,7 +18,9 @@ class NotificationSubscription(typing_extensions.TypedDict, total=False):
     callBackUri: str
     name: str
     registeredEvent: typing_extensions.Literal[
-        "NOTIFICATION_EVENT_TYPE_UNSPECIFIED", "PRODUCT_STATUS_CHANGE"
+        "NOTIFICATION_EVENT_TYPE_UNSPECIFIED",
+        "PRODUCT_STATUS_CHANGE",
+        "ACCOUNT_SERVICE_CHANGE",
     ]
     targetAccount: str
 

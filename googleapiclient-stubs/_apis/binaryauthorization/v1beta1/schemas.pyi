@@ -98,6 +98,7 @@ class PkixPublicKey(typing_extensions.TypedDict, total=False):
         "EC_SIGN_P384_SHA384",
         "ECDSA_P521_SHA512",
         "EC_SIGN_P521_SHA512",
+        "ML_DSA_65",
     ]
 
 @typing.type_check_only

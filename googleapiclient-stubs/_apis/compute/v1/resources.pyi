@@ -1745,6 +1745,47 @@ class ComputeResource(googleapiclient.discovery.Resource):
         ) -> OperationHttpRequest: ...
 
     @typing.type_check_only
+    class HostsResource(googleapiclient.discovery.Resource):
+        def get(
+            self,
+            *,
+            project: str,
+            zone: str,
+            association: str,
+            host: str,
+            **kwargs: typing.Any,
+        ) -> HostHttpRequest: ...
+        def getVersion(
+            self,
+            *,
+            project: str,
+            zone: str,
+            association: str,
+            host: str,
+            body: HostsGetVersionRequest,
+            requestId: str | None = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
+        def list(
+            self,
+            *,
+            project: str,
+            zone: str,
+            association: str,
+            filter: str | None = ...,
+            maxResults: int | None = ...,
+            orderBy: str | None = ...,
+            pageToken: str | None = ...,
+            returnPartialSuccess: bool | None = ...,
+            **kwargs: typing.Any,
+        ) -> HostsListResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: HostsListResponseHttpRequest,
+            previous_response: HostsListResponse,
+        ) -> HostsListResponseHttpRequest | None: ...
+
+    @typing.type_check_only
     class HttpHealthChecksResource(googleapiclient.discovery.Resource):
         def delete(
             self,
@@ -2085,6 +2126,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             instanceGroupManager: str,
+            noGracefulShutdown: bool | None = ...,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -2095,6 +2137,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             zone: str,
             instanceGroupManager: str,
             body: InstanceGroupManagersDeleteInstancesRequest,
+            noGracefulShutdown: bool | None = ...,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -2222,6 +2265,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             zone: str,
             instanceGroupManager: str,
             body: InstanceGroupManagersRecreateInstancesRequest,
+            noGracefulShutdown: bool | None = ...,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -2282,6 +2326,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             zone: str,
             instanceGroupManager: str,
             body: InstanceGroupManagersStopInstancesRequest,
+            noGracefulShutdown: bool | None = ...,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -2596,6 +2641,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             instance: str,
+            noGracefulShutdown: bool | None = ...,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -2949,6 +2995,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             zone: str,
             instance: str,
             discardLocalSsd: bool | None = ...,
+            noGracefulShutdown: bool | None = ...,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -6252,6 +6299,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             region: str,
             instanceGroupManager: str,
+            noGracefulShutdown: bool | None = ...,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -6262,6 +6310,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             region: str,
             instanceGroupManager: str,
             body: RegionInstanceGroupManagersDeleteInstancesRequest,
+            noGracefulShutdown: bool | None = ...,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -6389,6 +6438,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             region: str,
             instanceGroupManager: str,
             body: RegionInstanceGroupManagersRecreateRequest,
+            noGracefulShutdown: bool | None = ...,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -6449,6 +6499,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             region: str,
             instanceGroupManager: str,
             body: RegionInstanceGroupManagersStopInstancesRequest,
+            noGracefulShutdown: bool | None = ...,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -7709,6 +7760,28 @@ class ComputeResource(googleapiclient.discovery.Resource):
         ) -> RegionListHttpRequest | None: ...
 
     @typing.type_check_only
+    class ReliabilityRisksResource(googleapiclient.discovery.Resource):
+        def get(
+            self, *, project: str, reliabilityRisk: str, **kwargs: typing.Any
+        ) -> ReliabilityRiskHttpRequest: ...
+        def list(
+            self,
+            *,
+            project: str,
+            filter: str | None = ...,
+            maxResults: int | None = ...,
+            orderBy: str | None = ...,
+            pageToken: str | None = ...,
+            returnPartialSuccess: bool | None = ...,
+            **kwargs: typing.Any,
+        ) -> ReliabilityRisksListResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ReliabilityRisksListResponseHttpRequest,
+            previous_response: ReliabilityRisksListResponse,
+        ) -> ReliabilityRisksListResponseHttpRequest | None: ...
+
+    @typing.type_check_only
     class ReservationBlocksResource(googleapiclient.discovery.Resource):
         def get(
             self,
@@ -8284,6 +8357,16 @@ class ComputeResource(googleapiclient.discovery.Resource):
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
+        def deleteNamedSet(
+            self,
+            *,
+            project: str,
+            region: str,
+            router: str,
+            namedSet: str | None = ...,
+            requestId: str | None = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
         def deleteRoutePolicy(
             self,
             *,
@@ -8297,6 +8380,15 @@ class ComputeResource(googleapiclient.discovery.Resource):
         def get(
             self, *, project: str, region: str, router: str, **kwargs: typing.Any
         ) -> RouterHttpRequest: ...
+        def getNamedSet(
+            self,
+            *,
+            project: str,
+            region: str,
+            router: str,
+            namedSet: str | None = ...,
+            **kwargs: typing.Any,
+        ) -> RoutersGetNamedSetResponseHttpRequest: ...
         def getNatIpInfo(
             self,
             *,
@@ -8390,6 +8482,24 @@ class ComputeResource(googleapiclient.discovery.Resource):
             previous_request: RoutersListBgpRoutesHttpRequest,
             previous_response: RoutersListBgpRoutes,
         ) -> RoutersListBgpRoutesHttpRequest | None: ...
+        def listNamedSets(
+            self,
+            *,
+            project: str,
+            region: str,
+            router: str,
+            filter: str | None = ...,
+            maxResults: int | None = ...,
+            orderBy: str | None = ...,
+            pageToken: str | None = ...,
+            returnPartialSuccess: bool | None = ...,
+            **kwargs: typing.Any,
+        ) -> RoutersListNamedSetsHttpRequest: ...
+        def listNamedSets_next(
+            self,
+            previous_request: RoutersListNamedSetsHttpRequest,
+            previous_response: RoutersListNamedSets,
+        ) -> RoutersListNamedSetsHttpRequest | None: ...
         def listRoutePolicies(
             self,
             *,
@@ -8415,6 +8525,16 @@ class ComputeResource(googleapiclient.discovery.Resource):
             region: str,
             router: str,
             body: Router,
+            requestId: str | None = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
+        def patchNamedSet(
+            self,
+            *,
+            project: str,
+            region: str,
+            router: str,
+            body: NamedSet,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -8444,6 +8564,16 @@ class ComputeResource(googleapiclient.discovery.Resource):
             region: str,
             router: str,
             body: Router,
+            requestId: str | None = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
+        def updateNamedSet(
+            self,
+            *,
+            project: str,
+            region: str,
+            router: str,
+            body: NamedSet,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -10397,6 +10527,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
     ) -> GlobalPublicDelegatedPrefixesResource: ...
     def globalVmExtensionPolicies(self) -> GlobalVmExtensionPoliciesResource: ...
     def healthChecks(self) -> HealthChecksResource: ...
+    def hosts(self) -> HostsResource: ...
     def httpHealthChecks(self) -> HttpHealthChecksResource: ...
     def httpsHealthChecks(self) -> HttpsHealthChecksResource: ...
     def imageFamilyViews(self) -> ImageFamilyViewsResource: ...
@@ -10475,6 +10606,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
     def regionUrlMaps(self) -> RegionUrlMapsResource: ...
     def regionZones(self) -> RegionZonesResource: ...
     def regions(self) -> RegionsResource: ...
+    def reliabilityRisks(self) -> ReliabilityRisksResource: ...
     def reservationBlocks(self) -> ReservationBlocksResource: ...
     def reservationSlots(self) -> ReservationSlotsResource: ...
     def reservationSubBlocks(self) -> ReservationSubBlocksResource: ...
@@ -11042,6 +11174,22 @@ class HealthSourceListHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> HealthSourceList: ...
+
+@typing.type_check_only
+class HostHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> Host: ...
+
+@typing.type_check_only
+class HostsListResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> HostsListResponse: ...
 
 @typing.type_check_only
 class HttpHealthCheckHttpRequest(googleapiclient.http.HttpRequest):
@@ -12006,6 +12154,22 @@ class RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponseHttpRequest(
     ) -> RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponse: ...
 
 @typing.type_check_only
+class ReliabilityRiskHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ReliabilityRisk: ...
+
+@typing.type_check_only
+class ReliabilityRisksListResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ReliabilityRisksListResponse: ...
+
+@typing.type_check_only
 class ReservationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -12182,6 +12346,14 @@ class RouterStatusResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> RouterStatusResponse: ...
 
 @typing.type_check_only
+class RoutersGetNamedSetResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> RoutersGetNamedSetResponse: ...
+
+@typing.type_check_only
 class RoutersGetRoutePolicyResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -12196,6 +12368,14 @@ class RoutersListBgpRoutesHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> RoutersListBgpRoutes: ...
+
+@typing.type_check_only
+class RoutersListNamedSetsHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> RoutersListNamedSets: ...
 
 @typing.type_check_only
 class RoutersListRoutePoliciesHttpRequest(googleapiclient.http.HttpRequest):

@@ -232,6 +232,14 @@ class BigtableAdminResource(googleapiclient.discovery.Resource):
                 def update(
                     self, *, name: str, body: Cluster, **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+                def updateMemoryLayer(
+                    self,
+                    *,
+                    name: str,
+                    body: MemoryLayer,
+                    updateMask: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
                 def backups(self) -> BackupsResource: ...
                 def hotTablets(self) -> HotTabletsResource: ...
                 def memoryLayers(self) -> MemoryLayersResource: ...
@@ -302,6 +310,7 @@ class BigtableAdminResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: MaterializedView,
+                    ignoreWarnings: bool | None = ...,
                     materializedViewId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...

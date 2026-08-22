@@ -475,6 +475,8 @@ class Advertiser(typing_extensions.TypedDict, total=False):
     ]
     creativeConfig: AdvertiserCreativeConfig
     dataAccessConfig: AdvertiserDataAccessConfig
+    defaultBusinessName: str
+    defaultLogoAssetId: str
     displayName: str
     entityStatus: typing_extensions.Literal[
         "ENTITY_STATUS_UNSPECIFIED",
@@ -1356,6 +1358,27 @@ class BusinessChainTargetingOptionDetails(typing_extensions.TypedDict, total=Fal
         "GEO_REGION_TYPE_COLLOQUIAL_AREA",
         "GEO_REGION_TYPE_POST_TOWN",
         "GEO_REGION_TYPE_WARD",
+        "GEO_REGION_TYPE_TOWN",
+        "GEO_REGION_TYPE_VILLAGE",
+        "GEO_REGION_TYPE_CITY_DISTRICT",
+        "GEO_REGION_TYPE_SUBURB",
+        "GEO_REGION_TYPE_HAMLET",
+        "GEO_REGION_TYPE_MUNICIPAL_DISTRICT",
+        "GEO_REGION_TYPE_COMMUNITY",
+        "GEO_REGION_TYPE_TOWNSHIP",
+        "GEO_REGION_TYPE_URBAN_DISTRICT",
+        "GEO_REGION_TYPE_RESIDENTIAL_AREA",
+        "GEO_REGION_TYPE_INDEPENDENT_CITY",
+        "GEO_REGION_TYPE_SECTOR",
+        "GEO_REGION_TYPE_AREA",
+        "GEO_REGION_TYPE_ESTATE",
+        "GEO_REGION_TYPE_PARISH",
+        "GEO_REGION_TYPE_SETTLEMENT",
+        "GEO_REGION_TYPE_ZONE",
+        "GEO_REGION_TYPE_COLONY",
+        "GEO_REGION_TYPE_INDUSTRIAL_AREA",
+        "GEO_REGION_TYPE_PROVINCIAL_CITY",
+        "GEO_REGION_TYPE_RURAL_DISTRICT",
     ]
 
 @typing.type_check_only
@@ -1503,29 +1526,6 @@ class CommonInStreamAttribute(typing_extensions.TypedDict, total=False):
     finalUrl: str
     trackingUrl: str
     video: YoutubeVideoDetails
-
-@typing.type_check_only
-class Consent(typing_extensions.TypedDict, total=False):
-    adPersonalization: typing_extensions.Literal[
-        "CONSENT_STATUS_UNSPECIFIED", "CONSENT_STATUS_GRANTED", "CONSENT_STATUS_DENIED"
-    ]
-    adUserData: typing_extensions.Literal[
-        "CONSENT_STATUS_UNSPECIFIED", "CONSENT_STATUS_GRANTED", "CONSENT_STATUS_DENIED"
-    ]
-
-@typing.type_check_only
-class ContactInfo(typing_extensions.TypedDict, total=False):
-    countryCode: str
-    hashedEmails: _list[str]
-    hashedFirstName: str
-    hashedLastName: str
-    hashedPhoneNumbers: _list[str]
-    zipCodes: _list[str]
-
-@typing.type_check_only
-class ContactInfoList(typing_extensions.TypedDict, total=False):
-    consent: Consent
-    contactInfos: _list[ContactInfo]
 
 @typing.type_check_only
 class ContentDurationAssignedTargetingOptionDetails(
@@ -1788,6 +1788,7 @@ class CreateSdfDownloadTaskRequest(typing_extensions.TypedDict, total=False):
         "SDF_VERSION_9_1",
         "SDF_VERSION_9_2",
         "SDF_VERSION_10",
+        "SDF_VERSION_10_1",
     ]
 
 @typing.type_check_only
@@ -1881,6 +1882,11 @@ class Creative(typing_extensions.TypedDict, total=False):
     reviewStatus: ReviewStatusInfo
     skipOffset: AudioVideoOffset
     skippable: bool
+    syntheticContentAttestationStatus: typing_extensions.Literal[
+        "SYNTHETIC_CONTENT_ATTESTATION_STATUS_UNSPECIFIED",
+        "NOT_SYNTHETIC",
+        "IS_SYNTHETIC",
+    ]
     thirdPartyTag: str
     thirdPartyUrls: _list[ThirdPartyUrl]
     timerEvents: _list[TimerEvent]
@@ -2475,18 +2481,6 @@ class DuplicateLineItemResponse(typing_extensions.TypedDict, total=False):
     duplicateLineItemId: str
 
 @typing.type_check_only
-class EditCustomerMatchMembersRequest(typing_extensions.TypedDict, total=False):
-    addedContactInfoList: ContactInfoList
-    addedMobileDeviceIdList: MobileDeviceIdList
-    advertiserId: str
-    removedContactInfoList: ContactInfoList
-    removedMobileDeviceIdList: MobileDeviceIdList
-
-@typing.type_check_only
-class EditCustomerMatchMembersResponse(typing_extensions.TypedDict, total=False):
-    firstAndThirdPartyAudienceId: str
-
-@typing.type_check_only
 class EditGuaranteedOrderReadAccessorsRequest(typing_extensions.TypedDict, total=False):
     addedAdvertisers: _list[str]
     partnerId: str
@@ -2928,49 +2922,6 @@ class ExitEvent(typing_extensions.TypedDict, total=False):
     url: str
 
 @typing.type_check_only
-class FirstAndThirdPartyAudience(typing_extensions.TypedDict, total=False):
-    activeDisplayAudienceSize: str
-    appId: str
-    audienceSource: typing_extensions.Literal[
-        "AUDIENCE_SOURCE_UNSPECIFIED",
-        "DISPLAY_VIDEO_360",
-        "CAMPAIGN_MANAGER",
-        "AD_MANAGER",
-        "SEARCH_ADS_360",
-        "YOUTUBE",
-        "ADS_DATA_HUB",
-    ]
-    audienceType: typing_extensions.Literal[
-        "AUDIENCE_TYPE_UNSPECIFIED",
-        "CUSTOMER_MATCH_CONTACT_INFO",
-        "CUSTOMER_MATCH_DEVICE_ID",
-        "CUSTOMER_MATCH_USER_ID",
-        "ACTIVITY_BASED",
-        "FREQUENCY_CAP",
-        "TAG_BASED",
-        "YOUTUBE_USERS",
-        "LICENSED",
-    ]
-    contactInfoList: ContactInfoList
-    description: str
-    displayAudienceSize: str
-    displayDesktopAudienceSize: str
-    displayMobileAppAudienceSize: str
-    displayMobileWebAudienceSize: str
-    displayName: str
-    firstAndThirdPartyAudienceId: str
-    firstAndThirdPartyAudienceType: typing_extensions.Literal[
-        "FIRST_AND_THIRD_PARTY_AUDIENCE_TYPE_UNSPECIFIED",
-        "FIRST_AND_THIRD_PARTY_AUDIENCE_TYPE_FIRST_PARTY",
-        "FIRST_AND_THIRD_PARTY_AUDIENCE_TYPE_THIRD_PARTY",
-    ]
-    gmailAudienceSize: str
-    membershipDurationDays: str
-    mobileDeviceIdList: MobileDeviceIdList
-    name: str
-    youtubeAudienceSize: str
-
-@typing.type_check_only
 class FirstAndThirdPartyAudienceGroup(typing_extensions.TypedDict, total=False):
     settings: _list[FirstAndThirdPartyAudienceTargetingSetting]
 
@@ -3118,6 +3069,27 @@ class GeoRegionAssignedTargetingOptionDetails(typing_extensions.TypedDict, total
         "GEO_REGION_TYPE_COLLOQUIAL_AREA",
         "GEO_REGION_TYPE_POST_TOWN",
         "GEO_REGION_TYPE_WARD",
+        "GEO_REGION_TYPE_TOWN",
+        "GEO_REGION_TYPE_VILLAGE",
+        "GEO_REGION_TYPE_CITY_DISTRICT",
+        "GEO_REGION_TYPE_SUBURB",
+        "GEO_REGION_TYPE_HAMLET",
+        "GEO_REGION_TYPE_MUNICIPAL_DISTRICT",
+        "GEO_REGION_TYPE_COMMUNITY",
+        "GEO_REGION_TYPE_TOWNSHIP",
+        "GEO_REGION_TYPE_URBAN_DISTRICT",
+        "GEO_REGION_TYPE_RESIDENTIAL_AREA",
+        "GEO_REGION_TYPE_INDEPENDENT_CITY",
+        "GEO_REGION_TYPE_SECTOR",
+        "GEO_REGION_TYPE_AREA",
+        "GEO_REGION_TYPE_ESTATE",
+        "GEO_REGION_TYPE_PARISH",
+        "GEO_REGION_TYPE_SETTLEMENT",
+        "GEO_REGION_TYPE_ZONE",
+        "GEO_REGION_TYPE_COLONY",
+        "GEO_REGION_TYPE_INDUSTRIAL_AREA",
+        "GEO_REGION_TYPE_PROVINCIAL_CITY",
+        "GEO_REGION_TYPE_RURAL_DISTRICT",
     ]
     negative: bool
     targetingOptionId: str
@@ -3170,6 +3142,27 @@ class GeoRegionTargetingOptionDetails(typing_extensions.TypedDict, total=False):
         "GEO_REGION_TYPE_COLLOQUIAL_AREA",
         "GEO_REGION_TYPE_POST_TOWN",
         "GEO_REGION_TYPE_WARD",
+        "GEO_REGION_TYPE_TOWN",
+        "GEO_REGION_TYPE_VILLAGE",
+        "GEO_REGION_TYPE_CITY_DISTRICT",
+        "GEO_REGION_TYPE_SUBURB",
+        "GEO_REGION_TYPE_HAMLET",
+        "GEO_REGION_TYPE_MUNICIPAL_DISTRICT",
+        "GEO_REGION_TYPE_COMMUNITY",
+        "GEO_REGION_TYPE_TOWNSHIP",
+        "GEO_REGION_TYPE_URBAN_DISTRICT",
+        "GEO_REGION_TYPE_RESIDENTIAL_AREA",
+        "GEO_REGION_TYPE_INDEPENDENT_CITY",
+        "GEO_REGION_TYPE_SECTOR",
+        "GEO_REGION_TYPE_AREA",
+        "GEO_REGION_TYPE_ESTATE",
+        "GEO_REGION_TYPE_PARISH",
+        "GEO_REGION_TYPE_SETTLEMENT",
+        "GEO_REGION_TYPE_ZONE",
+        "GEO_REGION_TYPE_COLONY",
+        "GEO_REGION_TYPE_INDUSTRIAL_AREA",
+        "GEO_REGION_TYPE_PROVINCIAL_CITY",
+        "GEO_REGION_TYPE_RURAL_DISTRICT",
     ]
 
 @typing.type_check_only
@@ -3790,11 +3783,6 @@ class ListCustomListsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
-class ListFirstAndThirdPartyAudiencesResponse(typing_extensions.TypedDict, total=False):
-    firstAndThirdPartyAudiences: _list[FirstAndThirdPartyAudience]
-    nextPageToken: str
-
-@typing.type_check_only
 class ListFloodlightActivitiesResponse(typing_extensions.TypedDict, total=False):
     floodlightActivities: _list[FloodlightActivity]
     nextPageToken: str
@@ -3944,11 +3932,6 @@ class MobileApp(typing_extensions.TypedDict, total=False):
     displayName: str
     platform: typing_extensions.Literal["PLATFORM_UNSPECIFIED", "IOS", "ANDROID"]
     publisher: str
-
-@typing.type_check_only
-class MobileDeviceIdList(typing_extensions.TypedDict, total=False):
-    consent: Consent
-    mobileDeviceIds: _list[str]
 
 @typing.type_check_only
 class NativeContentPositionAssignedTargetingOptionDetails(
@@ -4430,6 +4413,7 @@ class SdfConfig(typing_extensions.TypedDict, total=False):
         "SDF_VERSION_9_1",
         "SDF_VERSION_9_2",
         "SDF_VERSION_10",
+        "SDF_VERSION_10_1",
     ]
 
 @typing.type_check_only
@@ -4461,6 +4445,7 @@ class SdfDownloadTaskMetadata(typing_extensions.TypedDict, total=False):
         "SDF_VERSION_9_1",
         "SDF_VERSION_9_2",
         "SDF_VERSION_10",
+        "SDF_VERSION_10_1",
     ]
 
 @typing.type_check_only

@@ -21,6 +21,9 @@ class CloudKMSResource(googleapiclient.discovery.Resource):
         def getKajPolicyConfig(
             self, *, name: str, **kwargs: typing.Any
         ) -> KeyAccessJustificationsPolicyConfigHttpRequest: ...
+        def showEffectiveAutokeyConfig(
+            self, *, parent: str, **kwargs: typing.Any
+        ) -> ShowEffectiveAutokeyConfigResponseHttpRequest: ...
         def updateAutokeyConfig(
             self,
             *,
@@ -213,6 +216,15 @@ class CloudKMSResource(googleapiclient.discovery.Resource):
                             body: DestroyCryptoKeyVersionRequest,
                             **kwargs: typing.Any,
                         ) -> CryptoKeyVersionHttpRequest: ...
+                        def exportTrustedKeyWrappedCryptoKeyVersion(
+                            self,
+                            *,
+                            name: str,
+                            wrappingKey: str | None = ...,
+                            **kwargs: typing.Any,
+                        ) -> (
+                            ExportTrustedKeyWrappedCryptoKeyVersionResponseHttpRequest
+                        ): ...
                         def get(
                             self, *, name: str, **kwargs: typing.Any
                         ) -> CryptoKeyVersionHttpRequest: ...
@@ -235,6 +247,13 @@ class CloudKMSResource(googleapiclient.discovery.Resource):
                             *,
                             parent: str,
                             body: ImportCryptoKeyVersionRequest,
+                            **kwargs: typing.Any,
+                        ) -> CryptoKeyVersionHttpRequest: ...
+                        def importTrustedKeyWrappedCryptoKeyVersion(
+                            self,
+                            *,
+                            parent: str,
+                            body: ImportTrustedKeyWrappedCryptoKeyVersionRequest,
                             **kwargs: typing.Any,
                         ) -> CryptoKeyVersionHttpRequest: ...
                         def list(
@@ -307,6 +326,7 @@ class CloudKMSResource(googleapiclient.discovery.Resource):
                         body: CryptoKey,
                         cryptoKeyId: str | None = ...,
                         skipInitialVersionCreation: bool | None = ...,
+                        trustedWrappingEnabled: bool | None = ...,
                         **kwargs: typing.Any,
                     ) -> CryptoKeyHttpRequest: ...
                     def decrypt(
@@ -786,6 +806,16 @@ class EncryptResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> EncryptResponse: ...
+
+@typing.type_check_only
+class ExportTrustedKeyWrappedCryptoKeyVersionResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ExportTrustedKeyWrappedCryptoKeyVersionResponse: ...
 
 @typing.type_check_only
 class GenerateRandomBytesResponseHttpRequest(googleapiclient.http.HttpRequest):

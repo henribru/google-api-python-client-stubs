@@ -104,6 +104,88 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
         ) -> ListAppRecoveriesResponseHttpRequest: ...
 
     @typing.type_check_only
+    class AppstoreappsreviewResource(googleapiclient.discovery.Resource):
+        def createappstorehostedapp(
+            self,
+            *,
+            appStorePackageName: str,
+            body: CreateAppStoreHostedAppRequest,
+            **kwargs: typing.Any,
+        ) -> CreateAppStoreHostedAppResponseHttpRequest: ...
+        def updateappstorehostedapp(
+            self,
+            *,
+            appStorePackageName: str,
+            body: UpdateAppStoreHostedAppRequest,
+            **kwargs: typing.Any,
+        ) -> UpdateAppStoreHostedAppResponseHttpRequest: ...
+        def updateappstorehostedapppublishstatus(
+            self,
+            *,
+            appStorePackageName: str,
+            packageName: str,
+            body: UpdateAppStoreHostedAppPublishStatusRequest,
+            **kwargs: typing.Any,
+        ) -> UpdateAppStoreHostedAppPublishStatusResponseHttpRequest: ...
+        def uploadapk(
+            self,
+            *,
+            appStorePackageName: str,
+            packageName: str,
+            body: UploadApkRequest,
+            **kwargs: typing.Any,
+        ) -> UploadApkResponseHttpRequest: ...
+        def uploadappstoreapppolicydeclarationfile(
+            self,
+            *,
+            appStorePackageName: str,
+            packageName: str,
+            body: UploadAppStoreAppPolicyDeclarationFileRequest,
+            **kwargs: typing.Any,
+        ) -> UploadAppStoreAppPolicyDeclarationFileResponseHttpRequest: ...
+        def uploadimage(
+            self,
+            *,
+            appStorePackageName: str,
+            packageName: str,
+            body: UploadImageRequest,
+            **kwargs: typing.Any,
+        ) -> UploadImageResponseHttpRequest: ...
+
+    @typing.type_check_only
+    class AppstorecatalogResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
+        class RecentappviewsResource(googleapiclient.discovery.Resource):
+            def get(
+                self,
+                *,
+                appStorePackageName: str,
+                playAppPackageName: str,
+                **kwargs: typing.Any,
+            ) -> RecentAppViewHttpRequest: ...
+
+        @typing.type_check_only
+        class RecentupdateeventsResource(googleapiclient.discovery.Resource):
+            def list(
+                self,
+                *,
+                appStorePackageName: str,
+                endTime: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
+                startTime: str | None = ...,
+                **kwargs: typing.Any,
+            ) -> ListRecentUpdateEventsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListRecentUpdateEventsResponseHttpRequest,
+                previous_response: ListRecentUpdateEventsResponse,
+            ) -> ListRecentUpdateEventsResponseHttpRequest | None: ...
+
+        def recentappviews(self) -> RecentappviewsResource: ...
+        def recentupdateevents(self) -> RecentupdateeventsResource: ...
+
+    @typing.type_check_only
     class EditsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class ApksResource(googleapiclient.discovery.Resource):
@@ -1057,6 +1139,14 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
             revoke: bool | None = ...,
             **kwargs: typing.Any,
         ) -> googleapiclient.http.HttpRequest: ...
+        def reviewrefund(
+            self,
+            *,
+            packageName: str,
+            orderId: str,
+            body: OrdersReviewRefundRequest,
+            **kwargs: typing.Any,
+        ) -> googleapiclient.http.HttpRequest: ...
 
     @typing.type_check_only
     class PurchasesResource(googleapiclient.discovery.Resource):
@@ -1122,30 +1212,6 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 body: SubscriptionPurchasesDeferRequest,
                 **kwargs: typing.Any,
             ) -> SubscriptionPurchasesDeferResponseHttpRequest: ...
-            def get(
-                self,
-                *,
-                packageName: str,
-                subscriptionId: str,
-                token: str,
-                **kwargs: typing.Any,
-            ) -> SubscriptionPurchaseHttpRequest: ...
-            def refund(
-                self,
-                *,
-                packageName: str,
-                subscriptionId: str,
-                token: str,
-                **kwargs: typing.Any,
-            ) -> googleapiclient.http.HttpRequest: ...
-            def revoke(
-                self,
-                *,
-                packageName: str,
-                subscriptionId: str,
-                token: str,
-                **kwargs: typing.Any,
-            ) -> googleapiclient.http.HttpRequest: ...
 
         @typing.type_check_only
         class Subscriptionsv2Resource(googleapiclient.discovery.Resource):
@@ -1314,6 +1380,8 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def applications(self) -> ApplicationsResource: ...
     def apprecovery(self) -> ApprecoveryResource: ...
+    def appstoreappsreview(self) -> AppstoreappsreviewResource: ...
+    def appstorecatalog(self) -> AppstorecatalogResource: ...
     def edits(self) -> EditsResource: ...
     def externaltransactions(self) -> ExternaltransactionsResource: ...
     def generatedapks(self) -> GeneratedapksResource: ...
@@ -1546,6 +1614,14 @@ class ConvertRegionPricesResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ConvertRegionPricesResponse: ...
 
 @typing.type_check_only
+class CreateAppStoreHostedAppResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> CreateAppStoreHostedAppResponse: ...
+
+@typing.type_check_only
 class DeferSubscriptionPurchaseResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -1714,6 +1790,14 @@ class ListOneTimeProductsResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListOneTimeProductsResponse: ...
 
 @typing.type_check_only
+class ListRecentUpdateEventsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListRecentUpdateEventsResponse: ...
+
+@typing.type_check_only
 class ListReleaseSummariesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -1810,6 +1894,14 @@ class ProductPurchaseV2HttpRequest(googleapiclient.http.HttpRequest):
     ) -> ProductPurchaseV2: ...
 
 @typing.type_check_only
+class RecentAppViewHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> RecentAppView: ...
+
+@typing.type_check_only
 class ReviewHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -1866,14 +1958,6 @@ class SubscriptionOfferHttpRequest(googleapiclient.http.HttpRequest):
     ) -> SubscriptionOffer: ...
 
 @typing.type_check_only
-class SubscriptionPurchaseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> SubscriptionPurchase: ...
-
-@typing.type_check_only
 class SubscriptionPurchaseV2HttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -1928,6 +2012,50 @@ class TracksListResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> TracksListResponse: ...
+
+@typing.type_check_only
+class UpdateAppStoreHostedAppPublishStatusResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> UpdateAppStoreHostedAppPublishStatusResponse: ...
+
+@typing.type_check_only
+class UpdateAppStoreHostedAppResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> UpdateAppStoreHostedAppResponse: ...
+
+@typing.type_check_only
+class UploadApkResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> UploadApkResponse: ...
+
+@typing.type_check_only
+class UploadAppStoreAppPolicyDeclarationFileResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> UploadAppStoreAppPolicyDeclarationFileResponse: ...
+
+@typing.type_check_only
+class UploadImageResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> UploadImageResponse: ...
 
 @typing.type_check_only
 class UserHttpRequest(googleapiclient.http.HttpRequest):

@@ -108,6 +108,9 @@ class RecaptchaEnterpriseResource(googleapiclient.discovery.Resource):
             def getMetrics(
                 self, *, name: str, **kwargs: typing.Any
             ) -> GoogleCloudRecaptchaenterpriseV1MetricsHttpRequest: ...
+            def getPolicy(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleCloudRecaptchaenterpriseV1PolicyHttpRequest: ...
             def list(
                 self,
                 *,
@@ -164,6 +167,14 @@ class RecaptchaEnterpriseResource(googleapiclient.discovery.Resource):
             def retrieveLegacySecretKey(
                 self, *, key: str, **kwargs: typing.Any
             ) -> GoogleCloudRecaptchaenterpriseV1RetrieveLegacySecretKeyResponseHttpRequest: ...
+            def updatePolicy(
+                self,
+                *,
+                name: str,
+                body: GoogleCloudRecaptchaenterpriseV1Policy,
+                updateMask: str | None = ...,
+                **kwargs: typing.Any,
+            ) -> GoogleCloudRecaptchaenterpriseV1PolicyHttpRequest: ...
 
         @typing.type_check_only
         class RelatedaccountgroupmembershipsResource(
@@ -353,6 +364,16 @@ class GoogleCloudRecaptchaenterpriseV1MetricsHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudRecaptchaenterpriseV1Metrics: ...
+
+@typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1PolicyHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudRecaptchaenterpriseV1Policy: ...
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1RemoveIpOverrideResponseHttpRequest(

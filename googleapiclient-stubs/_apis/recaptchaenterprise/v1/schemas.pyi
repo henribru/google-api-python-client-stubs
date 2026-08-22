@@ -50,7 +50,11 @@ class GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessmentAccountTrustReaso
     typing_extensions.TypedDict, total=False
 ):
     reason: typing_extensions.Literal[
-        "TRUST_REASON_UNSPECIFIED", "PROFILE_MATCH", "ACCOUNT_HISTORY_REPUTABLE"
+        "TRUST_REASON_UNSPECIFIED",
+        "PROFILE_MATCH",
+        "ACCOUNT_HISTORY_REPUTABLE",
+        "IDENTITY_GLOBAL_ACTIVITY_REPUTABLE",
+        "IDENTITY_HISTORY_REPUTABLE",
     ]
 
 @typing.type_check_only
@@ -153,6 +157,7 @@ class GoogleCloudRecaptchaenterpriseV1Assessment(
     fraudSignals: GoogleCloudRecaptchaenterpriseV1FraudSignals
     name: str
     phoneFraudAssessment: GoogleCloudRecaptchaenterpriseV1PhoneFraudAssessment
+    policyEvaluation: GoogleCloudRecaptchaenterpriseV1PolicyEvaluation
     privatePasswordLeakVerification: (
         GoogleCloudRecaptchaenterpriseV1PrivatePasswordLeakVerification
     )
@@ -181,6 +186,47 @@ class GoogleCloudRecaptchaenterpriseV1ChallengeMetrics(
     nocaptchaCount: str
     pageloadCount: str
     passedCount: str
+
+@typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1ChallengeRule(
+    typing_extensions.TypedDict, total=False
+):
+    challenge: GoogleCloudRecaptchaenterpriseV1ChallengeRuleChallengeOutcome
+    condition: str
+    noChallenge: GoogleCloudRecaptchaenterpriseV1ChallengeRuleNoChallengeOutcome
+
+@typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1ChallengeRuleChallengeOutcome(
+    typing_extensions.TypedDict, total=False
+):
+    difficulty: typing_extensions.Literal[
+        "CHALLENGE_SECURITY_PREFERENCE_UNSPECIFIED", "USABILITY", "BALANCE", "SECURITY"
+    ]
+
+@typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1ChallengeRuleEvaluation(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1ChallengeRuleGroup(
+    typing_extensions.TypedDict, total=False
+):
+    actions: _list[str]
+    challengeRules: _list[GoogleCloudRecaptchaenterpriseV1ChallengeRule]
+
+@typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1ChallengeRuleNoChallengeOutcome(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1ClientSettings(
+    typing_extensions.TypedDict, total=False
+):
+    allowAllDomains: bool
+    allowedDomains: _list[str]
+    protectedEndpointGroup: GoogleCloudRecaptchaenterpriseV1ProtectedEndpointGroup
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1EndpointVerificationInfo(
@@ -378,6 +424,7 @@ class GoogleCloudRecaptchaenterpriseV1Key(typing_extensions.TypedDict, total=Fal
     labels: dict[str, typing.Any]
     name: str
     testingOptions: GoogleCloudRecaptchaenterpriseV1TestingOptions
+    universalSettings: GoogleCloudRecaptchaenterpriseV1UniversalKeySettings
     wafSettings: GoogleCloudRecaptchaenterpriseV1WafSettings
     webSettings: GoogleCloudRecaptchaenterpriseV1WebKeySettings
 
@@ -445,6 +492,18 @@ class GoogleCloudRecaptchaenterpriseV1PhoneFraudAssessment(
     smsTollFraudVerdict: GoogleCloudRecaptchaenterpriseV1SmsTollFraudVerdict
 
 @typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1Policy(typing_extensions.TypedDict, total=False):
+    challengeRuleGroups: _list[GoogleCloudRecaptchaenterpriseV1ChallengeRuleGroup]
+    clientSettings: GoogleCloudRecaptchaenterpriseV1ClientSettings
+    name: str
+
+@typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1PolicyEvaluation(
+    typing_extensions.TypedDict, total=False
+):
+    challengeRuleEvaluation: GoogleCloudRecaptchaenterpriseV1ChallengeRuleEvaluation
+
+@typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1PrivatePasswordLeakVerification(
     typing_extensions.TypedDict, total=False
 ):
@@ -452,6 +511,19 @@ class GoogleCloudRecaptchaenterpriseV1PrivatePasswordLeakVerification(
     encryptedUserCredentialsHash: str
     lookupHashPrefix: str
     reencryptedUserCredentialsHash: str
+
+@typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1ProtectedEndpoint(
+    typing_extensions.TypedDict, total=False
+):
+    action: str
+    path: str
+
+@typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1ProtectedEndpointGroup(
+    typing_extensions.TypedDict, total=False
+):
+    protectedEndpoints: _list[GoogleCloudRecaptchaenterpriseV1ProtectedEndpoint]
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1RelatedAccountGroup(
@@ -503,6 +575,9 @@ class GoogleCloudRecaptchaenterpriseV1RiskAnalysis(
         "CHALLENGE_UNSPECIFIED", "NOCAPTCHA", "PASSED", "FAILED"
     ]
     extendedVerdictReasons: _list[str]
+    lastChallengeType: typing_extensions.Literal[
+        "CHALLENGE_TYPE_UNSPECIFIED", "CHALLENGE_TYPE_VISUAL", "CHALLENGE_TYPE_AUDIO"
+    ]
     reasons: _list[
         typing_extensions.Literal[
             "CLASSIFICATION_REASON_UNSPECIFIED",
@@ -678,6 +753,11 @@ class GoogleCloudRecaptchaenterpriseV1TransactionEvent(
     ]
     reason: str
     value: float
+
+@typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1UniversalKeySettings(
+    typing_extensions.TypedDict, total=False
+): ...
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1UserId(typing_extensions.TypedDict, total=False):

@@ -25,6 +25,18 @@ class ListParametersResponse(typing_extensions.TypedDict, total=False):
     unreachable: _list[str]
 
 @typing.type_check_only
+class ListTemplateVersionsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    templateVersions: _list[TemplateVersion]
+    unreachable: _list[str]
+
+@typing.type_check_only
+class ListTemplatesResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    templates: _list[Template]
+    unreachable: _list[str]
+
+@typing.type_check_only
 class Location(typing_extensions.TypedDict, total=False):
     displayName: str
     labels: dict[str, typing.Any]
@@ -64,6 +76,38 @@ class RenderParameterVersionResponse(typing_extensions.TypedDict, total=False):
     renderedPayload: str
 
 @typing.type_check_only
+class RenderTemplateVersionResponse(typing_extensions.TypedDict, total=False):
+    parameterVersion: str
+    payload: TemplateVersionPayload
+    renderedPayload: str
+    templateFormat: typing_extensions.Literal[
+        "TEMPLATE_FORMAT_UNSPECIFIED", "TEMPLATE_FORMAT_YAML", "TEMPLATE_FORMAT_JSON"
+    ]
+    templateVersion: str
+
+@typing.type_check_only
 class ResourcePolicyMember(typing_extensions.TypedDict, total=False):
     iamPolicyNamePrincipal: str
     iamPolicyUidPrincipal: str
+
+@typing.type_check_only
+class Template(typing_extensions.TypedDict, total=False):
+    createTime: str
+    format: typing_extensions.Literal[
+        "TEMPLATE_FORMAT_UNSPECIFIED", "TEMPLATE_FORMAT_YAML", "TEMPLATE_FORMAT_JSON"
+    ]
+    labels: dict[str, typing.Any]
+    name: str
+    updateTime: str
+
+@typing.type_check_only
+class TemplateVersion(typing_extensions.TypedDict, total=False):
+    createTime: str
+    disabled: bool
+    name: str
+    payload: TemplateVersionPayload
+    updateTime: str
+
+@typing.type_check_only
+class TemplateVersionPayload(typing_extensions.TypedDict, total=False):
+    data: str

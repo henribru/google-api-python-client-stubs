@@ -397,6 +397,8 @@ class CloudSqlInstanceInitializationConfig(typing_extensions.TypedDict, total=Fa
 
 @typing.type_check_only
 class ComputeInstanceBackupPlanProperties(typing_extensions.TypedDict, total=False):
+    bootDiskOnly: bool
+    diskExclusionLabels: DiskExclusionLabels
     guestFlush: bool
 
 @typing.type_check_only
@@ -404,8 +406,10 @@ class ComputeInstanceBackupProperties(typing_extensions.TypedDict, total=False):
     canIpForward: bool
     description: str
     disk: _list[AttachedDisk]
+    excludedDisks: _list[str]
     guestAccelerator: _list[AcceleratorConfig]
     guestFlush: bool
+    includedDisks: _list[str]
     keyRevocationActionType: typing_extensions.Literal[
         "KEY_REVOCATION_ACTION_TYPE_UNSPECIFIED", "NONE", "STOP"
     ]
@@ -586,6 +590,10 @@ class DiskDataSourceProperties(typing_extensions.TypedDict, total=False):
     name: str
     sizeGb: str
     type: str
+
+@typing.type_check_only
+class DiskExclusionLabels(typing_extensions.TypedDict, total=False):
+    labels: _list[LabelKeyValPair]
 
 @typing.type_check_only
 class DiskRestoreProperties(typing_extensions.TypedDict, total=False):
@@ -807,6 +815,11 @@ class InitiateBackupResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class InstanceParams(typing_extensions.TypedDict, total=False):
     resourceManagerTags: dict[str, typing.Any]
+
+@typing.type_check_only
+class LabelKeyValPair(typing_extensions.TypedDict, total=False):
+    key: str
+    value: str
 
 @typing.type_check_only
 class ListBackupPlanAssociationsResponse(typing_extensions.TypedDict, total=False):

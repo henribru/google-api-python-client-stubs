@@ -617,6 +617,28 @@ class GoogleAdsSearchads360V0Common__Segments(typing_extensions.TypedDict, total
     year: int
 
 @typing.type_check_only
+class GoogleAdsSearchads360V0Common__SyntheticContentAttestation(
+    typing_extensions.TypedDict, total=False
+):
+    source: typing_extensions.Literal[
+        "UNSPECIFIED",
+        "UNKNOWN",
+        "ADVERTISER_ATTESTED",
+        "GOOGLE_GENERATED_ADVERTISER_REVIEWED",
+        "GOOGLE_GENERATED_FULLY_AUTOMATED",
+    ]
+    status: typing_extensions.Literal[
+        "UNSPECIFIED", "UNKNOWN", "NOT_SYNTHETIC", "IS_SYNTHETIC"
+    ]
+
+@typing.type_check_only
+class GoogleAdsSearchads360V0Common__SyntheticContentInfo(
+    typing_extensions.TypedDict, total=False
+):
+    advertiserAttestation: GoogleAdsSearchads360V0Common__SyntheticContentAttestation
+    systemAttestation: GoogleAdsSearchads360V0Common__SyntheticContentAttestation
+
+@typing.type_check_only
 class GoogleAdsSearchads360V0Common__TargetCpa(
     typing_extensions.TypedDict, total=False
 ):
@@ -900,6 +922,7 @@ class GoogleAdsSearchads360V0Errors__ErrorCode(
         "CANNOT_SET_DATE_TO_PAST",
         "AFTER_MAXIMUM_ALLOWABLE_DATE",
         "CANNOT_MODIFY_START_DATE_IF_ALREADY_STARTED",
+        "REQUESTED_DATE_GRANULARITY_NOT_SUPPORTED",
     ]
     distinctError: typing_extensions.Literal[
         "UNSPECIFIED", "UNKNOWN", "DUPLICATE_ELEMENT", "DUPLICATE_TYPE"
@@ -1343,6 +1366,7 @@ class GoogleAdsSearchads360V0Resources__Ad(typing_extensions.TypedDict, total=Fa
     responsiveSearchAd: (
         GoogleAdsSearchads360V0Common__SearchAds360ResponsiveSearchAdInfo
     )
+    syntheticContentInfo: GoogleAdsSearchads360V0Common__SyntheticContentInfo
     textAd: GoogleAdsSearchads360V0Common__SearchAds360TextAdInfo
     trackingUrlTemplate: str
     type: typing_extensions.Literal[
@@ -1706,6 +1730,7 @@ class GoogleAdsSearchads360V0Resources__Asset(typing_extensions.TypedDict, total
         "ARCHIVED",
         "PENDING_SYSTEM_GENERATED",
     ]
+    syntheticContentInfo: GoogleAdsSearchads360V0Common__SyntheticContentInfo
     textAsset: GoogleAdsSearchads360V0Common__TextAsset
     trackingUrlTemplate: str
     type: typing_extensions.Literal[
@@ -3773,6 +3798,9 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "METRIC_ACCESS_DENIED",
         "CLOUD_PROJECT_NOT_UNDER_ORGANIZATION",
         "ACTION_NOT_PERMITTED_FOR_SUSPENDED_ACCOUNT",
+        "SEARCH_ADS360_OTHER_ENGINE_MUTATE_DENIED",
+        "SEARCH_ADS360_MUTATE_ALLOWLIST_DENIED",
+        "SEARCH_ADS360_MUTATE_FIELD_DENIED",
     ]
     automaticallyCreatedAssetRemovalError: typing_extensions.Literal[
         "UNSPECIFIED",
@@ -4088,6 +4116,10 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "HIGH_LIFETIME_VALUE_LESS_THAN_OR_EQUAL_TO_VALUE",
         "CUSTOMER_LIFECYCLE_OPTIMIZATION_CAMPAIGN_TYPE_NOT_SUPPORTED",
         "CUSTOMER_NOT_ALLOWLISTED_FOR_RETENTION_ONLY",
+        "CAMPAIGN_OVERRIDE_VALUES_SET_FOR_NEW_CUSTOMER_ACQUISITION_TARGET_SPECIFIC_OPTION",
+        "CAMPAIGN_OVERRIDE_HIGH_LIFETIME_VALUE_NOT_SUPPORTED_FOR_CAMPAIGN_TYPE",
+        "CANNOT_USE_INCOMPATIBLE_CLO_GOALS",
+        "LOYALTY_RETENTION_GOAL_INVALID_MODE",
     ]
     campaignLifecycleGoalError: typing_extensions.Literal[
         "UNSPECIFIED",
@@ -4613,6 +4645,7 @@ class GoogleAdsSearchads360V23Errors__ErrorCode(
         "CANNOT_SET_DATE_TO_PAST",
         "AFTER_MAXIMUM_ALLOWABLE_DATE",
         "CANNOT_MODIFY_START_DATE_IF_ALREADY_STARTED",
+        "REQUESTED_DATE_GRANULARITY_NOT_SUPPORTED",
     ]
     distinctError: typing_extensions.Literal[
         "UNSPECIFIED", "UNKNOWN", "DUPLICATE_ELEMENT", "DUPLICATE_TYPE"

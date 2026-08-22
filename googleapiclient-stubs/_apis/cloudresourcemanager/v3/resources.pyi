@@ -425,6 +425,12 @@ class CloudResourceManagerResource(googleapiclient.discovery.Resource):
         ) -> TestIamPermissionsResponseHttpRequest: ...
         def tagHolds(self) -> TagHoldsResource: ...
 
+    @typing.type_check_only
+    class V3Resource(googleapiclient.discovery.Resource):
+        def fetchResourceSemantics(
+            self, *, fullResourceName: str | None = ..., **kwargs: typing.Any
+        ) -> FetchResourceSemanticsResponseHttpRequest: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[
@@ -447,6 +453,7 @@ class CloudResourceManagerResource(googleapiclient.discovery.Resource):
     def tagBindings(self) -> TagBindingsResource: ...
     def tagKeys(self) -> TagKeysResource: ...
     def tagValues(self) -> TagValuesResource: ...
+    def v3(self) -> V3Resource: ...
 
 @typing.type_check_only
 class CapabilityHttpRequest(googleapiclient.http.HttpRequest):
@@ -471,6 +478,14 @@ class EmptyHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Empty: ...
+
+@typing.type_check_only
+class FetchResourceSemanticsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> FetchResourceSemanticsResponse: ...
 
 @typing.type_check_only
 class FolderHttpRequest(googleapiclient.http.HttpRequest):

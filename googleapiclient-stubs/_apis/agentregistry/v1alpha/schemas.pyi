@@ -42,6 +42,10 @@ class Annotations(typing_extensions.TypedDict, total=False):
     title: str
 
 @typing.type_check_only
+class ArchiveUploadSource(typing_extensions.TypedDict, total=False):
+    archiveContent: str
+
+@typing.type_check_only
 class AuthProviderBinding(typing_extensions.TypedDict, total=False):
     authProvider: str
     continueUri: str
@@ -91,6 +95,19 @@ class FetchAvailableBindingsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
+class Frontmatter(typing_extensions.TypedDict, total=False):
+    compatibility: str
+    description: str
+    license: str
+    metadata: dict[str, typing.Any]
+    name: str
+
+@typing.type_check_only
+class GcsSource(typing_extensions.TypedDict, total=False):
+    generation: str
+    uri: str
+
+@typing.type_check_only
 class Interface(typing_extensions.TypedDict, total=False):
     protocolBinding: typing_extensions.Literal[
         "PROTOCOL_BINDING_UNSPECIFIED", "JSONRPC", "GRPC", "HTTP_JSON"
@@ -129,9 +146,25 @@ class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     unreachable: _list[str]
 
 @typing.type_check_only
+class ListPublishersResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    publishers: _list[Publisher]
+
+@typing.type_check_only
 class ListServicesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     services: _list[Service]
+
+@typing.type_check_only
+class ListSkillRevisionsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    skillRevisions: _list[SkillRevision]
+
+@typing.type_check_only
+class ListSkillsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    skills: _list[Skill]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class Location(typing_extensions.TypedDict, total=False):
@@ -183,6 +216,17 @@ class Protocol(typing_extensions.TypedDict, total=False):
     type: typing_extensions.Literal["TYPE_UNSPECIFIED", "A2A_AGENT", "CUSTOM"]
 
 @typing.type_check_only
+class Publisher(typing_extensions.TypedDict, total=False):
+    displayName: str
+    documentationUri: str
+    name: str
+    publisherTier: typing_extensions.Literal[
+        "PUBLISHER_TIER_UNSPECIFIED", "FIRST_PARTY", "THIRD_PARTY", "PRIVATE"
+    ]
+    supportUri: str
+    verifiedPrefix: str
+
+@typing.type_check_only
 class SearchAgentsRequest(typing_extensions.TypedDict, total=False):
     pageSize: int
     pageToken: str
@@ -205,6 +249,11 @@ class SearchMcpServersResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
+class SearchSkillsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    skills: _list[Skill]
+
+@typing.type_check_only
 class Service(typing_extensions.TypedDict, total=False):
     agentSpec: AgentSpec
     createTime: str
@@ -216,6 +265,53 @@ class Service(typing_extensions.TypedDict, total=False):
     name: str
     registryResource: str
     updateTime: str
+
+@typing.type_check_only
+class Skill(typing_extensions.TypedDict, total=False):
+    createTime: str
+    defaultRevision: str
+    description: str
+    displayName: str
+    frontmatter: Frontmatter
+    initialRevision: SkillRevision
+    name: str
+    publisher: str
+    skillId: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "STATE_CREATING",
+        "STATE_DRAFT",
+        "STATE_ACTIVE",
+        "STATE_DISABLED",
+        "STATE_DEPRECATED",
+        "STATE_DECOMMISSIONED",
+        "STATE_DELETING",
+    ]
+    targetState: typing_extensions.Literal[
+        "TARGET_STATE_UNSPECIFIED",
+        "TARGET_STATE_DRAFT",
+        "TARGET_STATE_ACTIVE",
+        "TARGET_STATE_DISABLED",
+        "TARGET_STATE_DEPRECATED",
+        "TARGET_STATE_DECOMMISSIONED",
+    ]
+    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "SIMPLE"]
+    uid: str
+    updateTime: str
+
+@typing.type_check_only
+class SkillRevision(typing_extensions.TypedDict, total=False):
+    archiveUploadSource: ArchiveUploadSource
+    createTime: str
+    frontmatter: Frontmatter
+    gcsSource: GcsSource
+    name: str
+    sha256Hash: str
+    sizeBytes: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "CREATING", "ACTIVE", "FAILED", "DELETING"
+    ]
+    uid: str
 
 @typing.type_check_only
 class Source(typing_extensions.TypedDict, total=False):

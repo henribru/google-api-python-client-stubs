@@ -1005,6 +1005,10 @@ class IssuerToUserInfo(typing_extensions.TypedDict, total=False):
     value: str
 
 @typing.type_check_only
+class JsonResource(typing_extensions.TypedDict, total=False):
+    json: str
+
+@typing.type_check_only
 class JwtInsertResponse(typing_extensions.TypedDict, total=False):
     resources: Resources
     saveUri: str
@@ -1012,6 +1016,14 @@ class JwtInsertResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class JwtResource(typing_extensions.TypedDict, total=False):
     jwt: str
+
+@typing.type_check_only
+class JwtValidateRequest(typing_extensions.TypedDict, total=False):
+    jsonResource: JsonResource
+    jwtResource: JwtResource
+
+@typing.type_check_only
+class JwtValidateResponse(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class LabelValue(typing_extensions.TypedDict, total=False):

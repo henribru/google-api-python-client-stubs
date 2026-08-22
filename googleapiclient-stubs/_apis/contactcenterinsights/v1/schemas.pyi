@@ -53,16 +53,20 @@ class GoogleCloudCesV1mainSpan(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GoogleCloudCesV1mainToolCall(typing_extensions.TypedDict, total=False):
+    agentName: str
     args: dict[str, typing.Any]
     displayName: str
     id: str
+    parentToolCallId: str
     tool: str
     toolsetTool: GoogleCloudCesV1mainToolsetTool
 
 @typing.type_check_only
 class GoogleCloudCesV1mainToolResponse(typing_extensions.TypedDict, total=False):
+    agentName: str
     displayName: str
     id: str
+    parentToolCallId: str
     response: dict[str, typing.Any]
     tool: str
     toolsetTool: GoogleCloudCesV1mainToolsetTool
@@ -220,6 +224,32 @@ class GoogleCloudContactcenterinsightsV1AssessmentRule(
     name: str
     sampleRule: GoogleCloudContactcenterinsightsV1SampleRule
     scheduleInfo: GoogleCloudContactcenterinsightsV1ScheduleInfo
+    updateTime: str
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1AssistantChunk(
+    typing_extensions.TypedDict, total=False
+):
+    text: str
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1AssistantMessage(
+    typing_extensions.TypedDict, total=False
+):
+    chunks: _list[GoogleCloudContactcenterinsightsV1AssistantChunk]
+    eventTime: str
+    role: typing_extensions.Literal["ROLE_UNSPECIFIED", "USER", "MODEL"]
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1AssistantSession(
+    typing_extensions.TypedDict, total=False
+):
+    createTime: str
+    displayName: str
+    messages: _list[GoogleCloudContactcenterinsightsV1AssistantMessage]
+    name: str
+    requester: str
+    state: typing_extensions.Literal["STATE_UNSPECIFIED", "PROCESSING", "IDLE"]
     updateTime: str
 
 @typing.type_check_only
@@ -1674,6 +1704,13 @@ class GoogleCloudContactcenterinsightsV1ListAssessmentsResponse(
     nextPageToken: str
 
 @typing.type_check_only
+class GoogleCloudContactcenterinsightsV1ListAssistantSessionsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    assistantSessions: _list[GoogleCloudContactcenterinsightsV1AssistantSession]
+    nextPageToken: str
+
+@typing.type_check_only
 class GoogleCloudContactcenterinsightsV1ListAuthorizedViewSetsResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -2012,6 +2049,7 @@ class GoogleCloudContactcenterinsightsV1QaScorecard(
         "QA_SCORECARD_SOURCE_UNSPECIFIED",
         "QA_SCORECARD_SOURCE_CUSTOMER_DEFINED",
         "QA_SCORECARD_SOURCE_DISCOVERY_ENGINE",
+        "QA_SCORECARD_SOURCE_INTENT_TAXONOMY",
     ]
     updateTime: str
 
@@ -2438,6 +2476,21 @@ class GoogleCloudContactcenterinsightsV1SpeechConfig(
 ):
     disableWordTimeOffsets: bool
     speechRecognizer: str
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1StreamChatRequest(
+    typing_extensions.TypedDict, total=False
+):
+    message: str
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1StreamChatResponse(
+    typing_extensions.TypedDict, total=False
+):
+    chunk: GoogleCloudContactcenterinsightsV1AssistantChunk
+    eventId: str
+    eventTime: str
+    statusMessage: str
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1TestAutoLabelingRuleRequest(

@@ -313,6 +313,7 @@ class ConnectSettings(typing_extensions.TypedDict, total=False):
     backendType: typing_extensions.Literal[
         "SQL_BACKEND_TYPE_UNSPECIFIED", "FIRST_GEN", "SECOND_GEN", "EXTERNAL"
     ]
+    connectionName: str
     customSubjectAlternativeNames: _list[str]
     databaseVersion: typing_extensions.Literal[
         "SQL_DATABASE_VERSION_UNSPECIFIED",
@@ -434,6 +435,7 @@ class DatabaseInstance(typing_extensions.TypedDict, total=False):
     connectionName: str
     createTime: str
     currentDiskSize: str
+    databaseCenterIntegrationEnabled: bool
     databaseInstalledVersion: str
     databaseVersion: typing_extensions.Literal[
         "SQL_DATABASE_VERSION_UNSPECIFIED",
@@ -640,6 +642,7 @@ class ExecuteSqlPayload(typing_extensions.TypedDict, total=False):
     partialResultMode: typing_extensions.Literal[
         "PARTIAL_RESULT_MODE_UNSPECIFIED", "FAIL_PARTIAL_RESULT", "ALLOW_PARTIAL_RESULT"
     ]
+    passwordSecretVersion: str
     rowLimit: str
     sqlStatement: str
     user: str
@@ -1006,6 +1009,7 @@ class OnPremisesConfiguration(typing_extensions.TypedDict, total=False):
     caCertificate: str
     clientCertificate: str
     clientKey: str
+    dmsManaged: bool
     dumpFilePath: str
     hostPort: str
     kind: str
@@ -1147,12 +1151,24 @@ class PerformDiskShrinkContext(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class PerformanceCaptureConfig(typing_extensions.TypedDict, total=False):
+    cpuUtilizationThresholdPercent: int
     enabled: bool
+    historyListLengthThresholdCount: int
+    memoryUsageThresholdPercent: int
     probeThreshold: int
     probingIntervalSeconds: int
     runningThreadsThreshold: int
     secondsBehindSourceThreshold: int
+    semaphoreWaitThresholdCount: int
     transactionDurationThreshold: int
+    transactionKillExcludedUserHosts: _list[str]
+    transactionKillThresholdSeconds: int
+    transactionKillType: typing_extensions.Literal[
+        "TRANSACTION_KILL_TYPE_UNSPECIFIED",
+        "READ_ONLY_TRANSACTIONS",
+        "ALL_TRANSACTIONS",
+    ]
+    transactionLockWaitThresholdCount: int
 
 @typing.type_check_only
 class PointInTimeRestoreContext(typing_extensions.TypedDict, total=False):
@@ -1264,10 +1280,22 @@ class PscAutoConnectionConfig(typing_extensions.TypedDict, total=False):
     consumerNetwork: str
     consumerNetworkStatus: str
     consumerProject: str
+    instanceAutoDnsStatus: typing_extensions.Literal[
+        "AUTO_DNS_STATUS_UNSPECIFIED",
+        "AUTO_DNS_OK",
+        "AUTO_DNS_FAILED",
+        "AUTO_DNS_UNKNOWN",
+    ]
     ipAddress: str
     serviceConnectionPolicy: str
     serviceConnectionPolicyCreationResult: str
     status: str
+    writeEndpointAutoDnsStatus: typing_extensions.Literal[
+        "AUTO_DNS_STATUS_UNSPECIFIED",
+        "AUTO_DNS_OK",
+        "AUTO_DNS_FAILED",
+        "AUTO_DNS_UNKNOWN",
+    ]
 
 @typing.type_check_only
 class PscConfig(typing_extensions.TypedDict, total=False):
@@ -1716,6 +1744,7 @@ class User(typing_extensions.TypedDict, total=False):
     password: str
     passwordPolicy: UserPasswordValidationPolicy
     project: str
+    serverRoles: _list[str]
     sqlserverUserDetails: SqlServerUserDetails
     type: typing_extensions.Literal[
         "BUILT_IN",

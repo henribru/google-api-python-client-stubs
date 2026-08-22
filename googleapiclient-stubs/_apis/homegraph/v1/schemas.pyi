@@ -14,6 +14,15 @@ class AgentOtherDeviceId(typing_extensions.TypedDict, total=False):
     deviceId: str
 
 @typing.type_check_only
+class CameraEventStreamTrait(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class CommonEventDataStruct(typing_extensions.TypedDict, total=False):
+    mediaUrls: MediaUrlsStruct
+    sessionId: str
+    trackId: str
+
+@typing.type_check_only
 class Component(typing_extensions.TypedDict, total=False):
     childComponents: _list[Component]
     deviceTypes: _list[str]
@@ -41,6 +50,17 @@ class Device(typing_extensions.TypedDict, total=False):
     willReportState: bool
 
 @typing.type_check_only
+class DeviceBlameStruct(typing_extensions.TypedDict, total=False):
+    blameType: typing_extensions.Literal[
+        "DEVICE_BLAME_TYPE_ENUM_UNSPECIFIED",
+        "LOCK",
+        "UNLOCK",
+        "MOTION_DETECTION",
+        "TOUCH_INTERACTION",
+        "VOICE_INTERACTION",
+    ]
+
+@typing.type_check_only
 class DeviceInfo(typing_extensions.TypedDict, total=False):
     hwVersion: str
     manufacturer: str
@@ -59,6 +79,32 @@ class DeviceNames(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class EveUtilityTrait(typing_extensions.TypedDict, total=False):
+    acceptedCommandList: _list[typing_extensions.Literal["COMMANDS_UNSPECIFIED"]]
+    accumulatedControlPoint: str
+    airPressure: float
+    altitude: float
+    childLock: bool
+    current: float
+    getConfig: str
+    holdPosition: bool
+    lastEventTime: str
+    loggingControlPoint: str
+    loggingData: str
+    loggingMetadata: str
+    loggingTime: str
+    motionSensitivity: int
+    obstructionDetected: bool
+    openCount: str
+    rloc16: int
+    setConfig: str
+    statusFault: int
+    voltage: float
+    watt: float
+    wattAccumulated: float
+    weatherTrend: int
 
 @typing.type_check_only
 class EventData(typing_extensions.TypedDict, total=False):
@@ -84,6 +130,28 @@ class HomeTraitPayload(typing_extensions.TypedDict, total=False):
 class HomeTraitUpdates(typing_extensions.TypedDict, total=False):
     components: _list[ComponentTraitUpdates]
     deviceId: str
+
+@typing.type_check_only
+class MediaUrlsStruct(typing_extensions.TypedDict, total=False):
+    dashManifestUrl: str
+    hlsMasterPlaylistUrl: str
+    previewUrl: str
+    thumbnailUrl: str
+
+@typing.type_check_only
+class MotionEvent(typing_extensions.TypedDict, total=False):
+    commonEventData: CommonEventDataStruct
+    zones: _list[ZoneStruct]
+    zonesIsEmpty: bool
+
+@typing.type_check_only
+class PartnerPresenceSignalTrait(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class PersonEvent(typing_extensions.TypedDict, total=False):
+    commonEventData: CommonEventDataStruct
+    zones: _list[ZoneStruct]
+    zonesIsEmpty: bool
 
 @typing.type_check_only
 class QueryRequest(typing_extensions.TypedDict, total=False):
@@ -134,6 +202,7 @@ class ReportStateAndNotificationRequest(typing_extensions.TypedDict, total=False
 
 @typing.type_check_only
 class ReportStateAndNotificationResponse(typing_extensions.TypedDict, total=False):
+    deviceResults: dict[str, typing.Any]
     requestId: str
 
 AlternativeRequestSyncDevicesRequest = typing_extensions.TypedDict(
@@ -152,8 +221,26 @@ class RequestSyncDevicesRequest(AlternativeRequestSyncDevicesRequest): ...
 class RequestSyncDevicesResponse(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class Result(typing_extensions.TypedDict, total=False):
+    homeTraitCommitTime: str
+
+@typing.type_check_only
 class StateAndNotificationPayload(typing_extensions.TypedDict, total=False):
     devices: ReportStateAndNotificationDevice
+
+@typing.type_check_only
+class StructurePresenceStateChangeEvent(typing_extensions.TypedDict, total=False):
+    presenceState: typing_extensions.Literal[
+        "STRUCTURE_PRESENCE_STATE_ENUM_UNSPECIFIED", "HOME", "AWAY"
+    ]
+    reason: StructurePresenceStateChangeReasonStruct
+
+@typing.type_check_only
+class StructurePresenceStateChangeReasonStruct(
+    typing_extensions.TypedDict, total=False
+):
+    deviceBlame: DeviceBlameStruct
+    userBlame: UserBlameStruct
 
 @typing.type_check_only
 class SyncRequest(typing_extensions.TypedDict, total=False):
@@ -171,6 +258,32 @@ class SyncResponsePayload(typing_extensions.TypedDict, total=False):
     devices: _list[Device]
 
 @typing.type_check_only
+class ThermostatFanControlTrait(typing_extensions.TypedDict, total=False):
+    timerDuration: str
+    timerEnd: str
+    timerSpeed: typing_extensions.Literal[
+        "FAN_SPEED_SETTING_ENUM_UNSPECIFIED",
+        "FAN_SPEED_SETTING_OFF",
+        "FAN_SPEED_SETTING_STAGE1",
+        "FAN_SPEED_SETTING_STAGE2",
+        "FAN_SPEED_SETTING_STAGE3",
+        "FAN_SPEED_SETTING_AUTO",
+    ]
+
+@typing.type_check_only
 class TraitData(typing_extensions.TypedDict, total=False):
     commitTime: str
+    providerVersionTime: str
     trait: dict[str, typing.Any]
+
+@typing.type_check_only
+class UserBlameStruct(typing_extensions.TypedDict, total=False):
+    blameType: typing_extensions.Literal[
+        "USER_BLAME_TYPE_ENUM_UNSPECIFIED", "PHONE_LOCATION", "MANUAL_CHANGE"
+    ]
+    userEmail: str
+
+@typing.type_check_only
+class ZoneStruct(typing_extensions.TypedDict, total=False):
+    label: str
+    zoneId: str

@@ -50,6 +50,17 @@ class AffectedResources(typing_extensions.TypedDict, total=False):
     count: str
 
 @typing.type_check_only
+class Agent(typing_extensions.TypedDict, total=False):
+    displayName: str
+    id: str
+
+@typing.type_check_only
+class AgentAnomaly(typing_extensions.TypedDict, total=False):
+    confidenceScore: float
+    detectorReferences: _list[DetectorReference]
+    invocationReferences: _list[InvocationReference]
+
+@typing.type_check_only
 class AgentDataAccessEvent(typing_extensions.TypedDict, total=False):
     eventId: str
     eventTime: str
@@ -57,6 +68,10 @@ class AgentDataAccessEvent(typing_extensions.TypedDict, total=False):
         "OPERATION_UNSPECIFIED", "READ", "MOVE", "COPY"
     ]
     principalSubject: str
+
+@typing.type_check_only
+class AgentSession(typing_extensions.TypedDict, total=False):
+    sessionId: str
 
 @typing.type_check_only
 class AiModel(typing_extensions.TypedDict, total=False):
@@ -421,6 +436,16 @@ class Detection(typing_extensions.TypedDict, total=False):
     percentPagesMatched: float
 
 @typing.type_check_only
+class DetectorReference(typing_extensions.TypedDict, total=False):
+    detectorId: str
+    displayName: str
+    explanation: str
+    recommendation: str
+    severity: typing_extensions.Literal[
+        "SEVERITY_UNSPECIFIED", "CRITICAL", "HIGH", "MEDIUM", "LOW"
+    ]
+
+@typing.type_check_only
 class DiscoveredWorkload(typing_extensions.TypedDict, total=False):
     confidence: typing_extensions.Literal["CONFIDENCE_UNSPECIFIED", "CONFIDENCE_HIGH"]
     detectedRelevantHardware: bool
@@ -532,7 +557,10 @@ class FileOperation(typing_extensions.TypedDict, total=False):
 class Finding(typing_extensions.TypedDict, total=False):
     access: Access
     affectedResources: AffectedResources
+    agent: Agent
+    agentAnomaly: AgentAnomaly
     agentDataAccessEvents: _list[AgentDataAccessEvent]
+    agentSessions: _list[AgentSession]
     aiModel: AiModel
     application: Application
     artifactGuardPolicies: ArtifactGuardPolicies
@@ -1036,6 +1064,17 @@ class GoogleCloudSecuritycenterV2AffectedResources(
     count: str
 
 @typing.type_check_only
+class GoogleCloudSecuritycenterV2Agent(typing_extensions.TypedDict, total=False):
+    displayName: str
+    id: str
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV2AgentAnomaly(typing_extensions.TypedDict, total=False):
+    confidenceScore: float
+    detectorReferences: _list[GoogleCloudSecuritycenterV2DetectorReference]
+    invocationReferences: _list[GoogleCloudSecuritycenterV2InvocationReference]
+
+@typing.type_check_only
 class GoogleCloudSecuritycenterV2AgentDataAccessEvent(
     typing_extensions.TypedDict, total=False
 ):
@@ -1045,6 +1084,10 @@ class GoogleCloudSecuritycenterV2AgentDataAccessEvent(
         "OPERATION_UNSPECIFIED", "READ", "MOVE", "COPY"
     ]
     principalSubject: str
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV2AgentSession(typing_extensions.TypedDict, total=False):
+    sessionId: str
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV2AiModel(typing_extensions.TypedDict, total=False):
@@ -1434,6 +1477,18 @@ class GoogleCloudSecuritycenterV2Detection(typing_extensions.TypedDict, total=Fa
     percentPagesMatched: float
 
 @typing.type_check_only
+class GoogleCloudSecuritycenterV2DetectorReference(
+    typing_extensions.TypedDict, total=False
+):
+    detectorId: str
+    displayName: str
+    explanation: str
+    recommendation: str
+    severity: typing_extensions.Literal[
+        "SEVERITY_UNSPECIFIED", "CRITICAL", "HIGH", "MEDIUM", "LOW"
+    ]
+
+@typing.type_check_only
 class GoogleCloudSecuritycenterV2DiscoveredWorkload(
     typing_extensions.TypedDict, total=False
 ):
@@ -1549,7 +1604,10 @@ class GoogleCloudSecuritycenterV2FileOperation(
 class GoogleCloudSecuritycenterV2Finding(typing_extensions.TypedDict, total=False):
     access: GoogleCloudSecuritycenterV2Access
     affectedResources: GoogleCloudSecuritycenterV2AffectedResources
+    agent: GoogleCloudSecuritycenterV2Agent
+    agentAnomaly: GoogleCloudSecuritycenterV2AgentAnomaly
     agentDataAccessEvents: _list[GoogleCloudSecuritycenterV2AgentDataAccessEvent]
+    agentSessions: _list[GoogleCloudSecuritycenterV2AgentSession]
     aiModel: GoogleCloudSecuritycenterV2AiModel
     application: GoogleCloudSecuritycenterV2Application
     artifactGuardPolicies: GoogleCloudSecuritycenterV2ArtifactGuardPolicies
@@ -1708,6 +1766,12 @@ class GoogleCloudSecuritycenterV2InfoType(typing_extensions.TypedDict, total=Fal
     name: str
     sensitivityScore: GoogleCloudSecuritycenterV2SensitivityScore
     version: str
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV2InvocationReference(
+    typing_extensions.TypedDict, total=False
+):
+    invocationId: str
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV2IpRule(typing_extensions.TypedDict, total=False):
@@ -2747,6 +2811,10 @@ class InfoType(typing_extensions.TypedDict, total=False):
     name: str
     sensitivityScore: SensitivityScore
     version: str
+
+@typing.type_check_only
+class InvocationReference(typing_extensions.TypedDict, total=False):
+    invocationId: str
 
 @typing.type_check_only
 class IpRule(typing_extensions.TypedDict, total=False):

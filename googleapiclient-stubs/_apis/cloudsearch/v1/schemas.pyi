@@ -1402,6 +1402,7 @@ class RepositoryError(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class RequestOptions(typing_extensions.TypedDict, total=False):
     clientDisplayLanguageCode: str
+    countryCode: str
     debugOptions: DebugOptions
     languageCode: str
     searchApplicationId: str

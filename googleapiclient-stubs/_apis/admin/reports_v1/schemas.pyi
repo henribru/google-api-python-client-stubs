@@ -18,10 +18,12 @@ class Activity(typing_extensions.TypedDict, total=False):
     events: _list[dict[str, typing.Any]]
     id: dict[str, typing.Any]
     ipAddress: str
+    isAgenticAction: bool
     kind: str
     networkInfo: ActivityNetworkInfo
     ownerDomain: str
     resourceDetails: _list[ResourceDetails]
+    userDeviceInfo: ActivityUserDeviceInfo
 
 @typing.type_check_only
 class ActivityEventsStatus(typing_extensions.TypedDict, total=False):
@@ -35,6 +37,23 @@ class ActivityNetworkInfo(typing_extensions.TypedDict, total=False):
     ipAsn: _list[int]
     regionCode: str
     subdivisionCode: str
+
+@typing.type_check_only
+class ActivityUserDeviceInfo(typing_extensions.TypedDict, total=False):
+    deviceId: str
+    deviceOsVersion: str
+    deviceType: str
+
+@typing.type_check_only
+class AgentAttributionInfo(typing_extensions.TypedDict, total=False):
+    agentId: str
+    agentName: str
+    agentOwner: AgentAttributionInfoAgentOwner
+    agentType: str
+
+@typing.type_check_only
+class AgentAttributionInfoAgentOwner(typing_extensions.TypedDict, total=False):
+    email: str
 
 @typing.type_check_only
 class AppliedLabel(typing_extensions.TypedDict, total=False):
@@ -129,6 +148,7 @@ class OwnerDetails(typing_extensions.TypedDict, total=False):
 class OwnerIdentity(typing_extensions.TypedDict, total=False):
     customerIdentity: CustomerIdentity
     groupIdentity: GroupIdentity
+    sharedDriveIdentity: SharedDriveIdentity
     userIdentity: UserIdentity
 
 @typing.type_check_only
@@ -143,6 +163,11 @@ class ResourceDetails(typing_extensions.TypedDict, total=False):
     relation: str
     title: str
     type: str
+
+@typing.type_check_only
+class SharedDriveIdentity(typing_extensions.TypedDict, total=False):
+    id: str
+    sharedDriveName: str
 
 @typing.type_check_only
 class UsageReport(typing_extensions.TypedDict, total=False):

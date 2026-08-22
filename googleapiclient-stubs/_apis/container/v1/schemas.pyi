@@ -263,6 +263,7 @@ class Cluster(typing_extensions.TypedDict, total=False):
     controlPlaneEndpointsConfig: ControlPlaneEndpointsConfig
     costManagementConfig: CostManagementConfig
     createTime: str
+    currentEmulatedVersion: str
     currentMasterVersion: str
     currentNodeCount: int
     currentNodeVersion: str
@@ -316,6 +317,7 @@ class Cluster(typing_extensions.TypedDict, total=False):
     releaseChannel: ReleaseChannel
     resourceLabels: dict[str, typing.Any]
     resourceUsageExportConfig: ResourceUsageExportConfig
+    rollbackSafeUpgrade: RollbackSafeUpgrade
     satisfiesPzi: bool
     satisfiesPzs: bool
     scheduleUpgradeConfig: ScheduleUpgradeConfig
@@ -392,6 +394,7 @@ class ClusterUpdate(typing_extensions.TypedDict, total=False):
     desiredDefaultSnatStatus: DefaultSnatStatus
     desiredDisableL4LbFirewallReconciliation: bool
     desiredDnsConfig: DNSConfig
+    desiredEmulatedVersion: str
     desiredEnableCiliumClusterwideNetworkPolicy: bool
     desiredEnableFqdnNetworkPolicy: bool
     desiredEnableMultiNetworking: bool
@@ -450,6 +453,7 @@ class ClusterUpdate(typing_extensions.TypedDict, total=False):
     desiredRbacBindingConfig: RBACBindingConfig
     desiredReleaseChannel: ReleaseChannel
     desiredResourceUsageExportConfig: ResourceUsageExportConfig
+    desiredRollbackSafeUpgrade: RollbackSafeUpgrade
     desiredSecretManagerConfig: SecretManagerConfig
     desiredSecretSyncConfig: SecretSyncConfig
     desiredSecurityPostureConfig: SecurityPostureConfig
@@ -489,7 +493,12 @@ class ClusterUpgradeInfo(typing_extensions.TypedDict, total=False):
             "SYSTEM_CONFIG",
         ]
     ]
+    rollbackSafeUpgradeStatus: RollbackSafeUpgradeStatus
     upgradeDetails: _list[UpgradeDetails]
+
+@typing.type_check_only
+class CompleteControlPlaneUpgradeRequest(typing_extensions.TypedDict, total=False):
+    version: str
 
 @typing.type_check_only
 class CompleteIPRotationRequest(typing_extensions.TypedDict, total=False):
@@ -653,6 +662,11 @@ class DesiredEnterpriseConfig(typing_extensions.TypedDict, total=False):
     desiredTier: typing_extensions.Literal[
         "CLUSTER_TIER_UNSPECIFIED", "STANDARD", "ENTERPRISE"
     ]
+
+@typing.type_check_only
+class DiskIoScheduler(typing_extensions.TypedDict, total=False):
+    nodeAttachedDiskIoScheduler: str
+    nodeSystemIoScheduler: str
 
 @typing.type_check_only
 class DisruptionBudget(typing_extensions.TypedDict, total=False):
@@ -944,6 +958,11 @@ class K8sBetaAPIConfig(typing_extensions.TypedDict, total=False):
     enabledApis: _list[str]
 
 @typing.type_check_only
+class KubeletCertInfo(typing_extensions.TypedDict, total=False):
+    nonTpmBootstrapCertExpireTime: str
+    tpmBootstrapCertExpireTime: str
+
+@typing.type_check_only
 class KubernetesDashboard(typing_extensions.TypedDict, total=False):
     disabled: bool
 
@@ -958,8 +977,10 @@ class LinuxNodeConfig(typing_extensions.TypedDict, total=False):
         "CGROUP_MODE_UNSPECIFIED", "CGROUP_MODE_V1", "CGROUP_MODE_V2"
     ]
     customNodeInit: CustomNodeInit
+    diskIoScheduler: DiskIoScheduler
     hugepages: HugepagesConfig
     nodeKernelModuleLoading: NodeKernelModuleLoading
+    nodeVfioConfig: NodeVfioConfig
     swapConfig: SwapConfig
     sysctls: dict[str, typing.Any]
     transparentHugepageDefrag: typing_extensions.Literal[
@@ -1344,6 +1365,7 @@ class NodePool(typing_extensions.TypedDict, total=False):
     etag: str
     initialNodeCount: int
     instanceGroupUrls: _list[str]
+    kubeletCertInfo: KubeletCertInfo
     locations: _list[str]
     maintenancePolicy: NodePoolMaintenancePolicy
     management: NodeManagement
@@ -1438,6 +1460,10 @@ class NodeTaint(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class NodeTaints(typing_extensions.TypedDict, total=False):
     taints: _list[NodeTaint]
+
+@typing.type_check_only
+class NodeVfioConfig(typing_extensions.TypedDict, total=False):
+    dmaEntryLimit: int
 
 @typing.type_check_only
 class NotificationConfig(typing_extensions.TypedDict, total=False):
@@ -1623,6 +1649,7 @@ class ReleaseChannelConfig(typing_extensions.TypedDict, total=False):
     channel: typing_extensions.Literal[
         "UNSPECIFIED", "RAPID", "REGULAR", "STABLE", "EXTENDED"
     ]
+    customVersions: _list[str]
     defaultVersion: str
     upgradeTargetVersion: str
     validVersions: _list[str]
@@ -1667,6 +1694,18 @@ class RollbackNodePoolUpgradeRequest(typing_extensions.TypedDict, total=False):
     projectId: str
     respectPdb: bool
     zone: str
+
+@typing.type_check_only
+class RollbackSafeUpgrade(typing_extensions.TypedDict, total=False):
+    controlPlaneSoakDuration: str
+
+@typing.type_check_only
+class RollbackSafeUpgradeStatus(typing_extensions.TypedDict, total=False):
+    controlPlaneUpgradeRollbackEndTime: str
+    mode: typing_extensions.Literal[
+        "MODE_UNSPECIFIED", "KCP_MINOR_UPGRADE_ROLLBACK_SAFE_MODE"
+    ]
+    previousVersion: str
 
 @typing.type_check_only
 class RotationConfig(typing_extensions.TypedDict, total=False):
@@ -2034,6 +2073,7 @@ class UpgradeAvailableEvent(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class UpgradeDetails(typing_extensions.TypedDict, total=False):
     endTime: str
+    initialEmulatedVersion: str
     initialVersion: str
     startTime: str
     startType: typing_extensions.Literal[
@@ -2042,10 +2082,12 @@ class UpgradeDetails(typing_extensions.TypedDict, total=False):
     state: typing_extensions.Literal[
         "UNKNOWN", "FAILED", "SUCCEEDED", "CANCELED", "RUNNING"
     ]
+    targetEmulatedVersion: str
     targetVersion: str
 
 @typing.type_check_only
 class UpgradeEvent(typing_extensions.TypedDict, total=False):
+    currentEmulatedVersion: str
     currentVersion: str
     operation: str
     operationStartTime: str
@@ -2053,10 +2095,12 @@ class UpgradeEvent(typing_extensions.TypedDict, total=False):
     resourceType: typing_extensions.Literal[
         "UPGRADE_RESOURCE_TYPE_UNSPECIFIED", "MASTER", "NODE_POOL"
     ]
+    targetEmulatedVersion: str
     targetVersion: str
 
 @typing.type_check_only
 class UpgradeInfoEvent(typing_extensions.TypedDict, total=False):
+    currentEmulatedVersion: str
     currentVersion: str
     description: str
     disruptionEvent: DisruptionEvent
@@ -2079,6 +2123,7 @@ class UpgradeInfoEvent(typing_extensions.TypedDict, total=False):
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "SCHEDULED", "STARTED", "SUCCEEDED", "FAILED", "CANCELED"
     ]
+    targetEmulatedVersion: str
     targetVersion: str
 
 @typing.type_check_only
