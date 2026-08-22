@@ -43,7 +43,7 @@ def get_type(property: Dict[str, Any]):
             quoted_enum_members = [
                 f'"{enum_member}"' for enum_member in property["enum"]
             ]
-            type = f"typing_extensions.Literal[{', '.join(quoted_enum_members)}]"
+            type = f"typing.Literal[{', '.join(quoted_enum_members)}]"
     return type
 
 
@@ -84,7 +84,7 @@ class Writer:
 def write_typed_dict(writer, typed_dict_description):
     writer.write("@typing.type_check_only")
     writer.write(
-        f"class {typed_dict_description['name']}(typing_extensions.TypedDict, total=False):"
+        f"class {typed_dict_description['name']}(typing.TypedDict, total=False):"
     )
     properties = typed_dict_description["properties"]
     sorted_property_names = sorted(properties)
@@ -100,7 +100,7 @@ def write_typed_dict(writer, typed_dict_description):
 def write_alternative_typed_dict(writer, typed_dict_description):
     name = typed_dict_description["name"]
     writer.write(
-        f"Alternative{name} = typing_extensions.TypedDict('Alternative{name}', {{"
+        f"Alternative{name} = typing.TypedDict('Alternative{name}', {{"
     )
     properties = typed_dict_description["properties"]
     sorted_property_names = sorted(properties)
@@ -119,7 +119,6 @@ def capitalize(s: str) -> str:
 
 def write_schemas(writer, schemas):
     writer.write("import typing")
-    writer.write("import typing_extensions")
     writer.write("_list = list")
     sorted_schema_names = sorted(schemas)
     for schema_name in sorted_schema_names:
@@ -154,7 +153,6 @@ def write_resource(writer, resource_name, resource, api, top_level=True) -> Set[
         writer.write("from .schemas import *")
         writer.write("import httplib2")
         writer.write("import typing")
-        writer.write("import typing_extensions")
         writer.write("import collections.abc")
         writer.write("_list = list")
     response_types = set()
