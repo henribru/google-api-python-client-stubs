@@ -28,6 +28,7 @@ class Cluster(typing.TypedDict, total=False):
     orchestrator: Orchestrator
     reconciling: bool
     storageResources: dict[str, typing.Any]
+    uid: str
     updateTime: str
 
 @typing.type_check_only

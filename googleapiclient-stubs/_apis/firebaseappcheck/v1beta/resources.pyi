@@ -304,6 +304,13 @@ class FirebaseappcheckResource(googleapiclient.discovery.Resource):
                 body: GoogleFirebaseAppcheckV1betaGeneratePlayIntegrityChallengeRequest,
                 **kwargs: typing.Any,
             ) -> GoogleFirebaseAppcheckV1betaGeneratePlayIntegrityChallengeResponseHttpRequest: ...
+            def mintAppCheckToken(
+                self,
+                *,
+                app: str,
+                body: GoogleFirebaseAppcheckV1betaMintAppCheckTokenRequest,
+                **kwargs: typing.Any,
+            ) -> GoogleFirebaseAppcheckV1betaMintAppCheckTokenResponseHttpRequest: ...
             def appAttestConfig(self) -> AppAttestConfigResource: ...
             def debugTokens(self) -> DebugTokensResource: ...
             def deviceCheckConfig(self) -> DeviceCheckConfigResource: ...
@@ -604,6 +611,16 @@ class GoogleFirebaseAppcheckV1betaListServicesResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleFirebaseAppcheckV1betaListServicesResponse: ...
+
+@typing.type_check_only
+class GoogleFirebaseAppcheckV1betaMintAppCheckTokenResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleFirebaseAppcheckV1betaMintAppCheckTokenResponse: ...
 
 @typing.type_check_only
 class GoogleFirebaseAppcheckV1betaPlayIntegrityConfigHttpRequest(

@@ -119,12 +119,6 @@ class CustomerEngagementSuiteResource(googleapiclient.discovery.Resource):
                             "AGENT_TOOL",
                         ]
                         | None = ...,
-                        view: typing.Literal[
-                            "CONVERSATION_VIEW_UNSPECIFIED",
-                            "CONVERSATION_VIEW_BASIC",
-                            "CONVERSATION_VIEW_FULL",
-                        ]
-                        | None = ...,
                         **kwargs: typing.Any,
                     ) -> ConversationHttpRequest: ...
                     def list(
@@ -178,6 +172,13 @@ class CustomerEngagementSuiteResource(googleapiclient.discovery.Resource):
                             body: LfA2aV1SendMessageRequest,
                             **kwargs: typing.Any,
                         ) -> LfA2aV1SendMessageResponseHttpRequest: ...
+                        def stream(
+                            self,
+                            *,
+                            tenant: str,
+                            body: LfA2aV1SendMessageRequest,
+                            **kwargs: typing.Any,
+                        ) -> LfA2aV1StreamResponseHttpRequest: ...
 
                     def create(
                         self,
@@ -314,6 +315,13 @@ class CustomerEngagementSuiteResource(googleapiclient.discovery.Resource):
                         body: LfA2aV1SendMessageRequest,
                         **kwargs: typing.Any,
                     ) -> LfA2aV1SendMessageResponseHttpRequest: ...
+                    def stream(
+                        self,
+                        *,
+                        tenant: str,
+                        body: LfA2aV1SendMessageRequest,
+                        **kwargs: typing.Any,
+                    ) -> LfA2aV1StreamResponseHttpRequest: ...
 
                 @typing.type_check_only
                 class SessionsResource(googleapiclient.discovery.Resource):
@@ -447,6 +455,13 @@ class CustomerEngagementSuiteResource(googleapiclient.discovery.Resource):
                             body: LfA2aV1SendMessageRequest,
                             **kwargs: typing.Any,
                         ) -> LfA2aV1SendMessageResponseHttpRequest: ...
+                        def stream(
+                            self,
+                            *,
+                            tenant: str,
+                            body: LfA2aV1SendMessageRequest,
+                            **kwargs: typing.Any,
+                        ) -> LfA2aV1StreamResponseHttpRequest: ...
 
                     def create(
                         self,
@@ -480,6 +495,14 @@ class CustomerEngagementSuiteResource(googleapiclient.discovery.Resource):
                         previous_request: ListAppVersionsResponseHttpRequest,
                         previous_response: ListAppVersionsResponse,
                     ) -> ListAppVersionsResponseHttpRequest | None: ...
+                    def patch(
+                        self,
+                        *,
+                        name: str,
+                        body: AppVersion,
+                        updateMask: str | None = ...,
+                        **kwargs: typing.Any,
+                    ) -> AppVersionHttpRequest: ...
                     def restore(
                         self,
                         *,
@@ -726,6 +749,14 @@ class LfA2aV1SendMessageResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> LfA2aV1SendMessageResponse: ...
+
+@typing.type_check_only
+class LfA2aV1StreamResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> LfA2aV1StreamResponse: ...
 
 @typing.type_check_only
 class ListAgentsResponseHttpRequest(googleapiclient.http.HttpRequest):

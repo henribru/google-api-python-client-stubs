@@ -43,6 +43,12 @@ class CloudresourcemanagerGoogleCloudResourcemanagerV2beta1FolderOperation(
     sourceParent: str
 
 @typing.type_check_only
+class CreateBoundaryMetadata(typing.TypedDict, total=False): ...
+
+@typing.type_check_only
+class CreateCapabilityConfigMetadata(typing.TypedDict, total=False): ...
+
+@typing.type_check_only
 class CreateFolderMetadata(typing.TypedDict, total=False):
     displayName: str
     parent: str
@@ -61,6 +67,12 @@ class CreateTagKeyMetadata(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
 class CreateTagValueMetadata(typing.TypedDict, total=False): ...
+
+@typing.type_check_only
+class DeleteBoundaryMetadata(typing.TypedDict, total=False): ...
+
+@typing.type_check_only
+class DeleteCapabilityConfigMetadata(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
 class DeleteFolderMetadata(typing.TypedDict, total=False): ...
@@ -173,6 +185,7 @@ class Policy(typing.TypedDict, total=False):
 class Project(typing.TypedDict, total=False):
     configuredCapabilities: _list[str]
     createTime: str
+    isManagementProject: bool
     labels: dict[str, typing.Any]
     lifecycleState: typing.Literal[
         "LIFECYCLE_STATE_UNSPECIFIED",
@@ -220,6 +233,15 @@ class UndeleteProjectMetadata(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
 class UndeleteProjectRequest(typing.TypedDict, total=False): ...
+
+@typing.type_check_only
+class UpdateBoundaryConfigMetadata(typing.TypedDict, total=False): ...
+
+@typing.type_check_only
+class UpdateBoundaryMetadata(typing.TypedDict, total=False): ...
+
+@typing.type_check_only
+class UpdateCapabilityConfigMetadata(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
 class UpdateFolderMetadata(typing.TypedDict, total=False): ...

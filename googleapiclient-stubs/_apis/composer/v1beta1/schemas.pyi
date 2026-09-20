@@ -117,11 +117,18 @@ class Environment(typing.TypedDict, total=False):
     config: EnvironmentConfig
     createTime: str
     labels: dict[str, typing.Any]
+    mode: typing.Literal["MODE_UNSPECIFIED", "DEVELOPMENT"]
     name: str
     satisfiesPzi: bool
     satisfiesPzs: bool
     state: typing.Literal[
-        "STATE_UNSPECIFIED", "CREATING", "RUNNING", "UPDATING", "DELETING", "ERROR"
+        "STATE_UNSPECIFIED",
+        "CREATING",
+        "RUNNING",
+        "UPDATING",
+        "HIBERNATED",
+        "DELETING",
+        "ERROR",
     ]
     storageConfig: StorageConfig
     updateTime: str
@@ -178,6 +185,9 @@ class FetchDatabasePropertiesResponse(typing.TypedDict, total=False):
     isFailoverReplicaAvailable: bool
     primaryGceZone: str
     secondaryGceZone: str
+
+@typing.type_check_only
+class HibernateEnvironmentRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
 class IPAllocationPolicy(typing.TypedDict, total=False):
@@ -299,6 +309,8 @@ class OperationMetadata(typing.TypedDict, total=False):
         "LOAD_SNAPSHOT",
         "DATABASE_FAILOVER",
         "MIGRATE",
+        "HIBERNATE",
+        "RESUME",
     ]
     resource: str
     resourceUuid: str
@@ -346,6 +358,9 @@ class RecoveryConfig(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class RestartWebServerRequest(typing.TypedDict, total=False): ...
+
+@typing.type_check_only
+class ResumeEnvironmentRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
 class SaveSnapshotRequest(typing.TypedDict, total=False):

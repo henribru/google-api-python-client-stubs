@@ -270,6 +270,8 @@ class GoogleCloudDatacatalogV1Entry(typing.TypedDict, total=False):
         "FEATURE_VIEW",
         "FEATURE_GROUP",
         "GRAPH",
+        "NODE",
+        "EDGE",
     ]
     usageSignal: GoogleCloudDatacatalogV1UsageSignal
     userSpecifiedSystem: str

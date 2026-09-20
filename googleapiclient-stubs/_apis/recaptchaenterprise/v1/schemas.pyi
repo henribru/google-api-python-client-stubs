@@ -602,6 +602,7 @@ class GoogleCloudRecaptchaenterpriseV1TestingOptions(typing.TypedDict, total=Fal
 class GoogleCloudRecaptchaenterpriseV1TokenProperties(typing.TypedDict, total=False):
     action: str
     androidPackageName: str
+    clientSignalsFailed: bool
     createTime: str
     hostname: str
     invalidReason: typing.Literal[

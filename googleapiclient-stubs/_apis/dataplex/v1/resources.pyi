@@ -1888,6 +1888,7 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
+                contexts: str | _list[str] | None = ...,
                 orderBy: str | None = ...,
                 pageSize: int | None = ...,
                 pageToken: str | None = ...,

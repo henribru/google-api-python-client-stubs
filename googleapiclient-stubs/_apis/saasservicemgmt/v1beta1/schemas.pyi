@@ -141,6 +141,10 @@ class FlagAttribute(typing.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class FlagNameList(typing.TypedDict, total=False):
+    flags: _list[str]
+
+@typing.type_check_only
 class FlagRelease(typing.TypedDict, total=False):
     allFlags: bool
     allFlagsRelease: bool
@@ -148,6 +152,7 @@ class FlagRelease(typing.TypedDict, total=False):
     createTime: str
     effectiveFlagRevisions: _list[str]
     etag: str
+    flagNamesRelease: FlagNameList
     flagRevisions: _list[str]
     flagRevisionsRelease: FlagRevisionList
     flagSets: _list[str]
@@ -425,7 +430,11 @@ class Saas(typing.TypedDict, total=False):
     locations: _list[Location]
     name: str
     state: typing.Literal[
-        "STATE_TYPE_UNSPECIFIED", "STATE_ACTIVE", "STATE_RUNNING", "STATE_FAILED"
+        "STATE_UNSPECIFIED",
+        "STATE_TYPE_UNSPECIFIED",
+        "STATE_ACTIVE",
+        "STATE_RUNNING",
+        "STATE_FAILED",
     ]
     uid: str
     updateTime: str

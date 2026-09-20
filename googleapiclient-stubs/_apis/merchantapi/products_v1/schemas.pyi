@@ -176,6 +176,7 @@ class DestinationStatus(typing.TypedDict, total=False):
         "PRODUCT_REVIEWS",
         "MERCHANT_REVIEWS",
         "YOUTUBE_CHECKOUT",
+        "RENTAL_ADS",
     ]
 
 @typing.type_check_only
@@ -245,6 +246,7 @@ class ItemLevelIssue(typing.TypedDict, total=False):
         "PRODUCT_REVIEWS",
         "MERCHANT_REVIEWS",
         "YOUTUBE_CHECKOUT",
+        "RENTAL_ADS",
     ]
     resolution: str
     severity: typing.Literal[
@@ -491,6 +493,7 @@ class ProductAttributes(typing.TypedDict, total=False):
             "VEHICLE_ADS",
             "CLOUD_RETAIL",
             "LOCAL_CLOUD_RETAIL",
+            "RENTAL_ADS",
         ]
     ]
     expirationDate: str
@@ -519,6 +522,7 @@ class ProductAttributes(typing.TypedDict, total=False):
             "VEHICLE_ADS",
             "CLOUD_RETAIL",
             "LOCAL_CLOUD_RETAIL",
+            "RENTAL_ADS",
         ]
     ]
     installment: ProductInstallment
@@ -713,6 +717,8 @@ class ProductCertification(typing.TypedDict, total=False):
         "CERTIFICATION_AUTHORITY_UNSPECIFIED", "ADEME", "BMWK", "EPA", "EC"
     ]
     certificationCode: str
+    certificationDocumentLink: str
+    certificationLabelLink: str
     certificationName: typing.Literal[
         "CERTIFICATION_NAME_UNSPECIFIED",
         "ENERGY_STAR",
@@ -750,6 +756,7 @@ class ProductChange(typing.TypedDict, total=False):
         "PRODUCT_REVIEWS",
         "MERCHANT_REVIEWS",
         "YOUTUBE_CHECKOUT",
+        "RENTAL_ADS",
     ]
 
 @typing.type_check_only
@@ -790,6 +797,7 @@ class ProductInstallment(typing.TypedDict, total=False):
     annualPercentageRate: float
     creditType: typing.Literal["CREDIT_TYPE_UNSPECIFIED", "FINANCE", "LEASE"]
     downpayment: Price
+    mileageAllowance: Mileage
     months: str
     totalAmount: Price
 

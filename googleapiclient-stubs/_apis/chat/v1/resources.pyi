@@ -99,6 +99,28 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
             ) -> MembershipHttpRequest: ...
 
         @typing.type_check_only
+        class MessagePinsResource(googleapiclient.discovery.Resource):
+            def create(
+                self, *, parent: str, body: MessagePin, **kwargs: typing.Any
+            ) -> MessagePinHttpRequest: ...
+            def delete(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> EmptyHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
+                **kwargs: typing.Any,
+            ) -> ListMessagePinsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListMessagePinsResponseHttpRequest,
+                previous_response: ListMessagePinsResponse,
+            ) -> ListMessagePinsResponseHttpRequest | None: ...
+
+        @typing.type_check_only
         class MessagesResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class AttachmentsResource(googleapiclient.discovery.Resource):
@@ -312,6 +334,7 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
             self, *, body: SetUpSpaceRequest, **kwargs: typing.Any
         ) -> SpaceHttpRequest: ...
         def members(self) -> MembersResource: ...
+        def messagePins(self) -> MessagePinsResource: ...
         def messages(self) -> MessagesResource: ...
         def spaceEvents(self) -> SpaceEventsResource: ...
 
@@ -532,6 +555,14 @@ class ListMembershipsResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListMembershipsResponse: ...
 
 @typing.type_check_only
+class ListMessagePinsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListMessagePinsResponse: ...
+
+@typing.type_check_only
 class ListMessagesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -602,6 +633,14 @@ class MessageHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Message: ...
+
+@typing.type_check_only
+class MessagePinHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> MessagePin: ...
 
 @typing.type_check_only
 class MoveSectionItemResponseHttpRequest(googleapiclient.http.HttpRequest):

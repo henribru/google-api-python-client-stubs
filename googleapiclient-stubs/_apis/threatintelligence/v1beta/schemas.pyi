@@ -100,6 +100,7 @@ class ConfigurationDetail(typing.TypedDict, total=False):
     customThreatScenario: CustomThreatScenarioConfig
     customerProfile: CustomerProfileConfig
     detailType: str
+    domainConfiguration: DomainConfiguration
     technologyWatchlist: TechnologyWatchListConfig
 
 @typing.type_check_only
@@ -110,7 +111,10 @@ class ConfigurationRevision(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class CustomThreatScenarioConfig(typing.TypedDict, total=False):
+    compiledLuceneQuery: str
     documentCondition: str
+    documentQuery: DocumentQuery
+    legacyMonitorMetadata: LegacyMetadata
 
 @typing.type_check_only
 class CustomerProfileCitation(typing.TypedDict, total=False):
@@ -218,6 +222,26 @@ class DataLeakFindingDetail(typing.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class DocumentQuery(typing.TypedDict, total=False):
+    dataModel: typing.Literal["DATA_MODEL_UNSPECIFIED", "DATA_MODEL_GTI"]
+    query: str
+    queryType: typing.Literal["QUERY_TYPE_UNSPECIFIED", "QUERY_TYPE_LUCENE"]
+
+@typing.type_check_only
+class DomainConfiguration(typing.TypedDict, total=False):
+    domainSettings: _list[DomainSetting]
+
+@typing.type_check_only
+class DomainMonitoringFeatureConfig(typing.TypedDict, total=False):
+    disabled: bool
+
+@typing.type_check_only
+class DomainSetting(typing.TypedDict, total=False):
+    domain: str
+    domainMonitoringConfig: DomainMonitoringFeatureConfig
+    state: typing.Literal["STATE_UNSPECIFIED", "PENDING", "VERIFIED"]
+
+@typing.type_check_only
 class EnumerateAlertFacetsResponse(typing.TypedDict, total=False):
     facets: _list[Facet]
 
@@ -297,6 +321,25 @@ class InsiderThreatFindingDetail(typing.TypedDict, total=False):
     severity: typing.Literal[
         "SEVERITY_UNSPECIFIED", "LOW", "MEDIUM", "HIGH", "CRITICAL"
     ]
+
+@typing.type_check_only
+class LegacyMetadata(typing.TypedDict, total=False):
+    aggregationEnabled: bool
+    aggregationSimilarity: float
+    conditionVersion: int
+    creatorUserId: str
+    description: str
+    disabledCode: str
+    disabledReason: str
+    displayName: str
+    emailNotificationEnabled: bool
+    emailNotificationImmediate: bool
+    legacyMonitorId: str
+    staleTime: str
+    templateId: str
+    tenantId: str
+    updaterUserId: str
+    version: int
 
 @typing.type_check_only
 class ListAlertsResponse(typing.TypedDict, total=False):

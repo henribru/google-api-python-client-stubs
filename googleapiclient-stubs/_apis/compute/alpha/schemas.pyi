@@ -470,6 +470,9 @@ class AutoscalingPolicyCpuUtilization(typing.TypedDict, total=False):
     predictiveMethod: typing.Literal[
         "NONE", "OPTIMIZE_AVAILABILITY", "PREDICTIVE_METHOD_UNSPECIFIED", "STANDARD"
     ]
+    signalAggregation: AutoscalingPolicySignalAggregation
+    timeAggregation: AutoscalingPolicyTimeAggregation
+    utilizationRange: UtilizationRange
     utilizationTarget: float
 
 @typing.type_check_only
@@ -504,6 +507,21 @@ class AutoscalingPolicyScalingSchedule(typing.TypedDict, total=False):
     minRequiredReplicas: int
     schedule: str
     timeZone: str
+
+@typing.type_check_only
+class AutoscalingPolicySignalAggregation(typing.TypedDict, total=False):
+    percentile: int
+    statistic: typing.Literal[
+        "AGGREGATOR_UNSPECIFIED", "AVERAGE", "MAX", "MIN", "PERCENTILE"
+    ]
+
+@typing.type_check_only
+class AutoscalingPolicyTimeAggregation(typing.TypedDict, total=False):
+    percentile: int
+    statistic: typing.Literal[
+        "AGGREGATOR_UNSPECIFIED", "AVERAGE", "LAST_VALUE", "MAX", "MIN", "PERCENTILE"
+    ]
+    timeWindowSec: int
 
 @typing.type_check_only
 class Backend(typing.TypedDict, total=False):
@@ -697,6 +715,7 @@ class BackendService(typing.TypedDict, total=False):
     metadatas: dict[str, typing.Any]
     name: str
     network: str
+    networkAttachment: str
     networkPassThroughLbTrafficPolicy: BackendServiceNetworkPassThroughLbTrafficPolicy
     orchestrationInfo: BackendServiceOrchestrationInfo
     outlierDetection: OutlierDetection
@@ -721,6 +740,7 @@ class BackendService(typing.TypedDict, total=False):
     selfLink: str
     selfLinkWithId: str
     serviceBindings: _list[str]
+    serviceClassId: str
     serviceLbPolicy: str
     sessionAffinity: typing.Literal[
         "CLIENT_IP",
@@ -1431,6 +1451,9 @@ class Commitment(typing.TypedDict, total=False):
         "NETWORK_OPTIMIZED_U4S",
         "STORAGE_OPTIMIZED_Z3",
         "STORAGE_OPTIMIZED_Z4D",
+        "STORAGE_OPTIMIZED_Z4D4T",
+        "STORAGE_OPTIMIZED_Z4DH",
+        "STORAGE_OPTIMIZED_Z4DS",
         "STORAGE_OPTIMIZED_Z4M",
         "TYPE_UNSPECIFIED",
     ]
@@ -1530,7 +1553,12 @@ class CompositeHealthChecksScopedList(typing.TypedDict, total=False):
 @typing.type_check_only
 class ConfidentialInstanceConfig(typing.TypedDict, total=False):
     confidentialInstanceType: typing.Literal[
-        "CCA", "CONFIDENTIAL_INSTANCE_TYPE_UNSPECIFIED", "SEV", "SEV_SNP", "TDX"
+        "BMSAI",
+        "CCA",
+        "CONFIDENTIAL_INSTANCE_TYPE_UNSPECIFIED",
+        "SEV",
+        "SEV_SNP",
+        "TDX",
     ]
     confidentialParavisorConfig: ConfidentialParavisorConfig
     enableConfidentialCompute: bool
@@ -1948,6 +1976,10 @@ class Duration(typing.TypedDict, total=False):
     seconds: str
 
 @typing.type_check_only
+class DynamicCompressionPolicy(typing.TypedDict, total=False):
+    compressionMode: typing.Literal["AUTOMATIC", "DISABLED"]
+
+@typing.type_check_only
 class ErrorInfo(typing.TypedDict, total=False):
     domain: str
     metadatas: dict[str, typing.Any]
@@ -2075,6 +2107,7 @@ class FirewallPoliciesScopedList(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class FirewallPolicy(typing.TypedDict, total=False):
+    applySecurityProfileFallbackAction: str
     associations: _list[FirewallPolicyAssociation]
     creationTimestamp: str
     description: str
@@ -2286,6 +2319,7 @@ class ForwardingRule(typing.TypedDict, total=False):
     metadataFilters: _list[MetadataFilter]
     name: str
     network: str
+    networkAttachment: str
     networkTier: typing.Literal[
         "FIXED_STANDARD",
         "PREMIUM",
@@ -2310,6 +2344,7 @@ class ForwardingRule(typing.TypedDict, total=False):
     region: str
     selfLink: str
     selfLinkWithId: str
+    serviceClassId: str
     serviceDirectoryRegistrations: _list[ForwardingRuleServiceDirectoryRegistration]
     serviceLabel: str
     serviceName: str
@@ -2365,7 +2400,9 @@ class FutureReservation(typing.TypedDict, total=False):
     colocationResource: str
     commitmentInfo: FutureReservationCommitmentInfo
     confidentialComputeType: typing.Literal[
-        "CONFIDENTIAL_COMPUTE_TYPE_TDX", "CONFIDENTIAL_COMPUTE_TYPE_UNSPECIFIED"
+        "CONFIDENTIAL_COMPUTE_TYPE_BMSAI",
+        "CONFIDENTIAL_COMPUTE_TYPE_TDX",
+        "CONFIDENTIAL_COMPUTE_TYPE_UNSPECIFIED",
     ]
     creationTimestamp: str
     deploymentType: typing.Literal["DENSE", "DEPLOYMENT_TYPE_UNSPECIFIED", "FLEXIBLE"]
@@ -2684,6 +2721,22 @@ class GlobalAddressesMoveRequest(typing.TypedDict, total=False):
     destinationAddress: str
 
 @typing.type_check_only
+class GlobalFrontendSettings(typing.TypedDict, total=False):
+    bundleType: typing.Literal[
+        "BUNDLE_TYPE_UNSPECIFIED", "GLOBAL_FRONT_END", "INDIVIDUAL"
+    ]
+    creationTimestamp: str
+    description: str
+    etag: str
+    id: str
+    name: str
+    selfLink: str
+
+@typing.type_check_only
+class GlobalFrontendSettingsPatchResponse(typing.TypedDict, total=False):
+    operation: Operation
+
+@typing.type_check_only
 class GlobalListVmExtensionsResponse(typing.TypedDict, total=False):
     etag: str
     id: str
@@ -2878,6 +2931,7 @@ class GuestAttributesValue(typing.TypedDict, total=False):
 class GuestOsFeature(typing.TypedDict, total=False):
     type: typing.Literal[
         "BARE_METAL_LINUX_COMPATIBLE",
+        "BMSAI_CAPABLE",
         "CCA_CAPABLE",
         "FEATURE_TYPE_UNSPECIFIED",
         "GVNIC",
@@ -2889,6 +2943,7 @@ class GuestOsFeature(typing.TypedDict, total=False):
         "SEV_LIVE_MIGRATABLE_V2",
         "SEV_SNP_CAPABLE",
         "SNP_SVSM_CAPABLE",
+        "SUSPEND_SAFE_FPR",
         "TDX_CAPABLE",
         "UEFI_COMPATIBLE",
         "VIRTIO_SCSI_MULTIQUEUE",
@@ -3473,6 +3528,7 @@ class HttpRetryPolicy(typing.TypedDict, total=False):
 class HttpRouteAction(typing.TypedDict, total=False):
     cachePolicy: CachePolicy
     corsPolicy: CorsPolicy
+    dynamicCompressionPolicy: DynamicCompressionPolicy
     faultInjectionPolicy: HttpFaultInjection
     imageOptimizationPolicy: ImageOptimizationPolicy
     maxStreamDuration: Duration
@@ -4072,7 +4128,6 @@ class InstanceGroupManagerUpdatePolicy(typing.TypedDict, total=False):
     allowedActions: _list[
         typing.Literal["NONE", "REFRESH", "REPLACE", "RESTART", "RESTART_IN_PLACE"]
     ]
-    disruptionMode: typing.Literal["LEGACY", "OPTIMIZED"]
     instanceRedistributionType: typing.Literal["NONE", "PROACTIVE"]
     maxSurge: FixedOrPercent
     maxUnavailable: FixedOrPercent
@@ -4103,7 +4158,6 @@ class InstanceGroupManagersApplyUpdatesRequest(typing.TypedDict, total=False):
     allowedActions: _list[
         typing.Literal["NONE", "REFRESH", "REPLACE", "RESTART", "RESTART_IN_PLACE"]
     ]
-    disruptionMode: typing.Literal["LEGACY", "OPTIMIZED"]
     instances: _list[str]
     maximalAction: typing.Literal[
         "NONE", "REFRESH", "REPLACE", "RESTART", "RESTART_IN_PLACE"
@@ -5394,6 +5448,8 @@ class InterconnectLocation(typing.TypedDict, total=False):
 @typing.type_check_only
 class InterconnectLocationCrossSiteInterconnectInfo(typing.TypedDict, total=False):
     city: str
+    maxDynamicPathBandwidthGbps: str
+    maxFixedPathBandwidthGbps: str
     maxSingleFlowGbps: int
 
 @typing.type_check_only
@@ -5873,7 +5929,7 @@ class ManagedInstance(typing.TypedDict, total=False):
     sizeInUnit: float
     tag: str
     targetStatus: typing.Literal[
-        "ABANDONED", "DELETED", "RUNNING", "STOPPED", "SUSPENDED"
+        "ABANDONED", "DELETED", "INVALID", "RUNNING", "STOPPED", "SUSPENDED"
     ]
     version: ManagedInstanceVersion
 
@@ -5972,7 +6028,6 @@ class ManagementInterface(typing.TypedDict, total=False):
     type: typing.Literal[
         "TYPE_NVLINK_PARTITION_MANAGEMENT",
         "TYPE_NVLINK_SWITCH_MONITORING",
-        "TYPE_TPU_SLICE_MANAGEMENT",
         "TYPE_UNSPECIFIED",
     ]
 
@@ -6114,6 +6169,7 @@ class NatIpInfoResponse(typing.TypedDict, total=False):
 @typing.type_check_only
 class Network(typing.TypedDict, total=False):
     IPv4Range: str
+    additionalTags: _list[str]
     autoCreateSubnetworks: bool
     creationTimestamp: str
     description: str
@@ -8125,7 +8181,6 @@ class RegionInstanceGroupManagersApplyUpdatesRequest(typing.TypedDict, total=Fal
     allowedActions: _list[
         typing.Literal["NONE", "REFRESH", "REPLACE", "RESTART", "RESTART_IN_PLACE"]
     ]
-    disruptionMode: typing.Literal["LEGACY", "OPTIMIZED"]
     instances: _list[str]
     maximalAction: typing.Literal[
         "NONE", "REFRESH", "REPLACE", "RESTART", "RESTART_IN_PLACE"
@@ -8336,7 +8391,9 @@ class Reservation(typing.TypedDict, total=False):
     aggregateReservation: AllocationAggregateReservation
     commitment: str
     confidentialComputeType: typing.Literal[
-        "CONFIDENTIAL_COMPUTE_TYPE_TDX", "CONFIDENTIAL_COMPUTE_TYPE_UNSPECIFIED"
+        "CONFIDENTIAL_COMPUTE_TYPE_BMSAI",
+        "CONFIDENTIAL_COMPUTE_TYPE_TDX",
+        "CONFIDENTIAL_COMPUTE_TYPE_UNSPECIFIED",
     ]
     creationTimestamp: str
     deleteAfterDuration: Duration
@@ -8903,6 +8960,7 @@ class ResourceStatusPhysicalHostTopology(typing.TypedDict, total=False):
     block: str
     cluster: str
     host: str
+    machine: str
     subblock: str
 
 @typing.type_check_only
@@ -11510,6 +11568,12 @@ class UsableSubnetworksAggregatedList(typing.TypedDict, total=False):
 class UsageExportLocation(typing.TypedDict, total=False):
     bucketName: str
     reportNamePrefix: str
+
+@typing.type_check_only
+class UtilizationRange(typing.TypedDict, total=False):
+    maxUtilization: float
+    minUtilization: float
+    utilizationTarget: float
 
 @typing.type_check_only
 class VmEndpointNatMappings(typing.TypedDict, total=False):

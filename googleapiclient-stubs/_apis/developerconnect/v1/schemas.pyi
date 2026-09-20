@@ -189,6 +189,11 @@ class FetchUserRepositoriesResponse(typing.TypedDict, total=False):
     userRepos: _list[UserRepository]
 
 @typing.type_check_only
+class FieldVisibility(typing.TypedDict, total=False):
+    restriction: str
+    selector: str
+
+@typing.type_check_only
 class FinishOAuthResponse(typing.TypedDict, total=False):
     exchangeError: ExchangeError
 
@@ -379,6 +384,14 @@ class Location(typing.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
+class McpToolVisibility(typing.TypedDict, total=False):
+    fieldVisibility: _list[FieldVisibility]
+    visibilityEnforcementStrategy: typing.Literal[
+        "VISIBILITY_ENFORCEMENT_STRATEGY_UNSPECIFIED", "COMBINE", "OVERRIDE"
+    ]
+    visibilityRestriction: str
+
+@typing.type_check_only
 class OAuthCredential(typing.TypedDict, total=False):
     oauthTokenSecretVersion: str
     username: str
@@ -438,6 +451,7 @@ class ProviderOAuthConfig(typing.TypedDict, total=False):
         "NEW_RELIC",
         "DATASTAX",
         "DYNATRACE",
+        "BITBUCKET_CLOUD",
     ]
 
 @typing.type_check_only
@@ -479,6 +493,7 @@ class StartOAuthResponse(typing.TypedDict, total=False):
         "NEW_RELIC",
         "DATASTAX",
         "DYNATRACE",
+        "BITBUCKET_CLOUD",
     ]
     ticket: str
 

@@ -1067,6 +1067,10 @@ class Origin(typing.TypedDict, total=False):
 class PauseRolloutRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
+class PerStageSoakDurationOverrides(typing.TypedDict, total=False):
+    stageOverrides: dict[str, typing.Any]
+
+@typing.type_check_only
 class Policy(typing.TypedDict, total=False):
     auditConfigs: _list[AuditConfig]
     bindings: _list[Binding]
@@ -1241,16 +1245,20 @@ class Rollout(typing.TypedDict, total=False):
     deleteTime: str
     displayName: str
     etag: str
+    ignoreClusterDisruptionBudgets: bool
+    ignoreMaintenancePolicies: bool
     intent: typing.Literal[
         "ROLLOUT_INTENT_UNSPECIFIED",
         "REGULAR_UPGRADE",
         "CONTROL_PLANE_PATCH_ENFORCEMENT",
         "END_OF_SUPPORT_ENFORCEMENT",
+        "PARTIAL_PATCH",
     ]
     labels: dict[str, typing.Any]
     membershipStates: dict[str, typing.Any]
     name: str
     rolloutSequence: str
+    stageSoakDurationOverrides: dict[str, typing.Any]
     stages: _list[RolloutStage]
     state: typing.Literal[
         "STATE_UNSPECIFIED", "RUNNING", "PAUSED", "CANCELLED", "COMPLETED"
@@ -1658,6 +1666,11 @@ class TypeMeta(typing.TypedDict, total=False):
 @typing.type_check_only
 class UpgradeRolloutSequenceRequest(typing.TypedDict, total=False):
     force: bool
+    ignoreClusterDisruptionBudgets: bool
+    ignoreMaintenancePolicies: bool
+    patchOnly: bool
+    soakDurationOverrideAllStages: str
+    soakDurationOverridePerStage: PerStageSoakDurationOverrides
     upgradeType: typing.Literal["UPGRADE_TYPE_UNSPECIFIED", "CONTROL_PLANE", "NODE"]
     version: str
 

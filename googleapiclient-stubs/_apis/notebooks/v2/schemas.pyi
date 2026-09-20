@@ -392,5 +392,6 @@ class UpgradeInstanceSystemRequest(typing.TypedDict, total=False):
 @typing.type_check_only
 class VmImage(typing.TypedDict, total=False):
     family: str
+    imageDescription: str
     name: str
     project: str

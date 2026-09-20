@@ -164,6 +164,11 @@ class CommitSchemaRequest(typing.TypedDict, total=False):
     schema: Schema
 
 @typing.type_check_only
+class CompiledProtoSchema(typing.TypedDict, total=False):
+    compiledBytes: str
+    rootMessage: str
+
+@typing.type_check_only
 class Compression(typing.TypedDict, total=False):
     compressionAlgorithm: typing.Literal["COMPRESSION_ALGORITHM_UNSPECIFIED", "ZLIB"]
     compressionMode: typing.Literal[
@@ -364,6 +369,7 @@ class RollbackSchemaRequest(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class Schema(typing.TypedDict, total=False):
+    compiledProtoSchema: CompiledProtoSchema
     definition: str
     name: str
     revisionCreateTime: str

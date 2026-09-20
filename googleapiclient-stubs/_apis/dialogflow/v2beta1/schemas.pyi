@@ -2626,6 +2626,7 @@ class GoogleCloudDialogflowV2ToolCallResult(typing.TypedDict, total=False):
 @typing.type_check_only
 class GoogleCloudDialogflowV2ToolCallResultError(typing.TypedDict, total=False):
     message: str
+    retryable: bool
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2UndeployConversationModelOperationMetadata(
@@ -3928,6 +3929,7 @@ class GoogleCloudDialogflowV2beta1InputAudioConfig(typing.TypedDict, total=False
     enableAutomaticPunctuation: bool
     enableVoiceActivityEvents: bool
     enableWordInfo: bool
+    geminiAsrConfig: GoogleCloudDialogflowV2beta1SpeechToTextConfigGeminiAsrConfig
     languageCode: str
     model: str
     modelVariant: typing.Literal[
@@ -3942,6 +3944,7 @@ class GoogleCloudDialogflowV2beta1InputAudioConfig(typing.TypedDict, total=False
     sampleRateHertz: int
     singleUtterance: bool
     speechContexts: _list[GoogleCloudDialogflowV2beta1SpeechContext]
+    useGeminiAsr: bool
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2beta1Intent(typing.TypedDict, total=False):
@@ -5212,6 +5215,7 @@ class GoogleCloudDialogflowV2beta1SpeechToTextConfig(typing.TypedDict, total=Fal
         "AUDIO_ENCODING_ALAW",
     ]
     enableWordInfo: bool
+    geminiAsrConfig: GoogleCloudDialogflowV2beta1SpeechToTextConfigGeminiAsrConfig
     languageCode: str
     model: str
     phraseSets: _list[str]
@@ -5222,7 +5226,24 @@ class GoogleCloudDialogflowV2beta1SpeechToTextConfig(typing.TypedDict, total=Fal
         "USE_STANDARD",
         "USE_ENHANCED",
     ]
+    useGeminiAsr: bool
     useTimeoutBasedEndpointing: bool
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1SpeechToTextConfigGeminiAsrConfig(
+    typing.TypedDict, total=False
+):
+    endOfSpeechSensitivity: typing.Literal[
+        "END_SENSITIVITY_UNSPECIFIED", "END_SENSITIVITY_HIGH", "END_SENSITIVITY_LOW"
+    ]
+    modelId: str
+    prefixPaddingMs: int
+    silenceDurationMs: int
+    startOfSpeechSensitivity: typing.Literal[
+        "START_SENSITIVITY_UNSPECIFIED",
+        "START_SENSITIVITY_HIGH",
+        "START_SENSITIVITY_LOW",
+    ]
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2beta1SpeechWordInfo(typing.TypedDict, total=False):
@@ -5760,6 +5781,7 @@ class GoogleCloudDialogflowV2beta1ToolCallResult(typing.TypedDict, total=False):
 @typing.type_check_only
 class GoogleCloudDialogflowV2beta1ToolCallResultError(typing.TypedDict, total=False):
     message: str
+    retryable: bool
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2beta1ToolConnectorTool(typing.TypedDict, total=False):

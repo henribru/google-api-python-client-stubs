@@ -40,6 +40,11 @@ class AuditLog(typing.TypedDict, total=False):
     status: Status
 
 @typing.type_check_only
+class AuditPamBindingId(typing.TypedDict, total=False):
+    container: str
+    grantUuid: str
+
+@typing.type_check_only
 class Auth(typing.TypedDict, total=False):
     accessLevels: _list[str]
     audiences: _list[str]
@@ -72,6 +77,7 @@ class AuthorizationInfo(typing.TypedDict, total=False):
         "DATA_READ",
         "DATA_WRITE",
     ]
+    privilegedAccessManagerMetadata: PrivilegedAccessManagerMetadata
     resource: str
     resourceAttributes: Resource
 
@@ -119,6 +125,16 @@ class Peer(typing.TypedDict, total=False):
 @typing.type_check_only
 class PolicyViolationInfo(typing.TypedDict, total=False):
     orgPolicyViolationInfo: OrgPolicyViolationInfo
+    rabPolicyViolationInfo: RabPolicyViolationInfo
+
+@typing.type_check_only
+class PrivilegedAccessManagerMetadata(typing.TypedDict, total=False):
+    pamBindingIds: _list[AuditPamBindingId]
+
+@typing.type_check_only
+class RabPolicyViolationInfo(typing.TypedDict, total=False):
+    errorMessage: str
+    resourceLocations: _list[str]
 
 @typing.type_check_only
 class ReportRequest(typing.TypedDict, total=False):

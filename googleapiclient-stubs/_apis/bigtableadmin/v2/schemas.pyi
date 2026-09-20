@@ -751,7 +751,7 @@ class Table(typing.TypedDict, total=False):
     clusterStates: dict[str, typing.Any]
     columnFamilies: dict[str, typing.Any]
     deletionProtection: bool
-    granularity: typing.Literal["TIMESTAMP_GRANULARITY_UNSPECIFIED", "MILLIS"]
+    granularity: typing.Literal["TIMESTAMP_GRANULARITY_UNSPECIFIED", "MILLIS", "MICROS"]
     name: str
     restoreInfo: RestoreInfo
     rowKeySchema: GoogleBigtableAdminV2TypeStruct

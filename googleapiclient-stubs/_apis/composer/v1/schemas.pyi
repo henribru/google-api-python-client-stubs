@@ -116,11 +116,18 @@ class Environment(typing.TypedDict, total=False):
     config: EnvironmentConfig
     createTime: str
     labels: dict[str, typing.Any]
+    mode: typing.Literal["MODE_UNSPECIFIED", "DEVELOPMENT"]
     name: str
     satisfiesPzi: bool
     satisfiesPzs: bool
     state: typing.Literal[
-        "STATE_UNSPECIFIED", "CREATING", "RUNNING", "UPDATING", "DELETING", "ERROR"
+        "STATE_UNSPECIFIED",
+        "CREATING",
+        "RUNNING",
+        "UPDATING",
+        "HIBERNATED",
+        "DELETING",
+        "ERROR",
     ]
     storageConfig: StorageConfig
     updateTime: str
@@ -296,6 +303,8 @@ class OperationMetadata(typing.TypedDict, total=False):
         "LOAD_SNAPSHOT",
         "DATABASE_FAILOVER",
         "MIGRATE",
+        "HIBERNATE",
+        "RESUME",
     ]
     resource: str
     resourceUuid: str

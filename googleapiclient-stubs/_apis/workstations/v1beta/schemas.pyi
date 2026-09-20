@@ -80,6 +80,8 @@ class GceConfidentialInstanceConfig(typing.TypedDict, total=False):
 class GceHyperdiskBalancedHighAvailability(typing.TypedDict, total=False):
     archiveTimeout: str
     maxSizeGb: int
+    provisionedIops: str
+    provisionedThroughput: str
     reclaimPolicy: typing.Literal["RECLAIM_POLICY_UNSPECIFIED", "DELETE", "RETAIN"]
     sizeGb: int
     sourceSnapshot: str
@@ -343,6 +345,7 @@ class WorkstationBoostConfig(typing.TypedDict, total=False):
 class WorkstationCluster(typing.TypedDict, total=False):
     annotations: dict[str, typing.Any]
     conditions: _list[Status]
+    consoleBaseUrl: str
     controlPlaneIp: str
     createTime: str
     degraded: bool

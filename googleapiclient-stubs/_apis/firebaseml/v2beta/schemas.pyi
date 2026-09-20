@@ -407,6 +407,7 @@ class GoogleCloudAiplatformV1beta1GenerationConfig(typing.TypedDict, total=False
     thinkingConfig: GoogleCloudAiplatformV1beta1GenerationConfigThinkingConfig
     topK: float
     topP: float
+    translationConfig: GoogleCloudAiplatformV1beta1TranslationConfig
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1GenerationConfigModelConfig(
@@ -661,6 +662,7 @@ class GoogleCloudAiplatformV1beta1Part(typing.TypedDict, total=False):
     functionCall: GoogleCloudAiplatformV1beta1FunctionCall
     functionResponse: GoogleCloudAiplatformV1beta1FunctionResponse
     inlineData: GoogleCloudAiplatformV1beta1Blob
+    mediaProcessing: typing.Literal["MEDIA_PROCESSING_UNSPECIFIED", "STATIC", "AGENTIC"]
     mediaResolution: GoogleCloudAiplatformV1beta1PartMediaResolution
     text: str
     thought: bool
@@ -972,6 +974,11 @@ class GoogleCloudAiplatformV1beta1ToolParallelAiSearch(typing.TypedDict, total=F
     customConfigs: dict[str, typing.Any]
     enableDataRetention: bool
     enableZeroDataRetention: bool
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1TranslationConfig(typing.TypedDict, total=False):
+    echoTargetLanguage: bool
+    targetLanguageCode: str
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1UrlContext(typing.TypedDict, total=False): ...

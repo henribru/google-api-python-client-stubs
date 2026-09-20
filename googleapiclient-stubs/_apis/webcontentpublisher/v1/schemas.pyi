@@ -105,6 +105,4 @@ class SlProduct(typing.TypedDict, total=False):
 @typing.type_check_only
 class TosAcceptance(typing.TypedDict, total=False):
     emailOptIn: bool
-    signer: str
-    signerTitle: str
     userAccepted: bool

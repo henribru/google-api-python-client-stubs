@@ -73,6 +73,52 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
         ) -> OperationHttpRequest: ...
 
     @typing.type_check_only
+    class BlueGreenDeploymentsResource(googleapiclient.discovery.Resource):
+        def create(
+            self,
+            *,
+            parent: str,
+            body: BlueGreenDeployment,
+            blueGreenDeploymentId: str | None = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
+        def delete(
+            self, *, name: str, deleteOldSource: bool | None = ..., **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def get(
+            self,
+            *,
+            name: str,
+            view: typing.Literal[
+                "BLUE_GREEN_DEPLOYMENT_VIEW_UNSPECIFIED", "BASIC", "DETAILED"
+            ]
+            | None = ...,
+            **kwargs: typing.Any,
+        ) -> BlueGreenDeploymentHttpRequest: ...
+        def list(
+            self,
+            *,
+            parent: str,
+            filter: str | None = ...,
+            orderBy: str | None = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
+            **kwargs: typing.Any,
+        ) -> ListBlueGreenDeploymentsResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListBlueGreenDeploymentsResponseHttpRequest,
+            previous_response: ListBlueGreenDeploymentsResponse,
+        ) -> ListBlueGreenDeploymentsResponseHttpRequest | None: ...
+        def switchover(
+            self,
+            *,
+            name: str,
+            body: SwitchoverBlueGreenDeploymentRequest,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
+
+    @typing.type_check_only
     class ConnectResource(googleapiclient.discovery.Resource):
         def generateEphemeralCert(
             self,
@@ -97,16 +143,39 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class DatabasesResource(googleapiclient.discovery.Resource):
         def delete(
-            self, *, project: str, instance: str, database: str, **kwargs: typing.Any
+            self,
+            *,
+            project: str,
+            instance: str,
+            database: str,
+            location: str | None = ...,
+            **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def get(
-            self, *, project: str, instance: str, database: str, **kwargs: typing.Any
+            self,
+            *,
+            project: str,
+            instance: str,
+            database: str,
+            location: str | None = ...,
+            **kwargs: typing.Any,
         ) -> DatabaseHttpRequest: ...
         def insert(
-            self, *, project: str, instance: str, body: Database, **kwargs: typing.Any
+            self,
+            *,
+            project: str,
+            instance: str,
+            body: Database,
+            location: str | None = ...,
+            **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def list(
-            self, *, project: str, instance: str, **kwargs: typing.Any
+            self,
+            *,
+            project: str,
+            instance: str,
+            location: str | None = ...,
+            **kwargs: typing.Any,
         ) -> DatabasesListResponseHttpRequest: ...
         def patch(
             self,
@@ -115,6 +184,7 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
             instance: str,
             database: str,
             body: Database,
+            location: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def update(
@@ -124,6 +194,7 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
             instance: str,
             database: str,
             body: Database,
+            location: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
 
@@ -145,10 +216,20 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class InstancesResource(googleapiclient.discovery.Resource):
         def ListEntraIdCertificates(
-            self, *, project: str, instance: str, **kwargs: typing.Any
+            self,
+            *,
+            project: str,
+            instance: str,
+            location: str | None = ...,
+            **kwargs: typing.Any,
         ) -> InstancesListEntraIdCertificatesResponseHttpRequest: ...
         def ListServerCertificates(
-            self, *, project: str, instance: str, **kwargs: typing.Any
+            self,
+            *,
+            project: str,
+            instance: str,
+            location: str | None = ...,
+            **kwargs: typing.Any,
         ) -> InstancesListServerCertificatesResponseHttpRequest: ...
         def RotateEntraIdCertificate(
             self,
@@ -156,6 +237,7 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
             project: str,
             instance: str,
             body: InstancesRotateEntraIdCertificateRequest,
+            location: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def RotateServerCertificate(
@@ -164,6 +246,7 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
             project: str,
             instance: str,
             body: InstancesRotateServerCertificateRequest,
+            location: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def acquireSsrsLease(
@@ -172,16 +255,32 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
             project: str,
             instance: str,
             body: InstancesAcquireSsrsLeaseRequest,
+            location: str | None = ...,
             **kwargs: typing.Any,
         ) -> SqlInstancesAcquireSsrsLeaseResponseHttpRequest: ...
         def addEntraIdCertificate(
-            self, *, project: str, instance: str, **kwargs: typing.Any
+            self,
+            *,
+            project: str,
+            instance: str,
+            location: str | None = ...,
+            **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def addServerCa(
-            self, *, project: str, instance: str, **kwargs: typing.Any
+            self,
+            *,
+            project: str,
+            instance: str,
+            location: str | None = ...,
+            **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def addServerCertificate(
-            self, *, project: str, instance: str, **kwargs: typing.Any
+            self,
+            *,
+            project: str,
+            instance: str,
+            location: str | None = ...,
+            **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def clone(
             self,
@@ -189,6 +288,7 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
             project: str,
             instance: str,
             body: InstancesCloneRequest,
+            location: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def delete(
@@ -200,6 +300,7 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
             finalBackupDescription: str | None = ...,
             finalBackupExpiryTime: str | None = ...,
             finalBackupTtlDays: str | None = ...,
+            location: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def demote(
@@ -208,6 +309,7 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
             project: str,
             instance: str,
             body: InstancesDemoteRequest,
+            location: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def demoteMaster(
@@ -216,6 +318,7 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
             project: str,
             instance: str,
             body: InstancesDemoteMasterRequest,
+            location: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def executeSql(
@@ -224,6 +327,7 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
             project: str,
             instance: str,
             body: ExecuteSqlPayload,
+            location: str | None = ...,
             **kwargs: typing.Any,
         ) -> SqlInstancesExecuteSqlResponseHttpRequest: ...
         def export(
@@ -232,6 +336,7 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
             project: str,
             instance: str,
             body: InstancesExportRequest,
+            location: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def failover(
@@ -240,10 +345,16 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
             project: str,
             instance: str,
             body: InstancesFailoverRequest,
+            location: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def get(
-            self, *, project: str, instance: str, **kwargs: typing.Any
+            self,
+            *,
+            project: str,
+            instance: str,
+            location: str | None = ...,
+            **kwargs: typing.Any,
         ) -> DatabaseInstanceHttpRequest: ...
         def import_(
             self,
@@ -251,16 +362,23 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
             project: str,
             instance: str,
             body: InstancesImportRequest,
+            location: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def insert(
-            self, *, project: str, body: DatabaseInstance, **kwargs: typing.Any
+            self,
+            *,
+            project: str,
+            body: DatabaseInstance,
+            location: str | None = ...,
+            **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def list(
             self,
             *,
             project: str,
             filter: str | None = ...,
+            location: str | None = ...,
             maxResults: int | None = ...,
             pageToken: str | None = ...,
             **kwargs: typing.Any,
@@ -271,7 +389,12 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
             previous_response: InstancesListResponse,
         ) -> InstancesListResponseHttpRequest | None: ...
         def listServerCas(
-            self, *, project: str, instance: str, **kwargs: typing.Any
+            self,
+            *,
+            project: str,
+            instance: str,
+            location: str | None = ...,
+            **kwargs: typing.Any,
         ) -> InstancesListServerCasResponseHttpRequest: ...
         def patch(
             self,
@@ -279,6 +402,7 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
             project: str,
             instance: str,
             body: DatabaseInstance,
+            location: str | None = ...,
             reconcilePscNetworking: bool | None = ...,
             reconcilePscNetworkingForce: bool | None = ...,
             **kwargs: typing.Any,
@@ -292,6 +416,7 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
             project: str,
             instance: str,
             body: InstancesPreCheckMajorVersionUpgradeRequest,
+            location: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def promoteReplica(
@@ -300,6 +425,7 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
             project: str,
             instance: str,
             failover: bool | None = ...,
+            location: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def reencrypt(
@@ -308,16 +434,23 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
             project: str,
             instance: str,
             body: InstancesReencryptRequest,
+            location: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def releaseSsrsLease(
-            self, *, project: str, instance: str, **kwargs: typing.Any
+            self,
+            *,
+            project: str,
+            instance: str,
+            location: str | None = ...,
+            **kwargs: typing.Any,
         ) -> SqlInstancesReleaseSsrsLeaseResponseHttpRequest: ...
         def resetSslConfig(
             self,
             *,
             project: str,
             instance: str,
+            location: str | None = ...,
             mode: typing.Literal[
                 "RESET_SSL_MODE_UNSPECIFIED", "ALL", "SYNC_FROM_PRIMARY"
             ]
@@ -325,7 +458,12 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def restart(
-            self, *, project: str, instance: str, **kwargs: typing.Any
+            self,
+            *,
+            project: str,
+            instance: str,
+            location: str | None = ...,
+            **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def restoreBackup(
             self,
@@ -333,6 +471,7 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
             project: str,
             instance: str,
             body: InstancesRestoreBackupRequest,
+            location: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def rotateServerCa(
@@ -341,13 +480,24 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
             project: str,
             instance: str,
             body: InstancesRotateServerCaRequest,
+            location: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def startReplica(
-            self, *, project: str, instance: str, **kwargs: typing.Any
+            self,
+            *,
+            project: str,
+            instance: str,
+            location: str | None = ...,
+            **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def stopReplica(
-            self, *, project: str, instance: str, **kwargs: typing.Any
+            self,
+            *,
+            project: str,
+            instance: str,
+            location: str | None = ...,
+            **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def switchover(
             self,
@@ -355,6 +505,7 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
             project: str,
             instance: str,
             dbTimeout: str | None = ...,
+            location: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def truncateLog(
@@ -363,6 +514,7 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
             project: str,
             instance: str,
             body: InstancesTruncateLogRequest,
+            location: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def update(
@@ -371,6 +523,7 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
             project: str,
             instance: str,
             body: DatabaseInstance,
+            location: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
 
@@ -413,13 +566,19 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class InstancesResource(googleapiclient.discovery.Resource):
             def getDiskShrinkConfig(
-                self, *, project: str, instance: str, **kwargs: typing.Any
+                self,
+                *,
+                project: str,
+                instance: str,
+                location: str | None = ...,
+                **kwargs: typing.Any,
             ) -> SqlInstancesGetDiskShrinkConfigResponseHttpRequest: ...
             def getLatestRecoveryTime(
                 self,
                 *,
                 project: str,
                 instance: str,
+                location: str | None = ...,
                 sourceInstanceDeletionTime: str | None = ...,
                 **kwargs: typing.Any,
             ) -> SqlInstancesGetLatestRecoveryTimeResponseHttpRequest: ...
@@ -429,6 +588,7 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
                 project: str,
                 instance: str,
                 body: PerformDiskShrinkContext,
+                location: str | None = ...,
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
             def rescheduleMaintenance(
@@ -437,6 +597,7 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
                 project: str,
                 instance: str,
                 body: SqlInstancesRescheduleMaintenanceRequestBody,
+                location: str | None = ...,
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
             def resetReplicaSize(
@@ -474,6 +635,7 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
             project: str,
             instance: str,
             body: SslCertsCreateEphemeralRequest,
+            location: str | None = ...,
             **kwargs: typing.Any,
         ) -> SslCertHttpRequest: ...
         def delete(
@@ -518,6 +680,7 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
             project: str,
             instance: str,
             host: str | None = ...,
+            location: str | None = ...,
             name: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -528,13 +691,25 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
             instance: str,
             name: str,
             host: str | None = ...,
+            location: str | None = ...,
             **kwargs: typing.Any,
         ) -> UserHttpRequest: ...
         def insert(
-            self, *, project: str, instance: str, body: User, **kwargs: typing.Any
+            self,
+            *,
+            project: str,
+            instance: str,
+            body: User,
+            location: str | None = ...,
+            **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def list(
-            self, *, project: str, instance: str, **kwargs: typing.Any
+            self,
+            *,
+            project: str,
+            instance: str,
+            location: str | None = ...,
+            **kwargs: typing.Any,
         ) -> UsersListResponseHttpRequest: ...
         def update(
             self,
@@ -544,6 +719,7 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
             body: User,
             databaseRoles: str | _list[str] | None = ...,
             host: str | None = ...,
+            location: str | None = ...,
             name: str | None = ...,
             revokeExistingRoles: bool | None = ...,
             revokeExistingServerRoles: bool | None = ...,
@@ -565,6 +741,7 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def backupRuns(self) -> BackupRunsResource: ...
     def backups(self) -> BackupsResource: ...
+    def blueGreenDeployments(self) -> BlueGreenDeploymentsResource: ...
     def connect(self) -> ConnectResource: ...
     def databases(self) -> DatabasesResource: ...
     def flags(self) -> FlagsResource: ...
@@ -598,6 +775,14 @@ class BackupRunsListResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> BackupRunsListResponse: ...
+
+@typing.type_check_only
+class BlueGreenDeploymentHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> BlueGreenDeployment: ...
 
 @typing.type_check_only
 class ConnectSettingsHttpRequest(googleapiclient.http.HttpRequest):
@@ -698,6 +883,14 @@ class ListBackupsResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListBackupsResponse: ...
+
+@typing.type_check_only
+class ListBlueGreenDeploymentsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListBlueGreenDeploymentsResponse: ...
 
 @typing.type_check_only
 class OperationHttpRequest(googleapiclient.http.HttpRequest):

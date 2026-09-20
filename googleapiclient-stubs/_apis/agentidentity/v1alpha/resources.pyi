@@ -51,6 +51,13 @@ class AgentIdentityResource(googleapiclient.discovery.Resource):
                     def get(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> AuthorizationHttpRequest: ...
+                    def getIamPolicy(
+                        self,
+                        *,
+                        resource: str,
+                        options_requestedPolicyVersion: int | None = ...,
+                        **kwargs: typing.Any,
+                    ) -> PolicyHttpRequest: ...
                     def list(
                         self,
                         *,
@@ -66,6 +73,20 @@ class AgentIdentityResource(googleapiclient.discovery.Resource):
                         previous_request: ListAuthorizationsResponseHttpRequest,
                         previous_response: ListAuthorizationsResponse,
                     ) -> ListAuthorizationsResponseHttpRequest | None: ...
+                    def setIamPolicy(
+                        self,
+                        *,
+                        resource: str,
+                        body: SetIamPolicyRequest,
+                        **kwargs: typing.Any,
+                    ) -> PolicyHttpRequest: ...
+                    def testIamPermissions(
+                        self,
+                        *,
+                        resource: str,
+                        body: TestIamPermissionsRequest,
+                        **kwargs: typing.Any,
+                    ) -> TestIamPermissionsResponseHttpRequest: ...
 
                 def create(
                     self,

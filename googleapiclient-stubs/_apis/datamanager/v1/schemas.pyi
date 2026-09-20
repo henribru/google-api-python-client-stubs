@@ -75,6 +75,7 @@ class AdEvent(typing.TypedDict, total=False):
     eventType: typing.Literal[
         "EVENT_TYPE_UNSPECIFIED", "EVENT_TYPE_VIEW", "EVENT_TYPE_CLICK"
     ]
+    ipAddress: str
     measurementAllowed: bool
     medium: str
     mobileDeviceId: str
@@ -119,7 +120,9 @@ class AdIdentifiers(typing.TypedDict, total=False):
     landingPageDeviceInfo: DeviceInfo
     matchId: str
     mobileDeviceId: str
+    ppid: str
     sessionAttributes: str
+    visitorPpid: str
     wbraid: str
 
 @typing.type_check_only
@@ -702,6 +705,7 @@ class ProductAccount(typing.TypedDict, total=False):
         "GOOGLE_ANALYTICS_PROPERTY",
         "GOOGLE_AD_MANAGER_AUDIENCE_LINK",
         "FLOODLIGHT_CONFIG",
+        "GOOGLE_AD_MANAGER",
     ]
     product: typing.Literal[
         "PRODUCT_UNSPECIFIED",

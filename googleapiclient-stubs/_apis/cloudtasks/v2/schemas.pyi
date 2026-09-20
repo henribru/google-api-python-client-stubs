@@ -159,6 +159,14 @@ class OidcToken(typing.TypedDict, total=False):
     serviceAccountEmail: str
 
 @typing.type_check_only
+class Operation(typing.TypedDict, total=False):
+    done: bool
+    error: Status
+    metadata: dict[str, typing.Any]
+    name: str
+    response: dict[str, typing.Any]
+
+@typing.type_check_only
 class PathOverride(typing.TypedDict, total=False):
     path: str
 

@@ -223,7 +223,11 @@ class Saas(typing.TypedDict, total=False):
     locations: _list[Location]
     name: str
     state: typing.Literal[
-        "STATE_TYPE_UNSPECIFIED", "STATE_ACTIVE", "STATE_RUNNING", "STATE_FAILED"
+        "STATE_UNSPECIFIED",
+        "STATE_TYPE_UNSPECIFIED",
+        "STATE_ACTIVE",
+        "STATE_RUNNING",
+        "STATE_FAILED",
     ]
     uid: str
     updateTime: str

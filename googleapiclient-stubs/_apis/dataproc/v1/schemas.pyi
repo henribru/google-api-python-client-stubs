@@ -171,6 +171,7 @@ class AttachedDiskConfig(typing.TypedDict, total=False):
     ]
     provisionedIops: str
     provisionedThroughput: str
+    type: str
 
 @typing.type_check_only
 class AttachmentOperationMetadata(typing.TypedDict, total=False):

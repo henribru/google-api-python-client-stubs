@@ -1079,6 +1079,7 @@ class TestIamPermissionsResponse(typing.TypedDict, total=False):
 @typing.type_check_only
 class Transport(typing.TypedDict, total=False):
     advertisedRoutes: _list[str]
+    autoAccept: bool
     bandwidth: typing.Literal[
         "BANDWIDTH_UNSPECIFIED",
         "BPS_50M",
@@ -1098,12 +1099,14 @@ class Transport(typing.TypedDict, total=False):
     createTime: str
     description: str
     generatedActivationKey: str
+    hub: str
     labels: dict[str, typing.Any]
     mtuLimit: int
     name: str
     network: str
     peeringNetwork: str
     providedActivationKey: str
+    pscRoutingEnabled: bool
     remoteAccountId: str
     remoteProfile: str
     stackType: typing.Literal["STACK_TYPE_UNSPECIFIED", "IPV4_ONLY", "IPV4_IPV6"]

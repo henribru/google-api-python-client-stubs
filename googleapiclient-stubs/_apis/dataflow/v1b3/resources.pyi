@@ -13,6 +13,96 @@ _list = list
 @typing.type_check_only
 class DataflowResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
+    class FoldersResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
+        class LocationsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class ConfigStoreSettingsResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: ConfigStoreSetting,
+                    configStoreSettingId: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> ConfigStoreSettingHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> EmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> ConfigStoreSettingHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> ListConfigStoreSettingsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListConfigStoreSettingsResponseHttpRequest,
+                    previous_response: ListConfigStoreSettingsResponse,
+                ) -> ListConfigStoreSettingsResponseHttpRequest | None: ...
+                def resolve(
+                    self,
+                    *,
+                    name: str,
+                    body: ResolveConfigStoreSettingRequest,
+                    **kwargs: typing.Any,
+                ) -> ResolveConfigStoreSettingResponseHttpRequest: ...
+
+            def configStoreSettings(self) -> ConfigStoreSettingsResource: ...
+
+        def locations(self) -> LocationsResource: ...
+
+    @typing.type_check_only
+    class OrganizationsResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
+        class LocationsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class ConfigStoreSettingsResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: ConfigStoreSetting,
+                    configStoreSettingId: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> ConfigStoreSettingHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> EmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> ConfigStoreSettingHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> ListConfigStoreSettingsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListConfigStoreSettingsResponseHttpRequest,
+                    previous_response: ListConfigStoreSettingsResponse,
+                ) -> ListConfigStoreSettingsResponseHttpRequest | None: ...
+                def resolve(
+                    self,
+                    *,
+                    name: str,
+                    body: ResolveConfigStoreSettingRequest,
+                    **kwargs: typing.Any,
+                ) -> ResolveConfigStoreSettingResponseHttpRequest: ...
+
+            def configStoreSettings(self) -> ConfigStoreSettingsResource: ...
+
+        def locations(self) -> LocationsResource: ...
+
+    @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class JobsResource(googleapiclient.discovery.Resource):
@@ -93,6 +183,7 @@ class DataflowResource(googleapiclient.discovery.Resource):
                 name: str | None = ...,
                 pageSize: int | None = ...,
                 pageToken: str | None = ...,
+                regionalFanoutRequested: bool | None = ...,
                 view: typing.Literal[
                     "JOB_VIEW_UNKNOWN",
                     "JOB_VIEW_SUMMARY",
@@ -157,6 +248,7 @@ class DataflowResource(googleapiclient.discovery.Resource):
                 name: str | None = ...,
                 pageSize: int | None = ...,
                 pageToken: str | None = ...,
+                regionalFanoutRequested: bool | None = ...,
                 view: typing.Literal[
                     "JOB_VIEW_UNKNOWN",
                     "JOB_VIEW_SUMMARY",
@@ -195,6 +287,43 @@ class DataflowResource(googleapiclient.discovery.Resource):
 
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class ConfigStoreSettingsResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: ConfigStoreSetting,
+                    configStoreSettingId: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> ConfigStoreSettingHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> EmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> ConfigStoreSettingHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> ListConfigStoreSettingsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListConfigStoreSettingsResponseHttpRequest,
+                    previous_response: ListConfigStoreSettingsResponse,
+                ) -> ListConfigStoreSettingsResponseHttpRequest | None: ...
+                def resolve(
+                    self,
+                    *,
+                    name: str,
+                    body: ResolveConfigStoreSettingRequest,
+                    **kwargs: typing.Any,
+                ) -> ResolveConfigStoreSettingResponseHttpRequest: ...
+
             @typing.type_check_only
             class FlexTemplatesResource(googleapiclient.discovery.Resource):
                 def launch(
@@ -385,6 +514,7 @@ class DataflowResource(googleapiclient.discovery.Resource):
                     name: str | None = ...,
                     pageSize: int | None = ...,
                     pageToken: str | None = ...,
+                    regionalFanoutRequested: bool | None = ...,
                     view: typing.Literal[
                         "JOB_VIEW_UNKNOWN",
                         "JOB_VIEW_SUMMARY",
@@ -491,6 +621,7 @@ class DataflowResource(googleapiclient.discovery.Resource):
                 body: SendWorkerMessagesRequest,
                 **kwargs: typing.Any,
             ) -> SendWorkerMessagesResponseHttpRequest: ...
+            def configStoreSettings(self) -> ConfigStoreSettingsResource: ...
             def flexTemplates(self) -> FlexTemplatesResource: ...
             def jobs(self) -> JobsResource: ...
             def snapshots(self) -> SnapshotsResource: ...
@@ -578,7 +709,17 @@ class DataflowResource(googleapiclient.discovery.Resource):
         ]
         | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
+    def folders(self) -> FoldersResource: ...
+    def organizations(self) -> OrganizationsResource: ...
     def projects(self) -> ProjectsResource: ...
+
+@typing.type_check_only
+class ConfigStoreSettingHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ConfigStoreSetting: ...
 
 @typing.type_check_only
 class DeleteSnapshotResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -587,6 +728,14 @@ class DeleteSnapshotResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> DeleteSnapshotResponse: ...
+
+@typing.type_check_only
+class EmptyHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> Empty: ...
 
 @typing.type_check_only
 class GetDebugConfigResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -661,6 +810,14 @@ class LeaseWorkItemResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> LeaseWorkItemResponse: ...
 
 @typing.type_check_only
+class ListConfigStoreSettingsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListConfigStoreSettingsResponse: ...
+
+@typing.type_check_only
 class ListJobMessagesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -691,6 +848,14 @@ class ReportWorkItemStatusResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ReportWorkItemStatusResponse: ...
+
+@typing.type_check_only
+class ResolveConfigStoreSettingResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ResolveConfigStoreSettingResponse: ...
 
 @typing.type_check_only
 class SendDebugCaptureResponseHttpRequest(googleapiclient.http.HttpRequest):

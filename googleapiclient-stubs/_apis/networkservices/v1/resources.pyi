@@ -77,6 +77,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
+                    filter: str | None = ...,
                     pageSize: int | None = ...,
                     pageToken: str | None = ...,
                     returnPartialSuccess: bool | None = ...,

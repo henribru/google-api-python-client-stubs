@@ -10841,7 +10841,13 @@ class GoogleAdsSearchads360V23Resources__CampaignGoalConfig(
     campaignNewCustomerAcquisitionSettings: GoogleAdsSearchads360V23Common_CampaignGoalSettings_CampaignNewCustomerAcquisitionGoalSettings
     campaignRetentionSettings: GoogleAdsSearchads360V23Common_CampaignGoalSettings_CampaignRetentionGoalSettings
     goal: str
-    goalType: typing.Literal["UNSPECIFIED", "UNKNOWN", "CUSTOMER_RETENTION"]
+    goalType: typing.Literal[
+        "UNSPECIFIED",
+        "UNKNOWN",
+        "CUSTOMER_RETENTION",
+        "NEW_CUSTOMER_ACQUISITION",
+        "LOYALTY_RETENTION",
+    ]
     resourceName: str
 
 @typing.type_check_only
@@ -12189,7 +12195,13 @@ class GoogleAdsSearchads360V23Resources__GeographicView(typing.TypedDict, total=
 @typing.type_check_only
 class GoogleAdsSearchads360V23Resources__Goal(typing.TypedDict, total=False):
     goalId: str
-    goalType: typing.Literal["UNSPECIFIED", "UNKNOWN", "CUSTOMER_RETENTION"]
+    goalType: typing.Literal[
+        "UNSPECIFIED",
+        "UNKNOWN",
+        "CUSTOMER_RETENTION",
+        "NEW_CUSTOMER_ACQUISITION",
+        "LOYALTY_RETENTION",
+    ]
     optimizationEligibility: typing.Literal[
         "UNSPECIFIED", "UNKNOWN", "ELIGIBLE", "INELIGIBLE"
     ]
@@ -18487,6 +18499,9 @@ class GoogleAdsSearchads360V23Services__MutateOperation(typing.TypedDict, total=
         GoogleAdsSearchads360V23Services__CampaignCustomizerOperation
     )
     campaignDraftOperation: GoogleAdsSearchads360V23Services__CampaignDraftOperation
+    campaignGoalConfigOperation: (
+        GoogleAdsSearchads360V23Services__CampaignGoalConfigOperation
+    )
     campaignGroupOperation: GoogleAdsSearchads360V23Services__CampaignGroupOperation
     campaignLabelOperation: GoogleAdsSearchads360V23Services__CampaignLabelOperation
     campaignOperation: GoogleAdsSearchads360V23Services__CampaignOperation
@@ -18621,6 +18636,9 @@ class GoogleAdsSearchads360V23Services__MutateOperationResponse(
         GoogleAdsSearchads360V23Services__MutateCampaignCustomizerResult
     )
     campaignDraftResult: GoogleAdsSearchads360V23Services__MutateCampaignDraftResult
+    campaignGoalConfigResult: (
+        GoogleAdsSearchads360V23Services__MutateCampaignGoalConfigResult
+    )
     campaignGroupResult: GoogleAdsSearchads360V23Services__MutateCampaignGroupResult
     campaignLabelResult: GoogleAdsSearchads360V23Services__MutateCampaignLabelResult
     campaignResult: GoogleAdsSearchads360V23Services__MutateCampaignResult

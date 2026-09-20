@@ -307,6 +307,7 @@ class ObjectAccessControls(typing.TypedDict, total=False):
 @typing.type_check_only
 class ObjectCustomContextPayload(typing.TypedDict, total=False):
     createTime: str
+    extendedDataTypeUrl: str
     updateTime: str
     value: str
 

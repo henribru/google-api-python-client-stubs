@@ -319,7 +319,10 @@ class ContactcenterinsightsResource(googleapiclient.discovery.Resource):
                             *,
                             name: str,
                             view: typing.Literal[
-                                "CONVERSATION_VIEW_UNSPECIFIED", "FULL", "BASIC"
+                                "CONVERSATION_VIEW_UNSPECIFIED",
+                                "FULL",
+                                "BASIC",
+                                "FULL_WITH_STRUCTURED_TRANSCRIPT",
                             ]
                             | None = ...,
                             **kwargs: typing.Any,
@@ -335,7 +338,10 @@ class ContactcenterinsightsResource(googleapiclient.discovery.Resource):
                             pageSize: int | None = ...,
                             pageToken: str | None = ...,
                             view: typing.Literal[
-                                "CONVERSATION_VIEW_UNSPECIFIED", "FULL", "BASIC"
+                                "CONVERSATION_VIEW_UNSPECIFIED",
+                                "FULL",
+                                "BASIC",
+                                "FULL_WITH_STRUCTURED_TRANSCRIPT",
                             ]
                             | None = ...,
                             **kwargs: typing.Any,
@@ -801,7 +807,10 @@ class ContactcenterinsightsResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     view: typing.Literal[
-                        "CONVERSATION_VIEW_UNSPECIFIED", "FULL", "BASIC"
+                        "CONVERSATION_VIEW_UNSPECIFIED",
+                        "FULL",
+                        "BASIC",
+                        "FULL_WITH_STRUCTURED_TRANSCRIPT",
                     ]
                     | None = ...,
                     **kwargs: typing.Any,
@@ -822,7 +831,10 @@ class ContactcenterinsightsResource(googleapiclient.discovery.Resource):
                     pageSize: int | None = ...,
                     pageToken: str | None = ...,
                     view: typing.Literal[
-                        "CONVERSATION_VIEW_UNSPECIFIED", "FULL", "BASIC"
+                        "CONVERSATION_VIEW_UNSPECIFIED",
+                        "FULL",
+                        "BASIC",
+                        "FULL_WITH_STRUCTURED_TRANSCRIPT",
                     ]
                     | None = ...,
                     **kwargs: typing.Any,
@@ -1022,7 +1034,10 @@ class ContactcenterinsightsResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         view: typing.Literal[
-                            "CONVERSATION_VIEW_UNSPECIFIED", "FULL", "BASIC"
+                            "CONVERSATION_VIEW_UNSPECIFIED",
+                            "FULL",
+                            "BASIC",
+                            "FULL_WITH_STRUCTURED_TRANSCRIPT",
                         ]
                         | None = ...,
                         **kwargs: typing.Any,
@@ -1043,7 +1058,10 @@ class ContactcenterinsightsResource(googleapiclient.discovery.Resource):
                         pageSize: int | None = ...,
                         pageToken: str | None = ...,
                         view: typing.Literal[
-                            "CONVERSATION_VIEW_UNSPECIFIED", "FULL", "BASIC"
+                            "CONVERSATION_VIEW_UNSPECIFIED",
+                            "FULL",
+                            "BASIC",
+                            "FULL_WITH_STRUCTURED_TRANSCRIPT",
                         ]
                         | None = ...,
                         **kwargs: typing.Any,

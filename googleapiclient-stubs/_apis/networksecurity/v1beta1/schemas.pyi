@@ -41,7 +41,9 @@ class AuthorizationPolicy(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class AuthzPolicy(typing.TypedDict, total=False):
-    action: typing.Literal["AUTHZ_ACTION_UNSPECIFIED", "ALLOW", "DENY", "CUSTOM"]
+    action: typing.Literal[
+        "AUTHZ_ACTION_UNSPECIFIED", "ALLOW", "DENY", "CUSTOM", "DENY_BY_DEFAULT"
+    ]
     createTime: str
     customProvider: AuthzPolicyCustomProvider
     description: str
@@ -249,6 +251,7 @@ class FirewallEndpoint(typing.TypedDict, total=False):
     createTime: str
     description: str
     endpointSettings: FirewallEndpointEndpointSettings
+    explicitPrivateServiceConnectAttachment: str
     labels: dict[str, typing.Any]
     name: str
     reconciling: bool
@@ -1036,6 +1039,11 @@ class ThreatPreventionProfile(typing.TypedDict, total=False):
 @typing.type_check_only
 class TlsInspectionPolicy(typing.TypedDict, total=False):
     caPool: str
+    certificateIssuanceMode: typing.Literal[
+        "CERTIFICATE_ISSUANCE_MODE_UNSPECIFIED",
+        "DIRECT_LEAF_PROVISIONING",
+        "LOCAL_INTERMEDIATE_CA_SIGNING",
+    ]
     createTime: str
     customTlsFeatures: _list[str]
     description: str

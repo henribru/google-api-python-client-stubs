@@ -95,6 +95,20 @@ class AuthzExtension(typing.TypedDict, total=False):
 class CancelOperationRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
+class CdnEdgeExtension(typing.TypedDict, total=False):
+    createTime: str
+    description: str
+    extensionChains: _list[ExtensionChain]
+    labels: dict[str, typing.Any]
+    name: str
+    target: CdnEdgeExtensionTarget
+    updateTime: str
+
+@typing.type_check_only
+class CdnEdgeExtensionTarget(typing.TypedDict, total=False):
+    resources: _list[str]
+
+@typing.type_check_only
 class DnsPeeringConfig(typing.TypedDict, total=False):
     domain: str
     targetNetwork: str
@@ -560,6 +574,12 @@ class ListAgentGatewaysResponse(typing.TypedDict, total=False):
 @typing.type_check_only
 class ListAuthzExtensionsResponse(typing.TypedDict, total=False):
     authzExtensions: _list[AuthzExtension]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
+class ListCdnEdgeExtensionsResponse(typing.TypedDict, total=False):
+    cdnEdgeExtensions: _list[CdnEdgeExtension]
     nextPageToken: str
     unreachable: _list[str]
 

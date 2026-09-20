@@ -946,7 +946,10 @@ class MySqlConnectionProfile(typing.TypedDict, total=False):
     password: str
     passwordSet: bool
     port: int
+    privateConnectivity: PrivateConnectivity
+    privateServiceConnectConnectivity: PrivateServiceConnectConnectivity
     ssl: SslConfig
+    staticServiceIpConnectivity: StaticServiceIpConnectivity
     username: str
 
 @typing.type_check_only
@@ -1012,6 +1015,9 @@ class PackageEntity(typing.TypedDict, total=False):
 class PerformanceConfig(typing.TypedDict, total=False):
     dumpParallelLevel: typing.Literal[
         "DUMP_PARALLEL_LEVEL_UNSPECIFIED", "MIN", "OPTIMAL", "MAX"
+    ]
+    loadParallelLevel: typing.Literal[
+        "LOAD_PARALLEL_LEVEL_UNSPECIFIED", "LOAD_MIN", "LOAD_OPTIMAL", "LOAD_MAX"
     ]
 
 @typing.type_check_only

@@ -146,6 +146,13 @@ class IamResource(googleapiclient.discovery.Resource):
                     def get(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> WorkforcePoolProviderScimTenantHttpRequest: ...
+                    def getIamPolicy(
+                        self,
+                        *,
+                        resource: str,
+                        body: GetIamPolicyRequest,
+                        **kwargs: typing.Any,
+                    ) -> PolicyHttpRequest: ...
                     def list(
                         self,
                         *,
@@ -170,6 +177,20 @@ class IamResource(googleapiclient.discovery.Resource):
                         updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> WorkforcePoolProviderScimTenantHttpRequest: ...
+                    def setIamPolicy(
+                        self,
+                        *,
+                        resource: str,
+                        body: SetIamPolicyRequest,
+                        **kwargs: typing.Any,
+                    ) -> PolicyHttpRequest: ...
+                    def testIamPermissions(
+                        self,
+                        *,
+                        resource: str,
+                        body: TestIamPermissionsRequest,
+                        **kwargs: typing.Any,
+                    ) -> TestIamPermissionsResponseHttpRequest: ...
                     def undelete(
                         self,
                         *,
