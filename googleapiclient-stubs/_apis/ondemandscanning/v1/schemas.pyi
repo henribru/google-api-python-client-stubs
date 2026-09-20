@@ -546,7 +546,9 @@ class Maintainer(typing.TypedDict, total=False):
 @typing.type_check_only
 class MaliciousContentLLMResult(typing.TypedDict, total=False):
     maxSeverity: typing.Literal["SEVERITY_UNSPECIFIED", "CRITICAL", "HIGH"]
+    modelId: str
     scanStatus: typing.Literal["SCAN_STATUS_UNSPECIFIED", "PERFORMED", "NOT_PERFORMED"]
+    tokenUsage: TokenUsage
 
 @typing.type_check_only
 class MaliciousContentStaticResult(typing.TypedDict, total=False):
@@ -903,6 +905,14 @@ class Status(typing.TypedDict, total=False):
 class Subject(typing.TypedDict, total=False):
     digest: dict[str, typing.Any]
     name: str
+
+@typing.type_check_only
+class TokenUsage(typing.TypedDict, total=False):
+    cacheCount: str
+    candidateCount: str
+    promptCount: str
+    thinkingCount: str
+    toolUsePromptCount: str
 
 @typing.type_check_only
 class UpgradeDistribution(typing.TypedDict, total=False):

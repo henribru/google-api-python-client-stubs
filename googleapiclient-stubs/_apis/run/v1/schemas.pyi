@@ -187,6 +187,7 @@ class ExecutionReference(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class ExecutionSpec(typing.TypedDict, total=False):
+    delayExecution: bool
     parallelism: int
     taskCount: int
     template: TaskTemplateSpec
@@ -467,6 +468,7 @@ class GoogleDevtoolsCloudbuildV1GitSource(typing.TypedDict, total=False):
 class GoogleDevtoolsCloudbuildV1GitSourceDependency(typing.TypedDict, total=False):
     depth: str
     destPath: str
+    fetchTags: bool
     recurseSubmodules: bool
     repository: GoogleDevtoolsCloudbuildV1GitSourceRepository
     revision: str
@@ -894,6 +896,7 @@ class ObjectMeta(typing.TypedDict, total=False):
 @typing.type_check_only
 class Overrides(typing.TypedDict, total=False):
     containerOverrides: _list[ContainerOverride]
+    delayExecution: bool
     taskCount: int
     timeoutSeconds: int
 

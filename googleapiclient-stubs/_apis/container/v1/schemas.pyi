@@ -1306,6 +1306,7 @@ class NodeKubeletConfig(typing.TypedDict, total=False):
     maxParallelImagePulls: int
     memoryManager: MemoryManager
     podPidsLimit: str
+    reservedResourcesConfig: ReservedResourcesConfig
     shutdownGracePeriodCriticalPodsSeconds: int
     shutdownGracePeriodSeconds: int
     singleProcessOomKill: bool
@@ -1623,6 +1624,7 @@ class ReleaseChannelConfig(typing.TypedDict, total=False):
     channel: typing.Literal["UNSPECIFIED", "RAPID", "REGULAR", "STABLE", "EXTENDED"]
     customVersions: _list[str]
     defaultVersion: str
+    previewVersions: _list[str]
     upgradeTargetVersion: str
     validVersions: _list[str]
 
@@ -1637,6 +1639,13 @@ class ReservationAffinity(typing.TypedDict, total=False):
     ]
     key: str
     values: _list[str]
+
+@typing.type_check_only
+class ReservedResourcesConfig(typing.TypedDict, total=False):
+    cpuReservedMillicore: str
+    effectiveCpuReservedMillicore: str
+    effectiveMemoryReservedMib: str
+    memoryReservedMib: str
 
 @typing.type_check_only
 class ResourceLabels(typing.TypedDict, total=False):

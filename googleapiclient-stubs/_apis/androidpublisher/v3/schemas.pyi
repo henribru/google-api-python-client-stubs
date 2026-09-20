@@ -495,6 +495,21 @@ class CatalogSdkVersion(typing.TypedDict, total=False):
     targetSdkVersion: str
 
 @typing.type_check_only
+class CertificateHashes(typing.TypedDict, total=False):
+    certificateHashMd5: str
+    certificateHashSha1: str
+    certificateHashSha256: str
+
+@typing.type_check_only
+class CloudKmsKey(typing.TypedDict, total=False):
+    cryptoKeyVersionResource: str
+
+@typing.type_check_only
+class CloudKmsKeyAndCert(typing.TypedDict, total=False):
+    cloudKmsKey: CloudKmsKey
+    pemCertificate: str
+
+@typing.type_check_only
 class CoarseLocation(typing.TypedDict, total=False):
     administrativeArea: str
     locality: str
@@ -819,6 +834,25 @@ class DeviceTierSet(typing.TypedDict, total=False):
     deviceTiers: _list[DeviceTier]
 
 @typing.type_check_only
+class EnrollAppRequest(typing.TypedDict, total=False):
+    enrollExistingApp: EnrollExistingApp
+    enrollNewApp: EnrollNewApp
+    pemUploadCertificate: str
+
+@typing.type_check_only
+class EnrollAppResponse(typing.TypedDict, total=False):
+    signingCertificate: CertificateHashes
+    uploadCertificate: CertificateHashes
+
+@typing.type_check_only
+class EnrollExistingApp(typing.TypedDict, total=False):
+    cloudKmsKey: CloudKmsKey
+
+@typing.type_check_only
+class EnrollNewApp(typing.TypedDict, total=False):
+    cloudKmsKeyAndCert: CloudKmsKeyAndCert
+
+@typing.type_check_only
 class ExpansionFile(typing.TypedDict, total=False):
     fileSize: str
     referencesVersion: int
@@ -837,6 +871,18 @@ class ExternalAccountIdentifiers(typing.TypedDict, total=False):
 class ExternalAccountIds(typing.TypedDict, total=False):
     obfuscatedAccountId: str
     obfuscatedProfileId: str
+
+@typing.type_check_only
+class ExternalContentLinkDetails(typing.TypedDict, total=False):
+    externalAppCategory: typing.Literal[
+        "EXTERNAL_CONTENT_APP_CATEGORY_UNSPECIFIED", "APP", "GAME"
+    ]
+    installedAppPackage: str
+    linkType: typing.Literal[
+        "EXTERNAL_CONTENT_LINK_TYPE_UNSPECIFIED",
+        "LINK_TO_DIGITAL_CONTENT_OFFER",
+        "LINK_TO_APP_DOWNLOAD",
+    ]
 
 @typing.type_check_only
 class ExternalOfferDetails(typing.TypedDict, total=False):
@@ -862,6 +908,7 @@ class ExternalTransaction(typing.TypedDict, total=False):
     createTime: str
     currentPreTaxAmount: Price
     currentTaxAmount: Price
+    externalContentLinkDetails: ExternalContentLinkDetails
     externalOfferDetails: ExternalOfferDetails
     externalTransactionId: str
     oneTimeTransaction: OneTimeExternalTransaction
@@ -1396,6 +1443,10 @@ class OneTimeProductDiscountedOffer(typing.TypedDict, total=False):
     startTime: str
 
 @typing.type_check_only
+class OneTimeProductGameRewardOffer(typing.TypedDict, total=False):
+    redemptionLimit: str
+
+@typing.type_check_only
 class OneTimeProductListing(typing.TypedDict, total=False):
     description: str
     languageCode: str
@@ -1404,6 +1455,7 @@ class OneTimeProductListing(typing.TypedDict, total=False):
 @typing.type_check_only
 class OneTimeProductOffer(typing.TypedDict, total=False):
     discountedOffer: OneTimeProductDiscountedOffer
+    gameRewardOffer: OneTimeProductGameRewardOffer
     offerId: str
     offerTags: _list[OfferTag]
     packageName: str
@@ -2018,6 +2070,27 @@ class RevokeSubscriptionPurchaseRequest(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class RevokeSubscriptionPurchaseResponse(typing.TypedDict, total=False): ...
+
+@typing.type_check_only
+class RotateAppSigningKeyRequest(typing.TypedDict, total=False):
+    keyRotationReason: typing.Literal[
+        "KEY_ROTATION_REASON_UNSPECIFIED",
+        "COMPROMISED_KEY",
+        "USE_STRONGER_KEY",
+        "USE_SAME_KEY_FOR_MULTIPLE_APPS",
+        "ROUTINE_KEY_UPGRADE",
+        "OTHER",
+    ]
+    rotatedCloudKmsKey: RotatedCloudKmsKey
+
+@typing.type_check_only
+class RotateAppSigningKeyResponse(typing.TypedDict, total=False):
+    rotatedKeyCertificate: CertificateHashes
+
+@typing.type_check_only
+class RotatedCloudKmsKey(typing.TypedDict, total=False):
+    cloudKmsKeyAndCert: CloudKmsKeyAndCert
+    signingCertificateLineage: str
 
 @typing.type_check_only
 class SafetyLabelsUpdateRequest(typing.TypedDict, total=False):

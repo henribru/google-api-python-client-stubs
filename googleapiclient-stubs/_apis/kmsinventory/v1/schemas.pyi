@@ -255,7 +255,10 @@ class GoogleCloudKmsV1KeyOperationAttestation(typing.TypedDict, total=False):
     certChains: GoogleCloudKmsV1KeyOperationAttestationCertificateChains
     content: str
     format: typing.Literal[
-        "ATTESTATION_FORMAT_UNSPECIFIED", "CAVIUM_V1_COMPRESSED", "CAVIUM_V2_COMPRESSED"
+        "ATTESTATION_FORMAT_UNSPECIFIED",
+        "CAVIUM_V1_COMPRESSED",
+        "CAVIUM_V2_COMPRESSED",
+        "CAVIUM_V209",
     ]
 
 @typing.type_check_only

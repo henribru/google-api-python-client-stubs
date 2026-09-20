@@ -44,6 +44,26 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                 ) -> GoogleFirestoreAdminV1BackupScheduleHttpRequest: ...
 
             @typing.type_check_only
+            class ChangeStreamsResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoogleFirestoreAdminV1ChangeStream,
+                    changeStreamId: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleFirestoreAdminV1ChangeStreamHttpRequest: ...
+                def delete(
+                    self, *, name: str, etag: str | None = ..., **kwargs: typing.Any
+                ) -> EmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleFirestoreAdminV1ChangeStreamHttpRequest: ...
+                def list(
+                    self, *, parent: str, **kwargs: typing.Any
+                ) -> GoogleFirestoreAdminV1ListChangeStreamsResponseHttpRequest: ...
+
+            @typing.type_check_only
             class CollectionGroupsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class FieldsResource(googleapiclient.discovery.Resource):
@@ -142,6 +162,7 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                     body: Document,
                     documentId: str | None = ...,
                     mask_fieldPaths: str | _list[str] | None = ...,
+                    requestOptions_requestTags: str | _list[str] | None = ...,
                     **kwargs: typing.Any,
                 ) -> DocumentHttpRequest: ...
                 def delete(
@@ -150,6 +171,7 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                     name: str,
                     currentDocument_exists: bool | None = ...,
                     currentDocument_updateTime: str | None = ...,
+                    requestOptions_requestTags: str | _list[str] | None = ...,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def executePipeline(
@@ -165,6 +187,7 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                     name: str,
                     mask_fieldPaths: str | _list[str] | None = ...,
                     readTime: str | None = ...,
+                    requestOptions_requestTags: str | _list[str] | None = ...,
                     transaction: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> DocumentHttpRequest: ...
@@ -179,6 +202,7 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                     pageToken: str | None = ...,
                     readTime: str | None = ...,
                     recursive: bool | None = ...,
+                    requestOptions_requestTags: str | _list[str] | None = ...,
                     showMissing: bool | None = ...,
                     transaction: str | None = ...,
                     **kwargs: typing.Any,
@@ -211,6 +235,7 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                     pageToken: str | None = ...,
                     readTime: str | None = ...,
                     recursive: bool | None = ...,
+                    requestOptions_requestTags: str | _list[str] | None = ...,
                     showMissing: bool | None = ...,
                     transaction: str | None = ...,
                     **kwargs: typing.Any,
@@ -243,6 +268,7 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                     currentDocument_exists: bool | None = ...,
                     currentDocument_updateTime: str | None = ...,
                     mask_fieldPaths: str | _list[str] | None = ...,
+                    requestOptions_requestTags: str | _list[str] | None = ...,
                     updateMask_fieldPaths: str | _list[str] | None = ...,
                     **kwargs: typing.Any,
                 ) -> DocumentHttpRequest: ...
@@ -400,6 +426,7 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any,
             ) -> GoogleLongrunningOperationHttpRequest: ...
             def backupSchedules(self) -> BackupSchedulesResource: ...
+            def changeStreams(self) -> ChangeStreamsResource: ...
             def collectionGroups(self) -> CollectionGroupsResource: ...
             def documents(self) -> DocumentsResource: ...
             def operations(self) -> OperationsResource: ...
@@ -529,6 +556,14 @@ class GoogleFirestoreAdminV1BackupScheduleHttpRequest(googleapiclient.http.HttpR
     ) -> GoogleFirestoreAdminV1BackupSchedule: ...
 
 @typing.type_check_only
+class GoogleFirestoreAdminV1ChangeStreamHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleFirestoreAdminV1ChangeStream: ...
+
+@typing.type_check_only
 class GoogleFirestoreAdminV1DatabaseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -571,6 +606,16 @@ class GoogleFirestoreAdminV1ListBackupsResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleFirestoreAdminV1ListBackupsResponse: ...
+
+@typing.type_check_only
+class GoogleFirestoreAdminV1ListChangeStreamsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleFirestoreAdminV1ListChangeStreamsResponse: ...
 
 @typing.type_check_only
 class GoogleFirestoreAdminV1ListDatabasesResponseHttpRequest(

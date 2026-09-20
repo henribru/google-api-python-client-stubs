@@ -233,6 +233,14 @@ class CloudObservabilityResource(googleapiclient.discovery.Resource):
                     def links(self) -> LinksResource: ...
                     def views(self) -> ViewsResource: ...
 
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: Bucket,
+                    bucketId: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> BucketHttpRequest: ...
@@ -250,6 +258,14 @@ class CloudObservabilityResource(googleapiclient.discovery.Resource):
                     previous_request: ListBucketsResponseHttpRequest,
                     previous_response: ListBucketsResponse,
                 ) -> ListBucketsResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: Bucket,
+                    updateMask: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
                 def datasets(self) -> DatasetsResource: ...
 
             @typing.type_check_only

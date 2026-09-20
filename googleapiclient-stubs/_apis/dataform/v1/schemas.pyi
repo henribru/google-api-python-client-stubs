@@ -42,6 +42,24 @@ class BigQueryAction(typing.TypedDict, total=False):
     sqlScript: str
 
 @typing.type_check_only
+class BigQueryUnitTest(typing.TypedDict, total=False):
+    dependencyTargets: _list[Target]
+    disabled: bool
+    displayName: str
+    expectedOutputQuery: str
+    tags: _list[str]
+    testQuery: str
+
+@typing.type_check_only
+class BigQueryUnitTestAction(typing.TypedDict, total=False):
+    actualResultsJobId: str
+    actualResultsSqlScript: str
+    expectedResultsJobId: str
+    expectedResultsSqlScript: str
+    totalBilledBytes: str
+    totalProcessedBytes: str
+
+@typing.type_check_only
 class Binding(typing.TypedDict, total=False):
     condition: Expr
     members: _list[str]
@@ -138,6 +156,7 @@ class CompilationResult(typing.TypedDict, total=False):
 @typing.type_check_only
 class CompilationResultAction(typing.TypedDict, total=False):
     assertion: Assertion
+    bigqueryUnitTest: BigQueryUnitTest
     canonicalTarget: Target
     dataPreparation: DataPreparation
     declaration: Declaration
@@ -206,6 +225,15 @@ class DirectorySearchResult(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class Empty(typing.TypedDict, total=False): ...
+
+@typing.type_check_only
+class EndUserAuthConfig(typing.TypedDict, total=False):
+    oauthConfig: OAuthConfig
+
+@typing.type_check_only
+class EndUserAuthenticationConfig(typing.TypedDict, total=False):
+    oauthConfig: OAuthConfig
+    userEmail: str
 
 @typing.type_check_only
 class ErrorTable(typing.TypedDict, total=False):
@@ -325,6 +353,13 @@ class Interval(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class InvocationConfig(typing.TypedDict, total=False):
+    endUserAuthConfig: EndUserAuthenticationConfig
+    executionMode: typing.Literal[
+        "EXECUTION_MODE_UNSPECIFIED",
+        "DEFAULT",
+        "ALL_EXCEPT_UNIT_TESTS",
+        "UNIT_TESTS_ONLY",
+    ]
     fullyRefreshIncrementalTablesEnabled: bool
     includedTags: _list[str]
     includedTargets: _list[Target]
@@ -444,6 +479,10 @@ class NotebookRuntimeOptions(typing.TypedDict, total=False):
     aiPlatformNotebookRuntimeTemplate: str
     gcsOutputBucket: str
     gcsRepositorySnapshotDestination: GcsRepositorySnapshotDestination
+
+@typing.type_check_only
+class OAuthConfig(typing.TypedDict, total=False):
+    additionalOauthScopes: _list[str]
 
 @typing.type_check_only
 class Operation(typing.TypedDict, total=False):
@@ -618,6 +657,7 @@ class Repository(typing.TypedDict, total=False):
     createTime: str
     dataEncryptionState: DataEncryptionState
     displayName: str
+    endUserAuthConfig: EndUserAuthConfig
     gitRemoteSettings: GitRemoteSettings
     internalMetadata: str
     kmsKeyName: str
@@ -764,6 +804,7 @@ class WorkflowInvocation(typing.TypedDict, total=False):
 @typing.type_check_only
 class WorkflowInvocationAction(typing.TypedDict, total=False):
     bigqueryAction: BigQueryAction
+    bigqueryUnitTestAction: BigQueryUnitTestAction
     canonicalTarget: Target
     dataPreparationAction: DataPreparationAction
     failureReason: str

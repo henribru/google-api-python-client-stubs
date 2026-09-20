@@ -4586,6 +4586,7 @@ class GoogleCloudDialogflowV2ToolCallResult(typing.TypedDict, total=False):
 @typing.type_check_only
 class GoogleCloudDialogflowV2ToolCallResultError(typing.TypedDict, total=False):
     message: str
+    retryable: bool
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2UndeployConversationModelOperationMetadata(
@@ -5840,6 +5841,7 @@ class GoogleCloudDialogflowV2beta1ToolCallResult(typing.TypedDict, total=False):
 @typing.type_check_only
 class GoogleCloudDialogflowV2beta1ToolCallResultError(typing.TypedDict, total=False):
     message: str
+    retryable: bool
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2beta1WebhookRequest(typing.TypedDict, total=False):

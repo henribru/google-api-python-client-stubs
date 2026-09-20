@@ -1383,6 +1383,7 @@ class LiveBroadcastMonetizationDetails(typing.TypedDict, total=False):
 class LiveBroadcastSnippet(typing.TypedDict, total=False):
     actualEndTime: str
     actualStartTime: str
+    categoryId: str
     channelId: str
     description: str
     isDefaultBroadcast: bool
@@ -2092,10 +2093,13 @@ class Thumbnail(typing.TypedDict, total=False):
 @typing.type_check_only
 class ThumbnailDetails(typing.TypedDict, total=False):
     default: Thumbnail
+    fhd: Thumbnail
     high: Thumbnail
     maxres: Thumbnail
     medium: Thumbnail
+    qhd: Thumbnail
     standard: Thumbnail
+    uhd: Thumbnail
 
 @typing.type_check_only
 class ThumbnailSetResponse(typing.TypedDict, total=False):

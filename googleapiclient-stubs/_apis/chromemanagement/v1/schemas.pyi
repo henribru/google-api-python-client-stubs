@@ -440,6 +440,30 @@ class GoogleChromeManagementV1FindInstalledAppProfilesResponse(
     totalSize: int
 
 @typing.type_check_only
+class GoogleChromeManagementV1FindSaasUsageBrowsersResponse(
+    typing.TypedDict, total=False
+):
+    nextPageToken: str
+    saasUsageBrowsers: _list[GoogleChromeManagementV1SaasUsageBrowser]
+    totalSize: str
+
+@typing.type_check_only
+class GoogleChromeManagementV1FindSaasUsageProfilesResponse(
+    typing.TypedDict, total=False
+):
+    nextPageToken: str
+    profileReports: _list[GoogleChromeManagementV1SaasUsageProfileReport]
+    totalSize: str
+
+@typing.type_check_only
+class GoogleChromeManagementV1FindSaasUsageReportsResponse(
+    typing.TypedDict, total=False
+):
+    nextPageToken: str
+    saasReports: _list[GoogleChromeManagementV1SaasUsageReport]
+    totalSize: str
+
+@typing.type_check_only
 class GoogleChromeManagementV1GraphicsAdapterInfo(typing.TypedDict, total=False):
     adapter: str
     deviceId: str
@@ -702,6 +726,70 @@ class GoogleChromeManagementV1RuntimeCountersReport(typing.TypedDict, total=Fals
     enterSleepCount: str
     reportTime: str
     uptimeRuntimeDuration: str
+
+@typing.type_check_only
+class GoogleChromeManagementV1SaasUsageBrowser(typing.TypedDict, total=False):
+    devicePermanentId: str
+    firstNavigationTime: str
+    lastNavigationTime: str
+    machine: str
+    orgUnitId: str
+    osPlatform: typing.Literal[
+        "DEVICE_SYSTEM_UNSPECIFIED",
+        "SYSTEM_OTHER",
+        "SYSTEM_ANDROID",
+        "SYSTEM_IOS",
+        "SYSTEM_CROS",
+        "SYSTEM_WINDOWS",
+        "SYSTEM_MAC",
+        "SYSTEM_LINUX",
+    ]
+    osVersion: str
+
+@typing.type_check_only
+class GoogleChromeManagementV1SaasUsageProfileReport(typing.TypedDict, total=False):
+    email: str
+    firstNavigationTime: str
+    lastNavigationTime: str
+    orgUnitId: str
+    osPlatform: typing.Literal[
+        "DEVICE_SYSTEM_UNSPECIFIED",
+        "SYSTEM_OTHER",
+        "SYSTEM_ANDROID",
+        "SYSTEM_IOS",
+        "SYSTEM_CROS",
+        "SYSTEM_WINDOWS",
+        "SYSTEM_MAC",
+        "SYSTEM_LINUX",
+    ]
+    osVersion: str
+    profilePermanentId: str
+
+@typing.type_check_only
+class GoogleChromeManagementV1SaasUsageReport(typing.TypedDict, total=False):
+    app: str
+    category: str
+    contentTransferDetails: (
+        GoogleChromeManagementV1SaasUsageReportContentTransferDetails
+    )
+    distinctBrowsersCount: str
+    distinctUsersCount: str
+    domains: _list[str]
+    encryptionProtocols: _list[str]
+    firstNavigationTime: str
+    foundedYear: int
+    headquarters: str
+    lastNavigationTime: str
+    orgUnitId: str
+    organization: str
+    primaryDomain: str
+    visitsCount: str
+
+@typing.type_check_only
+class GoogleChromeManagementV1SaasUsageReportContentTransferDetails(
+    typing.TypedDict, total=False
+):
+    contentTransferCount: str
 
 @typing.type_check_only
 class GoogleChromeManagementV1StorageInfo(typing.TypedDict, total=False):

@@ -52,6 +52,7 @@ class DataSourceParameter(typing.TypedDict, total=False):
     recurse: bool
     repeated: bool
     required: bool
+    secretManagerAllowed: bool
     type: typing.Literal[
         "TYPE_UNSPECIFIED",
         "STRING",
@@ -140,6 +141,10 @@ class MetadataDestination(typing.TypedDict, total=False):
     dataplexConfiguration: DataplexConfiguration
 
 @typing.type_check_only
+class ParameterConfig(typing.TypedDict, total=False):
+    secretManagerManagedParams: _list[str]
+
+@typing.type_check_only
 class PartitionDetail(typing.TypedDict, total=False):
     table: str
 
@@ -213,6 +218,7 @@ class TransferConfig(typing.TypedDict, total=False):
     nextRunTime: str
     notificationPubsubTopic: str
     ownerInfo: UserInfo
+    paramConfig: ParameterConfig
     params: dict[str, typing.Any]
     schedule: str
     scheduleOptions: ScheduleOptions
@@ -277,6 +283,7 @@ class TransferRun(typing.TypedDict, total=False):
     errorStatus: Status
     name: str
     notificationPubsubTopic: str
+    parameterConfig: ParameterConfig
     params: dict[str, typing.Any]
     runTime: str
     schedule: str

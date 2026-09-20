@@ -239,7 +239,9 @@ class ApplicationPolicy(typing.TypedDict, total=False):
         "CONNECTED_WORK_AND_PERSONAL_APP_ALLOWED",
     ]
     credentialProviderPolicy: typing.Literal[
-        "CREDENTIAL_PROVIDER_POLICY_UNSPECIFIED", "CREDENTIAL_PROVIDER_ALLOWED"
+        "CREDENTIAL_PROVIDER_POLICY_UNSPECIFIED",
+        "CREDENTIAL_PROVIDER_ALLOWED",
+        "CREDENTIAL_PROVIDER_DISALLOWED",
     ]
     customAppConfig: CustomAppConfig
     defaultPermissionPolicy: typing.Literal[
@@ -1505,6 +1507,7 @@ class Policy(typing.TypedDict, total=False):
         "CREDENTIAL_PROVIDER_POLICY_DEFAULT_UNSPECIFIED",
         "CREDENTIAL_PROVIDER_DEFAULT_DISALLOWED",
         "CREDENTIAL_PROVIDER_DEFAULT_DISALLOWED_EXCEPT_SYSTEM",
+        "CREDENTIAL_PROVIDER_DEFAULT_ALLOWED",
     ]
     credentialsConfigDisabled: bool
     crossDevicePolicies: CrossDevicePolicies

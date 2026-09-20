@@ -108,6 +108,7 @@ class CloudRunJobInfo(typing.TypedDict, total=False):
 class CloudRunRevisionEndpoint(typing.TypedDict, total=False):
     serviceUri: str
     uri: str
+    workerPoolUri: str
 
 @typing.type_check_only
 class CloudRunRevisionInfo(typing.TypedDict, total=False):
@@ -115,6 +116,7 @@ class CloudRunRevisionInfo(typing.TypedDict, total=False):
     location: str
     serviceUri: str
     uri: str
+    workerPoolUri: str
 
 @typing.type_check_only
 class CloudSQLInstanceInfo(typing.TypedDict, total=False):
@@ -1001,6 +1003,7 @@ class Step(typing.TypedDict, total=False):
         "VIEWER_PERMISSION_MISSING",
     ]
     storageBucket: StorageBucketInfo
+    viewerPermissionMissingInfo: ViewerPermissionMissingInfo
     vpcConnector: VpcConnectorInfo
     vpnGateway: VpnGatewayInfo
     vpnTunnel: VpnTunnelInfo
@@ -1022,6 +1025,14 @@ class Trace(typing.TypedDict, total=False):
     endpointInfo: EndpointInfo
     forwardTraceId: int
     steps: _list[Step]
+
+@typing.type_check_only
+class ViewerPermissionMissingInfo(typing.TypedDict, total=False):
+    resourceTypes: _list[
+        typing.Literal[
+            "RESOURCE_TYPE_UNSPECIFIED", "FIREWALL", "INSTANCE", "FORWARDING_RULE"
+        ]
+    ]
 
 @typing.type_check_only
 class VpcConnectorInfo(typing.TypedDict, total=False):

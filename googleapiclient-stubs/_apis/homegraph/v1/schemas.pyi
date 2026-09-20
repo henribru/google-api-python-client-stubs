@@ -269,7 +269,7 @@ class ThermostatFanControlTrait(typing.TypedDict, total=False):
 @typing.type_check_only
 class TraitData(typing.TypedDict, total=False):
     commitTime: str
-    providerVersionTime: str
+    providerUpdateTime: str
     trait: dict[str, typing.Any]
 
 @typing.type_check_only

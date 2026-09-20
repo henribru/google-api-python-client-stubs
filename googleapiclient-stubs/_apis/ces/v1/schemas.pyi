@@ -35,6 +35,7 @@ class Agent(typing.TypedDict, total=False):
     llmAgent: AgentLlmAgent
     modelSettings: ModelSettings
     name: str
+    remoteA2aAgent: AgentRemoteA2aAgent
     remoteDialogflowAgent: AgentRemoteDialogflowAgent
     tools: _list[str]
     toolsets: _list[AgentAgentToolset]
@@ -64,6 +65,14 @@ class AgentInterface(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class AgentLlmAgent(typing.TypedDict, total=False): ...
+
+@typing.type_check_only
+class AgentRegistryDeployment(typing.TypedDict, total=False):
+    agentRegistryServiceName: str
+
+@typing.type_check_only
+class AgentRemoteA2aAgent(typing.TypedDict, total=False):
+    a2aConfig: RemoteA2aConfig
 
 @typing.type_check_only
 class AgentRemoteDialogflowAgent(typing.TypedDict, total=False):
@@ -129,6 +138,7 @@ class App(typing.TypedDict, total=False):
     audioProcessingConfig: AudioProcessingConfig
     clientCertificateSettings: ClientCertificateSettings
     createTime: str
+    dashboardSettings: DashboardSettings
     dataStoreSettings: DataStoreSettings
     defaultChannelProfile: ChannelProfile
     deploymentCount: int
@@ -181,11 +191,13 @@ class AppVersion(typing.TypedDict, total=False):
     etag: str
     name: str
     snapshot: AppSnapshot
+    updateTime: str
 
 @typing.type_check_only
 class AudioProcessingConfig(typing.TypedDict, total=False):
     ambientSoundConfig: AmbientSoundConfig
     bargeInConfig: BargeInConfig
+    customVoiceSamples: _list[CustomVoiceSample]
     inactivityTimeout: str
     synthesizeSpeechConfigs: dict[str, typing.Any]
 
@@ -323,6 +335,7 @@ class Chunk(typing.TypedDict, total=False):
 @typing.type_check_only
 class Citations(typing.TypedDict, total=False):
     citedChunks: _list[CitationsCitedChunk]
+    inlineCitations: _list[CitationsInlineCitation]
 
 @typing.type_check_only
 class CitationsCitedChunk(typing.TypedDict, total=False):
@@ -330,6 +343,12 @@ class CitationsCitedChunk(typing.TypedDict, total=False):
     text: str
     title: str
     uri: str
+
+@typing.type_check_only
+class CitationsInlineCitation(typing.TypedDict, total=False):
+    citedChunkIndices: _list[int]
+    endIndex: int
+    startIndex: int
 
 @typing.type_check_only
 class ClientCertificateSettings(typing.TypedDict, total=False):
@@ -405,10 +424,21 @@ class ConversationLoggingSettings(typing.TypedDict, total=False):
 @typing.type_check_only
 class ConversationTurn(typing.TypedDict, total=False):
     messages: _list[Message]
-    resolvedDeveloperInstruction: str
     rootSpan: Span
-    templateAttributes: dict[str, typing.Any]
     userIntendedText: str
+
+@typing.type_check_only
+class CustomVoiceSample(typing.TypedDict, total=False):
+    consentAudioGcsUri: str
+    name: str
+    previewAudioContent: str
+    previewText: str
+    voiceInstruction: str
+    voiceSampleGcsUri: str
+
+@typing.type_check_only
+class DashboardSettings(typing.TypedDict, total=False):
+    defaultDashboard: str
 
 @typing.type_check_only
 class DataStore(typing.TypedDict, total=False):
@@ -518,6 +548,7 @@ class DataStoreToolRewriterConfig(typing.TypedDict, total=False):
 @typing.type_check_only
 class DataStoreToolSnippetsConfig(typing.TypedDict, total=False):
     enableSnippets: bool
+    maxSnippets: int
 
 @typing.type_check_only
 class DataStoreToolSummarizationConfig(typing.TypedDict, total=False):
@@ -526,7 +557,12 @@ class DataStoreToolSummarizationConfig(typing.TypedDict, total=False):
     prompt: str
 
 @typing.type_check_only
+class DeployChannelResponse(typing.TypedDict, total=False):
+    deployment: Deployment
+
+@typing.type_check_only
 class Deployment(typing.TypedDict, total=False):
+    agentRegistryDeployment: AgentRegistryDeployment
     appVersion: str
     channelProfile: ChannelProfile
     createTime: str
@@ -809,6 +845,8 @@ class GuardrailModelSafetySafetySetting(typing.TypedDict, total=False):
         "HARM_CATEGORY_DANGEROUS_CONTENT",
         "HARM_CATEGORY_HARASSMENT",
         "HARM_CATEGORY_SEXUALLY_EXPLICIT",
+        "HARM_CATEGORY_PROFANITY",
+        "HARM_CATEGORY_TOXIC",
     ]
     threshold: typing.Literal[
         "HARM_BLOCK_THRESHOLD_UNSPECIFIED",
@@ -821,6 +859,7 @@ class GuardrailModelSafetySafetySetting(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class Image(typing.TypedDict, total=False):
+    altText: str
     data: str
     mimeType: str
 
@@ -832,6 +871,8 @@ class ImportAppRequest(typing.TypedDict, total=False):
     gcsUri: str
     ignoreAppLock: bool
     importOptions: ImportAppRequestImportOptions
+    jsonPatchContent: str
+    jsonPatchGcsUri: str
 
 @typing.type_check_only
 class ImportAppRequestImportOptions(typing.TypedDict, total=False):
@@ -1059,6 +1100,13 @@ class LfA2aV1SendMessageResponse(typing.TypedDict, total=False):
     task: LfA2aV1Task
 
 @typing.type_check_only
+class LfA2aV1StreamResponse(typing.TypedDict, total=False):
+    artifactUpdate: LfA2aV1TaskArtifactUpdateEvent
+    message: LfA2aV1Message
+    statusUpdate: LfA2aV1TaskStatusUpdateEvent
+    task: LfA2aV1Task
+
+@typing.type_check_only
 class LfA2aV1StringList(typing.TypedDict, total=False):
     list: _list[str]
 
@@ -1070,6 +1118,15 @@ class LfA2aV1Task(typing.TypedDict, total=False):
     id: str
     metadata: dict[str, typing.Any]
     status: LfA2aV1TaskStatus
+
+@typing.type_check_only
+class LfA2aV1TaskArtifactUpdateEvent(typing.TypedDict, total=False):
+    append: bool
+    artifact: LfA2aV1Artifact
+    contextId: str
+    lastChunk: bool
+    metadata: dict[str, typing.Any]
+    taskId: str
 
 @typing.type_check_only
 class LfA2aV1TaskPushNotificationConfig(typing.TypedDict, total=False):
@@ -1095,6 +1152,13 @@ class LfA2aV1TaskStatus(typing.TypedDict, total=False):
         "TASK_STATE_AUTH_REQUIRED",
     ]
     timestamp: str
+
+@typing.type_check_only
+class LfA2aV1TaskStatusUpdateEvent(typing.TypedDict, total=False):
+    contextId: str
+    metadata: dict[str, typing.Any]
+    status: LfA2aV1TaskStatus
+    taskId: str
 
 @typing.type_check_only
 class ListAgentsResponse(typing.TypedDict, total=False):
@@ -1312,8 +1376,19 @@ class RedactionConfig(typing.TypedDict, total=False):
     inspectTemplate: str
 
 @typing.type_check_only
+class RemoteA2aConfig(typing.TypedDict, total=False):
+    agentCard: AgentCard
+    agentRegistry: str
+    apiAuthentication: ApiAuthentication
+    contextId: str
+    inputVariableMapping: dict[str, typing.Any]
+    outputVariableMapping: dict[str, typing.Any]
+    streamingEnabled: bool
+
+@typing.type_check_only
 class RemoteAgentTool(typing.TypedDict, total=False):
     agentCard: AgentCard
+    apiAuthentication: ApiAuthentication
     description: str
     name: str
 
@@ -1433,7 +1508,9 @@ class SessionOutput(typing.TypedDict, total=False):
     diagnosticInfo: SessionOutputDiagnosticInfo
     endSession: EndSession
     googleSearchSuggestions: GoogleSearchSuggestions
+    image: Image
     payload: dict[str, typing.Any]
+    progress: str
     text: str
     toolCalls: ToolCalls
     turnCompleted: bool
@@ -1514,9 +1591,11 @@ class Tool(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class ToolCall(typing.TypedDict, total=False):
+    agentName: str
     args: dict[str, typing.Any]
     displayName: str
     id: str
+    parentToolCallId: str
     tool: str
     toolsetTool: ToolsetTool
 
@@ -1531,8 +1610,10 @@ class ToolFakeConfig(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class ToolResponse(typing.TypedDict, total=False):
+    agentName: str
     displayName: str
     id: str
+    parentToolCallId: str
     response: dict[str, typing.Any]
     tool: str
     toolsetTool: ToolsetTool

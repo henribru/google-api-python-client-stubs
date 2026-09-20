@@ -855,6 +855,11 @@ class ListMembershipsResponse(typing.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
+class ListMessagePinsResponse(typing.TypedDict, total=False):
+    messagePins: _list[MessagePin]
+    nextPageToken: str
+
+@typing.type_check_only
 class ListMessagesResponse(typing.TypedDict, total=False):
     messages: _list[Message]
     nextPageToken: str
@@ -1014,6 +1019,11 @@ class MessageCreatedEventData(typing.TypedDict, total=False):
 @typing.type_check_only
 class MessageDeletedEventData(typing.TypedDict, total=False):
     message: Message
+
+@typing.type_check_only
+class MessagePin(typing.TypedDict, total=False):
+    message: str
+    name: str
 
 @typing.type_check_only
 class MessageUpdatedEventData(typing.TypedDict, total=False):

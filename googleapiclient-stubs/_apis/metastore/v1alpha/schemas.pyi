@@ -74,7 +74,7 @@ class BigLakeMetastoreMigrationConfig(typing.TypedDict, total=False):
     dryRun: bool
     hiveConfig: HiveConfig
     icebergConfig: IcebergConfig
-    mode: typing.Literal["MIGRATION_MODE_UNSPECIFIED", "BACKFILL"]
+    mode: typing.Literal["MIGRATION_MODE_UNSPECIFIED", "BACKFILL", "INCREMENTAL_SYNC"]
     reportPath: str
 
 @typing.type_check_only
@@ -104,32 +104,6 @@ class CatalogSummary(typing.TypedDict, total=False):
     catalog: str
     catalogType: typing.Literal["CATALOG_TYPE_UNSPECIFIED", "HIVE", "ICEBERG"]
     databaseSummaries: _list[DatabaseSummary]
-
-@typing.type_check_only
-class CdcConfig(typing.TypedDict, total=False):
-    bucket: str
-    password: str
-    reverseProxySubnet: str
-    rootPath: str
-    subnetIpRange: str
-    username: str
-    vpcNetwork: str
-
-@typing.type_check_only
-class CloudSQLConnectionConfig(typing.TypedDict, total=False):
-    hiveDatabaseName: str
-    instanceConnectionName: str
-    ipAddress: str
-    natSubnet: str
-    password: str
-    port: int
-    proxySubnet: str
-    username: str
-
-@typing.type_check_only
-class CloudSQLMigrationConfig(typing.TypedDict, total=False):
-    cdcConfig: CdcConfig
-    cloudSqlConnectionConfig: CloudSQLConnectionConfig
 
 @typing.type_check_only
 class CompleteMigrationRequest(typing.TypedDict, total=False): ...
@@ -393,7 +367,6 @@ class MetadataManagementActivity(typing.TypedDict, total=False):
 @typing.type_check_only
 class MigrationExecution(typing.TypedDict, total=False):
     biglakeMetastoreMigrationConfig: BigLakeMetastoreMigrationConfig
-    cloudSqlMigrationConfig: CloudSQLMigrationConfig
     createTime: str
     endTime: str
     name: str
@@ -597,6 +570,7 @@ class SetIamPolicyRequest(typing.TypedDict, total=False):
 @typing.type_check_only
 class StartMigrationRequest(typing.TypedDict, total=False):
     migrationExecution: MigrationExecution
+    migrationExecutionId: str
     requestId: str
 
 @typing.type_check_only

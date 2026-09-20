@@ -133,6 +133,7 @@ class BlobStorageSettings(typing.TypedDict, total=False):
 @typing.type_check_only
 class BulkDeleteResourcesRequest(typing.TypedDict, total=False):
     gcsDestination: GoogleCloudHealthcareV1beta1FhirGcsDestination
+    gcsSource: GoogleCloudHealthcareV1beta1FhirGcsSource
     type: str
     until: str
     validateOnly: bool

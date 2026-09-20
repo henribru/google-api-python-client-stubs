@@ -20,6 +20,7 @@ class CloudAiLargeModelsVisionGenerateVideoExperiments(typing.TypedDict, total=F
     customParameters: dict[str, typing.Any]
     exrColorSpaceOverride: str
     humanPose: CloudAiLargeModelsVisionHumanPose
+    modelEndpointOverride: str
     modelName: str
     numDiffusionSteps: int
     omniRewriter: CloudAiLargeModelsVisionGenerateVideoExperimentsOmniRewriterConfig
@@ -371,6 +372,10 @@ class GoogleCloudAiplatformV1AgentEvent(typing.TypedDict, total=False):
     stateDelta: dict[str, typing.Any]
 
 @typing.type_check_only
+class GoogleCloudAiplatformV1AgentResponseCustomization(typing.TypedDict, total=False):
+    denialMessage: str
+
+@typing.type_check_only
 class GoogleCloudAiplatformV1AgentTool(typing.TypedDict, total=False):
     headers: dict[str, typing.Any]
     name: str
@@ -617,6 +622,16 @@ class GoogleCloudAiplatformV1AuthConfigOauthConfig(typing.TypedDict, total=False
 class GoogleCloudAiplatformV1AuthConfigOidcConfig(typing.TypedDict, total=False):
     idToken: str
     serviceAccount: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1AuthorizeSandboxEnvironmentAccessRequest(
+    typing.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1AuthorizeSandboxEnvironmentAccessResponse(
+    typing.TypedDict, total=False
+): ...
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1AutomaticResources(typing.TypedDict, total=False):
@@ -3979,6 +3994,7 @@ class GoogleCloudAiplatformV1GenerationConfig(typing.TypedDict, total=False):
     thinkingConfig: GoogleCloudAiplatformV1GenerationConfigThinkingConfig
     topK: float
     topP: float
+    translationConfig: GoogleCloudAiplatformV1TranslationConfig
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1GenerationConfigRoutingConfig(
@@ -5076,6 +5092,7 @@ class GoogleCloudAiplatformV1MeasurementMetric(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1Memory(typing.TypedDict, total=False):
+    context: str
     createTime: str
     description: str
     disableMemoryRevisions: bool
@@ -5208,6 +5225,7 @@ class GoogleCloudAiplatformV1MemoryMetadataValue(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1MemoryRevision(typing.TypedDict, total=False):
+    context: str
     createTime: str
     expireTime: str
     extractedMemories: _list[GoogleCloudAiplatformV1IntermediateExtractedMemory]
@@ -6314,6 +6332,7 @@ class GoogleCloudAiplatformV1OnlineEvaluatorCloudObservability(
 ):
     logView: str
     openTelemetry: GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilityOpenTelemetry
+    sessionScope: GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilitySessionScope
     traceScope: GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilityTraceScope
     traceView: str
 
@@ -6337,6 +6356,39 @@ class GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilityOpenTelemetry(
     typing.TypedDict, total=False
 ):
     semconvVersion: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilitySessionScope(
+    typing.TypedDict, total=False
+):
+    filter: _list[
+        GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilitySessionScopePredicate
+    ]
+    inactivityTrigger: GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilitySessionScopeInactivityTrigger
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilitySessionScopeInactivityTrigger(
+    typing.TypedDict, total=False
+):
+    threshold: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilitySessionScopePredicate(
+    typing.TypedDict, total=False
+):
+    duration: GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilityNumericPredicate
+    modelCallErrors: (
+        GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilityNumericPredicate
+    )
+    modelCalls: GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilityNumericPredicate
+    toolCallErrors: (
+        GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilityNumericPredicate
+    )
+    toolCalls: GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilityNumericPredicate
+    totalTokenUsage: (
+        GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilityNumericPredicate
+    )
+    userTurns: GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilityNumericPredicate
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilityTraceScope(
@@ -7259,6 +7311,8 @@ class GoogleCloudAiplatformV1QuestionAnsweringRelevanceSpec(
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1RagChunk(typing.TypedDict, total=False):
+    chunkId: str
+    fileId: str
     pageSpan: GoogleCloudAiplatformV1RagChunkPageSpan
     text: str
 
@@ -7476,17 +7530,24 @@ class GoogleCloudAiplatformV1RawPredictRequest(typing.TypedDict, total=False):
     httpBody: GoogleApiHttpBody
 
 @typing.type_check_only
+class GoogleCloudAiplatformV1RayClusterAutoscalingSpec(typing.TypedDict, total=False):
+    idleTimeoutMinutes: str
+    upscalingSpeed: str
+
+@typing.type_check_only
 class GoogleCloudAiplatformV1RayLogsSpec(typing.TypedDict, total=False):
     disabled: bool
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1RayMetricSpec(typing.TypedDict, total=False):
     disabled: bool
+    enableUsageStatsCollection: bool
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1RaySpec(typing.TypedDict, total=False):
     headNodeResourcePoolId: str
     imageUri: str
+    rayClusterAutoscalingSpec: GoogleCloudAiplatformV1RayClusterAutoscalingSpec
     rayLogsSpec: GoogleCloudAiplatformV1RayLogsSpec
     rayMetricSpec: GoogleCloudAiplatformV1RayMetricSpec
     resourcePoolImages: dict[str, typing.Any]
@@ -8182,6 +8243,10 @@ class GoogleCloudAiplatformV1SandboxEnvironment(typing.TypedDict, total=False):
         "STATE_DEPROVISIONING",
         "STATE_TERMINATED",
         "STATE_DELETED",
+        "STATE_PAUSED",
+        "STATE_PAUSING",
+        "STATE_RESUMING",
+        "STATE_STOPPING",
     ]
     ttl: str
     updateTime: str
@@ -8217,6 +8282,7 @@ class GoogleCloudAiplatformV1SandboxEnvironmentSpec(typing.TypedDict, total=Fals
     codeExecutionEnvironment: (
         GoogleCloudAiplatformV1SandboxEnvironmentSpecCodeExecutionEnvironment
     )
+    shellEnvironment: GoogleCloudAiplatformV1SandboxEnvironmentSpecShellEnvironment
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1SandboxEnvironmentSpecCodeExecutionEnvironment(
@@ -8228,6 +8294,11 @@ class GoogleCloudAiplatformV1SandboxEnvironmentSpecCodeExecutionEnvironment(
     machineConfig: typing.Literal[
         "MACHINE_CONFIG_UNSPECIFIED", "MACHINE_CONFIG_VCPU4_RAM4GIB"
     ]
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1SandboxEnvironmentSpecShellEnvironment(
+    typing.TypedDict, total=False
+): ...
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1SandboxEnvironmentTemplate(typing.TypedDict, total=False):
@@ -8280,7 +8351,6 @@ class GoogleCloudAiplatformV1SandboxEnvironmentTemplateDefaultContainerEnvironme
 class GoogleCloudAiplatformV1SandboxEnvironmentTemplateEgressControlConfig(
     typing.TypedDict, total=False
 ):
-    customerVpcNetwork: str
     dnsPeeringConfigs: _list[
         GoogleCloudAiplatformV1SandboxEnvironmentTemplateEgressControlConfigDnsPeeringConfig
     ]
@@ -9055,6 +9125,7 @@ class GoogleCloudAiplatformV1SchemaPromptSpecAppBuilderData(
     typing.TypedDict, total=False
 ):
     codeRepositoryState: str
+    deployedRegions: _list[str]
     framework: typing.Literal["FRAMEWORK_UNSPECIFIED", "REACT", "ANGULAR"]
     linkedResources: _list[
         GoogleCloudAiplatformV1SchemaPromptSpecAppBuilderDataLinkedResource
@@ -10103,6 +10174,7 @@ class GoogleCloudAiplatformV1Segment(typing.TypedDict, total=False):
 class GoogleCloudAiplatformV1SemanticGovernancePolicy(typing.TypedDict, total=False):
     agent: str
     agentIdentity: str
+    agentResponseCustomization: GoogleCloudAiplatformV1AgentResponseCustomization
     createTime: str
     description: str
     displayName: str
@@ -11226,6 +11298,11 @@ class GoogleCloudAiplatformV1TrajectorySingleToolUseSpec(typing.TypedDict, total
 class GoogleCloudAiplatformV1Transcription(typing.TypedDict, total=False):
     finished: bool
     text: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1TranslationConfig(typing.TypedDict, total=False):
+    echoTargetLanguage: bool
+    targetLanguageCode: str
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1Trial(typing.TypedDict, total=False):

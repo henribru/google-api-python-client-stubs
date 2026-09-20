@@ -16,6 +16,7 @@ class AnswerCitation(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class AnswerQueryRequest(typing.TypedDict, total=False):
+    filter: str
     query: str
 
 @typing.type_check_only
@@ -57,6 +58,7 @@ class DocumentChunk(typing.TypedDict, total=False):
     document: Document
     id: str
     parent: str
+    relevanceScore: float
 
 @typing.type_check_only
 class DocumentReference(typing.TypedDict, total=False):

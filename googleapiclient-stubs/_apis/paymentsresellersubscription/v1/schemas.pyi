@@ -349,6 +349,7 @@ class SubscriptionLineItemOneTimeRecurrenceDetails(typing.TypedDict, total=False
 
 @typing.type_check_only
 class SubscriptionMigrationDetails(typing.TypedDict, total=False):
+    legacyCreationTime: str
     migratedSubscriptionId: str
 
 @typing.type_check_only

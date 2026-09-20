@@ -48,6 +48,14 @@ class BackendMetastore(typing.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
+class BackfillStatus(typing.TypedDict, total=False):
+    migrationSummary: MigrationSummary
+    reportPath: str
+    state: typing.Literal[
+        "STATE_UNSPECIFIED", "PENDING", "RUNNING", "SUCCEEDED", "FAILED"
+    ]
+
+@typing.type_check_only
 class Backup(typing.TypedDict, total=False):
     createTime: str
     description: str
@@ -58,6 +66,16 @@ class Backup(typing.TypedDict, total=False):
     state: typing.Literal[
         "STATE_UNSPECIFIED", "CREATING", "DELETING", "ACTIVE", "FAILED", "RESTORING"
     ]
+
+@typing.type_check_only
+class BigLakeMetastoreMigrationConfig(typing.TypedDict, total=False):
+    backfillStatus: BackfillStatus
+    conflictPolicy: typing.Literal["CONFLICT_POLICY_UNSPECIFIED", "SKIP", "OVERWRITE"]
+    dryRun: bool
+    hiveConfig: HiveConfig
+    icebergConfig: IcebergConfig
+    mode: typing.Literal["MIGRATION_MODE_UNSPECIFIED", "BACKFILL"]
+    reportPath: str
 
 @typing.type_check_only
 class Binding(typing.TypedDict, total=False):
@@ -72,30 +90,16 @@ class CancelMigrationRequest(typing.TypedDict, total=False): ...
 class CancelOperationRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
-class CdcConfig(typing.TypedDict, total=False):
-    bucket: str
-    password: str
-    reverseProxySubnet: str
-    rootPath: str
-    subnetIpRange: str
-    username: str
-    vpcNetwork: str
+class CatalogReport(typing.TypedDict, total=False):
+    catalog: str
+    catalogType: typing.Literal["CATALOG_TYPE_UNSPECIFIED", "HIVE", "ICEBERG"]
+    databaseReports: dict[str, typing.Any]
 
 @typing.type_check_only
-class CloudSQLConnectionConfig(typing.TypedDict, total=False):
-    hiveDatabaseName: str
-    instanceConnectionName: str
-    ipAddress: str
-    natSubnet: str
-    password: str
-    port: int
-    proxySubnet: str
-    username: str
-
-@typing.type_check_only
-class CloudSQLMigrationConfig(typing.TypedDict, total=False):
-    cdcConfig: CdcConfig
-    cloudSqlConnectionConfig: CloudSQLConnectionConfig
+class CatalogSummary(typing.TypedDict, total=False):
+    catalog: str
+    catalogType: typing.Literal["CATALOG_TYPE_UNSPECIFIED", "HIVE", "ICEBERG"]
+    databaseSummaries: _list[DatabaseSummary]
 
 @typing.type_check_only
 class CompleteMigrationRequest(typing.TypedDict, total=False): ...
@@ -124,6 +128,22 @@ class DatabaseDump(typing.TypedDict, total=False):
     type: typing.Literal["TYPE_UNSPECIFIED", "MYSQL", "AVRO"]
 
 @typing.type_check_only
+class DatabaseReport(typing.TypedDict, total=False):
+    database: str
+    executionPlan: ExecutionPlan
+    executionResult: ExecutionResult
+    tableReports: dict[str, typing.Any]
+
+@typing.type_check_only
+class DatabaseSummary(typing.TypedDict, total=False):
+    database: str
+    planAction: typing.Literal[
+        "ACTION_UNSPECIFIED", "CREATE", "UPDATE", "SKIP", "DEPENDENCY_FAILURE", "ERROR"
+    ]
+    resultStatus: typing.Literal["STATE_UNSPECIFIED", "SUCCEEDED", "FAILED", "SKIPPED"]
+    tableSummary: TableSummary
+
+@typing.type_check_only
 class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -133,6 +153,20 @@ class EncryptionConfig(typing.TypedDict, total=False):
 @typing.type_check_only
 class ErrorDetails(typing.TypedDict, total=False):
     details: dict[str, typing.Any]
+
+@typing.type_check_only
+class ExecutionPlan(typing.TypedDict, total=False):
+    action: typing.Literal[
+        "ACTION_UNSPECIFIED", "CREATE", "UPDATE", "SKIP", "DEPENDENCY_FAILURE", "ERROR"
+    ]
+    diffs: dict[str, typing.Any]
+    reason: str
+
+@typing.type_check_only
+class ExecutionResult(typing.TypedDict, total=False):
+    errorMessage: str
+    remediation: str
+    state: typing.Literal["STATE_UNSPECIFIED", "SUCCEEDED", "FAILED", "SKIPPED"]
 
 @typing.type_check_only
 class ExportMetadataRequest(typing.TypedDict, total=False):
@@ -164,6 +198,11 @@ class Federation(typing.TypedDict, total=False):
     version: str
 
 @typing.type_check_only
+class HiveConfig(typing.TypedDict, total=False):
+    catalog: str
+    databases: _list[str]
+
+@typing.type_check_only
 class HiveMetastoreConfig(typing.TypedDict, total=False):
     auxiliaryVersions: dict[str, typing.Any]
     configOverrides: dict[str, typing.Any]
@@ -175,6 +214,11 @@ class HiveMetastoreConfig(typing.TypedDict, total=False):
 class HiveMetastoreVersion(typing.TypedDict, total=False):
     isDefault: bool
     version: str
+
+@typing.type_check_only
+class IcebergConfig(typing.TypedDict, total=False):
+    catalog: str
+    namespaces: _list[str]
 
 @typing.type_check_only
 class KerberosConfig(typing.TypedDict, total=False):
@@ -299,7 +343,7 @@ class MetadataManagementActivity(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class MigrationExecution(typing.TypedDict, total=False):
-    cloudSqlMigrationConfig: CloudSQLMigrationConfig
+    biglakeMetastoreMigrationConfig: BigLakeMetastoreMigrationConfig
     createTime: str
     endTime: str
     name: str
@@ -317,6 +361,18 @@ class MigrationExecution(typing.TypedDict, total=False):
         "ROLLED_BACK",
     ]
     stateMessage: str
+
+@typing.type_check_only
+class MigrationReport(typing.TypedDict, total=False):
+    catalogReports: _list[CatalogReport]
+    summary: MigrationSummary
+
+@typing.type_check_only
+class MigrationSummary(typing.TypedDict, total=False):
+    catalogSummaries: _list[CatalogSummary]
+    createTime: str
+    dryRun: bool
+    service: str
 
 @typing.type_check_only
 class MoveTableToDatabaseRequest(typing.TypedDict, total=False):
@@ -354,6 +410,14 @@ class OperationMetadata(typing.TypedDict, total=False):
     statusMessage: str
     target: str
     verb: str
+
+@typing.type_check_only
+class PartitionReport(typing.TypedDict, total=False):
+    partitionFailedCount: str
+    partitionSuccessCount: str
+    state: typing.Literal[
+        "STATE_UNSPECIFIED", "SUCCEEDED", "PARTIALLY_SUCCEEDED", "FAILED"
+    ]
 
 @typing.type_check_only
 class Policy(typing.TypedDict, total=False):
@@ -463,6 +527,7 @@ class SetIamPolicyRequest(typing.TypedDict, total=False):
 @typing.type_check_only
 class StartMigrationRequest(typing.TypedDict, total=False):
     migrationExecution: MigrationExecution
+    migrationExecutionId: str
     requestId: str
 
 @typing.type_check_only
@@ -480,6 +545,22 @@ class StatusProto(typing.TypedDict, total=False):
     space: str
 
 @typing.type_check_only
+class TableReport(typing.TypedDict, total=False):
+    executionPlan: ExecutionPlan
+    executionResult: ExecutionResult
+    partitionDiscoveredCount: str
+    partitionReport: PartitionReport
+    table: str
+
+@typing.type_check_only
+class TableSummary(typing.TypedDict, total=False):
+    partitionDiscoveredCount: str
+    partitionFailedCount: str
+    partitionSuccessCount: str
+    planCounts: dict[str, typing.Any]
+    resultCounts: dict[str, typing.Any]
+
+@typing.type_check_only
 class TelemetryConfig(typing.TypedDict, total=False):
     logFormat: typing.Literal["LOG_FORMAT_UNSPECIFIED", "LEGACY", "JSON"]
 
@@ -490,3 +571,8 @@ class TestIamPermissionsRequest(typing.TypedDict, total=False):
 @typing.type_check_only
 class TestIamPermissionsResponse(typing.TypedDict, total=False):
     permissions: _list[str]
+
+@typing.type_check_only
+class ValueDiff(typing.TypedDict, total=False):
+    sourceValue: str
+    targetValue: str

@@ -103,6 +103,15 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
         ) -> ListAppRecoveriesResponseHttpRequest: ...
 
     @typing.type_check_only
+    class AppsigningResource(googleapiclient.discovery.Resource):
+        def enrollApp(
+            self, *, name: str, body: EnrollAppRequest, **kwargs: typing.Any
+        ) -> EnrollAppResponseHttpRequest: ...
+        def rotateAppSigningKey(
+            self, *, name: str, body: RotateAppSigningKeyRequest, **kwargs: typing.Any
+        ) -> RotateAppSigningKeyResponseHttpRequest: ...
+
+    @typing.type_check_only
     class AppstoreappsreviewResource(googleapiclient.discovery.Resource):
         def createappstorehostedapp(
             self,
@@ -1379,6 +1388,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def applications(self) -> ApplicationsResource: ...
     def apprecovery(self) -> ApprecoveryResource: ...
+    def appsigning(self) -> AppsigningResource: ...
     def appstoreappsreview(self) -> AppstoreappsreviewResource: ...
     def appstorecatalog(self) -> AppstorecatalogResource: ...
     def edits(self) -> EditsResource: ...
@@ -1651,6 +1661,14 @@ class DeviceTierConfigHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> DeviceTierConfig: ...
+
+@typing.type_check_only
+class EnrollAppResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> EnrollAppResponse: ...
 
 @typing.type_check_only
 class ExpansionFileHttpRequest(googleapiclient.http.HttpRequest):
@@ -1931,6 +1949,14 @@ class RevokeSubscriptionPurchaseResponseHttpRequest(googleapiclient.http.HttpReq
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> RevokeSubscriptionPurchaseResponse: ...
+
+@typing.type_check_only
+class RotateAppSigningKeyResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> RotateAppSigningKeyResponse: ...
 
 @typing.type_check_only
 class SafetyLabelsUpdateResponseHttpRequest(googleapiclient.http.HttpRequest):

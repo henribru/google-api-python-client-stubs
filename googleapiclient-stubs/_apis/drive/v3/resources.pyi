@@ -262,6 +262,7 @@ class DriveResource(googleapiclient.discovery.Resource):
             *,
             fileId: str,
             body: File,
+            copyComments: bool | None = ...,
             enforceSingleParent: bool | None = ...,
             ignoreDefaultVisibility: bool | None = ...,
             includeLabels: str | None = ...,

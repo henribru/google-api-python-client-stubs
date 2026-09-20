@@ -50,6 +50,30 @@ class AgentRegistryResource(googleapiclient.discovery.Resource):
                 ) -> SearchAgentsResponseHttpRequest | None: ...
 
             @typing.type_check_only
+            class AiApplicationsResource(googleapiclient.discovery.Resource):
+                def getIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    options_requestedPolicyVersion: int | None = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleIamV1PolicyHttpRequest: ...
+                def setIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    body: GoogleIamV1SetIamPolicyRequest,
+                    **kwargs: typing.Any,
+                ) -> GoogleIamV1PolicyHttpRequest: ...
+                def testIamPermissions(
+                    self,
+                    *,
+                    resource: str,
+                    body: GoogleIamV1TestIamPermissionsRequest,
+                    **kwargs: typing.Any,
+                ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
+
+            @typing.type_check_only
             class BindingsResource(googleapiclient.discovery.Resource):
                 def create(
                     self,
@@ -318,6 +342,16 @@ class AgentRegistryResource(googleapiclient.discovery.Resource):
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> SkillHttpRequest: ...
+                def get_media(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> BytesHttpRequest: ...
+                def getIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    options_requestedPolicyVersion: int | None = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleIamV1PolicyHttpRequest: ...
                 def list(
                     self,
                     *,
@@ -361,6 +395,20 @@ class AgentRegistryResource(googleapiclient.discovery.Resource):
                     previous_request: SearchSkillsResponseHttpRequest,
                     previous_response: SearchSkillsResponse,
                 ) -> SearchSkillsResponseHttpRequest | None: ...
+                def setIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    body: GoogleIamV1SetIamPolicyRequest,
+                    **kwargs: typing.Any,
+                ) -> GoogleIamV1PolicyHttpRequest: ...
+                def testIamPermissions(
+                    self,
+                    *,
+                    resource: str,
+                    body: GoogleIamV1TestIamPermissionsRequest,
+                    **kwargs: typing.Any,
+                ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
                 def revisions(self) -> RevisionsResource: ...
 
             def get(
@@ -382,6 +430,7 @@ class AgentRegistryResource(googleapiclient.discovery.Resource):
                 previous_response: ListLocationsResponse,
             ) -> ListLocationsResponseHttpRequest | None: ...
             def agents(self) -> AgentsResource: ...
+            def aiApplications(self) -> AiApplicationsResource: ...
             def bindings(self) -> BindingsResource: ...
             def endpoints(self) -> EndpointsResource: ...
             def mcpServers(self) -> McpServersResource: ...
@@ -445,6 +494,24 @@ class FetchAvailableBindingsResponseHttpRequest(googleapiclient.http.HttpRequest
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> FetchAvailableBindingsResponse: ...
+
+@typing.type_check_only
+class GoogleIamV1PolicyHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleIamV1Policy: ...
+
+@typing.type_check_only
+class GoogleIamV1TestIamPermissionsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleIamV1TestIamPermissionsResponse: ...
 
 @typing.type_check_only
 class ListAgentsResponseHttpRequest(googleapiclient.http.HttpRequest):

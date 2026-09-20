@@ -615,7 +615,9 @@ class WorkforcePoolProvider(typing.TypedDict, total=False):
     name: str
     oidc: GoogleIamAdminV1WorkforcePoolProviderOidc
     saml: GoogleIamAdminV1WorkforcePoolProviderSaml
-    scimUsage: typing.Literal["SCIM_USAGE_UNSPECIFIED", "ENABLED_FOR_GROUPS"]
+    scimUsage: typing.Literal[
+        "SCIM_USAGE_UNSPECIFIED", "ENABLED_FOR_GROUPS", "ENABLED_FOR_USERS_GROUPS"
+    ]
     state: typing.Literal["STATE_UNSPECIFIED", "ACTIVE", "DELETED"]
 
 @typing.type_check_only

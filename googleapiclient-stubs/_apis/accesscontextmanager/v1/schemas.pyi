@@ -184,7 +184,6 @@ class GcpUserAccessBinding(typing.TypedDict, total=False):
     groupKey: str
     name: str
     principal: Principal
-    restrictedClientApplications: _list[Application]
     scopedAccessSettings: _list[ScopedAccessSettings]
     sessionSettings: SessionSettings
 
@@ -268,6 +267,13 @@ class ListSupportedPermissionsResponse(typing.TypedDict, total=False):
 class ListSupportedServicesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     supportedServices: _list[SupportedService]
+
+@typing.type_check_only
+class LookupConfiguredServicePerimeterResponse(typing.TypedDict, total=False):
+    restrictedResource: str
+    restrictedResourceDryRun: str
+    servicePerimeter: str
+    servicePerimeterDryRun: str
 
 @typing.type_check_only
 class MethodSelector(typing.TypedDict, total=False):

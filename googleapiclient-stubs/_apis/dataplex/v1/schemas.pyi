@@ -516,6 +516,7 @@ class GoogleCloudDataplexV1DataDocumentationResultField(typing.TypedDict, total=
 class GoogleCloudDataplexV1DataDocumentationResultQuery(typing.TypedDict, total=False):
     description: str
     sql: str
+    sqlDialect: typing.Literal["SQL_DIALECT_UNSPECIFIED", "GOOGLE_SQL", "SPARK_SQL"]
 
 @typing.type_check_only
 class GoogleCloudDataplexV1DataDocumentationResultSchema(typing.TypedDict, total=False):
@@ -566,6 +567,7 @@ class GoogleCloudDataplexV1DataDocumentationSpec(typing.TypedDict, total=False):
             "BUSINESS_GLOSSARY_TERM_ASSOCIATIONS",
         ]
     ]
+    sqlDialect: typing.Literal["SQL_DIALECT_UNSPECIFIED", "GOOGLE_SQL", "SPARK_SQL"]
 
 @typing.type_check_only
 class GoogleCloudDataplexV1DataDomain(typing.TypedDict, total=False):

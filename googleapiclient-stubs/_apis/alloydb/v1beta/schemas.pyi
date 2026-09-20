@@ -3,10 +3,6 @@ import typing
 _list = list
 
 @typing.type_check_only
-class AlloydbClhErrorsAlloyDbInternalDebugInfo(typing.TypedDict, total=False):
-    originalError: str
-
-@typing.type_check_only
 class AuthorizedNetwork(typing.TypedDict, total=False):
     cidrRange: str
 
@@ -300,6 +296,18 @@ class DenyMaintenancePeriod(typing.TypedDict, total=False):
     endDate: GoogleTypeDate
     startDate: GoogleTypeDate
     time: GoogleTypeTimeOfDay
+
+@typing.type_check_only
+class DnsAutomationInfo(typing.TypedDict, total=False):
+    fullyQualifiedDomainName: str
+    state: typing.Literal[
+        "STATE_UNSPECIFIED",
+        "PENDING_CREATE",
+        "ACTIVE",
+        "PENDING_DELETE",
+        "CREATE_FAILED",
+        "DELETE_FAILED",
+    ]
 
 @typing.type_check_only
 class Empty(typing.TypedDict, total=False): ...
@@ -636,7 +644,10 @@ class PscAutoConnectionConfig(typing.TypedDict, total=False):
     consumerNetwork: str
     consumerNetworkStatus: str
     consumerProject: str
+    dnsAutomationInfos: _list[DnsAutomationInfo]
     ipAddress: str
+    serviceConnectionPolicy: str
+    serviceConnectionPolicyCreationState: str
     status: str
 
 @typing.type_check_only

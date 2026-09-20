@@ -473,6 +473,7 @@ class GoogleCloudRetailV2alphaColorInfo(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class GoogleCloudRetailV2alphaCompleteQueryResponse(typing.TypedDict, total=False):
+    agentPrompts: _list[GoogleCloudRetailV2alphaCompleteQueryResponseAgentPrompt]
     attributeResults: dict[str, typing.Any]
     attributionToken: str
     completionResults: _list[
@@ -481,6 +482,12 @@ class GoogleCloudRetailV2alphaCompleteQueryResponse(typing.TypedDict, total=Fals
     recentSearchResults: _list[
         GoogleCloudRetailV2alphaCompleteQueryResponseRecentSearchResult
     ]
+
+@typing.type_check_only
+class GoogleCloudRetailV2alphaCompleteQueryResponseAgentPrompt(
+    typing.TypedDict, total=False
+):
+    prompt: str
 
 @typing.type_check_only
 class GoogleCloudRetailV2alphaCompleteQueryResponseAttributeResult(
@@ -492,19 +499,11 @@ class GoogleCloudRetailV2alphaCompleteQueryResponseAttributeResult(
 class GoogleCloudRetailV2alphaCompleteQueryResponseCompletionResult(
     typing.TypedDict, total=False
 ):
-    agentPrompts: _list[
-        GoogleCloudRetailV2alphaCompleteQueryResponseCompletionResultAgentPrompt
-    ]
+    agentPrompts: _list[GoogleCloudRetailV2alphaCompleteQueryResponseAgentPrompt]
     attributes: dict[str, typing.Any]
     facets: _list[GoogleCloudRetailV2alphaSearchResponseFacet]
     suggestion: str
     totalProductCount: int
-
-@typing.type_check_only
-class GoogleCloudRetailV2alphaCompleteQueryResponseCompletionResultAgentPrompt(
-    typing.TypedDict, total=False
-):
-    prompt: str
 
 @typing.type_check_only
 class GoogleCloudRetailV2alphaCompleteQueryResponseRecentSearchResult(

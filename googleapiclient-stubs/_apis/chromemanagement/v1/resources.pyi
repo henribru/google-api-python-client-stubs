@@ -607,6 +607,59 @@ class ChromeManagementResource(googleapiclient.discovery.Resource):
                 GoogleChromeManagementV1FindInstalledAppProfilesResponseHttpRequest
                 | None
             ): ...
+            def findSaasUsage(
+                self,
+                *,
+                customer: str,
+                filter: str | None = ...,
+                orderBy: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
+                **kwargs: typing.Any,
+            ) -> GoogleChromeManagementV1FindSaasUsageReportsResponseHttpRequest: ...
+            def findSaasUsage_next(
+                self,
+                previous_request: GoogleChromeManagementV1FindSaasUsageReportsResponseHttpRequest,
+                previous_response: GoogleChromeManagementV1FindSaasUsageReportsResponse,
+            ) -> (
+                GoogleChromeManagementV1FindSaasUsageReportsResponseHttpRequest | None
+            ): ...
+            def findSaasUsageBrowsers(
+                self,
+                *,
+                customer: str,
+                app: str | None = ...,
+                filter: str | None = ...,
+                orderBy: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
+                **kwargs: typing.Any,
+            ) -> GoogleChromeManagementV1FindSaasUsageBrowsersResponseHttpRequest: ...
+            def findSaasUsageBrowsers_next(
+                self,
+                previous_request: GoogleChromeManagementV1FindSaasUsageBrowsersResponseHttpRequest,
+                previous_response: GoogleChromeManagementV1FindSaasUsageBrowsersResponse,
+            ) -> (
+                GoogleChromeManagementV1FindSaasUsageBrowsersResponseHttpRequest | None
+            ): ...
+            def findSaasUsageProfiles(
+                self,
+                *,
+                customer: str,
+                app: str | None = ...,
+                filter: str | None = ...,
+                orderBy: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
+                **kwargs: typing.Any,
+            ) -> GoogleChromeManagementV1FindSaasUsageProfilesResponseHttpRequest: ...
+            def findSaasUsageProfiles_next(
+                self,
+                previous_request: GoogleChromeManagementV1FindSaasUsageProfilesResponseHttpRequest,
+                previous_response: GoogleChromeManagementV1FindSaasUsageProfilesResponse,
+            ) -> (
+                GoogleChromeManagementV1FindSaasUsageProfilesResponseHttpRequest | None
+            ): ...
 
         @typing.type_check_only
         class TelemetryResource(googleapiclient.discovery.Resource):
@@ -977,6 +1030,36 @@ class GoogleChromeManagementV1FindInstalledAppProfilesResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleChromeManagementV1FindInstalledAppProfilesResponse: ...
+
+@typing.type_check_only
+class GoogleChromeManagementV1FindSaasUsageBrowsersResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleChromeManagementV1FindSaasUsageBrowsersResponse: ...
+
+@typing.type_check_only
+class GoogleChromeManagementV1FindSaasUsageProfilesResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleChromeManagementV1FindSaasUsageProfilesResponse: ...
+
+@typing.type_check_only
+class GoogleChromeManagementV1FindSaasUsageReportsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleChromeManagementV1FindSaasUsageReportsResponse: ...
 
 @typing.type_check_only
 class GoogleChromeManagementV1ListTelemetryDevicesResponseHttpRequest(

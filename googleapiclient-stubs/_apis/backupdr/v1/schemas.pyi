@@ -577,6 +577,7 @@ class DiskRestoreProperties(typing.TypedDict, total=False):
     diskEncryptionKey: CustomerEncryptionKey
     enableConfidentialCompute: bool
     guestOsFeature: _list[GuestOsFeature]
+    instanceBackupSource: RestoreDiskFromInstanceOptions
     labels: dict[str, typing.Any]
     licenses: _list[str]
     name: str
@@ -1017,6 +1018,11 @@ class RestoreBackupRequest(typing.TypedDict, total=False):
 @typing.type_check_only
 class RestoreBackupResponse(typing.TypedDict, total=False):
     targetResource: TargetResource
+
+@typing.type_check_only
+class RestoreDiskFromInstanceOptions(typing.TypedDict, total=False):
+    bootDisk: bool
+    sourceDeviceName: str
 
 @typing.type_check_only
 class RuleConfigInfo(typing.TypedDict, total=False):

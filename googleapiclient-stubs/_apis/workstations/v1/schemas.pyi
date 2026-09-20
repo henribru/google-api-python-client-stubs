@@ -274,6 +274,11 @@ class StopWorkstationRequest(typing.TypedDict, total=False):
     validateOnly: bool
 
 @typing.type_check_only
+class SuspendWorkstationRequest(typing.TypedDict, total=False):
+    etag: str
+    validateOnly: bool
+
+@typing.type_check_only
 class TestIamPermissionsRequest(typing.TypedDict, total=False):
     permissions: _list[str]
 
@@ -304,6 +309,8 @@ class Workstation(typing.TypedDict, total=False):
         "STATE_RUNNING",
         "STATE_STOPPING",
         "STATE_STOPPED",
+        "STATE_SUSPENDING",
+        "STATE_SUSPENDED",
     ]
     uid: str
     updateTime: str
@@ -349,6 +356,7 @@ class WorkstationConfig(typing.TypedDict, total=False):
     etag: str
     grantWorkstationAdminRoleOnCreate: bool
     host: Host
+    idleAction: typing.Literal["IDLE_ACTION_UNSPECIFIED", "STOP", "SUSPEND"]
     idleTimeout: str
     labels: dict[str, typing.Any]
     maxUsableWorkstations: int

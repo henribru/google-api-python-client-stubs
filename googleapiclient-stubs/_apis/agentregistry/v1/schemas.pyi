@@ -84,9 +84,54 @@ class EndpointSpec(typing.TypedDict, total=False):
     type: typing.Literal["TYPE_UNSPECIFIED", "NO_SPEC"]
 
 @typing.type_check_only
+class Expr(typing.TypedDict, total=False):
+    description: str
+    expression: str
+    location: str
+    title: str
+
+@typing.type_check_only
 class FetchAvailableBindingsResponse(typing.TypedDict, total=False):
     bindings: _list[Binding]
     nextPageToken: str
+
+@typing.type_check_only
+class GoogleIamV1AuditConfig(typing.TypedDict, total=False):
+    auditLogConfigs: _list[GoogleIamV1AuditLogConfig]
+    service: str
+
+@typing.type_check_only
+class GoogleIamV1AuditLogConfig(typing.TypedDict, total=False):
+    exemptedMembers: _list[str]
+    logType: typing.Literal[
+        "LOG_TYPE_UNSPECIFIED", "ADMIN_READ", "DATA_WRITE", "DATA_READ"
+    ]
+
+@typing.type_check_only
+class GoogleIamV1Binding(typing.TypedDict, total=False):
+    condition: Expr
+    members: _list[str]
+    role: str
+
+@typing.type_check_only
+class GoogleIamV1Policy(typing.TypedDict, total=False):
+    auditConfigs: _list[GoogleIamV1AuditConfig]
+    bindings: _list[GoogleIamV1Binding]
+    etag: str
+    version: int
+
+@typing.type_check_only
+class GoogleIamV1SetIamPolicyRequest(typing.TypedDict, total=False):
+    policy: GoogleIamV1Policy
+    updateMask: str
+
+@typing.type_check_only
+class GoogleIamV1TestIamPermissionsRequest(typing.TypedDict, total=False):
+    permissions: _list[str]
+
+@typing.type_check_only
+class GoogleIamV1TestIamPermissionsResponse(typing.TypedDict, total=False):
+    permissions: _list[str]
 
 @typing.type_check_only
 class Interface(typing.TypedDict, total=False):

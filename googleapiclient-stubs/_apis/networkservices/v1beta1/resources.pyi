@@ -77,6 +77,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
+                    filter: str | None = ...,
                     pageSize: int | None = ...,
                     pageToken: str | None = ...,
                     returnPartialSuccess: bool | None = ...,
@@ -137,6 +138,52 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: AuthzExtension,
+                    requestId: str | None = ...,
+                    updateMask: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+
+            @typing.type_check_only
+            class CdnEdgeExtensionsResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: CdnEdgeExtension,
+                    cdnEdgeExtensionId: str | None = ...,
+                    requestId: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self,
+                    *,
+                    name: str,
+                    requestId: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> CdnEdgeExtensionHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str | None = ...,
+                    orderBy: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> ListCdnEdgeExtensionsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListCdnEdgeExtensionsResponseHttpRequest,
+                    previous_response: ListCdnEdgeExtensionsResponse,
+                ) -> ListCdnEdgeExtensionsResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: CdnEdgeExtension,
                     requestId: str | None = ...,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
@@ -916,6 +963,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
             ) -> AgentConnectivityTemplatesResource: ...
             def agentGateways(self) -> AgentGatewaysResource: ...
             def authzExtensions(self) -> AuthzExtensionsResource: ...
+            def cdnEdgeExtensions(self) -> CdnEdgeExtensionsResource: ...
             def endpointPolicies(self) -> EndpointPoliciesResource: ...
             def extensionBindings(self) -> ExtensionBindingsResource: ...
             def gateways(self) -> GatewaysResource: ...
@@ -973,6 +1021,14 @@ class AuthzExtensionHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> AuthzExtension: ...
+
+@typing.type_check_only
+class CdnEdgeExtensionHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> CdnEdgeExtension: ...
 
 @typing.type_check_only
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):
@@ -1087,6 +1143,14 @@ class ListAuthzExtensionsResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListAuthzExtensionsResponse: ...
+
+@typing.type_check_only
+class ListCdnEdgeExtensionsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListCdnEdgeExtensionsResponse: ...
 
 @typing.type_check_only
 class ListEndpointPoliciesResponseHttpRequest(googleapiclient.http.HttpRequest):

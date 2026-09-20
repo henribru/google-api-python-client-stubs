@@ -39,6 +39,7 @@ class Backup(typing.TypedDict, total=False):
         "ZONAL",
         "REGIONAL",
     ]
+    sourceVolume: str
     state: typing.Literal[
         "STATE_UNSPECIFIED", "CREATING", "FINALIZING", "READY", "DELETING", "INVALID"
     ]
@@ -292,6 +293,18 @@ class ListSnapshotsResponse(typing.TypedDict, total=False):
     unreachable: _list[str]
 
 @typing.type_check_only
+class ListVolumePoolsResponse(typing.TypedDict, total=False):
+    nextPageToken: str
+    unreachable: _list[str]
+    volumePools: _list[VolumePool]
+
+@typing.type_check_only
+class ListVolumesResponse(typing.TypedDict, total=False):
+    nextPageToken: str
+    unreachable: _list[str]
+    volumes: _list[Volume]
+
+@typing.type_check_only
 class Location(typing.TypedDict, total=False):
     displayName: str
     labels: dict[str, typing.Any]
@@ -318,6 +331,11 @@ class MaintenanceWindow(typing.TypedDict, total=False):
 class ManagedActiveDirectoryConfig(typing.TypedDict, total=False):
     computer: str
     domain: str
+
+@typing.type_check_only
+class MountPoint(typing.TypedDict, total=False):
+    ipAddress: str
+    mountName: str
 
 @typing.type_check_only
 class NetworkConfig(typing.TypedDict, total=False):
@@ -390,6 +408,7 @@ class PromoteReplicaRequest(typing.TypedDict, total=False):
 @typing.type_check_only
 class PscConfig(typing.TypedDict, total=False):
     endpointProject: str
+    requestedIpAddress: str
 
 @typing.type_check_only
 class ReleaseShareRequest(typing.TypedDict, total=False):
@@ -466,6 +485,7 @@ class Schedule(typing.TypedDict, total=False):
 class Share(typing.TypedDict, total=False):
     backup: str
     capacityGb: str
+    capacityMb: str
     createTime: str
     description: str
     labels: dict[str, typing.Any]
@@ -504,6 +524,25 @@ class UpdatePolicy(typing.TypedDict, total=False):
     ]
     denyMaintenancePeriods: _list[DenyMaintenancePeriod]
     window: MaintenanceWindow
+
+@typing.type_check_only
+class Volume(typing.TypedDict, total=False):
+    createTime: str
+    description: str
+    labels: dict[str, typing.Any]
+    mountPoint: MountPoint
+    name: str
+
+@typing.type_check_only
+class VolumePool(typing.TypedDict, total=False):
+    activeVolumeIops: int
+    createTime: str
+    defaultVolumeQuotaMib: int
+    description: str
+    labels: dict[str, typing.Any]
+    name: str
+    network: str
+    uid: str
 
 @typing.type_check_only
 class WeeklyCycle(typing.TypedDict, total=False):

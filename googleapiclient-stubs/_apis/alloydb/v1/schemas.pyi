@@ -3,10 +3,6 @@ import typing
 _list = list
 
 @typing.type_check_only
-class AlloydbClhErrorsAlloyDbInternalDebugInfo(typing.TypedDict, total=False):
-    originalError: str
-
-@typing.type_check_only
 class AuthorizedNetwork(typing.TypedDict, total=False):
     cidrRange: str
 
@@ -284,6 +280,18 @@ class DenyMaintenancePeriod(typing.TypedDict, total=False):
     time: GoogleTypeTimeOfDay
 
 @typing.type_check_only
+class DnsAutomationInfo(typing.TypedDict, total=False):
+    fullyQualifiedDomainName: str
+    state: typing.Literal[
+        "STATE_UNSPECIFIED",
+        "PENDING_CREATE",
+        "ACTIVE",
+        "PENDING_DELETE",
+        "CREATE_FAILED",
+        "DELETE_FAILED",
+    ]
+
+@typing.type_check_only
 class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -392,6 +400,7 @@ class Instance(typing.TypedDict, total=False):
     observabilityConfig: ObservabilityInstanceConfig
     outboundPublicIpAddresses: _list[str]
     pscInstanceConfig: PscInstanceConfig
+    pscInstanceInfo: PscInstanceInfo
     publicIpAddress: str
     queryInsightsConfig: QueryInsightsInstanceConfig
     readPoolConfig: ReadPoolConfig
@@ -572,7 +581,10 @@ class PscAutoConnectionConfig(typing.TypedDict, total=False):
     consumerNetwork: str
     consumerNetworkStatus: str
     consumerProject: str
+    dnsAutomationInfos: _list[DnsAutomationInfo]
     ipAddress: str
+    serviceConnectionPolicy: str
+    serviceConnectionPolicyCreationState: str
     status: str
 
 @typing.type_check_only
@@ -583,10 +595,25 @@ class PscConfig(typing.TypedDict, total=False):
 @typing.type_check_only
 class PscInstanceConfig(typing.TypedDict, total=False):
     allowedConsumerProjects: _list[str]
+    pscAutoConnectionPolicyState: typing.Literal[
+        "PSC_AUTO_CONNECTION_POLICY_STATE_UNSPECIFIED", "ENABLED", "DISABLED"
+    ]
     pscAutoConnections: _list[PscAutoConnectionConfig]
+    pscAutoDnsState: typing.Literal[
+        "PSC_AUTO_DNS_STATE_UNSPECIFIED",
+        "PSC_AUTO_DNS_STATE_ENABLED",
+        "PSC_AUTO_DNS_STATE_DISABLED",
+    ]
     pscDnsName: str
     pscInterfaceConfigs: _list[PscInterfaceConfig]
     serviceAttachmentLink: str
+
+@typing.type_check_only
+class PscInstanceInfo(typing.TypedDict, total=False):
+    effectivePscAutoConnectionPolicy: bool
+    effectivePscAutoDnsEnabled: bool
+    pscAutoDnsNames: _list[str]
+    serviceConnectionPolicy: str
 
 @typing.type_check_only
 class PscInterfaceConfig(typing.TypedDict, total=False):

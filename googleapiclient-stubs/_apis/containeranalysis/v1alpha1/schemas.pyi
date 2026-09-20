@@ -633,6 +633,7 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1DependencyGitSourceDependency(
 ):
     depth: str
     destPath: str
+    fetchTags: bool
     recurseSubmodules: bool
     repository: ContaineranalysisGoogleDevtoolsCloudbuildV1DependencyGitSourceRepository
     revision: str
@@ -1332,7 +1333,9 @@ class Location(typing.TypedDict, total=False):
 @typing.type_check_only
 class MaliciousContentLLMResult(typing.TypedDict, total=False):
     maxSeverity: typing.Literal["SEVERITY_UNSPECIFIED", "CRITICAL", "HIGH"]
+    modelId: str
     scanState: typing.Literal["SCAN_STATE_UNSPECIFIED", "PERFORMED", "NOT_PERFORMED"]
+    tokenUsage: TokenUsage
 
 @typing.type_check_only
 class MaliciousContentStaticResult(typing.TypedDict, total=False):
@@ -1912,6 +1915,14 @@ class TestIamPermissionsResponse(typing.TypedDict, total=False):
 class TimeSpan(typing.TypedDict, total=False):
     endTime: str
     startTime: str
+
+@typing.type_check_only
+class TokenUsage(typing.TypedDict, total=False):
+    cacheCount: str
+    candidateCount: str
+    promptCount: str
+    thinkingCount: str
+    toolUsePromptCount: str
 
 @typing.type_check_only
 class URI(typing.TypedDict, total=False):

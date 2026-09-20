@@ -291,6 +291,13 @@ class DataformResource(googleapiclient.discovery.Resource):
 
                 @typing.type_check_only
                 class WorkspacesResource(googleapiclient.discovery.Resource):
+                    def checkout(
+                        self,
+                        *,
+                        name: str,
+                        body: CheckoutWorkspaceBranchRequest,
+                        **kwargs: typing.Any,
+                    ) -> EmptyHttpRequest: ...
                     def commit(
                         self,
                         *,
@@ -309,6 +316,36 @@ class DataformResource(googleapiclient.discovery.Resource):
                     def delete(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> EmptyHttpRequest: ...
+                    def deleteBranch(
+                        self,
+                        *,
+                        name: str,
+                        body: DeleteBranchRequest,
+                        **kwargs: typing.Any,
+                    ) -> DeleteBranchResponseHttpRequest: ...
+                    def fetchBranches(
+                        self,
+                        *,
+                        name: str,
+                        filter: typing.Literal[
+                            "BRANCH_FILTER_UNSPECIFIED",
+                            "LOCAL_ONLY",
+                            "REMOTE_ONLY",
+                            "ALL",
+                        ]
+                        | None = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
+                        **kwargs: typing.Any,
+                    ) -> FetchWorkspaceBranchesResponseHttpRequest: ...
+                    def fetchBranches_next(
+                        self,
+                        previous_request: FetchWorkspaceBranchesResponseHttpRequest,
+                        previous_response: FetchWorkspaceBranchesResponse,
+                    ) -> FetchWorkspaceBranchesResponseHttpRequest | None: ...
+                    def fetchCurrentBranch(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> FetchCurrentWorkspaceBranchResponseHttpRequest: ...
                     def fetchFileDiff(
                         self,
                         *,
@@ -463,6 +500,13 @@ class DataformResource(googleapiclient.discovery.Resource):
                         body: SetIamPolicyRequest,
                         **kwargs: typing.Any,
                     ) -> PolicyHttpRequest: ...
+                    def syncWorkspaceRefs(
+                        self,
+                        *,
+                        name: str,
+                        body: SyncWorkspaceRefsRequest,
+                        **kwargs: typing.Any,
+                    ) -> SyncWorkspaceRefsResponseHttpRequest: ...
                     def testIamPermissions(
                         self,
                         *,
@@ -804,12 +848,28 @@ class ConfigHttpRequest(googleapiclient.http.HttpRequest):
     ) -> Config: ...
 
 @typing.type_check_only
+class DeleteBranchResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> DeleteBranchResponse: ...
+
+@typing.type_check_only
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Empty: ...
+
+@typing.type_check_only
+class FetchCurrentWorkspaceBranchResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> FetchCurrentWorkspaceBranchResponse: ...
 
 @typing.type_check_only
 class FetchFileDiffResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -850,6 +910,14 @@ class FetchRepositoryHistoryResponseHttpRequest(googleapiclient.http.HttpRequest
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> FetchRepositoryHistoryResponse: ...
+
+@typing.type_check_only
+class FetchWorkspaceBranchesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> FetchWorkspaceBranchesResponse: ...
 
 @typing.type_check_only
 class FolderHttpRequest(googleapiclient.http.HttpRequest):
@@ -1128,6 +1196,14 @@ class SearchTeamFoldersResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> SearchTeamFoldersResponse: ...
+
+@typing.type_check_only
+class SyncWorkspaceRefsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> SyncWorkspaceRefsResponse: ...
 
 @typing.type_check_only
 class TeamFolderHttpRequest(googleapiclient.http.HttpRequest):
