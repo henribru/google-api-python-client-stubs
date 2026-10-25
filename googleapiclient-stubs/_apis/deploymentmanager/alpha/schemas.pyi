@@ -42,7 +42,9 @@ class BulkInsertOperationStatus(typing.TypedDict, total=False):
     createdVmCount: int
     deletedVmCount: int
     failedToCreateVmCount: int
-    status: typing.Literal["STATUS_UNSPECIFIED", "CREATING", "ROLLING_BACK", "DONE"]
+    status: typing.Literal[
+        "STATUS_UNSPECIFIED", "CREATING", "ROLLING_BACK", "DONE", "PENDING"
+    ]
     targetVmCount: int
 
 @typing.type_check_only
@@ -163,6 +165,36 @@ class FirewallPolicyRuleOperationMetadata(typing.TypedDict, total=False):
     allocatedPriority: int
 
 @typing.type_check_only
+class GetHealthOperationMetadata(typing.TypedDict, total=False):
+    healthInfo: GetHealthOperationMetadataHealthInfo
+
+@typing.type_check_only
+class GetHealthOperationMetadataHealthInfo(typing.TypedDict, total=False):
+    availabilitySloStatus: typing.Literal[
+        "AVAILABILITY_SLO_STATUS_UNSPECIFIED",
+        "AVAILABILITY_SLO_STATUS_IN_SLO",
+        "AVAILABILITY_SLO_STATUS_OUT_OF_SLO",
+        "AVAILABILITY_SLO_STATUS_SLO_UNKNOWN",
+    ]
+    healthStatus: typing.Literal[
+        "HEALTH_STATUS_UNSPECIFIED", "HEALTH_STATUS_HEALTHY", "HEALTH_STATUS_UNHEALTHY"
+    ]
+    repairCategory: typing.Literal[
+        "REPAIR_CATEGORY_UNSPECIFIED",
+        "REPAIR_CATEGORY_PLANNED_MAINTENANCE",
+        "REPAIR_CATEGORY_EMERGENT_MAINTENANCE",
+        "REPAIR_CATEGORY_USER_REPORTED_FAULT",
+        "REPAIR_CATEGORY_CRITICAL_FAILURE",
+    ]
+    unhealthyReason: typing.Literal[
+        "UNHEALTHY_REASON_UNSPECIFIED",
+        "UNHEALTHY_REASON_REPAIRING",
+        "UNHEALTHY_REASON_PENDING_USER_APPROVAL",
+        "UNHEALTHY_REASON_UNSCHEDULABLE",
+    ]
+    updateTime: str
+
+@typing.type_check_only
 class GetVersionOperationMetadata(typing.TypedDict, total=False):
     inlineSbomInfo: GetVersionOperationMetadataSbomInfo
 
@@ -205,6 +237,10 @@ class InstancesBulkInsertOperationMetadata(typing.TypedDict, total=False):
     perLocationStatus: dict[str, typing.Any]
 
 @typing.type_check_only
+class InstancesTroubleshootOperationMetadata(typing.TypedDict, total=False):
+    troubleshootOutput: str
+
+@typing.type_check_only
 class LocalizedMessage(typing.TypedDict, total=False):
     locale: str
     message: str
@@ -240,15 +276,18 @@ class Operation(typing.TypedDict, total=False):
     clientOperationId: str
     creationTimestamp: str
     description: str
+    details: OperationDetails
     endTime: str
     error: dict[str, typing.Any]
     firewallPolicyRuleOperationMetadata: FirewallPolicyRuleOperationMetadata
+    getHealthOperationMetadata: GetHealthOperationMetadata
     getVersionOperationMetadata: GetVersionOperationMetadata
     httpErrorMessage: str
     httpErrorStatusCode: int
     id: str
     insertTime: str
     instancesBulkInsertOperationMetadata: InstancesBulkInsertOperationMetadata
+    instancesTroubleshootOperationMetadata: InstancesTroubleshootOperationMetadata
     kind: str
     name: str
     operationGroupId: str
@@ -269,6 +308,11 @@ class Operation(typing.TypedDict, total=False):
     user: str
     warnings: _list[dict[str, typing.Any]]
     zone: str
+
+@typing.type_check_only
+class OperationDetails(typing.TypedDict, total=False):
+    data: dict[str, typing.Any]
+    message: str
 
 @typing.type_check_only
 class OperationsListResponse(typing.TypedDict, total=False):

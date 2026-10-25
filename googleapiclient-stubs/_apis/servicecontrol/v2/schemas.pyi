@@ -25,6 +25,7 @@ class AuditLog(typing.TypedDict, total=False):
     apiVersionIdentifier: str
     authenticationInfo: AuthenticationInfo
     authorizationInfo: _list[AuthorizationInfo]
+    callerAgent: CallerAgent
     metadata: dict[str, typing.Any]
     methodName: str
     numResponseItems: str
@@ -38,6 +39,11 @@ class AuditLog(typing.TypedDict, total=False):
     serviceData: dict[str, typing.Any]
     serviceName: str
     status: Status
+
+@typing.type_check_only
+class AuditPamBindingId(typing.TypedDict, total=False):
+    container: str
+    grantUuid: str
 
 @typing.type_check_only
 class Auth(typing.TypedDict, total=False):
@@ -72,8 +78,13 @@ class AuthorizationInfo(typing.TypedDict, total=False):
         "DATA_READ",
         "DATA_WRITE",
     ]
+    privilegedAccessManagerMetadata: PrivilegedAccessManagerMetadata
     resource: str
     resourceAttributes: Resource
+
+@typing.type_check_only
+class CallerAgent(typing.TypedDict, total=False):
+    authority: typing.Literal["AUTHORITY_TYPE_UNSPECIFIED", "SELF", "ON_BEHALF_OF"]
 
 @typing.type_check_only
 class CheckRequest(typing.TypedDict, total=False):
@@ -119,6 +130,10 @@ class Peer(typing.TypedDict, total=False):
 @typing.type_check_only
 class PolicyViolationInfo(typing.TypedDict, total=False):
     orgPolicyViolationInfo: OrgPolicyViolationInfo
+
+@typing.type_check_only
+class PrivilegedAccessManagerMetadata(typing.TypedDict, total=False):
+    pamBindingIds: _list[AuditPamBindingId]
 
 @typing.type_check_only
 class ReportRequest(typing.TypedDict, total=False):

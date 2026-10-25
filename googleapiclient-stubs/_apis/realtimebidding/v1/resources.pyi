@@ -211,6 +211,9 @@ class RealTimeBiddingResource(googleapiclient.discovery.Resource):
     class BuyersResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class CreativesResource(googleapiclient.discovery.Resource):
+            def addDeals(
+                self, *, name: str, body: AddDealsRequest, **kwargs: typing.Any
+            ) -> CreativeHttpRequest: ...
             def create(
                 self, *, parent: str, body: Creative, **kwargs: typing.Any
             ) -> CreativeHttpRequest: ...

@@ -36,6 +36,8 @@ class BDRBackupPlanJobLog(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class BDRBackupRestoreJobLog(typing.TypedDict, total=False):
+    autoProtectionPolicy: str
+    autoProtectionPolicyBinding: str
     backupConsistencyTime: str
     backupName: str
     backupPlanName: str

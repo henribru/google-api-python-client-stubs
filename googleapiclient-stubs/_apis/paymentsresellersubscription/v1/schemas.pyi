@@ -314,6 +314,11 @@ class SubscriptionLineItem(typing.TypedDict, total=False):
     lineItemPromotionSpecs: _list[SubscriptionPromotionSpec]
     name: str
     oneTimeRecurrenceDetails: SubscriptionLineItemOneTimeRecurrenceDetails
+    planType: typing.Literal[
+        "LINE_ITEM_PLAN_TYPE_UNSPECIFIED",
+        "LINE_ITEM_PLAN_TYPE_BASE",
+        "LINE_ITEM_PLAN_TYPE_ADDON",
+    ]
     product: str
     productPayload: ProductPayload
     recurrenceType: typing.Literal[
@@ -349,6 +354,7 @@ class SubscriptionLineItemOneTimeRecurrenceDetails(typing.TypedDict, total=False
 
 @typing.type_check_only
 class SubscriptionMigrationDetails(typing.TypedDict, total=False):
+    legacyCreationTime: str
     migratedSubscriptionId: str
 
 @typing.type_check_only

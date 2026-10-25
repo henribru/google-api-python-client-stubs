@@ -7,7 +7,21 @@ class AdminSettings(typing.TypedDict, total=False):
     allowedEmailDomains: _list[str]
 
 @typing.type_check_only
+class AuthType(typing.TypedDict, total=False):
+    googleAuthEnabled: bool
+    workforceAuthEnabled: bool
+
+@typing.type_check_only
 class CancelOperationRequest(typing.TypedDict, total=False): ...
+
+@typing.type_check_only
+class ComponentMetrics(typing.TypedDict, total=False):
+    componentType: typing.Literal["TYPE_UNSPECIFIED", "BQ_ESA", "DB", "FS", "ALL"]
+    duration: str
+    endTime: str
+    retryCount: int
+    sizeGb: float
+    startTime: str
 
 @typing.type_check_only
 class ControlledEgressConfig(typing.TypedDict, total=False):
@@ -62,17 +76,25 @@ class ExportInstanceRequest(typing.TypedDict, total=False):
 class ExportMetadata(typing.TypedDict, total=False):
     esaSourceDatasetId: str
     exportEncryptionKey: ExportMetadataEncryptionKey
+    exportMetrics: ExportMetrics
     filePaths: _list[str]
     lookerEncryptionKey: str
     lookerInstance: str
     lookerPlatformEdition: str
     lookerVersion: str
-    source: typing.Literal["SOURCE_UNSPECIFIED", "LOOKER_CORE", "LOOKER_ORIGINAL"]
+    source: typing.Literal[
+        "SOURCE_UNSPECIFIED", "LOOKER_CORE", "LOOKER_ORIGINAL", "LOOKER_SELF_HOSTED"
+    ]
 
 @typing.type_check_only
 class ExportMetadataEncryptionKey(typing.TypedDict, total=False):
     cmek: str
     version: str
+
+@typing.type_check_only
+class ExportMetrics(typing.TypedDict, total=False):
+    componentMetrics: _list[ComponentMetrics]
+    instanceInternalName: str
 
 @typing.type_check_only
 class ImportInstanceRequest(typing.TypedDict, total=False):
@@ -93,6 +115,7 @@ class IngressIpAllowlistRule(typing.TypedDict, total=False):
 class Instance(typing.TypedDict, total=False):
     acceleratedSecurityPatchEnabled: bool
     adminSettings: AdminSettings
+    authType: AuthType
     catalogIntegrationOptOut: bool
     classType: typing.Literal["CLASS_TYPE_UNSPECIFIED", "R1", "P1"]
     consumerNetwork: str

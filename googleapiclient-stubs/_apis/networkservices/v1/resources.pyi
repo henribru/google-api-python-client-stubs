@@ -77,6 +77,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
+                    filter: str | None = ...,
                     pageSize: int | None = ...,
                     pageToken: str | None = ...,
                     returnPartialSuccess: bool | None = ...,
@@ -792,11 +793,16 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: ServiceBinding,
+                    requestId: str | None = ...,
                     serviceBindingId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
-                    self, *, name: str, **kwargs: typing.Any
+                    self,
+                    *,
+                    name: str,
+                    requestId: str | None = ...,
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
@@ -819,6 +825,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: ServiceBinding,
+                    requestId: str | None = ...,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...

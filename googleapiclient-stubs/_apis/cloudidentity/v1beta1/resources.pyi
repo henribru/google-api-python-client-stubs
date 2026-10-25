@@ -13,6 +13,31 @@ _list = list
 @typing.type_check_only
 class CloudIdentityResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
+    class AllowlistedDomainsResource(googleapiclient.discovery.Resource):
+        def create(
+            self, *, body: AllowlistedDomain, **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def delete(
+            self, *, name: str, **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def get(
+            self, *, name: str, **kwargs: typing.Any
+        ) -> AllowlistedDomainHttpRequest: ...
+        def list(
+            self,
+            *,
+            filter: str | None = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
+            **kwargs: typing.Any,
+        ) -> ListAllowlistedDomainsResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListAllowlistedDomainsResponseHttpRequest,
+            previous_response: ListAllowlistedDomainsResponse,
+        ) -> ListAllowlistedDomainsResponseHttpRequest | None: ...
+
+    @typing.type_check_only
     class CustomersResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class UserinvitationsResource(googleapiclient.discovery.Resource):
@@ -521,6 +546,7 @@ class CloudIdentityResource(googleapiclient.discovery.Resource):
         ]
         | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
+    def allowlistedDomains(self) -> AllowlistedDomainsResource: ...
     def customers(self) -> CustomersResource: ...
     def devices(self) -> DevicesResource: ...
     def groups(self) -> GroupsResource: ...
@@ -529,6 +555,14 @@ class CloudIdentityResource(googleapiclient.discovery.Resource):
     def inboundSsoAssignments(self) -> InboundSsoAssignmentsResource: ...
     def orgUnits(self) -> OrgUnitsResource: ...
     def policies(self) -> PoliciesResource: ...
+
+@typing.type_check_only
+class AllowlistedDomainHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> AllowlistedDomain: ...
 
 @typing.type_check_only
 class CheckTransitiveMembershipResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -609,6 +643,14 @@ class IsInvitableUserResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> IsInvitableUserResponse: ...
+
+@typing.type_check_only
+class ListAllowlistedDomainsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListAllowlistedDomainsResponse: ...
 
 @typing.type_check_only
 class ListDeviceUsersResponseHttpRequest(googleapiclient.http.HttpRequest):

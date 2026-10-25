@@ -259,8 +259,10 @@ class ConversionWorkspace(typing.TypedDict, total=False):
     displayName: str
     globalSettings: dict[str, typing.Any]
     hasUncommittedChanges: bool
+    latestApplyTime: str
     latestCommitId: str
     latestCommitTime: str
+    latestConvertTime: str
     name: str
     source: DatabaseEngineInfo
     sourceProvider: typing.Literal[
@@ -435,6 +437,47 @@ class EntityDdl(typing.TypedDict, total=False):
     issueId: _list[str]
 
 @typing.type_check_only
+class EntityId(typing.TypedDict, total=False):
+    parentName: str
+    parentType: typing.Literal[
+        "DATABASE_ENTITY_TYPE_UNSPECIFIED",
+        "DATABASE_ENTITY_TYPE_SCHEMA",
+        "DATABASE_ENTITY_TYPE_TABLE",
+        "DATABASE_ENTITY_TYPE_COLUMN",
+        "DATABASE_ENTITY_TYPE_CONSTRAINT",
+        "DATABASE_ENTITY_TYPE_INDEX",
+        "DATABASE_ENTITY_TYPE_TRIGGER",
+        "DATABASE_ENTITY_TYPE_VIEW",
+        "DATABASE_ENTITY_TYPE_SEQUENCE",
+        "DATABASE_ENTITY_TYPE_STORED_PROCEDURE",
+        "DATABASE_ENTITY_TYPE_FUNCTION",
+        "DATABASE_ENTITY_TYPE_SYNONYM",
+        "DATABASE_ENTITY_TYPE_DATABASE_PACKAGE",
+        "DATABASE_ENTITY_TYPE_UDT",
+        "DATABASE_ENTITY_TYPE_MATERIALIZED_VIEW",
+        "DATABASE_ENTITY_TYPE_DATABASE",
+    ]
+    shortName: str
+    type: typing.Literal[
+        "DATABASE_ENTITY_TYPE_UNSPECIFIED",
+        "DATABASE_ENTITY_TYPE_SCHEMA",
+        "DATABASE_ENTITY_TYPE_TABLE",
+        "DATABASE_ENTITY_TYPE_COLUMN",
+        "DATABASE_ENTITY_TYPE_CONSTRAINT",
+        "DATABASE_ENTITY_TYPE_INDEX",
+        "DATABASE_ENTITY_TYPE_TRIGGER",
+        "DATABASE_ENTITY_TYPE_VIEW",
+        "DATABASE_ENTITY_TYPE_SEQUENCE",
+        "DATABASE_ENTITY_TYPE_STORED_PROCEDURE",
+        "DATABASE_ENTITY_TYPE_FUNCTION",
+        "DATABASE_ENTITY_TYPE_SYNONYM",
+        "DATABASE_ENTITY_TYPE_DATABASE_PACKAGE",
+        "DATABASE_ENTITY_TYPE_UDT",
+        "DATABASE_ENTITY_TYPE_MATERIALIZED_VIEW",
+        "DATABASE_ENTITY_TYPE_DATABASE",
+    ]
+
+@typing.type_check_only
 class EntityIssue(typing.TypedDict, total=False):
     code: str
     ddl: str
@@ -526,6 +569,22 @@ class EntityMove(typing.TypedDict, total=False):
     newSchema: str
 
 @typing.type_check_only
+class EntityStatusView(typing.TypedDict, total=False):
+    dependencies: _list[EntityId]
+    draftDdlKind: typing.Literal[
+        "DDL_KIND_UNSPECIFIED", "SOURCE", "DETERMINISTIC", "AI", "USER_EDIT"
+    ]
+    draftEntity: EntityId
+    editedDdlKind: typing.Literal[
+        "DDL_KIND_UNSPECIFIED", "SOURCE", "DETERMINISTIC", "AI", "USER_EDIT"
+    ]
+    issues: IssueAggregateData
+    resolvedIssues: IssueAggregateData
+    sourceEntity: EntityId
+    testedEntity: bool
+    wasApplied: bool
+
+@typing.type_check_only
 class ErrorInfo(typing.TypedDict, total=False):
     domain: str
     metadata: dict[str, typing.Any]
@@ -537,6 +596,23 @@ class Expr(typing.TypedDict, total=False):
     expression: str
     location: str
     title: str
+
+@typing.type_check_only
+class FetchEntitiesStatusViewResponse(typing.TypedDict, total=False):
+    entities: _list[EntityStatusView]
+    nextPageToken: str
+
+@typing.type_check_only
+class FetchIssuesResponse(typing.TypedDict, total=False):
+    issues: _list[Issue]
+    nextPageToken: str
+
+@typing.type_check_only
+class FetchIssuesResponseIssuePosition(typing.TypedDict, total=False):
+    column: int
+    length: int
+    line: int
+    offset: int
 
 @typing.type_check_only
 class FetchStaticIpsResponse(typing.TypedDict, total=False):
@@ -645,6 +721,175 @@ class IntComparisonFilter(typing.TypedDict, total=False):
         "VALUE_COMPARISON_IF_VALUE_LARGER_THAN",
         "VALUE_COMPARISON_IF_VALUE_LARGER_EQUAL_THAN",
     ]
+
+@typing.type_check_only
+class Issue(typing.TypedDict, total=False):
+    categoryId: typing.Literal[
+        "ISSUE_CATEGORY_ID_UNSPECIFIED",
+        "ISSUE_CATEGORY_ID_CW00",
+        "ISSUE_CATEGORY_ID_CW01",
+        "ISSUE_CATEGORY_ID_CW02",
+        "ISSUE_CATEGORY_ID_CW03",
+        "ISSUE_CATEGORY_ID_CW04",
+        "ISSUE_CATEGORY_ID_CW05",
+        "ISSUE_CATEGORY_ID_CW06",
+        "ISSUE_CATEGORY_ID_CW07",
+        "ISSUE_CATEGORY_ID_CW08",
+        "ISSUE_CATEGORY_ID_CW99",
+        "ISSUE_CATEGORY_ID_QA00",
+        "ISSUE_CATEGORY_ID_AP00",
+    ]
+    entityFullName: str
+    entityType: typing.Literal[
+        "DATABASE_ENTITY_TYPE_UNSPECIFIED",
+        "DATABASE_ENTITY_TYPE_SCHEMA",
+        "DATABASE_ENTITY_TYPE_TABLE",
+        "DATABASE_ENTITY_TYPE_COLUMN",
+        "DATABASE_ENTITY_TYPE_CONSTRAINT",
+        "DATABASE_ENTITY_TYPE_INDEX",
+        "DATABASE_ENTITY_TYPE_TRIGGER",
+        "DATABASE_ENTITY_TYPE_VIEW",
+        "DATABASE_ENTITY_TYPE_SEQUENCE",
+        "DATABASE_ENTITY_TYPE_STORED_PROCEDURE",
+        "DATABASE_ENTITY_TYPE_FUNCTION",
+        "DATABASE_ENTITY_TYPE_SYNONYM",
+        "DATABASE_ENTITY_TYPE_DATABASE_PACKAGE",
+        "DATABASE_ENTITY_TYPE_UDT",
+        "DATABASE_ENTITY_TYPE_MATERIALIZED_VIEW",
+        "DATABASE_ENTITY_TYPE_DATABASE",
+    ]
+    groupId: typing.Literal[
+        "ISSUE_GROUP_ID_UNSPECIFIED",
+        "ISSUE_GROUP_ID_CW_OP0000",
+        "ISSUE_GROUP_ID_CW_OP0001",
+        "ISSUE_GROUP_ID_CW_OP0002",
+        "ISSUE_GROUP_ID_CW_OP0101",
+        "ISSUE_GROUP_ID_CW_OP0102",
+        "ISSUE_GROUP_ID_CW_OP0103",
+        "ISSUE_GROUP_ID_CW_OP0200",
+        "ISSUE_GROUP_ID_CW_OP0201",
+        "ISSUE_GROUP_ID_CW_OP0202",
+        "ISSUE_GROUP_ID_CW_OP0203",
+        "ISSUE_GROUP_ID_CW_OP0204",
+        "ISSUE_GROUP_ID_CW_OP0205",
+        "ISSUE_GROUP_ID_CW_OP0206",
+        "ISSUE_GROUP_ID_CW_OP0300",
+        "ISSUE_GROUP_ID_CW_OP0301",
+        "ISSUE_GROUP_ID_CW_OP0315",
+        "ISSUE_GROUP_ID_CW_OP0303",
+        "ISSUE_GROUP_ID_CW_OP0304",
+        "ISSUE_GROUP_ID_CW_OP0305",
+        "ISSUE_GROUP_ID_CW_OP0306",
+        "ISSUE_GROUP_ID_CW_OP0307",
+        "ISSUE_GROUP_ID_CW_OP0308",
+        "ISSUE_GROUP_ID_CW_OP0309",
+        "ISSUE_GROUP_ID_CW_OP0310",
+        "ISSUE_GROUP_ID_CW_OP0311",
+        "ISSUE_GROUP_ID_CW_OP0312",
+        "ISSUE_GROUP_ID_CW_OP0313",
+        "ISSUE_GROUP_ID_CW_OP0314",
+        "ISSUE_GROUP_ID_CW_OP0302",
+        "ISSUE_GROUP_ID_CW_OP0400",
+        "ISSUE_GROUP_ID_CW_OP0401",
+        "ISSUE_GROUP_ID_CW_OP0402",
+        "ISSUE_GROUP_ID_CW_OP0403",
+        "ISSUE_GROUP_ID_CW_OP0404",
+        "ISSUE_GROUP_ID_CW_OP0500",
+        "ISSUE_GROUP_ID_CW_OP0501",
+        "ISSUE_GROUP_ID_CW_OP0502",
+        "ISSUE_GROUP_ID_CW_OP0503",
+        "ISSUE_GROUP_ID_CW_OP0504",
+        "ISSUE_GROUP_ID_CW_OP0601",
+        "ISSUE_GROUP_ID_CW_OP0602",
+        "ISSUE_GROUP_ID_CW_OP0603",
+        "ISSUE_GROUP_ID_CW_OP0604",
+        "ISSUE_GROUP_ID_CW_OP0605",
+        "ISSUE_GROUP_ID_CW_OP0606",
+        "ISSUE_GROUP_ID_CW_OP0701",
+        "ISSUE_GROUP_ID_CW_OP0702",
+        "ISSUE_GROUP_ID_CW_OP0801",
+        "ISSUE_GROUP_ID_CW_OP0802",
+        "ISSUE_GROUP_ID_CW_OP0803",
+        "ISSUE_GROUP_ID_CW_OP0804",
+        "ISSUE_GROUP_ID_CW_OP0805",
+        "ISSUE_GROUP_ID_CW_OP0806",
+        "ISSUE_GROUP_ID_CW_OP0807",
+        "ISSUE_GROUP_ID_CW_OP0808",
+        "ISSUE_GROUP_ID_QA_OP0000",
+        "ISSUE_GROUP_ID_CW_SP0000",
+        "ISSUE_GROUP_ID_CW_SP0001",
+        "ISSUE_GROUP_ID_CW_SP0002",
+        "ISSUE_GROUP_ID_CW_SP0101",
+        "ISSUE_GROUP_ID_CW_SP0102",
+        "ISSUE_GROUP_ID_CW_SP0103",
+        "ISSUE_GROUP_ID_CW_SP0200",
+        "ISSUE_GROUP_ID_CW_SP0201",
+        "ISSUE_GROUP_ID_CW_SP0202",
+        "ISSUE_GROUP_ID_CW_SP0203",
+        "ISSUE_GROUP_ID_CW_SP0204",
+        "ISSUE_GROUP_ID_CW_SP0205",
+        "ISSUE_GROUP_ID_CW_SP0300",
+        "ISSUE_GROUP_ID_CW_SP0302",
+        "ISSUE_GROUP_ID_CW_SP0306",
+        "ISSUE_GROUP_ID_CW_SP0308",
+        "ISSUE_GROUP_ID_CW_SP0309",
+        "ISSUE_GROUP_ID_CW_SP0310",
+        "ISSUE_GROUP_ID_CW_SP0311",
+        "ISSUE_GROUP_ID_CW_SP0312",
+        "ISSUE_GROUP_ID_CW_SP0313",
+        "ISSUE_GROUP_ID_CW_SP0314",
+        "ISSUE_GROUP_ID_CW_SP0400",
+        "ISSUE_GROUP_ID_CW_SP0401",
+        "ISSUE_GROUP_ID_CW_SP0402",
+        "ISSUE_GROUP_ID_CW_SP0403",
+        "ISSUE_GROUP_ID_CW_SP0404",
+        "ISSUE_GROUP_ID_CW_SP0500",
+        "ISSUE_GROUP_ID_CW_SP0501",
+        "ISSUE_GROUP_ID_CW_SP0502",
+        "ISSUE_GROUP_ID_CW_SP0503",
+        "ISSUE_GROUP_ID_CW_SP0504",
+        "ISSUE_GROUP_ID_CW_SP0601",
+        "ISSUE_GROUP_ID_CW_SP0602",
+        "ISSUE_GROUP_ID_CW_SP0604",
+        "ISSUE_GROUP_ID_CW_SP0701",
+        "ISSUE_GROUP_ID_CW_SP0802",
+        "ISSUE_GROUP_ID_CW_SP0807",
+        "ISSUE_GROUP_ID_QA_SP0000",
+        "ISSUE_GROUP_ID_CW_AI9900",
+        "ISSUE_GROUP_ID_CW_AI9901",
+        "ISSUE_GROUP_ID_CW_AI9902",
+        "ISSUE_GROUP_ID_CW_AP0000",
+    ]
+    id: str
+    issueOrigin: typing.Literal[
+        "ISSUE_ORIGIN_UNSPECIFIED",
+        "ISSUE_ORIGIN_DETERMINISTIC",
+        "ISSUE_ORIGIN_AI",
+        "ISSUE_ORIGIN_AI_FROM_DETERMINISTIC",
+    ]
+    issueState: typing.Literal[
+        "ISSUE_STATE_UNSPECIFIED", "ISSUE_STATE_OPEN", "ISSUE_STATE_RESOLVED"
+    ]
+    message: str
+    position: FetchIssuesResponseIssuePosition
+    severity: typing.Literal[
+        "ISSUE_SEVERITY_UNSPECIFIED",
+        "ISSUE_SEVERITY_INFO",
+        "ISSUE_SEVERITY_WARNING",
+        "ISSUE_SEVERITY_ERROR",
+    ]
+    type: typing.Literal[
+        "ISSUE_TYPE_UNSPECIFIED",
+        "ISSUE_TYPE_CONVERSION",
+        "ISSUE_TYPE_PULL_SCHEMA",
+        "ISSUE_TYPE_APPLY",
+    ]
+
+@typing.type_check_only
+class IssueAggregateData(typing.TypedDict, total=False):
+    errorCount: int
+    infoCount: int
+    warningCount: int
 
 @typing.type_check_only
 class Link(typing.TypedDict, total=False):
@@ -809,6 +1054,7 @@ class MigrationJob(typing.TypedDict, total=False):
         "WAITING_FOR_SOURCE_WRITES_TO_STOP",
         "PREPARING_THE_DUMP",
         "READY_FOR_PROMOTE",
+        "PHASE_FAILBACK",
     ]
     postgresHomogeneousConfig: PostgresHomogeneousConfig
     postgresToSqlserverConfig: PostgresToSqlServerConfig
@@ -946,7 +1192,10 @@ class MySqlConnectionProfile(typing.TypedDict, total=False):
     password: str
     passwordSet: bool
     port: int
+    privateConnectivity: PrivateConnectivity
+    privateServiceConnectConnectivity: PrivateServiceConnectConnectivity
     ssl: SslConfig
+    staticServiceIpConnectivity: StaticServiceIpConnectivity
     username: str
 
 @typing.type_check_only
@@ -1012,6 +1261,9 @@ class PackageEntity(typing.TypedDict, total=False):
 class PerformanceConfig(typing.TypedDict, total=False):
     dumpParallelLevel: typing.Literal[
         "DUMP_PARALLEL_LEVEL_UNSPECIFIED", "MIN", "OPTIMAL", "MAX"
+    ]
+    loadParallelLevel: typing.Literal[
+        "LOAD_PARALLEL_LEVEL_UNSPECIFIED", "LOAD_MIN", "LOAD_OPTIMAL", "LOAD_MAX"
     ]
 
 @typing.type_check_only
@@ -1220,6 +1472,39 @@ class SequenceEntity(typing.TypedDict, total=False):
     maxValue: str
     minValue: str
     startValue: str
+
+@typing.type_check_only
+class SetDraftEntityDdlRequest(typing.TypedDict, total=False):
+    basedOnDdlKind: typing.Literal[
+        "DDL_KIND_UNSPECIFIED", "SOURCE", "DETERMINISTIC", "AI", "USER_EDIT"
+    ]
+    ddl: str
+    ddlKind: typing.Literal[
+        "DDL_KIND_UNSPECIFIED", "SOURCE", "DETERMINISTIC", "AI", "USER_EDIT"
+    ]
+    entityName: str
+    entityType: typing.Literal[
+        "DATABASE_ENTITY_TYPE_UNSPECIFIED",
+        "DATABASE_ENTITY_TYPE_SCHEMA",
+        "DATABASE_ENTITY_TYPE_TABLE",
+        "DATABASE_ENTITY_TYPE_COLUMN",
+        "DATABASE_ENTITY_TYPE_CONSTRAINT",
+        "DATABASE_ENTITY_TYPE_INDEX",
+        "DATABASE_ENTITY_TYPE_TRIGGER",
+        "DATABASE_ENTITY_TYPE_VIEW",
+        "DATABASE_ENTITY_TYPE_SEQUENCE",
+        "DATABASE_ENTITY_TYPE_STORED_PROCEDURE",
+        "DATABASE_ENTITY_TYPE_FUNCTION",
+        "DATABASE_ENTITY_TYPE_SYNONYM",
+        "DATABASE_ENTITY_TYPE_DATABASE_PACKAGE",
+        "DATABASE_ENTITY_TYPE_UDT",
+        "DATABASE_ENTITY_TYPE_MATERIALIZED_VIEW",
+        "DATABASE_ENTITY_TYPE_DATABASE",
+    ]
+    explanation: str
+
+@typing.type_check_only
+class SetDraftEntityDdlResponse(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
 class SetIamPolicyRequest(typing.TypedDict, total=False):

@@ -1603,6 +1603,20 @@ class EnterpriseCrmFrontendsEventbusProtoWorkflowParameters(
     parameters: _list[EnterpriseCrmFrontendsEventbusProtoWorkflowParameterEntry]
 
 @typing.type_check_only
+class GoogleCloudConnectorsV1AdminFilters(typing.TypedDict, total=False):
+    filterKey: str
+    filterType: typing.Literal["FILTER_TYPE_UNSPECIFIED", "INCLUSION", "EXCLUSION"]
+    intValue: str
+    stringListValues: GoogleCloudConnectorsV1AdminFiltersStringListValues
+    stringValue: str
+
+@typing.type_check_only
+class GoogleCloudConnectorsV1AdminFiltersStringListValues(
+    typing.TypedDict, total=False
+):
+    listValues: _list[str]
+
+@typing.type_check_only
 class GoogleCloudConnectorsV1AuthConfig(typing.TypedDict, total=False):
     additionalVariables: _list[GoogleCloudConnectorsV1ConfigVariable]
     authKey: str
@@ -1697,6 +1711,7 @@ class GoogleCloudConnectorsV1ConfigVariable(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class GoogleCloudConnectorsV1Connection(typing.TypedDict, total=False):
+    adminFilters: _list[GoogleCloudConnectorsV1AdminFilters]
     asyncOperationsEnabled: bool
     authConfig: GoogleCloudConnectorsV1AuthConfig
     authOverrideEnabled: bool
@@ -1814,6 +1829,7 @@ class GoogleCloudConnectorsV1EventingConfig(typing.TypedDict, total=False):
     enrichmentConfig: GoogleCloudConnectorsV1EnrichmentConfig
     enrichmentEnabled: bool
     eventsListenerIngressEndpoint: str
+    globalEventFilter: str
     listenerAuthConfig: GoogleCloudConnectorsV1AuthConfig
     privateConnectivityAllowlistedProjects: _list[str]
     privateConnectivityEnabled: bool
@@ -1842,6 +1858,8 @@ class GoogleCloudConnectorsV1EventingRuntimeDataWebhookData(
 ):
     additionalVariables: _list[GoogleCloudConnectorsV1ConfigVariable]
     createTime: str
+    eventSubscriptions: _list[str]
+    eventTypes: _list[str]
     id: str
     name: str
     nextRefreshTime: str
@@ -2178,6 +2196,7 @@ class GoogleCloudIntegrationsV1alphaCredential(typing.TypedDict, total=False):
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaCustomerConfig(typing.TypedDict, total=False):
     cloudKmsConfig: GoogleCloudIntegrationsV1alphaCloudKmsConfig
+    enableEucHardenedFlow: bool
     enableHttpCall: bool
     enableManagedAiFeatures: bool
     enableVariableMasking: bool
@@ -2543,6 +2562,9 @@ class GoogleCloudIntegrationsV1alphaIntegrationVersion(typing.TypedDict, total=F
     description: str
     enableVariableMasking: bool
     errorCatcherConfigs: _list[GoogleCloudIntegrationsV1alphaErrorCatcherConfig]
+    eucHardeningDisposition: typing.Literal[
+        "EUC_HARDENING_DISPOSITION_UNSPECIFIED", "LEGACY", "HARDENED"
+    ]
     integrationConfigParameters: _list[
         GoogleCloudIntegrationsV1alphaIntegrationConfigParameter
     ]
@@ -3235,8 +3257,14 @@ class GoogleCloudIntegrationsV1alphaTestCase(typing.TypedDict, total=False):
 class GoogleCloudIntegrationsV1alphaTestIntegrationsRequest(
     typing.TypedDict, total=False
 ):
+    asyncExecution: bool
     clientId: str
     configParameters: dict[str, typing.Any]
+    credentialMode: typing.Literal[
+        "CREDENTIAL_MODE_UNSPECIFIED",
+        "CREDENTIAL_MODE_CURRENT",
+        "CREDENTIAL_MODE_HARDENED",
+    ]
     deadlineSecondsTime: str
     inputParameters: dict[str, typing.Any]
     integrationVersion: GoogleCloudIntegrationsV1alphaIntegrationVersion
@@ -3248,9 +3276,25 @@ class GoogleCloudIntegrationsV1alphaTestIntegrationsRequest(
 class GoogleCloudIntegrationsV1alphaTestIntegrationsResponse(
     typing.TypedDict, total=False
 ):
+    credentialMode: typing.Literal[
+        "CREDENTIAL_MODE_UNSPECIFIED",
+        "CREDENTIAL_MODE_CURRENT",
+        "CREDENTIAL_MODE_HARDENED",
+    ]
+    eucHardeningDisposition: typing.Literal[
+        "EUC_HARDENING_DISPOSITION_UNSPECIFIED", "LEGACY", "HARDENED"
+    ]
     eventParameters: EnterpriseCrmFrontendsEventbusProtoEventParameters
     executionFailed: bool
     executionId: str
+    hardenedPaths: _list[
+        typing.Literal[
+            "HARDENED_PATH_UNSPECIFIED",
+            "SCRIPT_EVAL",
+            "STUBBY_CALLER",
+            "SUB_INTEGRATION",
+        ]
+    ]
     parameterEntries: _list[EnterpriseCrmFrontendsEventbusProtoParameterEntry]
     parameters: dict[str, typing.Any]
 
@@ -3408,6 +3452,7 @@ class GoogleInternalCloudCrmEventbusV3PostToQueueWithTriggerIdRequest(
     testMode: bool
     triggerId: str
     userGeneratedExecutionId: str
+    workflowId: str
     workflowName: str
 
 @typing.type_check_only

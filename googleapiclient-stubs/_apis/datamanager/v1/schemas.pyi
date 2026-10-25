@@ -75,6 +75,7 @@ class AdEvent(typing.TypedDict, total=False):
     eventType: typing.Literal[
         "EVENT_TYPE_UNSPECIFIED", "EVENT_TYPE_VIEW", "EVENT_TYPE_CLICK"
     ]
+    ipAddress: str
     measurementAllowed: bool
     medium: str
     mobileDeviceId: str
@@ -119,7 +120,9 @@ class AdIdentifiers(typing.TypedDict, total=False):
     landingPageDeviceInfo: DeviceInfo
     matchId: str
     mobileDeviceId: str
+    ppid: str
     sessionAttributes: str
+    visitorPpid: str
     wbraid: str
 
 @typing.type_check_only
@@ -305,6 +308,8 @@ class ErrorCount(typing.TypedDict, total=False):
         "PROCESSING_ERROR_REASON_INVALID_OPERATING_ACCOUNT_FOR_CLICK",
         "PROCESSING_ERROR_REASON_CLICK_NOT_FOUND",
         "PROCESSING_ERROR_REASON_EXTERNAL_ATTRIBUTION_DATA_MISSING",
+        "PROCESSING_ERROR_REASON_DESTINATION_TOO_RECENTLY_CREATED",
+        "PROCESSING_ERROR_REASON_EXPIRED_CLICK",
     ]
     recordCount: str
 
@@ -518,6 +523,18 @@ class IngestUserIdDataStatus(typing.TypedDict, total=False):
     userIdCount: str
 
 @typing.type_check_only
+class IngestUsersRequest(typing.TypedDict, total=False):
+    destinations: _list[Destination]
+    encoding: typing.Literal["ENCODING_UNSPECIFIED", "HEX", "BASE64"]
+    encryptionInfo: EncryptionInfo
+    users: _list[User]
+    validateOnly: bool
+
+@typing.type_check_only
+class IngestUsersResponse(typing.TypedDict, total=False):
+    requestId: str
+
+@typing.type_check_only
 class IngestedUserListInfo(typing.TypedDict, total=False):
     contactIdInfo: ContactIdInfo
     mobileIdInfo: MobileIdInfo
@@ -702,6 +719,7 @@ class ProductAccount(typing.TypedDict, total=False):
         "GOOGLE_ANALYTICS_PROPERTY",
         "GOOGLE_AD_MANAGER_AUDIENCE_LINK",
         "FLOODLIGHT_CONFIG",
+        "GOOGLE_AD_MANAGER",
     ]
     product: typing.Literal[
         "PRODUCT_UNSPECIFIED",
@@ -795,6 +813,18 @@ class RemoveUserIdDataStatus(typing.TypedDict, total=False):
     userIdCount: str
 
 @typing.type_check_only
+class RemoveUsersRequest(typing.TypedDict, total=False):
+    destinations: _list[Destination]
+    encoding: typing.Literal["ENCODING_UNSPECIFIED", "HEX", "BASE64"]
+    encryptionInfo: EncryptionInfo
+    userData: _list[UserData]
+    validateOnly: bool
+
+@typing.type_check_only
+class RemoveUsersResponse(typing.TypedDict, total=False):
+    requestId: str
+
+@typing.type_check_only
 class RequestStatusPerDestination(typing.TypedDict, total=False):
     audienceMembersIngestionStatus: IngestAudienceMembersStatus
     audienceMembersRemovalStatus: RemoveAudienceMembersStatus
@@ -848,6 +878,11 @@ class TermsOfService(typing.TypedDict, total=False):
     customerMatchTermsOfServiceStatus: typing.Literal[
         "TERMS_OF_SERVICE_STATUS_UNSPECIFIED", "ACCEPTED", "REJECTED"
     ]
+
+@typing.type_check_only
+class User(typing.TypedDict, total=False):
+    mobileData: MobileData
+    userData: UserData
 
 @typing.type_check_only
 class UserData(typing.TypedDict, total=False):

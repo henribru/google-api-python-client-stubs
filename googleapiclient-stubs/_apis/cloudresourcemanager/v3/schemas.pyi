@@ -26,6 +26,20 @@ class Capability(typing.TypedDict, total=False):
     value: bool
 
 @typing.type_check_only
+class CapabilityConfig(typing.TypedDict, total=False):
+    boundaries: _list[str]
+    createTime: str
+    displayName: str
+    etag: str
+    managementProject: str
+    name: str
+    state: typing.Literal["STATE_UNSPECIFIED", "ACTIVE"]
+    types: _list[
+        typing.Literal["TYPE_UNSPECIFIED", "APP_MANAGEMENT", "AGENT_MANAGEMENT"]
+    ]
+    updateTime: str
+
+@typing.type_check_only
 class CloudresourcemanagerGoogleCloudResourcemanagerV2alpha1FolderOperation(
     typing.TypedDict, total=False
 ):
@@ -44,6 +58,12 @@ class CloudresourcemanagerGoogleCloudResourcemanagerV2beta1FolderOperation(
     sourceParent: str
 
 @typing.type_check_only
+class CreateBoundaryMetadata(typing.TypedDict, total=False): ...
+
+@typing.type_check_only
+class CreateCapabilityConfigMetadata(typing.TypedDict, total=False): ...
+
+@typing.type_check_only
 class CreateFolderMetadata(typing.TypedDict, total=False):
     displayName: str
     parent: str
@@ -55,6 +75,12 @@ class CreateProjectMetadata(typing.TypedDict, total=False):
     ready: bool
 
 @typing.type_check_only
+class CreateSemanticTagBindingMetadata(typing.TypedDict, total=False): ...
+
+@typing.type_check_only
+class CreateSemanticTagValueMetadata(typing.TypedDict, total=False): ...
+
+@typing.type_check_only
 class CreateTagBindingMetadata(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -64,6 +90,12 @@ class CreateTagKeyMetadata(typing.TypedDict, total=False): ...
 class CreateTagValueMetadata(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
+class DeleteBoundaryMetadata(typing.TypedDict, total=False): ...
+
+@typing.type_check_only
+class DeleteCapabilityConfigMetadata(typing.TypedDict, total=False): ...
+
+@typing.type_check_only
 class DeleteFolderMetadata(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -71,6 +103,12 @@ class DeleteOrganizationMetadata(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
 class DeleteProjectMetadata(typing.TypedDict, total=False): ...
+
+@typing.type_check_only
+class DeleteSemanticTagBindingMetadata(typing.TypedDict, total=False): ...
+
+@typing.type_check_only
+class DeleteSemanticTagValueMetadata(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
 class DeleteTagBindingMetadata(typing.TypedDict, total=False): ...
@@ -166,6 +204,11 @@ class Lien(typing.TypedDict, total=False):
     restrictions: _list[str]
 
 @typing.type_check_only
+class ListCapabilityConfigsResponse(typing.TypedDict, total=False):
+    capabilityConfigs: _list[CapabilityConfig]
+    nextPageToken: str
+
+@typing.type_check_only
 class ListEffectiveTagsResponse(typing.TypedDict, total=False):
     effectiveTags: _list[EffectiveTag]
     nextPageToken: str
@@ -255,6 +298,7 @@ class Project(typing.TypedDict, total=False):
     deleteTime: str
     displayName: str
     etag: str
+    isManagementProject: bool
     labels: dict[str, typing.Any]
     name: str
     parent: str
@@ -364,6 +408,15 @@ class UndeleteProjectMetadata(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
 class UndeleteProjectRequest(typing.TypedDict, total=False): ...
+
+@typing.type_check_only
+class UpdateBoundaryConfigMetadata(typing.TypedDict, total=False): ...
+
+@typing.type_check_only
+class UpdateBoundaryMetadata(typing.TypedDict, total=False): ...
+
+@typing.type_check_only
+class UpdateCapabilityConfigMetadata(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
 class UpdateFolderMetadata(typing.TypedDict, total=False): ...

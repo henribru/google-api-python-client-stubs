@@ -64,6 +64,50 @@ class CustomerEngagementSuiteResource(googleapiclient.discovery.Resource):
                     ) -> AgentHttpRequest: ...
 
                 @typing.type_check_only
+                class AssistantSessionsResource(googleapiclient.discovery.Resource):
+                    def cancelAssistantTurn(
+                        self,
+                        *,
+                        name: str,
+                        body: CancelAssistantTurnRequest,
+                        **kwargs: typing.Any,
+                    ) -> CancelAssistantTurnResponseHttpRequest: ...
+                    def create(
+                        self,
+                        *,
+                        parent: str,
+                        body: CreateAssistantSessionRequest,
+                        **kwargs: typing.Any,
+                    ) -> AssistantSessionHttpRequest: ...
+                    def delete(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> EmptyHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> AssistantSessionHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        filter: str | None = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
+                        **kwargs: typing.Any,
+                    ) -> ListAssistantSessionsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListAssistantSessionsResponseHttpRequest,
+                        previous_response: ListAssistantSessionsResponse,
+                    ) -> ListAssistantSessionsResponseHttpRequest | None: ...
+                    def streamChatAiAssistant(
+                        self,
+                        *,
+                        name: str,
+                        body: StreamChatAiAssistantRequest,
+                        **kwargs: typing.Any,
+                    ) -> StreamChatAiAssistantResponseHttpRequest: ...
+
+                @typing.type_check_only
                 class ChangelogsResource(googleapiclient.discovery.Resource):
                     def get(
                         self, *, name: str, **kwargs: typing.Any
@@ -126,12 +170,6 @@ class CustomerEngagementSuiteResource(googleapiclient.discovery.Resource):
                             "AGENT_TOOL",
                         ]
                         | None = ...,
-                        view: typing.Literal[
-                            "CONVERSATION_VIEW_UNSPECIFIED",
-                            "CONVERSATION_VIEW_BASIC",
-                            "CONVERSATION_VIEW_FULL",
-                        ]
-                        | None = ...,
                         **kwargs: typing.Any,
                     ) -> ConversationHttpRequest: ...
                     def list(
@@ -185,6 +223,13 @@ class CustomerEngagementSuiteResource(googleapiclient.discovery.Resource):
                             body: LfA2aV1SendMessageRequest,
                             **kwargs: typing.Any,
                         ) -> LfA2aV1SendMessageResponseHttpRequest: ...
+                        def stream(
+                            self,
+                            *,
+                            tenant: str,
+                            body: LfA2aV1SendMessageRequest,
+                            **kwargs: typing.Any,
+                        ) -> LfA2aV1StreamResponseHttpRequest: ...
 
                     def create(
                         self,
@@ -535,6 +580,13 @@ class CustomerEngagementSuiteResource(googleapiclient.discovery.Resource):
                         body: LfA2aV1SendMessageRequest,
                         **kwargs: typing.Any,
                     ) -> LfA2aV1SendMessageResponseHttpRequest: ...
+                    def stream(
+                        self,
+                        *,
+                        tenant: str,
+                        body: LfA2aV1SendMessageRequest,
+                        **kwargs: typing.Any,
+                    ) -> LfA2aV1StreamResponseHttpRequest: ...
 
                 @typing.type_check_only
                 class ScheduledEvaluationRunsResource(
@@ -710,6 +762,13 @@ class CustomerEngagementSuiteResource(googleapiclient.discovery.Resource):
                             body: LfA2aV1SendMessageRequest,
                             **kwargs: typing.Any,
                         ) -> LfA2aV1SendMessageResponseHttpRequest: ...
+                        def stream(
+                            self,
+                            *,
+                            tenant: str,
+                            body: LfA2aV1SendMessageRequest,
+                            **kwargs: typing.Any,
+                        ) -> LfA2aV1StreamResponseHttpRequest: ...
 
                     def create(
                         self,
@@ -743,6 +802,14 @@ class CustomerEngagementSuiteResource(googleapiclient.discovery.Resource):
                         previous_request: ListAppVersionsResponseHttpRequest,
                         previous_response: ListAppVersionsResponse,
                     ) -> ListAppVersionsResponseHttpRequest | None: ...
+                    def patch(
+                        self,
+                        *,
+                        name: str,
+                        body: AppVersion,
+                        updateMask: str | None = ...,
+                        **kwargs: typing.Any,
+                    ) -> AppVersionHttpRequest: ...
                     def restore(
                         self,
                         *,
@@ -752,6 +819,13 @@ class CustomerEngagementSuiteResource(googleapiclient.discovery.Resource):
                     ) -> OperationHttpRequest: ...
                     def message(self) -> MessageResource: ...
 
+                def chatAiAssistant(
+                    self,
+                    *,
+                    app: str,
+                    body: ChatAiAssistantRequest,
+                    **kwargs: typing.Any,
+                ) -> ChatAiAssistantResponseHttpRequest: ...
                 def create(
                     self,
                     *,
@@ -776,6 +850,13 @@ class CustomerEngagementSuiteResource(googleapiclient.discovery.Resource):
                     body: GenerateAppResourceRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
+                def generateOnboardingSuggestions(
+                    self,
+                    *,
+                    name: str,
+                    body: GenerateOnboardingSuggestionsRequest,
+                    **kwargs: typing.Any,
+                ) -> GenerateOnboardingSuggestionsResponseHttpRequest: ...
                 def get(self, *, name: str, **kwargs: typing.Any) -> AppHttpRequest: ...
                 def getExtendedAgentCard(
                     self, *, tenant: str, **kwargs: typing.Any
@@ -820,6 +901,9 @@ class CustomerEngagementSuiteResource(googleapiclient.discovery.Resource):
                     body: RetrieveToolSchemaRequest,
                     **kwargs: typing.Any,
                 ) -> RetrieveToolSchemaResponseHttpRequest: ...
+                def runAssistant(
+                    self, *, app: str, body: RunAssistantRequest, **kwargs: typing.Any
+                ) -> RunAssistantResponseHttpRequest: ...
                 def runEvaluation(
                     self, *, app: str, body: RunEvaluationRequest, **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
@@ -831,6 +915,7 @@ class CustomerEngagementSuiteResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any,
                 ) -> TestPersonaVoiceResponseHttpRequest: ...
                 def agents(self) -> AgentsResource: ...
+                def assistantSessions(self) -> AssistantSessionsResource: ...
                 def changelogs(self) -> ChangelogsResource: ...
                 def conversations(self) -> ConversationsResource: ...
                 def deployments(self) -> DeploymentsResource: ...
@@ -953,12 +1038,36 @@ class AppVersionHttpRequest(googleapiclient.http.HttpRequest):
     ) -> AppVersion: ...
 
 @typing.type_check_only
+class AssistantSessionHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> AssistantSession: ...
+
+@typing.type_check_only
+class CancelAssistantTurnResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> CancelAssistantTurnResponse: ...
+
+@typing.type_check_only
 class ChangelogHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Changelog: ...
+
+@typing.type_check_only
+class ChatAiAssistantResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ChatAiAssistantResponse: ...
 
 @typing.type_check_only
 class ConversationHttpRequest(googleapiclient.http.HttpRequest):
@@ -1049,6 +1158,16 @@ class GenerateChatTokenResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> GenerateChatTokenResponse: ...
 
 @typing.type_check_only
+class GenerateOnboardingSuggestionsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GenerateOnboardingSuggestionsResponse: ...
+
+@typing.type_check_only
 class GuardrailHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -1073,6 +1192,14 @@ class LfA2aV1SendMessageResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> LfA2aV1SendMessageResponse: ...
 
 @typing.type_check_only
+class LfA2aV1StreamResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> LfA2aV1StreamResponse: ...
+
+@typing.type_check_only
 class ListAgentsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -1095,6 +1222,14 @@ class ListAppsResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListAppsResponse: ...
+
+@typing.type_check_only
+class ListAssistantSessionsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListAssistantSessionsResponse: ...
 
 @typing.type_check_only
 class ListChangelogsResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -1249,6 +1384,14 @@ class RetrieveToolsResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> RetrieveToolsResponse: ...
 
 @typing.type_check_only
+class RunAssistantResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> RunAssistantResponse: ...
+
+@typing.type_check_only
 class RunSessionResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -1271,6 +1414,14 @@ class SecuritySettingsHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> SecuritySettings: ...
+
+@typing.type_check_only
+class StreamChatAiAssistantResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> StreamChatAiAssistantResponse: ...
 
 @typing.type_check_only
 class TestPersonaVoiceResponseHttpRequest(googleapiclient.http.HttpRequest):

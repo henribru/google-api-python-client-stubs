@@ -31,8 +31,6 @@ class ActivityContentDetails(typing.TypedDict, total=False):
     bulletin: ActivityContentDetailsBulletin
     channelItem: ActivityContentDetailsChannelItem
     comment: ActivityContentDetailsComment
-    favorite: ActivityContentDetailsFavorite
-    like: ActivityContentDetailsLike
     playlistItem: ActivityContentDetailsPlaylistItem
     promotedItem: ActivityContentDetailsPromotedItem
     recommendation: ActivityContentDetailsRecommendation
@@ -50,14 +48,6 @@ class ActivityContentDetailsChannelItem(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class ActivityContentDetailsComment(typing.TypedDict, total=False):
-    resourceId: ResourceId
-
-@typing.type_check_only
-class ActivityContentDetailsFavorite(typing.TypedDict, total=False):
-    resourceId: ResourceId
-
-@typing.type_check_only
-class ActivityContentDetailsLike(typing.TypedDict, total=False):
     resourceId: ResourceId
 
 @typing.type_check_only
@@ -81,9 +71,7 @@ class ActivityContentDetailsPromotedItem(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class ActivityContentDetailsRecommendation(typing.TypedDict, total=False):
-    reason: typing.Literal[
-        "reasonUnspecified", "videoFavorited", "videoLiked", "videoWatched"
-    ]
+    reason: typing.Literal["reasonUnspecified", "videoWatched"]
     resourceId: ResourceId
     seedResourceId: ResourceId
 
@@ -127,8 +115,6 @@ class ActivitySnippet(typing.TypedDict, total=False):
     type: typing.Literal[
         "typeUnspecified",
         "upload",
-        "like",
-        "favorite",
         "comment",
         "subscription",
         "playlistItem",
@@ -469,12 +455,12 @@ class CommentSnippet(typing.TypedDict, total=False):
     authorProfileImageUrl: str
     canRate: bool
     channelId: str
+    imageUrl: str
     likeCount: int
     moderationStatus: typing.Literal[
         "published", "heldForReview", "likelySpam", "rejected"
     ]
     parentId: str
-    postId: str
     publishedAt: str
     textDisplay: str
     textOriginal: str
@@ -514,7 +500,6 @@ class CommentThreadSnippet(typing.TypedDict, total=False):
     canReply: bool
     channelId: str
     isPublic: bool
-    postId: str
     topLevelComment: Comment
     totalReplyCount: int
     videoId: str
@@ -1383,6 +1368,7 @@ class LiveBroadcastMonetizationDetails(typing.TypedDict, total=False):
 class LiveBroadcastSnippet(typing.TypedDict, total=False):
     actualEndTime: str
     actualStartTime: str
+    categoryId: str
     channelId: str
     description: str
     isDefaultBroadcast: bool
@@ -2092,10 +2078,13 @@ class Thumbnail(typing.TypedDict, total=False):
 @typing.type_check_only
 class ThumbnailDetails(typing.TypedDict, total=False):
     default: Thumbnail
+    fhd: Thumbnail
     high: Thumbnail
     maxres: Thumbnail
     medium: Thumbnail
+    qhd: Thumbnail
     standard: Thumbnail
+    uhd: Thumbnail
 
 @typing.type_check_only
 class ThumbnailSetResponse(typing.TypedDict, total=False):

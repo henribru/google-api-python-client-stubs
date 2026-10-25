@@ -29,6 +29,7 @@ class GoogleCloudApihubV1AdditionalSpecContent(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class GoogleCloudApihubV1Addon(typing.TypedDict, total=False):
+    boostSpecGeminiRegionId: str
     config: GoogleCloudApihubV1AddonConfig
     createTime: str
     dataSource: typing.Literal["DATA_SOURCE_UNSPECIFIED", "PLUGIN_INSTANCE", "ALL_DATA"]
@@ -77,6 +78,7 @@ class GoogleCloudApihubV1Api(typing.TypedDict, total=False):
     name: str
     owner: GoogleCloudApihubV1Owner
     selectedVersion: str
+    serviceType: GoogleCloudApihubV1AttributeValues
     sourceMetadata: _list[GoogleCloudApihubV1SourceMetadata]
     targetUser: GoogleCloudApihubV1AttributeValues
     team: GoogleCloudApihubV1AttributeValues
@@ -131,6 +133,7 @@ class GoogleCloudApihubV1ApiMetadataList(typing.TypedDict, total=False):
 class GoogleCloudApihubV1ApiOperation(typing.TypedDict, total=False):
     attributes: dict[str, typing.Any]
     createTime: str
+    deployments: _list[str]
     details: GoogleCloudApihubV1OperationDetails
     name: str
     sourceMetadata: _list[GoogleCloudApihubV1SourceMetadata]
@@ -367,6 +370,7 @@ class GoogleCloudApihubV1DependencyErrorDetail(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class GoogleCloudApihubV1Deployment(typing.TypedDict, total=False):
+    apiOperations: _list[str]
     apiVersions: _list[str]
     attributes: dict[str, typing.Any]
     createTime: str
@@ -383,7 +387,9 @@ class GoogleCloudApihubV1Deployment(typing.TypedDict, total=False):
     sourceEnvironment: str
     sourceMetadata: _list[GoogleCloudApihubV1SourceMetadata]
     sourceProject: str
+    sourceRevision: str
     sourceUri: GoogleCloudApihubV1AttributeValues
+    specs: _list[str]
     updateTime: str
 
 @typing.type_check_only
@@ -1019,6 +1025,7 @@ class GoogleCloudApihubV1Spec(typing.TypedDict, total=False):
     attributes: dict[str, typing.Any]
     contents: GoogleCloudApihubV1SpecContents
     createTime: str
+    deployments: _list[str]
     details: GoogleCloudApihubV1SpecDetails
     displayName: str
     documentation: GoogleCloudApihubV1Documentation
@@ -1042,6 +1049,7 @@ class GoogleCloudApihubV1SpecDetails(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class GoogleCloudApihubV1SpecMetadata(typing.TypedDict, total=False):
+    deploymentResourceUris: _list[str]
     originalCreateTime: str
     originalId: str
     originalUpdateTime: str

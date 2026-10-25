@@ -602,6 +602,8 @@ class GoogleCloudRecaptchaenterpriseV1TestingOptions(typing.TypedDict, total=Fal
 class GoogleCloudRecaptchaenterpriseV1TokenProperties(typing.TypedDict, total=False):
     action: str
     androidPackageName: str
+    clientProperties: GoogleCloudRecaptchaenterpriseV1TokenPropertiesClientProperties
+    clientSignalsFailed: bool
     createTime: str
     hostname: str
     invalidReason: typing.Literal[
@@ -618,6 +620,13 @@ class GoogleCloudRecaptchaenterpriseV1TokenProperties(typing.TypedDict, total=Fa
     ]
     iosBundleId: str
     valid: bool
+
+@typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1TokenPropertiesClientProperties(
+    typing.TypedDict, total=False
+):
+    userAgent: str
+    userIpAddress: str
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1TransactionData(typing.TypedDict, total=False):

@@ -272,6 +272,34 @@ class BinLogCoordinates(typing.TypedDict, total=False):
     kind: str
 
 @typing.type_check_only
+class BlueGreenDeployment(typing.TypedDict, total=False):
+    createTime: str
+    deploymentMappings: _list[SourceTargetPairedNode]
+    deploymentTasks: DeploymentTasks
+    description: str
+    errorDetail: str
+    name: str
+    requestedConfig: RequestedConfig
+    sourceInstance: str
+    state: typing.Literal[
+        "STATE_UNSPECIFIED",
+        "PROVISIONING",
+        "SWITCHOVER_READY",
+        "SWITCHOVER_NOT_READY",
+        "SWITCHOVER_IN_PROGRESS",
+        "SWITCHOVER_COMPLETED",
+        "DELETING",
+    ]
+    switchoverTargetInstance: str
+
+@typing.type_check_only
+class BlueGreenDeploymentInfo(typing.TypedDict, total=False):
+    deploymentId: str
+    source: SourceRole
+    state: typing.Literal["STATE_UNSPECIFIED", "PRE_SWITCHOVER", "POST_SWITCHOVER"]
+    target: TargetRole
+
+@typing.type_check_only
 class CloneContext(typing.TypedDict, total=False):
     allocatedIpRange: str
     binLogCoordinates: BinLogCoordinates
@@ -290,6 +318,12 @@ class CloneContext(typing.TypedDict, total=False):
 class Column(typing.TypedDict, total=False):
     name: str
     type: str
+
+@typing.type_check_only
+class ConfigDiff(typing.TypedDict, total=False):
+    field: str
+    sourceValue: str
+    targetValue: str
 
 @typing.type_check_only
 class ConnectPoolNodeConfig(typing.TypedDict, total=False):
@@ -423,6 +457,9 @@ class DatabaseInstance(typing.TypedDict, total=False):
     connectionName: str
     createTime: str
     currentDiskSize: str
+    databaseCenterIntegration: typing.Literal[
+        "DATABASE_CENTER_INTEGRATION_UNSPECIFIED", "ENABLED", "DISABLED"
+    ]
     databaseCenterIntegrationEnabled: bool
     databaseInstalledVersion: str
     databaseVersion: typing.Literal[
@@ -483,6 +520,7 @@ class DatabaseInstance(typing.TypedDict, total=False):
         "SQLSERVER_2025_ENTERPRISE",
         "SQLSERVER_2025_EXPRESS",
     ]
+    deploymentInfo: BlueGreenDeploymentInfo
     diskEncryptionConfiguration: DiskEncryptionConfiguration
     diskEncryptionStatus: DiskEncryptionStatus
     dnsName: str
@@ -498,6 +536,7 @@ class DatabaseInstance(typing.TypedDict, total=False):
         "ON_PREMISES_INSTANCE",
         "READ_REPLICA_INSTANCE",
         "READ_POOL_INSTANCE",
+        "GREEN_INSTANCE",
     ]
     ipAddresses: _list[IpMapping]
     ipv6Address: str
@@ -526,6 +565,7 @@ class DatabaseInstance(typing.TypedDict, total=False):
     serverCaCert: SslCert
     serviceAccountEmailAddress: str
     settings: Settings
+    skipPrecheck: bool
     sqlNetworkArchitecture: typing.Literal[
         "SQL_NETWORK_ARCHITECTURE_UNSPECIFIED",
         "NEW_NETWORK_ARCHITECTURE",
@@ -596,7 +636,30 @@ class DenyMaintenancePeriod(typing.TypedDict, total=False):
     time: str
 
 @typing.type_check_only
+class DeploymentTask(typing.TypedDict, total=False):
+    endTime: str
+    errorMessage: str
+    startTime: str
+    state: typing.Literal[
+        "STATE_UNSPECIFIED", "PENDING", "RUNNING", "SUCCEEDED", "FAILED"
+    ]
+    type: typing.Literal[
+        "TYPE_UNSPECIFIED",
+        "PROVISION",
+        "UPGRADE",
+        "SWITCHOVER",
+        "DELETE",
+        "POST_SWITCHOVER_OPERATIONS",
+    ]
+
+@typing.type_check_only
+class DeploymentTasks(typing.TypedDict, total=False):
+    task: _list[DeploymentTask]
+
+@typing.type_check_only
 class DiskEncryptionConfiguration(typing.TypedDict, total=False):
+    cmekSourceLogEncryptionEnforced: bool
+    confidentialMode: bool
     kind: str
     kmsKeyName: str
 
@@ -867,6 +930,7 @@ class InstancesReencryptRequest(typing.TypedDict, total=False):
 class InstancesRestoreBackupRequest(typing.TypedDict, total=False):
     backup: str
     backupdrBackup: str
+    ignoreMaintenanceVersion: bool
     restoreBackupContext: RestoreBackupContext
     restoreInstanceClearOverridesFieldNames: _list[str]
     restoreInstanceSettings: DatabaseInstance
@@ -940,6 +1004,11 @@ class ListBackupsResponse(typing.TypedDict, total=False):
     warnings: _list[ApiWarning]
 
 @typing.type_check_only
+class ListBlueGreenDeploymentsResponse(typing.TypedDict, total=False):
+    blueGreenDeployments: _list[BlueGreenDeployment]
+    nextPageToken: str
+
+@typing.type_check_only
 class LocationPreference(typing.TypedDict, total=False):
     followGaeApplication: str
     kind: str
@@ -981,6 +1050,13 @@ class MySqlReplicaConfiguration(typing.TypedDict, total=False):
 @typing.type_check_only
 class MySqlSyncConfig(typing.TypedDict, total=False):
     initialSyncFlags: _list[SyncFlags]
+
+@typing.type_check_only
+class NodeInfo(typing.TypedDict, total=False):
+    connection: str
+    dns: str
+    instance: str
+    ipMappings: _list[IpMapping]
 
 @typing.type_check_only
 class OnPremisesConfiguration(typing.TypedDict, total=False):
@@ -1066,13 +1142,20 @@ class Operation(typing.TypedDict, total=False):
         "CREATE_READ_POOL",
         "PRE_CHECK_MAJOR_VERSION_UPGRADE",
         "SETUP_MIGRATION",
+        "CREATE_BLUE_GREEN_DEPLOYMENT",
+        "SWITCHOVER_BLUE_GREEN_DEPLOYMENT",
+        "DELETE_BLUE_GREEN_DEPLOYMENT",
     ]
     preCheckMajorVersionUpgradeContext: PreCheckMajorVersionUpgradeContext
     selfLink: str
     startTime: str
+    startWorkloadCaptureContext: StartWorkloadCaptureContext
+    startWorkloadReplayContext: StartWorkloadReplayContext
     status: typing.Literal[
         "SQL_OPERATION_STATUS_UNSPECIFIED", "PENDING", "RUNNING", "DONE"
     ]
+    stopWorkloadCaptureContext: StopWorkloadCaptureContext
+    stopWorkloadReplayContext: StopWorkloadReplayContext
     subOperationType: SqlSubOperationType
     targetId: str
     targetLink: str
@@ -1183,6 +1266,7 @@ class PoolNodeConfig(typing.TypedDict, total=False):
 @typing.type_check_only
 class PreCheckMajorVersionUpgradeContext(typing.TypedDict, total=False):
     kind: str
+    maxRuntime: str
     preCheckResponse: _list[PreCheckResponse]
     targetDatabaseVersion: typing.Literal[
         "SQL_DATABASE_VERSION_UNSPECIFIED",
@@ -1313,6 +1397,10 @@ class ReplicationCluster(typing.TypedDict, total=False):
     psaWriteEndpoint: str
 
 @typing.type_check_only
+class RequestedConfig(typing.TypedDict, total=False):
+    databaseVersion: str
+
+@typing.type_check_only
 class Reschedule(typing.TypedDict, total=False):
     rescheduleType: typing.Literal[
         "RESCHEDULE_TYPE_UNSPECIFIED",
@@ -1420,6 +1508,28 @@ class Settings(typing.TypedDict, total=False):
     userLabels: dict[str, typing.Any]
 
 @typing.type_check_only
+class SourceRole(typing.TypedDict, total=False):
+    targetId: InstanceReference
+
+@typing.type_check_only
+class SourceTargetPairedNode(typing.TypedDict, total=False):
+    diffs: _list[ConfigDiff]
+    source: NodeInfo
+    state: typing.Literal[
+        "STATE_UNSPECIFIED",
+        "PROVISIONING",
+        "PROVISIONED",
+        "UPGRADING",
+        "UPGRADED",
+        "UPGRADE_FAILED",
+        "SWITCHOVER_IN_PROGRESS",
+        "SWITCHOVER_FAILED",
+        "SWITCHOVER_SUCCEEDED",
+        "DELETING",
+    ]
+    target: NodeInfo
+
+@typing.type_check_only
 class SqlActiveDirectoryConfig(typing.TypedDict, total=False):
     adminCredentialSecretName: str
     dnsServers: _list[str]
@@ -1497,6 +1607,8 @@ class SqlExternalSyncSettingError(typing.TypedDict, total=False):
         "PROMPT_DELETE_EXISTING",
         "WILL_DELETE_EXISTING",
         "PG_DDL_REPLICATION_INSUFFICIENT_PRIVILEGE",
+        "WRITABLE_DESTINATION_REPLICA_RECREATION_DOWNTIME",
+        "WRITABLE_DESTINATION_STORAGE_AUTO_INCREASE_DISABLED",
     ]
 
 @typing.type_check_only
@@ -1531,10 +1643,12 @@ class SqlInstancesRescheduleMaintenanceRequestBody(typing.TypedDict, total=False
     reschedule: Reschedule
 
 @typing.type_check_only
-class SqlInstancesResetReplicaSizeRequest(typing.TypedDict, total=False): ...
+class SqlInstancesResetReplicaSizeRequest(typing.TypedDict, total=False):
+    location: str
 
 @typing.type_check_only
 class SqlInstancesStartExternalSyncRequest(typing.TypedDict, total=False):
+    location: str
     migrationType: typing.Literal["MIGRATION_TYPE_UNSPECIFIED", "LOGICAL", "PHYSICAL"]
     mysqlSyncConfig: MySqlSyncConfig
     replicaOverwriteEnabled: bool
@@ -1546,6 +1660,7 @@ class SqlInstancesStartExternalSyncRequest(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class SqlInstancesVerifyExternalSyncSettingsRequest(typing.TypedDict, total=False):
+    location: str
     migrationType: typing.Literal["MIGRATION_TYPE_UNSPECIFIED", "LOGICAL", "PHYSICAL"]
     mysqlSyncConfig: MySqlSyncConfig
     selectedObjects: _list[ExternalSyncSelectedObject]
@@ -1610,6 +1725,22 @@ class SqlSubOperationType(typing.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class SqlWorkloadCapturesStartReplayRequest(typing.TypedDict, total=False):
+    startWorkloadReplayContext: StartWorkloadReplayContext
+
+@typing.type_check_only
+class SqlWorkloadCapturesStartRequest(typing.TypedDict, total=False):
+    startWorkloadCaptureContext: StartWorkloadCaptureContext
+
+@typing.type_check_only
+class SqlWorkloadCapturesStopReplayRequest(typing.TypedDict, total=False):
+    stopWorkloadReplayContext: StopWorkloadReplayContext
+
+@typing.type_check_only
+class SqlWorkloadCapturesStopRequest(typing.TypedDict, total=False):
+    stopWorkloadCaptureContext: StopWorkloadCaptureContext
+
+@typing.type_check_only
 class SslCert(typing.TypedDict, total=False):
     cert: str
     certSerialNumber: str
@@ -1648,10 +1779,32 @@ class SslCertsListResponse(typing.TypedDict, total=False):
     kind: str
 
 @typing.type_check_only
+class StartWorkloadCaptureContext(typing.TypedDict, total=False):
+    enableLiveReplay: bool
+    replayInstance: str
+
+@typing.type_check_only
+class StartWorkloadReplayContext(typing.TypedDict, total=False):
+    replayInstance: str
+    workloadId: str
+
+@typing.type_check_only
 class Status(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
+
+@typing.type_check_only
+class StopWorkloadCaptureContext(typing.TypedDict, total=False):
+    abortLiveReplay: bool
+
+@typing.type_check_only
+class StopWorkloadReplayContext(typing.TypedDict, total=False):
+    replayInstance: str
+    workloadId: str
+
+@typing.type_check_only
+class SwitchoverBlueGreenDeploymentRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
 class SyncFlags(typing.TypedDict, total=False):
@@ -1662,6 +1815,10 @@ class SyncFlags(typing.TypedDict, total=False):
 class TargetMetric(typing.TypedDict, total=False):
     metric: str
     targetValue: float
+
+@typing.type_check_only
+class TargetRole(typing.TypedDict, total=False):
+    sourceId: InstanceReference
 
 @typing.type_check_only
 class Tier(typing.TypedDict, total=False):
@@ -1731,3 +1888,21 @@ class UsersListResponse(typing.TypedDict, total=False):
 class Value(typing.TypedDict, total=False):
     nullValue: bool
     value: str
+
+@typing.type_check_only
+class WorkloadCapture(typing.TypedDict, total=False):
+    backupId: str
+    endTime: str
+    replayInstance: str
+    retentionDays: int
+    sourceInstance: str
+    startTime: str
+    workloadCaptureState: typing.Literal[
+        "STATE_UNSPECIFIED", "RUNNING", "COMPLETED", "FAILED", "TERMINATED"
+    ]
+    workloadId: str
+
+@typing.type_check_only
+class WorkloadCapturesListResponse(typing.TypedDict, total=False):
+    kind: str
+    workloadCaptures: _list[WorkloadCapture]

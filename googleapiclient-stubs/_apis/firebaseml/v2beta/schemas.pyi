@@ -48,6 +48,7 @@ class GoogleCloudAiplatformV1beta1AudioTranscriptionConfig(
     languageAuto: GoogleCloudAiplatformV1beta1AudioTranscriptionConfigLanguageAuto
     languageCodes: _list[str]
     languageHints: GoogleCloudAiplatformV1beta1AudioTranscriptionConfigLanguageHints
+    mode: typing.Literal["MODE_UNSPECIFIED", "VERBATIM", "SMART"]
     wordTimestamp: bool
 
 @typing.type_check_only
@@ -135,6 +136,7 @@ class GoogleCloudAiplatformV1beta1Candidate(typing.TypedDict, total=False):
     avgLogprobs: float
     citationMetadata: GoogleCloudAiplatformV1beta1CitationMetadata
     content: GoogleCloudAiplatformV1beta1Content
+    continuationToken: str
     finishMessage: str
     finishReason: typing.Literal[
         "FINISH_REASON_UNSPECIFIED",
@@ -154,6 +156,8 @@ class GoogleCloudAiplatformV1beta1Candidate(typing.TypedDict, total=False):
         "IMAGE_OTHER",
         "UNEXPECTED_TOOL_CALL",
         "NO_IMAGE",
+        "MALFORMED_RESPONSE",
+        "CONTINUATION",
     ]
     groundingMetadata: GoogleCloudAiplatformV1beta1GroundingMetadata
     index: int
@@ -314,6 +318,7 @@ class GoogleCloudAiplatformV1beta1FunctionResponsePart(typing.TypedDict, total=F
 class GoogleCloudAiplatformV1beta1GenerateContentRequest(typing.TypedDict, total=False):
     cachedContent: str
     contents: _list[GoogleCloudAiplatformV1beta1Content]
+    continuationToken: str
     generationConfig: GoogleCloudAiplatformV1beta1GenerationConfig
     labels: dict[str, typing.Any]
     modelArmorConfig: GoogleCloudAiplatformV1beta1ModelArmorConfig
@@ -407,6 +412,7 @@ class GoogleCloudAiplatformV1beta1GenerationConfig(typing.TypedDict, total=False
     thinkingConfig: GoogleCloudAiplatformV1beta1GenerationConfigThinkingConfig
     topK: float
     topP: float
+    translationConfig: GoogleCloudAiplatformV1beta1TranslationConfig
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1GenerationConfigModelConfig(
@@ -661,7 +667,9 @@ class GoogleCloudAiplatformV1beta1Part(typing.TypedDict, total=False):
     functionCall: GoogleCloudAiplatformV1beta1FunctionCall
     functionResponse: GoogleCloudAiplatformV1beta1FunctionResponse
     inlineData: GoogleCloudAiplatformV1beta1Blob
+    mediaProcessing: typing.Literal["MEDIA_PROCESSING_UNSPECIFIED", "STATIC", "AGENTIC"]
     mediaResolution: GoogleCloudAiplatformV1beta1PartMediaResolution
+    speechMetadata: GoogleCloudAiplatformV1beta1SpeechMetadata
     text: str
     thought: bool
     thoughtSignature: str
@@ -893,6 +901,11 @@ class GoogleCloudAiplatformV1beta1SpeechConfig(typing.TypedDict, total=False):
     voiceConfig: GoogleCloudAiplatformV1beta1VoiceConfig
 
 @typing.type_check_only
+class GoogleCloudAiplatformV1beta1SpeechMetadata(typing.TypedDict, total=False):
+    speaker: str
+    style: str
+
+@typing.type_check_only
 class GoogleCloudAiplatformV1beta1TextResponseFormat(typing.TypedDict, total=False):
     mimeType: typing.Literal["MIME_TYPE_UNSPECIFIED", "APPLICATION_JSON", "TEXT_PLAIN"]
     schema: typing.Any
@@ -916,6 +929,18 @@ class GoogleCloudAiplatformV1beta1ToolCodeExecution(typing.TypedDict, total=Fals
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1ToolComputerUse(typing.TypedDict, total=False):
+    disabledSafetyPolicies: _list[
+        typing.Literal[
+            "SAFETY_POLICY_UNSPECIFIED",
+            "FINANCIAL_TRANSACTIONS",
+            "SENSITIVE_DATA_MODIFICATION",
+            "COMMUNICATION_TOOL",
+            "ACCOUNT_CREATION",
+            "DATA_MODIFICATION",
+            "USER_CONSENT_MANAGEMENT",
+            "LEGAL_TERMS_AND_AGREEMENTS",
+        ]
+    ]
     enablePromptInjectionDetection: bool
     environment: typing.Literal[
         "ENVIRONMENT_UNSPECIFIED",
@@ -972,6 +997,11 @@ class GoogleCloudAiplatformV1beta1ToolParallelAiSearch(typing.TypedDict, total=F
     customConfigs: dict[str, typing.Any]
     enableDataRetention: bool
     enableZeroDataRetention: bool
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1TranslationConfig(typing.TypedDict, total=False):
+    echoTargetLanguage: bool
+    targetLanguageCode: str
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1UrlContext(typing.TypedDict, total=False): ...
@@ -1042,6 +1072,7 @@ class GoogleCloudAiplatformV1beta1VideoResponseFormat(typing.TypedDict, total=Fa
 class GoogleCloudAiplatformV1beta1VoiceConfig(typing.TypedDict, total=False):
     prebuiltVoiceConfig: GoogleCloudAiplatformV1beta1PrebuiltVoiceConfig
     replicatedVoiceConfig: GoogleCloudAiplatformV1beta1ReplicatedVoiceConfig
+    voice: str
 
 @typing.type_check_only
 class LatLng(typing.TypedDict, total=False):

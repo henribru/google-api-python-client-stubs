@@ -97,6 +97,17 @@ class DeviceRecall(typing.TypedDict, total=False):
 @typing.type_check_only
 class EnvironmentDetails(typing.TypedDict, total=False):
     appAccessRiskVerdict: AppAccessRiskVerdict
+    locationSpoofingRiskVerdict: _list[
+        typing.Literal[
+            "LOCATION_SPOOFING_RISK_VERDICT_UNSPECIFIED",
+            "LOW_RISK_DEVICE",
+            "LOW_RISK_NETWORK",
+            "MEDIUM_RISK_DEVICE",
+            "MEDIUM_RISK_NETWORK",
+            "HIGH_RISK_DEVICE",
+            "HIGH_RISK_NETWORK",
+        ]
+    ]
     playProtectVerdict: typing.Literal[
         "PLAY_PROTECT_VERDICT_UNSPECIFIED",
         "UNEVALUATED",

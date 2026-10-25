@@ -17,6 +17,15 @@ class ArtifactConfig(typing.TypedDict, total=False):
     transcriptionConfig: TranscriptionConfig
 
 @typing.type_check_only
+class BatchUpdateMembersRequest(typing.TypedDict, total=False):
+    requests: _list[UpdateMemberRequest]
+    updateMask: str
+
+@typing.type_check_only
+class BatchUpdateMembersResponse(typing.TypedDict, total=False):
+    members: _list[Member]
+
+@typing.type_check_only
 class ConferenceRecord(typing.TypedDict, total=False):
     endTime: str
     expireTime: str
@@ -51,6 +60,11 @@ class ListConferenceRecordsResponse(typing.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
+class ListMembersResponse(typing.TypedDict, total=False):
+    members: _list[Member]
+    nextPageToken: str
+
+@typing.type_check_only
 class ListParticipantSessionsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     participantSessions: _list[ParticipantSession]
@@ -80,6 +94,12 @@ class ListTranscriptEntriesResponse(typing.TypedDict, total=False):
 class ListTranscriptsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     transcripts: _list[Transcript]
+
+@typing.type_check_only
+class Member(typing.TypedDict, total=False):
+    email: str
+    name: str
+    role: typing.Literal["ROLE_UNSPECIFIED", "COHOST"]
 
 @typing.type_check_only
 class ModerationRestrictions(typing.TypedDict, total=False):
@@ -204,3 +224,8 @@ class TranscriptionConfig(typing.TypedDict, total=False):
     autoTranscriptionGeneration: typing.Literal[
         "AUTO_GENERATION_TYPE_UNSPECIFIED", "ON", "OFF"
     ]
+
+@typing.type_check_only
+class UpdateMemberRequest(typing.TypedDict, total=False):
+    member: Member
+    updateMask: str

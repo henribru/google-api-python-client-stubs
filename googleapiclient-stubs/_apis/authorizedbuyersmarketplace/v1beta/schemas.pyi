@@ -48,6 +48,7 @@ class DataSegment(typing.TypedDict, total=False):
     name: str
     state: typing.Literal["STATE_UNSPECIFIED", "ACTIVE", "INACTIVE", "SUSPENDED"]
     updateTime: str
+    userListId: str
 
 @typing.type_check_only
 class DeactivateCuratedPackageRequest(typing.TypedDict, total=False): ...

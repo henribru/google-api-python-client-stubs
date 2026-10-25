@@ -126,6 +126,7 @@ class ApplicationAttemptInfo(typing.TypedDict, total=False):
     completed: bool
     durationMillis: str
     endTime: str
+    eventLogPath: str
     lastUpdated: str
     sparkUser: str
     startTime: str
@@ -171,6 +172,7 @@ class AttachedDiskConfig(typing.TypedDict, total=False):
     ]
     provisionedIops: str
     provisionedThroughput: str
+    type: str
 
 @typing.type_check_only
 class AttachmentOperationMetadata(typing.TypedDict, total=False):
@@ -329,12 +331,15 @@ class ClusterConfig(typing.TypedDict, total=False):
     initializationActions: _list[NodeInitializationAction]
     lifecycleConfig: LifecycleConfig
     masterConfig: InstanceGroupConfig
+    masterFlexibleConfig: FlexibleInstanceGroupConfig
     metastoreConfig: MetastoreConfig
     secondaryWorkerConfig: InstanceGroupConfig
+    secondaryWorkerFlexibleConfig: FlexibleInstanceGroupConfig
     securityConfig: SecurityConfig
     softwareConfig: SoftwareConfig
     tempBucket: str
     workerConfig: InstanceGroupConfig
+    workerFlexibleConfig: FlexibleInstanceGroupConfig
 
 @typing.type_check_only
 class ClusterMetrics(typing.TypedDict, total=False):
@@ -603,6 +608,15 @@ class FallbackReason(typing.TypedDict, total=False):
     fallbackReason: str
 
 @typing.type_check_only
+class FlexibleInstanceGroupConfig(typing.TypedDict, total=False):
+    bootDiskSizeGb: int
+    coreCount: int
+    hardwareClass: typing.Literal[
+        "HARDWARE_CLASS_UNSPECIFIED", "STANDARD", "PERFORMANCE"
+    ]
+    numInstances: int
+
+@typing.type_check_only
 class FlinkJob(typing.TypedDict, total=False):
     args: _list[str]
     jarFileUris: _list[str]
@@ -618,6 +632,7 @@ class GceClusterConfig(typing.TypedDict, total=False):
     confidentialInstanceConfig: ConfidentialInstanceConfig
     internalIpOnly: bool
     metadata: dict[str, typing.Any]
+    multiZoneConfig: MultiZoneConfig
     networkUri: str
     nodeGroupAffinity: NodeGroupAffinity
     privateIpv6GoogleAccess: typing.Literal[
@@ -1033,6 +1048,10 @@ class Metric(typing.TypedDict, total=False):
         "HIVEMETASTORE",
         "FLINK",
     ]
+
+@typing.type_check_only
+class MultiZoneConfig(typing.TypedDict, total=False):
+    targetShape: typing.Literal["TARGET_SHAPE_UNSPECIFIED", "ANY"]
 
 @typing.type_check_only
 class NamespacedGkeDeploymentTarget(typing.TypedDict, total=False):
@@ -1521,6 +1540,7 @@ class SessionTemplate(typing.TypedDict, total=False):
     createTime: str
     creator: str
     description: str
+    displayName: str
     environmentConfig: EnvironmentConfig
     jupyterSession: JupyterConfig
     labels: dict[str, typing.Any]
@@ -2238,6 +2258,19 @@ class VirtualClusterConfig(typing.TypedDict, total=False):
     auxiliaryServicesConfig: AuxiliaryServicesConfig
     kubernetesClusterConfig: KubernetesClusterConfig
     stagingBucket: str
+
+@typing.type_check_only
+class VirtualClusterOperationMetadata(typing.TypedDict, total=False):
+    createTime: str
+    description: str
+    doneTime: str
+    labels: dict[str, typing.Any]
+    operationType: typing.Literal[
+        "VIRTUAL_CLUSTER_OPERATION_TYPE_UNSPECIFIED", "CREATE", "UPDATE", "DELETE"
+    ]
+    virtualCluster: str
+    virtualClusterUuid: str
+    warnings: _list[str]
 
 @typing.type_check_only
 class WorkflowGraph(typing.TypedDict, total=False):

@@ -31,6 +31,7 @@ class GoogleCloudCesV1mainEndSession(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class GoogleCloudCesV1mainImage(typing.TypedDict, total=False):
+    altText: str
     data: str
     mimeType: str
 
@@ -81,6 +82,8 @@ class GoogleCloudContactcenterinsightsV1Analysis(typing.TypedDict, total=False):
     createTime: str
     name: str
     requestTime: str
+    satisfiesPzi: bool
+    satisfiesPzs: bool
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1AnalysisResult(typing.TypedDict, total=False):
@@ -111,6 +114,8 @@ class GoogleCloudContactcenterinsightsV1AnalysisRule(typing.TypedDict, total=Fal
     createTime: str
     displayName: str
     name: str
+    satisfiesPzi: bool
+    satisfiesPzs: bool
     updateTime: str
 
 @typing.type_check_only
@@ -209,27 +214,9 @@ class GoogleCloudContactcenterinsightsV1AssessmentRule(typing.TypedDict, total=F
     displayName: str
     name: str
     sampleRule: GoogleCloudContactcenterinsightsV1SampleRule
+    satisfiesPzi: bool
+    satisfiesPzs: bool
     scheduleInfo: GoogleCloudContactcenterinsightsV1ScheduleInfo
-    updateTime: str
-
-@typing.type_check_only
-class GoogleCloudContactcenterinsightsV1AssistantChunk(typing.TypedDict, total=False):
-    text: str
-
-@typing.type_check_only
-class GoogleCloudContactcenterinsightsV1AssistantMessage(typing.TypedDict, total=False):
-    chunks: _list[GoogleCloudContactcenterinsightsV1AssistantChunk]
-    eventTime: str
-    role: typing.Literal["ROLE_UNSPECIFIED", "USER", "MODEL"]
-
-@typing.type_check_only
-class GoogleCloudContactcenterinsightsV1AssistantSession(typing.TypedDict, total=False):
-    createTime: str
-    displayName: str
-    messages: _list[GoogleCloudContactcenterinsightsV1AssistantMessage]
-    name: str
-    requester: str
-    state: typing.Literal["STATE_UNSPECIFIED", "PROCESSING", "IDLE"]
     updateTime: str
 
 @typing.type_check_only
@@ -238,6 +225,8 @@ class GoogleCloudContactcenterinsightsV1AuthorizedView(typing.TypedDict, total=F
     createTime: str
     displayName: str
     name: str
+    satisfiesPzi: bool
+    satisfiesPzs: bool
     updateTime: str
 
 @typing.type_check_only
@@ -247,6 +236,8 @@ class GoogleCloudContactcenterinsightsV1AuthorizedViewSet(
     createTime: str
     displayName: str
     name: str
+    satisfiesPzi: bool
+    satisfiesPzs: bool
     updateTime: str
 
 @typing.type_check_only
@@ -587,6 +578,8 @@ class GoogleCloudContactcenterinsightsV1Conversation(typing.TypedDict, total=Fal
     obfuscatedUserId: str
     qualityMetadata: GoogleCloudContactcenterinsightsV1ConversationQualityMetadata
     runtimeAnnotations: _list[GoogleCloudContactcenterinsightsV1RuntimeAnnotation]
+    satisfiesPzi: bool
+    satisfiesPzs: bool
     startTime: str
     transcript: GoogleCloudContactcenterinsightsV1ConversationTranscript
     ttl: str
@@ -740,6 +733,9 @@ class GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegment(
     dialogflowSegmentMetadata: GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentDialogflowSegmentMetadata
     languageCode: str
     messageTime: str
+    parts: _list[
+        GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentTranscriptPart
+    ]
     segmentParticipant: GoogleCloudContactcenterinsightsV1ConversationParticipant
     sentiment: GoogleCloudContactcenterinsightsV1SentimentData
     text: str
@@ -755,6 +751,133 @@ class GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentD
     typing.TypedDict, total=False
 ):
     smartReplyAllowlistCovered: bool
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentTranscriptPart(
+    typing.TypedDict, total=False
+):
+    citation: GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentTranscriptPartCitationPart
+    customPayload: GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentTranscriptPartCustomPayloadPart
+    image: GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentTranscriptPartMediaPart
+    link: GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentTranscriptPartLinkPart
+    list: GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentTranscriptPartListPart
+    productCollection: GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentTranscriptPartProductCollectionPart
+    suggestionChips: GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentTranscriptPartSuggestionChipsPart
+    table: GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentTranscriptPartTablePart
+    text: GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentTranscriptPartTextPart
+    thought: GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentTranscriptPartThoughtPart
+    video: GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentTranscriptPartMediaPart
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentTranscriptPartChip(
+    typing.TypedDict, total=False
+):
+    actionUri: str
+    text: str
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentTranscriptPartCitationPart(
+    typing.TypedDict, total=False
+):
+    snippet: str
+    sourceTitle: str
+    sourceUri: str
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentTranscriptPartCustomPayloadPart(
+    typing.TypedDict, total=False
+):
+    payload: dict[str, typing.Any]
+    payloadType: str
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentTranscriptPartLinkPart(
+    typing.TypedDict, total=False
+):
+    text: str
+    uri: str
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentTranscriptPartListItem(
+    typing.TypedDict, total=False
+):
+    subItems: _list[
+        GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentTranscriptPartListItem
+    ]
+    text: str
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentTranscriptPartListPart(
+    typing.TypedDict, total=False
+):
+    items: _list[
+        GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentTranscriptPartListItem
+    ]
+    listType: typing.Literal[
+        "LIST_TYPE_UNSPECIFIED", "UNORDERED", "ORDERED_NUMBER", "ORDERED_ALPHA"
+    ]
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentTranscriptPartMediaPart(
+    typing.TypedDict, total=False
+):
+    alternativeText: str
+    uri: str
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentTranscriptPartProduct(
+    typing.TypedDict, total=False
+):
+    description: str
+    displayName: str
+    id: str
+    imageUris: _list[str]
+    price: GoogleTypeMoney
+    uri: str
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentTranscriptPartProductCollectionPart(
+    typing.TypedDict, total=False
+):
+    products: _list[
+        GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentTranscriptPartProduct
+    ]
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentTranscriptPartSuggestionChipsPart(
+    typing.TypedDict, total=False
+):
+    chips: _list[
+        GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentTranscriptPartChip
+    ]
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentTranscriptPartTablePart(
+    typing.TypedDict, total=False
+):
+    headers: _list[str]
+    rows: _list[
+        GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentTranscriptPartTableRow
+    ]
+    title: str
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentTranscriptPartTableRow(
+    typing.TypedDict, total=False
+):
+    cells: _list[str]
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentTranscriptPartTextPart(
+    typing.TypedDict, total=False
+):
+    text: str
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentTranscriptPartThoughtPart(
+    typing.TypedDict, total=False
+):
+    text: str
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentWordInfo(
@@ -844,6 +967,8 @@ class GoogleCloudContactcenterinsightsV1Dataset(typing.TypedDict, total=False):
     description: str
     displayName: str
     name: str
+    satisfiesPzi: bool
+    satisfiesPzs: bool
     ttl: str
     type: typing.Literal["TYPE_UNSPECIFIED", "EVAL", "LIVE"]
     updateTime: str
@@ -1072,6 +1197,8 @@ class GoogleCloudContactcenterinsightsV1DimensionQaScorecardDimensionMetadata(
 class GoogleCloudContactcenterinsightsV1EncryptionSpec(typing.TypedDict, total=False):
     kmsKey: str
     name: str
+    satisfiesPzi: bool
+    satisfiesPzs: bool
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1Entity(typing.TypedDict, total=False):
@@ -1210,6 +1337,8 @@ class GoogleCloudContactcenterinsightsV1FeedbackLabel(typing.TypedDict, total=Fa
     labeledResource: str
     name: str
     qaAnswerLabel: GoogleCloudContactcenterinsightsV1QaAnswerAnswerValue
+    satisfiesPzi: bool
+    satisfiesPzs: bool
     updateTime: str
 
 @typing.type_check_only
@@ -1220,6 +1349,7 @@ class GoogleCloudContactcenterinsightsV1FinalizeAssessmentRequest(
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1GcsSource(typing.TypedDict, total=False):
     audioUri: str
+    audioUris: _list[str]
     transcriptUri: str
 
 @typing.type_check_only
@@ -1360,6 +1490,7 @@ class GoogleCloudContactcenterinsightsV1GenerativeInsightsRequest(
     sessionId: str
     sqlComparisonKey: str
     sqlQuery: str
+    timeZone: str
     userProvidedChartSpec: dict[str, typing.Any]
 
 @typing.type_check_only
@@ -1369,6 +1500,7 @@ class GoogleCloudContactcenterinsightsV1GenerativeInsightsResponse(
     generativeResponses: _list[
         GoogleCloudContactcenterinsightsV1GenerativeInsightsResponseGenerativeResponse
     ]
+    timeZone: str
     transcript: (
         GoogleCloudContactcenterinsightsV1GenerativeInsightConversationTranscript
     )
@@ -1626,13 +1758,6 @@ class GoogleCloudContactcenterinsightsV1ListAssessmentsResponse(
     nextPageToken: str
 
 @typing.type_check_only
-class GoogleCloudContactcenterinsightsV1ListAssistantSessionsResponse(
-    typing.TypedDict, total=False
-):
-    assistantSessions: _list[GoogleCloudContactcenterinsightsV1AssistantSession]
-    nextPageToken: str
-
-@typing.type_check_only
 class GoogleCloudContactcenterinsightsV1ListAuthorizedViewSetsResponse(
     typing.TypedDict, total=False
 ):
@@ -1879,6 +2004,8 @@ class GoogleCloudContactcenterinsightsV1QaQuestion(typing.TypedDict, total=False
     questionType: typing.Literal[
         "QA_QUESTION_TYPE_UNSPECIFIED", "CUSTOMIZABLE", "PREDEFINED"
     ]
+    satisfiesPzi: bool
+    satisfiesPzs: bool
     tags: _list[str]
     tuningMetadata: GoogleCloudContactcenterinsightsV1QaQuestionTuningMetadata
     updateTime: str
@@ -1908,6 +2035,7 @@ class GoogleCloudContactcenterinsightsV1QaQuestionPredefinedQuestionConfig(
         "PREDEFINED_QUESTION_TYPE_UNSPECIFIED",
         "CONVERSATION_OUTCOME",
         "CONVERSATION_OUTCOME_ESCALATION_INITIATOR_ROLE",
+        "CONVERSATION_OUTCOME_AI_AVERSION",
     ]
 
 @typing.type_check_only
@@ -1922,6 +2050,8 @@ class GoogleCloudContactcenterinsightsV1QaQuestionTag(typing.TypedDict, total=Fa
     displayName: str
     name: str
     qaQuestionIds: _list[str]
+    satisfiesPzi: bool
+    satisfiesPzs: bool
     updateTime: str
 
 @typing.type_check_only
@@ -1947,6 +2077,8 @@ class GoogleCloudContactcenterinsightsV1QaScorecard(typing.TypedDict, total=Fals
     displayName: str
     isDefault: bool
     name: str
+    satisfiesPzi: bool
+    satisfiesPzs: bool
     source: typing.Literal[
         "QA_SCORECARD_SOURCE_UNSPECIFIED",
         "QA_SCORECARD_SOURCE_CUSTOMER_DEFINED",
@@ -1999,6 +2131,8 @@ class GoogleCloudContactcenterinsightsV1QaScorecardRevision(
     alternateIds: _list[str]
     createTime: str
     name: str
+    satisfiesPzi: bool
+    satisfiesPzs: bool
     snapshot: GoogleCloudContactcenterinsightsV1QaScorecard
     state: typing.Literal[
         "STATE_UNSPECIFIED",
@@ -2304,6 +2438,8 @@ class GoogleCloudContactcenterinsightsV1Settings(typing.TypedDict, total=False):
     name: str
     pubsubNotificationSettings: dict[str, typing.Any]
     redactionConfig: GoogleCloudContactcenterinsightsV1RedactionConfig
+    satisfiesPzi: bool
+    satisfiesPzs: bool
     screenRecordingBucketUri: str
     speechConfig: GoogleCloudContactcenterinsightsV1SpeechConfig
     timeZone: str
@@ -2327,6 +2463,7 @@ class GoogleCloudContactcenterinsightsV1SettingsDiagnosticMetricConfig(
 class GoogleCloudContactcenterinsightsV1SignedAudioUris(typing.TypedDict, total=False):
     signedDialogflowAudioUri: str
     signedGcsAudioUri: str
+    signedGcsAudioUris: _list[str]
     signedTurnLevelAudios: _list[
         GoogleCloudContactcenterinsightsV1ConversationDataSourceTurnLevelAudio
     ]
@@ -2354,21 +2491,6 @@ class GoogleCloudContactcenterinsightsV1SmartReplyData(typing.TypedDict, total=F
 class GoogleCloudContactcenterinsightsV1SpeechConfig(typing.TypedDict, total=False):
     disableWordTimeOffsets: bool
     speechRecognizer: str
-
-@typing.type_check_only
-class GoogleCloudContactcenterinsightsV1StreamChatRequest(
-    typing.TypedDict, total=False
-):
-    message: str
-
-@typing.type_check_only
-class GoogleCloudContactcenterinsightsV1StreamChatResponse(
-    typing.TypedDict, total=False
-):
-    chunk: GoogleCloudContactcenterinsightsV1AssistantChunk
-    eventId: str
-    eventTime: str
-    statusMessage: str
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1TestAutoLabelingRuleRequest(
@@ -2537,6 +2659,8 @@ class GoogleCloudContactcenterinsightsV1alpha1Analysis(typing.TypedDict, total=F
     createTime: str
     name: str
     requestTime: str
+    satisfiesPzi: bool
+    satisfiesPzs: bool
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1alpha1AnalysisResult(
@@ -2781,6 +2905,8 @@ class GoogleCloudContactcenterinsightsV1alpha1Conversation(
     obfuscatedUserId: str
     qualityMetadata: GoogleCloudContactcenterinsightsV1alpha1ConversationQualityMetadata
     runtimeAnnotations: _list[GoogleCloudContactcenterinsightsV1alpha1RuntimeAnnotation]
+    satisfiesPzi: bool
+    satisfiesPzs: bool
     startTime: str
     transcript: GoogleCloudContactcenterinsightsV1alpha1ConversationTranscript
     ttl: str
@@ -2928,6 +3054,9 @@ class GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSe
     dialogflowSegmentMetadata: GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentDialogflowSegmentMetadata
     languageCode: str
     messageTime: str
+    parts: _list[
+        GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentTranscriptPart
+    ]
     segmentParticipant: GoogleCloudContactcenterinsightsV1alpha1ConversationParticipant
     sentiment: GoogleCloudContactcenterinsightsV1alpha1SentimentData
     text: str
@@ -2943,6 +3072,133 @@ class GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSe
     typing.TypedDict, total=False
 ):
     smartReplyAllowlistCovered: bool
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentTranscriptPart(
+    typing.TypedDict, total=False
+):
+    citation: GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentTranscriptPartCitationPart
+    customPayload: GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentTranscriptPartCustomPayloadPart
+    image: GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentTranscriptPartMediaPart
+    link: GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentTranscriptPartLinkPart
+    list: GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentTranscriptPartListPart
+    productCollection: GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentTranscriptPartProductCollectionPart
+    suggestionChips: GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentTranscriptPartSuggestionChipsPart
+    table: GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentTranscriptPartTablePart
+    text: GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentTranscriptPartTextPart
+    thought: GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentTranscriptPartThoughtPart
+    video: GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentTranscriptPartMediaPart
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentTranscriptPartChip(
+    typing.TypedDict, total=False
+):
+    actionUri: str
+    text: str
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentTranscriptPartCitationPart(
+    typing.TypedDict, total=False
+):
+    snippet: str
+    sourceTitle: str
+    sourceUri: str
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentTranscriptPartCustomPayloadPart(
+    typing.TypedDict, total=False
+):
+    payload: dict[str, typing.Any]
+    payloadType: str
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentTranscriptPartLinkPart(
+    typing.TypedDict, total=False
+):
+    text: str
+    uri: str
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentTranscriptPartListItem(
+    typing.TypedDict, total=False
+):
+    subItems: _list[
+        GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentTranscriptPartListItem
+    ]
+    text: str
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentTranscriptPartListPart(
+    typing.TypedDict, total=False
+):
+    items: _list[
+        GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentTranscriptPartListItem
+    ]
+    listType: typing.Literal[
+        "LIST_TYPE_UNSPECIFIED", "UNORDERED", "ORDERED_NUMBER", "ORDERED_ALPHA"
+    ]
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentTranscriptPartMediaPart(
+    typing.TypedDict, total=False
+):
+    alternativeText: str
+    uri: str
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentTranscriptPartProduct(
+    typing.TypedDict, total=False
+):
+    description: str
+    displayName: str
+    id: str
+    imageUris: _list[str]
+    price: GoogleTypeMoney
+    uri: str
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentTranscriptPartProductCollectionPart(
+    typing.TypedDict, total=False
+):
+    products: _list[
+        GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentTranscriptPartProduct
+    ]
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentTranscriptPartSuggestionChipsPart(
+    typing.TypedDict, total=False
+):
+    chips: _list[
+        GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentTranscriptPartChip
+    ]
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentTranscriptPartTablePart(
+    typing.TypedDict, total=False
+):
+    headers: _list[str]
+    rows: _list[
+        GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentTranscriptPartTableRow
+    ]
+    title: str
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentTranscriptPartTableRow(
+    typing.TypedDict, total=False
+):
+    cells: _list[str]
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentTranscriptPartTextPart(
+    typing.TypedDict, total=False
+):
+    text: str
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentTranscriptPartThoughtPart(
+    typing.TypedDict, total=False
+):
+    text: str
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentWordInfo(
@@ -2998,6 +3254,8 @@ class GoogleCloudContactcenterinsightsV1alpha1Dataset(typing.TypedDict, total=Fa
     description: str
     displayName: str
     name: str
+    satisfiesPzi: bool
+    satisfiesPzs: bool
     ttl: str
     type: typing.Literal["TYPE_UNSPECIFIED", "EVAL", "LIVE"]
     updateTime: str
@@ -3207,6 +3465,8 @@ class GoogleCloudContactcenterinsightsV1alpha1EncryptionSpec(
 ):
     kmsKey: str
     name: str
+    satisfiesPzi: bool
+    satisfiesPzs: bool
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1alpha1Entity(typing.TypedDict, total=False):
@@ -3343,11 +3603,14 @@ class GoogleCloudContactcenterinsightsV1alpha1FeedbackLabel(
     labeledResource: str
     name: str
     qaAnswerLabel: GoogleCloudContactcenterinsightsV1alpha1QaAnswerAnswerValue
+    satisfiesPzi: bool
+    satisfiesPzs: bool
     updateTime: str
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1alpha1GcsSource(typing.TypedDict, total=False):
     audioUri: str
+    audioUris: _list[str]
     transcriptUri: str
 
 @typing.type_check_only
@@ -3416,6 +3679,7 @@ class GoogleCloudContactcenterinsightsV1alpha1GenerativeInsightsResponse(
     generativeResponses: _list[
         GoogleCloudContactcenterinsightsV1alpha1GenerativeInsightsResponseGenerativeResponse
     ]
+    timeZone: str
     transcript: (
         GoogleCloudContactcenterinsightsV1alpha1GenerativeInsightConversationTranscript
     )
@@ -3708,6 +3972,8 @@ class GoogleCloudContactcenterinsightsV1alpha1QaQuestionTag(
     displayName: str
     name: str
     qaQuestionIds: _list[str]
+    satisfiesPzi: bool
+    satisfiesPzs: bool
     updateTime: str
 
 @typing.type_check_only
@@ -4116,6 +4382,8 @@ class GoogleCloudContactcenterinsightsV1mainAnalysis(typing.TypedDict, total=Fal
     createTime: str
     name: str
     requestTime: str
+    satisfiesPzi: bool
+    satisfiesPzs: bool
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1mainAnalysisResult(
@@ -4415,6 +4683,8 @@ class GoogleCloudContactcenterinsightsV1mainConversation(typing.TypedDict, total
     obfuscatedUserId: str
     qualityMetadata: GoogleCloudContactcenterinsightsV1mainConversationQualityMetadata
     runtimeAnnotations: _list[GoogleCloudContactcenterinsightsV1mainRuntimeAnnotation]
+    satisfiesPzi: bool
+    satisfiesPzs: bool
     startTime: str
     transcript: GoogleCloudContactcenterinsightsV1mainConversationTranscript
     ttl: str
@@ -4562,6 +4832,9 @@ class GoogleCloudContactcenterinsightsV1mainConversationTranscriptTranscriptSegm
     dialogflowSegmentMetadata: GoogleCloudContactcenterinsightsV1mainConversationTranscriptTranscriptSegmentDialogflowSegmentMetadata
     languageCode: str
     messageTime: str
+    parts: _list[
+        GoogleCloudContactcenterinsightsV1mainConversationTranscriptTranscriptSegmentTranscriptPart
+    ]
     segmentParticipant: GoogleCloudContactcenterinsightsV1mainConversationParticipant
     sentiment: GoogleCloudContactcenterinsightsV1mainSentimentData
     text: str
@@ -4577,6 +4850,133 @@ class GoogleCloudContactcenterinsightsV1mainConversationTranscriptTranscriptSegm
     typing.TypedDict, total=False
 ):
     smartReplyAllowlistCovered: bool
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1mainConversationTranscriptTranscriptSegmentTranscriptPart(
+    typing.TypedDict, total=False
+):
+    citation: GoogleCloudContactcenterinsightsV1mainConversationTranscriptTranscriptSegmentTranscriptPartCitationPart
+    customPayload: GoogleCloudContactcenterinsightsV1mainConversationTranscriptTranscriptSegmentTranscriptPartCustomPayloadPart
+    image: GoogleCloudContactcenterinsightsV1mainConversationTranscriptTranscriptSegmentTranscriptPartMediaPart
+    link: GoogleCloudContactcenterinsightsV1mainConversationTranscriptTranscriptSegmentTranscriptPartLinkPart
+    list: GoogleCloudContactcenterinsightsV1mainConversationTranscriptTranscriptSegmentTranscriptPartListPart
+    productCollection: GoogleCloudContactcenterinsightsV1mainConversationTranscriptTranscriptSegmentTranscriptPartProductCollectionPart
+    suggestionChips: GoogleCloudContactcenterinsightsV1mainConversationTranscriptTranscriptSegmentTranscriptPartSuggestionChipsPart
+    table: GoogleCloudContactcenterinsightsV1mainConversationTranscriptTranscriptSegmentTranscriptPartTablePart
+    text: GoogleCloudContactcenterinsightsV1mainConversationTranscriptTranscriptSegmentTranscriptPartTextPart
+    thought: GoogleCloudContactcenterinsightsV1mainConversationTranscriptTranscriptSegmentTranscriptPartThoughtPart
+    video: GoogleCloudContactcenterinsightsV1mainConversationTranscriptTranscriptSegmentTranscriptPartMediaPart
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1mainConversationTranscriptTranscriptSegmentTranscriptPartChip(
+    typing.TypedDict, total=False
+):
+    actionUri: str
+    text: str
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1mainConversationTranscriptTranscriptSegmentTranscriptPartCitationPart(
+    typing.TypedDict, total=False
+):
+    snippet: str
+    sourceTitle: str
+    sourceUri: str
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1mainConversationTranscriptTranscriptSegmentTranscriptPartCustomPayloadPart(
+    typing.TypedDict, total=False
+):
+    payload: dict[str, typing.Any]
+    payloadType: str
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1mainConversationTranscriptTranscriptSegmentTranscriptPartLinkPart(
+    typing.TypedDict, total=False
+):
+    text: str
+    uri: str
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1mainConversationTranscriptTranscriptSegmentTranscriptPartListItem(
+    typing.TypedDict, total=False
+):
+    subItems: _list[
+        GoogleCloudContactcenterinsightsV1mainConversationTranscriptTranscriptSegmentTranscriptPartListItem
+    ]
+    text: str
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1mainConversationTranscriptTranscriptSegmentTranscriptPartListPart(
+    typing.TypedDict, total=False
+):
+    items: _list[
+        GoogleCloudContactcenterinsightsV1mainConversationTranscriptTranscriptSegmentTranscriptPartListItem
+    ]
+    listType: typing.Literal[
+        "LIST_TYPE_UNSPECIFIED", "UNORDERED", "ORDERED_NUMBER", "ORDERED_ALPHA"
+    ]
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1mainConversationTranscriptTranscriptSegmentTranscriptPartMediaPart(
+    typing.TypedDict, total=False
+):
+    alternativeText: str
+    uri: str
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1mainConversationTranscriptTranscriptSegmentTranscriptPartProduct(
+    typing.TypedDict, total=False
+):
+    description: str
+    displayName: str
+    id: str
+    imageUris: _list[str]
+    price: GoogleTypeMoney
+    uri: str
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1mainConversationTranscriptTranscriptSegmentTranscriptPartProductCollectionPart(
+    typing.TypedDict, total=False
+):
+    products: _list[
+        GoogleCloudContactcenterinsightsV1mainConversationTranscriptTranscriptSegmentTranscriptPartProduct
+    ]
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1mainConversationTranscriptTranscriptSegmentTranscriptPartSuggestionChipsPart(
+    typing.TypedDict, total=False
+):
+    chips: _list[
+        GoogleCloudContactcenterinsightsV1mainConversationTranscriptTranscriptSegmentTranscriptPartChip
+    ]
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1mainConversationTranscriptTranscriptSegmentTranscriptPartTablePart(
+    typing.TypedDict, total=False
+):
+    headers: _list[str]
+    rows: _list[
+        GoogleCloudContactcenterinsightsV1mainConversationTranscriptTranscriptSegmentTranscriptPartTableRow
+    ]
+    title: str
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1mainConversationTranscriptTranscriptSegmentTranscriptPartTableRow(
+    typing.TypedDict, total=False
+):
+    cells: _list[str]
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1mainConversationTranscriptTranscriptSegmentTranscriptPartTextPart(
+    typing.TypedDict, total=False
+):
+    text: str
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1mainConversationTranscriptTranscriptSegmentTranscriptPartThoughtPart(
+    typing.TypedDict, total=False
+):
+    text: str
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1mainConversationTranscriptTranscriptSegmentWordInfo(
@@ -4632,6 +5032,8 @@ class GoogleCloudContactcenterinsightsV1mainDataset(typing.TypedDict, total=Fals
     description: str
     displayName: str
     name: str
+    satisfiesPzi: bool
+    satisfiesPzs: bool
     ttl: str
     type: typing.Literal["TYPE_UNSPECIFIED", "EVAL", "LIVE"]
     updateTime: str
@@ -4843,6 +5245,8 @@ class GoogleCloudContactcenterinsightsV1mainEncryptionSpec(
 ):
     kmsKey: str
     name: str
+    satisfiesPzi: bool
+    satisfiesPzs: bool
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1mainEntity(typing.TypedDict, total=False):
@@ -4979,11 +5383,14 @@ class GoogleCloudContactcenterinsightsV1mainFeedbackLabel(
     labeledResource: str
     name: str
     qaAnswerLabel: GoogleCloudContactcenterinsightsV1mainQaAnswerAnswerValue
+    satisfiesPzi: bool
+    satisfiesPzs: bool
     updateTime: str
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1mainGcsSource(typing.TypedDict, total=False):
     audioUri: str
+    audioUris: _list[str]
     transcriptUri: str
 
 @typing.type_check_only
@@ -5052,6 +5459,7 @@ class GoogleCloudContactcenterinsightsV1mainGenerativeInsightsResponse(
     generativeResponses: _list[
         GoogleCloudContactcenterinsightsV1mainGenerativeInsightsResponseGenerativeResponse
     ]
+    timeZone: str
     transcript: (
         GoogleCloudContactcenterinsightsV1mainGenerativeInsightConversationTranscript
     )
@@ -5340,6 +5748,8 @@ class GoogleCloudContactcenterinsightsV1mainQaQuestionTag(
     displayName: str
     name: str
     qaQuestionIds: _list[str]
+    satisfiesPzi: bool
+    satisfiesPzs: bool
     updateTime: str
 
 @typing.type_check_only
@@ -5811,3 +6221,9 @@ class GoogleTypeExpr(typing.TypedDict, total=False):
 class GoogleTypeInterval(typing.TypedDict, total=False):
     endTime: str
     startTime: str
+
+@typing.type_check_only
+class GoogleTypeMoney(typing.TypedDict, total=False):
+    currencyCode: str
+    nanos: int
+    units: str

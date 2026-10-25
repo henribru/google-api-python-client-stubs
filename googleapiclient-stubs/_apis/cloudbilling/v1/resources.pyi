@@ -106,6 +106,15 @@ class CloudbillingResource(googleapiclient.discovery.Resource):
         def subAccounts(self) -> SubAccountsResource: ...
 
     @typing.type_check_only
+    class MessageResource(googleapiclient.discovery.Resource):
+        def send(
+            self, *, body: SendMessageRequest, **kwargs: typing.Any
+        ) -> SendMessageResponseHttpRequest: ...
+        def stream(
+            self, *, body: SendMessageRequest, **kwargs: typing.Any
+        ) -> StreamResponseHttpRequest: ...
+
+    @typing.type_check_only
     class OrganizationsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class BillingAccountsResource(googleapiclient.discovery.Resource):
@@ -176,6 +185,62 @@ class CloudbillingResource(googleapiclient.discovery.Resource):
         ) -> ListServicesResponseHttpRequest | None: ...
         def skus(self) -> SkusResource: ...
 
+    @typing.type_check_only
+    class TasksResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
+        class PushNotificationConfigsResource(googleapiclient.discovery.Resource):
+            def create(
+                self,
+                *,
+                parent: str,
+                body: TaskPushNotificationConfig,
+                configId: str | None = ...,
+                tenant: str | None = ...,
+                **kwargs: typing.Any,
+            ) -> TaskPushNotificationConfigHttpRequest: ...
+            def delete(
+                self, *, name: str, tenant: str | None = ..., **kwargs: typing.Any
+            ) -> EmptyHttpRequest: ...
+            def get(
+                self, *, name: str, tenant: str | None = ..., **kwargs: typing.Any
+            ) -> TaskPushNotificationConfigHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
+                tenant: str | None = ...,
+                **kwargs: typing.Any,
+            ) -> ListTaskPushNotificationConfigResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListTaskPushNotificationConfigResponseHttpRequest,
+                previous_response: ListTaskPushNotificationConfigResponse,
+            ) -> ListTaskPushNotificationConfigResponseHttpRequest | None: ...
+
+        def cancel(
+            self, *, name: str, body: CancelTaskRequest, **kwargs: typing.Any
+        ) -> TaskHttpRequest: ...
+        def get(
+            self,
+            *,
+            name: str,
+            historyLength: int | None = ...,
+            tenant: str | None = ...,
+            **kwargs: typing.Any,
+        ) -> TaskHttpRequest: ...
+        def subscribe(
+            self, *, name: str, tenant: str | None = ..., **kwargs: typing.Any
+        ) -> StreamResponseHttpRequest: ...
+        def pushNotificationConfigs(self) -> PushNotificationConfigsResource: ...
+
+    @typing.type_check_only
+    class V1Resource(googleapiclient.discovery.Resource):
+        def getCard(
+            self, *, tenant: str | None = ..., **kwargs: typing.Any
+        ) -> AgentCardHttpRequest: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[
@@ -189,9 +254,20 @@ class CloudbillingResource(googleapiclient.discovery.Resource):
         | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def billingAccounts(self) -> BillingAccountsResource: ...
+    def message(self) -> MessageResource: ...
     def organizations(self) -> OrganizationsResource: ...
     def projects(self) -> ProjectsResource: ...
     def services(self) -> ServicesResource: ...
+    def tasks(self) -> TasksResource: ...
+    def v1(self) -> V1Resource: ...
+
+@typing.type_check_only
+class AgentCardHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> AgentCard: ...
 
 @typing.type_check_only
 class BillingAccountHttpRequest(googleapiclient.http.HttpRequest):
@@ -200,6 +276,14 @@ class BillingAccountHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> BillingAccount: ...
+
+@typing.type_check_only
+class EmptyHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> Empty: ...
 
 @typing.type_check_only
 class ListBillingAccountsResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -234,6 +318,16 @@ class ListSkusResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListSkusResponse: ...
 
 @typing.type_check_only
+class ListTaskPushNotificationConfigResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListTaskPushNotificationConfigResponse: ...
+
+@typing.type_check_only
 class PolicyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -248,6 +342,38 @@ class ProjectBillingInfoHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ProjectBillingInfo: ...
+
+@typing.type_check_only
+class SendMessageResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> SendMessageResponse: ...
+
+@typing.type_check_only
+class StreamResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> StreamResponse: ...
+
+@typing.type_check_only
+class TaskHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> Task: ...
+
+@typing.type_check_only
+class TaskPushNotificationConfigHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> TaskPushNotificationConfig: ...
 
 @typing.type_check_only
 class TestIamPermissionsResponseHttpRequest(googleapiclient.http.HttpRequest):

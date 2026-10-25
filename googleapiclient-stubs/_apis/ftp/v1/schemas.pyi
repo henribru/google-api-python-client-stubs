@@ -94,6 +94,8 @@ class Server(typing.TypedDict, total=False):
     internalConfig: InternalServerConfig
     labels: dict[str, typing.Any]
     name: str
+    satisfiesPzi: bool
+    satisfiesPzs: bool
     serviceAgent: str
     state: typing.Literal[
         "STATE_UNSPECIFIED",

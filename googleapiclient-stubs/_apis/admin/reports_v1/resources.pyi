@@ -60,6 +60,7 @@ class ReportsResource(googleapiclient.discovery.Resource):
                 "voice",
                 "chrome_sync",
                 "workspace_studio",
+                "gemini_notebook",
             ],
             actorIpAddress: str | None = ...,
             agentInfoFilter: str | None = ...,

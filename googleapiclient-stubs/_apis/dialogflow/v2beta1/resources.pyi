@@ -1684,6 +1684,49 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                 ) -> GoogleCloudDialogflowV2beta1AnswerRecordHttpRequest: ...
 
             @typing.type_check_only
+            class CompanionAgentsResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoogleCloudDialogflowV2beta1CompanionAgent,
+                    companionAgentId: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleCloudDialogflowV2beta1CompanionAgentHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleProtobufEmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleCloudDialogflowV2beta1CompanionAgentHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> (
+                    GoogleCloudDialogflowV2beta1ListCompanionAgentsResponseHttpRequest
+                ): ...
+                def list_next(
+                    self,
+                    previous_request: GoogleCloudDialogflowV2beta1ListCompanionAgentsResponseHttpRequest,
+                    previous_response: GoogleCloudDialogflowV2beta1ListCompanionAgentsResponse,
+                ) -> (
+                    GoogleCloudDialogflowV2beta1ListCompanionAgentsResponseHttpRequest
+                    | None
+                ): ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudDialogflowV2beta1CompanionAgent,
+                    updateMask: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleCloudDialogflowV2beta1CompanionAgentHttpRequest: ...
+
+            @typing.type_check_only
             class ConversationProfilesResource(googleapiclient.discovery.Resource):
                 def clearSuggestionFeatureConfig(
                     self,
@@ -2314,6 +2357,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
             ) -> GoogleCloudDialogflowV2beta1AgentHttpRequest: ...
             def agent(self) -> AgentResource: ...
             def answerRecords(self) -> AnswerRecordsResource: ...
+            def companionAgents(self) -> CompanionAgentsResource: ...
             def conversationProfiles(self) -> ConversationProfilesResource: ...
             def conversations(self) -> ConversationsResource: ...
             def encryptionSpec(self) -> EncryptionSpecResource: ...
@@ -2482,6 +2526,16 @@ class GoogleCloudDialogflowV2beta1BatchCreateMessagesResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudDialogflowV2beta1BatchCreateMessagesResponse: ...
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1CompanionAgentHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudDialogflowV2beta1CompanionAgent: ...
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2beta1CompileSuggestionResponseHttpRequest(
@@ -2676,6 +2730,16 @@ class GoogleCloudDialogflowV2beta1ListAnswerRecordsResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudDialogflowV2beta1ListAnswerRecordsResponse: ...
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1ListCompanionAgentsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudDialogflowV2beta1ListCompanionAgentsResponse: ...
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2beta1ListContextsResponseHttpRequest(

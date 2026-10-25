@@ -925,7 +925,8 @@ class SpecificStartPosition(typing.TypedDict, total=False):
     sqlServerLsnPosition: SqlServerLsnPosition
 
 @typing.type_check_only
-class SqlServerChangeTables(typing.TypedDict, total=False): ...
+class SqlServerChangeTables(typing.TypedDict, total=False):
+    ddlConfig: SqlServerDdlConfig
 
 @typing.type_check_only
 class SqlServerColumn(typing.TypedDict, total=False):
@@ -937,6 +938,11 @@ class SqlServerColumn(typing.TypedDict, total=False):
     precision: int
     primaryKey: bool
     scale: int
+
+@typing.type_check_only
+class SqlServerDdlConfig(typing.TypedDict, total=False):
+    autoCreateNewCaptureInstanceOnDdl: bool
+    autoDeleteOldCaptureInstance: bool
 
 @typing.type_check_only
 class SqlServerLsnPosition(typing.TypedDict, total=False):

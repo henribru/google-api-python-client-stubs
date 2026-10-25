@@ -184,6 +184,13 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                     def getConnectorSecret(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> GoogleCloudDiscoveryengineV1alphaGetConnectorSecretResponseHttpRequest: ...
+                    def invokeConnectorMcp(
+                        self,
+                        *,
+                        name: str,
+                        body: GoogleCloudDiscoveryengineV1alphaInvokeConnectorMcpRequest,
+                        **kwargs: typing.Any,
+                    ) -> GoogleCloudDiscoveryengineV1alphaInvokeConnectorMcpResponseHttpRequest: ...
                     def mcp(
                         self,
                         *,
@@ -1035,7 +1042,10 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                             | None = ...,
                             languageCode: str | None = ...,
                             modelInfoView: typing.Literal[
-                                "MODEL_INFO_VIEW_UNSPECIFIED", "END_USER_WEB", "ADMIN"
+                                "MODEL_INFO_VIEW_UNSPECIFIED",
+                                "END_USER_WEB",
+                                "ADMIN",
+                                "END_USER_MOBILE",
                             ]
                             | None = ...,
                             **kwargs: typing.Any,
@@ -1112,6 +1122,13 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                     def getDocumentProcessingConfig(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfigHttpRequest: ...
+                    def getIamPolicy(
+                        self,
+                        *,
+                        resource: str,
+                        options_requestedPolicyVersion: int | None = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleIamV1PolicyHttpRequest: ...
                     def getSiteSearchEngine(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> (
@@ -1162,6 +1179,13 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                         body: GoogleCloudDiscoveryengineV1alphaReplacePatientFilterRequest,
                         **kwargs: typing.Any,
                     ) -> GoogleLongrunningOperationHttpRequest: ...
+                    def setIamPolicy(
+                        self,
+                        *,
+                        resource: str,
+                        body: GoogleIamV1SetIamPolicyRequest,
+                        **kwargs: typing.Any,
+                    ) -> GoogleIamV1PolicyHttpRequest: ...
                     def trainCustomModel(
                         self,
                         *,
@@ -1844,7 +1868,10 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                             | None = ...,
                             languageCode: str | None = ...,
                             modelInfoView: typing.Literal[
-                                "MODEL_INFO_VIEW_UNSPECIFIED", "END_USER_WEB", "ADMIN"
+                                "MODEL_INFO_VIEW_UNSPECIFIED",
+                                "END_USER_WEB",
+                                "ADMIN",
+                                "END_USER_MOBILE",
                             ]
                             | None = ...,
                             **kwargs: typing.Any,
@@ -1998,6 +2025,13 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                 def getDataConnector(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> GoogleCloudDiscoveryengineV1alphaDataConnectorHttpRequest: ...
+                def getIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    options_requestedPolicyVersion: int | None = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleIamV1PolicyHttpRequest: ...
                 def list(
                     self,
                     *,
@@ -2025,6 +2059,13 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
+                def setIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    body: GoogleIamV1SetIamPolicyRequest,
+                    **kwargs: typing.Any,
+                ) -> GoogleIamV1PolicyHttpRequest: ...
                 def updateDataConnector(
                     self,
                     *,
@@ -2730,7 +2771,10 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                         | None = ...,
                         languageCode: str | None = ...,
                         modelInfoView: typing.Literal[
-                            "MODEL_INFO_VIEW_UNSPECIFIED", "END_USER_WEB", "ADMIN"
+                            "MODEL_INFO_VIEW_UNSPECIFIED",
+                            "END_USER_WEB",
+                            "ADMIN",
+                            "END_USER_MOBILE",
                         ]
                         | None = ...,
                         **kwargs: typing.Any,
@@ -2805,6 +2849,13 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                 ) -> (
                     GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfigHttpRequest
                 ): ...
+                def getIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    options_requestedPolicyVersion: int | None = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleIamV1PolicyHttpRequest: ...
                 def getSiteSearchEngine(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> GoogleCloudDiscoveryengineV1alphaSiteSearchEngineHttpRequest: ...
@@ -2855,6 +2906,13 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                     body: GoogleCloudDiscoveryengineV1alphaReplacePatientFilterRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
+                def setIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    body: GoogleIamV1SetIamPolicyRequest,
+                    **kwargs: typing.Any,
+                ) -> GoogleIamV1PolicyHttpRequest: ...
                 def updateCompletionConfig(
                     self,
                     *,
@@ -3045,6 +3103,16 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                     body: GoogleCloudDiscoveryengineV1alphaPurgeIdentityMappingsRequest,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
+                def operations(self) -> OperationsResource: ...
+
+            @typing.type_check_only
+            class KnowledgeSpacesResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class OperationsResource(googleapiclient.discovery.Resource):
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> GoogleLongrunningOperationHttpRequest: ...
+
                 def operations(self) -> OperationsResource: ...
 
             @typing.type_check_only
@@ -3550,6 +3618,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
             def evaluations(self) -> EvaluationsResource: ...
             def groundingConfigs(self) -> GroundingConfigsResource: ...
             def identityMappingStores(self) -> IdentityMappingStoresResource: ...
+            def knowledgeSpaces(self) -> KnowledgeSpacesResource: ...
             def licenseConfigs(self) -> LicenseConfigsResource: ...
             def notebooks(self) -> NotebooksResource: ...
             def operations(self) -> OperationsResource: ...
@@ -4061,6 +4130,16 @@ class GoogleCloudDiscoveryengineV1alphaImportAgentFileResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudDiscoveryengineV1alphaImportAgentFileResponse: ...
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1alphaInvokeConnectorMcpResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudDiscoveryengineV1alphaInvokeConnectorMcpResponse: ...
 
 @typing.type_check_only
 class GoogleCloudDiscoveryengineV1alphaLicenseConfigHttpRequest(

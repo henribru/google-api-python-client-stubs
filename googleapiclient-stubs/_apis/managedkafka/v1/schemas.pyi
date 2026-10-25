@@ -5,6 +5,7 @@ _list = list
 @typing.type_check_only
 class AccessConfig(typing.TypedDict, total=False):
     networkConfigs: _list[NetworkConfig]
+    publicClusterConfig: PublicClusterConfig
 
 @typing.type_check_only
 class Acl(typing.TypedDict, total=False):
@@ -26,6 +27,10 @@ class AclEntry(typing.TypedDict, total=False):
 class AddAclEntryResponse(typing.TypedDict, total=False):
     acl: Acl
     aclCreated: bool
+
+@typing.type_check_only
+class BrokerCapacityConfig(typing.TypedDict, total=False):
+    diskSizeGib: str
 
 @typing.type_check_only
 class BrokerDetails(typing.TypedDict, total=False):
@@ -59,13 +64,17 @@ class CheckCompatibilityResponse(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class Cluster(typing.TypedDict, total=False):
+    bootstrapAddress: str
+    brokerCapacityConfig: BrokerCapacityConfig
     brokerDetails: _list[BrokerDetails]
     capacityConfig: CapacityConfig
     createTime: str
+    effectiveCapacityConfig: EffectiveCapacityConfig
     gcpConfig: GcpConfig
     kafkaVersion: str
     labels: dict[str, typing.Any]
     name: str
+    publicClusterDetails: PublicClusterDetails
     rebalanceConfig: RebalanceConfig
     satisfiesPzi: bool
     satisfiesPzs: bool
@@ -158,6 +167,11 @@ class CreateVersionRequest(typing.TypedDict, total=False):
 @typing.type_check_only
 class CreateVersionResponse(typing.TypedDict, total=False):
     id: int
+
+@typing.type_check_only
+class EffectiveCapacityConfig(typing.TypedDict, total=False):
+    brokerCount: str
+    brokerDiskSizeGib: str
 
 @typing.type_check_only
 class Empty(typing.TypedDict, total=False): ...
@@ -263,6 +277,15 @@ class PauseConnectorRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
 class PauseConnectorResponse(typing.TypedDict, total=False): ...
+
+@typing.type_check_only
+class PublicClusterConfig(typing.TypedDict, total=False):
+    allowedSourceIpRanges: _list[str]
+
+@typing.type_check_only
+class PublicClusterDetails(typing.TypedDict, total=False):
+    discoveryDnsRecords: _list[str]
+    externalIpAddresses: _list[str]
 
 @typing.type_check_only
 class RebalanceConfig(typing.TypedDict, total=False):

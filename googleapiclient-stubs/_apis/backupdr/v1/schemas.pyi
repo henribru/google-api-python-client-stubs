@@ -131,6 +131,7 @@ class Backup(typing.TypedDict, total=False):
     kmsKeyVersions: _list[str]
     labels: dict[str, typing.Any]
     name: str
+    netappVolumeBackupProperties: NetAppVolumeBackupProperties
     resourceSizeBytes: str
     satisfiesPzi: bool
     satisfiesPzs: bool
@@ -271,11 +272,20 @@ class BackupPlanAssociation(typing.TypedDict, total=False):
         FilestoreInstanceBackupPlanAssociationProperties
     )
     name: str
+    netappVolumeBackupPlanAssociationProperties: (
+        NetAppVolumeBackupPlanAssociationProperties
+    )
     resource: str
     resourceType: str
     rulesConfigInfo: _list[RuleConfigInfo]
     state: typing.Literal[
-        "STATE_UNSPECIFIED", "CREATING", "ACTIVE", "DELETING", "INACTIVE", "UPDATING"
+        "STATE_UNSPECIFIED",
+        "CREATING",
+        "ACTIVE",
+        "DELETING",
+        "INACTIVE",
+        "UPDATING",
+        "PAUSED",
     ]
     updateTime: str
 
@@ -466,7 +476,9 @@ class DataSource(typing.TypedDict, total=False):
     backupBlockedByVaultAccessRestriction: bool
     backupConfigInfo: BackupConfigInfo
     backupCount: str
-    configState: typing.Literal["BACKUP_CONFIG_STATE_UNSPECIFIED", "ACTIVE", "PASSIVE"]
+    configState: typing.Literal[
+        "BACKUP_CONFIG_STATE_UNSPECIFIED", "ACTIVE", "PASSIVE", "PAUSED"
+    ]
     createTime: str
     dataSourceBackupApplianceApplication: DataSourceBackupApplianceApplication
     dataSourceGcpResource: DataSourceGcpResource
@@ -509,6 +521,7 @@ class DataSourceGcpResource(typing.TypedDict, total=False):
     filestoreInstanceDatasourceProperties: FilestoreInstanceDataSourceProperties
     gcpResourcename: str
     location: str
+    netappVolumeDatasourceProperties: NetAppVolumeDataSourceProperties
     type: str
 
 @typing.type_check_only
@@ -518,6 +531,7 @@ class DataSourceGcpResourceInfo(typing.TypedDict, total=False):
     filestoreInstanceProperties: FilestoreInstanceDataSourceReferenceProperties
     gcpResourcename: str
     location: str
+    netappVolumeProperties: NetAppVolumeDataSourceReferenceProperties
     type: str
 
 @typing.type_check_only
@@ -526,7 +540,7 @@ class DataSourceReference(typing.TypedDict, total=False):
     dataSource: str
     dataSourceBackupConfigInfo: DataSourceBackupConfigInfo
     dataSourceBackupConfigState: typing.Literal[
-        "BACKUP_CONFIG_STATE_UNSPECIFIED", "ACTIVE", "PASSIVE"
+        "BACKUP_CONFIG_STATE_UNSPECIFIED", "ACTIVE", "PASSIVE", "PAUSED"
     ]
     dataSourceBackupCount: str
     dataSourceGcpResourceInfo: DataSourceGcpResourceInfo
@@ -577,6 +591,7 @@ class DiskRestoreProperties(typing.TypedDict, total=False):
     diskEncryptionKey: CustomerEncryptionKey
     enableConfidentialCompute: bool
     guestOsFeature: _list[GuestOsFeature]
+    instanceBackupSource: RestoreDiskFromInstanceOptions
     labels: dict[str, typing.Any]
     licenses: _list[str]
     name: str
@@ -866,6 +881,7 @@ class LocationMetadata(typing.TypedDict, total=False):
             "ALLOY_DB",
             "FILESTORE",
             "BV_AF",
+            "GOOGLE_CLOUD_NETAPP_VOLUME",
             "CEP_MONITORING_COMPUTE_INSTANCE",
             "CEP_MONITORING_DISK",
             "BV_CUSTOM_PROBERS",
@@ -911,6 +927,24 @@ class Metadata(typing.TypedDict, total=False):
     items: _list[Entry]
 
 @typing.type_check_only
+class NetAppVolumeBackupPlanAssociationProperties(typing.TypedDict, total=False):
+    sourceResourceCreateTime: str
+
+@typing.type_check_only
+class NetAppVolumeBackupProperties(typing.TypedDict, total=False):
+    sourceResource: str
+
+@typing.type_check_only
+class NetAppVolumeDataSourceProperties(typing.TypedDict, total=False):
+    sourceResource: str
+    sourceResourceCreateTime: str
+
+@typing.type_check_only
+class NetAppVolumeDataSourceReferenceProperties(typing.TypedDict, total=False):
+    sourceResource: str
+    sourceResourceCreateTime: str
+
+@typing.type_check_only
 class NetworkConfig(typing.TypedDict, total=False):
     network: str
     peeringMode: typing.Literal["PEERING_MODE_UNSPECIFIED", "PRIVATE_SERVICE_ACCESS"]
@@ -951,17 +985,6 @@ class Operation(typing.TypedDict, total=False):
     metadata: dict[str, typing.Any]
     name: str
     response: dict[str, typing.Any]
-
-@typing.type_check_only
-class OperationMetadata(typing.TypedDict, total=False):
-    additionalInfo: dict[str, typing.Any]
-    apiVersion: str
-    createTime: str
-    endTime: str
-    requestedCancellation: bool
-    statusMessage: str
-    target: str
-    verb: str
 
 @typing.type_check_only
 class PitrSettings(typing.TypedDict, total=False):
@@ -1019,6 +1042,11 @@ class RestoreBackupResponse(typing.TypedDict, total=False):
     targetResource: TargetResource
 
 @typing.type_check_only
+class RestoreDiskFromInstanceOptions(typing.TypedDict, total=False):
+    bootDisk: bool
+    sourceDeviceName: str
+
+@typing.type_check_only
 class RuleConfigInfo(typing.TypedDict, total=False):
     lastBackupError: Status
     lastBackupState: typing.Literal[
@@ -1070,7 +1098,7 @@ class SetIamPolicyRequest(typing.TypedDict, total=False):
 @typing.type_check_only
 class SetInternalStatusRequest(typing.TypedDict, total=False):
     backupConfigState: typing.Literal[
-        "BACKUP_CONFIG_STATE_UNSPECIFIED", "ACTIVE", "PASSIVE"
+        "BACKUP_CONFIG_STATE_UNSPECIFIED", "ACTIVE", "PASSIVE", "PAUSED"
     ]
     requestId: str
     value: str

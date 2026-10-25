@@ -11,6 +11,11 @@ class AddIdpCredentialRequest(typing.TypedDict, total=False):
     pemData: str
 
 @typing.type_check_only
+class AllowlistedDomain(typing.TypedDict, total=False):
+    domain: str
+    name: str
+
+@typing.type_check_only
 class CancelUserInvitationRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -81,6 +86,11 @@ class EntityKey(typing.TypedDict, total=False):
 @typing.type_check_only
 class ExpiryDetail(typing.TypedDict, total=False):
     expireTime: str
+
+@typing.type_check_only
+class ExternalId(typing.TypedDict, total=False):
+    id: str
+    namespace: str
 
 @typing.type_check_only
 class GetMembershipGraphMetadata(typing.TypedDict, total=False): ...
@@ -302,6 +312,7 @@ class GoogleAppsCloudidentityDevicesV1Device(typing.TypedDict, total=False):
         "MAC_OS",
         "LINUX",
         "CHROME_OS",
+        "GOOGLEBOOK",
     ]
     enabledDeveloperOptions: bool
     enabledUsbDebugging: bool
@@ -461,6 +472,7 @@ class Group(typing.TypedDict, total=False):
     description: str
     displayName: str
     dynamicGroupMetadata: DynamicGroupMetadata
+    externalIds: _list[ExternalId]
     groupKey: EntityKey
     labels: dict[str, typing.Any]
     name: str
@@ -522,6 +534,11 @@ class InboundSsoAssignment(typing.TypedDict, total=False):
 @typing.type_check_only
 class IsInvitableUserResponse(typing.TypedDict, total=False):
     isInvitableUser: bool
+
+@typing.type_check_only
+class ListAllowlistedDomainsResponse(typing.TypedDict, total=False):
+    allowlistedDomains: _list[AllowlistedDomain]
+    nextPageToken: str
 
 @typing.type_check_only
 class ListGroupsResponse(typing.TypedDict, total=False):

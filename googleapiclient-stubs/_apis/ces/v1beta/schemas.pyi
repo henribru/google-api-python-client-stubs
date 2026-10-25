@@ -17,6 +17,16 @@ class ActionEntityOperation(typing.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class ActiveTurnInfo(typing.TypedDict, total=False):
+    lastProgressTime: str
+    orphanDeadlineTime: str
+    startTime: str
+    status: typing.Literal[
+        "STATUS_UNSPECIFIED", "RUNNING", "DISCONNECTED", "RESUMING", "ABANDONED"
+    ]
+    turnId: str
+
+@typing.type_check_only
 class Agent(typing.TypedDict, total=False):
     afterAgentCallbacks: _list[Callback]
     afterModelCallbacks: _list[Callback]
@@ -35,6 +45,7 @@ class Agent(typing.TypedDict, total=False):
     llmAgent: AgentLlmAgent
     modelSettings: ModelSettings
     name: str
+    remoteA2aAgent: AgentRemoteA2aAgent
     remoteDialogflowAgent: AgentRemoteDialogflowAgent
     tools: _list[str]
     toolsets: _list[AgentAgentToolset]
@@ -64,6 +75,14 @@ class AgentInterface(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class AgentLlmAgent(typing.TypedDict, total=False): ...
+
+@typing.type_check_only
+class AgentRegistryDeployment(typing.TypedDict, total=False):
+    agentRegistryServiceName: str
+
+@typing.type_check_only
+class AgentRemoteA2aAgent(typing.TypedDict, total=False):
+    a2aConfig: RemoteA2aConfig
 
 @typing.type_check_only
 class AgentRemoteDialogflowAgent(typing.TypedDict, total=False):
@@ -177,6 +196,7 @@ class App(typing.TypedDict, total=False):
     audioProcessingConfig: AudioProcessingConfig
     clientCertificateSettings: ClientCertificateSettings
     createTime: str
+    dashboardSettings: DashboardSettings
     dataStoreSettings: DataStoreSettings
     defaultChannelProfile: ChannelProfile
     deploymentCount: int
@@ -231,11 +251,104 @@ class AppVersion(typing.TypedDict, total=False):
     etag: str
     name: str
     snapshot: AppSnapshot
+    updateTime: str
+
+@typing.type_check_only
+class ArtifactChunk(typing.TypedDict, total=False):
+    artifactId: str
+    contentDelta: str
+    displayName: str
+    gcsUri: str
+    mimeType: str
+    state: typing.Literal[
+        "STATE_UNSPECIFIED", "STARTED", "DELTA", "FINALIZED", "FAILED", "CLOSED"
+    ]
+
+@typing.type_check_only
+class AssistantChunk(typing.TypedDict, total=False):
+    createTime: str
+    payload: dict[str, typing.Any]
+    text: str
+    thought: str
+    typedPayload: TypedPayload
+
+@typing.type_check_only
+class AssistantConfirmationRequest(typing.TypedDict, total=False):
+    agentName: str
+    confirmationId: str
+    context: str
+    expireTime: str
+    negativeLabel: str
+    positiveLabel: str
+    questions: _list[OptionQuestionsChunkQuestion]
+    tool: str
+
+@typing.type_check_only
+class AssistantConfirmationResponse(typing.TypedDict, total=False):
+    answerText: str
+    confirmationId: str
+    confirmed: bool
+
+@typing.type_check_only
+class AssistantMessage(typing.TypedDict, total=False):
+    attachedGcsUris: _list[str]
+    chunks: _list[AssistantChunk]
+    eventTime: str
+    role: str
+
+@typing.type_check_only
+class AssistantOutput(typing.TypedDict, total=False):
+    message: AssistantMessage
+    userResponseSuggestions: UserResponseSuggestions
+
+@typing.type_check_only
+class AssistantSession(typing.TypedDict, total=False):
+    activeTurn: ActiveTurnInfo
+    artifacts: _list[AssistantSessionArtifact]
+    createTime: str
+    displayName: str
+    messages: _list[AssistantMessage]
+    name: str
+    requestor: str
+    sessionCheckpoint: SessionCheckpoint
+    state: typing.Literal[
+        "ASSISTANT_SESSION_STATE_UNSPECIFIED", "PROCESSING", "IDLE", "PENDING_REVIEW"
+    ]
+    updateTime: str
+    userResponseSuggestions: UserResponseSuggestions
+
+@typing.type_check_only
+class AssistantSessionArtifact(typing.TypedDict, total=False):
+    createTime: str
+    displayName: str
+    gcsUri: str
+    id: str
+    mimeType: str
+    turnIndex: int
+
+@typing.type_check_only
+class AssistantSuggestion(typing.TypedDict, total=False):
+    candidateType: str
+    icon: typing.Literal[
+        "ICON_UNSPECIFIED", "RESUME", "BUILD", "EVALUATE", "DEPLOY", "EXPLORE", "FIX"
+    ]
+    label: str
+    loadSession: AssistantSuggestionLoadSession
+    rationale: str
+    seedPrompt: str
+    sendMessage: str
+    source: typing.Literal["SOURCE_UNSPECIFIED", "RULE", "LLM_RANKED"]
+    suggestionId: str
+
+@typing.type_check_only
+class AssistantSuggestionLoadSession(typing.TypedDict, total=False):
+    assistantSessionId: str
 
 @typing.type_check_only
 class AudioProcessingConfig(typing.TypedDict, total=False):
     ambientSoundConfig: AmbientSoundConfig
     bargeInConfig: BargeInConfig
+    customVoiceSamples: _list[CustomVoiceSample]
     inactivityTimeout: str
     synthesizeSpeechConfigs: dict[str, typing.Any]
 
@@ -280,6 +393,14 @@ class Callback(typing.TypedDict, total=False):
     disabled: bool
     proactiveExecutionEnabled: bool
     pythonCode: str
+
+@typing.type_check_only
+class CancelAssistantTurnRequest(typing.TypedDict, total=False):
+    turnId: str
+
+@typing.type_check_only
+class CancelAssistantTurnResponse(typing.TypedDict, total=False):
+    cancelled: bool
 
 @typing.type_check_only
 class CancelOperationRequest(typing.TypedDict, total=False): ...
@@ -364,6 +485,22 @@ class ChannelProfileWhatsAppConfig(typing.TypedDict, total=False):
     wabaId: str
 
 @typing.type_check_only
+class ChatAiAssistantRequest(typing.TypedDict, total=False):
+    assistantSession: str
+    attachedGcsUris: _list[str]
+    contextToken: str
+    message: str
+
+@typing.type_check_only
+class ChatAiAssistantResponse(typing.TypedDict, total=False):
+    eventId: str
+    eventTime: str
+    sessionCheckpoint: SessionCheckpoint
+    statusMessage: str
+    textChunk: str
+    uiEvent: UiEvent
+
+@typing.type_check_only
 class Chunk(typing.TypedDict, total=False):
     agentTransfer: AgentTransfer
     blob: Blob
@@ -379,6 +516,7 @@ class Chunk(typing.TypedDict, total=False):
 @typing.type_check_only
 class Citations(typing.TypedDict, total=False):
     citedChunks: _list[CitationsCitedChunk]
+    inlineCitations: _list[CitationsInlineCitation]
 
 @typing.type_check_only
 class CitationsCitedChunk(typing.TypedDict, total=False):
@@ -386,6 +524,12 @@ class CitationsCitedChunk(typing.TypedDict, total=False):
     text: str
     title: str
     uri: str
+
+@typing.type_check_only
+class CitationsInlineCitation(typing.TypedDict, total=False):
+    citedChunkIndices: _list[int]
+    endIndex: int
+    startIndex: int
 
 @typing.type_check_only
 class ClientCertificateSettings(typing.TypedDict, total=False):
@@ -461,10 +605,38 @@ class ConversationLoggingSettings(typing.TypedDict, total=False):
 @typing.type_check_only
 class ConversationTurn(typing.TypedDict, total=False):
     messages: _list[Message]
-    resolvedDeveloperInstruction: str
     rootSpan: Span
-    templateAttributes: dict[str, typing.Any]
     userIntendedText: str
+
+@typing.type_check_only
+class CreateAssistantSessionRequest(typing.TypedDict, total=False):
+    assistantSessionId: str
+    assistantSessionMessages: _list[AssistantMessage]
+
+@typing.type_check_only
+class CustomVoiceSample(typing.TypedDict, total=False):
+    consentAudioGcsUri: str
+    name: str
+    previewAudioContent: str
+    previewText: str
+    voiceInstruction: str
+    voiceInstructionMode: typing.Literal[
+        "VOICE_INSTRUCTION_MODE_UNSPECIFIED",
+        "NO_INSTRUCTION",
+        "GENERATE_INSTRUCTION",
+        "CUSTOM_INSTRUCTION",
+    ]
+    voiceSampleGcsUri: str
+    warnings: _list[CustomVoiceSampleWarning]
+
+@typing.type_check_only
+class CustomVoiceSampleWarning(typing.TypedDict, total=False):
+    message: str
+    type: typing.Literal["WARNING_TYPE_UNSPECIFIED", "LOW_AUDIO_LEVEL"]
+
+@typing.type_check_only
+class DashboardSettings(typing.TypedDict, total=False):
+    defaultDashboard: str
 
 @typing.type_check_only
 class DataStore(typing.TypedDict, total=False):
@@ -574,6 +746,7 @@ class DataStoreToolRewriterConfig(typing.TypedDict, total=False):
 @typing.type_check_only
 class DataStoreToolSnippetsConfig(typing.TypedDict, total=False):
     enableSnippets: bool
+    maxSnippets: int
 
 @typing.type_check_only
 class DataStoreToolSummarizationConfig(typing.TypedDict, total=False):
@@ -585,7 +758,12 @@ class DataStoreToolSummarizationConfig(typing.TypedDict, total=False):
 class DeleteEvaluationRunOperationMetadata(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
+class DeployChannelResponse(typing.TypedDict, total=False):
+    deployment: Deployment
+
+@typing.type_check_only
 class Deployment(typing.TypedDict, total=False):
+    agentRegistryDeployment: AgentRegistryDeployment
     appVersion: str
     channelProfile: ChannelProfile
     createTime: str
@@ -1156,6 +1334,7 @@ class EvaluationStep(typing.TypedDict, total=False):
 @typing.type_check_only
 class Event(typing.TypedDict, total=False):
     event: str
+    variables: dict[str, typing.Any]
 
 @typing.type_check_only
 class Example(typing.TypedDict, total=False):
@@ -1410,6 +1589,18 @@ class GenerateEvaluationRequest(typing.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class GenerateOnboardingSuggestionsRequest(typing.TypedDict, total=False):
+    maxSuggestions: int
+
+@typing.type_check_only
+class GenerateOnboardingSuggestionsResponse(typing.TypedDict, total=False):
+    contextToken: str
+    suggestions: _list[AssistantSuggestion]
+    userProfile: typing.Literal[
+        "USER_PROFILE_UNSPECIFIED", "NEW", "EXPLORING", "RETURNING"
+    ]
+
+@typing.type_check_only
 class GoogleSearchSuggestions(typing.TypedDict, total=False):
     htmls: _list[str]
     webSearchQueries: _list[WebSearchQuery]
@@ -1442,6 +1633,7 @@ class Guardrail(typing.TypedDict, total=False):
     llmPromptSecurity: GuardrailLlmPromptSecurity
     modelSafety: GuardrailModelSafety
     name: str
+    supervisor: GuardrailSupervisor
     updateTime: str
 
 @typing.type_check_only
@@ -1500,6 +1692,8 @@ class GuardrailModelSafetySafetySetting(typing.TypedDict, total=False):
         "HARM_CATEGORY_DANGEROUS_CONTENT",
         "HARM_CATEGORY_HARASSMENT",
         "HARM_CATEGORY_SEXUALLY_EXPLICIT",
+        "HARM_CATEGORY_PROFANITY",
+        "HARM_CATEGORY_TOXIC",
     ]
     threshold: typing.Literal[
         "HARM_BLOCK_THRESHOLD_UNSPECIFIED",
@@ -1511,7 +1705,25 @@ class GuardrailModelSafetySafetySetting(typing.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class GuardrailSupervisor(typing.TypedDict, total=False):
+    detectionMode: typing.Literal[
+        "DETECTION_MODE_UNSPECIFIED", "NON_BLOCKING", "BLOCKING"
+    ]
+    type: typing.Literal[
+        "TYPE_UNSPECIFIED",
+        "INVALID_TEXT",
+        "LANGUAGE_SHIFT",
+        "SPEAKER_SHIFT",
+        "AUDIO_MISMATCH",
+        "MISSING_TOOL_CALL",
+        "CUSTOM",
+        "CHOPPY_AUDIO",
+        "PROFANITY",
+    ]
+
+@typing.type_check_only
 class Image(typing.TypedDict, total=False):
+    altText: str
     data: str
     mimeType: str
 
@@ -1523,6 +1735,8 @@ class ImportAppRequest(typing.TypedDict, total=False):
     gcsUri: str
     ignoreAppLock: bool
     importOptions: ImportAppRequestImportOptions
+    jsonPatchContent: str
+    jsonPatchGcsUri: str
 
 @typing.type_check_only
 class ImportAppRequestImportOptions(typing.TypedDict, total=False):
@@ -1821,6 +2035,13 @@ class LfA2aV1SendMessageResponse(typing.TypedDict, total=False):
     task: LfA2aV1Task
 
 @typing.type_check_only
+class LfA2aV1StreamResponse(typing.TypedDict, total=False):
+    artifactUpdate: LfA2aV1TaskArtifactUpdateEvent
+    message: LfA2aV1Message
+    statusUpdate: LfA2aV1TaskStatusUpdateEvent
+    task: LfA2aV1Task
+
+@typing.type_check_only
 class LfA2aV1StringList(typing.TypedDict, total=False):
     list: _list[str]
 
@@ -1832,6 +2053,15 @@ class LfA2aV1Task(typing.TypedDict, total=False):
     id: str
     metadata: dict[str, typing.Any]
     status: LfA2aV1TaskStatus
+
+@typing.type_check_only
+class LfA2aV1TaskArtifactUpdateEvent(typing.TypedDict, total=False):
+    append: bool
+    artifact: LfA2aV1Artifact
+    contextId: str
+    lastChunk: bool
+    metadata: dict[str, typing.Any]
+    taskId: str
 
 @typing.type_check_only
 class LfA2aV1TaskPushNotificationConfig(typing.TypedDict, total=False):
@@ -1859,6 +2089,13 @@ class LfA2aV1TaskStatus(typing.TypedDict, total=False):
     timestamp: str
 
 @typing.type_check_only
+class LfA2aV1TaskStatusUpdateEvent(typing.TypedDict, total=False):
+    contextId: str
+    metadata: dict[str, typing.Any]
+    status: LfA2aV1TaskStatus
+    taskId: str
+
+@typing.type_check_only
 class ListAgentsResponse(typing.TypedDict, total=False):
     agents: _list[Agent]
     nextPageToken: str
@@ -1873,6 +2110,11 @@ class ListAppsResponse(typing.TypedDict, total=False):
     apps: _list[App]
     nextPageToken: str
     unreachable: _list[str]
+
+@typing.type_check_only
+class ListAssistantSessionsResponse(typing.TypedDict, total=False):
+    assistantSessions: _list[AssistantSession]
+    nextPageToken: str
 
 @typing.type_check_only
 class ListChangelogsResponse(typing.TypedDict, total=False):
@@ -2035,6 +2277,9 @@ class MockedToolCall(typing.TypedDict, total=False):
 class ModelSettings(typing.TypedDict, total=False):
     model: str
     temperature: float
+    thinkingLevel: typing.Literal[
+        "THINKING_LEVEL_UNSPECIFIED", "DEFAULT", "LOW", "MEDIUM", "HIGH"
+    ]
 
 @typing.type_check_only
 class OAuthConfig(typing.TypedDict, total=False):
@@ -2073,6 +2318,16 @@ class Operation(typing.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
+class OperationCompletedEvent(typing.TypedDict, total=False):
+    deduplicationToken: str
+    error: Status
+    metadata: dict[str, typing.Any]
+    operationName: str
+    operationType: str
+    status: str
+    targetResourceName: str
+
+@typing.type_check_only
 class OperationMetadata(typing.TypedDict, total=False):
     createTime: str
     endTime: str
@@ -2090,6 +2345,21 @@ class OptimizationConfig(typing.TypedDict, total=False):
     status: typing.Literal[
         "OPTIMIZATION_STATUS_UNSPECIFIED", "RUNNING", "COMPLETED", "ERROR"
     ]
+
+@typing.type_check_only
+class OptionQuestionsChunk(typing.TypedDict, total=False):
+    questions: _list[OptionQuestionsChunkQuestion]
+
+@typing.type_check_only
+class OptionQuestionsChunkOption(typing.TypedDict, total=False):
+    details: str
+    submitText: str
+    title: str
+
+@typing.type_check_only
+class OptionQuestionsChunkQuestion(typing.TypedDict, total=False):
+    options: _list[OptionQuestionsChunkOption]
+    question: str
 
 @typing.type_check_only
 class OutputAudioConfig(typing.TypedDict, total=False):
@@ -2138,10 +2408,24 @@ class RedactionConfig(typing.TypedDict, total=False):
     inspectTemplate: str
 
 @typing.type_check_only
+class RemoteA2aConfig(typing.TypedDict, total=False):
+    agentCard: AgentCard
+    agentRegistry: str
+    apiAuthentication: ApiAuthentication
+    contextId: str
+    inputVariableMapping: dict[str, typing.Any]
+    outputVariableMapping: dict[str, typing.Any]
+    streamingEnabled: bool
+
+@typing.type_check_only
 class RemoteAgentTool(typing.TypedDict, total=False):
     agentCard: AgentCard
+    apiAuthentication: ApiAuthentication
     description: str
+    inputVariableMapping: dict[str, typing.Any]
     name: str
+    outputVariableMapping: dict[str, typing.Any]
+    statefulAgent: bool
 
 @typing.type_check_only
 class RestoreAppVersionRequest(typing.TypedDict, total=False): ...
@@ -2166,6 +2450,21 @@ class RetrieveToolsRequest(typing.TypedDict, total=False):
 @typing.type_check_only
 class RetrieveToolsResponse(typing.TypedDict, total=False):
     tools: _list[Tool]
+
+@typing.type_check_only
+class RunAssistantRequest(typing.TypedDict, total=False):
+    assistantSession: str
+    interactionType: typing.Literal[
+        "INTERACTION_TYPE_UNSPECIFIED", "NEW_MESSAGE", "POLL", "DISMISS"
+    ]
+    message: AssistantMessage
+
+@typing.type_check_only
+class RunAssistantResponse(typing.TypedDict, total=False):
+    output: AssistantOutput
+    state: typing.Literal[
+        "ASSISTANT_SESSION_STATE_UNSPECIFIED", "PROCESSING", "IDLE", "PENDING_REVIEW"
+    ]
 
 @typing.type_check_only
 class RunEvaluationRequest(typing.TypedDict, total=False):
@@ -2269,6 +2568,10 @@ class ServiceDirectoryConfig(typing.TypedDict, total=False):
     service: str
 
 @typing.type_check_only
+class SessionCheckpoint(typing.TypedDict, total=False):
+    userIntent: str
+
+@typing.type_check_only
 class SessionConfig(typing.TypedDict, total=False):
     deployment: str
     enableTextStreaming: bool
@@ -2303,11 +2606,12 @@ class SessionInput(typing.TypedDict, total=False):
 class SessionOutput(typing.TypedDict, total=False):
     audio: str
     citations: Citations
-    context: _list[dict[str, typing.Any]]
     diagnosticInfo: SessionOutputDiagnosticInfo
     endSession: EndSession
     googleSearchSuggestions: GoogleSearchSuggestions
+    image: Image
     payload: dict[str, typing.Any]
+    progress: str
     text: str
     toolCalls: ToolCalls
     turnCompleted: bool
@@ -2334,13 +2638,47 @@ class Status(typing.TypedDict, total=False):
     message: str
 
 @typing.type_check_only
+class StreamChatAiAssistantRequest(typing.TypedDict, total=False):
+    attachOnly: bool
+    attachedGcsUris: _list[str]
+    clientCapabilities: _list[
+        typing.Literal[
+            "CLIENT_CAPABILITY_UNSPECIFIED", "CONFIRMATION_CARDS", "CLIENT_MANAGED_LRO"
+        ]
+    ]
+    confirmationResponse: AssistantConfirmationResponse
+    contextToken: str
+    message: str
+    operationCompletedEvent: OperationCompletedEvent
+    resumeFromSequenceNumber: str
+
+@typing.type_check_only
+class StreamChatAiAssistantResponse(typing.TypedDict, total=False):
+    artifactChunk: ArtifactChunk
+    confirmationRequest: AssistantConfirmationRequest
+    eventId: str
+    eventTime: str
+    handoff: TurnHandoffEvent
+    optionQuestionsChunk: OptionQuestionsChunk
+    resumeSnapshot: TurnResumeSnapshot
+    sequenceNumber: str
+    sessionCheckpoint: SessionCheckpoint
+    status: Status
+    textChunk: str
+    thoughtChunk: str
+    toolCall: ToolCall
+    toolResponse: ToolResponse
+    turnCompleted: TurnCompletedEvent
+    turnInProgress: bool
+    turnMetadata: TurnMetadata
+    uiEvent: UiEvent
+
+@typing.type_check_only
 class SynthesizeSpeechConfig(typing.TypedDict, total=False):
-    consentAudioGcsUri: str
     instruction: str
     model: str
     speakingRate: float
     voice: str
-    voiceSampleGcsUri: str
 
 @typing.type_check_only
 class SystemTool(typing.TypedDict, total=False):
@@ -2388,6 +2726,7 @@ class Tool(typing.TypedDict, total=False):
     name: str
     openApiTool: OpenApiTool
     pythonFunction: PythonFunction
+    readOnly: bool
     remoteAgentTool: RemoteAgentTool
     systemTool: SystemTool
     timeout: str
@@ -2397,9 +2736,11 @@ class Tool(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class ToolCall(typing.TypedDict, total=False):
+    agentName: str
     args: dict[str, typing.Any]
     displayName: str
     id: str
+    parentToolCallId: str
     tool: str
     toolsetTool: ToolsetTool
 
@@ -2414,8 +2755,10 @@ class ToolFakeConfig(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class ToolResponse(typing.TypedDict, total=False):
+    agentName: str
     displayName: str
     id: str
+    parentToolCallId: str
     response: dict[str, typing.Any]
     tool: str
     toolsetTool: ToolsetTool
@@ -2488,6 +2831,47 @@ class TriggerActionTransferAgent(typing.TypedDict, total=False):
     agent: str
 
 @typing.type_check_only
+class TurnCompletedEvent(typing.TypedDict, total=False):
+    finalSequenceNumber: str
+    reason: typing.Literal[
+        "REASON_UNSPECIFIED", "COMPLETED", "ABANDONED", "RESUME_UNAVAILABLE"
+    ]
+    turnId: str
+
+@typing.type_check_only
+class TurnHandoffEvent(typing.TypedDict, total=False):
+    reason: typing.Literal["REASON_UNSPECIFIED", "SERVER_RESTART"]
+    turnId: str
+
+@typing.type_check_only
+class TurnMetadata(typing.TypedDict, total=False):
+    contractDraftComplete: bool
+    contractFinalized: bool
+    contractRelated: bool
+    contractStreamingPhase: typing.Literal[
+        "CONTRACT_STREAMING_PHASE_UNSPECIFIED", "DRAFTING", "REVISING"
+    ]
+
+@typing.type_check_only
+class TurnResumeSnapshot(typing.TypedDict, total=False):
+    events: _list[StreamChatAiAssistantResponse]
+    orphanDeadlineTime: str
+    resolvedSequenceNumber: str
+    turnId: str
+
+@typing.type_check_only
+class TypedPayload(typing.TypedDict, total=False):
+    displayName: str
+    metadata: dict[str, typing.Any]
+    type: str
+    value: dict[str, typing.Any]
+
+@typing.type_check_only
+class UiEvent(typing.TypedDict, total=False):
+    jsonPayload: str
+    mimeType: str
+
+@typing.type_check_only
 class UploadEvaluationAudioRequest(typing.TypedDict, total=False):
     audioContent: str
     previousAudioGcsUri: str
@@ -2497,6 +2881,10 @@ class UploadEvaluationAudioResponse(typing.TypedDict, total=False):
     audioGcsUri: str
     duration: str
     transcript: str
+
+@typing.type_check_only
+class UserResponseSuggestions(typing.TypedDict, total=False):
+    suggestions: _list[str]
 
 @typing.type_check_only
 class VpcScSettings(typing.TypedDict, total=False):

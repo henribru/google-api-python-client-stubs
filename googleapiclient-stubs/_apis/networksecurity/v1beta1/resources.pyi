@@ -1297,6 +1297,52 @@ class NetworkSecurityResource(googleapiclient.discovery.Resource):
                 ) -> ListOperationsResponseHttpRequest | None: ...
 
             @typing.type_check_only
+            class RateLimitPoliciesResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: RateLimitPolicy,
+                    rateLimitPolicyId: str | None = ...,
+                    requestId: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self,
+                    *,
+                    name: str,
+                    requestId: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> RateLimitPolicyHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str | None = ...,
+                    orderBy: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> ListRateLimitPoliciesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListRateLimitPoliciesResponseHttpRequest,
+                    previous_response: ListRateLimitPoliciesResponse,
+                ) -> ListRateLimitPoliciesResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: RateLimitPolicy,
+                    requestId: str | None = ...,
+                    updateMask: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+
+            @typing.type_check_only
             class SacAttachmentsResource(googleapiclient.discovery.Resource):
                 def create(
                     self,
@@ -1631,6 +1677,7 @@ class NetworkSecurityResource(googleapiclient.discovery.Resource):
             ) -> MirroringEndpointGroupAssociationsResource: ...
             def mirroringEndpointGroups(self) -> MirroringEndpointGroupsResource: ...
             def operations(self) -> OperationsResource: ...
+            def rateLimitPolicies(self) -> RateLimitPoliciesResource: ...
             def sacAttachments(self) -> SacAttachmentsResource: ...
             def sacRealms(self) -> SacRealmsResource: ...
             def securityProfileGroups(self) -> SecurityProfileGroupsResource: ...
@@ -1977,6 +2024,14 @@ class ListOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListOperationsResponse: ...
 
 @typing.type_check_only
+class ListRateLimitPoliciesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListRateLimitPoliciesResponse: ...
+
+@typing.type_check_only
 class ListSACAttachmentsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -2089,6 +2144,14 @@ class OperationHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Operation: ...
+
+@typing.type_check_only
+class RateLimitPolicyHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> RateLimitPolicy: ...
 
 @typing.type_check_only
 class SACAttachmentHttpRequest(googleapiclient.http.HttpRequest):

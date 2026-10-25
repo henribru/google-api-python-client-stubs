@@ -178,6 +178,40 @@ class GoogleDevtoolsCloudbuildV2OperationMetadata(typing.TypedDict, total=False)
     verb: str
 
 @typing.type_check_only
+class GoogleDevtoolsCloudbuildV2PipelineRun(typing.TypedDict, total=False):
+    annotations: dict[str, typing.Any]
+    childReferences: _list[ChildStatusReference]
+    completionTime: str
+    conditions: _list[GoogleDevtoolsCloudbuildV2Condition]
+    createTime: str
+    etag: str
+    finallyStartTime: str
+    gcbParams: dict[str, typing.Any]
+    name: str
+    params: _list[Param]
+    pipelineRef: PipelineRef
+    pipelineRunStatus: typing.Literal[
+        "PIPELINE_RUN_STATUS_UNSPECIFIED", "PIPELINE_RUN_CANCELLED"
+    ]
+    pipelineSpec: PipelineSpec
+    pipelineSpecYaml: str
+    provenance: Provenance
+    record: str
+    resolvedPipelineSpec: PipelineSpec
+    results: _list[PipelineRunResult]
+    security: Security
+    serviceAccount: str
+    skippedTasks: _list[SkippedTask]
+    startTime: str
+    timeouts: TimeoutFields
+    uid: str
+    updateTime: str
+    worker: Worker
+    workerPool: str
+    workflow: str
+    workspaces: _list[WorkspaceBinding]
+
+@typing.type_check_only
 class GoogleDevtoolsCloudbuildV2ServiceDirectoryConfig(typing.TypedDict, total=False):
     service: str
 
@@ -285,40 +319,6 @@ class PipelineResult(typing.TypedDict, total=False):
     name: str
     type: typing.Literal["TYPE_UNSPECIFIED", "STRING", "ARRAY", "OBJECT"]
     value: ResultValue
-
-@typing.type_check_only
-class PipelineRun(typing.TypedDict, total=False):
-    annotations: dict[str, typing.Any]
-    childReferences: _list[ChildStatusReference]
-    completionTime: str
-    conditions: _list[GoogleDevtoolsCloudbuildV2Condition]
-    createTime: str
-    etag: str
-    finallyStartTime: str
-    gcbParams: dict[str, typing.Any]
-    name: str
-    params: _list[Param]
-    pipelineRef: PipelineRef
-    pipelineRunStatus: typing.Literal[
-        "PIPELINE_RUN_STATUS_UNSPECIFIED", "PIPELINE_RUN_CANCELLED"
-    ]
-    pipelineSpec: PipelineSpec
-    pipelineSpecYaml: str
-    provenance: Provenance
-    record: str
-    resolvedPipelineSpec: PipelineSpec
-    results: _list[PipelineRunResult]
-    security: Security
-    serviceAccount: str
-    skippedTasks: _list[SkippedTask]
-    startTime: str
-    timeouts: TimeoutFields
-    uid: str
-    updateTime: str
-    worker: Worker
-    workerPool: str
-    workflow: str
-    workspaces: _list[WorkspaceBinding]
 
 @typing.type_check_only
 class PipelineRunResult(typing.TypedDict, total=False):

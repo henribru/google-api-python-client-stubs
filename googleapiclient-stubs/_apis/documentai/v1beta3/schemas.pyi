@@ -480,6 +480,12 @@ class GoogleCloudDocumentaiUiv1beta3FieldTierMetadata(typing.TypedDict, total=Fa
     tierLevel: int
 
 @typing.type_check_only
+class GoogleCloudDocumentaiUiv1beta3GroundingSettings(typing.TypedDict, total=False):
+    groundingType: typing.Literal[
+        "GROUNDING_TYPE_UNSPECIFIED", "HARD", "OCR_RELAXED", "NO_GROUNDING"
+    ]
+
+@typing.type_check_only
 class GoogleCloudDocumentaiUiv1beta3HumanReviewLabelingMetadata(
     typing.TypedDict, total=False
 ):
@@ -571,6 +577,7 @@ class GoogleCloudDocumentaiUiv1beta3ProcessorVersion(typing.TypedDict, total=Fal
     documentSchema: GoogleCloudDocumentaiUiv1beta3DocumentSchema
     genAiModelInfo: GoogleCloudDocumentaiUiv1beta3ProcessorVersionGenAiModelInfo
     googleManaged: bool
+    groundingSettings: GoogleCloudDocumentaiUiv1beta3GroundingSettings
     kmsKeyName: str
     kmsKeyVersionName: str
     latestEvaluation: GoogleCloudDocumentaiUiv1beta3EvaluationReference
@@ -2022,6 +2029,12 @@ class GoogleCloudDocumentaiV1beta3GetDocumentResponse(typing.TypedDict, total=Fa
     document: GoogleCloudDocumentaiV1beta3Document
 
 @typing.type_check_only
+class GoogleCloudDocumentaiV1beta3GroundingSettings(typing.TypedDict, total=False):
+    groundingType: typing.Literal[
+        "GROUNDING_TYPE_UNSPECIFIED", "HARD", "OCR_RELAXED", "NO_GROUNDING"
+    ]
+
+@typing.type_check_only
 class GoogleCloudDocumentaiV1beta3HumanReviewStatus(typing.TypedDict, total=False):
     humanReviewOperation: str
     state: typing.Literal[
@@ -2316,6 +2329,7 @@ class GoogleCloudDocumentaiV1beta3ProcessorVersion(typing.TypedDict, total=False
     documentSchema: GoogleCloudDocumentaiV1beta3DocumentSchema
     genAiModelInfo: GoogleCloudDocumentaiV1beta3ProcessorVersionGenAiModelInfo
     googleManaged: bool
+    groundingSettings: GoogleCloudDocumentaiV1beta3GroundingSettings
     kmsKeyName: str
     kmsKeyVersionName: str
     latestEvaluation: GoogleCloudDocumentaiV1beta3EvaluationReference
@@ -2373,6 +2387,12 @@ class GoogleCloudDocumentaiV1beta3ProcessorVersionGenAiModelInfoFoundationGenAiM
 ):
     finetuningAllowed: bool
     minTrainLabeledDocuments: int
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1beta3ProcessorVersionOverrides(
+    typing.TypedDict, total=False
+):
+    groundingSettings: GoogleCloudDocumentaiV1beta3GroundingSettings
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1beta3PropertyMetadata(typing.TypedDict, total=False):
@@ -2502,6 +2522,7 @@ class GoogleCloudDocumentaiV1beta3TrainProcessorVersionRequest(
     foundationModelTuningOptions: GoogleCloudDocumentaiV1beta3TrainProcessorVersionRequestFoundationModelTuningOptions
     inputData: GoogleCloudDocumentaiV1beta3TrainProcessorVersionRequestInputData
     processorVersion: GoogleCloudDocumentaiV1beta3ProcessorVersion
+    processorVersionOverrides: GoogleCloudDocumentaiV1beta3ProcessorVersionOverrides
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1beta3TrainProcessorVersionRequestCustomDocumentExtractionOptions(

@@ -121,12 +121,27 @@ class AccessContextManagerResource(googleapiclient.discovery.Resource):
                 self, *, name: str, **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
             def get(
-                self, *, name: str, **kwargs: typing.Any
+                self,
+                *,
+                name: str,
+                deletedPrincipalSyntax: typing.Literal[
+                    "DELETED_PRINCIPAL_SYNTAX_SUPPORT_UNSPECIFIED",
+                    "DELETED_PRINCIPAL_SYNTAX_SUPPORT_DISABLED",
+                    "DELETED_PRINCIPAL_SYNTAX_SUPPORT_ENABLED",
+                ]
+                | None = ...,
+                **kwargs: typing.Any,
             ) -> ServicePerimeterHttpRequest: ...
             def list(
                 self,
                 *,
                 parent: str,
+                deletedPrincipalSyntax: typing.Literal[
+                    "DELETED_PRINCIPAL_SYNTAX_SUPPORT_UNSPECIFIED",
+                    "DELETED_PRINCIPAL_SYNTAX_SUPPORT_DISABLED",
+                    "DELETED_PRINCIPAL_SYNTAX_SUPPORT_ENABLED",
+                ]
+                | None = ...,
                 pageSize: int | None = ...,
                 pageToken: str | None = ...,
                 **kwargs: typing.Any,
@@ -141,6 +156,12 @@ class AccessContextManagerResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: ServicePerimeter,
+                deletedPrincipalSyntax: typing.Literal[
+                    "DELETED_PRINCIPAL_SYNTAX_SUPPORT_UNSPECIFIED",
+                    "DELETED_PRINCIPAL_SYNTAX_SUPPORT_DISABLED",
+                    "DELETED_PRINCIPAL_SYNTAX_SUPPORT_ENABLED",
+                ]
+                | None = ...,
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
@@ -205,6 +226,12 @@ class AccessContextManagerResource(googleapiclient.discovery.Resource):
         def accessLevels(self) -> AccessLevelsResource: ...
         def authorizedOrgsDescs(self) -> AuthorizedOrgsDescsResource: ...
         def servicePerimeters(self) -> ServicePerimetersResource: ...
+
+    @typing.type_check_only
+    class FoldersResource(googleapiclient.discovery.Resource):
+        def lookupConfiguredServicePerimeter(
+            self, *, resource: str, **kwargs: typing.Any
+        ) -> LookupConfiguredServicePerimeterResponseHttpRequest: ...
 
     @typing.type_check_only
     class OperationsResource(googleapiclient.discovery.Resource):
@@ -284,6 +311,12 @@ class AccessContextManagerResource(googleapiclient.discovery.Resource):
         ) -> ListSupportedPermissionsResponseHttpRequest | None: ...
 
     @typing.type_check_only
+    class ProjectsResource(googleapiclient.discovery.Resource):
+        def lookupConfiguredServicePerimeter(
+            self, *, resource: str, **kwargs: typing.Any
+        ) -> LookupConfiguredServicePerimeterResponseHttpRequest: ...
+
+    @typing.type_check_only
     class ServicesResource(googleapiclient.discovery.Resource):
         def get(
             self, *, name: str, **kwargs: typing.Any
@@ -314,9 +347,11 @@ class AccessContextManagerResource(googleapiclient.discovery.Resource):
         | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def accessPolicies(self) -> AccessPoliciesResource: ...
+    def folders(self) -> FoldersResource: ...
     def operations(self) -> OperationsResource: ...
     def organizations(self) -> OrganizationsResource: ...
     def permissions(self) -> PermissionsResource: ...
+    def projects(self) -> ProjectsResource: ...
     def services(self) -> ServicesResource: ...
 
 @typing.type_check_only
@@ -422,6 +457,16 @@ class ListSupportedServicesResponseHttpRequest(googleapiclient.http.HttpRequest)
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListSupportedServicesResponse: ...
+
+@typing.type_check_only
+class LookupConfiguredServicePerimeterResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> LookupConfiguredServicePerimeterResponse: ...
 
 @typing.type_check_only
 class OperationHttpRequest(googleapiclient.http.HttpRequest):

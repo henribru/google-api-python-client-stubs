@@ -240,6 +240,41 @@ class GoogleCloudDataplexV1AssetStatus(typing.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
+class GoogleCloudDataplexV1BatchChangeMetadataRequest(typing.TypedDict, total=False):
+    changes: _list[GoogleCloudDataplexV1BatchChangeMetadataRequestChange]
+    description: GoogleCloudDataplexV1BatchChangeMetadataRequestDescription
+    name: str
+
+@typing.type_check_only
+class GoogleCloudDataplexV1BatchChangeMetadataRequestChange(
+    typing.TypedDict, total=False
+):
+    createEntryLinkRequest: GoogleCloudDataplexV1CreateEntryLinkRequest
+    createEntryRequest: GoogleCloudDataplexV1CreateEntryRequest
+    deleteEntryLinkRequest: GoogleCloudDataplexV1DeleteEntryLinkRequest
+    deleteEntryRequest: GoogleCloudDataplexV1DeleteEntryRequest
+    updateEntryLinkRequest: GoogleCloudDataplexV1UpdateEntryLinkRequest
+    updateEntryRequest: GoogleCloudDataplexV1UpdateEntryRequest
+
+@typing.type_check_only
+class GoogleCloudDataplexV1BatchChangeMetadataRequestDescription(
+    typing.TypedDict, total=False
+):
+    content: str
+    job: GoogleCloudDataplexV1BatchChangeMetadataRequestDescriptionJob
+
+@typing.type_check_only
+class GoogleCloudDataplexV1BatchChangeMetadataRequestDescriptionJob(
+    typing.TypedDict, total=False
+):
+    name: str
+    runTime: str
+
+@typing.type_check_only
+class GoogleCloudDataplexV1BatchChangeMetadataResponse(typing.TypedDict, total=False):
+    failedRequests: dict[str, typing.Any]
+
+@typing.type_check_only
 class GoogleCloudDataplexV1BusinessGlossaryEvent(typing.TypedDict, total=False):
     eventType: typing.Literal[
         "EVENT_TYPE_UNSPECIFIED",
@@ -272,6 +307,8 @@ class GoogleCloudDataplexV1CancelMetadataJobRequest(typing.TypedDict, total=Fals
 class GoogleCloudDataplexV1ChangeRequest(typing.TypedDict, total=False):
     approver: str
     author: str
+    batchChangeMetadataRequest: GoogleCloudDataplexV1BatchChangeMetadataRequest
+    batchChangeMetadataResponse: GoogleCloudDataplexV1BatchChangeMetadataResponse
     changeType: typing.Literal[
         "CHANGE_TYPE_UNSPECIFIED",
         "CREATE_ENTRY",
@@ -289,6 +326,7 @@ class GoogleCloudDataplexV1ChangeRequest(typing.TypedDict, total=False):
         "UPDATE_GLOSSARY_TERM",
         "DELETE_GLOSSARY_TERM",
         "REQUEST_DATA_PRODUCT_ACCESS",
+        "BATCH_CHANGE_METADATA",
     ]
     createEntry: GoogleCloudDataplexV1CreateEntryRequest
     createEntryLink: GoogleCloudDataplexV1CreateEntryLinkRequest
@@ -310,7 +348,14 @@ class GoogleCloudDataplexV1ChangeRequest(typing.TypedDict, total=False):
     resource: str
     reviewerComment: str
     state: typing.Literal[
-        "STATE_UNSPECIFIED", "NEW", "APPROVED", "REJECTED", "EXPIRED", "REVOKED"
+        "STATE_UNSPECIFIED",
+        "NEW",
+        "APPROVED",
+        "REJECTED",
+        "EXPIRED",
+        "REVOKED",
+        "APPLYING",
+        "FAILED",
     ]
     uid: str
     updateEntry: GoogleCloudDataplexV1UpdateEntryRequest
@@ -361,10 +406,6 @@ class GoogleCloudDataplexV1CreateGlossaryTermRequest(typing.TypedDict, total=Fal
     termId: str
 
 @typing.type_check_only
-class GoogleCloudDataplexV1DataAccessSpec(typing.TypedDict, total=False):
-    readers: _list[str]
-
-@typing.type_check_only
 class GoogleCloudDataplexV1DataAsset(typing.TypedDict, total=False):
     accessGroupConfigs: dict[str, typing.Any]
     createTime: str
@@ -378,40 +419,9 @@ class GoogleCloudDataplexV1DataAsset(typing.TypedDict, total=False):
 @typing.type_check_only
 class GoogleCloudDataplexV1DataAssetAccessGroupConfig(typing.TypedDict, total=False):
     iamRoles: _list[str]
-
-@typing.type_check_only
-class GoogleCloudDataplexV1DataAttribute(typing.TypedDict, total=False):
-    attributeCount: int
-    createTime: str
-    dataAccessSpec: GoogleCloudDataplexV1DataAccessSpec
-    description: str
-    displayName: str
-    etag: str
-    labels: dict[str, typing.Any]
-    name: str
-    parentId: str
-    resourceAccessSpec: GoogleCloudDataplexV1ResourceAccessSpec
-    uid: str
-    updateTime: str
-
-@typing.type_check_only
-class GoogleCloudDataplexV1DataAttributeBinding(typing.TypedDict, total=False):
-    attributes: _list[str]
-    createTime: str
-    description: str
-    displayName: str
-    etag: str
-    labels: dict[str, typing.Any]
-    name: str
-    paths: _list[GoogleCloudDataplexV1DataAttributeBindingPath]
-    resource: str
-    uid: str
-    updateTime: str
-
-@typing.type_check_only
-class GoogleCloudDataplexV1DataAttributeBindingPath(typing.TypedDict, total=False):
-    attributes: _list[str]
-    name: str
+    state: typing.Literal[
+        "STATE_UNSPECIFIED", "APPLYING", "APPLIED", "FAILED", "UNSUPPORTED"
+    ]
 
 @typing.type_check_only
 class GoogleCloudDataplexV1DataDiscoveryResult(typing.TypedDict, total=False):
@@ -463,9 +473,6 @@ class GoogleCloudDataplexV1DataDiscoverySpecStorageConfig(
     excludePatterns: _list[str]
     includePatterns: _list[str]
     jsonOptions: GoogleCloudDataplexV1DataDiscoverySpecStorageConfigJsonOptions
-    unstructuredDataOptions: (
-        GoogleCloudDataplexV1DataDiscoverySpecStorageConfigUnstructuredDataOptions
-    )
 
 @typing.type_check_only
 class GoogleCloudDataplexV1DataDiscoverySpecStorageConfigCsvOptions(
@@ -483,13 +490,6 @@ class GoogleCloudDataplexV1DataDiscoverySpecStorageConfigJsonOptions(
 ):
     encoding: str
     typeInferenceDisabled: bool
-
-@typing.type_check_only
-class GoogleCloudDataplexV1DataDiscoverySpecStorageConfigUnstructuredDataOptions(
-    typing.TypedDict, total=False
-):
-    globalEndpointEnabled: bool
-    semanticInferenceEnabled: bool
 
 @typing.type_check_only
 class GoogleCloudDataplexV1DataDocumentationResult(typing.TypedDict, total=False):
@@ -516,6 +516,7 @@ class GoogleCloudDataplexV1DataDocumentationResultField(typing.TypedDict, total=
 class GoogleCloudDataplexV1DataDocumentationResultQuery(typing.TypedDict, total=False):
     description: str
     sql: str
+    sqlDialect: typing.Literal["SQL_DIALECT_UNSPECIFIED", "GOOGLE_SQL", "SPARK_SQL"]
 
 @typing.type_check_only
 class GoogleCloudDataplexV1DataDocumentationResultSchema(typing.TypedDict, total=False):
@@ -566,6 +567,7 @@ class GoogleCloudDataplexV1DataDocumentationSpec(typing.TypedDict, total=False):
             "BUSINESS_GLOSSARY_TERM_ASSOCIATIONS",
         ]
     ]
+    sqlDialect: typing.Literal["SQL_DIALECT_UNSPECIFIED", "GOOGLE_SQL", "SPARK_SQL"]
 
 @typing.type_check_only
 class GoogleCloudDataplexV1DataDomain(typing.TypedDict, total=False):
@@ -611,10 +613,19 @@ class GoogleCloudDataplexV1DataProductAccessApprovalConfig(
 
 @typing.type_check_only
 class GoogleCloudDataplexV1DataProductAccessGroup(typing.TypedDict, total=False):
+    defaultIamRoleConfig: (
+        GoogleCloudDataplexV1DataProductAccessGroupDefaultIamRoleConfig
+    )
     description: str
     displayName: str
     id: str
     principal: GoogleCloudDataplexV1DataProductPrincipal
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DataProductAccessGroupDefaultIamRoleConfig(
+    typing.TypedDict, total=False
+):
+    role: str
 
 @typing.type_check_only
 class GoogleCloudDataplexV1DataProductAccessRequest(typing.TypedDict, total=False):
@@ -1096,11 +1107,8 @@ class GoogleCloudDataplexV1DataScan(typing.TypedDict, total=False):
         "DATA_PROFILE",
         "DATA_DISCOVERY",
         "DATA_DOCUMENTATION",
-        "UNSTRUCTURED_DATA_PROFILE",
     ]
     uid: str
-    unstructuredDataProfileResult: GoogleCloudDataplexV1UnstructuredDataProfileResult
-    unstructuredDataProfileSpec: GoogleCloudDataplexV1UnstructuredDataProfileSpec
     updateTime: str
 
 @typing.type_check_only
@@ -1113,6 +1121,7 @@ class GoogleCloudDataplexV1DataScanCatalogPublishingStatus(
 class GoogleCloudDataplexV1DataScanEvent(typing.TypedDict, total=False):
     catalogPublishingStatus: GoogleCloudDataplexV1DataScanCatalogPublishingStatus
     createTime: str
+    dataDocumentation: GoogleCloudDataplexV1DataScanEventDataDocumentationResult
     dataProfile: GoogleCloudDataplexV1DataScanEventDataProfileResult
     dataProfileConfigs: GoogleCloudDataplexV1DataScanEventDataProfileAppliedConfigs
     dataQuality: GoogleCloudDataplexV1DataScanEventDataQualityResult
@@ -1134,6 +1143,27 @@ class GoogleCloudDataplexV1DataScanEvent(typing.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class GoogleCloudDataplexV1DataScanEventDataDocumentationResult(
+    typing.TypedDict, total=False
+):
+    billableTokenUsage: (
+        GoogleCloudDataplexV1DataScanEventDataDocumentationResultTokenUsage
+    )
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DataScanEventDataDocumentationResultTokenUsage(
+    typing.TypedDict, total=False
+):
+    cachedContentTokenCount: str
+    candidatesTokenCount: str
+    inputTokenCount: str
+    outputTokenCount: str
+    promptTokenCount: str
+    thoughtsTokenCount: str
+    toolUsePromptTokenCount: str
+    totalTokenCount: str
+
+@typing.type_check_only
 class GoogleCloudDataplexV1DataScanEventDataProfileAppliedConfigs(
     typing.TypedDict, total=False
 ):
@@ -1145,6 +1175,7 @@ class GoogleCloudDataplexV1DataScanEventDataProfileAppliedConfigs(
 class GoogleCloudDataplexV1DataScanEventDataProfileResult(
     typing.TypedDict, total=False
 ):
+    dcuConsumed: float
     rowCount: str
 
 @typing.type_check_only
@@ -1223,29 +1254,13 @@ class GoogleCloudDataplexV1DataScanJob(typing.TypedDict, total=False):
         "DATA_PROFILE",
         "DATA_DISCOVERY",
         "DATA_DOCUMENTATION",
-        "UNSTRUCTURED_DATA_PROFILE",
     ]
     uid: str
-    unstructuredDataProfileResult: GoogleCloudDataplexV1UnstructuredDataProfileResult
-    unstructuredDataProfileSpec: GoogleCloudDataplexV1UnstructuredDataProfileSpec
 
 @typing.type_check_only
 class GoogleCloudDataplexV1DataSource(typing.TypedDict, total=False):
     entity: str
     resource: str
-
-@typing.type_check_only
-class GoogleCloudDataplexV1DataTaxonomy(typing.TypedDict, total=False):
-    attributeCount: int
-    classCount: int
-    createTime: str
-    description: str
-    displayName: str
-    etag: str
-    labels: dict[str, typing.Any]
-    name: str
-    uid: str
-    updateTime: str
 
 @typing.type_check_only
 class GoogleCloudDataplexV1DeleteEntryLinkRequest(typing.TypedDict, total=False):
@@ -1392,6 +1407,7 @@ class GoogleCloudDataplexV1Entry(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class GoogleCloudDataplexV1EntryGroup(typing.TypedDict, total=False):
+    changeRequestConfig: GoogleCloudDataplexV1EntryGroupChangeRequestConfig
     createTime: str
     description: str
     displayName: str
@@ -1405,6 +1421,10 @@ class GoogleCloudDataplexV1EntryGroup(typing.TypedDict, total=False):
     ]
     uid: str
     updateTime: str
+
+@typing.type_check_only
+class GoogleCloudDataplexV1EntryGroupChangeRequestConfig(typing.TypedDict, total=False):
+    approverEmails: _list[str]
 
 @typing.type_check_only
 class GoogleCloudDataplexV1EntryLink(typing.TypedDict, total=False):
@@ -1580,87 +1600,6 @@ class GoogleCloudDataplexV1GovernanceEventEntity(typing.TypedDict, total=False):
     entityType: typing.Literal["ENTITY_TYPE_UNSPECIFIED", "TABLE", "FILESET"]
 
 @typing.type_check_only
-class GoogleCloudDataplexV1GraphProfile(typing.TypedDict, total=False):
-    edgeTypes: _list[GoogleCloudDataplexV1GraphProfileEdgeType]
-    nodeTypes: _list[GoogleCloudDataplexV1GraphProfileNodeType]
-
-@typing.type_check_only
-class GoogleCloudDataplexV1GraphProfileEdgeType(typing.TypedDict, total=False):
-    description: str
-    extractionHints: GoogleCloudDataplexV1GraphProfileEdgeTypeExtractionHints
-    fields: _list[GoogleCloudDataplexV1GraphProfileField]
-    foreignKeys: _list[GoogleCloudDataplexV1GraphProfileEdgeTypeForeignKey]
-    name: str
-    sourceNodeType: str
-    targetNodeType: str
-
-@typing.type_check_only
-class GoogleCloudDataplexV1GraphProfileEdgeTypeExtractionHints(
-    typing.TypedDict, total=False
-):
-    cardinality: str
-
-@typing.type_check_only
-class GoogleCloudDataplexV1GraphProfileEdgeTypeForeignKey(
-    typing.TypedDict, total=False
-):
-    description: str
-    fieldMappings: _list[
-        GoogleCloudDataplexV1GraphProfileEdgeTypeForeignKeyFieldMapping
-    ]
-    name: str
-    referencedNodeType: str
-
-@typing.type_check_only
-class GoogleCloudDataplexV1GraphProfileEdgeTypeForeignKeyFieldMapping(
-    typing.TypedDict, total=False
-):
-    field: str
-    referencedField: str
-
-@typing.type_check_only
-class GoogleCloudDataplexV1GraphProfileField(typing.TypedDict, total=False):
-    dataType: str
-    description: str
-    extractionHints: GoogleCloudDataplexV1GraphProfileFieldExtractionHints
-    fields: _list[GoogleCloudDataplexV1GraphProfileField]
-    metadataType: typing.Literal[
-        "METADATA_TYPE_UNSPECIFIED",
-        "BOOLEAN",
-        "NUMBER",
-        "STRING",
-        "BYTES",
-        "DATETIME",
-        "TIMESTAMP",
-        "GEOSPATIAL",
-        "STRUCT",
-        "OTHER",
-    ]
-    mode: typing.Literal["MODE_UNSPECIFIED", "NULLABLE", "REPEATED", "REQUIRED"]
-    name: str
-
-@typing.type_check_only
-class GoogleCloudDataplexV1GraphProfileFieldExtractionHints(
-    typing.TypedDict, total=False
-):
-    normalization: str
-    synthesis: str
-
-@typing.type_check_only
-class GoogleCloudDataplexV1GraphProfileNodeType(typing.TypedDict, total=False):
-    description: str
-    extractionHints: GoogleCloudDataplexV1GraphProfileNodeTypeExtractionHints
-    fields: _list[GoogleCloudDataplexV1GraphProfileField]
-    name: str
-    primaryKeys: _list[str]
-
-@typing.type_check_only
-class GoogleCloudDataplexV1GraphProfileNodeTypeExtractionHints(
-    typing.TypedDict, total=False
-):
-    cardinality: str
-
-@typing.type_check_only
 class GoogleCloudDataplexV1ImportItem(typing.TypedDict, total=False):
     aspectKeys: _list[str]
     entry: GoogleCloudDataplexV1Entry
@@ -1763,20 +1702,6 @@ class GoogleCloudDataplexV1ListDataAssetsResponse(typing.TypedDict, total=False)
     nextPageToken: str
 
 @typing.type_check_only
-class GoogleCloudDataplexV1ListDataAttributeBindingsResponse(
-    typing.TypedDict, total=False
-):
-    dataAttributeBindings: _list[GoogleCloudDataplexV1DataAttributeBinding]
-    nextPageToken: str
-    unreachableLocations: _list[str]
-
-@typing.type_check_only
-class GoogleCloudDataplexV1ListDataAttributesResponse(typing.TypedDict, total=False):
-    dataAttributes: _list[GoogleCloudDataplexV1DataAttribute]
-    nextPageToken: str
-    unreachableLocations: _list[str]
-
-@typing.type_check_only
 class GoogleCloudDataplexV1ListDataDomainBindingsResponse(
     typing.TypedDict, total=False
 ):
@@ -1804,12 +1729,6 @@ class GoogleCloudDataplexV1ListDataScansResponse(typing.TypedDict, total=False):
     dataScans: _list[GoogleCloudDataplexV1DataScan]
     nextPageToken: str
     unreachable: _list[str]
-
-@typing.type_check_only
-class GoogleCloudDataplexV1ListDataTaxonomiesResponse(typing.TypedDict, total=False):
-    dataTaxonomies: _list[GoogleCloudDataplexV1DataTaxonomy]
-    nextPageToken: str
-    unreachableLocations: _list[str]
 
 @typing.type_check_only
 class GoogleCloudDataplexV1ListEncryptionConfigsResponse(typing.TypedDict, total=False):
@@ -2053,6 +1972,20 @@ class GoogleCloudDataplexV1RejectChangeRequestRequest(typing.TypedDict, total=Fa
     etag: str
 
 @typing.type_check_only
+class GoogleCloudDataplexV1RequestBatchMetadataChangeRequest(
+    typing.TypedDict, total=False
+):
+    changePayload: GoogleCloudDataplexV1BatchChangeMetadataRequest
+    justification: str
+    labels: dict[str, typing.Any]
+
+@typing.type_check_only
+class GoogleCloudDataplexV1RequestBatchMetadataChangeResponse(
+    typing.TypedDict, total=False
+):
+    changeRequest: str
+
+@typing.type_check_only
 class GoogleCloudDataplexV1RequestDataProductAccessRequest(
     typing.TypedDict, total=False
 ):
@@ -2064,12 +1997,6 @@ class GoogleCloudDataplexV1RequestDataProductAccessResponse(
     typing.TypedDict, total=False
 ):
     changeRequestName: str
-
-@typing.type_check_only
-class GoogleCloudDataplexV1ResourceAccessSpec(typing.TypedDict, total=False):
-    owners: _list[str]
-    readers: _list[str]
-    writers: _list[str]
 
 @typing.type_check_only
 class GoogleCloudDataplexV1RunDataScanRequest(typing.TypedDict, total=False): ...
@@ -2335,16 +2262,10 @@ class GoogleCloudDataplexV1TriggerSchedule(typing.TypedDict, total=False):
     cron: str
 
 @typing.type_check_only
-class GoogleCloudDataplexV1UnstructuredDataProfileResult(typing.TypedDict, total=False):
-    description: str
-    graphProfile: GoogleCloudDataplexV1GraphProfile
-    partialFailureMessage: str
-
-@typing.type_check_only
-class GoogleCloudDataplexV1UnstructuredDataProfileSpec(typing.TypedDict, total=False):
-    customizedPrompt: str
-    globalEndpointEnabled: bool
-    graphProfilePublishingEnabled: bool
+class GoogleCloudDataplexV1UpdateEntryLinkRequest(typing.TypedDict, total=False):
+    allowMissing: bool
+    aspectKeys: _list[str]
+    entryLink: GoogleCloudDataplexV1EntryLink
 
 @typing.type_check_only
 class GoogleCloudDataplexV1UpdateEntryRequest(typing.TypedDict, total=False):

@@ -171,6 +171,10 @@ class GoogleFirebaseAppcheckV1GeneratePlayIntegrityChallengeResponse(
     ttl: str
 
 @typing.type_check_only
+class GoogleFirebaseAppcheckV1LimitedUseConfig(typing.TypedDict, total=False):
+    jti: str
+
+@typing.type_check_only
 class GoogleFirebaseAppcheckV1ListDebugTokensResponse(typing.TypedDict, total=False):
     debugTokens: _list[GoogleFirebaseAppcheckV1DebugToken]
     nextPageToken: str
@@ -186,6 +190,16 @@ class GoogleFirebaseAppcheckV1ListResourcePoliciesResponse(
 class GoogleFirebaseAppcheckV1ListServicesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     services: _list[GoogleFirebaseAppcheckV1Service]
+
+@typing.type_check_only
+class GoogleFirebaseAppcheckV1MintAppCheckTokenRequest(typing.TypedDict, total=False):
+    limitedUseConfig: GoogleFirebaseAppcheckV1LimitedUseConfig
+    tokenTtl: str
+
+@typing.type_check_only
+class GoogleFirebaseAppcheckV1MintAppCheckTokenResponse(typing.TypedDict, total=False):
+    token: str
+    ttl: str
 
 @typing.type_check_only
 class GoogleFirebaseAppcheckV1PlayIntegrityConfig(typing.TypedDict, total=False):

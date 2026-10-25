@@ -9,7 +9,7 @@ class AgentConnectivityTemplate(typing.TypedDict, total=False):
     ]
     accessTypes: _list[typing.Literal["ACCESS_TYPE_UNSPECIFIED", "PUBLIC", "PRIVATE"]]
     agentCompute: typing.Literal[
-        "AGENT_COMPUTE_UNSPECIFIED", "GKE", "CLOUD_RUN", "BORG"
+        "AGENT_COMPUTE_UNSPECIFIED", "GKE", "CLOUD_RUN", "BORG", "GCE_VM"
     ]
     createTime: str
     deploymentModel: typing.Literal[
@@ -95,18 +95,41 @@ class AuthzExtension(typing.TypedDict, total=False):
 class CancelOperationRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
+class CdnEdgeExtension(typing.TypedDict, total=False):
+    createTime: str
+    description: str
+    extensionChains: _list[ExtensionChain]
+    labels: dict[str, typing.Any]
+    name: str
+    target: CdnEdgeExtensionTarget
+    updateTime: str
+
+@typing.type_check_only
+class CdnEdgeExtensionTarget(typing.TypedDict, total=False):
+    resources: _list[str]
+
+@typing.type_check_only
 class DnsPeeringConfig(typing.TypedDict, total=False):
     domain: str
+    domains: _list[str]
     targetNetwork: str
 
 @typing.type_check_only
 class EgressNetworkConfig(typing.TypedDict, total=False):
     dnsPeeringConfig: DnsPeeringConfig
     networkAttachment: str
+    tlsConfig: EgressNetworkConfigTlsConfig
     trustConfig: str
     vpcEgress: typing.Literal[
         "VPC_EGRESS_UNSPECIFIED", "ALL_TRAFFIC", "PRIVATE_RANGES_ONLY"
     ]
+
+@typing.type_check_only
+class EgressNetworkConfigTlsConfig(typing.TypedDict, total=False):
+    additionalRoots: typing.Literal[
+        "ADDITIONAL_ROOTS_UNSPECIFIED", "NO_ADDITIONAL_ROOTS", "PUBLICLY_TRUSTED_ROOTS"
+    ]
+    trustConfig: str
 
 @typing.type_check_only
 class Empty(typing.TypedDict, total=False): ...
@@ -560,6 +583,12 @@ class ListAgentGatewaysResponse(typing.TypedDict, total=False):
 @typing.type_check_only
 class ListAuthzExtensionsResponse(typing.TypedDict, total=False):
     authzExtensions: _list[AuthzExtension]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
+class ListCdnEdgeExtensionsResponse(typing.TypedDict, total=False):
+    cdnEdgeExtensions: _list[CdnEdgeExtension]
     nextPageToken: str
     unreachable: _list[str]
 

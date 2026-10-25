@@ -1026,6 +1026,126 @@ class CalendarModeRecommendation(typing.TypedDict, total=False):
     recommendationsPerSpec: dict[str, typing.Any]
 
 @typing.type_check_only
+class CapacityAdviceRequest(typing.TypedDict, total=False):
+    distributionPolicy: CapacityAdviceRequestDistributionPolicy
+    instanceFlexibilityPolicy: CapacityAdviceRequestInstanceFlexibilityPolicy
+    instanceProperties: CapacityAdviceRequestInstanceProperties
+    size: int
+
+@typing.type_check_only
+class CapacityAdviceRequestDistributionPolicy(typing.TypedDict, total=False):
+    targetShape: typing.Literal[
+        "ANY", "ANY_SINGLE_ZONE", "BALANCED", "TARGET_SHAPE_UNSPECIFIED"
+    ]
+    zones: _list[CapacityAdviceRequestDistributionPolicyZoneConfiguration]
+
+@typing.type_check_only
+class CapacityAdviceRequestDistributionPolicyZoneConfiguration(
+    typing.TypedDict, total=False
+):
+    zone: str
+
+@typing.type_check_only
+class CapacityAdviceRequestInstanceFlexibilityPolicy(typing.TypedDict, total=False):
+    instanceSelections: dict[str, typing.Any]
+
+@typing.type_check_only
+class CapacityAdviceRequestInstanceFlexibilityPolicyInstanceSelection(
+    typing.TypedDict, total=False
+):
+    disks: _list[
+        CapacityAdviceRequestInstanceFlexibilityPolicyInstanceSelectionAttachedDisk
+    ]
+    guestAccelerators: _list[AcceleratorConfig]
+    machineTypes: _list[str]
+    rank: str
+
+@typing.type_check_only
+class CapacityAdviceRequestInstanceFlexibilityPolicyInstanceSelectionAttachedDisk(
+    typing.TypedDict, total=False
+):
+    type: typing.Literal["DISK_TYPE_UNSPECIFIED", "SCRATCH"]
+
+@typing.type_check_only
+class CapacityAdviceRequestInstanceProperties(typing.TypedDict, total=False):
+    scheduling: CapacityAdviceRequestInstancePropertiesScheduling
+
+@typing.type_check_only
+class CapacityAdviceRequestInstancePropertiesScheduling(typing.TypedDict, total=False):
+    provisioningModel: typing.Literal[
+        "FLEX_START", "RESERVATION_BOUND", "SPOT", "STANDARD"
+    ]
+
+@typing.type_check_only
+class CapacityAdviceResponse(typing.TypedDict, total=False):
+    recommendations: _list[CapacityAdviceResponseRecommendation]
+
+@typing.type_check_only
+class CapacityAdviceResponseRecommendation(typing.TypedDict, total=False):
+    scores: CapacityAdviceResponseRecommendationScores
+    shards: _list[CapacityAdviceResponseRecommendationShard]
+
+@typing.type_check_only
+class CapacityAdviceResponseRecommendationScores(typing.TypedDict, total=False):
+    estimatedUptime: str
+    obtainability: float
+
+@typing.type_check_only
+class CapacityAdviceResponseRecommendationShard(typing.TypedDict, total=False):
+    instanceCount: int
+    machineType: str
+    provisioningModel: typing.Literal[
+        "FLEX_START", "RESERVATION_BOUND", "SPOT", "STANDARD"
+    ]
+    zone: str
+
+@typing.type_check_only
+class CapacityHistoryRequest(typing.TypedDict, total=False):
+    instanceProperties: CapacityHistoryRequestInstanceProperties
+    locationPolicy: CapacityHistoryRequestLocationPolicy
+    types: _list[typing.Literal["HISTORY_TYPE_UNSPECIFIED", "PREEMPTION", "PRICE"]]
+
+@typing.type_check_only
+class CapacityHistoryRequestInstanceProperties(typing.TypedDict, total=False):
+    disks: _list[CapacityHistoryRequestInstancePropertiesAttachedDisk]
+    guestAccelerators: _list[AcceleratorConfig]
+    machineType: str
+    scheduling: CapacityHistoryRequestInstancePropertiesScheduling
+
+@typing.type_check_only
+class CapacityHistoryRequestInstancePropertiesAttachedDisk(
+    typing.TypedDict, total=False
+):
+    type: typing.Literal["DISK_TYPE_UNSPECIFIED", "SCRATCH"]
+
+@typing.type_check_only
+class CapacityHistoryRequestInstancePropertiesScheduling(typing.TypedDict, total=False):
+    provisioningModel: typing.Literal[
+        "FLEX_START", "RESERVATION_BOUND", "SPOT", "STANDARD"
+    ]
+
+@typing.type_check_only
+class CapacityHistoryRequestLocationPolicy(typing.TypedDict, total=False):
+    location: str
+
+@typing.type_check_only
+class CapacityHistoryResponse(typing.TypedDict, total=False):
+    location: str
+    machineType: str
+    preemptionHistory: _list[CapacityHistoryResponsePreemptionRecord]
+    priceHistory: _list[CapacityHistoryResponsePriceRecord]
+
+@typing.type_check_only
+class CapacityHistoryResponsePreemptionRecord(typing.TypedDict, total=False):
+    interval: Interval
+    preemptionRate: float
+
+@typing.type_check_only
+class CapacityHistoryResponsePriceRecord(typing.TypedDict, total=False):
+    interval: Interval
+    listPrice: Money
+
+@typing.type_check_only
 class CircuitBreakers(typing.TypedDict, total=False):
     maxConnections: int
     maxPendingRequests: int
@@ -1072,6 +1192,7 @@ class Commitment(typing.TypedDict, total=False):
         "COMPUTE_OPTIMIZED_C3D",
         "COMPUTE_OPTIMIZED_H3",
         "COMPUTE_OPTIMIZED_H4D",
+        "COMPUTE_OPTIMIZED_H4D_3TB",
         "GENERAL_PURPOSE",
         "GENERAL_PURPOSE_C4",
         "GENERAL_PURPOSE_C4A",
@@ -1104,6 +1225,10 @@ class Commitment(typing.TypedDict, total=False):
         "NETWORK_OPTIMIZED_U4P",
         "NETWORK_OPTIMIZED_U4S",
         "STORAGE_OPTIMIZED_Z3",
+        "STORAGE_OPTIMIZED_Z4D4T",
+        "STORAGE_OPTIMIZED_Z4DH",
+        "STORAGE_OPTIMIZED_Z4DS",
+        "STORAGE_OPTIMIZED_Z4M",
         "TYPE_UNSPECIFIED",
     ]
 
@@ -1193,7 +1318,12 @@ class CompositeHealthChecksScopedList(typing.TypedDict, total=False):
 @typing.type_check_only
 class ConfidentialInstanceConfig(typing.TypedDict, total=False):
     confidentialInstanceType: typing.Literal[
-        "CCA", "CONFIDENTIAL_INSTANCE_TYPE_UNSPECIFIED", "SEV", "SEV_SNP", "TDX"
+        "BMSAI",
+        "CCA",
+        "CONFIDENTIAL_INSTANCE_TYPE_UNSPECIFIED",
+        "SEV",
+        "SEV_SNP",
+        "TDX",
     ]
     enableConfidentialCompute: bool
 
@@ -1649,6 +1779,7 @@ class FirewallPolicyAssociation(typing.TypedDict, total=False):
     displayName: str
     firewallPolicyId: str
     name: str
+    priority: int
     shortName: str
 
 @typing.type_check_only
@@ -1834,9 +1965,12 @@ class FutureReservation(typing.TypedDict, total=False):
     autoCreatedReservationsDeleteTime: str
     autoCreatedReservationsDuration: Duration
     autoDeleteAutoCreatedReservations: bool
+    colocationResource: str
     commitmentInfo: FutureReservationCommitmentInfo
     confidentialComputeType: typing.Literal[
-        "CONFIDENTIAL_COMPUTE_TYPE_TDX", "CONFIDENTIAL_COMPUTE_TYPE_UNSPECIFIED"
+        "CONFIDENTIAL_COMPUTE_TYPE_BMSAI",
+        "CONFIDENTIAL_COMPUTE_TYPE_TDX",
+        "CONFIDENTIAL_COMPUTE_TYPE_UNSPECIFIED",
     ]
     creationTimestamp: str
     deploymentType: typing.Literal["DENSE", "DEPLOYMENT_TYPE_UNSPECIFIED"]
@@ -2092,6 +2226,36 @@ class GRPCTLSHealthCheck(typing.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class GetHealthOperationMetadata(typing.TypedDict, total=False):
+    healthInfo: GetHealthOperationMetadataHealthInfo
+
+@typing.type_check_only
+class GetHealthOperationMetadataHealthInfo(typing.TypedDict, total=False):
+    availabilitySloStatus: typing.Literal[
+        "AVAILABILITY_SLO_STATUS_IN_SLO",
+        "AVAILABILITY_SLO_STATUS_OUT_OF_SLO",
+        "AVAILABILITY_SLO_STATUS_SLO_UNKNOWN",
+        "AVAILABILITY_SLO_STATUS_UNSPECIFIED",
+    ]
+    healthStatus: typing.Literal[
+        "HEALTH_STATUS_HEALTHY", "HEALTH_STATUS_UNHEALTHY", "HEALTH_STATUS_UNSPECIFIED"
+    ]
+    repairCategory: typing.Literal[
+        "REPAIR_CATEGORY_CRITICAL_FAILURE",
+        "REPAIR_CATEGORY_EMERGENT_MAINTENANCE",
+        "REPAIR_CATEGORY_PLANNED_MAINTENANCE",
+        "REPAIR_CATEGORY_UNSPECIFIED",
+        "REPAIR_CATEGORY_USER_REPORTED_FAULT",
+    ]
+    unhealthyReason: typing.Literal[
+        "UNHEALTHY_REASON_PENDING_USER_APPROVAL",
+        "UNHEALTHY_REASON_REPAIRING",
+        "UNHEALTHY_REASON_UNSCHEDULABLE",
+        "UNHEALTHY_REASON_UNSPECIFIED",
+    ]
+    updateTime: str
+
+@typing.type_check_only
 class GetVersionOperationMetadata(typing.TypedDict, total=False):
     inlineSbomInfo: GetVersionOperationMetadataSbomInfo
 
@@ -2104,6 +2268,22 @@ class GetVersionOperationMetadataSbomInfo(typing.TypedDict, total=False):
 class GlobalAddressesMoveRequest(typing.TypedDict, total=False):
     description: str
     destinationAddress: str
+
+@typing.type_check_only
+class GlobalFrontendSettings(typing.TypedDict, total=False):
+    bundleType: typing.Literal[
+        "BUNDLE_TYPE_UNSPECIFIED", "GLOBAL_FRONT_END", "INDIVIDUAL"
+    ]
+    creationTimestamp: str
+    description: str
+    etag: str
+    id: str
+    name: str
+    selfLink: str
+
+@typing.type_check_only
+class GlobalFrontendSettingsPatchResponse(typing.TypedDict, total=False):
+    operation: Operation
 
 @typing.type_check_only
 class GlobalNetworkEndpointGroupsAttachEndpointsRequest(typing.TypedDict, total=False):
@@ -2262,6 +2442,7 @@ class GuestAttributesValue(typing.TypedDict, total=False):
 class GuestOsFeature(typing.TypedDict, total=False):
     type: typing.Literal[
         "BARE_METAL_LINUX_COMPATIBLE",
+        "BMSAI_CAPABLE",
         "CCA_CAPABLE",
         "FEATURE_TYPE_UNSPECIFIED",
         "GVNIC",
@@ -2273,6 +2454,7 @@ class GuestOsFeature(typing.TypedDict, total=False):
         "SEV_LIVE_MIGRATABLE_V2",
         "SEV_SNP_CAPABLE",
         "SNP_SVSM_CAPABLE",
+        "SUSPEND_SAFE_FPR",
         "TDX_CAPABLE",
         "UEFI_COMPATIBLE",
         "VIRTIO_SCSI_MULTIQUEUE",
@@ -2810,6 +2992,21 @@ class ImageParams(typing.TypedDict, total=False):
     resourceManagerTags: dict[str, typing.Any]
 
 @typing.type_check_only
+class ImageView(typing.TypedDict, total=False):
+    image: Image
+
+@typing.type_check_only
+class ImageViewsListResponse(typing.TypedDict, total=False):
+    etag: str
+    id: str
+    items: _list[ImageView]
+    kind: str
+    nextPageToken: str
+    selfLink: str
+    unreachables: _list[str]
+    warning: dict[str, typing.Any]
+
+@typing.type_check_only
 class InitialStateConfig(typing.TypedDict, total=False):
     dbs: _list[FileContentBuffer]
     dbxs: _list[FileContentBuffer]
@@ -3037,7 +3234,9 @@ class InstanceGroupManagerInstanceFlexibilityPolicy(typing.TypedDict, total=Fals
 class InstanceGroupManagerInstanceFlexibilityPolicyInstanceSelection(
     typing.TypedDict, total=False
 ):
+    disks: _list[AttachedDisk]
     machineTypes: _list[str]
+    minCpuPlatform: str
     rank: int
 
 @typing.type_check_only
@@ -3416,6 +3615,7 @@ class InstanceProperties(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class InstancePropertiesPatch(typing.TypedDict, total=False):
+    exposeHostTopology: bool
     labels: dict[str, typing.Any]
     metadata: dict[str, typing.Any]
 
@@ -3724,6 +3924,7 @@ class Interconnect(typing.TypedDict, total=False):
     requestedLinkCount: int
     satisfiesPzs: bool
     selfLink: str
+    selfLinkWithId: str
     state: typing.Literal["ACTIVE", "UNPROVISIONED"]
     subzone: typing.Literal["SUBZONE_A", "SUBZONE_B"]
     wireGroups: _list[str]
@@ -4312,6 +4513,8 @@ class InterconnectLocation(typing.TypedDict, total=False):
 @typing.type_check_only
 class InterconnectLocationCrossSiteInterconnectInfo(typing.TypedDict, total=False):
     city: str
+    maxDynamicPathBandwidthGbps: str
+    maxFixedPathBandwidthGbps: str
 
 @typing.type_check_only
 class InterconnectLocationList(typing.TypedDict, total=False):
@@ -4435,6 +4638,16 @@ class InterconnectsGetDiagnosticsResponse(typing.TypedDict, total=False):
 class InterconnectsGetMacsecConfigResponse(typing.TypedDict, total=False):
     etag: str
     result: InterconnectMacsecConfig
+
+@typing.type_check_only
+class InterconnectsSetNameRequest(typing.TypedDict, total=False):
+    currentName: str
+    name: str
+
+@typing.type_check_only
+class Interval(typing.TypedDict, total=False):
+    endTime: str
+    startTime: str
 
 @typing.type_check_only
 class License(typing.TypedDict, total=False):
@@ -4676,6 +4889,9 @@ class ManagedInstance(typing.TypedDict, total=False):
     propertiesFromFlexibilityPolicy: ManagedInstancePropertiesFromFlexibilityPolicy
     scheduling: ManagedInstanceScheduling
     shutdownDetails: ManagedInstanceShutdownDetails
+    targetStatus: typing.Literal[
+        "ABANDONED", "DELETED", "INVALID", "RUNNING", "STOPPED", "SUSPENDED"
+    ]
     version: ManagedInstanceVersion
 
 @typing.type_check_only
@@ -4691,7 +4907,9 @@ class ManagedInstanceLastAttempt(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class ManagedInstancePropertiesFromFlexibilityPolicy(typing.TypedDict, total=False):
+    disks: _list[AttachedDisk]
     machineType: str
+    minCpuPlatform: str
 
 @typing.type_check_only
 class ManagedInstanceScheduling(typing.TypedDict, total=False):
@@ -4709,6 +4927,24 @@ class ManagedInstanceVersion(typing.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
+class ManagedRuleset(typing.TypedDict, total=False):
+    changeLog: str
+    creationTimestamp: str
+    description: str
+    id: str
+    name: str
+    ruleIds: _list[str]
+    rulesetId: str
+    selfLink: str
+
+@typing.type_check_only
+class ManagedRulesetList(typing.TypedDict, total=False):
+    id: str
+    items: _list[ManagedRuleset]
+    nextPageToken: str
+    warning: dict[str, typing.Any]
+
+@typing.type_check_only
 class Metadata(typing.TypedDict, total=False):
     fingerprint: str
     items: _list[dict[str, typing.Any]]
@@ -4723,6 +4959,12 @@ class MetadataFilter(typing.TypedDict, total=False):
 class MetadataFilterLabelMatch(typing.TypedDict, total=False):
     name: str
     value: str
+
+@typing.type_check_only
+class Money(typing.TypedDict, total=False):
+    currencyCode: str
+    nanos: int
+    units: str
 
 @typing.type_check_only
 class NamedPort(typing.TypedDict, total=False):
@@ -4890,6 +5132,7 @@ class NetworkEndpointGroup(typing.TypedDict, total=False):
     network: str
     networkEndpointType: typing.Literal[
         "GCE_VM_IP",
+        "GCE_VM_IP_DEDICATED_BACKEND",
         "GCE_VM_IP_PORT",
         "GCE_VM_IP_PORTMAP",
         "INTERNET_FQDN_PORT",
@@ -5541,6 +5784,7 @@ class Operation(typing.TypedDict, total=False):
     description: str
     endTime: str
     error: dict[str, typing.Any]
+    getHealthOperationMetadata: GetHealthOperationMetadata
     getVersionOperationMetadata: GetVersionOperationMetadata
     httpErrorMessage: str
     httpErrorStatusCode: int
@@ -5840,6 +6084,10 @@ class Project(typing.TypedDict, total=False):
         "GLOBAL_DEFAULT", "UNSPECIFIED_VM_DNS_SETTING", "ZONAL_DEFAULT", "ZONAL_ONLY"
     ]
     xpnProjectStatus: typing.Literal["HOST", "UNSPECIFIED_XPN_PROJECT_STATUS"]
+
+@typing.type_check_only
+class ProjectView(typing.TypedDict, total=False):
+    project: Project
 
 @typing.type_check_only
 class ProjectsDisableXpnResourceRequest(typing.TypedDict, total=False):
@@ -6473,7 +6721,9 @@ class Reservation(typing.TypedDict, total=False):
     aggregateReservation: AllocationAggregateReservation
     commitment: str
     confidentialComputeType: typing.Literal[
-        "CONFIDENTIAL_COMPUTE_TYPE_TDX", "CONFIDENTIAL_COMPUTE_TYPE_UNSPECIFIED"
+        "CONFIDENTIAL_COMPUTE_TYPE_BMSAI",
+        "CONFIDENTIAL_COMPUTE_TYPE_TDX",
+        "CONFIDENTIAL_COMPUTE_TYPE_UNSPECIFIED",
     ]
     creationTimestamp: str
     deleteAfterDuration: Duration
@@ -6721,6 +6971,9 @@ class ReservationSubBlocksReportFaultyRequestFaultReason(typing.TypedDict, total
     behavior: typing.Literal[
         "FAULT_BEHAVIOR_UNSPECIFIED",
         "GPU_ERROR",
+        "NVSWITCH_FAULT_CONTROLLER_ERROR",
+        "NVSWITCH_FAULT_DEGRADED_BANDWIDTH",
+        "NVSWITCH_FAULT_SWITCH_ERROR",
         "PERFORMANCE",
         "SILENT_DATA_CORRUPTION",
         "SWITCH_FAILURE",
@@ -7551,6 +7804,7 @@ class ScalingScheduleStatus(typing.TypedDict, total=False):
 class Scheduling(typing.TypedDict, total=False):
     automaticRestart: bool
     availabilityDomain: int
+    exposeHostTopology: bool
     gracefulShutdown: SchedulingGracefulShutdown
     hostErrorTimeoutSeconds: int
     instanceTerminationAction: typing.Literal[
@@ -7801,6 +8055,9 @@ class SecurityPolicyRulePreconfiguredWafConfig(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class SecurityPolicyRulePreconfiguredWafConfigExclusion(typing.TypedDict, total=False):
+    requestBodiesToExclude: _list[
+        SecurityPolicyRulePreconfiguredWafConfigExclusionFieldParams
+    ]
     requestCookiesToExclude: _list[
         SecurityPolicyRulePreconfiguredWafConfigExclusionFieldParams
     ]
@@ -8502,7 +8759,12 @@ class Subnetwork(typing.TypedDict, total=False):
     ]
     region: str
     reservedInternalRange: str
-    resolveSubnetMask: typing.Literal["ARP_ALL_RANGES", "ARP_PRIMARY_RANGE"]
+    resolveSubnetMask: typing.Literal[
+        "ARP_ALL_RANGES",
+        "ARP_BROADCAST_PRIMARY_RANGE",
+        "ARP_BROADCAST_PRIMARY_RANGE_WITH_LEARNING",
+        "ARP_PRIMARY_RANGE",
+    ]
     role: typing.Literal["ACTIVE", "BACKUP"]
     secondaryIpRanges: _list[SubnetworkSecondaryRange]
     selfLink: str

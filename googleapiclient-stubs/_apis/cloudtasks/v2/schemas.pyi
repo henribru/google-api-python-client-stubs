@@ -34,6 +34,16 @@ class Attempt(typing.TypedDict, total=False):
     scheduleTime: str
 
 @typing.type_check_only
+class BatchCreateTasksRequest(typing.TypedDict, total=False):
+    requestId: str
+    requests: _list[CreateTaskRequest]
+
+@typing.type_check_only
+class BatchDeleteTasksRequest(typing.TypedDict, total=False):
+    names: _list[str]
+    requestId: str
+
+@typing.type_check_only
 class Binding(typing.TypedDict, total=False):
     condition: Expr
     members: _list[str]
@@ -54,6 +64,7 @@ class CmekConfig(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class CreateTaskRequest(typing.TypedDict, total=False):
+    parent: str
     responseView: typing.Literal["VIEW_UNSPECIFIED", "BASIC", "FULL"]
     task: Task
 
@@ -159,6 +170,14 @@ class OidcToken(typing.TypedDict, total=False):
     serviceAccountEmail: str
 
 @typing.type_check_only
+class Operation(typing.TypedDict, total=False):
+    done: bool
+    error: Status
+    metadata: dict[str, typing.Any]
+    name: str
+    response: dict[str, typing.Any]
+
+@typing.type_check_only
 class PathOverride(typing.TypedDict, total=False):
     path: str
 
@@ -235,6 +254,7 @@ class Task(typing.TypedDict, total=False):
     lastAttempt: Attempt
     name: str
     responseCount: int
+    retryConfig: RetryConfig
     scheduleTime: str
     view: typing.Literal["VIEW_UNSPECIFIED", "BASIC", "FULL"]
 
