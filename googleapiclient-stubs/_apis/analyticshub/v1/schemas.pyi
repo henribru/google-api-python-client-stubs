@@ -48,6 +48,7 @@ class BigQueryDatasetSource(typing.TypedDict, total=False):
 @typing.type_check_only
 class BigtableConfig(typing.TypedDict, total=False):
     appProfileId: str
+    columnFamilyMapping: ColumnFamilyMapping
     serviceAccountEmail: str
     table: str
     writeMetadata: bool
@@ -70,6 +71,11 @@ class CloudStorageConfig(typing.TypedDict, total=False):
     maxMessages: str
     serviceAccountEmail: str
     textConfig: TextConfig
+
+@typing.type_check_only
+class ColumnFamilyMapping(typing.TypedDict, total=False):
+    delimitedKey: DelimitedKey
+    rowKeySchema: RowKeySchema
 
 @typing.type_check_only
 class Compression(typing.TypedDict, total=False):
@@ -112,6 +118,11 @@ class DeadLetterPolicy(typing.TypedDict, total=False):
 class DefaultExchangeConfig(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
+class DelimitedKey(typing.TypedDict, total=False):
+    delimiter: str
+    keyFields: _list[str]
+
+@typing.type_check_only
 class DestinationDataset(typing.TypedDict, total=False):
     datasetReference: DestinationDatasetReference
     description: str
@@ -131,6 +142,10 @@ class DestinationPubSubSubscription(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class Empty(typing.TypedDict, total=False): ...
+
+@typing.type_check_only
+class EncryptionConfig(typing.TypedDict, total=False):
+    kmsKeyName: str
 
 @typing.type_check_only
 class ExpirationPolicy(typing.TypedDict, total=False):
@@ -362,6 +377,7 @@ class QueryTemplate(typing.TypedDict, total=False):
     description: str
     displayName: str
     documentation: str
+    encryptionConfiguration: EncryptionConfig
     name: str
     primaryContact: str
     proposer: str
@@ -414,6 +430,9 @@ class RevokeSubscriptionResponse(typing.TypedDict, total=False): ...
 class Routine(typing.TypedDict, total=False):
     definitionBody: str
     routineType: typing.Literal["ROUTINE_TYPE_UNSPECIFIED", "TABLE_VALUED_FUNCTION"]
+
+@typing.type_check_only
+class RowKeySchema(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
 class SelectedResource(typing.TypedDict, total=False):

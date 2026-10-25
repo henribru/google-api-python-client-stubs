@@ -180,6 +180,13 @@ class SheetsResource(googleapiclient.discovery.Resource):
             self,
             *,
             spreadsheetId: str,
+            commentsViewMode: typing.Literal[
+                "COMMENTS_VIEW_MODE_UNSPECIFIED",
+                "COMMENTS_VIEW_MODE_DEFAULT_FOR_CURRENT_ACCESS",
+                "COMMENTS_VIEW_MODE_OMITTED",
+                "COMMENTS_VIEW_MODE_INCLUDED",
+            ]
+            | None = ...,
             excludeTablesInBandedRanges: bool | None = ...,
             includeGridData: bool | None = ...,
             ranges: str | _list[str] | None = ...,

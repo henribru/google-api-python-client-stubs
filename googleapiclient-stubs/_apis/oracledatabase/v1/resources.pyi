@@ -235,6 +235,15 @@ class OracleDatabaseResource(googleapiclient.discovery.Resource):
                     previous_request: ListCloudExadataInfrastructuresResponseHttpRequest,
                     previous_response: ListCloudExadataInfrastructuresResponse,
                 ) -> ListCloudExadataInfrastructuresResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: CloudExadataInfrastructure,
+                    requestId: str | None = ...,
+                    updateMask: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
                 def dbServers(self) -> DbServersResource: ...
 
             @typing.type_check_only
@@ -289,6 +298,15 @@ class OracleDatabaseResource(googleapiclient.discovery.Resource):
                     previous_request: ListCloudVmClustersResponseHttpRequest,
                     previous_response: ListCloudVmClustersResponse,
                 ) -> ListCloudVmClustersResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: CloudVmCluster,
+                    requestId: str | None = ...,
+                    updateMask: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
                 def dbNodes(self) -> DbNodesResource: ...
 
             @typing.type_check_only
@@ -399,6 +417,15 @@ class OracleDatabaseResource(googleapiclient.discovery.Resource):
                     previous_request: ListDbSystemsResponseHttpRequest,
                     previous_response: ListDbSystemsResponse,
                 ) -> ListDbSystemsResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: DbSystem,
+                    requestId: str | None = ...,
+                    updateMask: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
 
             @typing.type_check_only
             class DbVersionsResource(googleapiclient.discovery.Resource):
@@ -539,6 +566,15 @@ class OracleDatabaseResource(googleapiclient.discovery.Resource):
                     previous_request: ListExascaleDbStorageVaultsResponseHttpRequest,
                     previous_response: ListExascaleDbStorageVaultsResponse,
                 ) -> ListExascaleDbStorageVaultsResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: ExascaleDbStorageVault,
+                    requestId: str | None = ...,
+                    updateMask: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
 
             @typing.type_check_only
             class GiVersionsResource(googleapiclient.discovery.Resource):
@@ -613,6 +649,15 @@ class OracleDatabaseResource(googleapiclient.discovery.Resource):
                     previous_request: ListGoldengateConnectionAssignmentsResponseHttpRequest,
                     previous_response: ListGoldengateConnectionAssignmentsResponse,
                 ) -> ListGoldengateConnectionAssignmentsResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: GoldengateConnectionAssignment,
+                    requestId: str | None = ...,
+                    updateMask: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
                 def test(
                     self,
                     *,
@@ -674,6 +719,15 @@ class OracleDatabaseResource(googleapiclient.discovery.Resource):
                     previous_request: ListGoldengateConnectionsResponseHttpRequest,
                     previous_response: ListGoldengateConnectionsResponse,
                 ) -> ListGoldengateConnectionsResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: GoldengateConnection,
+                    requestId: str | None = ...,
+                    updateMask: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
 
             @typing.type_check_only
             class GoldengateDeploymentEnvironmentsResource(
@@ -766,6 +820,15 @@ class OracleDatabaseResource(googleapiclient.discovery.Resource):
                     previous_request: ListGoldengateDeploymentsResponseHttpRequest,
                     previous_response: ListGoldengateDeploymentsResponse,
                 ) -> ListGoldengateDeploymentsResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: GoldengateDeployment,
+                    requestId: str | None = ...,
+                    updateMask: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
                 def start(
                     self,
                     *,
@@ -819,6 +882,15 @@ class OracleDatabaseResource(googleapiclient.discovery.Resource):
                         previous_request: ListOdbSubnetsResponseHttpRequest,
                         previous_response: ListOdbSubnetsResponse,
                     ) -> ListOdbSubnetsResponseHttpRequest | None: ...
+                    def patch(
+                        self,
+                        *,
+                        name: str,
+                        body: OdbSubnet,
+                        requestId: str | None = ...,
+                        updateMask: str | None = ...,
+                        **kwargs: typing.Any,
+                    ) -> OperationHttpRequest: ...
 
                 def create(
                     self,

@@ -367,6 +367,10 @@ class InternalRange(typing.TypedDict, total=False):
     ]
     peering: typing.Literal["PEERING_UNSPECIFIED", "FOR_SELF", "FOR_PEER", "NOT_SHARED"]
     prefixLength: int
+    purpose: typing.Literal["PURPOSE_UNSPECIFIED", "VPC_SUBNET", "INTERNAL_ADDRESS"]
+    rangeStatus: typing.Literal[
+        "RANGE_STATUS_UNSPECIFIED", "ACTIVE", "OBSOLETE", "CREATING", "DELETING"
+    ]
     targetCidrRange: _list[str]
     updateTime: str
     usage: typing.Literal[
@@ -1079,6 +1083,7 @@ class TestIamPermissionsResponse(typing.TypedDict, total=False):
 @typing.type_check_only
 class Transport(typing.TypedDict, total=False):
     advertisedRoutes: _list[str]
+    autoAccept: bool
     bandwidth: typing.Literal[
         "BANDWIDTH_UNSPECIFIED",
         "BPS_50M",
@@ -1098,12 +1103,14 @@ class Transport(typing.TypedDict, total=False):
     createTime: str
     description: str
     generatedActivationKey: str
+    hub: str
     labels: dict[str, typing.Any]
     mtuLimit: int
     name: str
     network: str
     peeringNetwork: str
     providedActivationKey: str
+    pscRoutingEnabled: bool
     remoteAccountId: str
     remoteProfile: str
     stackType: typing.Literal["STACK_TYPE_UNSPECIFIED", "IPV4_ONLY", "IPV4_IPV6"]
@@ -1115,6 +1122,7 @@ class Transport(typing.TypedDict, total=False):
         "ACTIVE",
         "DELETING",
         "DEPROVISIONED",
+        "SUSPENDED",
     ]
     updateTime: str
 

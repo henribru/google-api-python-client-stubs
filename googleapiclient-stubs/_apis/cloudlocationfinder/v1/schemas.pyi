@@ -10,6 +10,7 @@ class CloudLocation(typing.TypedDict, total=False):
         "CLOUD_LOCATION_TYPE_REGION",
         "CLOUD_LOCATION_TYPE_ZONE",
         "CLOUD_LOCATION_TYPE_GDCC_ZONE",
+        "CLOUD_LOCATION_TYPE_GLOBAL",
     ]
     cloudProvider: typing.Literal[
         "CLOUD_PROVIDER_UNSPECIFIED",
@@ -20,8 +21,13 @@ class CloudLocation(typing.TypedDict, total=False):
     ]
     containingCloudLocation: str
     displayName: str
+    gcpAttributes: GcpAttributes
     name: str
     territoryCode: str
+
+@typing.type_check_only
+class GcpAttributes(typing.TypedDict, total=False):
+    zoneType: typing.Literal["GCP_ZONE_TYPE_UNSPECIFIED", "GENERAL_PURPOSE", "AI_ZONE"]
 
 @typing.type_check_only
 class ListCloudLocationsResponse(typing.TypedDict, total=False):

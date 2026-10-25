@@ -23,7 +23,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             serviceProjectNumber: str | None = ...,
             **kwargs: typing.Any,
         ) -> AcceleratorTypeAggregatedListHttpRequest: ...
@@ -44,7 +43,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> AcceleratorTypeListHttpRequest: ...
         def list_next(
@@ -64,7 +62,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             serviceProjectNumber: str | None = ...,
             **kwargs: typing.Any,
         ) -> AddressAggregatedListHttpRequest: ...
@@ -103,7 +100,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> AddressListHttpRequest: ...
         def list_next(
@@ -151,6 +147,22 @@ class ComputeResource(googleapiclient.discovery.Resource):
             body: CalendarModeAdviceRequest,
             **kwargs: typing.Any,
         ) -> CalendarModeAdviceResponseHttpRequest: ...
+        def capacity(
+            self,
+            *,
+            project: str,
+            region: str,
+            body: CapacityAdviceRequest,
+            **kwargs: typing.Any,
+        ) -> CapacityAdviceResponseHttpRequest: ...
+        def capacityHistory(
+            self,
+            *,
+            project: str,
+            region: str,
+            body: CapacityHistoryRequest,
+            **kwargs: typing.Any,
+        ) -> CapacityHistoryResponseHttpRequest: ...
 
     @typing.type_check_only
     class AutoscalersResource(googleapiclient.discovery.Resource):
@@ -163,7 +175,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             serviceProjectNumber: str | None = ...,
             **kwargs: typing.Any,
         ) -> AutoscalerAggregatedListHttpRequest: ...
@@ -202,7 +213,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> AutoscalerListHttpRequest: ...
         def list_next(
@@ -260,7 +270,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             serviceProjectNumber: str | None = ...,
             **kwargs: typing.Any,
         ) -> BackendBucketAggregatedListHttpRequest: ...
@@ -313,7 +322,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> BackendBucketListHttpRequest: ...
         def list_next(
@@ -329,7 +337,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> BackendBucketListUsableHttpRequest: ...
         def listUsable_next(
@@ -401,7 +408,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             serviceProjectNumber: str | None = ...,
             **kwargs: typing.Any,
         ) -> BackendServiceAggregatedListHttpRequest: ...
@@ -465,7 +471,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> BackendServiceListHttpRequest: ...
         def list_next(
@@ -481,7 +486,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> BackendServiceListUsableHttpRequest: ...
         def listUsable_next(
@@ -572,7 +576,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> CrossSiteNetworkListHttpRequest: ...
         def list_next(
@@ -603,7 +606,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             serviceProjectNumber: str | None = ...,
             **kwargs: typing.Any,
         ) -> DiskTypeAggregatedListHttpRequest: ...
@@ -624,7 +626,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> DiskTypeListHttpRequest: ...
         def list_next(
@@ -654,7 +655,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             serviceProjectNumber: str | None = ...,
             **kwargs: typing.Any,
         ) -> DiskAggregatedListHttpRequest: ...
@@ -733,7 +733,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> DiskListHttpRequest: ...
         def list_next(
@@ -867,7 +866,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> ExternalVpnGatewayListHttpRequest: ...
         def list_next(
@@ -962,7 +960,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             orderBy: str | None = ...,
             pageToken: str | None = ...,
             parentId: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> FirewallPolicyListHttpRequest: ...
         def list_next(
@@ -1058,7 +1055,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> FirewallListHttpRequest: ...
         def list_next(
@@ -1104,7 +1100,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             serviceProjectNumber: str | None = ...,
             **kwargs: typing.Any,
         ) -> ForwardingRuleAggregatedListHttpRequest: ...
@@ -1149,7 +1144,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> ForwardingRuleListHttpRequest: ...
         def list_next(
@@ -1199,7 +1193,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             serviceProjectNumber: str | None = ...,
             **kwargs: typing.Any,
         ) -> FutureReservationsAggregatedListResponseHttpRequest: ...
@@ -1252,7 +1245,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> FutureReservationsListResponseHttpRequest: ...
         def list_next(
@@ -1301,7 +1293,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> AddressListHttpRequest: ...
         def list_next(
@@ -1369,7 +1360,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> ForwardingRuleListHttpRequest: ...
         def list_next(
@@ -1403,6 +1393,21 @@ class ComputeResource(googleapiclient.discovery.Resource):
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
+
+    @typing.type_check_only
+    class GlobalFrontendSettingsResource(googleapiclient.discovery.Resource):
+        def get(
+            self, *, project: str, **kwargs: typing.Any
+        ) -> GlobalFrontendSettingsHttpRequest: ...
+        def patch(
+            self,
+            *,
+            project: str,
+            body: GlobalFrontendSettings,
+            requestId: str | None = ...,
+            updateMask: str | None = ...,
+            **kwargs: typing.Any,
+        ) -> GlobalFrontendSettingsPatchResponseHttpRequest: ...
 
     @typing.type_check_only
     class GlobalNetworkEndpointGroupsResource(googleapiclient.discovery.Resource):
@@ -1451,7 +1456,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> NetworkEndpointGroupListHttpRequest: ...
         def list_next(
@@ -1468,7 +1472,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> NetworkEndpointGroupsListNetworkEndpointsHttpRequest: ...
         def listNetworkEndpoints_next(
@@ -1488,7 +1491,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             serviceProjectNumber: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationAggregatedListHttpRequest: ...
@@ -1511,7 +1513,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> OperationListHttpRequest: ...
         def list_next(
@@ -1539,7 +1540,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             orderBy: str | None = ...,
             pageToken: str | None = ...,
             parentId: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> OperationListHttpRequest: ...
         def list_next(
@@ -1577,7 +1577,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> PublicDelegatedPrefixListHttpRequest: ...
         def list_next(
@@ -1606,7 +1605,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             serviceProjectNumber: str | None = ...,
             **kwargs: typing.Any,
         ) -> VmExtensionPolicyAggregatedListResponseHttpRequest: ...
@@ -1643,7 +1641,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> GlobalVmExtensionPolicyListHttpRequest: ...
         def list_next(
@@ -1672,7 +1669,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             serviceProjectNumber: str | None = ...,
             **kwargs: typing.Any,
         ) -> HealthChecksAggregatedListHttpRequest: ...
@@ -1708,7 +1704,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> HealthCheckListHttpRequest: ...
         def list_next(
@@ -1775,7 +1770,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> HostsListResponseHttpRequest: ...
         def list_next(
@@ -1813,7 +1807,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> HttpHealthCheckListHttpRequest: ...
         def list_next(
@@ -1877,7 +1870,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> HttpsHealthCheckListHttpRequest: ...
         def list_next(
@@ -1917,6 +1909,28 @@ class ComputeResource(googleapiclient.discovery.Resource):
         def get(
             self, *, project: str, zone: str, family: str, **kwargs: typing.Any
         ) -> ImageFamilyViewHttpRequest: ...
+
+    @typing.type_check_only
+    class ImageViewsResource(googleapiclient.discovery.Resource):
+        def get(
+            self, *, project: str, region: str, resourceId: str, **kwargs: typing.Any
+        ) -> ImageViewHttpRequest: ...
+        def list(
+            self,
+            *,
+            project: str,
+            region: str,
+            filter: str | None = ...,
+            maxResults: int | None = ...,
+            orderBy: str | None = ...,
+            pageToken: str | None = ...,
+            **kwargs: typing.Any,
+        ) -> ImageViewsListResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ImageViewsListResponseHttpRequest,
+            previous_response: ImageViewsListResponse,
+        ) -> ImageViewsListResponseHttpRequest | None: ...
 
     @typing.type_check_only
     class ImagesResource(googleapiclient.discovery.Resource):
@@ -1968,7 +1982,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> ImageListHttpRequest: ...
         def list_next(
@@ -2061,7 +2074,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> InstanceGroupManagerResizeRequestsListResponseHttpRequest: ...
         def list_next(
@@ -2091,7 +2103,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             serviceProjectNumber: str | None = ...,
             **kwargs: typing.Any,
         ) -> InstanceGroupManagerAggregatedListHttpRequest: ...
@@ -2175,7 +2186,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> InstanceGroupManagerListHttpRequest: ...
         def list_next(
@@ -2193,7 +2203,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> InstanceGroupManagersListErrorsResponseHttpRequest: ...
         def listErrors_next(
@@ -2211,7 +2220,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> InstanceGroupManagersListManagedInstancesResponseHttpRequest: ...
         def listManagedInstances_next(
@@ -2229,7 +2237,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> InstanceGroupManagersListPerInstanceConfigsRespHttpRequest: ...
         def listPerInstanceConfigs_next(
@@ -2371,7 +2378,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             serviceProjectNumber: str | None = ...,
             **kwargs: typing.Any,
         ) -> InstanceGroupAggregatedListHttpRequest: ...
@@ -2410,7 +2416,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> InstanceGroupListHttpRequest: ...
         def list_next(
@@ -2429,7 +2434,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> InstanceGroupsListInstancesHttpRequest: ...
         def listInstances_next(
@@ -2494,7 +2498,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             serviceProjectNumber: str | None = ...,
             **kwargs: typing.Any,
         ) -> InstanceTemplateAggregatedListHttpRequest: ...
@@ -2538,7 +2541,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> InstanceTemplateListHttpRequest: ...
         def list_next(
@@ -2605,7 +2607,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             serviceProjectNumber: str | None = ...,
             **kwargs: typing.Any,
         ) -> InstanceAggregatedListHttpRequest: ...
@@ -2742,7 +2743,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> InstanceListHttpRequest: ...
         def list_next(
@@ -2760,7 +2760,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> InstanceListReferrersHttpRequest: ...
         def listReferrers_next(
@@ -3124,7 +3123,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> ListInstantSnapshotGroupsHttpRequest: ...
         def list_next(
@@ -3162,7 +3160,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             serviceProjectNumber: str | None = ...,
             **kwargs: typing.Any,
         ) -> InstantSnapshotAggregatedListHttpRequest: ...
@@ -3210,7 +3207,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> InstantSnapshotListHttpRequest: ...
         def list_next(
@@ -3295,7 +3291,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> InterconnectAttachmentGroupsListResponseHttpRequest: ...
         def list_next(
@@ -3341,7 +3336,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             serviceProjectNumber: str | None = ...,
             **kwargs: typing.Any,
         ) -> InterconnectAttachmentAggregatedListHttpRequest: ...
@@ -3386,7 +3380,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> InterconnectAttachmentListHttpRequest: ...
         def list_next(
@@ -3463,7 +3456,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> InterconnectGroupsListResponseHttpRequest: ...
         def list_next(
@@ -3511,7 +3503,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> InterconnectLocationListHttpRequest: ...
         def list_next(
@@ -3533,7 +3524,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> InterconnectRemoteLocationListHttpRequest: ...
         def list_next(
@@ -3577,7 +3567,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> InterconnectListHttpRequest: ...
         def list_next(
@@ -3600,6 +3589,15 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             resource: str,
             body: GlobalSetLabelsRequest,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
+        def setName(
+            self,
+            *,
+            project: str,
+            interconnect: str,
+            body: InterconnectsSetNameRequest,
+            requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
 
@@ -3670,7 +3668,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> LicensesListResponseHttpRequest: ...
         def list_next(
@@ -3743,7 +3740,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> MachineImageListHttpRequest: ...
         def list_next(
@@ -3787,7 +3783,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             serviceProjectNumber: str | None = ...,
             **kwargs: typing.Any,
         ) -> MachineTypeAggregatedListHttpRequest: ...
@@ -3808,7 +3803,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> MachineTypeListHttpRequest: ...
         def list_next(
@@ -3816,6 +3810,27 @@ class ComputeResource(googleapiclient.discovery.Resource):
             previous_request: MachineTypeListHttpRequest,
             previous_response: MachineTypeList,
         ) -> MachineTypeListHttpRequest | None: ...
+
+    @typing.type_check_only
+    class ManagedRulesetsResource(googleapiclient.discovery.Resource):
+        def get(
+            self, *, project: str, managedRuleset: str, **kwargs: typing.Any
+        ) -> ManagedRulesetHttpRequest: ...
+        def list(
+            self,
+            *,
+            project: str,
+            filter: str | None = ...,
+            maxResults: int | None = ...,
+            orderBy: str | None = ...,
+            pageToken: str | None = ...,
+            **kwargs: typing.Any,
+        ) -> ManagedRulesetListHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ManagedRulesetListHttpRequest,
+            previous_response: ManagedRulesetList,
+        ) -> ManagedRulesetListHttpRequest | None: ...
 
     @typing.type_check_only
     class NetworkAttachmentsResource(googleapiclient.discovery.Resource):
@@ -3828,7 +3843,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             serviceProjectNumber: str | None = ...,
             **kwargs: typing.Any,
         ) -> NetworkAttachmentAggregatedListHttpRequest: ...
@@ -3881,7 +3895,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> NetworkAttachmentListHttpRequest: ...
         def list_next(
@@ -3929,7 +3942,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             serviceProjectNumber: str | None = ...,
             **kwargs: typing.Any,
         ) -> NetworkEdgeSecurityServiceAggregatedListHttpRequest: ...
@@ -3989,7 +4001,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             serviceProjectNumber: str | None = ...,
             **kwargs: typing.Any,
         ) -> NetworkEndpointGroupAggregatedListHttpRequest: ...
@@ -4053,7 +4064,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> NetworkEndpointGroupListHttpRequest: ...
         def list_next(
@@ -4072,7 +4082,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> NetworkEndpointGroupsListNetworkEndpointsHttpRequest: ...
         def listNetworkEndpoints_next(
@@ -4133,7 +4142,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             serviceProjectNumber: str | None = ...,
             **kwargs: typing.Any,
         ) -> NetworkFirewallPolicyAggregatedListHttpRequest: ...
@@ -4210,7 +4218,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> FirewallPolicyListHttpRequest: ...
         def list_next(
@@ -4304,7 +4311,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> NetworkProfilesListResponseHttpRequest: ...
         def list_next(
@@ -4363,7 +4369,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> NetworkListHttpRequest: ...
         def list_next(
@@ -4383,7 +4388,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             pageToken: str | None = ...,
             peeringName: str | None = ...,
             region: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> ExchangedPeeringRoutesListHttpRequest: ...
         def listPeeringRoutes_next(
@@ -4457,7 +4461,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             serviceProjectNumber: str | None = ...,
             **kwargs: typing.Any,
         ) -> NodeGroupAggregatedListHttpRequest: ...
@@ -4516,7 +4519,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> NodeGroupListHttpRequest: ...
         def list_next(
@@ -4534,7 +4536,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> NodeGroupsListNodesHttpRequest: ...
         def listNodes_next(
@@ -4612,7 +4613,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             serviceProjectNumber: str | None = ...,
             **kwargs: typing.Any,
         ) -> NodeTemplateAggregatedListHttpRequest: ...
@@ -4660,7 +4660,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> NodeTemplateListHttpRequest: ...
         def list_next(
@@ -4698,7 +4697,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             serviceProjectNumber: str | None = ...,
             **kwargs: typing.Any,
         ) -> NodeTypeAggregatedListHttpRequest: ...
@@ -4719,7 +4717,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> NodeTypeListHttpRequest: ...
         def list_next(
@@ -4791,7 +4788,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             orderBy: str | None = ...,
             pageToken: str | None = ...,
             parentId: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> SecurityPolicyListHttpRequest: ...
         def list_next(
@@ -4810,7 +4806,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             orderBy: str | None = ...,
             pageToken: str | None = ...,
             parentId: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> SecurityPoliciesListPreconfiguredExpressionSetsResponseHttpRequest: ...
         def move(
@@ -4866,7 +4861,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             serviceProjectNumber: str | None = ...,
             **kwargs: typing.Any,
         ) -> PacketMirroringAggregatedListHttpRequest: ...
@@ -4910,7 +4904,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> PacketMirroringListHttpRequest: ...
         def list_next(
@@ -4951,7 +4944,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> PreviewFeatureListHttpRequest: ...
         def list_next(
@@ -4968,6 +4960,12 @@ class ComputeResource(googleapiclient.discovery.Resource):
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
+
+    @typing.type_check_only
+    class ProjectViewsResource(googleapiclient.discovery.Resource):
+        def get(
+            self, *, project: str, region: str, **kwargs: typing.Any
+        ) -> ProjectViewHttpRequest: ...
 
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
@@ -5005,7 +5003,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> ProjectsGetXpnResourcesHttpRequest: ...
         def getXpnResources_next(
@@ -5022,7 +5019,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> XpnHostListHttpRequest: ...
         def listXpnHosts_next(
@@ -5116,7 +5112,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> PublicAdvertisedPrefixListHttpRequest: ...
         def list_next(
@@ -5153,7 +5148,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             serviceProjectNumber: str | None = ...,
             **kwargs: typing.Any,
         ) -> PublicDelegatedPrefixAggregatedListHttpRequest: ...
@@ -5206,7 +5200,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> PublicDelegatedPrefixListHttpRequest: ...
         def list_next(
@@ -5266,7 +5259,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> RegionAutoscalerListHttpRequest: ...
         def list_next(
@@ -5345,7 +5337,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> BackendBucketListHttpRequest: ...
         def list_next(
@@ -5362,7 +5353,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> BackendBucketListUsableHttpRequest: ...
         def listUsable_next(
@@ -5454,7 +5444,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> BackendServiceListHttpRequest: ...
         def list_next(
@@ -5471,7 +5460,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> BackendServiceListUsableHttpRequest: ...
         def listUsable_next(
@@ -5539,7 +5527,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             serviceProjectNumber: str | None = ...,
             **kwargs: typing.Any,
         ) -> CommitmentAggregatedListHttpRequest: ...
@@ -5569,7 +5556,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> CommitmentListHttpRequest: ...
         def list_next(
@@ -5601,7 +5587,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             serviceProjectNumber: str | None = ...,
             **kwargs: typing.Any,
         ) -> CompositeHealthCheckAggregatedListHttpRequest: ...
@@ -5653,7 +5638,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> CompositeHealthCheckListHttpRequest: ...
         def list_next(
@@ -5695,7 +5679,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> RegionDiskTypeListHttpRequest: ...
         def list_next(
@@ -5775,7 +5758,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> DiskListHttpRequest: ...
         def list_next(
@@ -5891,7 +5873,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             serviceProjectNumber: str | None = ...,
             **kwargs: typing.Any,
         ) -> HealthAggregationPolicyAggregatedListHttpRequest: ...
@@ -5935,7 +5916,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> HealthAggregationPolicyListHttpRequest: ...
         def list_next(
@@ -5974,7 +5954,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             serviceProjectNumber: str | None = ...,
             **kwargs: typing.Any,
         ) -> HealthCheckServiceAggregatedListHttpRequest: ...
@@ -6018,7 +5997,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> HealthCheckServicesListHttpRequest: ...
         def list_next(
@@ -6078,7 +6056,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> HealthCheckListHttpRequest: ...
         def list_next(
@@ -6127,7 +6104,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             serviceProjectNumber: str | None = ...,
             **kwargs: typing.Any,
         ) -> HealthSourceAggregatedListHttpRequest: ...
@@ -6169,7 +6145,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> HealthSourceListHttpRequest: ...
         def list_next(
@@ -6250,7 +6225,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> RegionInstanceGroupManagerResizeRequestsListResponseHttpRequest: ...
         def list_next(
@@ -6346,7 +6320,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> RegionInstanceGroupManagerListHttpRequest: ...
         def list_next(
@@ -6364,7 +6337,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> RegionInstanceGroupManagersListErrorsResponseHttpRequest: ...
         def listErrors_next(
@@ -6382,7 +6354,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> RegionInstanceGroupManagersListInstancesResponseHttpRequest: ...
         def listManagedInstances_next(
@@ -6400,7 +6371,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> RegionInstanceGroupManagersListInstanceConfigsRespHttpRequest: ...
         def listPerInstanceConfigs_next(
@@ -6535,7 +6505,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> RegionInstanceGroupListHttpRequest: ...
         def list_next(
@@ -6554,7 +6523,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> RegionInstanceGroupsListInstancesHttpRequest: ...
         def listInstances_next(
@@ -6619,7 +6587,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> InstanceTemplateListHttpRequest: ...
         def list_next(
@@ -6687,7 +6654,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> ListInstantSnapshotGroupsHttpRequest: ...
         def list_next(
@@ -6760,7 +6726,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> InstantSnapshotListHttpRequest: ...
         def list_next(
@@ -6854,7 +6819,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> NetworkEndpointGroupListHttpRequest: ...
         def list_next(
@@ -6872,7 +6836,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> NetworkEndpointGroupsListNetworkEndpointsHttpRequest: ...
         def listNetworkEndpoints_next(
@@ -6890,6 +6853,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             region: str,
             firewallPolicy: str,
             body: FirewallPolicyAssociation,
+            associatedPolicyToBeReplaced: str | None = ...,
             replaceExistingAssociation: bool | None = ...,
             requestId: str | None = ...,
             **kwargs: typing.Any,
@@ -6981,7 +6945,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> FirewallPolicyListHttpRequest: ...
         def list_next(
@@ -6996,6 +6959,16 @@ class ComputeResource(googleapiclient.discovery.Resource):
             region: str,
             firewallPolicy: str,
             body: FirewallPolicy,
+            requestId: str | None = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
+        def patchAssociation(
+            self,
+            *,
+            project: str,
+            region: str,
+            firewallPolicy: str,
+            body: FirewallPolicyAssociation,
             requestId: str | None = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -7060,7 +7033,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             serviceProjectNumber: str | None = ...,
             **kwargs: typing.Any,
         ) -> NotificationEndpointAggregatedListHttpRequest: ...
@@ -7104,7 +7076,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> NotificationEndpointListHttpRequest: ...
         def list_next(
@@ -7139,7 +7110,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> OperationListHttpRequest: ...
         def list_next(
@@ -7208,7 +7178,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> SecurityPolicyListHttpRequest: ...
         def list_next(
@@ -7316,7 +7285,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> SnapshotListHttpRequest: ...
         def list_next(
@@ -7400,7 +7368,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> SslCertificateListHttpRequest: ...
         def list_next(
@@ -7441,7 +7408,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> SslPoliciesListHttpRequest: ...
         def list_next(
@@ -7458,7 +7424,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> SslPoliciesListAvailableFeaturesResponseHttpRequest: ...
         def patch(
@@ -7509,7 +7474,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> TargetHttpProxyListHttpRequest: ...
         def list_next(
@@ -7565,7 +7529,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> TargetHttpsProxyListHttpRequest: ...
         def list_next(
@@ -7641,7 +7604,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> TargetTcpProxyListHttpRequest: ...
         def list_next(
@@ -7682,7 +7644,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> UrlMapListHttpRequest: ...
         def list_next(
@@ -7729,7 +7690,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> ZoneListHttpRequest: ...
         def list_next(
@@ -7749,7 +7709,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> RegionListHttpRequest: ...
         def list_next(
@@ -7769,7 +7728,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> ReliabilityRisksListResponseHttpRequest: ...
         def list_next(
@@ -7811,7 +7769,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> ReservationBlocksListResponseHttpRequest: ...
         def list_next(
@@ -7862,6 +7819,16 @@ class ComputeResource(googleapiclient.discovery.Resource):
             reservationSlot: str,
             **kwargs: typing.Any,
         ) -> ReservationSlotsGetResponseHttpRequest: ...
+        def getHealth(
+            self,
+            *,
+            project: str,
+            zone: str,
+            parentName: str,
+            reservationSlot: str,
+            requestId: str | None = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
         def getVersion(
             self,
             *,
@@ -7883,7 +7850,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> ReservationSlotsListResponseHttpRequest: ...
         def list_next(
@@ -7951,7 +7917,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> ReservationSubBlocksListResponseHttpRequest: ...
         def list_next(
@@ -8012,7 +7977,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             serviceProjectNumber: str | None = ...,
             **kwargs: typing.Any,
         ) -> ReservationAggregatedListHttpRequest: ...
@@ -8060,7 +8024,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> ReservationListHttpRequest: ...
         def list_next(
@@ -8130,7 +8093,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             serviceProjectNumber: str | None = ...,
             **kwargs: typing.Any,
         ) -> ResourcePolicyAggregatedListHttpRequest: ...
@@ -8183,7 +8145,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> ResourcePolicyListHttpRequest: ...
         def list_next(
@@ -8250,7 +8211,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> RolloutPlansListResponseHttpRequest: ...
         def list_next(
@@ -8298,7 +8258,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> RolloutsListResponseHttpRequest: ...
         def list_next(
@@ -8336,7 +8295,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             serviceProjectNumber: str | None = ...,
             **kwargs: typing.Any,
         ) -> RouterAggregatedListHttpRequest: ...
@@ -8406,7 +8364,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             natName: str | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> VmEndpointNatMappingsListHttpRequest: ...
         def getNatMappingInfo_next(
@@ -8444,7 +8401,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> RouterListHttpRequest: ...
         def list_next(
@@ -8465,7 +8421,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             pageToken: str | None = ...,
             peer: str | None = ...,
             policyApplied: bool | None = ...,
-            returnPartialSuccess: bool | None = ...,
             routeType: typing.Literal["ADVERTISED", "LEARNED", "UNSPECIFIED_ROUTE_TYPE"]
             | None = ...,
             **kwargs: typing.Any,
@@ -8485,7 +8440,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> RoutersListNamedSetsHttpRequest: ...
         def listNamedSets_next(
@@ -8503,7 +8457,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> RoutersListRoutePoliciesHttpRequest: ...
         def listRoutePolicies_next(
@@ -8610,7 +8563,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> RouteListHttpRequest: ...
         def list_next(
@@ -8645,7 +8597,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             serviceProjectNumber: str | None = ...,
             **kwargs: typing.Any,
         ) -> SecurityPoliciesAggregatedListHttpRequest: ...
@@ -8690,7 +8641,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> SecurityPolicyListHttpRequest: ...
         def list_next(
@@ -8706,7 +8656,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> SecurityPoliciesListPreconfiguredExpressionSetsResponseHttpRequest: ...
         def patch(
@@ -8758,7 +8707,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             serviceProjectNumber: str | None = ...,
             **kwargs: typing.Any,
         ) -> ServiceAttachmentAggregatedListHttpRequest: ...
@@ -8812,7 +8760,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> ServiceAttachmentListHttpRequest: ...
         def list_next(
@@ -8901,7 +8848,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> SnapshotListHttpRequest: ...
         def list_next(
@@ -8954,7 +8900,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             serviceProjectNumber: str | None = ...,
             **kwargs: typing.Any,
         ) -> SslCertificateAggregatedListHttpRequest: ...
@@ -8990,7 +8935,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> SslCertificateListHttpRequest: ...
         def list_next(
@@ -9010,7 +8954,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             serviceProjectNumber: str | None = ...,
             **kwargs: typing.Any,
         ) -> SslPoliciesAggregatedListHttpRequest: ...
@@ -9046,7 +8989,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> SslPoliciesListHttpRequest: ...
         def list_next(
@@ -9062,7 +9004,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> SslPoliciesListAvailableFeaturesResponseHttpRequest: ...
         def patch(
@@ -9086,7 +9027,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             serviceProjectNumber: str | None = ...,
             **kwargs: typing.Any,
         ) -> StoragePoolTypeAggregatedListHttpRequest: ...
@@ -9107,7 +9047,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> StoragePoolTypeListHttpRequest: ...
         def list_next(
@@ -9127,7 +9066,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             serviceProjectNumber: str | None = ...,
             **kwargs: typing.Any,
         ) -> StoragePoolAggregatedListHttpRequest: ...
@@ -9175,7 +9113,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> StoragePoolListHttpRequest: ...
         def list_next(
@@ -9193,7 +9130,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> StoragePoolListDisksHttpRequest: ...
         def listDisks_next(
@@ -9242,7 +9178,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             serviceProjectNumber: str | None = ...,
             views: typing.Literal["DEFAULT", "WITH_UTILIZATION"]
             | _list[typing.Literal["DEFAULT", "WITH_UTILIZATION"]]
@@ -9311,7 +9246,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             views: typing.Literal["DEFAULT", "WITH_UTILIZATION"]
             | _list[typing.Literal["DEFAULT", "WITH_UTILIZATION"]]
             | None = ...,
@@ -9330,7 +9264,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             serviceProject: str | None = ...,
             **kwargs: typing.Any,
         ) -> UsableSubnetworksAggregatedListHttpRequest: ...
@@ -9408,7 +9341,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> TargetGrpcProxyListHttpRequest: ...
         def list_next(
@@ -9437,7 +9369,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             serviceProjectNumber: str | None = ...,
             **kwargs: typing.Any,
         ) -> TargetHttpProxyAggregatedListHttpRequest: ...
@@ -9473,7 +9404,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> TargetHttpProxyListHttpRequest: ...
         def list_next(
@@ -9511,7 +9441,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             serviceProjectNumber: str | None = ...,
             **kwargs: typing.Any,
         ) -> TargetHttpsProxyAggregatedListHttpRequest: ...
@@ -9547,7 +9476,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> TargetHttpsProxyListHttpRequest: ...
         def list_next(
@@ -9621,7 +9549,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             serviceProjectNumber: str | None = ...,
             **kwargs: typing.Any,
         ) -> TargetInstanceAggregatedListHttpRequest: ...
@@ -9660,7 +9587,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> TargetInstanceListHttpRequest: ...
         def list_next(
@@ -9719,7 +9645,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             serviceProjectNumber: str | None = ...,
             **kwargs: typing.Any,
         ) -> TargetPoolAggregatedListHttpRequest: ...
@@ -9767,7 +9692,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> TargetPoolListHttpRequest: ...
         def list_next(
@@ -9855,7 +9779,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> TargetSslProxyListHttpRequest: ...
         def list_next(
@@ -9928,7 +9851,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             serviceProjectNumber: str | None = ...,
             **kwargs: typing.Any,
         ) -> TargetTcpProxyAggregatedListHttpRequest: ...
@@ -9964,7 +9886,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> TargetTcpProxyListHttpRequest: ...
         def list_next(
@@ -10010,7 +9931,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             serviceProjectNumber: str | None = ...,
             **kwargs: typing.Any,
         ) -> TargetVpnGatewayAggregatedListHttpRequest: ...
@@ -10054,7 +9974,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> TargetVpnGatewayListHttpRequest: ...
         def list_next(
@@ -10084,7 +10003,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             serviceProjectNumber: str | None = ...,
             **kwargs: typing.Any,
         ) -> UrlMapsAggregatedListHttpRequest: ...
@@ -10129,7 +10047,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> UrlMapListHttpRequest: ...
         def list_next(
@@ -10181,7 +10098,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             serviceProjectNumber: str | None = ...,
             **kwargs: typing.Any,
         ) -> VpnGatewayAggregatedListHttpRequest: ...
@@ -10223,7 +10139,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> VpnGatewayListHttpRequest: ...
         def list_next(
@@ -10262,7 +10177,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             serviceProjectNumber: str | None = ...,
             **kwargs: typing.Any,
         ) -> VpnTunnelAggregatedListHttpRequest: ...
@@ -10301,7 +10215,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> VpnTunnelListHttpRequest: ...
         def list_next(
@@ -10358,7 +10271,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> WireGroupListHttpRequest: ...
         def list_next(
@@ -10396,7 +10308,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> OperationListHttpRequest: ...
         def list_next(
@@ -10445,7 +10356,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> VmExtensionPolicyListHttpRequest: ...
         def list_next(
@@ -10477,7 +10387,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             maxResults: int | None = ...,
             orderBy: str | None = ...,
             pageToken: str | None = ...,
-            returnPartialSuccess: bool | None = ...,
             **kwargs: typing.Any,
         ) -> ZoneListHttpRequest: ...
         def list_next(
@@ -10512,6 +10421,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
     def futureReservations(self) -> FutureReservationsResource: ...
     def globalAddresses(self) -> GlobalAddressesResource: ...
     def globalForwardingRules(self) -> GlobalForwardingRulesResource: ...
+    def globalFrontendSettings(self) -> GlobalFrontendSettingsResource: ...
     def globalNetworkEndpointGroups(self) -> GlobalNetworkEndpointGroupsResource: ...
     def globalOperations(self) -> GlobalOperationsResource: ...
     def globalOrganizationOperations(self) -> GlobalOrganizationOperationsResource: ...
@@ -10524,6 +10434,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
     def httpHealthChecks(self) -> HttpHealthChecksResource: ...
     def httpsHealthChecks(self) -> HttpsHealthChecksResource: ...
     def imageFamilyViews(self) -> ImageFamilyViewsResource: ...
+    def imageViews(self) -> ImageViewsResource: ...
     def images(self) -> ImagesResource: ...
     def instanceGroupManagerResizeRequests(
         self,
@@ -10545,6 +10456,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
     def licenses(self) -> LicensesResource: ...
     def machineImages(self) -> MachineImagesResource: ...
     def machineTypes(self) -> MachineTypesResource: ...
+    def managedRulesets(self) -> ManagedRulesetsResource: ...
     def networkAttachments(self) -> NetworkAttachmentsResource: ...
     def networkEdgeSecurityServices(self) -> NetworkEdgeSecurityServicesResource: ...
     def networkEndpointGroups(self) -> NetworkEndpointGroupsResource: ...
@@ -10557,6 +10469,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
     def organizationSecurityPolicies(self) -> OrganizationSecurityPoliciesResource: ...
     def packetMirrorings(self) -> PacketMirroringsResource: ...
     def previewFeatures(self) -> PreviewFeaturesResource: ...
+    def projectViews(self) -> ProjectViewsResource: ...
     def projects(self) -> ProjectsResource: ...
     def publicAdvertisedPrefixes(self) -> PublicAdvertisedPrefixesResource: ...
     def publicDelegatedPrefixes(self) -> PublicDelegatedPrefixesResource: ...
@@ -10785,6 +10698,22 @@ class CalendarModeAdviceResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> CalendarModeAdviceResponse: ...
+
+@typing.type_check_only
+class CapacityAdviceResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> CapacityAdviceResponse: ...
+
+@typing.type_check_only
+class CapacityHistoryResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> CapacityHistoryResponse: ...
 
 @typing.type_check_only
 class CommitmentHttpRequest(googleapiclient.http.HttpRequest):
@@ -11039,6 +10968,22 @@ class FutureReservationsListResponseHttpRequest(googleapiclient.http.HttpRequest
     ) -> FutureReservationsListResponse: ...
 
 @typing.type_check_only
+class GlobalFrontendSettingsHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GlobalFrontendSettings: ...
+
+@typing.type_check_only
+class GlobalFrontendSettingsPatchResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GlobalFrontendSettingsPatchResponse: ...
+
+@typing.type_check_only
 class GlobalVmExtensionPolicyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -11239,6 +11184,22 @@ class ImageListHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ImageList: ...
+
+@typing.type_check_only
+class ImageViewHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ImageView: ...
+
+@typing.type_check_only
+class ImageViewsListResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ImageViewsListResponse: ...
 
 @typing.type_check_only
 class InstanceHttpRequest(googleapiclient.http.HttpRequest):
@@ -11665,6 +11626,22 @@ class MachineTypeListHttpRequest(googleapiclient.http.HttpRequest):
     ) -> MachineTypeList: ...
 
 @typing.type_check_only
+class ManagedRulesetHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ManagedRuleset: ...
+
+@typing.type_check_only
+class ManagedRulesetListHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ManagedRulesetList: ...
+
+@typing.type_check_only
 class NatIpInfoResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -11991,6 +11968,14 @@ class ProjectHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Project: ...
+
+@typing.type_check_only
+class ProjectViewHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ProjectView: ...
 
 @typing.type_check_only
 class ProjectsGetXpnResourcesHttpRequest(googleapiclient.http.HttpRequest):

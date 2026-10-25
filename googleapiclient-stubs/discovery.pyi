@@ -30,6 +30,7 @@ import googleapiclient._apis.adsensehost.v4_1
 import googleapiclient._apis.adsenseplatform.v1
 import googleapiclient._apis.adsenseplatform.v1alpha
 import googleapiclient._apis.advisorynotifications.v1
+import googleapiclient._apis.agenciesandbrands.v1
 import googleapiclient._apis.agentidentity.v1
 import googleapiclient._apis.agentidentity.v1alpha
 import googleapiclient._apis.agentidentity.v1beta
@@ -80,10 +81,12 @@ import googleapiclient._apis.artifactregistry.v1beta1
 import googleapiclient._apis.artifactregistry.v1beta2
 import googleapiclient._apis.assuredworkloads.v1
 import googleapiclient._apis.assuredworkloads.v1beta1
+import googleapiclient._apis.auditmanager.v1
 import googleapiclient._apis.authorizedbuyersmarketplace.v1
 import googleapiclient._apis.authorizedbuyersmarketplace.v1alpha
 import googleapiclient._apis.authorizedbuyersmarketplace.v1beta
 import googleapiclient._apis.backupdr.v1
+import googleapiclient._apis.backupdr.v1beta
 import googleapiclient._apis.baremetalsolution.v1
 import googleapiclient._apis.baremetalsolution.v1alpha1
 import googleapiclient._apis.baremetalsolution.v2
@@ -179,6 +182,7 @@ import googleapiclient._apis.composer.v1
 import googleapiclient._apis.composer.v1beta1
 import googleapiclient._apis.compute.alpha
 import googleapiclient._apis.compute.beta
+import googleapiclient._apis.compute.preview
 import googleapiclient._apis.compute.v1
 import googleapiclient._apis.config.v1
 import googleapiclient._apis.connectors.v1
@@ -194,6 +198,7 @@ import googleapiclient._apis.content.v2
 import googleapiclient._apis.content.v2_1
 import googleapiclient._apis.contentwarehouse.v1
 import googleapiclient._apis.css.v1
+import googleapiclient._apis.curationpartners.v1
 import googleapiclient._apis.customsearch.v1
 import googleapiclient._apis.databasecenter.v1beta
 import googleapiclient._apis.datacatalog.v1
@@ -225,6 +230,7 @@ import googleapiclient._apis.deploymentmanager.v2beta
 import googleapiclient._apis.developerconnect.v1
 import googleapiclient._apis.developerknowledge.v1
 import googleapiclient._apis.developerknowledge.v1alpha
+import googleapiclient._apis.devicerun.v1alpha
 import googleapiclient._apis.dfareporting.v3_3
 import googleapiclient._apis.dfareporting.v3_4
 import googleapiclient._apis.dfareporting.v3_5
@@ -323,6 +329,7 @@ import googleapiclient._apis.gmailpostmastertools.v2
 import googleapiclient._apis.groupsmigration.v1
 import googleapiclient._apis.groupssettings.v1
 import googleapiclient._apis.health.v4
+import googleapiclient._apis.health.v4beta
 import googleapiclient._apis.healthcare.v1
 import googleapiclient._apis.healthcare.v1beta1
 import googleapiclient._apis.homegraph.v1
@@ -342,6 +349,7 @@ import googleapiclient._apis.ids.v1
 import googleapiclient._apis.indexing.v3
 import googleapiclient._apis.integrations.v1
 import googleapiclient._apis.integrations.v1alpha
+import googleapiclient._apis.integrations.v2
 import googleapiclient._apis.jobs.v2
 import googleapiclient._apis.jobs.v3
 import googleapiclient._apis.jobs.v3p1beta1
@@ -1111,6 +1119,26 @@ def build(
     num_retries: int = 1,
     static_discovery: bool | None = None,
 ) -> googleapiclient._apis.advisorynotifications.v1.AdvisorynotificationsResource: ...
+@overload
+def build(
+    serviceName: Literal["agenciesandbrands"],
+    version: Literal["v1"],
+    http: httplib2.Http | HttpMock | None = None,
+    discoveryServiceUrl: str | None = None,
+    developerKey: str | None = None,
+    model: Model | None = None,
+    requestBuilder: _RequestBuilder = HttpRequest,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
+    cache_discovery: bool = True,
+    cache: Cache | None = None,
+    client_options: dict[str, Any] | ClientOptions | None = None,
+    adc_cert_path: str | None = None,
+    adc_key_path: str | None = None,
+    num_retries: int = 1,
+    static_discovery: bool | None = None,
+) -> googleapiclient._apis.agenciesandbrands.v1.AgenciesAndBrandsResource: ...
 @overload
 def build(
     serviceName: Literal["agentidentity"],
@@ -2117,6 +2145,26 @@ def build(
 ) -> googleapiclient._apis.assuredworkloads.v1beta1.AssuredworkloadsResource: ...
 @overload
 def build(
+    serviceName: Literal["auditmanager"],
+    version: Literal["v1"],
+    http: httplib2.Http | HttpMock | None = None,
+    discoveryServiceUrl: str | None = None,
+    developerKey: str | None = None,
+    model: Model | None = None,
+    requestBuilder: _RequestBuilder = HttpRequest,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
+    cache_discovery: bool = True,
+    cache: Cache | None = None,
+    client_options: dict[str, Any] | ClientOptions | None = None,
+    adc_cert_path: str | None = None,
+    adc_key_path: str | None = None,
+    num_retries: int = 1,
+    static_discovery: bool | None = None,
+) -> googleapiclient._apis.auditmanager.v1.CloudAuditManagerResource: ...
+@overload
+def build(
     serviceName: Literal["authorizedbuyersmarketplace"],
     version: Literal["v1"],
     http: httplib2.Http | HttpMock | None = None,
@@ -2195,6 +2243,26 @@ def build(
     num_retries: int = 1,
     static_discovery: bool | None = None,
 ) -> googleapiclient._apis.backupdr.v1.BackupdrResource: ...
+@overload
+def build(
+    serviceName: Literal["backupdr"],
+    version: Literal["v1beta"],
+    http: httplib2.Http | HttpMock | None = None,
+    discoveryServiceUrl: str | None = None,
+    developerKey: str | None = None,
+    model: Model | None = None,
+    requestBuilder: _RequestBuilder = HttpRequest,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
+    cache_discovery: bool = True,
+    cache: Cache | None = None,
+    client_options: dict[str, Any] | ClientOptions | None = None,
+    adc_cert_path: str | None = None,
+    adc_key_path: str | None = None,
+    num_retries: int = 1,
+    static_discovery: bool | None = None,
+) -> googleapiclient._apis.backupdr.v1beta.BackupdrResource: ...
 @overload
 def build(
     serviceName: Literal["baremetalsolution"],
@@ -4106,6 +4174,26 @@ def build(
 @overload
 def build(
     serviceName: Literal["compute"],
+    version: Literal["preview"],
+    http: httplib2.Http | HttpMock | None = None,
+    discoveryServiceUrl: str | None = None,
+    developerKey: str | None = None,
+    model: Model | None = None,
+    requestBuilder: _RequestBuilder = HttpRequest,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
+    cache_discovery: bool = True,
+    cache: Cache | None = None,
+    client_options: dict[str, Any] | ClientOptions | None = None,
+    adc_cert_path: str | None = None,
+    adc_key_path: str | None = None,
+    num_retries: int = 1,
+    static_discovery: bool | None = None,
+) -> googleapiclient._apis.compute.preview.ComputeResource: ...
+@overload
+def build(
+    serviceName: Literal["compute"],
     version: Literal["v1"],
     http: httplib2.Http | HttpMock | None = None,
     discoveryServiceUrl: str | None = None,
@@ -4403,6 +4491,26 @@ def build(
     num_retries: int = 1,
     static_discovery: bool | None = None,
 ) -> googleapiclient._apis.css.v1.CssResource: ...
+@overload
+def build(
+    serviceName: Literal["curationpartners"],
+    version: Literal["v1"],
+    http: httplib2.Http | HttpMock | None = None,
+    discoveryServiceUrl: str | None = None,
+    developerKey: str | None = None,
+    model: Model | None = None,
+    requestBuilder: _RequestBuilder = HttpRequest,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
+    cache_discovery: bool = True,
+    cache: Cache | None = None,
+    client_options: dict[str, Any] | ClientOptions | None = None,
+    adc_cert_path: str | None = None,
+    adc_key_path: str | None = None,
+    num_retries: int = 1,
+    static_discovery: bool | None = None,
+) -> googleapiclient._apis.curationpartners.v1.CurationPartnersResource: ...
 @overload
 def build(
     serviceName: Literal["customsearch"],
@@ -5023,6 +5131,26 @@ def build(
     num_retries: int = 1,
     static_discovery: bool | None = None,
 ) -> googleapiclient._apis.developerknowledge.v1alpha.DeveloperKnowledgeResource: ...
+@overload
+def build(
+    serviceName: Literal["devicerun"],
+    version: Literal["v1alpha"],
+    http: httplib2.Http | HttpMock | None = None,
+    discoveryServiceUrl: str | None = None,
+    developerKey: str | None = None,
+    model: Model | None = None,
+    requestBuilder: _RequestBuilder = HttpRequest,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
+    cache_discovery: bool = True,
+    cache: Cache | None = None,
+    client_options: dict[str, Any] | ClientOptions | None = None,
+    adc_cert_path: str | None = None,
+    adc_key_path: str | None = None,
+    num_retries: int = 1,
+    static_discovery: bool | None = None,
+) -> googleapiclient._apis.devicerun.v1alpha.DeviceRunResource: ...
 @overload
 def build(
     serviceName: Literal["dfareporting"],
@@ -6529,6 +6657,26 @@ def build(
 ): ...
 @overload
 def build(
+    serviceName: Literal["gamesManagement"],
+    version: Literal["v1management"],
+    http: httplib2.Http | HttpMock | None = None,
+    discoveryServiceUrl: str | None = None,
+    developerKey: str | None = None,
+    model: Model | None = None,
+    requestBuilder: _RequestBuilder = HttpRequest,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
+    cache_discovery: bool = True,
+    cache: Cache | None = None,
+    client_options: dict[str, Any] | ClientOptions | None = None,
+    adc_cert_path: str | None = None,
+    adc_key_path: str | None = None,
+    num_retries: int = 1,
+    static_discovery: bool | None = None,
+) -> googleapiclient._apis.gamesManagement.v1management.GamesManagementResource: ...
+@overload
+def build(
     serviceName: Literal["gameservices"],
     version: Literal["v1"],
     http: httplib2.Http | HttpMock | None = None,
@@ -6567,26 +6715,6 @@ def build(
     num_retries: int = 1,
     static_discovery: bool | None = None,
 ) -> googleapiclient._apis.gameservices.v1beta.GameServicesResource: ...
-@overload
-def build(
-    serviceName: Literal["gamesManagement"],
-    version: Literal["v1management"],
-    http: httplib2.Http | HttpMock | None = None,
-    discoveryServiceUrl: str | None = None,
-    developerKey: str | None = None,
-    model: Model | None = None,
-    requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: oauth2client.Credentials
-    | google.auth.credentials.Credentials
-    | None = None,
-    cache_discovery: bool = True,
-    cache: Cache | None = None,
-    client_options: dict[str, Any] | ClientOptions | None = None,
-    adc_cert_path: str | None = None,
-    adc_key_path: str | None = None,
-    num_retries: int = 1,
-    static_discovery: bool | None = None,
-) -> googleapiclient._apis.gamesManagement.v1management.GamesManagementResource: ...
 @overload
 def build(
     serviceName: Literal["genomics"],
@@ -6989,6 +7117,26 @@ def build(
 ) -> googleapiclient._apis.health.v4.GoogleHealthAPIResource: ...
 @overload
 def build(
+    serviceName: Literal["health"],
+    version: Literal["v4beta"],
+    http: httplib2.Http | HttpMock | None = None,
+    discoveryServiceUrl: str | None = None,
+    developerKey: str | None = None,
+    model: Model | None = None,
+    requestBuilder: _RequestBuilder = HttpRequest,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
+    cache_discovery: bool = True,
+    cache: Cache | None = None,
+    client_options: dict[str, Any] | ClientOptions | None = None,
+    adc_cert_path: str | None = None,
+    adc_key_path: str | None = None,
+    num_retries: int = 1,
+    static_discovery: bool | None = None,
+) -> googleapiclient._apis.health.v4beta.GoogleHealthAPIResource: ...
+@overload
+def build(
     serviceName: Literal["healthcare"],
     version: Literal["v1"],
     http: httplib2.Http | HttpMock | None = None,
@@ -7367,6 +7515,26 @@ def build(
     num_retries: int = 1,
     static_discovery: bool | None = None,
 ) -> googleapiclient._apis.integrations.v1alpha.IntegrationsResource: ...
+@overload
+def build(
+    serviceName: Literal["integrations"],
+    version: Literal["v2"],
+    http: httplib2.Http | HttpMock | None = None,
+    discoveryServiceUrl: str | None = None,
+    developerKey: str | None = None,
+    model: Model | None = None,
+    requestBuilder: _RequestBuilder = HttpRequest,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
+    cache_discovery: bool = True,
+    cache: Cache | None = None,
+    client_options: dict[str, Any] | ClientOptions | None = None,
+    adc_cert_path: str | None = None,
+    adc_key_path: str | None = None,
+    num_retries: int = 1,
+    static_discovery: bool | None = None,
+) -> googleapiclient._apis.integrations.v2.IntegrationsResource: ...
 @overload
 def build(
     serviceName: Literal["jobs"],

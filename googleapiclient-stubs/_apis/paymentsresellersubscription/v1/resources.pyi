@@ -69,6 +69,7 @@ class PaymentsResellerSubscriptionResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: SubscriptionLineItem,
+                    requestId: str | None = ...,
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> SubscriptionLineItemHttpRequest: ...

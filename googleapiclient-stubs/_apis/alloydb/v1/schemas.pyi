@@ -3,12 +3,13 @@ import typing
 _list = list
 
 @typing.type_check_only
-class AlloydbClhErrorsAlloyDbInternalDebugInfo(typing.TypedDict, total=False):
-    originalError: str
-
-@typing.type_check_only
 class AuthorizedNetwork(typing.TypedDict, total=False):
     cidrRange: str
+
+@typing.type_check_only
+class AutoScalingConfig(typing.TypedDict, total=False):
+    policy: Policy
+    schedules: _list[Schedule]
 
 @typing.type_check_only
 class AutomatedBackupPolicy(typing.TypedDict, total=False):
@@ -259,6 +260,10 @@ class ContinuousBackupSource(typing.TypedDict, total=False):
     pointInTime: str
 
 @typing.type_check_only
+class CpuUtilization(typing.TypedDict, total=False):
+    utilizationTarget: float
+
+@typing.type_check_only
 class CsvExportOptions(typing.TypedDict, total=False):
     escapeCharacter: str
     fieldDelimiter: str
@@ -282,6 +287,18 @@ class DenyMaintenancePeriod(typing.TypedDict, total=False):
     endDate: GoogleTypeDate
     startDate: GoogleTypeDate
     time: GoogleTypeTimeOfDay
+
+@typing.type_check_only
+class DnsAutomationInfo(typing.TypedDict, total=False):
+    fullyQualifiedDomainName: str
+    state: typing.Literal[
+        "STATE_UNSPECIFIED",
+        "PENDING_CREATE",
+        "ACTIVE",
+        "PENDING_DELETE",
+        "CREATE_FAILED",
+        "DELETE_FAILED",
+    ]
 
 @typing.type_check_only
 class Empty(typing.TypedDict, total=False): ...
@@ -390,10 +407,13 @@ class Instance(typing.TypedDict, total=False):
     networkConfig: InstanceNetworkConfig
     nodes: _list[Node]
     observabilityConfig: ObservabilityInstanceConfig
+    observabilityInstanceInfo: ObservabilityInstanceInfo
     outboundPublicIpAddresses: _list[str]
     pscInstanceConfig: PscInstanceConfig
+    pscInstanceInfo: PscInstanceInfo
     publicIpAddress: str
     queryInsightsConfig: QueryInsightsInstanceConfig
+    queryInsightsInfo: QueryInsightsInstanceInfo
     readPoolConfig: ReadPoolConfig
     reconciling: bool
     satisfiesPzs: bool
@@ -539,6 +559,17 @@ class ObservabilityInstanceConfig(typing.TypedDict, total=False):
     trackWaitEvents: bool
 
 @typing.type_check_only
+class ObservabilityInstanceInfo(typing.TypedDict, total=False):
+    enabled: bool
+    maxQueryStringLength: int
+    preserveComments: bool
+    queryPlansPerMinute: int
+    recordApplicationTags: bool
+    trackActiveQueries: bool
+    trackWaitEventTypes: bool
+    trackWaitEvents: bool
+
+@typing.type_check_only
 class Operation(typing.TypedDict, total=False):
     done: bool
     error: Status
@@ -558,6 +589,13 @@ class OperationMetadata(typing.TypedDict, total=False):
     verb: str
 
 @typing.type_check_only
+class Policy(typing.TypedDict, total=False):
+    coolDownPeriodSec: str
+    cpuUtilization: CpuUtilization
+    enabled: bool
+    maxNodeCount: str
+
+@typing.type_check_only
 class PrimaryConfig(typing.TypedDict, total=False):
     secondaryClusterNames: _list[str]
 
@@ -572,7 +610,10 @@ class PscAutoConnectionConfig(typing.TypedDict, total=False):
     consumerNetwork: str
     consumerNetworkStatus: str
     consumerProject: str
+    dnsAutomationInfos: _list[DnsAutomationInfo]
     ipAddress: str
+    serviceConnectionPolicy: str
+    serviceConnectionPolicyCreationState: str
     status: str
 
 @typing.type_check_only
@@ -583,10 +624,25 @@ class PscConfig(typing.TypedDict, total=False):
 @typing.type_check_only
 class PscInstanceConfig(typing.TypedDict, total=False):
     allowedConsumerProjects: _list[str]
+    pscAutoConnectionPolicyState: typing.Literal[
+        "PSC_AUTO_CONNECTION_POLICY_STATE_UNSPECIFIED", "ENABLED", "DISABLED"
+    ]
     pscAutoConnections: _list[PscAutoConnectionConfig]
+    pscAutoDnsState: typing.Literal[
+        "PSC_AUTO_DNS_STATE_UNSPECIFIED",
+        "PSC_AUTO_DNS_STATE_ENABLED",
+        "PSC_AUTO_DNS_STATE_DISABLED",
+    ]
     pscDnsName: str
     pscInterfaceConfigs: _list[PscInterfaceConfig]
     serviceAttachmentLink: str
+
+@typing.type_check_only
+class PscInstanceInfo(typing.TypedDict, total=False):
+    effectivePscAutoConnectionPolicy: bool
+    effectivePscAutoDnsEnabled: bool
+    pscAutoDnsNames: _list[str]
+    serviceConnectionPolicy: str
 
 @typing.type_check_only
 class PscInterfaceConfig(typing.TypedDict, total=False):
@@ -609,7 +665,16 @@ class QueryInsightsInstanceConfig(typing.TypedDict, total=False):
     recordClientAddress: bool
 
 @typing.type_check_only
+class QueryInsightsInstanceInfo(typing.TypedDict, total=False):
+    enabled: bool
+    queryPlansPerMinute: int
+    queryStringLength: int
+    recordApplicationTags: bool
+    recordClientAddress: bool
+
+@typing.type_check_only
 class ReadPoolConfig(typing.TypedDict, total=False):
+    autoScalingConfig: AutoScalingConfig
     nodeCount: int
 
 @typing.type_check_only
@@ -638,6 +703,16 @@ class RestoreFromCloudSQLRequest(typing.TypedDict, total=False):
     cloudsqlBackupRunSource: CloudSQLBackupRunSource
     cluster: Cluster
     clusterId: str
+
+@typing.type_check_only
+class Schedule(typing.TypedDict, total=False):
+    cronExpression: str
+    description: str
+    disabled: bool
+    durationSec: str
+    minNodeCount: str
+    name: str
+    timeZone: str
 
 @typing.type_check_only
 class SecondaryConfig(typing.TypedDict, total=False):
@@ -1594,7 +1669,12 @@ class User(typing.TypedDict, total=False):
     name: str
     password: str
     userType: typing.Literal[
-        "USER_TYPE_UNSPECIFIED", "ALLOYDB_BUILT_IN", "ALLOYDB_IAM_USER"
+        "USER_TYPE_UNSPECIFIED",
+        "ALLOYDB_BUILT_IN",
+        "ALLOYDB_IAM_USER",
+        "ALLOYDB_IAM_GROUP",
+        "ALLOYDB_IAM_GROUP_USER",
+        "ALLOYDB_IAM_GROUP_SERVICE_ACCOUNT",
     ]
 
 @typing.type_check_only

@@ -41,7 +41,9 @@ class AuthorizationPolicy(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class AuthzPolicy(typing.TypedDict, total=False):
-    action: typing.Literal["AUTHZ_ACTION_UNSPECIFIED", "ALLOW", "DENY", "CUSTOM"]
+    action: typing.Literal[
+        "AUTHZ_ACTION_UNSPECIFIED", "ALLOW", "DENY", "CUSTOM", "DENY_BY_DEFAULT"
+    ]
     createTime: str
     customProvider: AuthzPolicyCustomProvider
     description: str
@@ -249,6 +251,7 @@ class FirewallEndpoint(typing.TypedDict, total=False):
     createTime: str
     description: str
     endpointSettings: FirewallEndpointEndpointSettings
+    explicitPrivateServiceConnectAttachment: str
     labels: dict[str, typing.Any]
     name: str
     reconciling: bool
@@ -670,6 +673,12 @@ class ListOperationsResponse(typing.TypedDict, total=False):
     unreachable: _list[str]
 
 @typing.type_check_only
+class ListRateLimitPoliciesResponse(typing.TypedDict, total=False):
+    nextPageToken: str
+    rateLimitPolicies: _list[RateLimitPolicy]
+    unreachable: _list[str]
+
+@typing.type_check_only
 class ListSACAttachmentsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     sacAttachments: _list[SACAttachment]
@@ -730,6 +739,15 @@ class MTLSPolicy(typing.TypedDict, total=False):
         "CLIENT_VALIDATION_MODE_UNSPECIFIED",
         "ALLOW_INVALID_OR_MISSING_CLIENT_CERT",
         "REJECT_INVALID",
+        "ALLOW_VALIDATION_RELAXATIONS",
+    ]
+    clientValidationRelaxations: _list[
+        typing.Literal[
+            "CLIENT_VALIDATION_RELAXATION_UNSPECIFIED",
+            "ALLOW_MISSING_EKU",
+            "ALLOW_SHA1_HASHING",
+            "ALLOW_EXPIRED_LEAF_CERTIFICATE",
+        ]
     ]
     clientValidationTrustConfig: str
 
@@ -874,6 +892,168 @@ class OperationMetadata(typing.TypedDict, total=False):
     statusMessage: str
     target: str
     verb: str
+
+@typing.type_check_only
+class RateLimitPolicy(typing.TypedDict, total=False):
+    createTime: str
+    description: str
+    httpRules: _list[RateLimitPolicyRateLimitRule]
+    labels: dict[str, typing.Any]
+    name: str
+    rateLimitBuckets: _list[RateLimitPolicyRateLimitBucket]
+    targets: _list[RateLimitPolicyTarget]
+    updateTime: str
+
+@typing.type_check_only
+class RateLimitPolicyRateLimitBucket(typing.TypedDict, total=False):
+    defaultLimit: RateLimitPolicyRateLimitBucketLimit
+    dryRun: bool
+    keys: _list[RateLimitPolicyRateLimitBucketKey]
+    name: str
+    userOverrides: _list[RateLimitPolicyRateLimitBucketUserOverride]
+
+@typing.type_check_only
+class RateLimitPolicyRateLimitBucketCountLimit(typing.TypedDict, total=False):
+    count: str
+    interval: str
+    intervalUnit: typing.Literal[
+        "INTERVAL_UNIT_UNSPECIFIED", "SECONDS", "MINUTES", "HOURS", "DAYS"
+    ]
+
+@typing.type_check_only
+class RateLimitPolicyRateLimitBucketKey(typing.TypedDict, total=False):
+    header: str
+    keyType: typing.Literal[
+        "KEY_TYPE_UNSPECIFIED",
+        "ALL",
+        "SOURCE_IP",
+        "HTTP_HEADER",
+        "HTTP_PATH",
+        "PRINCIPAL",
+        "MCP_TOOL",
+    ]
+    principalType: typing.Literal[
+        "PRINCIPAL_TYPE_UNSPECIFIED", "CLIENT_CERT_COMMON_NAME"
+    ]
+
+@typing.type_check_only
+class RateLimitPolicyRateLimitBucketLimit(typing.TypedDict, total=False):
+    countLimit: RateLimitPolicyRateLimitBucketCountLimit
+
+@typing.type_check_only
+class RateLimitPolicyRateLimitBucketUserOverride(typing.TypedDict, total=False):
+    limit: RateLimitPolicyRateLimitBucketLimit
+    overrideKey: RateLimitPolicyRateLimitBucketUserOverrideOverrideKey
+
+@typing.type_check_only
+class RateLimitPolicyRateLimitBucketUserOverrideOverrideKey(
+    typing.TypedDict, total=False
+):
+    httpHeaders: _list[RateLimitPolicyRateLimitBucketUserOverrideOverrideKeyHttpHeader]
+    httpPath: str
+    mcpTool: str
+    principals: _list[RateLimitPolicyRateLimitBucketUserOverrideOverrideKeyPrincipal]
+    sourceIp: str
+
+@typing.type_check_only
+class RateLimitPolicyRateLimitBucketUserOverrideOverrideKeyHttpHeader(
+    typing.TypedDict, total=False
+):
+    header: str
+    value: str
+
+@typing.type_check_only
+class RateLimitPolicyRateLimitBucketUserOverrideOverrideKeyPrincipal(
+    typing.TypedDict, total=False
+):
+    principal: str
+    principalType: typing.Literal[
+        "PRINCIPAL_TYPE_UNSPECIFIED", "CLIENT_CERT_COMMON_NAME"
+    ]
+
+AlternativeRateLimitPolicyRateLimitRule = typing.TypedDict(
+    "AlternativeRateLimitPolicyRateLimitRule",
+    {
+        "from": RateLimitPolicyRateLimitRuleFrom,
+        "rateLimitActions": _list[RateLimitPolicyRateLimitRuleRateLimitAction],
+        "to": RateLimitPolicyRateLimitRuleTo,
+    },
+    total=False,
+)
+
+@typing.type_check_only
+class RateLimitPolicyRateLimitRule(AlternativeRateLimitPolicyRateLimitRule): ...
+
+@typing.type_check_only
+class RateLimitPolicyRateLimitRuleFrom(typing.TypedDict, total=False):
+    notSource: RateLimitPolicyRateLimitRuleFromSource
+    source: RateLimitPolicyRateLimitRuleFromSource
+
+@typing.type_check_only
+class RateLimitPolicyRateLimitRuleFromSource(typing.TypedDict, total=False):
+    principals: _list[RateLimitPolicyRateLimitRulePrincipal]
+
+@typing.type_check_only
+class RateLimitPolicyRateLimitRuleHeaderMatch(typing.TypedDict, total=False):
+    name: str
+    value: RateLimitPolicyRateLimitRuleStringMatch
+
+@typing.type_check_only
+class RateLimitPolicyRateLimitRulePrincipal(typing.TypedDict, total=False):
+    principal: RateLimitPolicyRateLimitRuleStringMatch
+    principalSelector: typing.Literal[
+        "PRINCIPAL_SELECTOR_UNSPECIFIED",
+        "CLIENT_CERT_URI_SAN",
+        "CLIENT_CERT_DNS_NAME_SAN",
+        "CLIENT_CERT_COMMON_NAME",
+    ]
+
+@typing.type_check_only
+class RateLimitPolicyRateLimitRuleRateLimitAction(typing.TypedDict, total=False):
+    rateLimitBucket: str
+
+@typing.type_check_only
+class RateLimitPolicyRateLimitRuleStringMatch(typing.TypedDict, total=False):
+    contains: str
+    exact: str
+    ignoreCase: bool
+    prefix: str
+    suffix: str
+
+@typing.type_check_only
+class RateLimitPolicyRateLimitRuleTo(typing.TypedDict, total=False):
+    destination: RateLimitPolicyRateLimitRuleToDestination
+    notDestination: RateLimitPolicyRateLimitRuleToDestination
+
+@typing.type_check_only
+class RateLimitPolicyRateLimitRuleToDestination(typing.TypedDict, total=False):
+    headerSet: RateLimitPolicyRateLimitRuleToDestinationHeaderSet
+    hosts: _list[RateLimitPolicyRateLimitRuleStringMatch]
+    mcp: RateLimitPolicyRateLimitRuleToDestinationMCP
+    methods: _list[str]
+    paths: _list[RateLimitPolicyRateLimitRuleStringMatch]
+
+@typing.type_check_only
+class RateLimitPolicyRateLimitRuleToDestinationHeaderSet(typing.TypedDict, total=False):
+    headers: _list[RateLimitPolicyRateLimitRuleHeaderMatch]
+
+@typing.type_check_only
+class RateLimitPolicyRateLimitRuleToDestinationMCP(typing.TypedDict, total=False):
+    baseProtocolMethodsOption: typing.Literal[
+        "BASE_PROTOCOL_METHODS_OPTION_UNSPECIFIED",
+        "SKIP_BASE_PROTOCOL_METHODS",
+        "MATCH_BASE_PROTOCOL_METHODS",
+    ]
+    methods: _list[RateLimitPolicyRateLimitRuleToDestinationMCPMethod]
+
+@typing.type_check_only
+class RateLimitPolicyRateLimitRuleToDestinationMCPMethod(typing.TypedDict, total=False):
+    name: str
+    params: _list[RateLimitPolicyRateLimitRuleStringMatch]
+
+@typing.type_check_only
+class RateLimitPolicyTarget(typing.TypedDict, total=False):
+    resource: str
 
 @typing.type_check_only
 class RemoveAddressGroupItemsRequest(typing.TypedDict, total=False):
@@ -1036,6 +1216,11 @@ class ThreatPreventionProfile(typing.TypedDict, total=False):
 @typing.type_check_only
 class TlsInspectionPolicy(typing.TypedDict, total=False):
     caPool: str
+    certificateIssuanceMode: typing.Literal[
+        "CERTIFICATE_ISSUANCE_MODE_UNSPECIFIED",
+        "DIRECT_LEAF_PROVISIONING",
+        "LOCAL_INTERMEDIATE_CA_SIGNING",
+    ]
     createTime: str
     customTlsFeatures: _list[str]
     description: str

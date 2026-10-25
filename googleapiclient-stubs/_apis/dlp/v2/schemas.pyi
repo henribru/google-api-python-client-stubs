@@ -491,7 +491,6 @@ class GooglePrivacyDlpV2ContentPolicy(typing.TypedDict, total=False):
     failedToScanSupportedFileType: GooglePrivacyDlpV2PolicyAction
     inputTooLarge: GooglePrivacyDlpV2PolicyAction
     inspectConfig: GooglePrivacyDlpV2InspectConfig
-    inspectTemplate: GooglePrivacyDlpV2InspectTemplate
     loggingConfigs: _list[GooglePrivacyDlpV2LoggingConfig]
     name: str
     rules: _list[GooglePrivacyDlpV2PolicyRule]
@@ -510,6 +509,7 @@ class GooglePrivacyDlpV2ConversationLocation(typing.TypedDict, total=False):
 @typing.type_check_only
 class GooglePrivacyDlpV2ConversationMessage(typing.TypedDict, total=False):
     content: str
+    messageParts: _list[GooglePrivacyDlpV2MessagePart]
     messageType: typing.Literal["MESSAGE_TYPE_UNSPECIFIED", "CONTENT", "CONTEXT"]
     participantId: str
 
@@ -1899,6 +1899,10 @@ class GooglePrivacyDlpV2LoggingConfig(typing.TypedDict, total=False):
 class GooglePrivacyDlpV2Manual(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
+class GooglePrivacyDlpV2MessagePart(typing.TypedDict, total=False):
+    text: str
+
+@typing.type_check_only
 class GooglePrivacyDlpV2MetadataKeyValueExpression(typing.TypedDict, total=False):
     keyRegex: str
     valueRegex: str
@@ -2016,9 +2020,6 @@ class GooglePrivacyDlpV2PolicyCondition(typing.TypedDict, total=False):
 class GooglePrivacyDlpV2PolicyRule(typing.TypedDict, total=False):
     action: GooglePrivacyDlpV2PolicyAction
     conditions: _list[GooglePrivacyDlpV2PolicyCondition]
-    returnVerdict: typing.Literal[
-        "CONTENT_POLICY_VERDICT_UNSPECIFIED", "ALLOW", "BLOCK"
-    ]
 
 @typing.type_check_only
 class GooglePrivacyDlpV2PrimitiveTransformation(typing.TypedDict, total=False):

@@ -128,6 +128,11 @@ class GoogleHealthAPIResource(googleapiclient.discovery.Resource):
                     body: DailyRollUpDataPointsRequest,
                     **kwargs: typing.Any,
                 ) -> DailyRollUpDataPointsResponseHttpRequest: ...
+                def dailyRollUp_next(
+                    self,
+                    previous_request: DailyRollUpDataPointsResponseHttpRequest,
+                    previous_response: DailyRollUpDataPointsResponse,
+                ) -> DailyRollUpDataPointsResponseHttpRequest | None: ...
                 def exportExerciseTcx(
                     self,
                     *,
@@ -149,6 +154,7 @@ class GoogleHealthAPIResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
+                    dataSourceFamily: str | None = ...,
                     filter: str | None = ...,
                     pageSize: int | None = ...,
                     pageToken: str | None = ...,

@@ -133,6 +133,7 @@ class BlobStorageSettings(typing.TypedDict, total=False):
 @typing.type_check_only
 class BulkDeleteResourcesRequest(typing.TypedDict, total=False):
     gcsDestination: GoogleCloudHealthcareV1beta1FhirGcsDestination
+    gcsSource: GoogleCloudHealthcareV1beta1FhirGcsSource
     type: str
     until: str
     validateOnly: bool
@@ -432,6 +433,17 @@ class EvaluateUserConsentsResponse(typing.TypedDict, total=False):
     results: _list[Result]
 
 @typing.type_check_only
+class ExecuteCohortRequest(typing.TypedDict, total=False):
+    _at: str
+    fhirpathQuery: FHIRPathQuery
+    gcsDestination: GoogleCloudHealthcareV1beta1FhirGcsDestination
+    validateOnly: bool
+
+@typing.type_check_only
+class ExecuteCohortResponse(typing.TypedDict, total=False):
+    fhirStore: str
+
+@typing.type_check_only
 class ExplainDataAccessConsentInfo(typing.TypedDict, total=False):
     cascadeOrigins: _list[str]
     consentResource: str
@@ -507,6 +519,16 @@ class Expr(typing.TypedDict, total=False):
     expression: str
     location: str
     title: str
+
+@typing.type_check_only
+class Expression(typing.TypedDict, total=False):
+    fhirpathExpression: str
+    label: str
+
+@typing.type_check_only
+class FHIRPathQuery(typing.TypedDict, total=False):
+    engineVersion: str
+    expressions: _list[Expression]
 
 @typing.type_check_only
 class Feature(typing.TypedDict, total=False):

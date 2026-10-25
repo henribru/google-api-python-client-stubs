@@ -28,6 +28,11 @@ class Browser(typing.TypedDict, total=False):
     displayVersion: str
 
 @typing.type_check_only
+class CustomAttribute(typing.TypedDict, total=False):
+    key: str
+    value: str
+
+@typing.type_check_only
 class DeleteUserCrashReportsResponse(typing.TypedDict, total=False):
     targetCompleteTime: str
 
@@ -126,11 +131,16 @@ class Frame(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class IntervalMetrics(typing.TypedDict, total=False):
+    crashFreeSessionsPercentage: float
+    crashFreeUsersPercentage: float
     endTime: str
     eventsCount: str
+    impactedSessionsCount: str
     impactedUsersCount: str
     sessionsCount: str
     startTime: str
+    totalSessionsCount: str
+    totalUsersCount: str
 
 @typing.type_check_only
 class Issue(typing.TypedDict, total=False):
@@ -232,6 +242,7 @@ class Report(typing.TypedDict, total=False):
 @typing.type_check_only
 class ReportGroup(typing.TypedDict, total=False):
     browser: Browser
+    customAttribute: CustomAttribute
     device: Device
     issue: Issue
     metrics: _list[IntervalMetrics]

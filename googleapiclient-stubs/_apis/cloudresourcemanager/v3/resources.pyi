@@ -44,6 +44,44 @@ class CloudResourceManagerResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
 
+        @typing.type_check_only
+        class CapabilityConfigsResource(googleapiclient.discovery.Resource):
+            def create(
+                self,
+                *,
+                parent: str,
+                body: CapabilityConfig,
+                capabilityConfigId: str | None = ...,
+                **kwargs: typing.Any,
+            ) -> OperationHttpRequest: ...
+            def delete(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> OperationHttpRequest: ...
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> CapabilityConfigHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
+                **kwargs: typing.Any,
+            ) -> ListCapabilityConfigsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListCapabilityConfigsResponseHttpRequest,
+                previous_response: ListCapabilityConfigsResponse,
+            ) -> ListCapabilityConfigsResponseHttpRequest | None: ...
+            def patch(
+                self,
+                *,
+                name: str,
+                body: CapabilityConfig,
+                updateMask: str | None = ...,
+                **kwargs: typing.Any,
+            ) -> OperationHttpRequest: ...
+
         def create(
             self, *, body: Folder, **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
@@ -106,6 +144,7 @@ class CloudResourceManagerResource(googleapiclient.discovery.Resource):
             self, *, name: str, body: UndeleteFolderRequest, **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
         def capabilities(self) -> CapabilitiesResource: ...
+        def capabilityConfigs(self) -> CapabilityConfigsResource: ...
 
     @typing.type_check_only
     class LiensResource(googleapiclient.discovery.Resource):
@@ -161,6 +200,44 @@ class CloudResourceManagerResource(googleapiclient.discovery.Resource):
 
     @typing.type_check_only
     class OrganizationsResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
+        class CapabilityConfigsResource(googleapiclient.discovery.Resource):
+            def create(
+                self,
+                *,
+                parent: str,
+                body: CapabilityConfig,
+                capabilityConfigId: str | None = ...,
+                **kwargs: typing.Any,
+            ) -> OperationHttpRequest: ...
+            def delete(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> OperationHttpRequest: ...
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> CapabilityConfigHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
+                **kwargs: typing.Any,
+            ) -> ListCapabilityConfigsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListCapabilityConfigsResponseHttpRequest,
+                previous_response: ListCapabilityConfigsResponse,
+            ) -> ListCapabilityConfigsResponseHttpRequest | None: ...
+            def patch(
+                self,
+                *,
+                name: str,
+                body: CapabilityConfig,
+                updateMask: str | None = ...,
+                **kwargs: typing.Any,
+            ) -> OperationHttpRequest: ...
+
         def get(
             self, *, name: str, **kwargs: typing.Any
         ) -> OrganizationHttpRequest: ...
@@ -190,9 +267,48 @@ class CloudResourceManagerResource(googleapiclient.discovery.Resource):
             body: TestIamPermissionsRequest,
             **kwargs: typing.Any,
         ) -> TestIamPermissionsResponseHttpRequest: ...
+        def capabilityConfigs(self) -> CapabilityConfigsResource: ...
 
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
+        class CapabilityConfigsResource(googleapiclient.discovery.Resource):
+            def create(
+                self,
+                *,
+                parent: str,
+                body: CapabilityConfig,
+                capabilityConfigId: str | None = ...,
+                **kwargs: typing.Any,
+            ) -> OperationHttpRequest: ...
+            def delete(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> OperationHttpRequest: ...
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> CapabilityConfigHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
+                **kwargs: typing.Any,
+            ) -> ListCapabilityConfigsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListCapabilityConfigsResponseHttpRequest,
+                previous_response: ListCapabilityConfigsResponse,
+            ) -> ListCapabilityConfigsResponseHttpRequest | None: ...
+            def patch(
+                self,
+                *,
+                name: str,
+                body: CapabilityConfig,
+                updateMask: str | None = ...,
+                **kwargs: typing.Any,
+            ) -> OperationHttpRequest: ...
+
         def create(
             self, *, body: Project, **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
@@ -254,6 +370,7 @@ class CloudResourceManagerResource(googleapiclient.discovery.Resource):
         def undelete(
             self, *, name: str, body: UndeleteProjectRequest, **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
+        def capabilityConfigs(self) -> CapabilityConfigsResource: ...
 
     @typing.type_check_only
     class TagBindingsResource(googleapiclient.discovery.Resource):
@@ -463,6 +580,14 @@ class CapabilityHttpRequest(googleapiclient.http.HttpRequest):
     ) -> Capability: ...
 
 @typing.type_check_only
+class CapabilityConfigHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> CapabilityConfig: ...
+
+@typing.type_check_only
 class EffectiveTagBindingCollectionHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -501,6 +626,14 @@ class LienHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Lien: ...
+
+@typing.type_check_only
+class ListCapabilityConfigsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListCapabilityConfigsResponse: ...
 
 @typing.type_check_only
 class ListEffectiveTagsResponseHttpRequest(googleapiclient.http.HttpRequest):

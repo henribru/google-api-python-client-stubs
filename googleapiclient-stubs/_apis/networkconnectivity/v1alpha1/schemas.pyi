@@ -98,6 +98,7 @@ class InternalRange(typing.TypedDict, total=False):
     ]
     peering: typing.Literal["PEERING_UNSPECIFIED", "FOR_SELF", "FOR_PEER", "NOT_SHARED"]
     prefixLength: int
+    purpose: typing.Literal["PURPOSE_UNSPECIFIED", "VPC_SUBNET", "INTERNAL_ADDRESS"]
     rangeStatus: typing.Literal[
         "RANGE_STATUS_UNSPECIFIED", "ACTIVE", "OBSOLETE", "CREATING", "DELETING"
     ]

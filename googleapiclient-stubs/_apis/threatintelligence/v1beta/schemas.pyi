@@ -3,6 +3,11 @@ import typing
 _list = list
 
 @typing.type_check_only
+class AVDetections(typing.TypedDict, total=False):
+    detectedVendorCount: int
+    totalVendorCount: int
+
+@typing.type_check_only
 class Alert(typing.TypedDict, total=False):
     aiSummary: str
     audit: Audit
@@ -32,11 +37,26 @@ class Alert(typing.TypedDict, total=False):
         "BENIGN",
         "TRACKED_EXTERNALLY",
     ]
+    tags: _list[
+        typing.Literal[
+            "ALERT_TAG_UNSPECIFIED",
+            "ALERT_TAG_PASSWORD_LENGTH_UNDER_8",
+            "ALERT_TAG_PASSWORD_LENGTH_8_TO_11",
+            "ALERT_TAG_PASSWORD_LENGTH_12_PLUS",
+            "ALERT_TAG_PASSWORD_HAS_LOWERCASE",
+            "ALERT_TAG_PASSWORD_HAS_UPPERCASE",
+            "ALERT_TAG_PASSWORD_HAS_NUMBER",
+            "ALERT_TAG_PASSWORD_HAS_SPECIAL",
+            "ALERT_TAG_MATCH_LOGIN_EMAIL_DOMAIN",
+            "ALERT_TAG_MATCH_SERVICE_DOMAIN",
+        ]
+    ]
 
 @typing.type_check_only
 class AlertDetail(typing.TypedDict, total=False):
     dataLeak: DataLeakAlertDetail
     detailType: str
+    domainMonitoring: DomainMonitoringAlertDetail
     initialAccessBroker: InitialAccessBrokerAlertDetail
     insiderThreat: InsiderThreatAlertDetail
     targetTechnology: TargetTechnologyAlertDetail
@@ -84,6 +104,20 @@ class Audit(typing.TypedDict, total=False):
     updater: str
 
 @typing.type_check_only
+class CertificateDetails(typing.TypedDict, total=False):
+    issuer: str
+    subjectAlternativeNames: _list[str]
+
+@typing.type_check_only
+class CommunicationContext(typing.TypedDict, total=False):
+    channelDescription: str
+    channelName: str
+    channelPath: str
+    channelUrl: str
+    serviceName: str
+    threadId: str
+
+@typing.type_check_only
 class Configuration(typing.TypedDict, total=False):
     audit: Audit
     description: str
@@ -100,6 +134,8 @@ class ConfigurationDetail(typing.TypedDict, total=False):
     customThreatScenario: CustomThreatScenarioConfig
     customerProfile: CustomerProfileConfig
     detailType: str
+    domainConfiguration: DomainConfiguration
+    domainMonitoring: DomainMonitoringConfig
     technologyWatchlist: TechnologyWatchListConfig
 
 @typing.type_check_only
@@ -110,7 +146,22 @@ class ConfigurationRevision(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class CustomThreatScenarioConfig(typing.TypedDict, total=False):
+    compiledLuceneQuery: str
     documentCondition: str
+    documentQuery: DocumentQuery
+    legacyMonitorMetadata: LegacyMetadata
+    scenarioType: typing.Literal[
+        "CUSTOM_THREAT_SCENARIO_TYPE_UNSPECIFIED",
+        "DATA_LEAKS",
+        "DEEP_DARK_WEB",
+        "DOMAIN_PROTECTION",
+        "RANSOMWARE_THREATS",
+        "INITIAL_ACCESS_BROKER",
+        "NETBLOCKS_AND_DOMAIN_MENTIONS",
+        "SUPPLY_CHAIN_COMPROMISE",
+        "CARD_SHOPS",
+        "CUSTOM_MONITOR",
+    ]
 
 @typing.type_check_only
 class CustomerProfileCitation(typing.TypedDict, total=False):
@@ -143,6 +194,7 @@ class CustomerProfileConfig(typing.TypedDict, total=False):
     products: _list[CustomerProfileProduct]
     securityConsiderations: CustomerProfileSecurityConsiderations
     summary: CustomerProfileSummary
+    technologies: _list[CustomerProfileTechnology]
     technologyPresence: str
     webPresences: _list[CustomerProfileWebPresence]
 
@@ -200,6 +252,11 @@ class CustomerProfileSummary(typing.TypedDict, total=False):
     title: CustomerProfileCitedString
 
 @typing.type_check_only
+class CustomerProfileTechnology(typing.TypedDict, total=False):
+    citationIds: _list[str]
+    technology: str
+
+@typing.type_check_only
 class CustomerProfileWebPresence(typing.TypedDict, total=False):
     citationIds: _list[str]
     domain: str
@@ -207,15 +264,132 @@ class CustomerProfileWebPresence(typing.TypedDict, total=False):
 @typing.type_check_only
 class DataLeakAlertDetail(typing.TypedDict, total=False):
     discoveryDocumentIds: _list[str]
+    discoveryDocuments: _list[DiscoveryDocument]
     severity: str
 
 @typing.type_check_only
 class DataLeakFindingDetail(typing.TypedDict, total=False):
+    discoveryDocument: DiscoveryDocument
     documentId: str
     matchScore: float
     severity: typing.Literal[
         "SEVERITY_UNSPECIFIED", "LOW", "MEDIUM", "HIGH", "CRITICAL"
     ]
+
+@typing.type_check_only
+class DiscoveryDocument(typing.TypedDict, total=False):
+    communicationContext: CommunicationContext
+    documentId: str
+    documentType: str
+
+@typing.type_check_only
+class DnsRegistrationDetails(typing.TypedDict, total=False):
+    expireTime: str
+    privateRegistration: bool
+    registrantCountry: str
+    registrar: str
+    registrationTime: str
+
+@typing.type_check_only
+class DocumentQuery(typing.TypedDict, total=False):
+    query: str
+    queryType: typing.Literal["QUERY_TYPE_UNSPECIFIED", "JSON", "STRING"]
+
+@typing.type_check_only
+class DomainConfiguration(typing.TypedDict, total=False):
+    domainSettings: _list[DomainSetting]
+
+@typing.type_check_only
+class DomainMonitoringAlertDetail(typing.TypedDict, total=False):
+    dnsDetails: DomainMonitoringDnsDetails
+    domainDetails: DomainMonitoringDomainDetails
+    gtiDetails: DomainMonitoringGtiDetails
+    infrastructure: Infrastructure
+    matchedDomain: str
+    protectedBrand: str
+    protectedDomain: DomainMonitoringDomainDetails
+    registrationDetails: DnsRegistrationDetails
+    relationships: Relationships
+    threatAttributionDetails: ThreatAttributionDetails
+    urlDetails: DomainMonitoringUrlDetails
+    whoisDetails: DomainMonitoringWhoIsDetails
+
+@typing.type_check_only
+class DomainMonitoringConfig(typing.TypedDict, total=False):
+    domains: _list[DomainMonitoringDomain]
+
+@typing.type_check_only
+class DomainMonitoringDnsDetails(typing.TypedDict, total=False):
+    dnsRecords: _list[DomainMonitoringDnsRecord]
+    retrievalTime: str
+
+@typing.type_check_only
+class DomainMonitoringDnsRecord(typing.TypedDict, total=False):
+    asnHosting: str
+    asnRegionCode: str
+    ipRegionCode: str
+    recordData: str
+    resolvedIp: str
+    ttl: int
+    type: str
+
+@typing.type_check_only
+class DomainMonitoringDomain(typing.TypedDict, total=False):
+    domain: str
+
+@typing.type_check_only
+class DomainMonitoringDomainDetails(typing.TypedDict, total=False):
+    domain: str
+
+@typing.type_check_only
+class DomainMonitoringFeatureConfig(typing.TypedDict, total=False):
+    disabled: bool
+
+@typing.type_check_only
+class DomainMonitoringFindingDetail(typing.TypedDict, total=False):
+    dnsDetails: DomainMonitoringDnsDetails
+    domainDetails: DomainMonitoringDomainDetails
+    gtiDetails: DomainMonitoringGtiDetails
+    infrastructure: Infrastructure
+    matchedDomain: str
+    protectedBrand: str
+    protectedDomain: DomainMonitoringDomainDetails
+    registrationDetails: DnsRegistrationDetails
+    relationships: Relationships
+    threatAttributionDetails: ThreatAttributionDetails
+    urlDetails: DomainMonitoringUrlDetails
+    whoisDetails: DomainMonitoringWhoIsDetails
+
+@typing.type_check_only
+class DomainMonitoringGtiDetails(typing.TypedDict, total=False):
+    avDetections: AVDetections
+    domainPermutation: str
+    gtiDomainUri: str
+    gtiScore: int
+    threatClassification: str
+    verdict: typing.Literal[
+        "DOMAIN_MONITORING_GTI_VERDICT_UNSPECIFIED",
+        "DOMAIN_MONITORING_GTI_VERDICT_BENIGN",
+        "DOMAIN_MONITORING_GTI_VERDICT_UNDETECTED",
+        "DOMAIN_MONITORING_GTI_VERDICT_SUSPICIOUS",
+        "DOMAIN_MONITORING_GTI_VERDICT_MALICIOUS",
+        "DOMAIN_MONITORING_GTI_VERDICT_UNKNOWN",
+    ]
+
+@typing.type_check_only
+class DomainMonitoringUrlDetails(typing.TypedDict, total=False):
+    url: str
+
+@typing.type_check_only
+class DomainMonitoringWhoIsDetails(typing.TypedDict, total=False):
+    retrievalTime: str
+    whois: str
+
+@typing.type_check_only
+class DomainSetting(typing.TypedDict, total=False):
+    domain: str
+    domainMonitoringConfig: DomainMonitoringFeatureConfig
+    state: typing.Literal["STATE_UNSPECIFIED", "PENDING", "VERIFIED"]
 
 @typing.type_check_only
 class EnumerateAlertFacetsResponse(typing.TypedDict, total=False):
@@ -259,6 +433,7 @@ class Finding(typing.TypedDict, total=False):
 class FindingDetail(typing.TypedDict, total=False):
     dataLeak: DataLeakFindingDetail
     detailType: str
+    domainMonitoring: DomainMonitoringFindingDetail
     initialAccessBroker: InitialAccessBrokerFindingDetail
     insiderThreat: InsiderThreatFindingDetail
     targetTechnology: TargetTechnologyFindingDetail
@@ -273,12 +448,19 @@ class GetPasswordResponse(typing.TypedDict, total=False):
     password: str
 
 @typing.type_check_only
+class Infrastructure(typing.TypedDict, total=False):
+    certificateDetails: CertificateDetails
+    urlResponse: str
+
+@typing.type_check_only
 class InitialAccessBrokerAlertDetail(typing.TypedDict, total=False):
     discoveryDocumentIds: _list[str]
+    discoveryDocuments: _list[DiscoveryDocument]
     severity: str
 
 @typing.type_check_only
 class InitialAccessBrokerFindingDetail(typing.TypedDict, total=False):
+    discoveryDocument: DiscoveryDocument
     documentId: str
     matchScore: float
     severity: typing.Literal[
@@ -288,15 +470,36 @@ class InitialAccessBrokerFindingDetail(typing.TypedDict, total=False):
 @typing.type_check_only
 class InsiderThreatAlertDetail(typing.TypedDict, total=False):
     discoveryDocumentIds: _list[str]
+    discoveryDocuments: _list[DiscoveryDocument]
     severity: str
 
 @typing.type_check_only
 class InsiderThreatFindingDetail(typing.TypedDict, total=False):
+    discoveryDocument: DiscoveryDocument
     documentId: str
     matchScore: float
     severity: typing.Literal[
         "SEVERITY_UNSPECIFIED", "LOW", "MEDIUM", "HIGH", "CRITICAL"
     ]
+
+@typing.type_check_only
+class LegacyMetadata(typing.TypedDict, total=False):
+    aggregationEnabled: bool
+    aggregationSimilarity: float
+    conditionVersion: int
+    creatorUserId: str
+    description: str
+    disabledCode: str
+    disabledReason: str
+    displayName: str
+    emailNotificationEnabled: bool
+    emailNotificationImmediate: bool
+    legacyMonitorId: str
+    staleTime: str
+    templateId: str
+    tenantId: str
+    updaterUserId: str
+    version: int
 
 @typing.type_check_only
 class ListAlertsResponse(typing.TypedDict, total=False):
@@ -398,6 +601,12 @@ class PublicExploit(typing.TypedDict, total=False):
     uri: str
 
 @typing.type_check_only
+class Relationships(typing.TypedDict, total=False):
+    relatedUrls: _list[str]
+    siblingDomains: _list[str]
+    subdomains: _list[str]
+
+@typing.type_check_only
 class RelevanceAnalysis(typing.TypedDict, total=False):
     confidence: typing.Literal[
         "CONFIDENCE_LEVEL_UNSPECIFIED",
@@ -475,6 +684,12 @@ class TechnologyWatchListAlertThreshold(typing.TypedDict, total=False):
 class TechnologyWatchListConfig(typing.TypedDict, total=False):
     alertThreshold: TechnologyWatchListAlertThreshold
     technologies: _list[str]
+
+@typing.type_check_only
+class ThreatAttributionDetails(typing.TypedDict, total=False):
+    actors: _list[str]
+    collections: _list[str]
+    malware: _list[str]
 
 @typing.type_check_only
 class UpsertConfigurationResponse(typing.TypedDict, total=False):

@@ -3,6 +3,15 @@ import typing
 _list = list
 
 @typing.type_check_only
+class AddCommentReplyRequest(typing.TypedDict, total=False):
+    commentId: str
+    post: Post
+
+@typing.type_check_only
+class AddCommentReplyResponse(typing.TypedDict, total=False):
+    post: Post
+
+@typing.type_check_only
 class AffineTransform(typing.TypedDict, total=False):
     scaleX: float
     scaleY: float
@@ -33,6 +42,12 @@ class BatchUpdatePresentationRequest(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class BatchUpdatePresentationResponse(typing.TypedDict, total=False):
+    commentUpdateState: typing.Literal[
+        "COMMENT_UPDATE_STATE_UNSPECIFIED",
+        "NO_UPDATES_REQUESTED",
+        "ALL_SAVED",
+        "ALL_FAILED_UNKNOWN_REASON",
+    ]
     presentationId: str
     replies: _list[Response]
     writeControl: WriteControl
@@ -53,6 +68,20 @@ class ColorStop(typing.TypedDict, total=False):
     alpha: float
     color: OpaqueColor
     position: float
+
+@typing.type_check_only
+class CommentAnchor(typing.TypedDict, total=False):
+    anchorId: str
+    objectAnchors: _list[ObjectAnchor]
+
+@typing.type_check_only
+class CommentThread(typing.TypedDict, total=False):
+    anchorId: str
+    commentId: str
+    headPost: Post
+    plainTextQuote: str
+    replies: _list[Post]
+    status: typing.Literal["STATUS_UNSPECIFIED", "OPEN", "RESOLVED"]
 
 @typing.type_check_only
 class CreateImageRequest(typing.TypedDict, total=False):
@@ -306,6 +335,15 @@ class CropProperties(typing.TypedDict, total=False):
     topOffset: float
 
 @typing.type_check_only
+class DeleteCommentReplyRequest(typing.TypedDict, total=False):
+    commentId: str
+    postId: str
+
+@typing.type_check_only
+class DeleteCommentRequest(typing.TypedDict, total=False):
+    commentId: str
+
+@typing.type_check_only
 class DeleteObjectRequest(typing.TypedDict, total=False):
     objectId: str
 
@@ -375,6 +413,19 @@ class ImageProperties(typing.TypedDict, total=False):
     recolor: Recolor
     shadow: Shadow
     transparency: float
+
+@typing.type_check_only
+class InsertCommentRequest(typing.TypedDict, total=False):
+    assigneeEmailAddress: str
+    content: str
+    objectId: str
+    shapeTextAnchor: ShapeTextAnchor
+    tableAnchor: TableAnchor
+    tableCellTextAnchor: TableCellTextAnchor
+
+@typing.type_check_only
+class InsertCommentResponse(typing.TypedDict, total=False):
+    commentThread: CommentThread
 
 @typing.type_check_only
 class InsertTableColumnsRequest(typing.TypedDict, total=False):
@@ -535,6 +586,12 @@ class NotesProperties(typing.TypedDict, total=False):
     speakerNotesObjectId: str
 
 @typing.type_check_only
+class ObjectAnchor(typing.TypedDict, total=False):
+    objectId: str
+    shapeTextAnchors: ShapeTextAnchors
+    tableCellAnchors: TableCellAnchors
+
+@typing.type_check_only
 class OpaqueColor(typing.TypedDict, total=False):
     rgbColor: RgbColor
     themeColor: typing.Literal[
@@ -582,6 +639,14 @@ class OutlineFill(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class Page(typing.TypedDict, total=False):
+    commentAnchors: _list[CommentAnchor]
+    comments: _list[CommentThread]
+    commentsViewMode: typing.Literal[
+        "COMMENTS_VIEW_MODE_UNSPECIFIED",
+        "COMMENTS_VIEW_MODE_DEFAULT_FOR_CURRENT_ACCESS",
+        "COMMENTS_VIEW_MODE_OMITTED",
+        "COMMENTS_VIEW_MODE_INCLUDED",
+    ]
     layoutProperties: LayoutProperties
     masterProperties: MasterProperties
     notesProperties: NotesProperties
@@ -674,7 +739,40 @@ class Placeholder(typing.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class Post(typing.TypedDict, total=False):
+    assigneeEmail: str
+    author: PostAuthor
+    commentAction: typing.Literal[
+        "COMMENT_ACTION_TYPE_UNSPECIFIED",
+        "NO_COMMENT_ACTION_CHANGE",
+        "RESOLVE",
+        "REOPEN",
+    ]
+    content: str
+    contentHtml: str
+    createTime: str
+    deleted: bool
+    fromCopiedPresentation: bool
+    fromImportedPresentation: bool
+    postId: str
+    updateTime: str
+
+@typing.type_check_only
+class PostAuthor(typing.TypedDict, total=False):
+    anonymous: bool
+    displayName: str
+    me: bool
+    user: str
+
+@typing.type_check_only
 class Presentation(typing.TypedDict, total=False):
+    comments: _list[CommentThread]
+    commentsViewMode: typing.Literal[
+        "COMMENTS_VIEW_MODE_UNSPECIFIED",
+        "COMMENTS_VIEW_MODE_DEFAULT_FOR_CURRENT_ACCESS",
+        "COMMENTS_VIEW_MODE_OMITTED",
+        "COMMENTS_VIEW_MODE_INCLUDED",
+    ]
     layouts: _list[Page]
     locale: str
     masters: _list[Page]
@@ -774,6 +872,7 @@ class ReplaceImageRequest(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class Request(typing.TypedDict, total=False):
+    addCommentReply: AddCommentReplyRequest
     createImage: CreateImageRequest
     createLine: CreateLineRequest
     createParagraphBullets: CreateParagraphBulletsRequest
@@ -782,6 +881,8 @@ class Request(typing.TypedDict, total=False):
     createSlide: CreateSlideRequest
     createTable: CreateTableRequest
     createVideo: CreateVideoRequest
+    deleteComment: DeleteCommentRequest
+    deleteCommentReply: DeleteCommentReplyRequest
     deleteObject: DeleteObjectRequest
     deleteParagraphBullets: DeleteParagraphBulletsRequest
     deleteTableColumn: DeleteTableColumnRequest
@@ -789,6 +890,7 @@ class Request(typing.TypedDict, total=False):
     deleteText: DeleteTextRequest
     duplicateObject: DuplicateObjectRequest
     groupObjects: GroupObjectsRequest
+    insertComment: InsertCommentRequest
     insertTableColumns: InsertTableColumnsRequest
     insertTableRows: InsertTableRowsRequest
     insertText: InsertTextRequest
@@ -801,6 +903,7 @@ class Request(typing.TypedDict, total=False):
     rerouteLine: RerouteLineRequest
     ungroupObjects: UngroupObjectsRequest
     unmergeTableCells: UnmergeTableCellsRequest
+    updateCommentPost: UpdateCommentPostRequest
     updateImageProperties: UpdateImagePropertiesRequest
     updateLineCategory: UpdateLineCategoryRequest
     updateLineProperties: UpdateLinePropertiesRequest
@@ -825,6 +928,7 @@ class RerouteLineRequest(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class Response(typing.TypedDict, total=False):
+    addCommentReply: AddCommentReplyResponse
     createImage: CreateImageResponse
     createLine: CreateLineResponse
     createShape: CreateShapeResponse
@@ -834,6 +938,7 @@ class Response(typing.TypedDict, total=False):
     createVideo: CreateVideoResponse
     duplicateObject: DuplicateObjectResponse
     groupObjects: GroupObjectsResponse
+    insertComment: InsertCommentResponse
     replaceAllShapesWithImage: ReplaceAllShapesWithImageResponse
     replaceAllShapesWithSheetsChart: ReplaceAllShapesWithSheetsChartResponse
     replaceAllText: ReplaceAllTextResponse
@@ -1038,6 +1143,15 @@ class ShapeProperties(typing.TypedDict, total=False):
     shapeBackgroundFill: ShapeBackgroundFill
 
 @typing.type_check_only
+class ShapeTextAnchor(typing.TypedDict, total=False):
+    objectId: str
+    textRange: Range
+
+@typing.type_check_only
+class ShapeTextAnchors(typing.TypedDict, total=False):
+    ranges: _list[TextRange]
+
+@typing.type_check_only
 class SheetsChart(typing.TypedDict, total=False):
     chartId: int
     contentUrl: str
@@ -1095,6 +1209,11 @@ class Table(typing.TypedDict, total=False):
     verticalBorderRows: _list[TableBorderRow]
 
 @typing.type_check_only
+class TableAnchor(typing.TypedDict, total=False):
+    objectId: str
+    tableRange: TableRange
+
+@typing.type_check_only
 class TableBorderCell(typing.TypedDict, total=False):
     location: TableCellLocation
     tableBorderProperties: TableBorderProperties
@@ -1130,6 +1249,10 @@ class TableCell(typing.TypedDict, total=False):
     text: TextContent
 
 @typing.type_check_only
+class TableCellAnchors(typing.TypedDict, total=False):
+    cellRanges: _list[TableCellTextRanges]
+
+@typing.type_check_only
 class TableCellBackgroundFill(typing.TypedDict, total=False):
     propertyState: typing.Literal["RENDERED", "NOT_RENDERED", "INHERIT"]
     solidFill: SolidFill
@@ -1149,6 +1272,17 @@ class TableCellProperties(typing.TypedDict, total=False):
         "BOTTOM",
     ]
     tableCellBackgroundFill: TableCellBackgroundFill
+
+@typing.type_check_only
+class TableCellTextAnchor(typing.TypedDict, total=False):
+    cellLocation: TableCellLocation
+    objectId: str
+    textRange: Range
+
+@typing.type_check_only
+class TableCellTextRanges(typing.TypedDict, total=False):
+    cellLocation: TableCellLocation
+    ranges: _list[TextRange]
 
 @typing.type_check_only
 class TableColumnProperties(typing.TypedDict, total=False):
@@ -1182,6 +1316,11 @@ class TextElement(typing.TypedDict, total=False):
     paragraphMarker: ParagraphMarker
     startIndex: int
     textRun: TextRun
+
+@typing.type_check_only
+class TextRange(typing.TypedDict, total=False):
+    endIndex: int
+    startIndex: int
 
 @typing.type_check_only
 class TextRun(typing.TypedDict, total=False):
@@ -1242,6 +1381,12 @@ class UngroupObjectsRequest(typing.TypedDict, total=False):
 class UnmergeTableCellsRequest(typing.TypedDict, total=False):
     objectId: str
     tableRange: TableRange
+
+@typing.type_check_only
+class UpdateCommentPostRequest(typing.TypedDict, total=False):
+    commentId: str
+    content: str
+    postId: str
 
 @typing.type_check_only
 class UpdateImagePropertiesRequest(typing.TypedDict, total=False):

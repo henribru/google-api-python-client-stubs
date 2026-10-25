@@ -269,6 +269,7 @@ class DailyRollUpDataPointsRequest(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class DailyRollUpDataPointsResponse(typing.TypedDict, total=False):
+    nextPageToken: str
     rollupDataPoints: _list[DailyRollupDataPoint]
 
 @typing.type_check_only
@@ -780,6 +781,20 @@ class GoogleDevicesandservicesHealthV4WebhookNotificationCloudLog(
     httpResponse: HttpResponse
 
 @typing.type_check_only
+class GoogleDevicesandservicesHealthV4betaDataType(typing.TypedDict, total=False):
+    name: str
+
+@typing.type_check_only
+class GoogleDevicesandservicesHealthV4betaUser(typing.TypedDict, total=False):
+    name: str
+
+@typing.type_check_only
+class GoogleDevicesandservicesHealthV4betaWebhookNotificationCloudLog(
+    typing.TypedDict, total=False
+):
+    httpResponse: HttpResponse
+
+@typing.type_check_only
 class HeartBeat(typing.TypedDict, total=False):
     beatsPerMinute: int
     civilTime: CivilDateTime
@@ -813,9 +828,15 @@ class HeartRateRollupValue(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class HeartRateVariability(typing.TypedDict, total=False):
+    metadata: HeartRateVariabilityMetadata
     rootMeanSquareOfSuccessiveDifferencesMilliseconds: float
     sampleTime: ObservationSampleTime
     standardDeviationMilliseconds: float
+
+@typing.type_check_only
+class HeartRateVariabilityMetadata(typing.TypedDict, total=False):
+    highFrequencyPower: float
+    lowFrequencyPower: float
 
 @typing.type_check_only
 class HeartRateVariabilityPersonalRangeRollupValue(typing.TypedDict, total=False):
@@ -1010,6 +1031,18 @@ class Moods(typing.TypedDict, total=False):
             "ACCOMPLISHED",
             "LOVING",
             "COMPASSIONATE",
+            "DEPRESSED",
+            "GOOD",
+            "LOW_ENERGY",
+            "OBSESSIVE_THOUGHTS",
+            "PANIC",
+            "PLAYFUL",
+            "PLEASED",
+            "SENSITIVE",
+            "SLEEPY",
+            "SWINGS",
+            "UNHAPPY",
+            "VERY_SELF_CRITICAL",
         ]
     ]
     sampleTime: ObservationSampleTime
@@ -1565,6 +1598,42 @@ class Symptoms(typing.TypedDict, total=False):
             "FATIGUE",
             "CONFUSION",
             "DIZZINESS",
+            "ABDOMINAL_PAIN",
+            "BLADDER_LEAKS",
+            "BLEEDING_GUMS",
+            "BRAIN_FOG",
+            "BURNING_MOUTH",
+            "CONSTIPATION",
+            "CRAVINGS",
+            "DECREASED_APPETITE",
+            "DIARRHEA",
+            "DRAWING_PAIN",
+            "DRY_EYES",
+            "DRY_HAIR",
+            "DRY_SKIN",
+            "EXHAUSTION",
+            "FEEL_GOOD",
+            "FOOD_AVERSIONS",
+            "HAIR_LOSS",
+            "HEARTBURN",
+            "HYPERPIGMENTATION",
+            "INCREASED_APPETITE",
+            "INCREASED_APPETITE_V2",
+            "INSOMNIA",
+            "JOINT_PAIN",
+            "LEG_CRAMPS",
+            "MILKY_NIPPLE_DISCHARGE",
+            "NAUSEA",
+            "NIGHT_SWEATS",
+            "NORMAL_DIGESTION",
+            "NORMAL_STOOL",
+            "PERINEUM_PAIN",
+            "SLEEPINESS",
+            "STRETCH_MARKS",
+            "SWELLING",
+            "VAGINAL_DRYNESS",
+            "VAGINAL_ITCHING",
+            "VOMITING",
         ]
     ]
 

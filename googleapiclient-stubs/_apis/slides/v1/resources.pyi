@@ -17,7 +17,18 @@ class SlidesResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class PagesResource(googleapiclient.discovery.Resource):
             def get(
-                self, *, presentationId: str, pageObjectId: str, **kwargs: typing.Any
+                self,
+                *,
+                presentationId: str,
+                pageObjectId: str,
+                commentsViewMode: typing.Literal[
+                    "COMMENTS_VIEW_MODE_UNSPECIFIED",
+                    "COMMENTS_VIEW_MODE_DEFAULT_FOR_CURRENT_ACCESS",
+                    "COMMENTS_VIEW_MODE_OMITTED",
+                    "COMMENTS_VIEW_MODE_INCLUDED",
+                ]
+                | None = ...,
+                **kwargs: typing.Any,
             ) -> PageHttpRequest: ...
             def getThumbnail(
                 self,
@@ -47,7 +58,17 @@ class SlidesResource(googleapiclient.discovery.Resource):
             self, *, body: Presentation, **kwargs: typing.Any
         ) -> PresentationHttpRequest: ...
         def get(
-            self, *, presentationId: str, **kwargs: typing.Any
+            self,
+            *,
+            presentationId: str,
+            commentsViewMode: typing.Literal[
+                "COMMENTS_VIEW_MODE_UNSPECIFIED",
+                "COMMENTS_VIEW_MODE_DEFAULT_FOR_CURRENT_ACCESS",
+                "COMMENTS_VIEW_MODE_OMITTED",
+                "COMMENTS_VIEW_MODE_INCLUDED",
+            ]
+            | None = ...,
+            **kwargs: typing.Any,
         ) -> PresentationHttpRequest: ...
         def pages(self) -> PagesResource: ...
 

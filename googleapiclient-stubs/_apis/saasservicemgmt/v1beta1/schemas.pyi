@@ -74,7 +74,9 @@ class EvaluationRule(typing.TypedDict, total=False):
 class EvaluationSpec(typing.TypedDict, total=False):
     allocations: _list[Allocation]
     attributes: _list[str]
+    defaultAllocation: str
     defaultTarget: str
+    defaultVariant: str
     rules: _list[EvaluationRule]
     variants: _list[Variant]
 
@@ -141,6 +143,10 @@ class FlagAttribute(typing.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class FlagNameList(typing.TypedDict, total=False):
+    flags: _list[str]
+
+@typing.type_check_only
 class FlagRelease(typing.TypedDict, total=False):
     allFlags: bool
     allFlagsRelease: bool
@@ -148,6 +154,7 @@ class FlagRelease(typing.TypedDict, total=False):
     createTime: str
     effectiveFlagRevisions: _list[str]
     etag: str
+    flagNamesRelease: FlagNameList
     flagRevisions: _list[str]
     flagRevisionsRelease: FlagRevisionList
     flagSets: _list[str]
@@ -365,6 +372,7 @@ class Rollout(typing.TypedDict, total=False):
         "ROLLOUT_STATE_CANCELLING",
         "ROLLOUT_STATE_RESUMING",
         "ROLLOUT_STATE_PAUSING",
+        "ROLLOUT_STATE_AWAITING_APPROVAL",
     ]
     stateMessage: str
     stateTransitionTime: str
@@ -425,7 +433,11 @@ class Saas(typing.TypedDict, total=False):
     locations: _list[Location]
     name: str
     state: typing.Literal[
-        "STATE_TYPE_UNSPECIFIED", "STATE_ACTIVE", "STATE_RUNNING", "STATE_FAILED"
+        "STATE_UNSPECIFIED",
+        "STATE_TYPE_UNSPECIFIED",
+        "STATE_ACTIVE",
+        "STATE_RUNNING",
+        "STATE_FAILED",
     ]
     uid: str
     updateTime: str
@@ -567,6 +579,7 @@ class UnitGroup(typing.TypedDict, total=False):
 class UnitGroupOperation(typing.TypedDict, total=False):
     annotations: dict[str, typing.Any]
     createTime: str
+    deleteTime: str
     etag: str
     labels: dict[str, typing.Any]
     name: str
@@ -586,6 +599,7 @@ class UnitKind(typing.TypedDict, total=False):
     createTime: str
     defaultFlagRevisions: _list[str]
     defaultRelease: str
+    deleteTime: str
     dependencies: _list[Dependency]
     etag: str
     inputVariableMappings: _list[VariableMapping]

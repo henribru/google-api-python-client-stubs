@@ -148,7 +148,9 @@ class AutonomousDatabaseProperties(typing.TypedDict, total=False):
         "DATABASE_EDITION_UNSPECIFIED", "STANDARD_EDITION", "ENTERPRISE_EDITION"
     ]
     dbVersion: str
-    dbWorkload: typing.Literal["DB_WORKLOAD_UNSPECIFIED", "OLTP", "DW", "AJD", "APEX"]
+    dbWorkload: typing.Literal[
+        "DB_WORKLOAD_UNSPECIFIED", "OLTP", "DW", "AJD", "APEX", "LH"
+    ]
     disasterRecoveryRoleChangedTime: str
     encryptionKey: EncryptionKey
     encryptionKeyHistoryEntries: _list[EncryptionKeyHistoryEntry]
@@ -289,7 +291,9 @@ class AutonomousDatabaseStandbySummary(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class AutonomousDbVersion(typing.TypedDict, total=False):
-    dbWorkload: typing.Literal["DB_WORKLOAD_UNSPECIFIED", "OLTP", "DW", "AJD", "APEX"]
+    dbWorkload: typing.Literal[
+        "DB_WORKLOAD_UNSPECIFIED", "OLTP", "DW", "AJD", "APEX", "LH"
+    ]
     name: str
     version: str
     workloadUri: str

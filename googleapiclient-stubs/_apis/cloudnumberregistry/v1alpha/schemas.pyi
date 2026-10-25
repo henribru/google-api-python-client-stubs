@@ -143,6 +143,12 @@ class ListOperationsResponse(typing.TypedDict, total=False):
     unreachable: _list[str]
 
 @typing.type_check_only
+class ListOrgNumberRegistriesResponse(typing.TypedDict, total=False):
+    nextPageToken: str
+    orgNumberRegistries: _list[OrgNumberRegistry]
+    unreachable: _list[str]
+
+@typing.type_check_only
 class ListRealmsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     realms: _list[Realm]
@@ -181,6 +187,15 @@ class OperationMetadata(typing.TypedDict, total=False):
     verb: str
 
 @typing.type_check_only
+class OrgNumberRegistry(typing.TypedDict, total=False):
+    adminProject: str
+    createTime: str
+    labels: dict[str, typing.Any]
+    name: str
+    targetScopes: _list[str]
+    updateTime: str
+
+@typing.type_check_only
 class Range(typing.TypedDict, total=False):
     customRange: CustomRange
     discoveredRange: DiscoveredRange
@@ -216,11 +231,18 @@ class RealmAggregatedData(typing.TypedDict, total=False):
 class RegistryBook(typing.TypedDict, total=False):
     aggregatedData: AggregatedData
     claimedScopes: _list[str]
+    claimedScopesInfo: _list[ScopeInfo]
     createTime: str
     isDefault: bool
     labels: dict[str, typing.Any]
     name: str
     updateTime: str
+
+@typing.type_check_only
+class ScopeInfo(typing.TypedDict, total=False):
+    displayName: str
+    id: str
+    name: str
 
 @typing.type_check_only
 class SearchIpResourcesRequest(typing.TypedDict, total=False):

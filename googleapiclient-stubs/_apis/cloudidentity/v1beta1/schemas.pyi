@@ -11,6 +11,11 @@ class AddIdpCredentialRequest(typing.TypedDict, total=False):
     pemData: str
 
 @typing.type_check_only
+class AllowlistedDomain(typing.TypedDict, total=False):
+    domain: str
+    name: str
+
+@typing.type_check_only
 class AndroidAttributes(typing.TypedDict, total=False):
     ctsProfileMatch: bool
     enabledUnknownSources: bool
@@ -245,6 +250,7 @@ class Device(typing.TypedDict, total=False):
         "MAC_OS",
         "LINUX",
         "CHROME_OS",
+        "GOOGLEBOOK",
     ]
     enabledDeveloperOptions: bool
     enabledUsbDebugging: bool
@@ -548,6 +554,7 @@ class GoogleAppsCloudidentityDevicesV1Device(typing.TypedDict, total=False):
         "MAC_OS",
         "LINUX",
         "CHROME_OS",
+        "GOOGLEBOOK",
     ]
     enabledDeveloperOptions: bool
     enabledUsbDebugging: bool
@@ -730,6 +737,11 @@ class InboundSsoAssignment(typing.TypedDict, total=False):
 @typing.type_check_only
 class IsInvitableUserResponse(typing.TypedDict, total=False):
     isInvitableUser: bool
+
+@typing.type_check_only
+class ListAllowlistedDomainsResponse(typing.TypedDict, total=False):
+    allowlistedDomains: _list[AllowlistedDomain]
+    nextPageToken: str
 
 @typing.type_check_only
 class ListClientStatesResponse(typing.TypedDict, total=False):

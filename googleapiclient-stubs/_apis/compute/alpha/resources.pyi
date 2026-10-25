@@ -1837,6 +1837,21 @@ class ComputeResource(googleapiclient.discovery.Resource):
         ) -> TestPermissionsResponseHttpRequest: ...
 
     @typing.type_check_only
+    class GlobalFrontendSettingsResource(googleapiclient.discovery.Resource):
+        def get(
+            self, *, project: str, **kwargs: typing.Any
+        ) -> GlobalFrontendSettingsHttpRequest: ...
+        def patch(
+            self,
+            *,
+            project: str,
+            body: GlobalFrontendSettings,
+            requestId: str | None = ...,
+            updateMask: str | None = ...,
+            **kwargs: typing.Any,
+        ) -> GlobalFrontendSettingsPatchResponseHttpRequest: ...
+
+    @typing.type_check_only
     class GlobalNetworkEndpointGroupsResource(googleapiclient.discovery.Resource):
         def attachNetworkEndpoints(
             self,
@@ -5575,18 +5590,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
         ) -> NodeTypeListHttpRequest | None: ...
 
     @typing.type_check_only
-    class OrgVmExtensionPoliciesResource(googleapiclient.discovery.Resource):
-        def delete(
-            self,
-            *,
-            organization: str,
-            zone: str,
-            vmExtensionPolicy: str,
-            requestId: str | None = ...,
-            **kwargs: typing.Any,
-        ) -> OperationHttpRequest: ...
-
-    @typing.type_check_only
     class OrganizationGlobalVmExtensionPoliciesResource(
         googleapiclient.discovery.Resource
     ):
@@ -5930,6 +5933,15 @@ class ComputeResource(googleapiclient.discovery.Resource):
     class OrganizationZoneVmExtensionPoliciesResource(
         googleapiclient.discovery.Resource
     ):
+        def delete(
+            self,
+            *,
+            organization: str,
+            zone: str,
+            vmExtensionPolicy: str,
+            requestId: str | None = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
         def get(
             self,
             *,
@@ -12586,6 +12598,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
     def globalAddresses(self) -> GlobalAddressesResource: ...
     def globalFolderOperations(self) -> GlobalFolderOperationsResource: ...
     def globalForwardingRules(self) -> GlobalForwardingRulesResource: ...
+    def globalFrontendSettings(self) -> GlobalFrontendSettingsResource: ...
     def globalNetworkEndpointGroups(self) -> GlobalNetworkEndpointGroupsResource: ...
     def globalOperations(self) -> GlobalOperationsResource: ...
     def globalOrganizationOperations(self) -> GlobalOrganizationOperationsResource: ...
@@ -12631,7 +12644,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
     def nodeGroups(self) -> NodeGroupsResource: ...
     def nodeTemplates(self) -> NodeTemplatesResource: ...
     def nodeTypes(self) -> NodeTypesResource: ...
-    def orgVmExtensionPolicies(self) -> OrgVmExtensionPoliciesResource: ...
     def organizationGlobalVmExtensionPolicies(
         self,
     ) -> OrganizationGlobalVmExtensionPoliciesResource: ...
@@ -13241,6 +13253,22 @@ class GetOwnerInstanceResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GetOwnerInstanceResponse: ...
+
+@typing.type_check_only
+class GlobalFrontendSettingsHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GlobalFrontendSettings: ...
+
+@typing.type_check_only
+class GlobalFrontendSettingsPatchResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GlobalFrontendSettingsPatchResponse: ...
 
 @typing.type_check_only
 class GlobalListVmExtensionsResponseHttpRequest(googleapiclient.http.HttpRequest):

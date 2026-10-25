@@ -99,6 +99,7 @@ class BigQueryConfig(typing.TypedDict, total=False):
 @typing.type_check_only
 class BigtableConfig(typing.TypedDict, total=False):
     appProfileId: str
+    columnFamilyMapping: ColumnFamilyMapping
     serviceAccountEmail: str
     state: typing.Literal[
         "STATE_UNSPECIFIED",
@@ -160,8 +161,18 @@ class CloudStorageConfig(typing.TypedDict, total=False):
     textConfig: TextConfig
 
 @typing.type_check_only
+class ColumnFamilyMapping(typing.TypedDict, total=False):
+    delimitedKey: DelimitedKey
+    rowKeySchema: RowKeySchema
+
+@typing.type_check_only
 class CommitSchemaRequest(typing.TypedDict, total=False):
     schema: Schema
+
+@typing.type_check_only
+class CompiledProtoSchema(typing.TypedDict, total=False):
+    compiledBytes: str
+    rootMessage: str
 
 @typing.type_check_only
 class Compression(typing.TypedDict, total=False):
@@ -198,6 +209,11 @@ class CreateSnapshotRequest(typing.TypedDict, total=False):
 class DeadLetterPolicy(typing.TypedDict, total=False):
     deadLetterTopic: str
     maxDeliveryAttempts: int
+
+@typing.type_check_only
+class DelimitedKey(typing.TypedDict, total=False):
+    delimiter: str
+    keyFields: _list[str]
 
 @typing.type_check_only
 class DetachSubscriptionResponse(typing.TypedDict, total=False): ...
@@ -312,12 +328,21 @@ class Policy(typing.TypedDict, total=False):
 class PubSubAvroFormat(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
+class PublishOperation(typing.TypedDict, total=False):
+    hedgedAttemptCount: int
+    publishStartTime: str
+
+@typing.type_check_only
 class PublishRequest(typing.TypedDict, total=False):
     messages: _list[PubsubMessage]
 
 @typing.type_check_only
 class PublishResponse(typing.TypedDict, total=False):
     messageIds: _list[str]
+
+@typing.type_check_only
+class PubsubClientTelemetry(typing.TypedDict, total=False):
+    publishOperation: PublishOperation
 
 @typing.type_check_only
 class PubsubMessage(typing.TypedDict, total=False):
@@ -363,7 +388,11 @@ class RollbackSchemaRequest(typing.TypedDict, total=False):
     revisionId: str
 
 @typing.type_check_only
+class RowKeySchema(typing.TypedDict, total=False): ...
+
+@typing.type_check_only
 class Schema(typing.TypedDict, total=False):
+    compiledProtoSchema: CompiledProtoSchema
     definition: str
     name: str
     revisionCreateTime: str
