@@ -176,6 +176,7 @@ class DestinationStatus(typing.TypedDict, total=False):
         "PRODUCT_REVIEWS",
         "MERCHANT_REVIEWS",
         "YOUTUBE_CHECKOUT",
+        "RENTAL_ADS",
     ]
 
 @typing.type_check_only
@@ -245,6 +246,7 @@ class ItemLevelIssue(typing.TypedDict, total=False):
         "PRODUCT_REVIEWS",
         "MERCHANT_REVIEWS",
         "YOUTUBE_CHECKOUT",
+        "RENTAL_ADS",
     ]
     resolution: str
     severity: typing.Literal[
@@ -491,6 +493,7 @@ class ProductAttributes(typing.TypedDict, total=False):
             "VEHICLE_ADS",
             "CLOUD_RETAIL",
             "LOCAL_CLOUD_RETAIL",
+            "RENTAL_ADS",
         ]
     ]
     expirationDate: str
@@ -519,6 +522,7 @@ class ProductAttributes(typing.TypedDict, total=False):
             "VEHICLE_ADS",
             "CLOUD_RETAIL",
             "LOCAL_CLOUD_RETAIL",
+            "RENTAL_ADS",
         ]
     ]
     installment: ProductInstallment
@@ -710,9 +714,11 @@ class ProductAttributes(typing.TypedDict, total=False):
 @typing.type_check_only
 class ProductCertification(typing.TypedDict, total=False):
     certificationAuthority: typing.Literal[
-        "CERTIFICATION_AUTHORITY_UNSPECIFIED", "ADEME", "BMWK", "EPA", "EC"
+        "CERTIFICATION_AUTHORITY_UNSPECIFIED", "ADEME", "BMWK", "EPA", "EC", "DESNZ"
     ]
     certificationCode: str
+    certificationDocumentLink: str
+    certificationLabelLink: str
     certificationName: typing.Literal[
         "CERTIFICATION_NAME_UNSPECIFIED",
         "ENERGY_STAR",
@@ -721,6 +727,7 @@ class ProductCertification(typing.TypedDict, total=False):
         "EU_ECOLABEL",
         "VEHICLE_ENERGY_EFFICIENCY",
         "VEHICLE_ENERGY_EFFICIENCY_DISCHARGED_BATTERY",
+        "GB_ENERGY_INFO",
     ]
     certificationValue: str
 
@@ -750,6 +757,7 @@ class ProductChange(typing.TypedDict, total=False):
         "PRODUCT_REVIEWS",
         "MERCHANT_REVIEWS",
         "YOUTUBE_CHECKOUT",
+        "RENTAL_ADS",
     ]
 
 @typing.type_check_only
@@ -790,6 +798,7 @@ class ProductInstallment(typing.TypedDict, total=False):
     annualPercentageRate: float
     creditType: typing.Literal["CREDIT_TYPE_UNSPECIFIED", "FINANCE", "LEASE"]
     downpayment: Price
+    mileageAllowance: Mileage
     months: str
     totalAmount: Price
 
@@ -965,4 +974,5 @@ class VariantOption(typing.TypedDict, total=False):
 @typing.type_check_only
 class Warranty(typing.TypedDict, total=False):
     duration: str
+    durationUnit: typing.Literal["WARRANTY_DURATION_UNIT_UNSPECIFIED", "MONTH", "YEAR"]
     mileage: Mileage

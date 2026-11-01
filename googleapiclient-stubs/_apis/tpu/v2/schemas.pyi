@@ -181,6 +181,9 @@ class Node(typing.TypedDict, total=False):
     networkConfig: NetworkConfig
     networkConfigs: _list[NetworkConfig]
     networkEndpoints: _list[NetworkEndpoint]
+    protectionTier: typing.Literal[
+        "PROTECTION_TIER_UNSPECIFIED", "STANDARD", "CAPACITY_OPTIMIZED"
+    ]
     queuedResource: str
     runtimeVersion: str
     schedulingConfig: SchedulingConfig

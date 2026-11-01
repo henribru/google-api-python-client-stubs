@@ -77,6 +77,7 @@ class MerchantReviewDestinationStatus(typing.TypedDict, total=False):
         "PRODUCT_REVIEWS",
         "MERCHANT_REVIEWS",
         "YOUTUBE_CHECKOUT",
+        "RENTAL_ADS",
     ]
 
 @typing.type_check_only
@@ -107,6 +108,7 @@ class MerchantReviewItemLevelIssue(typing.TypedDict, total=False):
         "PRODUCT_REVIEWS",
         "MERCHANT_REVIEWS",
         "YOUTUBE_CHECKOUT",
+        "RENTAL_ADS",
     ]
     resolution: str
     severity: typing.Literal["SEVERITY_UNSPECIFIED", "NOT_IMPACTED", "DISAPPROVED"]
@@ -144,6 +146,7 @@ class ProductChange(typing.TypedDict, total=False):
         "PRODUCT_REVIEWS",
         "MERCHANT_REVIEWS",
         "YOUTUBE_CHECKOUT",
+        "RENTAL_ADS",
     ]
 
 @typing.type_check_only
@@ -214,6 +217,7 @@ class ProductReviewDestinationStatus(typing.TypedDict, total=False):
         "PRODUCT_REVIEWS",
         "MERCHANT_REVIEWS",
         "YOUTUBE_CHECKOUT",
+        "RENTAL_ADS",
     ]
 
 @typing.type_check_only
@@ -244,6 +248,7 @@ class ProductReviewItemLevelIssue(typing.TypedDict, total=False):
         "PRODUCT_REVIEWS",
         "MERCHANT_REVIEWS",
         "YOUTUBE_CHECKOUT",
+        "RENTAL_ADS",
     ]
     resolution: str
     severity: typing.Literal["SEVERITY_UNSPECIFIED", "NOT_IMPACTED", "DISAPPROVED"]

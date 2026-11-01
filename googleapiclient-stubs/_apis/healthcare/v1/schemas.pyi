@@ -117,6 +117,7 @@ class BlobStorageSettings(typing.TypedDict, total=False):
 @typing.type_check_only
 class BulkDeleteResourcesRequest(typing.TypedDict, total=False):
     gcsDestination: GoogleCloudHealthcareV1FhirGcsDestination
+    gcsSource: GoogleCloudHealthcareV1FhirGcsSource
     type: str
     until: str
     validateOnly: bool
@@ -400,6 +401,7 @@ class ExplainDataAccessResponse(typing.TypedDict, total=False):
 @typing.type_check_only
 class ExportDicomDataRequest(typing.TypedDict, total=False):
     bigqueryDestination: GoogleCloudHealthcareV1DicomBigQueryDestination
+    filterConfig: DicomFilterConfig
     gcsDestination: GoogleCloudHealthcareV1DicomGcsDestination
 
 @typing.type_check_only

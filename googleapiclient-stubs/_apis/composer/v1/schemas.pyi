@@ -116,11 +116,18 @@ class Environment(typing.TypedDict, total=False):
     config: EnvironmentConfig
     createTime: str
     labels: dict[str, typing.Any]
+    mode: typing.Literal["MODE_UNSPECIFIED", "DEVELOPMENT"]
     name: str
     satisfiesPzi: bool
     satisfiesPzs: bool
     state: typing.Literal[
-        "STATE_UNSPECIFIED", "CREATING", "RUNNING", "UPDATING", "DELETING", "ERROR"
+        "STATE_UNSPECIFIED",
+        "CREATING",
+        "RUNNING",
+        "UPDATING",
+        "HIBERNATED",
+        "DELETING",
+        "ERROR",
     ]
     storageConfig: StorageConfig
     updateTime: str
@@ -194,6 +201,11 @@ class ImageVersion(typing.TypedDict, total=False):
     releaseDate: Date
     supportedPythonVersions: _list[str]
     upgradeDisabled: bool
+
+@typing.type_check_only
+class ImageVersionRollbackTarget(typing.TypedDict, total=False):
+    imageVersion: str
+    lastActiveTime: str
 
 @typing.type_check_only
 class Line(typing.TypedDict, total=False):
@@ -296,6 +308,8 @@ class OperationMetadata(typing.TypedDict, total=False):
         "LOAD_SNAPSHOT",
         "DATABASE_FAILOVER",
         "MIGRATE",
+        "HIBERNATE",
+        "RESUME",
     ]
     resource: str
     resourceUuid: str
@@ -377,6 +391,7 @@ class SoftwareConfig(typing.TypedDict, total=False):
     cloudDataLineageIntegration: CloudDataLineageIntegration
     envVariables: dict[str, typing.Any]
     imageVersion: str
+    imageVersionRollbackTargets: _list[ImageVersionRollbackTarget]
     pypiPackages: dict[str, typing.Any]
     pythonVersion: str
     schedulerCount: int

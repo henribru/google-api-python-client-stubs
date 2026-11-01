@@ -20,6 +20,13 @@ class AgentIdentityCredentialsResource(googleapiclient.discovery.Resource):
             class AuthProvidersResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class CredentialsResource(googleapiclient.discovery.Resource):
+                    def exchange(
+                        self,
+                        *,
+                        authProvider: str,
+                        body: GoogleCloudAgentidentitycredentialsV1alpha_ExchangeCredentialsRequest,
+                        **kwargs: typing.Any,
+                    ) -> GoogleCloudAgentidentitycredentialsV1alpha_ExchangeCredentialsResponseHttpRequest: ...
                     def finalize(
                         self,
                         *,
@@ -54,6 +61,16 @@ class AgentIdentityCredentialsResource(googleapiclient.discovery.Resource):
         | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def projects(self) -> ProjectsResource: ...
+
+@typing.type_check_only
+class GoogleCloudAgentidentitycredentialsV1alpha_ExchangeCredentialsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudAgentidentitycredentialsV1alpha_ExchangeCredentialsResponse: ...
 
 @typing.type_check_only
 class GoogleCloudAgentidentitycredentialsV1alpha_FinalizeCredentialsResponseHttpRequest(

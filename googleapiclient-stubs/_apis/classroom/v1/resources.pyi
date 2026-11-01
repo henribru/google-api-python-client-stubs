@@ -175,6 +175,23 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                         postId: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> AddOnAttachmentStudentSubmissionHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        courseId: str,
+                        itemId: str,
+                        attachmentId: str,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
+                        **kwargs: typing.Any,
+                    ) -> ListAddOnAttachmentStudentSubmissionsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListAddOnAttachmentStudentSubmissionsResponseHttpRequest,
+                        previous_response: ListAddOnAttachmentStudentSubmissionsResponse,
+                    ) -> (
+                        ListAddOnAttachmentStudentSubmissionsResponseHttpRequest | None
+                    ): ...
                     def patch(
                         self,
                         *,
@@ -1128,6 +1145,16 @@ class InvitationHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Invitation: ...
+
+@typing.type_check_only
+class ListAddOnAttachmentStudentSubmissionsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListAddOnAttachmentStudentSubmissionsResponse: ...
 
 @typing.type_check_only
 class ListAddOnAttachmentsResponseHttpRequest(googleapiclient.http.HttpRequest):

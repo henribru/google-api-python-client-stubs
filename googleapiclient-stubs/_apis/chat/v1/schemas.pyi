@@ -10,6 +10,7 @@ class AccessPermissionSetting(typing.TypedDict, total=False):
 class AccessPermissionSettings(typing.TypedDict, total=False):
     discoverSpaceSetting: AccessPermissionSetting
     joinSpaceSetting: AccessPermissionSetting
+    viewSpaceMembershipSetting: AccessPermissionSetting
 
 @typing.type_check_only
 class AccessSettings(typing.TypedDict, total=False):
@@ -156,6 +157,7 @@ class CardHeader(typing.TypedDict, total=False):
 class CardWithId(typing.TypedDict, total=False):
     card: GoogleAppsCardV1Card
     cardId: str
+    ownerUser: User
 
 @typing.type_check_only
 class ChatAppLogEntry(typing.TypedDict, total=False):
@@ -855,6 +857,11 @@ class ListMembershipsResponse(typing.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
+class ListMessagePinsResponse(typing.TypedDict, total=False):
+    messagePins: _list[MessagePin]
+    nextPageToken: str
+
+@typing.type_check_only
 class ListMessagesResponse(typing.TypedDict, total=False):
     messages: _list[Message]
     nextPageToken: str
@@ -1016,6 +1023,11 @@ class MessageDeletedEventData(typing.TypedDict, total=False):
     message: Message
 
 @typing.type_check_only
+class MessagePin(typing.TypedDict, total=False):
+    message: str
+    name: str
+
+@typing.type_check_only
 class MessageUpdatedEventData(typing.TypedDict, total=False):
     message: Message
 
@@ -1052,6 +1064,7 @@ class PermissionSettings(typing.TypedDict, total=False):
     replyMessages: PermissionSetting
     toggleHistory: PermissionSetting
     useAtMentionAll: PermissionSetting
+    viewSpaceMembership: PermissionSetting
 
 @typing.type_check_only
 class PositionSectionRequest(typing.TypedDict, total=False):
@@ -1103,6 +1116,13 @@ class ReactionCreatedEventData(typing.TypedDict, total=False):
 @typing.type_check_only
 class ReactionDeletedEventData(typing.TypedDict, total=False):
     reaction: Reaction
+
+@typing.type_check_only
+class ReplaceMessageCardsRequest(typing.TypedDict, total=False):
+    cardsV2: _list[CardWithId]
+
+@typing.type_check_only
+class ReplaceMessageCardsResponse(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
 class RichLinkMetadata(typing.TypedDict, total=False):
@@ -1338,8 +1358,10 @@ class UploadAttachmentResponse(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class User(typing.TypedDict, total=False):
+    avatarUrl: str
     displayName: str
     domainId: str
+    email: str
     isAnonymous: bool
     name: str
     type: typing.Literal["TYPE_UNSPECIFIED", "HUMAN", "BOT"]

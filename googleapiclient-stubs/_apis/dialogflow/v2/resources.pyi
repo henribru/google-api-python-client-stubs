@@ -1693,6 +1693,46 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                 ) -> GoogleCloudDialogflowV2AnswerRecordHttpRequest: ...
 
             @typing.type_check_only
+            class CompanionAgentsResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoogleCloudDialogflowV2CompanionAgent,
+                    companionAgentId: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleCloudDialogflowV2CompanionAgentHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleProtobufEmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleCloudDialogflowV2CompanionAgentHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleCloudDialogflowV2ListCompanionAgentsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleCloudDialogflowV2ListCompanionAgentsResponseHttpRequest,
+                    previous_response: GoogleCloudDialogflowV2ListCompanionAgentsResponse,
+                ) -> (
+                    GoogleCloudDialogflowV2ListCompanionAgentsResponseHttpRequest | None
+                ): ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudDialogflowV2CompanionAgent,
+                    updateMask: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleCloudDialogflowV2CompanionAgentHttpRequest: ...
+
+            @typing.type_check_only
             class ConversationDatasetsResource(googleapiclient.discovery.Resource):
                 def create(
                     self,
@@ -2393,6 +2433,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
             ) -> GoogleCloudDialogflowV2AgentHttpRequest: ...
             def agent(self) -> AgentResource: ...
             def answerRecords(self) -> AnswerRecordsResource: ...
+            def companionAgents(self) -> CompanionAgentsResource: ...
             def conversationDatasets(self) -> ConversationDatasetsResource: ...
             def conversationModels(self) -> ConversationModelsResource: ...
             def conversationProfiles(self) -> ConversationProfilesResource: ...
@@ -2512,6 +2553,16 @@ class GoogleCloudDialogflowV2AnswerRecordHttpRequest(googleapiclient.http.HttpRe
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudDialogflowV2AnswerRecord: ...
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2CompanionAgentHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudDialogflowV2CompanionAgent: ...
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2ContextHttpRequest(googleapiclient.http.HttpRequest):
@@ -2714,6 +2765,16 @@ class GoogleCloudDialogflowV2ListAnswerRecordsResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudDialogflowV2ListAnswerRecordsResponse: ...
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2ListCompanionAgentsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudDialogflowV2ListCompanionAgentsResponse: ...
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2ListContextsResponseHttpRequest(

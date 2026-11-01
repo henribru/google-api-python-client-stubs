@@ -184,7 +184,6 @@ class GcpUserAccessBinding(typing.TypedDict, total=False):
     groupKey: str
     name: str
     principal: Principal
-    restrictedClientApplications: _list[Application]
     scopedAccessSettings: _list[ScopedAccessSettings]
     sessionSettings: SessionSettings
 
@@ -270,6 +269,13 @@ class ListSupportedServicesResponse(typing.TypedDict, total=False):
     supportedServices: _list[SupportedService]
 
 @typing.type_check_only
+class LookupConfiguredServicePerimeterResponse(typing.TypedDict, total=False):
+    restrictedResource: str
+    restrictedResourceDryRun: str
+    servicePerimeter: str
+    servicePerimeterDryRun: str
+
+@typing.type_check_only
 class MethodSelector(typing.TypedDict, total=False):
     method: str
     permission: str
@@ -295,6 +301,7 @@ class OsConstraint(typing.TypedDict, total=False):
         "DESKTOP_WINDOWS",
         "DESKTOP_LINUX",
         "DESKTOP_CHROME_OS",
+        "GOOGLEBOOK_OS",
         "ANDROID",
         "IOS",
     ]

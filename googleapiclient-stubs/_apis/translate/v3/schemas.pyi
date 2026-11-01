@@ -33,6 +33,7 @@ class AdaptiveMtTranslateRequest(typing.TypedDict, total=False):
     content: _list[str]
     dataset: str
     glossaryConfig: GlossaryConfig
+    mimeType: str
     referenceSentenceConfig: ReferenceSentenceConfig
 
 @typing.type_check_only

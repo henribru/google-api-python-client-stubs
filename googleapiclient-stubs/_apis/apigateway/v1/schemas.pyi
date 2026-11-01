@@ -84,10 +84,18 @@ class ApigatewayGateway(typing.TypedDict, total=False):
     createTime: str
     defaultHostname: str
     displayName: str
+    effectiveStreamingMode: typing.Literal[
+        "EFFECTIVE_STREAMING_MODE_UNSPECIFIED",
+        "EFFECTIVE_STREAMING_MODE_DISABLED",
+        "EFFECTIVE_STREAMING_MODE_ENABLED",
+    ]
     labels: dict[str, typing.Any]
     name: str
     state: typing.Literal[
         "STATE_UNSPECIFIED", "CREATING", "ACTIVE", "FAILED", "DELETING", "UPDATING"
+    ]
+    streamingMode: typing.Literal[
+        "STREAMING_MODE_UNSPECIFIED", "STREAMING_MODE_ENABLED"
     ]
     updateTime: str
 

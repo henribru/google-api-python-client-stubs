@@ -131,6 +131,66 @@ class FirebaseDataConnectResource(googleapiclient.discovery.Resource):
                     ) -> OperationHttpRequest: ...
 
                 @typing.type_check_only
+                class PostgrestResource(googleapiclient.discovery.Resource):
+                    @typing.type_check_only
+                    class RpcResource(googleapiclient.discovery.Resource):
+                        def postgrestCallFunction(
+                            self,
+                            *,
+                            firebasedataconnectService: str,
+                            firebasedataconnectFunction: str,
+                            body: HttpBody,
+                            **kwargs: typing.Any,
+                        ) -> HttpBodyHttpRequest: ...
+                        def postgrestQueryFunction(
+                            self,
+                            *,
+                            firebasedataconnectService: str,
+                            firebasedataconnectFunction: str,
+                            **kwargs: typing.Any,
+                        ) -> HttpBodyHttpRequest: ...
+
+                    def postgrestDelete(
+                        self,
+                        *,
+                        firebasedataconnectService: str,
+                        firebasedataconnectTable: str,
+                        **kwargs: typing.Any,
+                    ) -> HttpBodyHttpRequest: ...
+                    def postgrestInsert(
+                        self,
+                        *,
+                        firebasedataconnectService: str,
+                        firebasedataconnectTable: str,
+                        body: HttpBody,
+                        **kwargs: typing.Any,
+                    ) -> HttpBodyHttpRequest: ...
+                    def postgrestSelect(
+                        self,
+                        *,
+                        firebasedataconnectService: str,
+                        firebasedataconnectTable: str,
+                        **kwargs: typing.Any,
+                    ) -> HttpBodyHttpRequest: ...
+                    def postgrestUpdate(
+                        self,
+                        *,
+                        firebasedataconnectService: str,
+                        firebasedataconnectTable: str,
+                        body: HttpBody,
+                        **kwargs: typing.Any,
+                    ) -> HttpBodyHttpRequest: ...
+                    def postgrestUpsert(
+                        self,
+                        *,
+                        firebasedataconnectService: str,
+                        firebasedataconnectTable: str,
+                        body: HttpBody,
+                        **kwargs: typing.Any,
+                    ) -> HttpBodyHttpRequest: ...
+                    def rpc(self) -> RpcResource: ...
+
+                @typing.type_check_only
                 class SchemasResource(googleapiclient.discovery.Resource):
                     def create(
                         self,
@@ -171,6 +231,13 @@ class FirebaseDataConnectResource(googleapiclient.discovery.Resource):
                         previous_request: ListSchemasResponseHttpRequest,
                         previous_response: ListSchemasResponse,
                     ) -> ListSchemasResponseHttpRequest | None: ...
+                    def migrate(
+                        self,
+                        *,
+                        name: str,
+                        body: MigrateSchemaRequest,
+                        **kwargs: typing.Any,
+                    ) -> OperationHttpRequest: ...
                     def patch(
                         self,
                         *,
@@ -253,6 +320,7 @@ class FirebaseDataConnectResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def connectors(self) -> ConnectorsResource: ...
+                def postgrest(self) -> PostgrestResource: ...
                 def schemas(self) -> SchemasResource: ...
 
             def get(
@@ -347,6 +415,14 @@ class GraphqlResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GraphqlResponse: ...
+
+@typing.type_check_only
+class HttpBodyHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> HttpBody: ...
 
 @typing.type_check_only
 class ListConnectorsResponseHttpRequest(googleapiclient.http.HttpRequest):

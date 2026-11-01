@@ -187,6 +187,7 @@ class ExecutionReference(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class ExecutionSpec(typing.TypedDict, total=False):
+    delayExecution: bool
     parallelism: int
     taskCount: int
     template: TaskTemplateSpec
@@ -348,7 +349,16 @@ class GoogleDevtoolsCloudbuildV1BuildOptions(typing.TypedDict, total=False):
     ]
     pool: GoogleDevtoolsCloudbuildV1PoolOption
     pubsubTopic: str
-    requestedVerifyOption: typing.Literal["NOT_VERIFIED", "VERIFIED"]
+    rankedMachineSeries: _list[
+        typing.Literal[
+            "MACHINE_SERIES_UNSPECIFIED",
+            "MACHINE_SERIES_E",
+            "MACHINE_SERIES_N",
+            "MACHINE_SERIES_C",
+        ]
+    ]
+    requestedVerifyOption: typing.Literal["NOT_VERIFIED", "VERIFIED", "BEST_EFFORT"]
+    resolvedWorkerRelease: str
     secretEnv: _list[str]
     sourceProvenanceHash: _list[
         typing.Literal[
@@ -358,6 +368,15 @@ class GoogleDevtoolsCloudbuildV1BuildOptions(typing.TypedDict, total=False):
     substitutionOption: typing.Literal["MUST_MATCH", "ALLOW_LOOSE"]
     volumes: _list[GoogleDevtoolsCloudbuildV1Volume]
     workerPool: str
+    workerRelease: str
+
+@typing.type_check_only
+class GoogleDevtoolsCloudbuildV1BuildResourceUsage(typing.TypedDict, total=False):
+    averageCpuUtilization: float
+    averageMemoryUtilization: float
+    peakCpuUtilization: float
+    peakMemoryUtilization: float
+    totalCpuDuration: str
 
 @typing.type_check_only
 class GoogleDevtoolsCloudbuildV1BuildStep(typing.TypedDict, total=False):
@@ -467,6 +486,7 @@ class GoogleDevtoolsCloudbuildV1GitSource(typing.TypedDict, total=False):
 class GoogleDevtoolsCloudbuildV1GitSourceDependency(typing.TypedDict, total=False):
     depth: str
     destPath: str
+    fetchTags: bool
     recurseSubmodules: bool
     repository: GoogleDevtoolsCloudbuildV1GitSourceRepository
     revision: str
@@ -524,6 +544,8 @@ class GoogleDevtoolsCloudbuildV1Oci(typing.TypedDict, total=False):
 @typing.type_check_only
 class GoogleDevtoolsCloudbuildV1PoolOption(typing.TypedDict, total=False):
     name: str
+    resolvedWorkerRelease: str
+    workerRelease: str
 
 @typing.type_check_only
 class GoogleDevtoolsCloudbuildV1PythonPackage(typing.TypedDict, total=False):
@@ -555,6 +577,7 @@ class GoogleDevtoolsCloudbuildV1Results(typing.TypedDict, total=False):
     npmPackages: _list[GoogleDevtoolsCloudbuildV1UploadedNpmPackage]
     numArtifacts: str
     pythonPackages: _list[GoogleDevtoolsCloudbuildV1UploadedPythonPackage]
+    resourceUsage: GoogleDevtoolsCloudbuildV1BuildResourceUsage
 
 @typing.type_check_only
 class GoogleDevtoolsCloudbuildV1Secret(typing.TypedDict, total=False):
@@ -894,6 +917,7 @@ class ObjectMeta(typing.TypedDict, total=False):
 @typing.type_check_only
 class Overrides(typing.TypedDict, total=False):
     containerOverrides: _list[ContainerOverride]
+    delayExecution: bool
     taskCount: int
     timeoutSeconds: int
 

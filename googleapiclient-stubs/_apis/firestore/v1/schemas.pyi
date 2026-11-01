@@ -27,6 +27,7 @@ class BatchGetDocumentsRequest(typing.TypedDict, total=False):
     mask: DocumentMask
     newTransaction: TransactionOptions
     readTime: str
+    requestOptions: RequestOptions
     transaction: str
 
 @typing.type_check_only
@@ -39,6 +40,7 @@ class BatchGetDocumentsResponse(typing.TypedDict, total=False):
 @typing.type_check_only
 class BatchWriteRequest(typing.TypedDict, total=False):
     labels: dict[str, typing.Any]
+    requestOptions: RequestOptions
     writes: _list[Write]
 
 @typing.type_check_only
@@ -49,6 +51,7 @@ class BatchWriteResponse(typing.TypedDict, total=False):
 @typing.type_check_only
 class BeginTransactionRequest(typing.TypedDict, total=False):
     options: TransactionOptions
+    requestOptions: RequestOptions
 
 @typing.type_check_only
 class BeginTransactionResponse(typing.TypedDict, total=False):
@@ -71,6 +74,7 @@ class CollectionSelector(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class CommitRequest(typing.TypedDict, total=False):
+    requestOptions: RequestOptions
     transaction: str
     writes: _list[Write]
 
@@ -139,6 +143,7 @@ class ExecutePipelineRequest(typing.TypedDict, total=False):
     autoCommitTransaction: bool
     newTransaction: TransactionOptions
     readTime: str
+    requestOptions: RequestOptions
     structuredPipeline: StructuredPipeline
     transaction: str
 
@@ -279,6 +284,17 @@ class GoogleFirestoreAdminV1BulkDeleteDocumentsRequest(typing.TypedDict, total=F
     namespaceIds: _list[str]
 
 @typing.type_check_only
+class GoogleFirestoreAdminV1ChangeStream(typing.TypedDict, total=False):
+    collectionGroupScope: GoogleFirestoreAdminV1CollectionGroupScope
+    createTime: str
+    databaseScope: GoogleFirestoreAdminV1DatabaseScope
+    etag: str
+    name: str
+    retentionPeriod: str
+    startTime: str
+    updateTime: str
+
+@typing.type_check_only
 class GoogleFirestoreAdminV1CloneDatabaseMetadata(typing.TypedDict, total=False):
     database: str
     endTime: str
@@ -307,6 +323,10 @@ class GoogleFirestoreAdminV1CloneDatabaseRequest(typing.TypedDict, total=False):
 class GoogleFirestoreAdminV1CmekConfig(typing.TypedDict, total=False):
     activeKeyVersion: _list[str]
     kmsKeyName: str
+
+@typing.type_check_only
+class GoogleFirestoreAdminV1CollectionGroupScope(typing.TypedDict, total=False):
+    collectionGroupId: str
 
 @typing.type_check_only
 class GoogleFirestoreAdminV1CreateDatabaseMetadata(typing.TypedDict, total=False): ...
@@ -377,6 +397,9 @@ class GoogleFirestoreAdminV1Database(typing.TypedDict, total=False):
     uid: str
     updateTime: str
     versionRetentionPeriod: str
+
+@typing.type_check_only
+class GoogleFirestoreAdminV1DatabaseScope(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
 class GoogleFirestoreAdminV1DeleteDatabaseMetadata(typing.TypedDict, total=False): ...
@@ -551,6 +574,10 @@ class GoogleFirestoreAdminV1ListBackupsResponse(typing.TypedDict, total=False):
     unreachable: _list[str]
 
 @typing.type_check_only
+class GoogleFirestoreAdminV1ListChangeStreamsResponse(typing.TypedDict, total=False):
+    changeStreams: _list[GoogleFirestoreAdminV1ChangeStream]
+
+@typing.type_check_only
 class GoogleFirestoreAdminV1ListDatabasesResponse(typing.TypedDict, total=False):
     databases: _list[GoogleFirestoreAdminV1Database]
     unreachable: _list[str]
@@ -663,7 +690,19 @@ class GoogleFirestoreAdminV1TtlConfigDelta(typing.TypedDict, total=False):
     expirationOffset: str
 
 @typing.type_check_only
-class GoogleFirestoreAdminV1UpdateDatabaseMetadata(typing.TypedDict, total=False): ...
+class GoogleFirestoreAdminV1UpdateDatabaseMetadata(typing.TypedDict, total=False):
+    endTime: str
+    startTime: str
+    state: typing.Literal[
+        "OPERATION_STATE_UNSPECIFIED",
+        "INITIALIZING",
+        "PROCESSING",
+        "CANCELLING",
+        "FINALIZING",
+        "SUCCESSFUL",
+        "FAILED",
+        "CANCELLED",
+    ]
 
 @typing.type_check_only
 class GoogleFirestoreAdminV1UserCreds(typing.TypedDict, total=False):
@@ -719,6 +758,7 @@ class ListCollectionIdsRequest(typing.TypedDict, total=False):
     pageSize: int
     pageToken: str
     readTime: str
+    requestOptions: RequestOptions
 
 @typing.type_check_only
 class ListCollectionIdsResponse(typing.TypedDict, total=False):
@@ -740,6 +780,7 @@ class ListenRequest(typing.TypedDict, total=False):
     addTarget: Target
     labels: dict[str, typing.Any]
     removeTarget: int
+    requestOptions: RequestOptions
 
 @typing.type_check_only
 class ListenResponse(typing.TypedDict, total=False):
@@ -772,6 +813,7 @@ class PartitionQueryRequest(typing.TypedDict, total=False):
     pageToken: str
     partitionCount: str
     readTime: str
+    requestOptions: RequestOptions
     structuredQuery: StructuredQuery
 
 @typing.type_check_only
@@ -813,7 +855,12 @@ class ReadWrite(typing.TypedDict, total=False):
     retryTransaction: str
 
 @typing.type_check_only
+class RequestOptions(typing.TypedDict, total=False):
+    requestTags: _list[str]
+
+@typing.type_check_only
 class RollbackRequest(typing.TypedDict, total=False):
+    requestOptions: RequestOptions
     transaction: str
 
 @typing.type_check_only
@@ -821,6 +868,7 @@ class RunAggregationQueryRequest(typing.TypedDict, total=False):
     explainOptions: ExplainOptions
     newTransaction: TransactionOptions
     readTime: str
+    requestOptions: RequestOptions
     structuredAggregationQuery: StructuredAggregationQuery
     transaction: str
 
@@ -836,6 +884,7 @@ class RunQueryRequest(typing.TypedDict, total=False):
     explainOptions: ExplainOptions
     newTransaction: TransactionOptions
     readTime: str
+    requestOptions: RequestOptions
     structuredQuery: StructuredQuery
     transaction: str
 
@@ -953,6 +1002,7 @@ class Write(typing.TypedDict, total=False):
 @typing.type_check_only
 class WriteRequest(typing.TypedDict, total=False):
     labels: dict[str, typing.Any]
+    requestOptions: RequestOptions
     streamId: str
     streamToken: str
     writes: _list[Write]

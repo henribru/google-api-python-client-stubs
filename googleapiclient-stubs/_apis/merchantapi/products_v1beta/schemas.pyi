@@ -110,6 +110,8 @@ class AutomatedDiscounts(typing.TypedDict, total=False):
 class Certification(typing.TypedDict, total=False):
     certificationAuthority: str
     certificationCode: str
+    certificationDocumentLink: str
+    certificationLabelLink: str
     certificationName: str
     certificationValue: str
 
@@ -156,6 +158,7 @@ class DestinationStatus(typing.TypedDict, total=False):
         "PRODUCT_REVIEWS",
         "MERCHANT_REVIEWS",
         "YOUTUBE_CHECKOUT",
+        "RENTAL_ADS",
     ]
 
 @typing.type_check_only
@@ -207,6 +210,7 @@ class ItemLevelIssue(typing.TypedDict, total=False):
         "PRODUCT_REVIEWS",
         "MERCHANT_REVIEWS",
         "YOUTUBE_CHECKOUT",
+        "RENTAL_ADS",
     ]
     resolution: str
     severity: typing.Literal[
@@ -281,6 +285,7 @@ class ProductChange(typing.TypedDict, total=False):
         "PRODUCT_REVIEWS",
         "MERCHANT_REVIEWS",
         "YOUTUBE_CHECKOUT",
+        "RENTAL_ADS",
     ]
 
 @typing.type_check_only

@@ -466,6 +466,9 @@ class CloudKMSResource(googleapiclient.discovery.Resource):
                     keyRingId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> KeyRingHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> KeyRingHttpRequest: ...

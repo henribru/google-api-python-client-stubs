@@ -61,22 +61,6 @@ class BatchCreateBitbucketServerConnectedRepositoriesResponseMetadata(
     createTime: str
 
 @typing.type_check_only
-class BatchCreateGitLabConnectedRepositoriesRequest(typing.TypedDict, total=False):
-    requests: _list[CreateGitLabConnectedRepositoryRequest]
-
-@typing.type_check_only
-class BatchCreateGitLabConnectedRepositoriesResponse(typing.TypedDict, total=False):
-    gitlabConnectedRepositories: _list[GitLabConnectedRepository]
-
-@typing.type_check_only
-class BatchCreateGitLabConnectedRepositoriesResponseMetadata(
-    typing.TypedDict, total=False
-):
-    completeTime: str
-    config: str
-    createTime: str
-
-@typing.type_check_only
 class BitbucketServerConfig(typing.TypedDict, total=False):
     apiKey: str
     connectedRepositories: _list[BitbucketServerRepositoryId]
@@ -214,7 +198,8 @@ class BuildOptions(typing.TypedDict, total=False):
     ]
     pool: PoolOption
     pubsubTopic: str
-    requestedVerifyOption: typing.Literal["NOT_VERIFIED", "VERIFIED"]
+    requestedVerifyOption: typing.Literal["NOT_VERIFIED", "VERIFIED", "BEST_EFFORT"]
+    resolvedWorkerRelease: str
     secretEnv: _list[str]
     sourceProvenanceHash: _list[
         typing.Literal[
@@ -224,6 +209,15 @@ class BuildOptions(typing.TypedDict, total=False):
     substitutionOption: typing.Literal["MUST_MATCH", "ALLOW_LOOSE"]
     volumes: _list[Volume]
     workerPool: str
+    workerRelease: str
+
+@typing.type_check_only
+class BuildResourceUsage(typing.TypedDict, total=False):
+    averageCpuUtilization: float
+    averageMemoryUtilization: float
+    peakCpuUtilization: float
+    peakMemoryUtilization: float
+    totalCpuDuration: str
 
 @typing.type_check_only
 class BuildStep(typing.TypedDict, total=False):
@@ -279,7 +273,6 @@ class BuildTrigger(typing.TypedDict, total=False):
     filter: str
     gitFileSource: GitFileSource
     github: GitHubEventsConfig
-    gitlabEnterpriseEventsConfig: GitLabEventsConfig
     id: str
     ignoredFiles: _list[str]
     includeBuildLogs: typing.Literal[
@@ -340,17 +333,6 @@ class CreateGitHubEnterpriseConfigOperationMetadata(typing.TypedDict, total=Fals
     githubEnterpriseConfig: str
 
 @typing.type_check_only
-class CreateGitLabConfigOperationMetadata(typing.TypedDict, total=False):
-    completeTime: str
-    createTime: str
-    gitlabConfig: str
-
-@typing.type_check_only
-class CreateGitLabConnectedRepositoryRequest(typing.TypedDict, total=False):
-    gitlabConnectedRepository: GitLabConnectedRepository
-    parent: str
-
-@typing.type_check_only
 class CreateWorkerPoolOperationMetadata(typing.TypedDict, total=False):
     completeTime: str
     createTime: str
@@ -372,12 +354,6 @@ class DeleteGitHubEnterpriseConfigOperationMetadata(typing.TypedDict, total=Fals
     completeTime: str
     createTime: str
     githubEnterpriseConfig: str
-
-@typing.type_check_only
-class DeleteGitLabConfigOperationMetadata(typing.TypedDict, total=False):
-    completeTime: str
-    createTime: str
-    gitlabConfig: str
 
 @typing.type_check_only
 class DeleteWorkerPoolOperationMetadata(typing.TypedDict, total=False):
@@ -496,56 +472,6 @@ class GitHubEventsConfig(typing.TypedDict, total=False):
     push: PushFilter
 
 @typing.type_check_only
-class GitLabConfig(typing.TypedDict, total=False):
-    connectedRepositories: _list[GitLabRepositoryId]
-    createTime: str
-    enterpriseConfig: GitLabEnterpriseConfig
-    name: str
-    secrets: GitLabSecrets
-    username: str
-    webhookKey: str
-
-@typing.type_check_only
-class GitLabConnectedRepository(typing.TypedDict, total=False):
-    parent: str
-    repo: GitLabRepositoryId
-    status: Status
-
-@typing.type_check_only
-class GitLabEnterpriseConfig(typing.TypedDict, total=False):
-    hostUri: str
-    serviceDirectoryConfig: ServiceDirectoryConfig
-    sslCa: str
-
-@typing.type_check_only
-class GitLabEventsConfig(typing.TypedDict, total=False):
-    gitlabConfig: GitLabConfig
-    gitlabConfigResource: str
-    projectNamespace: str
-    pullRequest: PullRequestFilter
-    push: PushFilter
-
-@typing.type_check_only
-class GitLabRepository(typing.TypedDict, total=False):
-    browseUri: str
-    description: str
-    displayName: str
-    name: str
-    repositoryId: GitLabRepositoryId
-
-@typing.type_check_only
-class GitLabRepositoryId(typing.TypedDict, total=False):
-    id: str
-    webhookId: int
-
-@typing.type_check_only
-class GitLabSecrets(typing.TypedDict, total=False):
-    apiAccessTokenVersion: str
-    apiKeyVersion: str
-    readAccessTokenVersion: str
-    webhookSecretVersion: str
-
-@typing.type_check_only
 class GitRepoSource(typing.TypedDict, total=False):
     bitbucketServerConfig: str
     githubEnterpriseConfig: str
@@ -571,6 +497,7 @@ class GitSource(typing.TypedDict, total=False):
 class GitSourceDependency(typing.TypedDict, total=False):
     depth: str
     destPath: str
+    fetchTags: bool
     recurseSubmodules: bool
     repository: GitSourceRepository
     revision: str
@@ -632,16 +559,6 @@ class ListBuildsResponse(typing.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
-class ListGitLabConfigsResponse(typing.TypedDict, total=False):
-    gitlabConfigs: _list[GitLabConfig]
-    nextPageToken: str
-
-@typing.type_check_only
-class ListGitLabRepositoriesResponse(typing.TypedDict, total=False):
-    gitlabRepositories: _list[GitLabRepository]
-    nextPageToken: str
-
-@typing.type_check_only
 class ListGithubEnterpriseConfigsResponse(typing.TypedDict, total=False):
     configs: _list[GitHubEnterpriseConfig]
 
@@ -699,6 +616,8 @@ class OperationMetadata(typing.TypedDict, total=False):
 @typing.type_check_only
 class PoolOption(typing.TypedDict, total=False):
     name: str
+    resolvedWorkerRelease: str
+    workerRelease: str
 
 @typing.type_check_only
 class PrivatePoolV1Config(typing.TypedDict, total=False):
@@ -760,10 +679,6 @@ class RemoveBitbucketServerConnectedRepositoryRequest(typing.TypedDict, total=Fa
     connectedRepository: BitbucketServerRepositoryId
 
 @typing.type_check_only
-class RemoveGitLabConnectedRepositoryRequest(typing.TypedDict, total=False):
-    connectedRepository: GitLabRepositoryId
-
-@typing.type_check_only
 class RepoSource(typing.TypedDict, total=False):
     branchName: str
     commitSha: str
@@ -802,6 +717,7 @@ class Results(typing.TypedDict, total=False):
     npmPackages: _list[UploadedNpmPackage]
     numArtifacts: str
     pythonPackages: _list[UploadedPythonPackage]
+    resourceUsage: BuildResourceUsage
 
 @typing.type_check_only
 class RetryBuildRequest(typing.TypedDict, total=False):
@@ -829,10 +745,6 @@ class SecretManagerSecret(typing.TypedDict, total=False):
 class Secrets(typing.TypedDict, total=False):
     inline: _list[InlineSecret]
     secretManager: _list[SecretManagerSecret]
-
-@typing.type_check_only
-class ServiceDirectoryConfig(typing.TypedDict, total=False):
-    service: str
 
 @typing.type_check_only
 class Source(typing.TypedDict, total=False):
@@ -893,12 +805,6 @@ class UpdateGitHubEnterpriseConfigOperationMetadata(typing.TypedDict, total=Fals
     completeTime: str
     createTime: str
     githubEnterpriseConfig: str
-
-@typing.type_check_only
-class UpdateGitLabConfigOperationMetadata(typing.TypedDict, total=False):
-    completeTime: str
-    createTime: str
-    gitlabConfig: str
 
 @typing.type_check_only
 class UpdateWorkerPoolOperationMetadata(typing.TypedDict, total=False):
@@ -962,6 +868,7 @@ class WorkerConfig(typing.TypedDict, total=False):
     diskSizeGb: str
     enableNestedVirtualization: bool
     machineType: str
+    workerRelease: str
 
 @typing.type_check_only
 class WorkerPool(typing.TypedDict, total=False):

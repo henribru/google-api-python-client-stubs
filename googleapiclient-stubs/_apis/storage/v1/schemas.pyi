@@ -116,19 +116,6 @@ class BulkRestoreObjectsRequest(typing.TypedDict, total=False):
     softDeletedBeforeTime: str
 
 @typing.type_check_only
-class Channel(typing.TypedDict, total=False):
-    address: str
-    expiration: str
-    id: str
-    kind: str
-    params: dict[str, typing.Any]
-    payload: bool
-    resourceId: str
-    resourceUri: str
-    token: str
-    type: str
-
-@typing.type_check_only
 class ComposeRequest(typing.TypedDict, total=False):
     deleteSourceObjects: bool
     destination: Object
@@ -307,6 +294,17 @@ class ObjectAccessControls(typing.TypedDict, total=False):
 @typing.type_check_only
 class ObjectCustomContextPayload(typing.TypedDict, total=False):
     createTime: str
+    extendedDataTypeUrl: str
+    updateTime: str
+    value: str
+
+@typing.type_check_only
+class ObjectFullContext(typing.TypedDict, total=False):
+    createTime: str
+    extendedData: dict[str, typing.Any]
+    key: str
+    kind: str
+    type: typing.Literal["CUSTOM"]
     updateTime: str
     value: str
 

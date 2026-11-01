@@ -32,6 +32,18 @@ class AgentSpec(typing.TypedDict, total=False):
     type: typing.Literal["TYPE_UNSPECIFIED", "NO_SPEC", "A2A_AGENT_CARD"]
 
 @typing.type_check_only
+class AiApplication(typing.TypedDict, total=False):
+    applicationProperties: ApplicationProperties
+    attributes: Attributes
+    createTime: str
+    description: str
+    displayName: str
+    name: str
+    state: typing.Literal["STATE_UNSPECIFIED", "CREATING", "ACTIVE", "DELETING"]
+    uid: str
+    updateTime: str
+
+@typing.type_check_only
 class Annotations(typing.TypedDict, total=False):
     destructiveHint: bool
     idempotentHint: bool
@@ -40,8 +52,20 @@ class Annotations(typing.TypedDict, total=False):
     title: str
 
 @typing.type_check_only
+class ApplicationProperties(typing.TypedDict, total=False):
+    extendedMetadata: dict[str, typing.Any]
+
+@typing.type_check_only
 class ArchiveUploadSource(typing.TypedDict, total=False):
     archiveContent: str
+
+@typing.type_check_only
+class Attributes(typing.TypedDict, total=False):
+    businessOwners: _list[ContactInfo]
+    criticality: Criticality
+    developerOwners: _list[ContactInfo]
+    environment: Environment
+    operatorOwners: _list[ContactInfo]
 
 @typing.type_check_only
 class AuthProviderBinding(typing.TypedDict, total=False):
@@ -69,6 +93,24 @@ class Card(typing.TypedDict, total=False):
     type: typing.Literal["TYPE_UNSPECIFIED", "A2A_AGENT_CARD"]
 
 @typing.type_check_only
+class Channel(typing.TypedDict, total=False):
+    uri: str
+
+@typing.type_check_only
+class ContactInfo(typing.TypedDict, total=False):
+    channel: Channel
+    displayName: str
+    email: str
+
+@typing.type_check_only
+class Criticality(typing.TypedDict, total=False):
+    level: str
+    missionCritical: bool
+    type: typing.Literal[
+        "TYPE_UNSPECIFIED", "MISSION_CRITICAL", "HIGH", "MEDIUM", "LOW"
+    ]
+
+@typing.type_check_only
 class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -88,9 +130,53 @@ class EndpointSpec(typing.TypedDict, total=False):
     type: typing.Literal["TYPE_UNSPECIFIED", "NO_SPEC"]
 
 @typing.type_check_only
+class Environment(typing.TypedDict, total=False):
+    environment: str
+    type: typing.Literal[
+        "TYPE_UNSPECIFIED", "PRODUCTION", "STAGING", "TEST", "DEVELOPMENT"
+    ]
+
+@typing.type_check_only
+class Expr(typing.TypedDict, total=False):
+    description: str
+    expression: str
+    location: str
+    title: str
+
+@typing.type_check_only
+class ExtendedMetadata(typing.TypedDict, total=False):
+    metadataStruct: dict[str, typing.Any]
+
+@typing.type_check_only
 class FetchAvailableBindingsResponse(typing.TypedDict, total=False):
     bindings: _list[Binding]
     nextPageToken: str
+
+@typing.type_check_only
+class File(typing.TypedDict, total=False):
+    lineNumber: str
+    path: str
+
+@typing.type_check_only
+class Finding(typing.TypedDict, total=False):
+    category: str
+    createTime: str
+    detail: str
+    files: _list[File]
+    findingClass: typing.Literal[
+        "FINDING_CLASS_UNSPECIFIED", "VULNERABILITY", "OBSERVATION", "SECRET"
+    ]
+    name: str
+    resource: str
+    severity: typing.Literal[
+        "SEVERITY_UNSPECIFIED",
+        "SEVERITY_CRITICAL",
+        "SEVERITY_HIGH",
+        "SEVERITY_MEDIUM",
+        "SEVERITY_LOW",
+    ]
+    uid: str
+    updateTime: str
 
 @typing.type_check_only
 class Frontmatter(typing.TypedDict, total=False):
@@ -106,6 +192,44 @@ class GcsSource(typing.TypedDict, total=False):
     uri: str
 
 @typing.type_check_only
+class GoogleIamV1AuditConfig(typing.TypedDict, total=False):
+    auditLogConfigs: _list[GoogleIamV1AuditLogConfig]
+    service: str
+
+@typing.type_check_only
+class GoogleIamV1AuditLogConfig(typing.TypedDict, total=False):
+    exemptedMembers: _list[str]
+    logType: typing.Literal[
+        "LOG_TYPE_UNSPECIFIED", "ADMIN_READ", "DATA_WRITE", "DATA_READ"
+    ]
+
+@typing.type_check_only
+class GoogleIamV1Binding(typing.TypedDict, total=False):
+    condition: Expr
+    members: _list[str]
+    role: str
+
+@typing.type_check_only
+class GoogleIamV1Policy(typing.TypedDict, total=False):
+    auditConfigs: _list[GoogleIamV1AuditConfig]
+    bindings: _list[GoogleIamV1Binding]
+    etag: str
+    version: int
+
+@typing.type_check_only
+class GoogleIamV1SetIamPolicyRequest(typing.TypedDict, total=False):
+    policy: GoogleIamV1Policy
+    updateMask: str
+
+@typing.type_check_only
+class GoogleIamV1TestIamPermissionsRequest(typing.TypedDict, total=False):
+    permissions: _list[str]
+
+@typing.type_check_only
+class GoogleIamV1TestIamPermissionsResponse(typing.TypedDict, total=False):
+    permissions: _list[str]
+
+@typing.type_check_only
 class Interface(typing.TypedDict, total=False):
     protocolBinding: typing.Literal[
         "PROTOCOL_BINDING_UNSPECIFIED", "JSONRPC", "GRPC", "HTTP_JSON"
@@ -118,6 +242,27 @@ class ListAgentsResponse(typing.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
+class ListAiApplicationAgentsResponse(typing.TypedDict, total=False):
+    agents: _list[Agent]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListAiApplicationEndpointsResponse(typing.TypedDict, total=False):
+    endpoints: _list[Endpoint]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListAiApplicationMcpServersResponse(typing.TypedDict, total=False):
+    mcpServers: _list[McpServer]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListAiApplicationsResponse(typing.TypedDict, total=False):
+    aiApplications: _list[AiApplication]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
 class ListBindingsResponse(typing.TypedDict, total=False):
     bindings: _list[Binding]
     nextPageToken: str
@@ -125,6 +270,11 @@ class ListBindingsResponse(typing.TypedDict, total=False):
 @typing.type_check_only
 class ListEndpointsResponse(typing.TypedDict, total=False):
     endpoints: _list[Endpoint]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListFindingsResponse(typing.TypedDict, total=False):
+    findings: _list[Finding]
     nextPageToken: str
 
 @typing.type_check_only
@@ -225,6 +375,26 @@ class Publisher(typing.TypedDict, total=False):
     verifiedPrefix: str
 
 @typing.type_check_only
+class ScanResult(typing.TypedDict, total=False):
+    errorMessage: str
+    findings: _list[str]
+    scanState: typing.Literal[
+        "SCAN_STATE_UNSPECIFIED",
+        "FAILED",
+        "UNSUPPORTED_FORMAT",
+        "SUCCEEDED",
+        "DISABLED",
+        "RUNNING",
+    ]
+    scanTime: str
+
+@typing.type_check_only
+class ScanningConfig(typing.TypedDict, total=False):
+    policy: typing.Literal[
+        "POLICY_UNSPECIFIED", "DISABLED", "ENABLED_BLOCKING", "ENABLED_NONBLOCKING"
+    ]
+
+@typing.type_check_only
 class SearchAgentsRequest(typing.TypedDict, total=False):
     pageSize: int
     pageToken: str
@@ -245,6 +415,14 @@ class SearchMcpServersRequest(typing.TypedDict, total=False):
 class SearchMcpServersResponse(typing.TypedDict, total=False):
     mcpServers: _list[McpServer]
     nextPageToken: str
+
+@typing.type_check_only
+class SearchSkillsRequest(typing.TypedDict, total=False):
+    filter: str
+    pageSize: int
+    pageToken: str
+    searchString: str
+    searchType: typing.Literal["SEARCH_TYPE_UNSPECIFIED", "KEYWORD", "SEMANTIC"]
 
 @typing.type_check_only
 class SearchSkillsResponse(typing.TypedDict, total=False):
@@ -274,6 +452,7 @@ class Skill(typing.TypedDict, total=False):
     initialRevision: SkillRevision
     name: str
     publisher: str
+    scanningConfig: ScanningConfig
     skillId: str
     state: typing.Literal[
         "STATE_UNSPECIFIED",
@@ -304,6 +483,7 @@ class SkillRevision(typing.TypedDict, total=False):
     frontmatter: Frontmatter
     gcsSource: GcsSource
     name: str
+    scanResult: ScanResult
     sha256Hash: str
     sizeBytes: str
     state: typing.Literal[

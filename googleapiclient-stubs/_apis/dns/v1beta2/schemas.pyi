@@ -55,6 +55,9 @@ class DnsKeysListResponse(typing.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
+class Empty(typing.TypedDict, total=False): ...
+
+@typing.type_check_only
 class Expr(typing.TypedDict, total=False):
     description: str
     expression: str
@@ -108,12 +111,37 @@ class GoogleIamV1TestIamPermissionsResponse(typing.TypedDict, total=False):
     permissions: _list[str]
 
 @typing.type_check_only
+class GoogleLongrunningListOperationsResponse(typing.TypedDict, total=False):
+    nextPageToken: str
+    operations: _list[GoogleLongrunningOperation]
+    unreachable: _list[str]
+
+@typing.type_check_only
 class GoogleLongrunningOperation(typing.TypedDict, total=False):
     done: bool
     error: Status
     metadata: dict[str, typing.Any]
     name: str
     response: dict[str, typing.Any]
+
+@typing.type_check_only
+class ListLocationsResponse(typing.TypedDict, total=False):
+    locations: _list[Location]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListOutboundEndpointsResponse(typing.TypedDict, total=False):
+    nextPageToken: str
+    outboundEndpoints: _list[OutboundEndpoint]
+    unreachable: _list[str]
+
+@typing.type_check_only
+class Location(typing.TypedDict, total=False):
+    displayName: str
+    labels: dict[str, typing.Any]
+    locationId: str
+    metadata: dict[str, typing.Any]
+    name: str
 
 @typing.type_check_only
 class ManagedZone(typing.TypedDict, total=False):
@@ -150,6 +178,7 @@ class ManagedZoneDnsSecConfig(typing.TypedDict, total=False):
 @typing.type_check_only
 class ManagedZoneForwardingConfig(typing.TypedDict, total=False):
     kind: str
+    outboundEndpoints: _list[ManagedZoneForwardingConfigOutboundEndpoint]
     targetNameServers: _list[ManagedZoneForwardingConfigNameServerTarget]
 
 @typing.type_check_only
@@ -159,6 +188,11 @@ class ManagedZoneForwardingConfigNameServerTarget(typing.TypedDict, total=False)
     ipv4Address: str
     ipv6Address: str
     kind: str
+
+@typing.type_check_only
+class ManagedZoneForwardingConfigOutboundEndpoint(typing.TypedDict, total=False):
+    kind: str
+    name: str
 
 @typing.type_check_only
 class ManagedZoneOperationsListResponse(typing.TypedDict, total=False):
@@ -236,6 +270,29 @@ class OperationManagedZoneContext(typing.TypedDict, total=False):
     oldValue: ManagedZone
 
 @typing.type_check_only
+class OperationMetadata(typing.TypedDict, total=False):
+    apiVersion: str
+    createTime: str
+    endTime: str
+    requestedCancellation: bool
+    statusMessage: str
+    target: str
+    verb: str
+
+@typing.type_check_only
+class OutboundEndpoint(typing.TypedDict, total=False):
+    annotations: dict[str, typing.Any]
+    createTime: str
+    description: str
+    endpointIp: str
+    labels: dict[str, typing.Any]
+    name: str
+    network: str
+    subnetwork: str
+    tags: dict[str, typing.Any]
+    updateTime: str
+
+@typing.type_check_only
 class PoliciesListResponse(typing.TypedDict, total=False):
     kind: str
     nextPageToken: str
@@ -264,7 +321,13 @@ class Policy(typing.TypedDict, total=False):
 @typing.type_check_only
 class PolicyAlternativeNameServerConfig(typing.TypedDict, total=False):
     kind: str
+    outboundEndpoints: _list[PolicyAlternativeNameServerConfigOutboundEndpoint]
     targetNameServers: _list[PolicyAlternativeNameServerConfigTargetNameServer]
+
+@typing.type_check_only
+class PolicyAlternativeNameServerConfigOutboundEndpoint(typing.TypedDict, total=False):
+    kind: str
+    name: str
 
 @typing.type_check_only
 class PolicyAlternativeNameServerConfigTargetNameServer(typing.TypedDict, total=False):
@@ -311,6 +374,8 @@ class Quota(typing.TypedDict, total=False):
     networksPerManagedZone: int
     networksPerPolicy: int
     networksPerResponsePolicy: int
+    outboundEndpointsPerManagedZone: int
+    outboundEndpointsPerPolicy: int
     peeringZonesPerTargetNetwork: int
     policies: int
     resourceRecordsPerRrset: int

@@ -172,6 +172,7 @@ class GceSetup(typing.TypedDict, total=False):
     reservationAffinity: ReservationAffinity
     serviceAccounts: _list[ServiceAccount]
     shieldedInstanceConfig: ShieldedInstanceConfig
+    systemMetadata: dict[str, typing.Any]
     tags: _list[str]
     vmImage: VmImage
 
@@ -229,6 +230,7 @@ class Instance(typing.TypedDict, total=False):
         "INITIALIZING",
         "SUSPENDING",
         "SUSPENDED",
+        "ORPHANED",
     ]
     thirdPartyProxyUrl: str
     updateTime: str
@@ -262,6 +264,7 @@ class Location(typing.TypedDict, total=False):
 @typing.type_check_only
 class NetworkInterface(typing.TypedDict, total=False):
     accessConfigs: _list[AccessConfig]
+    internalIp: str
     network: str
     nicType: typing.Literal["NIC_TYPE_UNSPECIFIED", "VIRTIO_NET", "GVNIC"]
     subnet: str
@@ -392,5 +395,7 @@ class UpgradeInstanceSystemRequest(typing.TypedDict, total=False):
 @typing.type_check_only
 class VmImage(typing.TypedDict, total=False):
     family: str
+    imageDescription: str
+    imageId: str
     name: str
     project: str

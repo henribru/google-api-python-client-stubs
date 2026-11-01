@@ -973,7 +973,6 @@ class AssignedTargetingOption(typing.TypedDict, total=False):
         "TARGETING_TYPE_NEGATIVE_KEYWORD_LIST",
         "TARGETING_TYPE_VIEWABILITY",
         "TARGETING_TYPE_CATEGORY",
-        "TARGETING_TYPE_INVENTORY_SOURCE",
         "TARGETING_TYPE_LANGUAGE",
         "TARGETING_TYPE_AUTHORIZED_SELLER_STATUS",
         "TARGETING_TYPE_GEO_REGION",
@@ -1310,27 +1309,6 @@ class BusinessChainTargetingOptionDetails(typing.TypedDict, total=False):
         "GEO_REGION_TYPE_COLLOQUIAL_AREA",
         "GEO_REGION_TYPE_POST_TOWN",
         "GEO_REGION_TYPE_WARD",
-        "GEO_REGION_TYPE_TOWN",
-        "GEO_REGION_TYPE_VILLAGE",
-        "GEO_REGION_TYPE_CITY_DISTRICT",
-        "GEO_REGION_TYPE_SUBURB",
-        "GEO_REGION_TYPE_HAMLET",
-        "GEO_REGION_TYPE_MUNICIPAL_DISTRICT",
-        "GEO_REGION_TYPE_COMMUNITY",
-        "GEO_REGION_TYPE_TOWNSHIP",
-        "GEO_REGION_TYPE_URBAN_DISTRICT",
-        "GEO_REGION_TYPE_RESIDENTIAL_AREA",
-        "GEO_REGION_TYPE_INDEPENDENT_CITY",
-        "GEO_REGION_TYPE_SECTOR",
-        "GEO_REGION_TYPE_AREA",
-        "GEO_REGION_TYPE_ESTATE",
-        "GEO_REGION_TYPE_PARISH",
-        "GEO_REGION_TYPE_SETTLEMENT",
-        "GEO_REGION_TYPE_ZONE",
-        "GEO_REGION_TYPE_COLONY",
-        "GEO_REGION_TYPE_INDUSTRIAL_AREA",
-        "GEO_REGION_TYPE_PROVINCIAL_CITY",
-        "GEO_REGION_TYPE_RURAL_DISTRICT",
     ]
 
 @typing.type_check_only
@@ -1676,7 +1654,6 @@ class CreateAssignedTargetingOptionsRequest(typing.TypedDict, total=False):
         "TARGETING_TYPE_NEGATIVE_KEYWORD_LIST",
         "TARGETING_TYPE_VIEWABILITY",
         "TARGETING_TYPE_CATEGORY",
-        "TARGETING_TYPE_INVENTORY_SOURCE",
         "TARGETING_TYPE_LANGUAGE",
         "TARGETING_TYPE_AUTHORIZED_SELLER_STATUS",
         "TARGETING_TYPE_GEO_REGION",
@@ -1707,21 +1684,6 @@ class CreateSdfDownloadTaskRequest(typing.TypedDict, total=False):
     partnerId: str
     version: typing.Literal[
         "SDF_VERSION_UNSPECIFIED",
-        "SDF_VERSION_3_1",
-        "SDF_VERSION_4",
-        "SDF_VERSION_4_1",
-        "SDF_VERSION_4_2",
-        "SDF_VERSION_5",
-        "SDF_VERSION_5_1",
-        "SDF_VERSION_5_2",
-        "SDF_VERSION_5_3",
-        "SDF_VERSION_5_4",
-        "SDF_VERSION_5_5",
-        "SDF_VERSION_6",
-        "SDF_VERSION_7",
-        "SDF_VERSION_7_1",
-        "SDF_VERSION_8",
-        "SDF_VERSION_8_1",
         "SDF_VERSION_9",
         "SDF_VERSION_9_1",
         "SDF_VERSION_9_2",
@@ -2034,7 +1996,6 @@ class DeleteAssignedTargetingOptionsRequest(typing.TypedDict, total=False):
         "TARGETING_TYPE_NEGATIVE_KEYWORD_LIST",
         "TARGETING_TYPE_VIEWABILITY",
         "TARGETING_TYPE_CATEGORY",
-        "TARGETING_TYPE_INVENTORY_SOURCE",
         "TARGETING_TYPE_LANGUAGE",
         "TARGETING_TYPE_AUTHORIZED_SELLER_STATUS",
         "TARGETING_TYPE_GEO_REGION",
@@ -2221,25 +2182,13 @@ class DeviceTypeTargetingOptionDetails(typing.TypedDict, total=False):
 @typing.type_check_only
 class DigitalContentLabelAssignedTargetingOptionDetails(typing.TypedDict, total=False):
     excludedContentRatingTier: typing.Literal[
-        "CONTENT_RATING_TIER_UNSPECIFIED",
-        "CONTENT_RATING_TIER_UNRATED",
-        "CONTENT_RATING_TIER_GENERAL",
-        "CONTENT_RATING_TIER_PARENTAL_GUIDANCE",
-        "CONTENT_RATING_TIER_TEENS",
-        "CONTENT_RATING_TIER_MATURE",
-        "CONTENT_RATING_TIER_FAMILIES",
+        "CONTENT_RATING_TIER_UNSPECIFIED", "CONTENT_RATING_TIER_UNRATED"
     ]
 
 @typing.type_check_only
 class DigitalContentLabelTargetingOptionDetails(typing.TypedDict, total=False):
     contentRatingTier: typing.Literal[
-        "CONTENT_RATING_TIER_UNSPECIFIED",
-        "CONTENT_RATING_TIER_UNRATED",
-        "CONTENT_RATING_TIER_GENERAL",
-        "CONTENT_RATING_TIER_PARENTAL_GUIDANCE",
-        "CONTENT_RATING_TIER_TEENS",
-        "CONTENT_RATING_TIER_MATURE",
-        "CONTENT_RATING_TIER_FAMILIES",
+        "CONTENT_RATING_TIER_UNSPECIFIED", "CONTENT_RATING_TIER_UNRATED"
     ]
 
 @typing.type_check_only
@@ -2989,27 +2938,6 @@ class GeoRegionAssignedTargetingOptionDetails(typing.TypedDict, total=False):
         "GEO_REGION_TYPE_COLLOQUIAL_AREA",
         "GEO_REGION_TYPE_POST_TOWN",
         "GEO_REGION_TYPE_WARD",
-        "GEO_REGION_TYPE_TOWN",
-        "GEO_REGION_TYPE_VILLAGE",
-        "GEO_REGION_TYPE_CITY_DISTRICT",
-        "GEO_REGION_TYPE_SUBURB",
-        "GEO_REGION_TYPE_HAMLET",
-        "GEO_REGION_TYPE_MUNICIPAL_DISTRICT",
-        "GEO_REGION_TYPE_COMMUNITY",
-        "GEO_REGION_TYPE_TOWNSHIP",
-        "GEO_REGION_TYPE_URBAN_DISTRICT",
-        "GEO_REGION_TYPE_RESIDENTIAL_AREA",
-        "GEO_REGION_TYPE_INDEPENDENT_CITY",
-        "GEO_REGION_TYPE_SECTOR",
-        "GEO_REGION_TYPE_AREA",
-        "GEO_REGION_TYPE_ESTATE",
-        "GEO_REGION_TYPE_PARISH",
-        "GEO_REGION_TYPE_SETTLEMENT",
-        "GEO_REGION_TYPE_ZONE",
-        "GEO_REGION_TYPE_COLONY",
-        "GEO_REGION_TYPE_INDUSTRIAL_AREA",
-        "GEO_REGION_TYPE_PROVINCIAL_CITY",
-        "GEO_REGION_TYPE_RURAL_DISTRICT",
     ]
     negative: bool
     targetingOptionId: str
@@ -3062,27 +2990,6 @@ class GeoRegionTargetingOptionDetails(typing.TypedDict, total=False):
         "GEO_REGION_TYPE_COLLOQUIAL_AREA",
         "GEO_REGION_TYPE_POST_TOWN",
         "GEO_REGION_TYPE_WARD",
-        "GEO_REGION_TYPE_TOWN",
-        "GEO_REGION_TYPE_VILLAGE",
-        "GEO_REGION_TYPE_CITY_DISTRICT",
-        "GEO_REGION_TYPE_SUBURB",
-        "GEO_REGION_TYPE_HAMLET",
-        "GEO_REGION_TYPE_MUNICIPAL_DISTRICT",
-        "GEO_REGION_TYPE_COMMUNITY",
-        "GEO_REGION_TYPE_TOWNSHIP",
-        "GEO_REGION_TYPE_URBAN_DISTRICT",
-        "GEO_REGION_TYPE_RESIDENTIAL_AREA",
-        "GEO_REGION_TYPE_INDEPENDENT_CITY",
-        "GEO_REGION_TYPE_SECTOR",
-        "GEO_REGION_TYPE_AREA",
-        "GEO_REGION_TYPE_ESTATE",
-        "GEO_REGION_TYPE_PARISH",
-        "GEO_REGION_TYPE_SETTLEMENT",
-        "GEO_REGION_TYPE_ZONE",
-        "GEO_REGION_TYPE_COLONY",
-        "GEO_REGION_TYPE_INDUSTRIAL_AREA",
-        "GEO_REGION_TYPE_PROVINCIAL_CITY",
-        "GEO_REGION_TYPE_RURAL_DISTRICT",
     ]
 
 @typing.type_check_only
@@ -3093,8 +3000,6 @@ class GoogleAudience(typing.TypedDict, total=False):
         "GOOGLE_AUDIENCE_TYPE_UNSPECIFIED",
         "GOOGLE_AUDIENCE_TYPE_AFFINITY",
         "GOOGLE_AUDIENCE_TYPE_IN_MARKET",
-        "GOOGLE_AUDIENCE_TYPE_INSTALLED_APPS",
-        "GOOGLE_AUDIENCE_TYPE_NEW_MOBILE_DEVICES",
         "GOOGLE_AUDIENCE_TYPE_LIFE_EVENT",
         "GOOGLE_AUDIENCE_TYPE_EXTENDED_DEMOGRAPHIC",
     ]
@@ -4284,21 +4189,6 @@ class SdfConfig(typing.TypedDict, total=False):
     adminEmail: str
     version: typing.Literal[
         "SDF_VERSION_UNSPECIFIED",
-        "SDF_VERSION_3_1",
-        "SDF_VERSION_4",
-        "SDF_VERSION_4_1",
-        "SDF_VERSION_4_2",
-        "SDF_VERSION_5",
-        "SDF_VERSION_5_1",
-        "SDF_VERSION_5_2",
-        "SDF_VERSION_5_3",
-        "SDF_VERSION_5_4",
-        "SDF_VERSION_5_5",
-        "SDF_VERSION_6",
-        "SDF_VERSION_7",
-        "SDF_VERSION_7_1",
-        "SDF_VERSION_8",
-        "SDF_VERSION_8_1",
         "SDF_VERSION_9",
         "SDF_VERSION_9_1",
         "SDF_VERSION_9_2",
@@ -4316,21 +4206,6 @@ class SdfDownloadTaskMetadata(typing.TypedDict, total=False):
     endTime: str
     version: typing.Literal[
         "SDF_VERSION_UNSPECIFIED",
-        "SDF_VERSION_3_1",
-        "SDF_VERSION_4",
-        "SDF_VERSION_4_1",
-        "SDF_VERSION_4_2",
-        "SDF_VERSION_5",
-        "SDF_VERSION_5_1",
-        "SDF_VERSION_5_2",
-        "SDF_VERSION_5_3",
-        "SDF_VERSION_5_4",
-        "SDF_VERSION_5_5",
-        "SDF_VERSION_6",
-        "SDF_VERSION_7",
-        "SDF_VERSION_7_1",
-        "SDF_VERSION_8",
-        "SDF_VERSION_8_1",
         "SDF_VERSION_9",
         "SDF_VERSION_9_1",
         "SDF_VERSION_9_2",
@@ -4365,23 +4240,6 @@ class SelectedInventories(typing.TypedDict, total=False):
 class SensitiveCategoryAssignedTargetingOptionDetails(typing.TypedDict, total=False):
     excludedSensitiveCategory: typing.Literal[
         "SENSITIVE_CATEGORY_UNSPECIFIED",
-        "SENSITIVE_CATEGORY_ADULT",
-        "SENSITIVE_CATEGORY_DEROGATORY",
-        "SENSITIVE_CATEGORY_DOWNLOADS_SHARING",
-        "SENSITIVE_CATEGORY_WEAPONS",
-        "SENSITIVE_CATEGORY_GAMBLING",
-        "SENSITIVE_CATEGORY_VIOLENCE",
-        "SENSITIVE_CATEGORY_SUGGESTIVE",
-        "SENSITIVE_CATEGORY_PROFANITY",
-        "SENSITIVE_CATEGORY_ALCOHOL",
-        "SENSITIVE_CATEGORY_DRUGS",
-        "SENSITIVE_CATEGORY_TOBACCO",
-        "SENSITIVE_CATEGORY_POLITICS",
-        "SENSITIVE_CATEGORY_RELIGION",
-        "SENSITIVE_CATEGORY_TRAGEDY",
-        "SENSITIVE_CATEGORY_TRANSPORTATION_ACCIDENTS",
-        "SENSITIVE_CATEGORY_SENSITIVE_SOCIAL_ISSUES",
-        "SENSITIVE_CATEGORY_SHOCKING",
         "SENSITIVE_CATEGORY_EMBEDDED_VIDEO",
         "SENSITIVE_CATEGORY_LIVE_STREAMING_VIDEO",
     ]
@@ -4390,23 +4248,6 @@ class SensitiveCategoryAssignedTargetingOptionDetails(typing.TypedDict, total=Fa
 class SensitiveCategoryTargetingOptionDetails(typing.TypedDict, total=False):
     sensitiveCategory: typing.Literal[
         "SENSITIVE_CATEGORY_UNSPECIFIED",
-        "SENSITIVE_CATEGORY_ADULT",
-        "SENSITIVE_CATEGORY_DEROGATORY",
-        "SENSITIVE_CATEGORY_DOWNLOADS_SHARING",
-        "SENSITIVE_CATEGORY_WEAPONS",
-        "SENSITIVE_CATEGORY_GAMBLING",
-        "SENSITIVE_CATEGORY_VIOLENCE",
-        "SENSITIVE_CATEGORY_SUGGESTIVE",
-        "SENSITIVE_CATEGORY_PROFANITY",
-        "SENSITIVE_CATEGORY_ALCOHOL",
-        "SENSITIVE_CATEGORY_DRUGS",
-        "SENSITIVE_CATEGORY_TOBACCO",
-        "SENSITIVE_CATEGORY_POLITICS",
-        "SENSITIVE_CATEGORY_RELIGION",
-        "SENSITIVE_CATEGORY_TRAGEDY",
-        "SENSITIVE_CATEGORY_TRANSPORTATION_ACCIDENTS",
-        "SENSITIVE_CATEGORY_SENSITIVE_SOCIAL_ISSUES",
-        "SENSITIVE_CATEGORY_SHOCKING",
         "SENSITIVE_CATEGORY_EMBEDDED_VIDEO",
         "SENSITIVE_CATEGORY_LIVE_STREAMING_VIDEO",
     ]
@@ -4452,10 +4293,6 @@ class TargetFrequency(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class TargetingExpansionConfig(typing.TypedDict, total=False):
-    audienceExpansionLevel: typing.Literal[
-        "UNKNOWN", "NO_REACH", "LEAST_REACH", "MID_REACH", "MOST_REACH"
-    ]
-    audienceExpansionSeedListExcluded: bool
     enableOptimizedTargeting: bool
     excludeDemographicExpansion: bool
 
@@ -4526,7 +4363,6 @@ class TargetingOption(typing.TypedDict, total=False):
         "TARGETING_TYPE_NEGATIVE_KEYWORD_LIST",
         "TARGETING_TYPE_VIEWABILITY",
         "TARGETING_TYPE_CATEGORY",
-        "TARGETING_TYPE_INVENTORY_SOURCE",
         "TARGETING_TYPE_LANGUAGE",
         "TARGETING_TYPE_AUTHORIZED_SELLER_STATUS",
         "TARGETING_TYPE_GEO_REGION",
@@ -4609,6 +4445,7 @@ class ThirdPartyVendorConfig(typing.TypedDict, total=False):
         "THIRD_PARTY_VENDOR_INTAGE",
         "THIRD_PARTY_VENDOR_MACROMILL",
         "THIRD_PARTY_VENDOR_VIDEO_RESEARCH",
+        "THIRD_PARTY_VENDOR_AQUILA",
     ]
 
 @typing.type_check_only
@@ -4729,6 +4566,7 @@ class VideoDiscoveryAd(typing.TypedDict, total=False):
 @typing.type_check_only
 class VideoPerformanceAd(typing.TypedDict, total=False):
     actionButtonLabels: _list[str]
+    businessName: str
     companionBanners: _list[ImageAsset]
     customParameters: dict[str, typing.Any]
     descriptions: _list[str]
@@ -4737,6 +4575,7 @@ class VideoPerformanceAd(typing.TypedDict, total=False):
     domain: str
     finalUrl: str
     headlines: _list[str]
+    logo: ImageAsset
     longHeadlines: _list[str]
     trackingUrl: str
     videos: _list[YoutubeVideoDetails]
