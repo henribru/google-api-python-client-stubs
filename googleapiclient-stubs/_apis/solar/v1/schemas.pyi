@@ -118,12 +118,17 @@ class Money(typing.TypedDict, total=False):
     units: str
 
 @typing.type_check_only
+class Obstacle(typing.TypedDict, total=False):
+    polygonGeojson: dict[str, typing.Any]
+
+@typing.type_check_only
 class RoofSegmentSizeAndSunshineStats(typing.TypedDict, total=False):
     azimuthDegrees: float
     boundingBox: LatLngBox
     center: LatLng
     pitchDegrees: float
     planeHeightAtCenterMeters: float
+    polygonGeojson: dict[str, typing.Any]
     stats: SizeAndSunshineStats
 
 @typing.type_check_only
@@ -172,6 +177,7 @@ class SolarPotential(typing.TypedDict, total=False):
     maxArrayAreaMeters2: float
     maxArrayPanelsCount: int
     maxSunshineHoursPerYear: float
+    obstacles: _list[Obstacle]
     panelCapacityWatts: float
     panelHeightMeters: float
     panelLifetimeYears: int

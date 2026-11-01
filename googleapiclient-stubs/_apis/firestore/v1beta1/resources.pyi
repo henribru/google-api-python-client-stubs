@@ -50,6 +50,7 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                     body: Document,
                     documentId: str | None = ...,
                     mask_fieldPaths: str | _list[str] | None = ...,
+                    requestOptions_requestTags: str | _list[str] | None = ...,
                     **kwargs: typing.Any,
                 ) -> DocumentHttpRequest: ...
                 def delete(
@@ -58,6 +59,7 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                     name: str,
                     currentDocument_exists: bool | None = ...,
                     currentDocument_updateTime: str | None = ...,
+                    requestOptions_requestTags: str | _list[str] | None = ...,
                     **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def executePipeline(
@@ -73,6 +75,7 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                     name: str,
                     mask_fieldPaths: str | _list[str] | None = ...,
                     readTime: str | None = ...,
+                    requestOptions_requestTags: str | _list[str] | None = ...,
                     transaction: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> DocumentHttpRequest: ...
@@ -87,6 +90,7 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                     pageToken: str | None = ...,
                     readTime: str | None = ...,
                     recursive: bool | None = ...,
+                    requestOptions_requestTags: str | _list[str] | None = ...,
                     showMissing: bool | None = ...,
                     transaction: str | None = ...,
                     **kwargs: typing.Any,
@@ -119,6 +123,7 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                     pageToken: str | None = ...,
                     readTime: str | None = ...,
                     recursive: bool | None = ...,
+                    requestOptions_requestTags: str | _list[str] | None = ...,
                     showMissing: bool | None = ...,
                     transaction: str | None = ...,
                     **kwargs: typing.Any,
@@ -151,6 +156,7 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                     currentDocument_exists: bool | None = ...,
                     currentDocument_updateTime: str | None = ...,
                     mask_fieldPaths: str | _list[str] | None = ...,
+                    requestOptions_requestTags: str | _list[str] | None = ...,
                     updateMask_fieldPaths: str | _list[str] | None = ...,
                     **kwargs: typing.Any,
                 ) -> DocumentHttpRequest: ...

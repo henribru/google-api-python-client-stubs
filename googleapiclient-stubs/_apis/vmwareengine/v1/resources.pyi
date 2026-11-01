@@ -38,6 +38,24 @@ class VMwareEngineResource(googleapiclient.discovery.Resource):
                 ) -> ListAnnouncementsResponseHttpRequest | None: ...
 
             @typing.type_check_only
+            class CapacityAllocationsResource(googleapiclient.discovery.Resource):
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str | None = ...,
+                    orderBy: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> ListCapacityAllocationsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListCapacityAllocationsResponseHttpRequest,
+                    previous_response: ListCapacityAllocationsResponse,
+                ) -> ListCapacityAllocationsResponseHttpRequest | None: ...
+
+            @typing.type_check_only
             class DatastoresResource(googleapiclient.discovery.Resource):
                 def create(
                     self,
@@ -955,6 +973,7 @@ class VMwareEngineResource(googleapiclient.discovery.Resource):
                 previous_response: ListLocationsResponse,
             ) -> ListLocationsResponseHttpRequest | None: ...
             def announcements(self) -> AnnouncementsResource: ...
+            def capacityAllocations(self) -> CapacityAllocationsResource: ...
             def datastores(self) -> DatastoresResource: ...
             def dnsBindPermission(self) -> DnsBindPermissionResource: ...
             def networkPeerings(self) -> NetworkPeeringsResource: ...
@@ -1078,6 +1097,14 @@ class ListAnnouncementsResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListAnnouncementsResponse: ...
+
+@typing.type_check_only
+class ListCapacityAllocationsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListCapacityAllocationsResponse: ...
 
 @typing.type_check_only
 class ListClustersResponseHttpRequest(googleapiclient.http.HttpRequest):

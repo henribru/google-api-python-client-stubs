@@ -155,6 +155,44 @@ class MeetResource(googleapiclient.discovery.Resource):
 
     @typing.type_check_only
     class SpacesResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
+        class MembersResource(googleapiclient.discovery.Resource):
+            def batchUpdate(
+                self,
+                *,
+                parent: str,
+                body: BatchUpdateMembersRequest,
+                **kwargs: typing.Any,
+            ) -> BatchUpdateMembersResponseHttpRequest: ...
+            def create(
+                self, *, parent: str, body: Member, **kwargs: typing.Any
+            ) -> MemberHttpRequest: ...
+            def delete(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> EmptyHttpRequest: ...
+            def get(self, *, name: str, **kwargs: typing.Any) -> MemberHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
+                **kwargs: typing.Any,
+            ) -> ListMembersResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListMembersResponseHttpRequest,
+                previous_response: ListMembersResponse,
+            ) -> ListMembersResponseHttpRequest | None: ...
+            def patch(
+                self,
+                *,
+                name: str,
+                body: Member,
+                updateMask: str | None = ...,
+                **kwargs: typing.Any,
+            ) -> MemberHttpRequest: ...
+
         def create(self, *, body: Space, **kwargs: typing.Any) -> SpaceHttpRequest: ...
         def endActiveConference(
             self, *, name: str, body: EndActiveConferenceRequest, **kwargs: typing.Any
@@ -168,6 +206,7 @@ class MeetResource(googleapiclient.discovery.Resource):
             updateMask: str | None = ...,
             **kwargs: typing.Any,
         ) -> SpaceHttpRequest: ...
+        def members(self) -> MembersResource: ...
 
     def new_batch_http_request(
         self,
@@ -183,6 +222,14 @@ class MeetResource(googleapiclient.discovery.Resource):
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def conferenceRecords(self) -> ConferenceRecordsResource: ...
     def spaces(self) -> SpacesResource: ...
+
+@typing.type_check_only
+class BatchUpdateMembersResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> BatchUpdateMembersResponse: ...
 
 @typing.type_check_only
 class ConferenceRecordHttpRequest(googleapiclient.http.HttpRequest):
@@ -207,6 +254,14 @@ class ListConferenceRecordsResponseHttpRequest(googleapiclient.http.HttpRequest)
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListConferenceRecordsResponse: ...
+
+@typing.type_check_only
+class ListMembersResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListMembersResponse: ...
 
 @typing.type_check_only
 class ListParticipantSessionsResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -255,6 +310,14 @@ class ListTranscriptsResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListTranscriptsResponse: ...
+
+@typing.type_check_only
+class MemberHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> Member: ...
 
 @typing.type_check_only
 class ParticipantHttpRequest(googleapiclient.http.HttpRequest):

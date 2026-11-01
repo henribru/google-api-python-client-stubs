@@ -203,7 +203,6 @@ class YouTubeResource(googleapiclient.discovery.Resource):
             | None = ...,
             order: typing.Literal["orderUnspecified", "time", "relevance"] | None = ...,
             pageToken: str | None = ...,
-            postId: str | None = ...,
             searchTerms: str | None = ...,
             textFormat: typing.Literal["textFormatUnspecified", "html", "plainText"]
             | None = ...,

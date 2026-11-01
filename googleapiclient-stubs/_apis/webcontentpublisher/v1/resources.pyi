@@ -60,6 +60,9 @@ class WebContentPublisherResource(googleapiclient.discovery.Resource):
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> PublicationHttpRequest: ...
+            def getSurveyQuestionCatalog(
+                self, *, name: str, languageCode: str | None = ..., **kwargs: typing.Any
+            ) -> SurveyQuestionCatalogHttpRequest: ...
             def list(
                 self,
                 *,
@@ -170,3 +173,11 @@ class PublicationHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Publication: ...
+
+@typing.type_check_only
+class SurveyQuestionCatalogHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> SurveyQuestionCatalog: ...

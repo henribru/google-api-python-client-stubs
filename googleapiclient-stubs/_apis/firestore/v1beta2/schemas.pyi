@@ -79,7 +79,19 @@ class GoogleFirestoreAdminV1RestoreDatabaseMetadata(typing.TypedDict, total=Fals
     startTime: str
 
 @typing.type_check_only
-class GoogleFirestoreAdminV1UpdateDatabaseMetadata(typing.TypedDict, total=False): ...
+class GoogleFirestoreAdminV1UpdateDatabaseMetadata(typing.TypedDict, total=False):
+    endTime: str
+    startTime: str
+    state: typing.Literal[
+        "OPERATION_STATE_UNSPECIFIED",
+        "INITIALIZING",
+        "PROCESSING",
+        "CANCELLING",
+        "FINALIZING",
+        "SUCCESSFUL",
+        "FAILED",
+        "CANCELLED",
+    ]
 
 @typing.type_check_only
 class GoogleFirestoreAdminV1beta2ExportDocumentsMetadata(typing.TypedDict, total=False):

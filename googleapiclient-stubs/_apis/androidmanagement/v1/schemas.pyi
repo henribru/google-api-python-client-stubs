@@ -239,7 +239,9 @@ class ApplicationPolicy(typing.TypedDict, total=False):
         "CONNECTED_WORK_AND_PERSONAL_APP_ALLOWED",
     ]
     credentialProviderPolicy: typing.Literal[
-        "CREDENTIAL_PROVIDER_POLICY_UNSPECIFIED", "CREDENTIAL_PROVIDER_ALLOWED"
+        "CREDENTIAL_PROVIDER_POLICY_UNSPECIFIED",
+        "CREDENTIAL_PROVIDER_ALLOWED",
+        "CREDENTIAL_PROVIDER_DISALLOWED",
     ]
     customAppConfig: CustomAppConfig
     defaultPermissionPolicy: typing.Literal[
@@ -498,6 +500,11 @@ class CrossDevicePolicies(typing.TypedDict, total=False):
         "NEARBY_NOTIFICATION_STREAMING_USER_CHOICE",
         "NEARBY_NOTIFICATION_STREAMING_DISABLED",
         "NEARBY_NOTIFICATION_STREAMING_USER_CHOICE_SAME_MANAGED_ACCOUNT",
+    ]
+    taskContinuityHandoff: typing.Literal[
+        "TASK_CONTINUITY_HANDOFF_UNSPECIFIED",
+        "TASK_CONTINUITY_HANDOFF_ALLOWED",
+        "TASK_CONTINUITY_HANDOFF_DISALLOWED",
     ]
 
 @typing.type_check_only
@@ -1282,6 +1289,7 @@ class NonComplianceDetail(typing.TypedDict, total=False):
         "PENDING",
         "APP_INCOMPATIBLE",
         "APP_NOT_UPDATED",
+        "OS_NOT_PERMITTED",
         "DEVICE_INCOMPATIBLE",
         "APP_SIGNING_CERT_MISMATCH",
         "PROJECT_NOT_PERMITTED",
@@ -1305,6 +1313,7 @@ class NonComplianceDetail(typing.TypedDict, total=False):
         "DEFAULT_APPLICATION_SETTING_UNSUPPORTED_SCOPES",
         "DEFAULT_APPLICATION_SETTING_FAILED_FOR_SCOPE",
         "PRIVATE_DNS_HOST_NOT_SERVING",
+        "USER_NOT_UNLOCKED",
     ]
 
 @typing.type_check_only
@@ -1321,6 +1330,7 @@ class NonComplianceDetailCondition(typing.TypedDict, total=False):
         "PENDING",
         "APP_INCOMPATIBLE",
         "APP_NOT_UPDATED",
+        "OS_NOT_PERMITTED",
         "DEVICE_INCOMPATIBLE",
         "APP_SIGNING_CERT_MISMATCH",
         "PROJECT_NOT_PERMITTED",
@@ -1431,6 +1441,14 @@ class PersonalApplicationPolicy(typing.TypedDict, total=False):
     packageName: str
 
 @typing.type_check_only
+class PersonalCrossDevicePolicies(typing.TypedDict, total=False):
+    taskContinuityHandoff: typing.Literal[
+        "TASK_CONTINUITY_HANDOFF_UNSPECIFIED",
+        "TASK_CONTINUITY_HANDOFF_ALLOWED",
+        "TASK_CONTINUITY_HANDOFF_DISALLOWED",
+    ]
+
+@typing.type_check_only
 class PersonalUsagePolicies(typing.TypedDict, total=False):
     accountTypesWithManagementDisabled: _list[str]
     bluetoothSharing: typing.Literal[
@@ -1439,6 +1457,7 @@ class PersonalUsagePolicies(typing.TypedDict, total=False):
         "BLUETOOTH_SHARING_DISALLOWED",
     ]
     cameraDisabled: bool
+    crossDevicePolicies: PersonalCrossDevicePolicies
     maxDaysWithWorkOff: int
     personalApplications: _list[PersonalApplicationPolicy]
     personalPlayStoreMode: typing.Literal[
@@ -1486,6 +1505,11 @@ class Policy(typing.TypedDict, total=False):
     autofillPolicy: typing.Literal[
         "AUTOFILL_POLICY_UNSPECIFIED", "AUTOFILL_USER_CHOICE", "AUTOFILL_DISABLED"
     ]
+    backupService: typing.Literal[
+        "BACKUP_SERVICE_UNSPECIFIED",
+        "BACKUP_SERVICE_DISABLED",
+        "BACKUP_SERVICE_USER_CHOICE",
+    ]
     blockApplicationsEnabled: bool
     bluetoothConfigDisabled: bool
     bluetoothContactSharingDisabled: bool
@@ -1505,6 +1529,7 @@ class Policy(typing.TypedDict, total=False):
         "CREDENTIAL_PROVIDER_POLICY_DEFAULT_UNSPECIFIED",
         "CREDENTIAL_PROVIDER_DEFAULT_DISALLOWED",
         "CREDENTIAL_PROVIDER_DEFAULT_DISALLOWED_EXCEPT_SYSTEM",
+        "CREDENTIAL_PROVIDER_DEFAULT_ALLOWED",
     ]
     credentialsConfigDisabled: bool
     crossDevicePolicies: CrossDevicePolicies

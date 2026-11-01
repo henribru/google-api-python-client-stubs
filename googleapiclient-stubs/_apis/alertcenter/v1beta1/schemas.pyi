@@ -325,6 +325,7 @@ class KeyServiceError(typing.TypedDict, total=False):
         "MISSING_ALGORITHM_NAME",
         "UNSUPPORTED_ALGORITHM",
         "FETCH_REQUEST_ERROR",
+        "SERVER_SIDE_FETCH_REQUEST_ERROR",
     ]
     httpResponseCode: str
     keyServiceUrl: str
@@ -463,6 +464,8 @@ class RuleViolationInfo(typing.TypedDict, total=False):
             "CHROME_WATERMARK",
             "CHROME_FORCE_SAVE_TO_CLOUD",
             "CHROME_KEEP_IN_MANAGED_CHROME",
+            "CHROME_BLOCK_DATA_COPIED",
+            "CHROME_WARN_DATA_COPIED",
             "DELETE_WEBPROTECT_EVIDENCE",
             "CHAT_BLOCK_CONTENT",
             "CHAT_WARN_USER",
@@ -486,6 +489,7 @@ class RuleViolationInfo(typing.TypedDict, total=False):
         "GEMINI_ACCESS",
         "AGENT_EXECUTION",
         "CHROME_DATA_COPIED",
+        "CHROME_NETWORK_REQUEST",
     ]
     triggeredActionInfo: _list[ActionInfo]
     triggeredActionTypes: _list[
@@ -517,6 +521,8 @@ class RuleViolationInfo(typing.TypedDict, total=False):
             "CHROME_WATERMARK",
             "CHROME_FORCE_SAVE_TO_CLOUD",
             "CHROME_KEEP_IN_MANAGED_CHROME",
+            "CHROME_BLOCK_DATA_COPIED",
+            "CHROME_WARN_DATA_COPIED",
             "DELETE_WEBPROTECT_EVIDENCE",
             "CHAT_BLOCK_CONTENT",
             "CHAT_WARN_USER",

@@ -12,6 +12,10 @@ class AdTechnologyProviders(typing.TypedDict, total=False):
     unidentifiedProviderDomains: _list[str]
 
 @typing.type_check_only
+class AddDealsRequest(typing.TypedDict, total=False):
+    dealIds: _list[str]
+
+@typing.type_check_only
 class AddTargetedAppsRequest(typing.TypedDict, total=False):
     appIds: _list[str]
     targetingMode: typing.Literal[

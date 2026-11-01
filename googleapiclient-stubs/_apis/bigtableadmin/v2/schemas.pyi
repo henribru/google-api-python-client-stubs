@@ -36,7 +36,9 @@ class AuthorizedView(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class AutomatedBackupPolicy(typing.TypedDict, total=False):
+    disabled: bool
     frequency: str
+    keepHotDuration: str
     locations: _list[str]
     retentionPeriod: str
 
@@ -49,6 +51,10 @@ class AutoscalingLimits(typing.TypedDict, total=False):
 class AutoscalingTargets(typing.TypedDict, total=False):
     cpuUtilizationPercent: int
     storageUtilizationGibPerNode: int
+
+@typing.type_check_only
+class AvroSchema(typing.TypedDict, total=False):
+    jsonSchemas: _list[str]
 
 @typing.type_check_only
 class Backup(typing.TypedDict, total=False):
@@ -703,13 +709,16 @@ class RestoreTableMetadata(typing.TypedDict, total=False):
 @typing.type_check_only
 class RestoreTableRequest(typing.TypedDict, total=False):
     backup: str
+    table: Table
     tableId: str
+    updateMask: str
 
 @typing.type_check_only
 class RowAffinity(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
 class SchemaBundle(typing.TypedDict, total=False):
+    avroSchema: AvroSchema
     etag: str
     name: str
     protoSchema: ProtoSchema
@@ -751,7 +760,8 @@ class Table(typing.TypedDict, total=False):
     clusterStates: dict[str, typing.Any]
     columnFamilies: dict[str, typing.Any]
     deletionProtection: bool
-    granularity: typing.Literal["TIMESTAMP_GRANULARITY_UNSPECIFIED", "MILLIS"]
+    effectiveAutomatedBackupPolicy: AutomatedBackupPolicy
+    granularity: typing.Literal["TIMESTAMP_GRANULARITY_UNSPECIFIED", "MILLIS", "MICROS"]
     name: str
     restoreInfo: RestoreInfo
     rowKeySchema: GoogleBigtableAdminV2TypeStruct

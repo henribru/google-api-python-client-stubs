@@ -64,6 +64,23 @@ class CustomerEngagementSuiteResource(googleapiclient.discovery.Resource):
                     ) -> AgentHttpRequest: ...
 
                 @typing.type_check_only
+                class AssistantSessionsResource(googleapiclient.discovery.Resource):
+                    def cancelAssistantTurn(
+                        self,
+                        *,
+                        name: str,
+                        body: CancelAssistantTurnRequest,
+                        **kwargs: typing.Any,
+                    ) -> CancelAssistantTurnResponseHttpRequest: ...
+                    def streamChatAiAssistant(
+                        self,
+                        *,
+                        name: str,
+                        body: StreamChatAiAssistantRequest,
+                        **kwargs: typing.Any,
+                    ) -> StreamChatAiAssistantResponseHttpRequest: ...
+
+                @typing.type_check_only
                 class ChangelogsResource(googleapiclient.discovery.Resource):
                     def get(
                         self, *, name: str, **kwargs: typing.Any
@@ -119,12 +136,6 @@ class CustomerEngagementSuiteResource(googleapiclient.discovery.Resource):
                             "AGENT_TOOL",
                         ]
                         | None = ...,
-                        view: typing.Literal[
-                            "CONVERSATION_VIEW_UNSPECIFIED",
-                            "CONVERSATION_VIEW_BASIC",
-                            "CONVERSATION_VIEW_FULL",
-                        ]
-                        | None = ...,
                         **kwargs: typing.Any,
                     ) -> ConversationHttpRequest: ...
                     def list(
@@ -178,6 +189,13 @@ class CustomerEngagementSuiteResource(googleapiclient.discovery.Resource):
                             body: LfA2aV1SendMessageRequest,
                             **kwargs: typing.Any,
                         ) -> LfA2aV1SendMessageResponseHttpRequest: ...
+                        def stream(
+                            self,
+                            *,
+                            tenant: str,
+                            body: LfA2aV1SendMessageRequest,
+                            **kwargs: typing.Any,
+                        ) -> LfA2aV1StreamResponseHttpRequest: ...
 
                     def create(
                         self,
@@ -314,6 +332,13 @@ class CustomerEngagementSuiteResource(googleapiclient.discovery.Resource):
                         body: LfA2aV1SendMessageRequest,
                         **kwargs: typing.Any,
                     ) -> LfA2aV1SendMessageResponseHttpRequest: ...
+                    def stream(
+                        self,
+                        *,
+                        tenant: str,
+                        body: LfA2aV1SendMessageRequest,
+                        **kwargs: typing.Any,
+                    ) -> LfA2aV1StreamResponseHttpRequest: ...
 
                 @typing.type_check_only
                 class SessionsResource(googleapiclient.discovery.Resource):
@@ -447,6 +472,13 @@ class CustomerEngagementSuiteResource(googleapiclient.discovery.Resource):
                             body: LfA2aV1SendMessageRequest,
                             **kwargs: typing.Any,
                         ) -> LfA2aV1SendMessageResponseHttpRequest: ...
+                        def stream(
+                            self,
+                            *,
+                            tenant: str,
+                            body: LfA2aV1SendMessageRequest,
+                            **kwargs: typing.Any,
+                        ) -> LfA2aV1StreamResponseHttpRequest: ...
 
                     def create(
                         self,
@@ -480,6 +512,14 @@ class CustomerEngagementSuiteResource(googleapiclient.discovery.Resource):
                         previous_request: ListAppVersionsResponseHttpRequest,
                         previous_response: ListAppVersionsResponse,
                     ) -> ListAppVersionsResponseHttpRequest | None: ...
+                    def patch(
+                        self,
+                        *,
+                        name: str,
+                        body: AppVersion,
+                        updateMask: str | None = ...,
+                        **kwargs: typing.Any,
+                    ) -> AppVersionHttpRequest: ...
                     def restore(
                         self,
                         *,
@@ -506,6 +546,13 @@ class CustomerEngagementSuiteResource(googleapiclient.discovery.Resource):
                 def exportApp(
                     self, *, name: str, body: ExportAppRequest, **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+                def generateOnboardingSuggestions(
+                    self,
+                    *,
+                    name: str,
+                    body: GenerateOnboardingSuggestionsRequest,
+                    **kwargs: typing.Any,
+                ) -> GenerateOnboardingSuggestionsResponseHttpRequest: ...
                 def get(self, *, name: str, **kwargs: typing.Any) -> AppHttpRequest: ...
                 def getExtendedAgentCard(
                     self, *, tenant: str, **kwargs: typing.Any
@@ -544,6 +591,7 @@ class CustomerEngagementSuiteResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any,
                 ) -> RetrieveToolSchemaResponseHttpRequest: ...
                 def agents(self) -> AgentsResource: ...
+                def assistantSessions(self) -> AssistantSessionsResource: ...
                 def changelogs(self) -> ChangelogsResource: ...
                 def conversations(self) -> ConversationsResource: ...
                 def deployments(self) -> DeploymentsResource: ...
@@ -648,6 +696,14 @@ class AppVersionHttpRequest(googleapiclient.http.HttpRequest):
     ) -> AppVersion: ...
 
 @typing.type_check_only
+class CancelAssistantTurnResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> CancelAssistantTurnResponse: ...
+
+@typing.type_check_only
 class ChangelogHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -704,6 +760,16 @@ class GenerateChatTokenResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> GenerateChatTokenResponse: ...
 
 @typing.type_check_only
+class GenerateOnboardingSuggestionsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GenerateOnboardingSuggestionsResponse: ...
+
+@typing.type_check_only
 class GuardrailHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -726,6 +792,14 @@ class LfA2aV1SendMessageResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> LfA2aV1SendMessageResponse: ...
+
+@typing.type_check_only
+class LfA2aV1StreamResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> LfA2aV1StreamResponse: ...
 
 @typing.type_check_only
 class ListAgentsResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -862,6 +936,14 @@ class RunSessionResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> RunSessionResponse: ...
+
+@typing.type_check_only
+class StreamChatAiAssistantResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> StreamChatAiAssistantResponse: ...
 
 @typing.type_check_only
 class ToolHttpRequest(googleapiclient.http.HttpRequest):

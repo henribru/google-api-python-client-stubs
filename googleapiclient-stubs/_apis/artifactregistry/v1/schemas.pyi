@@ -572,6 +572,7 @@ class Repository(typing.TypedDict, total=False):
         "GO",
         "GENERIC",
         "RUBY",
+        "CONDA",
     ]
     kmsKeyName: str
     labels: dict[str, typing.Any]
@@ -639,6 +640,7 @@ class UploadFileMediaResponse(typing.TypedDict, total=False):
 @typing.type_check_only
 class UploadFileRequest(typing.TypedDict, total=False):
     fileId: str
+    fileType: typing.Literal["ATTACHMENT", "ARTIFACT"]
 
 @typing.type_check_only
 class UploadGenericArtifactMediaResponse(typing.TypedDict, total=False):
@@ -651,6 +653,7 @@ class UploadGenericArtifactMetadata(typing.TypedDict, total=False): ...
 class UploadGenericArtifactRequest(typing.TypedDict, total=False):
     filename: str
     packageId: str
+    versionAnnotations: dict[str, typing.Any]
     versionId: str
 
 @typing.type_check_only

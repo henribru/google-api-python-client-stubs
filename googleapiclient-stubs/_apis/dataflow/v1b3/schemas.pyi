@@ -122,6 +122,16 @@ class ConcatPosition(typing.TypedDict, total=False):
     position: Position
 
 @typing.type_check_only
+class ConfigStoreSetting(typing.TypedDict, total=False):
+    name: str
+    value: ConfigStoreSettingValue
+
+@typing.type_check_only
+class ConfigStoreSettingValue(typing.TypedDict, total=False):
+    boolValue: bool
+    stringValue: str
+
+@typing.type_check_only
 class ContainerSpec(typing.TypedDict, total=False):
     defaultEnvironment: FlexTemplateRuntimeEnvironment
     image: str
@@ -299,6 +309,9 @@ class DistributionUpdate(typing.TypedDict, total=False):
 class DynamicSourceSplit(typing.TypedDict, total=False):
     primary: DerivedSource
     residual: DerivedSource
+
+@typing.type_check_only
+class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
 class Environment(typing.TypedDict, total=False):
@@ -694,6 +707,11 @@ class Linear(typing.TypedDict, total=False):
     width: float
 
 @typing.type_check_only
+class ListConfigStoreSettingsResponse(typing.TypedDict, total=False):
+    configStoreSettings: _list[ConfigStoreSetting]
+    nextPageToken: str
+
+@typing.type_check_only
 class ListJobMessagesResponse(typing.TypedDict, total=False):
     autoscalingEvents: _list[AutoscalingEvent]
     jobMessages: _list[JobMessage]
@@ -963,6 +981,14 @@ class ReportWorkItemStatusResponse(typing.TypedDict, total=False):
 class ReportedParallelism(typing.TypedDict, total=False):
     isInfinite: bool
     value: float
+
+@typing.type_check_only
+class ResolveConfigStoreSettingRequest(typing.TypedDict, total=False): ...
+
+@typing.type_check_only
+class ResolveConfigStoreSettingResponse(typing.TypedDict, total=False):
+    choices: _list[ConfigStoreSetting]
+    setting: ConfigStoreSetting
 
 @typing.type_check_only
 class ResourceUtilizationReport(typing.TypedDict, total=False):

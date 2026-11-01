@@ -130,6 +130,11 @@ class HomeTraitUpdates(typing.TypedDict, total=False):
     deviceId: str
 
 @typing.type_check_only
+class JsonTrait(typing.TypedDict, total=False):
+    data: dict[str, typing.Any]
+    id: str
+
+@typing.type_check_only
 class MediaUrlsStruct(typing.TypedDict, total=False):
     dashManifestUrl: str
     hlsMasterPlaylistUrl: str
@@ -269,7 +274,8 @@ class ThermostatFanControlTrait(typing.TypedDict, total=False):
 @typing.type_check_only
 class TraitData(typing.TypedDict, total=False):
     commitTime: str
-    providerVersionTime: str
+    jsonTrait: JsonTrait
+    providerUpdateTime: str
     trait: dict[str, typing.Any]
 
 @typing.type_check_only

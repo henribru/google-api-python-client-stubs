@@ -142,6 +142,13 @@ class CloudComposerResource(googleapiclient.discovery.Resource):
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> EnvironmentHttpRequest: ...
+                def hibernate(
+                    self,
+                    *,
+                    name: str,
+                    body: HibernateEnvironmentRequest,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
                 def list(
                     self,
                     *,
@@ -182,6 +189,13 @@ class CloudComposerResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: RestartWebServerRequest,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def resume(
+                    self,
+                    *,
+                    name: str,
+                    body: ResumeEnvironmentRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def saveSnapshot(

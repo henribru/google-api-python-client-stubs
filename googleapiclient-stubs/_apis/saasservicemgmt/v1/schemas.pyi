@@ -8,10 +8,27 @@ class Aggregate(typing.TypedDict, total=False):
     group: str
 
 @typing.type_check_only
+class AppParams(typing.TypedDict, total=False):
+    group: str
+    scope: Scope
+
+@typing.type_check_only
 class Blueprint(typing.TypedDict, total=False):
     engine: str
     package: str
     version: str
+
+@typing.type_check_only
+class ComponentRef(typing.TypedDict, total=False):
+    component: str
+    compositeRef: CompositeRef
+    revision: str
+
+@typing.type_check_only
+class CompositeRef(typing.TypedDict, total=False):
+    applicationTemplate: str
+    revision: str
+    syncOperation: str
 
 @typing.type_check_only
 class Decimal(typing.TypedDict, total=False):
@@ -32,10 +49,6 @@ class Empty(typing.TypedDict, total=False): ...
 class ErrorBudget(typing.TypedDict, total=False):
     allowedCount: int
     allowedPercentage: int
-
-@typing.type_check_only
-class FlagUpdate(typing.TypedDict, total=False):
-    flagRelease: str
 
 @typing.type_check_only
 class FromMapping(typing.TypedDict, total=False):
@@ -119,6 +132,7 @@ class Provision(typing.TypedDict, total=False):
 @typing.type_check_only
 class Release(typing.TypedDict, total=False):
     annotations: dict[str, typing.Any]
+    applicationTemplateComponent: ComponentRef
     blueprint: Blueprint
     createTime: str
     etag: str
@@ -145,7 +159,6 @@ class Rollout(typing.TypedDict, total=False):
     effectiveUnitFilter: str
     endTime: str
     etag: str
-    flagRelease: str
     labels: dict[str, typing.Any]
     name: str
     parentRollout: str
@@ -215,6 +228,8 @@ class RunRolloutActionParams(typing.TypedDict, total=False):
 @typing.type_check_only
 class Saas(typing.TypedDict, total=False):
     annotations: dict[str, typing.Any]
+    applicationTemplate: CompositeRef
+    blueprintRepo: str
     conditions: _list[SaasCondition]
     createTime: str
     error: Status
@@ -223,7 +238,11 @@ class Saas(typing.TypedDict, total=False):
     locations: _list[Location]
     name: str
     state: typing.Literal[
-        "STATE_TYPE_UNSPECIFIED", "STATE_ACTIVE", "STATE_RUNNING", "STATE_FAILED"
+        "STATE_UNSPECIFIED",
+        "STATE_TYPE_UNSPECIFIED",
+        "STATE_ACTIVE",
+        "STATE_RUNNING",
+        "STATE_FAILED",
     ]
     uid: str
     updateTime: str
@@ -241,6 +260,10 @@ class SaasCondition(typing.TypedDict, total=False):
 @typing.type_check_only
 class Schedule(typing.TypedDict, total=False):
     startTime: str
+
+@typing.type_check_only
+class Scope(typing.TypedDict, total=False):
+    type: typing.Literal["TYPE_UNSPECIFIED", "TYPE_REGIONAL", "TYPE_GLOBAL"]
 
 @typing.type_check_only
 class Status(typing.TypedDict, total=False):
@@ -269,12 +292,12 @@ class ToMapping(typing.TypedDict, total=False):
 @typing.type_check_only
 class Unit(typing.TypedDict, total=False):
     annotations: dict[str, typing.Any]
+    application: str
     conditions: _list[UnitCondition]
     createTime: str
     dependencies: _list[UnitDependency]
     dependents: _list[UnitDependency]
     etag: str
-    flagRevisions: _list[str]
     inputVariables: _list[UnitVariable]
     labels: dict[str, typing.Any]
     maintenance: MaintenanceSettings
@@ -337,14 +360,16 @@ class UnitDependency(typing.TypedDict, total=False):
 @typing.type_check_only
 class UnitKind(typing.TypedDict, total=False):
     annotations: dict[str, typing.Any]
+    appParams: AppParams
+    applicationTemplateComponent: ComponentRef
     boundaryType: typing.Literal[
         "BOUNDARY_TYPE_UNSPECIFIED",
         "BOUNDARY_TYPE_TENANT_PROJECT",
         "BOUNDARY_TYPE_MANAGED_PROJECT",
     ]
     createTime: str
-    defaultFlagRevisions: _list[str]
     defaultRelease: str
+    deleteTime: str
     dependencies: _list[Dependency]
     etag: str
     inputVariableMappings: _list[VariableMapping]
@@ -373,7 +398,6 @@ class UnitOperation(typing.TypedDict, total=False):
         "STANDARD",
     ]
     etag: str
-    flagUpdate: FlagUpdate
     labels: dict[str, typing.Any]
     name: str
     parentUnitOperation: str

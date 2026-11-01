@@ -3,7 +3,18 @@ import typing
 _list = list
 
 @typing.type_check_only
+class CloudAiLargeModelsVisionExperimentsResponse(typing.TypedDict, total=False):
+    proEditResult: CloudAiLargeModelsVisionExperimentsResponseProEditResult
+
+@typing.type_check_only
+class CloudAiLargeModelsVisionExperimentsResponseProEditResult(
+    typing.TypedDict, total=False
+):
+    structuredPrompt: str
+
+@typing.type_check_only
 class CloudAiLargeModelsVisionGenerateVideoExperiments(typing.TypedDict, total=False):
+    allowMeteredBilling: bool
     anchorLastFrame: bool
     audioControl: CloudAiLargeModelsVisionGenerateVideoExperimentsAudioControlConfig
     cfgScale: float
@@ -20,11 +31,14 @@ class CloudAiLargeModelsVisionGenerateVideoExperiments(typing.TypedDict, total=F
     customParameters: dict[str, typing.Any]
     exrColorSpaceOverride: str
     humanPose: CloudAiLargeModelsVisionHumanPose
+    loraConfig: CloudAiLargeModelsVisionGenerateVideoExperimentsLoraConfig
+    modelEndpointOverride: str
     modelName: str
     numDiffusionSteps: int
     omniRewriter: CloudAiLargeModelsVisionGenerateVideoExperimentsOmniRewriterConfig
     originalRequestJson: str
     outpaintConfig: CloudAiLargeModelsVisionGenerateVideoExperimentsOutpaintConfig
+    proEdit: CloudAiLargeModelsVisionGenerateVideoExperimentsProEditConfig
     promptInputs: CloudAiLargeModelsVisionPromptInputs
     requestOriginTag: str
     schedulingConfig: CloudAiLargeModelsVisionGenerateVideoExperimentsVESchedulingConfig
@@ -32,6 +46,7 @@ class CloudAiLargeModelsVisionGenerateVideoExperiments(typing.TypedDict, total=F
     spatialAlignment: (
         CloudAiLargeModelsVisionGenerateVideoExperimentsSpatialAlignmentConfig
     )
+    superResConfig: CloudAiLargeModelsVisionGenerateVideoExperimentsSuperResConfig
     truncateInputVideo: bool
     videoTransform: CloudAiLargeModelsVisionGenerateVideoExperimentsVideoTransform
     videoTransformMaskGcsUri: str
@@ -58,6 +73,20 @@ class CloudAiLargeModelsVisionGenerateVideoExperimentsConditioningFrame(
     image: CloudAiLargeModelsVisionGenerateVideoRequestImage
 
 @typing.type_check_only
+class CloudAiLargeModelsVisionGenerateVideoExperimentsLoraConfig(
+    typing.TypedDict, total=False
+):
+    adapters: _list[CloudAiLargeModelsVisionGenerateVideoExperimentsLoraConfigAdapter]
+
+@typing.type_check_only
+class CloudAiLargeModelsVisionGenerateVideoExperimentsLoraConfigAdapter(
+    typing.TypedDict, total=False
+):
+    id: str
+    resolvedPath: str
+    weight: float
+
+@typing.type_check_only
 class CloudAiLargeModelsVisionGenerateVideoExperimentsOmniRewriterConfig(
     typing.TypedDict, total=False
 ):
@@ -76,6 +105,7 @@ class CloudAiLargeModelsVisionGenerateVideoExperimentsOutpaintConfig(
         "OUTPUT_SPEC_1920X1072x72",
         "OUTPUT_SPEC_1280X720x192",
         "OUTPUT_SPEC_960X544x432",
+        "OUTPUT_SPEC_1280X720x144",
     ]
 
 @typing.type_check_only
@@ -87,10 +117,25 @@ class CloudAiLargeModelsVisionGenerateVideoExperimentsOutpaintConfigFrameSource(
     verticalOffset: int
 
 @typing.type_check_only
+class CloudAiLargeModelsVisionGenerateVideoExperimentsProEditConfig(
+    typing.TypedDict, total=False
+):
+    editInstructionPrompt: str
+    fromOperationId: str
+    structuredPrompt: str
+
+@typing.type_check_only
 class CloudAiLargeModelsVisionGenerateVideoExperimentsSpatialAlignmentConfig(
     typing.TypedDict, total=False
 ):
     enable: bool
+
+@typing.type_check_only
+class CloudAiLargeModelsVisionGenerateVideoExperimentsSuperResConfig(
+    typing.TypedDict, total=False
+):
+    mode: typing.Literal["MODE_UNSPECIFIED", "MODE_4K", "MODE_8K", "MODE_4K_PRO"]
+    tileSmoothing: bool
 
 @typing.type_check_only
 class CloudAiLargeModelsVisionGenerateVideoExperimentsVESchedulingConfig(
@@ -138,6 +183,7 @@ class CloudAiLargeModelsVisionGenerateVideoResponse(typing.TypedDict, total=Fals
 class CloudAiLargeModelsVisionGenerateVideoResponseVideo(typing.TypedDict, total=False):
     bytesBase64Encoded: str
     experimentsMetadata: CloudAiLargeModelsVisionGenerateVideoExperiments
+    experimentsResponse: CloudAiLargeModelsVisionExperimentsResponse
     gcsUri: str
     mimeType: str
 
@@ -277,6 +323,1117 @@ class CloudAiPlatformCommonCreatePipelineJobApiErrorDetail(
     publicMessage: str
 
 @typing.type_check_only
+class GenaiVertexV1AgentInteraction(typing.TypedDict, total=False):
+    agent: str
+    antigravityConfig: GenaiVertexV1AntigravityAgentConfig
+    codeMenderConfig: GenaiVertexV1CodeMenderAgentConfig
+    deepResearchConfig: GenaiVertexV1DeepResearchAgentConfig
+    dynamicConfig: GenaiVertexV1DynamicAgentConfig
+
+@typing.type_check_only
+class GenaiVertexV1AllowedTools(typing.TypedDict, total=False):
+    mode: typing.Literal[
+        "TOOL_CHOICE_TYPE_UNSPECIFIED", "AUTO", "ANY", "NONE", "VALIDATED"
+    ]
+    tools: _list[str]
+
+@typing.type_check_only
+class GenaiVertexV1AntigravityAgentConfig(typing.TypedDict, total=False):
+    maxTotalTokens: str
+    model: str
+
+@typing.type_check_only
+class GenaiVertexV1ArgumentsDelta(typing.TypedDict, total=False):
+    arguments: str
+
+@typing.type_check_only
+class GenaiVertexV1AudioContent(typing.TypedDict, total=False):
+    channels: int
+    data: str
+    mimeTypeString: str
+    sampleRate: int
+    uri: str
+
+@typing.type_check_only
+class GenaiVertexV1AudioDelta(typing.TypedDict, total=False):
+    channels: int
+    data: str
+    mimeType: typing.Literal[
+        "TYPE_UNSPECIFIED",
+        "TYPE_WAV",
+        "TYPE_MP3",
+        "TYPE_AIFF",
+        "TYPE_AAC",
+        "TYPE_OGG",
+        "TYPE_FLAC",
+        "TYPE_MPEG",
+        "TYPE_M4A",
+        "TYPE_L16",
+        "TYPE_OPUS",
+        "TYPE_ALAW",
+        "TYPE_MULAW",
+        "TYPE_WEBM",
+    ]
+    sampleRate: int
+    uri: str
+
+@typing.type_check_only
+class GenaiVertexV1AudioResponseFormat(typing.TypedDict, total=False):
+    bitRate: int
+    delivery: typing.Literal["DELIVERY_UNSPECIFIED", "INLINE", "URI"]
+    mimeType: typing.Literal[
+        "TYPE_UNSPECIFIED",
+        "TYPE_MP3",
+        "TYPE_OGG_OPUS",
+        "TYPE_L16",
+        "TYPE_WAV",
+        "TYPE_ALAW",
+        "TYPE_MULAW",
+    ]
+    sampleRate: int
+
+@typing.type_check_only
+class GenaiVertexV1CodeExecution(typing.TypedDict, total=False): ...
+
+@typing.type_check_only
+class GenaiVertexV1CodeExecutionCallContentCodeExecutionCallArguments(
+    typing.TypedDict, total=False
+):
+    code: str
+    language: typing.Literal["LANGUAGE_UNSPECIFIED", "PYTHON"]
+
+@typing.type_check_only
+class GenaiVertexV1CodeExecutionCallDelta(typing.TypedDict, total=False):
+    arguments: GenaiVertexV1CodeExecutionCallContentCodeExecutionCallArguments
+
+@typing.type_check_only
+class GenaiVertexV1CodeExecutionCallStep(typing.TypedDict, total=False):
+    arguments: GenaiVertexV1CodeExecutionCallStepCodeExecutionCallStepArguments
+
+@typing.type_check_only
+class GenaiVertexV1CodeExecutionCallStepCodeExecutionCallStepArguments(
+    typing.TypedDict, total=False
+):
+    code: str
+    language: typing.Literal["LANGUAGE_UNSPECIFIED", "PYTHON"]
+
+@typing.type_check_only
+class GenaiVertexV1CodeExecutionResultDelta(typing.TypedDict, total=False):
+    isError: bool
+    result: str
+
+@typing.type_check_only
+class GenaiVertexV1CodeExecutionResultStep(typing.TypedDict, total=False):
+    isError: bool
+    result: str
+
+@typing.type_check_only
+class GenaiVertexV1CodeMenderAgentConfig(typing.TypedDict, total=False):
+    findRequest: GenaiVertexV1CodeMenderAgentConfigFindRequest
+    fixRequest: GenaiVertexV1CodeMenderAgentConfigFixRequest
+    model: str
+    sessionConfig: GenaiVertexV1CodeMenderAgentConfigSessionConfig
+    sessionId: str
+
+@typing.type_check_only
+class GenaiVertexV1CodeMenderAgentConfigFileContent(typing.TypedDict, total=False):
+    content: str
+    path: str
+
+@typing.type_check_only
+class GenaiVertexV1CodeMenderAgentConfigFindRequest(typing.TypedDict, total=False):
+    description: str
+    findingId: str
+    mode: typing.Literal["MODE_UNSPECIFIED", "MODE_SCAN", "MODE_VERIFY"]
+    sourceFiles: _list[GenaiVertexV1CodeMenderAgentConfigFileContent]
+
+@typing.type_check_only
+class GenaiVertexV1CodeMenderAgentConfigFixRequest(typing.TypedDict, total=False):
+    description: str
+    findingId: str
+    sourceFiles: _list[GenaiVertexV1CodeMenderAgentConfigFileContent]
+
+@typing.type_check_only
+class GenaiVertexV1CodeMenderAgentConfigSessionConfig(typing.TypedDict, total=False):
+    maxRounds: int
+
+@typing.type_check_only
+class GenaiVertexV1ComputerUse(typing.TypedDict, total=False):
+    disabledSafetyPolicies: _list[
+        typing.Literal[
+            "SAFETY_POLICY_UNSPECIFIED",
+            "FINANCIAL_TRANSACTIONS",
+            "SENSITIVE_DATA_MODIFICATION",
+            "COMMUNICATION_TOOL",
+            "ACCOUNT_CREATION",
+            "DATA_MODIFICATION",
+            "USER_CONSENT_MANAGEMENT",
+            "LEGAL_TERMS_AND_AGREEMENTS",
+        ]
+    ]
+    enablePromptInjectionDetection: bool
+    environment: typing.Literal[
+        "ENVIRONMENT_UNSPECIFIED", "BROWSER", "MOBILE", "DESKTOP"
+    ]
+    excludedPredefinedFunctions: _list[str]
+
+@typing.type_check_only
+class GenaiVertexV1Content(typing.TypedDict, total=False):
+    audio: GenaiVertexV1AudioContent
+    document: GenaiVertexV1DocumentContent
+    image: GenaiVertexV1ImageContent
+    text: GenaiVertexV1TextContent
+    video: GenaiVertexV1VideoContent
+
+@typing.type_check_only
+class GenaiVertexV1ContentList(typing.TypedDict, total=False):
+    contents: _list[GenaiVertexV1Content]
+
+@typing.type_check_only
+class GenaiVertexV1CreateInteractionHttpRequest(typing.TypedDict, total=False):
+    httpBody: GoogleApiHttpBody
+
+@typing.type_check_only
+class GenaiVertexV1CreateInteractionRequest(typing.TypedDict, total=False):
+    background: bool
+    interaction: GenaiVertexV1Interaction
+    store: bool
+    stream: bool
+
+@typing.type_check_only
+class GenaiVertexV1DeepResearchAgentConfig(typing.TypedDict, total=False):
+    collaborativePlanning: bool
+    enableBigqueryTool: bool
+    thinkingSummaries: typing.Literal[
+        "THINKING_SUMMARIES_UNSPECIFIED",
+        "THINKING_SUMMARIES_AUTO",
+        "THINKING_SUMMARIES_NONE",
+    ]
+    visualization: typing.Literal["UNSPECIFIED", "OFF", "AUTO"]
+
+@typing.type_check_only
+class GenaiVertexV1DeleteInteractionResponse(typing.TypedDict, total=False): ...
+
+@typing.type_check_only
+class GenaiVertexV1DocumentContent(typing.TypedDict, total=False):
+    data: str
+    mimeTypeString: str
+    uri: str
+
+@typing.type_check_only
+class GenaiVertexV1DocumentDelta(typing.TypedDict, total=False):
+    data: str
+    mimeType: typing.Literal["TYPE_UNSPECIFIED", "TYPE_PDF", "TYPE_CSV"]
+    uri: str
+
+@typing.type_check_only
+class GenaiVertexV1DynamicAgentConfig(typing.TypedDict, total=False):
+    config: GenaiVertexV1Struct
+
+@typing.type_check_only
+class GenaiVertexV1Error(typing.TypedDict, total=False):
+    code: str
+    message: str
+
+@typing.type_check_only
+class GenaiVertexV1ErrorEvent(typing.TypedDict, total=False):
+    error: GenaiVertexV1Error
+
+@typing.type_check_only
+class GenaiVertexV1ExaAISearchConfig(typing.TypedDict, total=False):
+    apiKey: str
+    customConfig: dict[str, typing.Any]
+
+@typing.type_check_only
+class GenaiVertexV1Field(typing.TypedDict, total=False):
+    name: str
+    value: GenaiVertexV1Value
+
+@typing.type_check_only
+class GenaiVertexV1FileCitation(typing.TypedDict, total=False):
+    customMetadata: dict[str, typing.Any]
+    documentUri: str
+    fileName: str
+    mediaId: str
+    pageNumber: int
+    source: str
+
+@typing.type_check_only
+class GenaiVertexV1FileSearch(typing.TypedDict, total=False):
+    fileSearchStoreNames: _list[str]
+    metadataFilter: str
+    topK: int
+
+@typing.type_check_only
+class GenaiVertexV1FileSearchCallDelta(typing.TypedDict, total=False): ...
+
+@typing.type_check_only
+class GenaiVertexV1FileSearchCallStep(typing.TypedDict, total=False): ...
+
+@typing.type_check_only
+class GenaiVertexV1FileSearchResultContentFileSearchResult(
+    typing.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GenaiVertexV1FileSearchResultDelta(typing.TypedDict, total=False):
+    result: _list[GenaiVertexV1FileSearchResultContentFileSearchResult]
+
+@typing.type_check_only
+class GenaiVertexV1FileSearchResultStep(typing.TypedDict, total=False): ...
+
+@typing.type_check_only
+class GenaiVertexV1Function(typing.TypedDict, total=False):
+    description: str
+    name: str
+    parameters: GenaiVertexV1Value
+
+@typing.type_check_only
+class GenaiVertexV1FunctionCallStep(typing.TypedDict, total=False):
+    arguments: GenaiVertexV1Struct
+    name: str
+
+@typing.type_check_only
+class GenaiVertexV1FunctionResultDelta(typing.TypedDict, total=False):
+    isError: bool
+    name: str
+    result: GenaiVertexV1Value
+
+@typing.type_check_only
+class GenaiVertexV1FunctionResultStep(typing.TypedDict, total=False):
+    isError: bool
+    name: str
+    result: GenaiVertexV1Value
+
+@typing.type_check_only
+class GenaiVertexV1GenerationConfig(typing.TypedDict, total=False):
+    maxOutputTokens: int
+    seed: int
+    stopSequences: _list[str]
+    structuredSpeechConfig: GenaiVertexV1SpeakerConfig
+    temperature: float
+    thinkingLevel: typing.Literal[
+        "THINKING_LEVEL_UNSPECIFIED",
+        "THINKING_LEVEL_MINIMAL",
+        "THINKING_LEVEL_LOW",
+        "THINKING_LEVEL_MEDIUM",
+        "THINKING_LEVEL_HIGH",
+    ]
+    thinkingSummaries: typing.Literal[
+        "THINKING_SUMMARIES_UNSPECIFIED",
+        "THINKING_SUMMARIES_AUTO",
+        "THINKING_SUMMARIES_NONE",
+    ]
+    toolChoiceConfig: GenaiVertexV1ToolChoiceConfig
+    toolChoiceMode: typing.Literal[
+        "TOOL_CHOICE_TYPE_UNSPECIFIED", "AUTO", "ANY", "NONE", "VALIDATED"
+    ]
+    topP: float
+    transcriptionConfig: GenaiVertexV1TranscriptionConfig
+    videoConfig: GenaiVertexV1VideoConfig
+
+@typing.type_check_only
+class GenaiVertexV1GoogleMaps(typing.TypedDict, total=False):
+    enableWidget: bool
+    latitude: float
+    longitude: float
+
+@typing.type_check_only
+class GenaiVertexV1GoogleMapsCallContentGoogleMapsCallArguments(
+    typing.TypedDict, total=False
+):
+    queries: _list[str]
+
+@typing.type_check_only
+class GenaiVertexV1GoogleMapsCallDelta(typing.TypedDict, total=False):
+    arguments: GenaiVertexV1GoogleMapsCallContentGoogleMapsCallArguments
+
+@typing.type_check_only
+class GenaiVertexV1GoogleMapsCallStep(typing.TypedDict, total=False):
+    arguments: GenaiVertexV1GoogleMapsCallStepGoogleMapsCallStepArguments
+
+@typing.type_check_only
+class GenaiVertexV1GoogleMapsCallStepGoogleMapsCallStepArguments(
+    typing.TypedDict, total=False
+):
+    queries: _list[str]
+
+@typing.type_check_only
+class GenaiVertexV1GoogleMapsResultContentGoogleMapsResult(
+    typing.TypedDict, total=False
+):
+    places: _list[GenaiVertexV1GoogleMapsResultContentGoogleMapsResultPlaces]
+    widgetContextToken: str
+
+@typing.type_check_only
+class GenaiVertexV1GoogleMapsResultContentGoogleMapsResultPlaces(
+    typing.TypedDict, total=False
+):
+    name: str
+    placeId: str
+    reviewSnippets: _list[GenaiVertexV1ReviewSnippet]
+    url: str
+
+@typing.type_check_only
+class GenaiVertexV1GoogleMapsResultDelta(typing.TypedDict, total=False):
+    result: _list[GenaiVertexV1GoogleMapsResultContentGoogleMapsResult]
+
+@typing.type_check_only
+class GenaiVertexV1GoogleMapsResultStep(typing.TypedDict, total=False):
+    result: _list[GenaiVertexV1GoogleMapsResultStepGoogleMapsResultItem]
+
+@typing.type_check_only
+class GenaiVertexV1GoogleMapsResultStepGoogleMapsResultItem(
+    typing.TypedDict, total=False
+):
+    places: _list[
+        GenaiVertexV1GoogleMapsResultStepGoogleMapsResultItemGoogleMapsResultPlaces
+    ]
+    widgetContextToken: str
+
+@typing.type_check_only
+class GenaiVertexV1GoogleMapsResultStepGoogleMapsResultItemGoogleMapsResultPlaces(
+    typing.TypedDict, total=False
+):
+    name: str
+    placeId: str
+    reviewSnippets: _list[GenaiVertexV1ReviewSnippet]
+    url: str
+
+@typing.type_check_only
+class GenaiVertexV1GoogleSearch(typing.TypedDict, total=False):
+    searchTypes: _list[
+        typing.Literal[
+            "SEARCH_TYPE_UNSPECIFIED",
+            "SEARCH_TYPE_WEB_SEARCH",
+            "SEARCH_TYPE_IMAGE_SEARCH",
+            "SEARCH_TYPE_ENTERPRISE_WEB_SEARCH",
+        ]
+    ]
+
+@typing.type_check_only
+class GenaiVertexV1GoogleSearchCallContentGoogleSearchCallArguments(
+    typing.TypedDict, total=False
+):
+    queries: _list[str]
+
+@typing.type_check_only
+class GenaiVertexV1GoogleSearchCallDelta(typing.TypedDict, total=False):
+    arguments: GenaiVertexV1GoogleSearchCallContentGoogleSearchCallArguments
+
+@typing.type_check_only
+class GenaiVertexV1GoogleSearchCallStep(typing.TypedDict, total=False):
+    arguments: GenaiVertexV1GoogleSearchCallStepGoogleSearchCallStepArguments
+    searchType: typing.Literal[
+        "SEARCH_TYPE_UNSPECIFIED",
+        "SEARCH_TYPE_WEB_SEARCH",
+        "SEARCH_TYPE_IMAGE_SEARCH",
+        "SEARCH_TYPE_ENTERPRISE_WEB_SEARCH",
+    ]
+
+@typing.type_check_only
+class GenaiVertexV1GoogleSearchCallStepGoogleSearchCallStepArguments(
+    typing.TypedDict, total=False
+):
+    queries: _list[str]
+
+@typing.type_check_only
+class GenaiVertexV1GoogleSearchResultContentGoogleSearchResult(
+    typing.TypedDict, total=False
+):
+    searchSuggestions: str
+
+@typing.type_check_only
+class GenaiVertexV1GoogleSearchResultDelta(typing.TypedDict, total=False):
+    isError: bool
+    result: _list[GenaiVertexV1GoogleSearchResultContentGoogleSearchResult]
+
+@typing.type_check_only
+class GenaiVertexV1GoogleSearchResultStep(typing.TypedDict, total=False):
+    isError: bool
+    result: _list[GenaiVertexV1GoogleSearchResultStepGoogleSearchResultItem]
+
+@typing.type_check_only
+class GenaiVertexV1GoogleSearchResultStepGoogleSearchResultItem(
+    typing.TypedDict, total=False
+):
+    searchSuggestions: str
+
+@typing.type_check_only
+class GenaiVertexV1ImageContent(typing.TypedDict, total=False):
+    data: str
+    mimeTypeString: str
+    resolution: typing.Literal[
+        "MEDIA_RESOLUTION_UNSPECIFIED", "LOW", "MEDIUM", "HIGH", "ULTRA_HIGH"
+    ]
+    uri: str
+
+@typing.type_check_only
+class GenaiVertexV1ImageDelta(typing.TypedDict, total=False):
+    data: str
+    mimeType: typing.Literal[
+        "TYPE_UNSPECIFIED",
+        "TYPE_PNG",
+        "TYPE_JPEG",
+        "TYPE_WEBP",
+        "TYPE_HEIC",
+        "TYPE_HEIF",
+        "TYPE_GIF",
+        "TYPE_BMP",
+        "TYPE_TIFF",
+    ]
+    resolution: typing.Literal[
+        "MEDIA_RESOLUTION_UNSPECIFIED", "LOW", "MEDIUM", "HIGH", "ULTRA_HIGH"
+    ]
+    uri: str
+
+@typing.type_check_only
+class GenaiVertexV1ImageResponseFormat(typing.TypedDict, total=False):
+    aspectRatio: typing.Literal[
+        "ASPECT_RATIO_UNSPECIFIED",
+        "ASPECT_RATIO_ONE_BY_ONE",
+        "ASPECT_RATIO_TWO_BY_THREE",
+        "ASPECT_RATIO_THREE_BY_TWO",
+        "ASPECT_RATIO_THREE_BY_FOUR",
+        "ASPECT_RATIO_FOUR_BY_THREE",
+        "ASPECT_RATIO_FOUR_BY_FIVE",
+        "ASPECT_RATIO_FIVE_BY_FOUR",
+        "ASPECT_RATIO_NINE_BY_SIXTEEN",
+        "ASPECT_RATIO_SIXTEEN_BY_NINE",
+        "ASPECT_RATIO_TWENTY_ONE_BY_NINE",
+        "ASPECT_RATIO_ONE_BY_EIGHT",
+        "ASPECT_RATIO_EIGHT_BY_ONE",
+        "ASPECT_RATIO_ONE_BY_FOUR",
+        "ASPECT_RATIO_FOUR_BY_ONE",
+    ]
+    delivery: typing.Literal["DELIVERY_UNSPECIFIED", "INLINE", "URI"]
+    imageSize: typing.Literal[
+        "IMAGE_SIZE_UNSPECIFIED",
+        "IMAGE_SIZE_FIVE_TWELVE",
+        "IMAGE_SIZE_ONE_K",
+        "IMAGE_SIZE_TWO_K",
+        "IMAGE_SIZE_FOUR_K",
+    ]
+    mimeType: typing.Literal["TYPE_UNSPECIFIED", "TYPE_JPEG"]
+
+@typing.type_check_only
+class GenaiVertexV1Interaction(typing.TypedDict, total=False):
+    agentInteraction: GenaiVertexV1AgentInteraction
+    content: GenaiVertexV1Content
+    created: str
+    envId: str
+    environmentId: str
+    errors: _list[GenaiVertexV1Error]
+    id: str
+    labels: dict[str, typing.Any]
+    modelInteraction: GenaiVertexV1ModelInteraction
+    previousInteractionId: str
+    responseFormatList: GenaiVertexV1ResponseFormatList
+    responseFormatSingleton: GenaiVertexV1ResponseFormat
+    safetySettings: _list[GenaiVertexV1SafetySetting]
+    serviceTier: typing.Literal[
+        "SERVICE_TIER_UNSPECIFIED",
+        "SERVICE_TIER_FLEX",
+        "SERVICE_TIER_STANDARD",
+        "SERVICE_TIER_PRIORITY",
+        "SERVICE_TIER_DEFERRED",
+    ]
+    status: typing.Literal[
+        "UNSPECIFIED",
+        "IN_PROGRESS",
+        "REQUIRES_ACTION",
+        "COMPLETED",
+        "FAILED",
+        "CANCELLED",
+        "INCOMPLETE",
+        "QUEUED",
+    ]
+    stepList: GenaiVertexV1StepList
+    steps: _list[GenaiVertexV1Step]
+    stringContent: str
+    systemInstruction: str
+    tools: _list[GenaiVertexV1Tool]
+    updated: str
+    usage: GenaiVertexV1InteractionUsage
+
+@typing.type_check_only
+class GenaiVertexV1InteractionCompletedSseEvent(typing.TypedDict, total=False):
+    interaction: GenaiVertexV1Interaction
+
+@typing.type_check_only
+class GenaiVertexV1InteractionCreatedSseEvent(typing.TypedDict, total=False):
+    interaction: GenaiVertexV1Interaction
+
+@typing.type_check_only
+class GenaiVertexV1InteractionStatusUpdate(typing.TypedDict, total=False):
+    interactionId: str
+    status: typing.Literal[
+        "UNSPECIFIED",
+        "IN_PROGRESS",
+        "REQUIRES_ACTION",
+        "COMPLETED",
+        "FAILED",
+        "CANCELLED",
+        "INCOMPLETE",
+        "QUEUED",
+    ]
+    usage: GenaiVertexV1InteractionUsage
+
+@typing.type_check_only
+class GenaiVertexV1InteractionStreamingEvent(typing.TypedDict, total=False):
+    errorEvent: GenaiVertexV1ErrorEvent
+    eventId: str
+    interactionCompletedEvent: GenaiVertexV1InteractionCompletedSseEvent
+    interactionCreatedEvent: GenaiVertexV1InteractionCreatedSseEvent
+    interactionStatusUpdate: GenaiVertexV1InteractionStatusUpdate
+    stepDelta: GenaiVertexV1StepDelta
+    stepStart: GenaiVertexV1StepStart
+    stepStop: GenaiVertexV1StepStop
+
+@typing.type_check_only
+class GenaiVertexV1InteractionUsage(typing.TypedDict, total=False):
+    cachedTokensByModality: _list[GenaiVertexV1InteractionUsageModalityTokens]
+    groundingToolCount: _list[GenaiVertexV1InteractionUsageGroundingToolCount]
+    inputTokensByModality: _list[GenaiVertexV1InteractionUsageModalityTokens]
+    outputTokensByModality: _list[GenaiVertexV1InteractionUsageModalityTokens]
+    toolUseTokensByModality: _list[GenaiVertexV1InteractionUsageModalityTokens]
+    totalCachedTokens: int
+    totalInputTokens: int
+    totalOutputTokens: int
+    totalThoughtTokens: int
+    totalTokens: int
+    totalToolUseTokens: int
+
+@typing.type_check_only
+class GenaiVertexV1InteractionUsageGroundingToolCount(typing.TypedDict, total=False):
+    count: int
+    type: typing.Literal[
+        "TYPE_UNSPECIFIED", "GOOGLE_SEARCH", "GOOGLE_MAPS", "RETRIEVAL"
+    ]
+
+@typing.type_check_only
+class GenaiVertexV1InteractionUsageModalityTokens(typing.TypedDict, total=False):
+    modality: typing.Literal[
+        "RESPONSE_MODALITY_UNSPECIFIED", "TEXT", "IMAGE", "AUDIO", "VIDEO", "DOCUMENT"
+    ]
+    tokens: int
+
+@typing.type_check_only
+class GenaiVertexV1ListValue(typing.TypedDict, total=False):
+    values: _list[GenaiVertexV1Value]
+
+@typing.type_check_only
+class GenaiVertexV1McpServer(typing.TypedDict, total=False):
+    allowedTools: _list[GenaiVertexV1AllowedTools]
+    headers: dict[str, typing.Any]
+    name: str
+    url: str
+
+@typing.type_check_only
+class GenaiVertexV1ModelInteraction(typing.TypedDict, total=False):
+    generationConfig: GenaiVertexV1GenerationConfig
+    model: str
+
+@typing.type_check_only
+class GenaiVertexV1ModelOutputStep(typing.TypedDict, total=False):
+    content: _list[GenaiVertexV1Content]
+    error: GoogleRpcStatus
+
+@typing.type_check_only
+class GenaiVertexV1ParallelAISearchConfig(typing.TypedDict, total=False):
+    apiKey: str
+    customConfig: dict[str, typing.Any]
+
+@typing.type_check_only
+class GenaiVertexV1PlaceCitation(typing.TypedDict, total=False):
+    name: str
+    placeId: str
+    reviewSnippets: _list[GenaiVertexV1ReviewSnippet]
+    url: str
+
+@typing.type_check_only
+class GenaiVertexV1ProcessingCallDelta(typing.TypedDict, total=False): ...
+
+@typing.type_check_only
+class GenaiVertexV1ProcessingCallStep(typing.TypedDict, total=False): ...
+
+@typing.type_check_only
+class GenaiVertexV1ProcessingResultDelta(typing.TypedDict, total=False): ...
+
+@typing.type_check_only
+class GenaiVertexV1ProcessingResultStep(typing.TypedDict, total=False): ...
+
+@typing.type_check_only
+class GenaiVertexV1RagStoreConfig(typing.TypedDict, total=False):
+    ragResources: _list[GenaiVertexV1RagStoreConfigRagResource]
+    ragRetrievalConfig: GenaiVertexV1RagStoreConfigRagRetrievalConfig
+
+@typing.type_check_only
+class GenaiVertexV1RagStoreConfigRagResource(typing.TypedDict, total=False):
+    ragCorpus: str
+    ragFileIds: _list[str]
+
+@typing.type_check_only
+class GenaiVertexV1RagStoreConfigRagRetrievalConfig(typing.TypedDict, total=False):
+    filter: GenaiVertexV1RagStoreConfigRagRetrievalConfigFilter
+    hybridSearch: GenaiVertexV1RagStoreConfigRagRetrievalConfigHybridSearch
+    ranking: GenaiVertexV1RagStoreConfigRagRetrievalConfigRanking
+    topK: int
+
+@typing.type_check_only
+class GenaiVertexV1RagStoreConfigRagRetrievalConfigFilter(
+    typing.TypedDict, total=False
+):
+    metadataFilter: str
+    vectorDistanceThreshold: float
+    vectorSimilarityThreshold: float
+
+@typing.type_check_only
+class GenaiVertexV1RagStoreConfigRagRetrievalConfigHybridSearch(
+    typing.TypedDict, total=False
+):
+    alpha: float
+
+@typing.type_check_only
+class GenaiVertexV1RagStoreConfigRagRetrievalConfigRanking(
+    typing.TypedDict, total=False
+):
+    rankService: GenaiVertexV1RagStoreConfigRagRetrievalConfigRankingRankService
+
+@typing.type_check_only
+class GenaiVertexV1RagStoreConfigRagRetrievalConfigRankingRankService(
+    typing.TypedDict, total=False
+):
+    modelName: str
+
+@typing.type_check_only
+class GenaiVertexV1ResponseFormat(typing.TypedDict, total=False):
+    audio: GenaiVertexV1AudioResponseFormat
+    image: GenaiVertexV1ImageResponseFormat
+    structValue: GenaiVertexV1Struct
+    text: GenaiVertexV1TextResponseFormat
+    video: GenaiVertexV1VideoResponseFormat
+
+@typing.type_check_only
+class GenaiVertexV1ResponseFormatList(typing.TypedDict, total=False):
+    responseFormats: _list[GenaiVertexV1ResponseFormat]
+
+@typing.type_check_only
+class GenaiVertexV1Retrieval(typing.TypedDict, total=False):
+    exaAiSearchConfig: GenaiVertexV1ExaAISearchConfig
+    parallelAiSearchConfig: GenaiVertexV1ParallelAISearchConfig
+    ragStoreConfig: GenaiVertexV1RagStoreConfig
+    retrievalTypes: _list[
+        typing.Literal[
+            "RETRIEVAL_TYPE_UNSPECIFIED",
+            "RETRIEVAL_TYPE_VERTEX_AI_SEARCH",
+            "RETRIEVAL_TYPE_RAG_STORE",
+            "RETRIEVAL_TYPE_EXA_AI_SEARCH",
+            "RETRIEVAL_TYPE_PARALLEL_AI_SEARCH",
+        ]
+    ]
+    vertexAiSearchConfig: GenaiVertexV1VertexAISearchConfig
+
+@typing.type_check_only
+class GenaiVertexV1RetrievalCallDelta(typing.TypedDict, total=False):
+    arguments: GenaiVertexV1RetrievalCallStepRetrievalStepArguments
+    retrievalType: typing.Literal[
+        "RETRIEVAL_TYPE_UNSPECIFIED",
+        "RETRIEVAL_TYPE_VERTEX_AI_SEARCH",
+        "RETRIEVAL_TYPE_RAG_STORE",
+        "RETRIEVAL_TYPE_EXA_AI_SEARCH",
+        "RETRIEVAL_TYPE_PARALLEL_AI_SEARCH",
+    ]
+
+@typing.type_check_only
+class GenaiVertexV1RetrievalCallStep(typing.TypedDict, total=False):
+    arguments: GenaiVertexV1RetrievalCallStepRetrievalStepArguments
+    retrievalType: typing.Literal[
+        "RETRIEVAL_TYPE_UNSPECIFIED",
+        "RETRIEVAL_TYPE_VERTEX_AI_SEARCH",
+        "RETRIEVAL_TYPE_RAG_STORE",
+        "RETRIEVAL_TYPE_EXA_AI_SEARCH",
+        "RETRIEVAL_TYPE_PARALLEL_AI_SEARCH",
+    ]
+
+@typing.type_check_only
+class GenaiVertexV1RetrievalCallStepRetrievalStepArguments(
+    typing.TypedDict, total=False
+):
+    queries: _list[str]
+
+@typing.type_check_only
+class GenaiVertexV1RetrievalResultDelta(typing.TypedDict, total=False):
+    isError: bool
+
+@typing.type_check_only
+class GenaiVertexV1RetrievalResultStep(typing.TypedDict, total=False):
+    isError: bool
+
+@typing.type_check_only
+class GenaiVertexV1ReviewSnippet(typing.TypedDict, total=False):
+    reviewId: str
+    title: str
+    url: str
+
+@typing.type_check_only
+class GenaiVertexV1SafetySetting(typing.TypedDict, total=False):
+    method: typing.Literal["HARM_BLOCK_METHOD_UNSPECIFIED", "SEVERITY", "PROBABILITY"]
+    threshold: typing.Literal[
+        "HARM_BLOCK_THRESHOLD_UNSPECIFIED",
+        "BLOCK_LOW_AND_ABOVE",
+        "BLOCK_MEDIUM_AND_ABOVE",
+        "BLOCK_ONLY_HIGH",
+        "BLOCK_NONE",
+        "OFF",
+    ]
+    type: typing.Literal[
+        "HARM_CATEGORY_UNSPECIFIED",
+        "HARM_CATEGORY_HATE_SPEECH",
+        "HARM_CATEGORY_DANGEROUS_CONTENT",
+        "HARM_CATEGORY_HARASSMENT",
+        "HARM_CATEGORY_SEXUALLY_EXPLICIT",
+        "HARM_CATEGORY_CIVIC_INTEGRITY",
+        "HARM_CATEGORY_IMAGE_HATE",
+        "HARM_CATEGORY_IMAGE_DANGEROUS_CONTENT",
+        "HARM_CATEGORY_IMAGE_HARASSMENT",
+        "HARM_CATEGORY_IMAGE_SEXUALLY_EXPLICIT",
+        "HARM_CATEGORY_JAILBREAK",
+    ]
+
+@typing.type_check_only
+class GenaiVertexV1ServerToolCallDelta(typing.TypedDict, total=False):
+    codeExecutionCall: GenaiVertexV1CodeExecutionCallDelta
+    fileSearchCall: GenaiVertexV1FileSearchCallDelta
+    googleMapsCall: GenaiVertexV1GoogleMapsCallDelta
+    googleSearchCall: GenaiVertexV1GoogleSearchCallDelta
+    processingCall: GenaiVertexV1ProcessingCallDelta
+    retrievalCall: GenaiVertexV1RetrievalCallDelta
+    signature: str
+    urlContextCall: GenaiVertexV1UrlContextCallDelta
+
+@typing.type_check_only
+class GenaiVertexV1ServerToolResultDelta(typing.TypedDict, total=False):
+    codeExecutionResult: GenaiVertexV1CodeExecutionResultDelta
+    fileSearchResult: GenaiVertexV1FileSearchResultDelta
+    googleMapsResult: GenaiVertexV1GoogleMapsResultDelta
+    googleSearchResult: GenaiVertexV1GoogleSearchResultDelta
+    processingResult: GenaiVertexV1ProcessingResultDelta
+    retrievalResult: GenaiVertexV1RetrievalResultDelta
+    signature: str
+    urlContextResult: GenaiVertexV1UrlContextResultDelta
+
+@typing.type_check_only
+class GenaiVertexV1SpeakerConfig(typing.TypedDict, total=False):
+    speakers: _list[GenaiVertexV1SpeechConfig]
+
+@typing.type_check_only
+class GenaiVertexV1SpeechAnnotation(typing.TypedDict, total=False):
+    speaker: str
+    style: str
+
+@typing.type_check_only
+class GenaiVertexV1SpeechConfig(typing.TypedDict, total=False):
+    language: str
+    speaker: str
+    voice: str
+
+@typing.type_check_only
+class GenaiVertexV1Step(typing.TypedDict, total=False):
+    modelOutput: GenaiVertexV1ModelOutputStep
+    thought: GenaiVertexV1ThoughtStep
+    toolCall: GenaiVertexV1ToolCallStep
+    toolResult: GenaiVertexV1ToolResultStep
+    userInput: GenaiVertexV1UserInputStep
+
+@typing.type_check_only
+class GenaiVertexV1StepDelta(typing.TypedDict, total=False):
+    delta: GenaiVertexV1StepDeltaData
+    index: int
+
+@typing.type_check_only
+class GenaiVertexV1StepDeltaData(typing.TypedDict, total=False):
+    argumentsDelta: GenaiVertexV1ArgumentsDelta
+    audio: GenaiVertexV1AudioDelta
+    document: GenaiVertexV1DocumentDelta
+    functionResult: GenaiVertexV1FunctionResultDelta
+    image: GenaiVertexV1ImageDelta
+    serverToolCall: GenaiVertexV1ServerToolCallDelta
+    serverToolResult: GenaiVertexV1ServerToolResultDelta
+    text: GenaiVertexV1TextDelta
+    textAnnotationDelta: GenaiVertexV1TextAnnotationDelta
+    thoughtSignature: GenaiVertexV1ThoughtSignatureDelta
+    thoughtSummary: GenaiVertexV1ThoughtSummaryDelta
+    video: GenaiVertexV1VideoDelta
+
+@typing.type_check_only
+class GenaiVertexV1StepList(typing.TypedDict, total=False):
+    steps: _list[GenaiVertexV1Step]
+
+@typing.type_check_only
+class GenaiVertexV1StepStart(typing.TypedDict, total=False):
+    index: int
+    step: GenaiVertexV1Step
+
+@typing.type_check_only
+class GenaiVertexV1StepStop(typing.TypedDict, total=False):
+    index: int
+    stepUsage: GenaiVertexV1InteractionUsage
+    usage: GenaiVertexV1InteractionUsage
+
+@typing.type_check_only
+class GenaiVertexV1Struct(typing.TypedDict, total=False):
+    fields: _list[GenaiVertexV1Field]
+
+@typing.type_check_only
+class GenaiVertexV1TextAnnotationDelta(typing.TypedDict, total=False):
+    annotations: _list[GenaiVertexV1TextContentAnnotation]
+
+@typing.type_check_only
+class GenaiVertexV1TextContent(typing.TypedDict, total=False):
+    annotations: _list[GenaiVertexV1TextContentAnnotation]
+    text: str
+
+@typing.type_check_only
+class GenaiVertexV1TextContentAnnotation(typing.TypedDict, total=False):
+    endIndex: int
+    fileCitation: GenaiVertexV1FileCitation
+    placeCitation: GenaiVertexV1PlaceCitation
+    speechMetadata: GenaiVertexV1SpeechAnnotation
+    startIndex: int
+    urlCitation: GenaiVertexV1UrlCitation
+    wordInfo: GenaiVertexV1WordInfo
+
+@typing.type_check_only
+class GenaiVertexV1TextDelta(typing.TypedDict, total=False):
+    text: str
+
+@typing.type_check_only
+class GenaiVertexV1TextResponseFormat(typing.TypedDict, total=False):
+    mimeType: typing.Literal[
+        "TYPE_UNSPECIFIED", "TYPE_APPLICATION_JSON", "TYPE_TEXT_PLAIN"
+    ]
+    schema: GenaiVertexV1Struct
+
+@typing.type_check_only
+class GenaiVertexV1ThoughtSignatureDelta(typing.TypedDict, total=False):
+    signature: str
+
+@typing.type_check_only
+class GenaiVertexV1ThoughtStep(typing.TypedDict, total=False):
+    signature: str
+    summary: _list[GenaiVertexV1Content]
+
+@typing.type_check_only
+class GenaiVertexV1ThoughtSummaryDelta(typing.TypedDict, total=False):
+    content: GenaiVertexV1Content
+
+@typing.type_check_only
+class GenaiVertexV1Tool(typing.TypedDict, total=False):
+    codeExecution: GenaiVertexV1CodeExecution
+    computerUse: GenaiVertexV1ComputerUse
+    fileSearch: GenaiVertexV1FileSearch
+    function: GenaiVertexV1Function
+    googleMaps: GenaiVertexV1GoogleMaps
+    googleSearch: GenaiVertexV1GoogleSearch
+    mcpServer: GenaiVertexV1McpServer
+    retrieval: GenaiVertexV1Retrieval
+    urlContext: GenaiVertexV1UrlContext
+
+@typing.type_check_only
+class GenaiVertexV1ToolCallStep(typing.TypedDict, total=False):
+    codeExecutionCall: GenaiVertexV1CodeExecutionCallStep
+    fileSearchCall: GenaiVertexV1FileSearchCallStep
+    functionCall: GenaiVertexV1FunctionCallStep
+    googleMapsCall: GenaiVertexV1GoogleMapsCallStep
+    googleSearchCall: GenaiVertexV1GoogleSearchCallStep
+    id: str
+    processingCall: GenaiVertexV1ProcessingCallStep
+    retrievalCall: GenaiVertexV1RetrievalCallStep
+    signature: str
+    urlContextCall: GenaiVertexV1UrlContextCallStep
+
+@typing.type_check_only
+class GenaiVertexV1ToolChoiceConfig(typing.TypedDict, total=False):
+    allowedTools: GenaiVertexV1AllowedTools
+
+@typing.type_check_only
+class GenaiVertexV1ToolResultStep(typing.TypedDict, total=False):
+    callId: str
+    codeExecutionResult: GenaiVertexV1CodeExecutionResultStep
+    fileSearchResult: GenaiVertexV1FileSearchResultStep
+    functionResult: GenaiVertexV1FunctionResultStep
+    googleMapsResult: GenaiVertexV1GoogleMapsResultStep
+    googleSearchResult: GenaiVertexV1GoogleSearchResultStep
+    processingResult: GenaiVertexV1ProcessingResultStep
+    retrievalResult: GenaiVertexV1RetrievalResultStep
+    signature: str
+    urlContextResult: GenaiVertexV1UrlContextResultStep
+
+@typing.type_check_only
+class GenaiVertexV1TranscriptionConfig(typing.TypedDict, total=False):
+    adaptationPhrases: _list[str]
+    customVocabulary: _list[str]
+    diarizationMode: str
+    languageCodes: _list[str]
+    timestampGranularities: _list[str]
+
+@typing.type_check_only
+class GenaiVertexV1UrlCitation(typing.TypedDict, total=False):
+    title: str
+    url: str
+
+@typing.type_check_only
+class GenaiVertexV1UrlContext(typing.TypedDict, total=False): ...
+
+@typing.type_check_only
+class GenaiVertexV1UrlContextCallContentUrlContextCallArguments(
+    typing.TypedDict, total=False
+):
+    urls: _list[str]
+
+@typing.type_check_only
+class GenaiVertexV1UrlContextCallDelta(typing.TypedDict, total=False):
+    arguments: GenaiVertexV1UrlContextCallContentUrlContextCallArguments
+
+@typing.type_check_only
+class GenaiVertexV1UrlContextCallStep(typing.TypedDict, total=False):
+    arguments: GenaiVertexV1UrlContextCallStepUrlContextCallStepArguments
+
+@typing.type_check_only
+class GenaiVertexV1UrlContextCallStepUrlContextCallStepArguments(
+    typing.TypedDict, total=False
+):
+    urls: _list[str]
+
+@typing.type_check_only
+class GenaiVertexV1UrlContextResultContentUrlContextResult(
+    typing.TypedDict, total=False
+):
+    status: typing.Literal[
+        "STATUS_UNSPECIFIED", "SUCCESS", "ERROR", "PAYWALL", "UNSAFE"
+    ]
+    url: str
+
+@typing.type_check_only
+class GenaiVertexV1UrlContextResultDelta(typing.TypedDict, total=False):
+    isError: bool
+    result: _list[GenaiVertexV1UrlContextResultContentUrlContextResult]
+
+@typing.type_check_only
+class GenaiVertexV1UrlContextResultStep(typing.TypedDict, total=False):
+    isError: bool
+    result: _list[GenaiVertexV1UrlContextResultStepUrlContextResultItem]
+
+@typing.type_check_only
+class GenaiVertexV1UrlContextResultStepUrlContextResultItem(
+    typing.TypedDict, total=False
+):
+    status: typing.Literal[
+        "STATUS_UNSPECIFIED", "SUCCESS", "ERROR", "PAYWALL", "UNSAFE"
+    ]
+    url: str
+
+@typing.type_check_only
+class GenaiVertexV1UserInputStep(typing.TypedDict, total=False):
+    contentList: GenaiVertexV1ContentList
+    contentString: str
+
+@typing.type_check_only
+class GenaiVertexV1Value(typing.TypedDict, total=False):
+    boolValue: bool
+    contentValue: GenaiVertexV1Content
+    listValue: GenaiVertexV1ListValue
+    nullValue: typing.Literal["NULL_VALUE"]
+    numberValue: float
+    stringValue: str
+    structValue: GenaiVertexV1Struct
+
+@typing.type_check_only
+class GenaiVertexV1VertexAISearchConfig(typing.TypedDict, total=False):
+    datastores: _list[str]
+    engine: str
+
+@typing.type_check_only
+class GenaiVertexV1VideoConfig(typing.TypedDict, total=False):
+    task: typing.Literal[
+        "TASK_UNSPECIFIED",
+        "TEXT_TO_VIDEO",
+        "IMAGE_TO_VIDEO",
+        "REFERENCE_TO_VIDEO",
+        "EDIT",
+        "EXTEND",
+    ]
+
+@typing.type_check_only
+class GenaiVertexV1VideoContent(typing.TypedDict, total=False):
+    data: str
+    mimeTypeString: str
+    name: str
+    processingConfig: GenaiVertexV1VideoContentMediaProcessing
+    processingType: typing.Literal["PROCESSING_UNSPECIFIED", "STATIC", "AGENTIC"]
+    resolution: typing.Literal[
+        "MEDIA_RESOLUTION_UNSPECIFIED", "LOW", "MEDIUM", "HIGH", "ULTRA_HIGH"
+    ]
+    uri: str
+
+@typing.type_check_only
+class GenaiVertexV1VideoContentMediaProcessing(typing.TypedDict, total=False):
+    static: GenaiVertexV1VideoContentStaticMediaProcessing
+
+@typing.type_check_only
+class GenaiVertexV1VideoContentStaticMediaProcessing(typing.TypedDict, total=False):
+    endOffset: str
+    fps: float
+    startOffset: str
+
+@typing.type_check_only
+class GenaiVertexV1VideoDelta(typing.TypedDict, total=False):
+    data: str
+    mimeType: typing.Literal[
+        "TYPE_UNSPECIFIED",
+        "TYPE_MP4",
+        "TYPE_MPEG",
+        "TYPE_MPG",
+        "TYPE_MOV",
+        "TYPE_AVI",
+        "TYPE_X_FLV",
+        "TYPE_WEBM",
+        "TYPE_WMV",
+        "TYPE_3GPP",
+        "TYPE_JPEG2000",
+    ]
+    resolution: typing.Literal[
+        "MEDIA_RESOLUTION_UNSPECIFIED", "LOW", "MEDIUM", "HIGH", "ULTRA_HIGH"
+    ]
+    uri: str
+
+@typing.type_check_only
+class GenaiVertexV1VideoResponseFormat(typing.TypedDict, total=False):
+    aspectRatio: typing.Literal[
+        "ASPECT_RATIO_UNSPECIFIED",
+        "ASPECT_RATIO_SIXTEEN_BY_NINE",
+        "ASPECT_RATIO_NINE_BY_SIXTEEN",
+    ]
+    delivery: typing.Literal["DELIVERY_UNSPECIFIED", "INLINE", "URI"]
+    duration: str
+    gcsUri: str
+    resolution: typing.Literal[
+        "RESOLUTION_UNSPECIFIED",
+        "RESOLUTION_THREE_SIXTY_P",
+        "RESOLUTION_SEVEN_TWENTY_P",
+        "RESOLUTION_TEN_EIGHTY_P",
+        "RESOLUTION_FOUR_K",
+    ]
+
+@typing.type_check_only
+class GenaiVertexV1WordInfo(typing.TypedDict, total=False):
+    endOffset: str
+    speaker: str
+    startOffset: str
+    text: str
+
+@typing.type_check_only
 class GoogleApiHttpBody(typing.TypedDict, total=False):
     contentType: str
     data: str
@@ -340,10 +1497,13 @@ class GoogleCloudAiplatformV1Agent(typing.TypedDict, total=False):
     base_environment: typing.Any
     created: str
     description: str
+    effectiveIdentity: str
     id: str
     metadata: dict[str, typing.Any]
+    modelConfig: GoogleCloudAiplatformV1AgentModelConfig
     name: str
     object: str
+    observabilityConfig: GoogleCloudAiplatformV1ObservabilityConfig
     system_instruction: str
     tools: _list[GoogleCloudAiplatformV1AgentTool]
     updated: str
@@ -369,6 +1529,15 @@ class GoogleCloudAiplatformV1AgentEvent(typing.TypedDict, total=False):
     content: GoogleCloudAiplatformV1Content
     eventTime: str
     stateDelta: dict[str, typing.Any]
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1AgentModelConfig(typing.TypedDict, total=False):
+    model: str
+    temperature: float
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1AgentResponseCustomization(typing.TypedDict, total=False):
+    denialMessage: str
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1AgentTool(typing.TypedDict, total=False):
@@ -528,6 +1697,7 @@ class GoogleCloudAiplatformV1AudioTranscriptionConfig(typing.TypedDict, total=Fa
     languageAuto: GoogleCloudAiplatformV1AudioTranscriptionConfigLanguageAuto
     languageCodes: _list[str]
     languageHints: GoogleCloudAiplatformV1AudioTranscriptionConfigLanguageHints
+    mode: typing.Literal["MODE_UNSPECIFIED", "VERBATIM", "SMART"]
     wordTimestamp: bool
 
 @typing.type_check_only
@@ -617,6 +1787,16 @@ class GoogleCloudAiplatformV1AuthConfigOauthConfig(typing.TypedDict, total=False
 class GoogleCloudAiplatformV1AuthConfigOidcConfig(typing.TypedDict, total=False):
     idToken: str
     serviceAccount: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1AuthorizeSandboxEnvironmentAccessRequest(
+    typing.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1AuthorizeSandboxEnvironmentAccessResponse(
+    typing.TypedDict, total=False
+): ...
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1AutomaticResources(typing.TypedDict, total=False):
@@ -942,6 +2122,11 @@ class GoogleCloudAiplatformV1BoolArray(typing.TypedDict, total=False):
 class GoogleCloudAiplatformV1CacheConfig(typing.TypedDict, total=False):
     disableCache: bool
     name: str
+    retentionConfig: GoogleCloudAiplatformV1CacheConfigRetentionConfig
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1CacheConfigRetentionConfig(typing.TypedDict, total=False):
+    retentionType: typing.Literal["RETENTION_TYPE_UNSPECIFIED", "EPHEMERAL", "DURABLE"]
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1CachedContent(typing.TypedDict, total=False):
@@ -1022,6 +2207,7 @@ class GoogleCloudAiplatformV1Candidate(typing.TypedDict, total=False):
     avgLogprobs: float
     citationMetadata: GoogleCloudAiplatformV1CitationMetadata
     content: GoogleCloudAiplatformV1Content
+    continuationToken: str
     finishMessage: str
     finishReason: typing.Literal[
         "FINISH_REASON_UNSPECIFIED",
@@ -1041,6 +2227,8 @@ class GoogleCloudAiplatformV1Candidate(typing.TypedDict, total=False):
         "IMAGE_OTHER",
         "UNEXPECTED_TOOL_CALL",
         "NO_IMAGE",
+        "MALFORMED_RESPONSE",
+        "CONTINUATION",
     ]
     groundingMetadata: GoogleCloudAiplatformV1GroundingMetadata
     index: int
@@ -2309,6 +3497,7 @@ class GoogleCloudAiplatformV1EvaluationDataset(typing.TypedDict, total=False):
 @typing.type_check_only
 class GoogleCloudAiplatformV1EvaluationInstance(typing.TypedDict, total=False):
     agentData: GoogleCloudAiplatformV1EvaluationInstanceDeprecatedAgentData
+    agentEvalData: GoogleCloudAiplatformV1AgentData
     interactionsDataSource: (
         GoogleCloudAiplatformV1EvaluationInstanceInteractionsDataSource
     )
@@ -2533,6 +3722,7 @@ class GoogleCloudAiplatformV1EvaluationRunDataSource(typing.TypedDict, total=Fal
 class GoogleCloudAiplatformV1EvaluationRunEvaluationConfig(
     typing.TypedDict, total=False
 ):
+    allowCrossRegionModel: bool
     autoraterConfig: GoogleCloudAiplatformV1EvaluationRunEvaluationConfigAutoraterConfig
     cloudLoggingConfig: GoogleCloudAiplatformV1CloudLoggingConfig
     datasetCustomMetrics: _list[GoogleCloudAiplatformV1DatasetCustomMetric]
@@ -3861,6 +5051,7 @@ class GoogleCloudAiplatformV1GenerateMemoriesRequest(typing.TypedDict, total=Fal
     revisionLabels: dict[str, typing.Any]
     revisionTtl: str
     scope: dict[str, typing.Any]
+    timeZone: str
     vertexSessionSource: (
         GoogleCloudAiplatformV1GenerateMemoriesRequestVertexSessionSource
     )
@@ -3979,6 +5170,7 @@ class GoogleCloudAiplatformV1GenerationConfig(typing.TypedDict, total=False):
     thinkingConfig: GoogleCloudAiplatformV1GenerationConfigThinkingConfig
     topK: float
     topP: float
+    translationConfig: GoogleCloudAiplatformV1TranslationConfig
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1GenerationConfigRoutingConfig(
@@ -4293,6 +5485,7 @@ class GoogleCloudAiplatformV1ImportEvaluationSetRequestAgentEngineSource(
 class GoogleCloudAiplatformV1ImportEvaluationSetRequestCloudTraceSource(
     typing.TypedDict, total=False
 ):
+    agentResource: str
     projectId: str
     sessionIds: _list[str]
     traceIds: _list[str]
@@ -4944,6 +6137,11 @@ class GoogleCloudAiplatformV1ListSemanticGovernancePoliciesResponse(
     semanticGovernancePolicies: _list[GoogleCloudAiplatformV1SemanticGovernancePolicy]
 
 @typing.type_check_only
+class GoogleCloudAiplatformV1ListServingProfilesResponse(typing.TypedDict, total=False):
+    nextPageToken: str
+    servingProfiles: _list[GoogleCloudAiplatformV1ServingProfile]
+
+@typing.type_check_only
 class GoogleCloudAiplatformV1ListSessionsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     sessions: _list[GoogleCloudAiplatformV1Session]
@@ -5076,6 +6274,7 @@ class GoogleCloudAiplatformV1MeasurementMetric(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1Memory(typing.TypedDict, total=False):
+    context: str
     createTime: str
     description: str
     disableMemoryRevisions: bool
@@ -5208,6 +6407,7 @@ class GoogleCloudAiplatformV1MemoryMetadataValue(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1MemoryRevision(typing.TypedDict, total=False):
+    context: str
     createTime: str
     expireTime: str
     extractedMemories: _list[GoogleCloudAiplatformV1IntermediateExtractedMemory]
@@ -6294,6 +7494,11 @@ class GoogleCloudAiplatformV1NotebookSoftwareConfig(typing.TypedDict, total=Fals
     postStartupScriptConfig: GoogleCloudAiplatformV1PostStartupScriptConfig
 
 @typing.type_check_only
+class GoogleCloudAiplatformV1ObservabilityConfig(typing.TypedDict, total=False):
+    observabilityEnabled: bool
+    sensitiveLoggingEnabled: bool
+
+@typing.type_check_only
 class GoogleCloudAiplatformV1OnlineEvaluator(typing.TypedDict, total=False):
     agentResource: str
     cloudObservability: GoogleCloudAiplatformV1OnlineEvaluatorCloudObservability
@@ -6314,6 +7519,7 @@ class GoogleCloudAiplatformV1OnlineEvaluatorCloudObservability(
 ):
     logView: str
     openTelemetry: GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilityOpenTelemetry
+    sessionScope: GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilitySessionScope
     traceScope: GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilityTraceScope
     traceView: str
 
@@ -6339,6 +7545,48 @@ class GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilityOpenTelemetry(
     semconvVersion: str
 
 @typing.type_check_only
+class GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilitySessionScope(
+    typing.TypedDict, total=False
+):
+    filter: _list[
+        GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilitySessionScopePredicate
+    ]
+    inactivityTrigger: GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilitySessionScopeInactivityTrigger
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilitySessionScopeInactivityTrigger(
+    typing.TypedDict, total=False
+):
+    threshold: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilitySessionScopePredicate(
+    typing.TypedDict, total=False
+):
+    duration: GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilityNumericPredicate
+    modelCallErrors: (
+        GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilityNumericPredicate
+    )
+    modelCalls: GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilityNumericPredicate
+    serviceVersion: (
+        GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilityStringPredicate
+    )
+    toolCallErrors: (
+        GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilityNumericPredicate
+    )
+    toolCalls: GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilityNumericPredicate
+    totalTokenUsage: (
+        GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilityNumericPredicate
+    )
+    userTurns: GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilityNumericPredicate
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilityStringPredicate(
+    typing.TypedDict, total=False
+):
+    values: _list[str]
+
+@typing.type_check_only
 class GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilityTraceScope(
     typing.TypedDict, total=False
 ):
@@ -6351,6 +7599,9 @@ class GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilityTraceScopePredicat
     typing.TypedDict, total=False
 ):
     duration: GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilityNumericPredicate
+    serviceVersion: (
+        GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilityStringPredicate
+    )
     totalTokenUsage: (
         GoogleCloudAiplatformV1OnlineEvaluatorCloudObservabilityNumericPredicate
     )
@@ -6503,6 +7754,7 @@ class GoogleCloudAiplatformV1Part(typing.TypedDict, total=False):
     functionResponse: GoogleCloudAiplatformV1FunctionResponse
     inlineData: GoogleCloudAiplatformV1Blob
     mediaResolution: GoogleCloudAiplatformV1PartMediaResolution
+    speechMetadata: GoogleCloudAiplatformV1SpeechMetadata
     text: str
     thought: bool
     thoughtSignature: str
@@ -7259,6 +8511,8 @@ class GoogleCloudAiplatformV1QuestionAnsweringRelevanceSpec(
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1RagChunk(typing.TypedDict, total=False):
+    chunkId: str
+    fileId: str
     pageSpan: GoogleCloudAiplatformV1RagChunkPageSpan
     text: str
 
@@ -7476,17 +8730,24 @@ class GoogleCloudAiplatformV1RawPredictRequest(typing.TypedDict, total=False):
     httpBody: GoogleApiHttpBody
 
 @typing.type_check_only
+class GoogleCloudAiplatformV1RayClusterAutoscalingSpec(typing.TypedDict, total=False):
+    idleTimeoutMinutes: str
+    upscalingSpeed: str
+
+@typing.type_check_only
 class GoogleCloudAiplatformV1RayLogsSpec(typing.TypedDict, total=False):
     disabled: bool
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1RayMetricSpec(typing.TypedDict, total=False):
     disabled: bool
+    enableUsageStatsCollection: bool
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1RaySpec(typing.TypedDict, total=False):
     headNodeResourcePoolId: str
     imageUri: str
+    rayClusterAutoscalingSpec: GoogleCloudAiplatformV1RayClusterAutoscalingSpec
     rayLogsSpec: GoogleCloudAiplatformV1RayLogsSpec
     rayMetricSpec: GoogleCloudAiplatformV1RayMetricSpec
     resourcePoolImages: dict[str, typing.Any]
@@ -8182,6 +9443,10 @@ class GoogleCloudAiplatformV1SandboxEnvironment(typing.TypedDict, total=False):
         "STATE_DEPROVISIONING",
         "STATE_TERMINATED",
         "STATE_DELETED",
+        "STATE_PAUSED",
+        "STATE_PAUSING",
+        "STATE_RESUMING",
+        "STATE_STOPPING",
     ]
     ttl: str
     updateTime: str
@@ -8217,6 +9482,7 @@ class GoogleCloudAiplatformV1SandboxEnvironmentSpec(typing.TypedDict, total=Fals
     codeExecutionEnvironment: (
         GoogleCloudAiplatformV1SandboxEnvironmentSpecCodeExecutionEnvironment
     )
+    shellEnvironment: GoogleCloudAiplatformV1SandboxEnvironmentSpecShellEnvironment
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1SandboxEnvironmentSpecCodeExecutionEnvironment(
@@ -8228,6 +9494,11 @@ class GoogleCloudAiplatformV1SandboxEnvironmentSpecCodeExecutionEnvironment(
     machineConfig: typing.Literal[
         "MACHINE_CONFIG_UNSPECIFIED", "MACHINE_CONFIG_VCPU4_RAM4GIB"
     ]
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1SandboxEnvironmentSpecShellEnvironment(
+    typing.TypedDict, total=False
+): ...
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1SandboxEnvironmentTemplate(typing.TypedDict, total=False):
@@ -8280,7 +9551,6 @@ class GoogleCloudAiplatformV1SandboxEnvironmentTemplateDefaultContainerEnvironme
 class GoogleCloudAiplatformV1SandboxEnvironmentTemplateEgressControlConfig(
     typing.TypedDict, total=False
 ):
-    customerVpcNetwork: str
     dnsPeeringConfigs: _list[
         GoogleCloudAiplatformV1SandboxEnvironmentTemplateEgressControlConfigDnsPeeringConfig
     ]
@@ -9055,6 +10325,7 @@ class GoogleCloudAiplatformV1SchemaPromptSpecAppBuilderData(
     typing.TypedDict, total=False
 ):
     codeRepositoryState: str
+    deployedRegions: _list[str]
     framework: typing.Literal["FRAMEWORK_UNSPECIFIED", "REACT", "ANGULAR"]
     linkedResources: _list[
         GoogleCloudAiplatformV1SchemaPromptSpecAppBuilderDataLinkedResource
@@ -9067,6 +10338,13 @@ class GoogleCloudAiplatformV1SchemaPromptSpecAppBuilderDataLinkedResource(
     displayName: str
     name: str
     type: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1SchemaPromptSpecContentMetadata(
+    typing.TypedDict, total=False
+):
+    citationMetadata: GoogleCloudAiplatformV1CitationMetadata
+    groundingMetadata: GoogleCloudAiplatformV1GroundingMetadata
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1SchemaPromptSpecInteractionData(
@@ -9116,6 +10394,7 @@ class GoogleCloudAiplatformV1SchemaPromptSpecStructuredPrompt(
     typing.TypedDict, total=False
 ):
     appBuilderData: GoogleCloudAiplatformV1SchemaPromptSpecAppBuilderData
+    contentMetadata: _list[GoogleCloudAiplatformV1SchemaPromptSpecContentMetadata]
     context: GoogleCloudAiplatformV1Content
     examples: _list[GoogleCloudAiplatformV1SchemaPromptSpecPartList]
     infillPrefix: str
@@ -10103,9 +11382,11 @@ class GoogleCloudAiplatformV1Segment(typing.TypedDict, total=False):
 class GoogleCloudAiplatformV1SemanticGovernancePolicy(typing.TypedDict, total=False):
     agent: str
     agentIdentity: str
+    agentResponseCustomization: GoogleCloudAiplatformV1AgentResponseCustomization
     createTime: str
     description: str
     displayName: str
+    dryRun: bool
     etag: str
     mcpTools: _list[GoogleCloudAiplatformV1SemanticGovernancePolicyMcpTool]
     name: str
@@ -10143,6 +11424,25 @@ class GoogleCloudAiplatformV1SemanticGovernancePolicyMcpTool(
 class GoogleCloudAiplatformV1ServiceAccountSpec(typing.TypedDict, total=False):
     enableCustomServiceAccount: bool
     serviceAccount: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1ServingProfile(typing.TypedDict, total=False):
+    cmekConfig: GoogleCloudAiplatformV1ServingProfileCmekConfig
+    createTime: str
+    description: str
+    displayName: str
+    name: str
+    scope: typing.Literal[
+        "SERVING_PROFILE_SCOPE_UNSPECIFIED",
+        "GEMINI_LIVE",
+        "INTERACTIONS_API",
+        "RESPONSE_API",
+    ]
+    updateTime: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1ServingProfileCmekConfig(typing.TypedDict, total=False):
+    encryptionSpec: GoogleCloudAiplatformV1EncryptionSpec
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1Session(typing.TypedDict, total=False):
@@ -10253,6 +11553,11 @@ class GoogleCloudAiplatformV1SpeechConfig(typing.TypedDict, total=False):
     languageCode: str
     multiSpeakerVoiceConfig: GoogleCloudAiplatformV1MultiSpeakerVoiceConfig
     voiceConfig: GoogleCloudAiplatformV1VoiceConfig
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1SpeechMetadata(typing.TypedDict, total=False):
+    speaker: str
+    style: str
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1StartNotebookRuntimeOperationMetadata(
@@ -10877,6 +12182,18 @@ class GoogleCloudAiplatformV1ToolCodeExecution(typing.TypedDict, total=False): .
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1ToolComputerUse(typing.TypedDict, total=False):
+    disabledSafetyPolicies: _list[
+        typing.Literal[
+            "SAFETY_POLICY_UNSPECIFIED",
+            "FINANCIAL_TRANSACTIONS",
+            "SENSITIVE_DATA_MODIFICATION",
+            "COMMUNICATION_TOOL",
+            "ACCOUNT_CREATION",
+            "DATA_MODIFICATION",
+            "USER_CONSENT_MANAGEMENT",
+            "LEGAL_TERMS_AND_AGREEMENTS",
+        ]
+    ]
     enablePromptInjectionDetection: bool
     environment: typing.Literal[
         "ENVIRONMENT_UNSPECIFIED",
@@ -11228,6 +12545,11 @@ class GoogleCloudAiplatformV1Transcription(typing.TypedDict, total=False):
     text: str
 
 @typing.type_check_only
+class GoogleCloudAiplatformV1TranslationConfig(typing.TypedDict, total=False):
+    echoTargetLanguage: bool
+    targetLanguageCode: str
+
+@typing.type_check_only
 class GoogleCloudAiplatformV1Trial(typing.TypedDict, total=False):
     clientId: str
     customJob: str
@@ -11295,6 +12617,7 @@ class GoogleCloudAiplatformV1TuningJob(typing.TypedDict, total=False):
     error: GoogleRpcStatus
     evaluateDatasetRuns: _list[GoogleCloudAiplatformV1EvaluateDatasetRun]
     experiment: str
+    gcsMetricsUri: str
     labels: dict[str, typing.Any]
     name: str
     preTunedModel: GoogleCloudAiplatformV1PreTunedModel
@@ -11636,6 +12959,7 @@ class GoogleCloudAiplatformV1VideoResponseFormat(typing.TypedDict, total=False):
 class GoogleCloudAiplatformV1VoiceConfig(typing.TypedDict, total=False):
     prebuiltVoiceConfig: GoogleCloudAiplatformV1PrebuiltVoiceConfig
     replicatedVoiceConfig: GoogleCloudAiplatformV1ReplicatedVoiceConfig
+    voice: str
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1WorkerPoolSpec(typing.TypedDict, total=False):

@@ -664,6 +664,7 @@ class Geolocation(typing.TypedDict, total=False):
 class GoogleCloudSecuritycenterV1BigQueryExport(typing.TypedDict, total=False):
     createTime: str
     dataset: str
+    deletionNotificationsEnabled: bool
     description: str
     filter: str
     mostRecentEditor: str
@@ -752,6 +753,7 @@ class GoogleCloudSecuritycenterV1MuteConfig(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV1NotificationMessage(typing.TypedDict, total=False):
+    deletedFinding: bool
     finding: Finding
     notificationConfigName: str
     resource: GoogleCloudSecuritycenterV1Resource
@@ -1145,6 +1147,7 @@ class GoogleCloudSecuritycenterV2BigQueryExport(typing.TypedDict, total=False):
     createTime: str
     cryptoKeyName: str
     dataset: str
+    deletionNotificationsEnabled: bool
     description: str
     filter: str
     mostRecentEditor: str
@@ -2267,6 +2270,7 @@ class GoogleCloudSecuritycenterV2Notebook(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV2NotificationMessage(typing.TypedDict, total=False):
+    deletedFinding: bool
     finding: GoogleCloudSecuritycenterV2Finding
     notificationConfigName: str
     resource: GoogleCloudSecuritycenterV2Resource

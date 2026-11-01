@@ -24,6 +24,7 @@ class Account(typing.TypedDict, total=False):
     accountId: str
     accountName: str
     adultContent: bool
+    homePageUri: str
     languageCode: str
     name: str
     testAccount: bool
@@ -201,6 +202,7 @@ class CheckoutSettings(typing.TypedDict, total=False):
             "VEHICLE_ADS",
             "CLOUD_RETAIL",
             "LOCAL_CLOUD_RETAIL",
+            "RENTAL_ADS",
         ]
     ]
     enrollmentState: typing.Literal[
@@ -378,6 +380,7 @@ class ImpactedDestination(typing.TypedDict, total=False):
         "PRODUCT_REVIEWS",
         "MERCHANT_REVIEWS",
         "YOUTUBE_CHECKOUT",
+        "RENTAL_ADS",
     ]
 
 @typing.type_check_only
@@ -649,6 +652,7 @@ class ProductChange(typing.TypedDict, total=False):
         "PRODUCT_REVIEWS",
         "MERCHANT_REVIEWS",
         "YOUTUBE_CHECKOUT",
+        "RENTAL_ADS",
     ]
 
 @typing.type_check_only
