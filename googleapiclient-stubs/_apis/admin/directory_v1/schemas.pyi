@@ -433,6 +433,10 @@ class Domains2(typing.TypedDict, total=False):
 class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
+class ExpirationDetails(typing.TypedDict, total=False):
+    expireTime: str
+
+@typing.type_check_only
 class ExternalId(typing.TypedDict, total=False):
     id: str
     namespace: str
@@ -730,6 +734,7 @@ class RoleAssignment(typing.TypedDict, total=False):
     assigneeType: typing.Literal["user", "group"]
     condition: str
     etag: str
+    expirationDetails: ExpirationDetails
     kind: str
     orgUnitId: str
     roleAssignmentId: str

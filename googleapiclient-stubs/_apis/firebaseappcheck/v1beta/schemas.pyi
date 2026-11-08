@@ -21,6 +21,16 @@ class GoogleFirebaseAppcheckV1betaAttestationTokenResponse(
     ttl: str
 
 @typing.type_check_only
+class GoogleFirebaseAppcheckV1betaAutomation(typing.TypedDict, total=False):
+    createTime: str
+    etag: str
+    name: str
+    origin: typing.Literal["ORIGIN_UNSPECIFIED", "SYSTEM", "USER"]
+    state: typing.Literal["STATE_UNSPECIFIED", "EVALUATING", "SUCCEEDED", "SUSPENDED"]
+    triggerTime: str
+    updateTime: str
+
+@typing.type_check_only
 class GoogleFirebaseAppcheckV1betaBatchGetAppAttestConfigsResponse(
     typing.TypedDict, total=False
 ):
@@ -198,6 +208,17 @@ class GoogleFirebaseAppcheckV1betaGeneratePlayIntegrityChallengeResponse(
     ttl: str
 
 @typing.type_check_only
+class GoogleFirebaseAppcheckV1betaLimitedUseConfig(typing.TypedDict, total=False):
+    jti: str
+
+@typing.type_check_only
+class GoogleFirebaseAppcheckV1betaListAutomationsResponse(
+    typing.TypedDict, total=False
+):
+    automations: _list[GoogleFirebaseAppcheckV1betaAutomation]
+    nextPageToken: str
+
+@typing.type_check_only
 class GoogleFirebaseAppcheckV1betaListDebugTokensResponse(
     typing.TypedDict, total=False
 ):
@@ -215,6 +236,20 @@ class GoogleFirebaseAppcheckV1betaListResourcePoliciesResponse(
 class GoogleFirebaseAppcheckV1betaListServicesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     services: _list[GoogleFirebaseAppcheckV1betaService]
+
+@typing.type_check_only
+class GoogleFirebaseAppcheckV1betaMintAppCheckTokenRequest(
+    typing.TypedDict, total=False
+):
+    limitedUseConfig: GoogleFirebaseAppcheckV1betaLimitedUseConfig
+    tokenTtl: str
+
+@typing.type_check_only
+class GoogleFirebaseAppcheckV1betaMintAppCheckTokenResponse(
+    typing.TypedDict, total=False
+):
+    token: str
+    ttl: str
 
 @typing.type_check_only
 class GoogleFirebaseAppcheckV1betaPlayIntegrityConfig(typing.TypedDict, total=False):

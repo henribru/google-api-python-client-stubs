@@ -3,10 +3,6 @@ import typing
 _list = list
 
 @typing.type_check_only
-class AlloydbClhErrorsAlloyDbInternalDebugInfo(typing.TypedDict, total=False):
-    originalError: str
-
-@typing.type_check_only
 class AuthorizedNetwork(typing.TypedDict, total=False):
     cidrRange: str
 
@@ -42,15 +38,20 @@ class Backup(typing.TypedDict, total=False):
         "POSTGRES_16",
         "POSTGRES_17",
         "POSTGRES_18",
+        "POSTGRES_19",
     ]
     deleteTime: str
     description: str
     displayName: str
+    edition: typing.Literal[
+        "EDITION_UNSPECIFIED", "EDITION_ALLOYDB", "EDITION_ALLOYDB_DEVELOPER"
+    ]
     encryptionConfig: EncryptionConfig
     encryptionInfo: EncryptionInfo
     etag: str
     expiryQuantity: QuantityBasedExpiry
     expiryTime: str
+    expressConfig: ExpressConfig
     labels: dict[str, typing.Any]
     name: str
     reconciling: bool
@@ -100,6 +101,10 @@ class BackupSource(typing.TypedDict, total=False):
 class CancelOperationRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
+class CertificateAuthorityInfo(typing.TypedDict, total=False):
+    rootCaCert: str
+
+@typing.type_check_only
 class ClientConnectionConfig(typing.TypedDict, total=False):
     requireConnectors: bool
     sslConfig: SslConfig
@@ -124,6 +129,7 @@ class Cluster(typing.TypedDict, total=False):
     backupSource: BackupSource
     backupdrBackupSource: BackupDrBackupSource
     backupdrInfo: BackupDrInfo
+    certificateAuthorityInfo: CertificateAuthorityInfo
     cloudsqlBackupRunSource: CloudSQLBackupRunSource
     clusterType: typing.Literal["CLUSTER_TYPE_UNSPECIFIED", "PRIMARY", "SECONDARY"]
     continuousBackupConfig: ContinuousBackupConfig
@@ -137,13 +143,18 @@ class Cluster(typing.TypedDict, total=False):
         "POSTGRES_16",
         "POSTGRES_17",
         "POSTGRES_18",
+        "POSTGRES_19",
     ]
     dataplexConfig: DataplexConfig
     deleteTime: str
     displayName: str
+    edition: typing.Literal[
+        "EDITION_UNSPECIFIED", "EDITION_ALLOYDB", "EDITION_ALLOYDB_DEVELOPER"
+    ]
     encryptionConfig: EncryptionConfig
     encryptionInfo: EncryptionInfo
     etag: str
+    expressConfig: ExpressConfig
     geminiConfig: GeminiClusterConfig
     initialUser: UserPassword
     labels: dict[str, typing.Any]
@@ -199,6 +210,7 @@ class ClusterUpgradeDetails(typing.TypedDict, total=False):
         "POSTGRES_16",
         "POSTGRES_17",
         "POSTGRES_18",
+        "POSTGRES_19",
     ]
     instanceUpgradeDetails: _list[InstanceUpgradeDetails]
     name: str
@@ -242,6 +254,10 @@ class ConnectionPoolConfig(typing.TypedDict, total=False):
         "POOLER_MACHINE_SIZED",
         "POOLER_MANUAL_OVERRIDE",
     ]
+
+@typing.type_check_only
+class ConnectionsCount(typing.TypedDict, total=False):
+    targetCount: str
 
 @typing.type_check_only
 class ContinuousBackupConfig(typing.TypedDict, total=False):
@@ -307,6 +323,18 @@ class DenyMaintenancePeriod(typing.TypedDict, total=False):
     time: GoogleTypeTimeOfDay
 
 @typing.type_check_only
+class DnsAutomationInfo(typing.TypedDict, total=False):
+    fullyQualifiedDomainName: str
+    state: typing.Literal[
+        "STATE_UNSPECIFIED",
+        "PENDING_CREATE",
+        "ACTIVE",
+        "PENDING_DELETE",
+        "CREATE_FAILED",
+        "DELETE_FAILED",
+    ]
+
+@typing.type_check_only
 class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -347,6 +375,10 @@ class ExportClusterRequest(typing.TypedDict, total=False):
     database: str
     gcsDestination: GcsDestination
     sqlExportOptions: SqlExportOptions
+
+@typing.type_check_only
+class ExpressConfig(typing.TypedDict, total=False):
+    enabled: bool
 
 @typing.type_check_only
 class FailoverInstanceRequest(typing.TypedDict, total=False):
@@ -438,13 +470,16 @@ class Instance(typing.TypedDict, total=False):
     maintenanceVersionName: str
     name: str
     networkConfig: InstanceNetworkConfig
+    networkInfo: InstanceNetworkInfo
     nodes: _list[Node]
     observabilityConfig: ObservabilityInstanceConfig
+    observabilityInstanceInfo: ObservabilityInstanceInfo
     outboundPublicIpAddresses: _list[str]
     pscInstanceConfig: PscInstanceConfig
     pscInstanceInfo: PscInstanceInfo
     publicIpAddress: str
     queryInsightsConfig: QueryInsightsInstanceConfig
+    queryInsightsInfo: QueryInsightsInstanceInfo
     readPoolConfig: ReadPoolConfig
     reconciling: bool
     satisfiesPzi: bool
@@ -475,6 +510,11 @@ class InstanceNetworkConfig(typing.TypedDict, total=False):
     enableOutboundPublicIp: bool
     enablePublicIp: bool
     network: str
+    publicDnsEnabled: bool
+
+@typing.type_check_only
+class InstanceNetworkInfo(typing.TypedDict, total=False):
+    publicDnsName: str
 
 @typing.type_check_only
 class InstanceUpgradeDetails(typing.TypedDict, total=False):
@@ -601,6 +641,20 @@ class ObservabilityInstanceConfig(typing.TypedDict, total=False):
     trackWaitEvents: bool
 
 @typing.type_check_only
+class ObservabilityInstanceInfo(typing.TypedDict, total=False):
+    assistiveExperiencesEnabled: bool
+    enabled: bool
+    maxQueryStringLength: int
+    preserveComments: bool
+    queryPlansPerMinute: int
+    recordApplicationTags: bool
+    trackActiveQueries: bool
+    trackActiveQueryPlan: bool
+    trackClientAddress: bool
+    trackWaitEventTypes: bool
+    trackWaitEvents: bool
+
+@typing.type_check_only
 class Operation(typing.TypedDict, total=False):
     done: bool
     error: Status
@@ -621,6 +675,7 @@ class OperationMetadata(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class Policy(typing.TypedDict, total=False):
+    connectionsCount: ConnectionsCount
     coolDownPeriodSec: str
     cpuUtilization: CpuUtilization
     enabled: bool
@@ -642,7 +697,10 @@ class PscAutoConnectionConfig(typing.TypedDict, total=False):
     consumerNetwork: str
     consumerNetworkStatus: str
     consumerProject: str
+    dnsAutomationInfos: _list[DnsAutomationInfo]
     ipAddress: str
+    serviceConnectionPolicy: str
+    serviceConnectionPolicyCreationState: str
     status: str
 
 @typing.type_check_only
@@ -688,6 +746,14 @@ class QuantityBasedRetention(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class QueryInsightsInstanceConfig(typing.TypedDict, total=False):
+    queryPlansPerMinute: int
+    queryStringLength: int
+    recordApplicationTags: bool
+    recordClientAddress: bool
+
+@typing.type_check_only
+class QueryInsightsInstanceInfo(typing.TypedDict, total=False):
+    enabled: bool
     queryPlansPerMinute: int
     queryStringLength: int
     recordApplicationTags: bool
@@ -1598,6 +1664,7 @@ class SupportedDatabaseFlag(typing.TypedDict, total=False):
             "POSTGRES_16",
             "POSTGRES_17",
             "POSTGRES_18",
+            "POSTGRES_19",
         ]
     ]
     valueType: typing.Literal[
@@ -1637,6 +1704,7 @@ class UpgradeClusterRequest(typing.TypedDict, total=False):
         "POSTGRES_16",
         "POSTGRES_17",
         "POSTGRES_18",
+        "POSTGRES_19",
     ]
 
 @typing.type_check_only
@@ -1665,6 +1733,7 @@ class UpgradeClusterStatus(typing.TypedDict, total=False):
         "POSTGRES_16",
         "POSTGRES_17",
         "POSTGRES_18",
+        "POSTGRES_19",
     ]
     stages: _list[StageStatus]
     state: typing.Literal[
@@ -1685,6 +1754,7 @@ class UpgradeClusterStatus(typing.TypedDict, total=False):
         "POSTGRES_16",
         "POSTGRES_17",
         "POSTGRES_18",
+        "POSTGRES_19",
     ]
 
 @typing.type_check_only

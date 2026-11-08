@@ -187,6 +187,7 @@ class ModelVersion(typing.TypedDict, total=False):
 @typing.type_check_only
 class Scope3FlightEmissions(typing.TypedDict, total=False):
     flight: Scope3FlightSegment
+    modelVersion: ModelVersion
     source: typing.Literal[
         "SCOPE3_DATA_TYPE_UNSPECIFIED",
         "TIM_EMISSIONS",

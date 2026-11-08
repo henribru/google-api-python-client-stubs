@@ -235,6 +235,15 @@ class OracleDatabaseResource(googleapiclient.discovery.Resource):
                     previous_request: ListCloudExadataInfrastructuresResponseHttpRequest,
                     previous_response: ListCloudExadataInfrastructuresResponse,
                 ) -> ListCloudExadataInfrastructuresResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: CloudExadataInfrastructure,
+                    requestId: str | None = ...,
+                    updateMask: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
                 def dbServers(self) -> DbServersResource: ...
 
             @typing.type_check_only
@@ -289,6 +298,15 @@ class OracleDatabaseResource(googleapiclient.discovery.Resource):
                     previous_request: ListCloudVmClustersResponseHttpRequest,
                     previous_response: ListCloudVmClustersResponse,
                 ) -> ListCloudVmClustersResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: CloudVmCluster,
+                    requestId: str | None = ...,
+                    updateMask: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
                 def dbNodes(self) -> DbNodesResource: ...
 
             @typing.type_check_only
@@ -307,6 +325,62 @@ class OracleDatabaseResource(googleapiclient.discovery.Resource):
                     previous_request: ListDatabaseCharacterSetsResponseHttpRequest,
                     previous_response: ListDatabaseCharacterSetsResponse,
                 ) -> ListDatabaseCharacterSetsResponseHttpRequest | None: ...
+
+            @typing.type_check_only
+            class DatabaseConnectionsResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: DatabaseConnection,
+                    databaseConnectionId: str | None = ...,
+                    requestId: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self,
+                    *,
+                    name: str,
+                    requestId: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def executeSql(
+                    self, *, name: str, body: ExecuteSqlRequest, **kwargs: typing.Any
+                ) -> ExecuteSqlResponseHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> DatabaseConnectionHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str | None = ...,
+                    orderBy: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> ListDatabaseConnectionsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListDatabaseConnectionsResponseHttpRequest,
+                    previous_response: ListDatabaseConnectionsResponse,
+                ) -> ListDatabaseConnectionsResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: DatabaseConnection,
+                    requestId: str | None = ...,
+                    updateMask: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def test(
+                    self,
+                    *,
+                    name: str,
+                    body: TestDatabaseConnectionRequest,
+                    **kwargs: typing.Any,
+                ) -> TestDatabaseConnectionResponseHttpRequest: ...
 
             @typing.type_check_only
             class DatabasesResource(googleapiclient.discovery.Resource):
@@ -399,6 +473,15 @@ class OracleDatabaseResource(googleapiclient.discovery.Resource):
                     previous_request: ListDbSystemsResponseHttpRequest,
                     previous_response: ListDbSystemsResponse,
                 ) -> ListDbSystemsResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: DbSystem,
+                    requestId: str | None = ...,
+                    updateMask: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
 
             @typing.type_check_only
             class DbVersionsResource(googleapiclient.discovery.Resource):
@@ -539,6 +622,15 @@ class OracleDatabaseResource(googleapiclient.discovery.Resource):
                     previous_request: ListExascaleDbStorageVaultsResponseHttpRequest,
                     previous_response: ListExascaleDbStorageVaultsResponse,
                 ) -> ListExascaleDbStorageVaultsResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: ExascaleDbStorageVault,
+                    requestId: str | None = ...,
+                    updateMask: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
 
             @typing.type_check_only
             class GiVersionsResource(googleapiclient.discovery.Resource):
@@ -613,6 +705,15 @@ class OracleDatabaseResource(googleapiclient.discovery.Resource):
                     previous_request: ListGoldengateConnectionAssignmentsResponseHttpRequest,
                     previous_response: ListGoldengateConnectionAssignmentsResponse,
                 ) -> ListGoldengateConnectionAssignmentsResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: GoldengateConnectionAssignment,
+                    requestId: str | None = ...,
+                    updateMask: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
                 def test(
                     self,
                     *,
@@ -674,6 +775,15 @@ class OracleDatabaseResource(googleapiclient.discovery.Resource):
                     previous_request: ListGoldengateConnectionsResponseHttpRequest,
                     previous_response: ListGoldengateConnectionsResponse,
                 ) -> ListGoldengateConnectionsResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: GoldengateConnection,
+                    requestId: str | None = ...,
+                    updateMask: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
 
             @typing.type_check_only
             class GoldengateDeploymentEnvironmentsResource(
@@ -766,6 +876,15 @@ class OracleDatabaseResource(googleapiclient.discovery.Resource):
                     previous_request: ListGoldengateDeploymentsResponseHttpRequest,
                     previous_response: ListGoldengateDeploymentsResponse,
                 ) -> ListGoldengateDeploymentsResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: GoldengateDeployment,
+                    requestId: str | None = ...,
+                    updateMask: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
                 def start(
                     self,
                     *,
@@ -783,6 +902,43 @@ class OracleDatabaseResource(googleapiclient.discovery.Resource):
 
             @typing.type_check_only
             class OdbNetworksResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class OdbDnsZonesResource(googleapiclient.discovery.Resource):
+                    def create(
+                        self,
+                        *,
+                        parent: str,
+                        body: OdbDnsZone,
+                        odbDnsZoneId: str | None = ...,
+                        requestId: str | None = ...,
+                        **kwargs: typing.Any,
+                    ) -> OperationHttpRequest: ...
+                    def delete(
+                        self,
+                        *,
+                        name: str,
+                        requestId: str | None = ...,
+                        **kwargs: typing.Any,
+                    ) -> OperationHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> OdbDnsZoneHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        filter: str | None = ...,
+                        orderBy: str | None = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
+                        **kwargs: typing.Any,
+                    ) -> ListOdbDnsZonesResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListOdbDnsZonesResponseHttpRequest,
+                        previous_response: ListOdbDnsZonesResponse,
+                    ) -> ListOdbDnsZonesResponseHttpRequest | None: ...
+
                 @typing.type_check_only
                 class OdbSubnetsResource(googleapiclient.discovery.Resource):
                     def create(
@@ -819,6 +975,15 @@ class OracleDatabaseResource(googleapiclient.discovery.Resource):
                         previous_request: ListOdbSubnetsResponseHttpRequest,
                         previous_response: ListOdbSubnetsResponse,
                     ) -> ListOdbSubnetsResponseHttpRequest | None: ...
+                    def patch(
+                        self,
+                        *,
+                        name: str,
+                        body: OdbSubnet,
+                        requestId: str | None = ...,
+                        updateMask: str | None = ...,
+                        **kwargs: typing.Any,
+                    ) -> OperationHttpRequest: ...
 
                 def create(
                     self,
@@ -854,6 +1019,16 @@ class OracleDatabaseResource(googleapiclient.discovery.Resource):
                     previous_request: ListOdbNetworksResponseHttpRequest,
                     previous_response: ListOdbNetworksResponse,
                 ) -> ListOdbNetworksResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: OdbNetwork,
+                    requestId: str | None = ...,
+                    updateMask: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def odbDnsZones(self) -> OdbDnsZonesResource: ...
                 def odbSubnets(self) -> OdbSubnetsResource: ...
 
             @typing.type_check_only
@@ -938,6 +1113,7 @@ class OracleDatabaseResource(googleapiclient.discovery.Resource):
             ) -> CloudExadataInfrastructuresResource: ...
             def cloudVmClusters(self) -> CloudVmClustersResource: ...
             def databaseCharacterSets(self) -> DatabaseCharacterSetsResource: ...
+            def databaseConnections(self) -> DatabaseConnectionsResource: ...
             def databases(self) -> DatabasesResource: ...
             def dbSystemInitialStorageSizes(
                 self,
@@ -1027,6 +1203,14 @@ class DatabaseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> Database: ...
 
 @typing.type_check_only
+class DatabaseConnectionHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> DatabaseConnection: ...
+
+@typing.type_check_only
 class DbSystemHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -1057,6 +1241,14 @@ class ExascaleDbStorageVaultHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ExascaleDbStorageVault: ...
+
+@typing.type_check_only
+class ExecuteSqlResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ExecuteSqlResponse: ...
 
 @typing.type_check_only
 class GenerateAutonomousDatabaseWalletResponseHttpRequest(
@@ -1153,6 +1345,14 @@ class ListDatabaseCharacterSetsResponseHttpRequest(googleapiclient.http.HttpRequ
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListDatabaseCharacterSetsResponse: ...
+
+@typing.type_check_only
+class ListDatabaseConnectionsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListDatabaseConnectionsResponse: ...
 
 @typing.type_check_only
 class ListDatabasesResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -1327,6 +1527,14 @@ class ListMinorVersionsResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListMinorVersionsResponse: ...
 
 @typing.type_check_only
+class ListOdbDnsZonesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListOdbDnsZonesResponse: ...
+
+@typing.type_check_only
 class ListOdbNetworksResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -1367,6 +1575,14 @@ class LocationHttpRequest(googleapiclient.http.HttpRequest):
     ) -> Location: ...
 
 @typing.type_check_only
+class OdbDnsZoneHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> OdbDnsZone: ...
+
+@typing.type_check_only
 class OdbNetworkHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -1397,6 +1613,14 @@ class PluggableDatabaseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> PluggableDatabase: ...
+
+@typing.type_check_only
+class TestDatabaseConnectionResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> TestDatabaseConnectionResponse: ...
 
 @typing.type_check_only
 class TestGoldengateConnectionAssignmentResponseHttpRequest(

@@ -167,6 +167,7 @@ class Export(typing.TypedDict, total=False):
 class ExportOptions(typing.TypedDict, total=False):
     calendarOptions: CalendarExportOptions
     driveOptions: DriveExportOptions
+    geminiInWorkspaceOptions: GeminiInWorkspaceExportOptions
     geminiOptions: GeminiExportOptions
     groupsOptions: GroupsExportOptions
     hangoutsChatOptions: HangoutsChatExportOptions
@@ -185,6 +186,15 @@ class GeminiExportOptions(typing.TypedDict, total=False):
     exportFormat: typing.Literal[
         "EXPORT_FORMAT_UNSPECIFIED", "MBOX", "PST", "ICS", "XML", "JSON"
     ]
+
+@typing.type_check_only
+class GeminiInWorkspaceExportOptions(typing.TypedDict, total=False):
+    exportFormat: typing.Literal[
+        "EXPORT_FORMAT_UNSPECIFIED", "MBOX", "PST", "ICS", "XML", "JSON"
+    ]
+
+@typing.type_check_only
+class GeminiInWorkspaceOptions(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
 class GeminiOptions(typing.TypedDict, total=False): ...
@@ -277,6 +287,7 @@ class Hold(typing.TypedDict, total=False):
         "VOICE",
         "CALENDAR",
         "GEMINI",
+        "GEMINI_IN_WORKSPACE",
     ]
     holdId: str
     name: str
@@ -380,6 +391,7 @@ class Query(typing.TypedDict, total=False):
         "VOICE",
         "CALENDAR",
         "GEMINI",
+        "GEMINI_IN_WORKSPACE",
     ]
     dataScope: typing.Literal[
         "DATA_SCOPE_UNSPECIFIED", "ALL_DATA", "HELD_DATA", "UNPROCESSED_DATA"
@@ -387,6 +399,7 @@ class Query(typing.TypedDict, total=False):
     driveDocumentInfo: DriveDocumentInfo
     driveOptions: DriveOptions
     endTime: str
+    geminiInWorkspaceOptions: GeminiInWorkspaceOptions
     geminiOptions: GeminiOptions
     hangoutsChatInfo: HangoutsChatInfo
     hangoutsChatOptions: HangoutsChatOptions

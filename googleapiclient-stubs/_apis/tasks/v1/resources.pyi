@@ -56,6 +56,7 @@ class TasksResource(googleapiclient.discovery.Resource):
             *,
             tasklist: str,
             body: Task,
+            hidden: bool | None = ...,
             parent: str | None = ...,
             previous: str | None = ...,
             **kwargs: typing.Any,

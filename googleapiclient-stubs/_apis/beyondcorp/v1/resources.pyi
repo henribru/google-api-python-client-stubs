@@ -57,16 +57,6 @@ class BeyondCorpResource(googleapiclient.discovery.Resource):
         class LocationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class AppConnectionsResource(googleapiclient.discovery.Resource):
-                def create(
-                    self,
-                    *,
-                    parent: str,
-                    body: GoogleCloudBeyondcorpAppconnectionsV1AppConnection,
-                    appConnectionId: str | None = ...,
-                    requestId: str | None = ...,
-                    validateOnly: bool | None = ...,
-                    **kwargs: typing.Any,
-                ) -> GoogleLongrunningOperationHttpRequest: ...
                 def delete(
                     self,
                     *,
@@ -103,17 +93,6 @@ class BeyondCorpResource(googleapiclient.discovery.Resource):
                     GoogleCloudBeyondcorpAppconnectionsV1ListAppConnectionsResponseHttpRequest
                     | None
                 ): ...
-                def patch(
-                    self,
-                    *,
-                    name: str,
-                    body: GoogleCloudBeyondcorpAppconnectionsV1AppConnection,
-                    allowMissing: bool | None = ...,
-                    requestId: str | None = ...,
-                    updateMask: str | None = ...,
-                    validateOnly: bool | None = ...,
-                    **kwargs: typing.Any,
-                ) -> GoogleLongrunningOperationHttpRequest: ...
                 def resolve(
                     self,
                     *,
@@ -148,16 +127,6 @@ class BeyondCorpResource(googleapiclient.discovery.Resource):
 
             @typing.type_check_only
             class AppConnectorsResource(googleapiclient.discovery.Resource):
-                def create(
-                    self,
-                    *,
-                    parent: str,
-                    body: GoogleCloudBeyondcorpAppconnectorsV1AppConnector,
-                    appConnectorId: str | None = ...,
-                    requestId: str | None = ...,
-                    validateOnly: bool | None = ...,
-                    **kwargs: typing.Any,
-                ) -> GoogleLongrunningOperationHttpRequest: ...
                 def delete(
                     self,
                     *,
@@ -194,23 +163,6 @@ class BeyondCorpResource(googleapiclient.discovery.Resource):
                     GoogleCloudBeyondcorpAppconnectorsV1ListAppConnectorsResponseHttpRequest
                     | None
                 ): ...
-                def patch(
-                    self,
-                    *,
-                    name: str,
-                    body: GoogleCloudBeyondcorpAppconnectorsV1AppConnector,
-                    requestId: str | None = ...,
-                    updateMask: str | None = ...,
-                    validateOnly: bool | None = ...,
-                    **kwargs: typing.Any,
-                ) -> GoogleLongrunningOperationHttpRequest: ...
-                def reportStatus(
-                    self,
-                    *,
-                    appConnector: str,
-                    body: GoogleCloudBeyondcorpAppconnectorsV1ReportStatusRequest,
-                    **kwargs: typing.Any,
-                ) -> GoogleLongrunningOperationHttpRequest: ...
                 def resolveInstanceConfig(
                     self, *, appConnector: str, **kwargs: typing.Any
                 ) -> GoogleCloudBeyondcorpAppconnectorsV1ResolveInstanceConfigResponseHttpRequest: ...
@@ -231,16 +183,6 @@ class BeyondCorpResource(googleapiclient.discovery.Resource):
 
             @typing.type_check_only
             class AppGatewaysResource(googleapiclient.discovery.Resource):
-                def create(
-                    self,
-                    *,
-                    parent: str,
-                    body: AppGateway,
-                    appGatewayId: str | None = ...,
-                    requestId: str | None = ...,
-                    validateOnly: bool | None = ...,
-                    **kwargs: typing.Any,
-                ) -> GoogleLongrunningOperationHttpRequest: ...
                 def delete(
                     self,
                     *,

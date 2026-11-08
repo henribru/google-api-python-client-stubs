@@ -17,6 +17,19 @@ class AccountConnector(typing.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
+class AddGitRepositoryLinkPullRequestCommentRequest(typing.TypedDict, total=False):
+    comment: PullRequestComment
+    pullRequestId: str
+
+@typing.type_check_only
+class AddGitRepositoryLinkPullRequestReviewCommentRequest(
+    typing.TypedDict, total=False
+):
+    comment: PullRequestReviewComment
+    commitId: str
+    pullRequestId: str
+
+@typing.type_check_only
 class AppHubService(typing.TypedDict, total=False):
     apphubService: str
     criticality: str
@@ -70,6 +83,12 @@ class BitbucketDataCenterConfig(typing.TypedDict, total=False):
     serviceDirectoryConfig: ServiceDirectoryConfig
     sslCaCertificate: str
     webhookSecretSecretVersion: str
+
+@typing.type_check_only
+class BlameRange(typing.TypedDict, total=False):
+    commit: SCMCommit
+    firstLine: int
+    lastLine: int
 
 @typing.type_check_only
 class CancelOperationRequest(typing.TypedDict, total=False): ...
@@ -134,6 +153,10 @@ class DeploymentEvent(typing.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
+class DiffGitRepositoryLinkCommitResponse(typing.TypedDict, total=False):
+    files: _list[FileDiff]
+
+@typing.type_check_only
 class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -159,6 +182,25 @@ class FetchGitHubInstallationsResponse(typing.TypedDict, total=False):
 class FetchGitRefsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     refNames: _list[str]
+
+@typing.type_check_only
+class FetchGitRepositoryLinkCommitListResponse(typing.TypedDict, total=False):
+    commits: _list[SCMCommit]
+    nextPageToken: str
+
+@typing.type_check_only
+class FetchGitRepositoryLinkCommitResponse(typing.TypedDict, total=False):
+    commit: SCMCommit
+    files: _list[FileDiff]
+
+@typing.type_check_only
+class FetchGitRepositoryLinkFileBlameResponse(typing.TypedDict, total=False):
+    ranges: _list[BlameRange]
+
+@typing.type_check_only
+class FetchGitRepositoryLinkPullRequestListResponse(typing.TypedDict, total=False):
+    nextPageToken: str
+    pullRequests: _list[PullRequest]
 
 @typing.type_check_only
 class FetchLinkableGitRepositoriesResponse(typing.TypedDict, total=False):
@@ -187,6 +229,17 @@ class FetchReadWriteTokenResponse(typing.TypedDict, total=False):
 class FetchUserRepositoriesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     userRepos: _list[UserRepository]
+
+@typing.type_check_only
+class FieldVisibility(typing.TypedDict, total=False):
+    restriction: str
+    selector: str
+
+@typing.type_check_only
+class FileDiff(typing.TypedDict, total=False):
+    patch: str
+    path: str
+    status: str
 
 @typing.type_check_only
 class FinishOAuthResponse(typing.TypedDict, total=False):
@@ -379,9 +432,29 @@ class Location(typing.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
+class McpToolVisibility(typing.TypedDict, total=False):
+    fieldVisibility: _list[FieldVisibility]
+    visibilityEnforcementStrategy: typing.Literal[
+        "VISIBILITY_ENFORCEMENT_STRATEGY_UNSPECIFIED", "COMBINE", "OVERRIDE"
+    ]
+    visibilityRestriction: str
+
+@typing.type_check_only
+class ModifyGitRepositoryLinkPullRequestRequest(typing.TypedDict, total=False):
+    baseRef: str
+    body: str
+    pullRequestId: str
+    state: typing.Literal["STATE_UNSPECIFIED", "OPEN", "CLOSED"]
+    title: str
+
+@typing.type_check_only
 class OAuthCredential(typing.TypedDict, total=False):
     oauthTokenSecretVersion: str
     username: str
+
+@typing.type_check_only
+class OpenGitRepositoryLinkPullRequestRequest(typing.TypedDict, total=False):
+    pullRequest: PullRequest
 
 @typing.type_check_only
 class Operation(typing.TypedDict, total=False):
@@ -438,12 +511,53 @@ class ProviderOAuthConfig(typing.TypedDict, total=False):
         "NEW_RELIC",
         "DATASTAX",
         "DYNATRACE",
+        "BITBUCKET_CLOUD",
     ]
 
 @typing.type_check_only
 class ProxyConfig(typing.TypedDict, total=False):
     enabled: bool
     httpProxyBaseUri: str
+
+@typing.type_check_only
+class PullRequest(typing.TypedDict, total=False):
+    author: str
+    baseRef: str
+    body: str
+    closeTime: str
+    createTime: str
+    declineTime: str
+    headRef: str
+    htmlUrl: str
+    id: str
+    mergeTime: str
+    mergeability: typing.Literal[
+        "MERGEABILITY_UNSPECIFIED", "MERGEABLE", "CONFLICTING", "COMPUTING"
+    ]
+    state: typing.Literal["STATE_UNSPECIFIED", "OPEN", "CLOSED", "MERGED", "DECLINED"]
+    title: str
+    updateTime: str
+
+@typing.type_check_only
+class PullRequestComment(typing.TypedDict, total=False):
+    author: str
+    body: str
+    createTime: str
+    id: str
+    updateTime: str
+
+@typing.type_check_only
+class PullRequestReviewComment(typing.TypedDict, total=False):
+    author: str
+    body: str
+    commitId: str
+    createTime: str
+    firstLine: int
+    id: str
+    lastLine: int
+    path: str
+    side: typing.Literal["DIFF_SIDE_UNSPECIFIED", "BASE", "HEAD"]
+    updateTime: str
 
 @typing.type_check_only
 class RuntimeConfig(typing.TypedDict, total=False):
@@ -453,6 +567,15 @@ class RuntimeConfig(typing.TypedDict, total=False):
     googleCloudRun: GoogleCloudRun
     state: typing.Literal["STATE_UNSPECIFIED", "LINKED", "UNLINKED"]
     uri: str
+
+@typing.type_check_only
+class SCMCommit(typing.TypedDict, total=False):
+    author: str
+    authorEmail: str
+    commitTime: str
+    message: str
+    sha: str
+    url: str
 
 @typing.type_check_only
 class SecureSourceManagerInstanceConfig(typing.TypedDict, total=False):
@@ -479,6 +602,7 @@ class StartOAuthResponse(typing.TypedDict, total=False):
         "NEW_RELIC",
         "DATASTAX",
         "DYNATRACE",
+        "BITBUCKET_CLOUD",
     ]
     ticket: str
 

@@ -142,6 +142,7 @@ class DataSegment(typing.TypedDict, total=False):
     name: str
     state: typing.Literal["STATE_UNSPECIFIED", "ACTIVE", "INACTIVE", "SUSPENDED"]
     updateTime: str
+    userListId: str
 
 @typing.type_check_only
 class DayPart(typing.TypedDict, total=False):
@@ -641,6 +642,11 @@ class RtbMetrics(typing.TypedDict, total=False):
     bids7Days: str
     filteredBidRate7Days: float
     mustBidRateCurrentMonth: float
+
+@typing.type_check_only
+class SearchMediaPlannersResponse(typing.TypedDict, total=False):
+    mediaPlanners: _list[MediaPlanner]
+    nextPageToken: str
 
 @typing.type_check_only
 class SendRfpRequest(typing.TypedDict, total=False):

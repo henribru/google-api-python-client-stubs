@@ -109,6 +109,7 @@ class EventData(typing.TypedDict, total=False):
     event: dict[str, typing.Any]
     eventId: str
     eventTime: str
+    jsonTraitEvent: JsonTraitEvent
 
 @typing.type_check_only
 class Events(typing.TypedDict, total=False):
@@ -128,6 +129,16 @@ class HomeTraitPayload(typing.TypedDict, total=False):
 class HomeTraitUpdates(typing.TypedDict, total=False):
     components: _list[ComponentTraitUpdates]
     deviceId: str
+
+@typing.type_check_only
+class JsonTrait(typing.TypedDict, total=False):
+    data: dict[str, typing.Any]
+    id: str
+
+@typing.type_check_only
+class JsonTraitEvent(typing.TypedDict, total=False):
+    data: dict[str, typing.Any]
+    id: str
 
 @typing.type_check_only
 class MediaUrlsStruct(typing.TypedDict, total=False):
@@ -159,6 +170,7 @@ class QueryRequest(typing.TypedDict, total=False):
         "SMART_HOME_TRAIT_ONLY",
         "HOME_TRAIT_ONLY",
         "HOME_TRAIT_AND_SMART_HOME_TRAIT",
+        "JSON_TRAIT_ONLY",
     ]
     includeDeviceMetadata: bool
     inputs: _list[QueryRequestInput]
@@ -269,7 +281,8 @@ class ThermostatFanControlTrait(typing.TypedDict, total=False):
 @typing.type_check_only
 class TraitData(typing.TypedDict, total=False):
     commitTime: str
-    providerVersionTime: str
+    jsonTrait: JsonTrait
+    providerUpdateTime: str
     trait: dict[str, typing.Any]
 
 @typing.type_check_only

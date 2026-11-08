@@ -11,6 +11,8 @@ class AccessSummary(typing.TypedDict, total=False):
         "AUTH_PROVIDER_TYPE_TWO_LEGGED_OAUTH",
         "AUTH_PROVIDER_TYPE_API_KEY",
         "AUTH_PROVIDER_TYPE_GEMINI_ENTERPRISE",
+        "AUTH_PROVIDER_TYPE_CROSS_APP_ACCESS",
+        "AUTH_PROVIDER_TYPE_CONNECTOR_REFERENCE",
     ]
     firstAccessTime: str
     labels: dict[str, typing.Any]
@@ -21,6 +23,9 @@ class AccessSummary(typing.TypedDict, total=False):
     tokenUrl: str
     userId: str
     workloadId: str
+
+@typing.type_check_only
+class AgentIdentityPool(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
 class ApiKeyParams(typing.TypedDict, total=False):
@@ -56,9 +61,11 @@ class AuthProvider(typing.TypedDict, total=False):
 @typing.type_check_only
 class AuthProviderTypeParams(typing.TypedDict, total=False):
     apiKey: ApiKeyParams
+    connectorReferenceAuthProvider: ConnectorReferenceAuthProvider
     geAuthProvider: GeminiEnterpriseAuthProviderParams
     threeLeggedOauth: ThreeLeggedOAuth
     twoLeggedOauth: TwoLeggedOAuth
+    xaaAuthProvider: CrossAppAccessAuthProvider
 
 @typing.type_check_only
 class Authorization(typing.TypedDict, total=False):
@@ -74,6 +81,39 @@ class Binding(typing.TypedDict, total=False):
     condition: Expr
     members: _list[str]
     role: str
+
+@typing.type_check_only
+class ClientAssertionJwtAuth(typing.TypedDict, total=False):
+    clientId: str
+
+@typing.type_check_only
+class ClientSecretAuth(typing.TypedDict, total=False):
+    clientId: str
+    clientSecret: str
+
+@typing.type_check_only
+class ConnectorReferenceAuthProvider(typing.TypedDict, total=False):
+    authorizationDetails: _list[dict[str, typing.Any]]
+    connector: str
+
+@typing.type_check_only
+class CrossAppAccessAuthProvider(typing.TypedDict, total=False):
+    additionalParameters: dict[str, typing.Any]
+    clientAssertionJwtAuth: ClientAssertionJwtAuth
+    clientSecretAuth: ClientSecretAuth
+    customIssuer: CustomIssuer
+    googleAccount: GoogleAccount
+    idJagInput: DirectIdJagInput
+    idTokenInput: IdTokenProcessingConfig
+    workforceIdentityFederation: WorkforceIdentityFederation
+
+@typing.type_check_only
+class CustomIssuer(typing.TypedDict, total=False):
+    issuer: str
+    tokenUrl: str
+
+@typing.type_check_only
+class DirectIdJagInput(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
 class DisableAuthProviderRequest(typing.TypedDict, total=False):
@@ -95,6 +135,15 @@ class Expr(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class GeminiEnterpriseAuthProviderParams(typing.TypedDict, total=False): ...
+
+@typing.type_check_only
+class GoogleAccount(typing.TypedDict, total=False): ...
+
+@typing.type_check_only
+class IdTokenProcessingConfig(typing.TypedDict, total=False):
+    agentIdentityPool: AgentIdentityPool
+    idJagAdditionalClaims: dict[str, typing.Any]
+    idJagAuthProvider: str
 
 @typing.type_check_only
 class ListAccessSummariesResponse(typing.TypedDict, total=False):
@@ -145,6 +194,14 @@ class QueryWorkloadsResponse(typing.TypedDict, total=False):
     workloadIds: _list[str]
 
 @typing.type_check_only
+class ResolveAuthorizationRequest(typing.TypedDict, total=False):
+    clientUserId: str
+
+@typing.type_check_only
+class ResolveAuthorizationResponse(typing.TypedDict, total=False):
+    authorization: str
+
+@typing.type_check_only
 class RevokeAuthorizationRequest(typing.TypedDict, total=False):
     userId: str
 
@@ -183,3 +240,6 @@ class TwoLeggedOAuth(typing.TypedDict, total=False):
 @typing.type_check_only
 class UndeleteAuthProviderRequest(typing.TypedDict, total=False):
     requestId: str
+
+@typing.type_check_only
+class WorkforceIdentityFederation(typing.TypedDict, total=False): ...

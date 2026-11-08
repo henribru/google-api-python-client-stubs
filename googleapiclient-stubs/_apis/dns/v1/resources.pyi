@@ -78,6 +78,25 @@ class DnsResource(googleapiclient.discovery.Resource):
         ) -> DnsKeysListResponseHttpRequest | None: ...
 
     @typing.type_check_only
+    class LocationsResource(googleapiclient.discovery.Resource):
+        def get(self, *, name: str, **kwargs: typing.Any) -> LocationHttpRequest: ...
+        def list(
+            self,
+            *,
+            name: str,
+            extraLocationTypes: str | _list[str] | None = ...,
+            filter: str | None = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
+            **kwargs: typing.Any,
+        ) -> ListLocationsResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListLocationsResponseHttpRequest,
+            previous_response: ListLocationsResponse,
+        ) -> ListLocationsResponseHttpRequest | None: ...
+
+    @typing.type_check_only
     class ManagedZoneOperationsResource(googleapiclient.discovery.Resource):
         def get(
             self,
@@ -185,6 +204,81 @@ class DnsResource(googleapiclient.discovery.Resource):
         ) -> OperationHttpRequest: ...
 
     @typing.type_check_only
+    class OperationsResource(googleapiclient.discovery.Resource):
+        def cancel(self, *, name: str, **kwargs: typing.Any) -> EmptyHttpRequest: ...
+        def delete(self, *, name: str, **kwargs: typing.Any) -> EmptyHttpRequest: ...
+        def get(
+            self, *, name: str, **kwargs: typing.Any
+        ) -> GoogleLongrunningOperationHttpRequest: ...
+        def list(
+            self,
+            *,
+            name: str,
+            filter: str | None = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
+            returnPartialSuccess: bool | None = ...,
+            **kwargs: typing.Any,
+        ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: GoogleLongrunningListOperationsResponseHttpRequest,
+            previous_response: GoogleLongrunningListOperationsResponse,
+        ) -> GoogleLongrunningListOperationsResponseHttpRequest | None: ...
+
+    @typing.type_check_only
+    class OutboundEndpointsResource(googleapiclient.discovery.Resource):
+        def create(
+            self,
+            *,
+            parent: str,
+            body: OutboundEndpoint,
+            clientOperationId: str | None = ...,
+            outboundEndpointId: str | None = ...,
+            requestId: str | None = ...,
+            **kwargs: typing.Any,
+        ) -> GoogleLongrunningOperationHttpRequest: ...
+        def delete(
+            self,
+            *,
+            name: str,
+            clientOperationId: str | None = ...,
+            requestId: str | None = ...,
+            **kwargs: typing.Any,
+        ) -> GoogleLongrunningOperationHttpRequest: ...
+        def get(
+            self,
+            *,
+            name: str,
+            clientOperationId: str | None = ...,
+            **kwargs: typing.Any,
+        ) -> OutboundEndpointHttpRequest: ...
+        def list(
+            self,
+            *,
+            parent: str,
+            clientOperationId: str | None = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
+            **kwargs: typing.Any,
+        ) -> ListOutboundEndpointsResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListOutboundEndpointsResponseHttpRequest,
+            previous_response: ListOutboundEndpointsResponse,
+        ) -> ListOutboundEndpointsResponseHttpRequest | None: ...
+        def patch(
+            self,
+            *,
+            name: str,
+            body: OutboundEndpoint,
+            clientOperationId: str | None = ...,
+            requestId: str | None = ...,
+            updateMask: str | None = ...,
+            **kwargs: typing.Any,
+        ) -> GoogleLongrunningOperationHttpRequest: ...
+
+    @typing.type_check_only
     class PoliciesResource(googleapiclient.discovery.Resource):
         def create(
             self,
@@ -244,13 +338,7 @@ class DnsResource(googleapiclient.discovery.Resource):
 
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
-        def get(
-            self,
-            *,
-            project: str,
-            clientOperationId: str | None = ...,
-            **kwargs: typing.Any,
-        ) -> ProjectHttpRequest: ...
+        def get(self, *, project: str, **kwargs: typing.Any) -> ProjectHttpRequest: ...
 
     @typing.type_check_only
     class ResourceRecordSetsResource(googleapiclient.discovery.Resource):
@@ -448,8 +536,11 @@ class DnsResource(googleapiclient.discovery.Resource):
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def changes(self) -> ChangesResource: ...
     def dnsKeys(self) -> DnsKeysResource: ...
+    def locations(self) -> LocationsResource: ...
     def managedZoneOperations(self) -> ManagedZoneOperationsResource: ...
     def managedZones(self) -> ManagedZonesResource: ...
+    def operations(self) -> OperationsResource: ...
+    def outboundEndpoints(self) -> OutboundEndpointsResource: ...
     def policies(self) -> PoliciesResource: ...
     def projects(self) -> ProjectsResource: ...
     def resourceRecordSets(self) -> ResourceRecordSetsResource: ...
@@ -489,6 +580,14 @@ class DnsKeysListResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> DnsKeysListResponse: ...
 
 @typing.type_check_only
+class EmptyHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> Empty: ...
+
+@typing.type_check_only
 class GoogleIamV1PolicyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -505,6 +604,48 @@ class GoogleIamV1TestIamPermissionsResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleIamV1TestIamPermissionsResponse: ...
+
+@typing.type_check_only
+class GoogleLongrunningListOperationsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleLongrunningListOperationsResponse: ...
+
+@typing.type_check_only
+class GoogleLongrunningOperationHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleLongrunningOperation: ...
+
+@typing.type_check_only
+class ListLocationsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListLocationsResponse: ...
+
+@typing.type_check_only
+class ListOutboundEndpointsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListOutboundEndpointsResponse: ...
+
+@typing.type_check_only
+class LocationHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> Location: ...
 
 @typing.type_check_only
 class ManagedZoneHttpRequest(googleapiclient.http.HttpRequest):
@@ -537,6 +678,14 @@ class OperationHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Operation: ...
+
+@typing.type_check_only
+class OutboundEndpointHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> OutboundEndpoint: ...
 
 @typing.type_check_only
 class PoliciesListResponseHttpRequest(googleapiclient.http.HttpRequest):

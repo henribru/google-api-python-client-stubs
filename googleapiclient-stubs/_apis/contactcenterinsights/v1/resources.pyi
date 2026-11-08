@@ -98,46 +98,6 @@ class ContactcenterinsightsResource(googleapiclient.discovery.Resource):
                 ) -> GoogleCloudContactcenterinsightsV1AssessmentRuleHttpRequest: ...
 
             @typing.type_check_only
-            class AssistantSessionsResource(googleapiclient.discovery.Resource):
-                def create(
-                    self,
-                    *,
-                    parent: str,
-                    body: GoogleCloudContactcenterinsightsV1AssistantSession,
-                    assistantSessionId: str | None = ...,
-                    **kwargs: typing.Any,
-                ) -> GoogleCloudContactcenterinsightsV1AssistantSessionHttpRequest: ...
-                def get(
-                    self, *, name: str, **kwargs: typing.Any
-                ) -> GoogleCloudContactcenterinsightsV1AssistantSessionHttpRequest: ...
-                def list(
-                    self,
-                    *,
-                    parent: str,
-                    filter: str | None = ...,
-                    pageSize: int | None = ...,
-                    pageToken: str | None = ...,
-                    **kwargs: typing.Any,
-                ) -> GoogleCloudContactcenterinsightsV1ListAssistantSessionsResponseHttpRequest: ...
-                def list_next(
-                    self,
-                    previous_request: GoogleCloudContactcenterinsightsV1ListAssistantSessionsResponseHttpRequest,
-                    previous_response: GoogleCloudContactcenterinsightsV1ListAssistantSessionsResponse,
-                ) -> (
-                    GoogleCloudContactcenterinsightsV1ListAssistantSessionsResponseHttpRequest
-                    | None
-                ): ...
-                def streamChat(
-                    self,
-                    *,
-                    name: str,
-                    body: GoogleCloudContactcenterinsightsV1StreamChatRequest,
-                    **kwargs: typing.Any,
-                ) -> (
-                    GoogleCloudContactcenterinsightsV1StreamChatResponseHttpRequest
-                ): ...
-
-            @typing.type_check_only
             class AuthorizedViewSetsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class AuthorizedViewsResource(googleapiclient.discovery.Resource):
@@ -319,7 +279,10 @@ class ContactcenterinsightsResource(googleapiclient.discovery.Resource):
                             *,
                             name: str,
                             view: typing.Literal[
-                                "CONVERSATION_VIEW_UNSPECIFIED", "FULL", "BASIC"
+                                "CONVERSATION_VIEW_UNSPECIFIED",
+                                "FULL",
+                                "BASIC",
+                                "FULL_WITH_STRUCTURED_TRANSCRIPT",
                             ]
                             | None = ...,
                             **kwargs: typing.Any,
@@ -335,7 +298,10 @@ class ContactcenterinsightsResource(googleapiclient.discovery.Resource):
                             pageSize: int | None = ...,
                             pageToken: str | None = ...,
                             view: typing.Literal[
-                                "CONVERSATION_VIEW_UNSPECIFIED", "FULL", "BASIC"
+                                "CONVERSATION_VIEW_UNSPECIFIED",
+                                "FULL",
+                                "BASIC",
+                                "FULL_WITH_STRUCTURED_TRANSCRIPT",
                             ]
                             | None = ...,
                             **kwargs: typing.Any,
@@ -801,7 +767,10 @@ class ContactcenterinsightsResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     view: typing.Literal[
-                        "CONVERSATION_VIEW_UNSPECIFIED", "FULL", "BASIC"
+                        "CONVERSATION_VIEW_UNSPECIFIED",
+                        "FULL",
+                        "BASIC",
+                        "FULL_WITH_STRUCTURED_TRANSCRIPT",
                     ]
                     | None = ...,
                     **kwargs: typing.Any,
@@ -822,7 +791,10 @@ class ContactcenterinsightsResource(googleapiclient.discovery.Resource):
                     pageSize: int | None = ...,
                     pageToken: str | None = ...,
                     view: typing.Literal[
-                        "CONVERSATION_VIEW_UNSPECIFIED", "FULL", "BASIC"
+                        "CONVERSATION_VIEW_UNSPECIFIED",
+                        "FULL",
+                        "BASIC",
+                        "FULL_WITH_STRUCTURED_TRANSCRIPT",
                     ]
                     | None = ...,
                     **kwargs: typing.Any,
@@ -1022,7 +994,10 @@ class ContactcenterinsightsResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         view: typing.Literal[
-                            "CONVERSATION_VIEW_UNSPECIFIED", "FULL", "BASIC"
+                            "CONVERSATION_VIEW_UNSPECIFIED",
+                            "FULL",
+                            "BASIC",
+                            "FULL_WITH_STRUCTURED_TRANSCRIPT",
                         ]
                         | None = ...,
                         **kwargs: typing.Any,
@@ -1043,7 +1018,10 @@ class ContactcenterinsightsResource(googleapiclient.discovery.Resource):
                         pageSize: int | None = ...,
                         pageToken: str | None = ...,
                         view: typing.Literal[
-                            "CONVERSATION_VIEW_UNSPECIFIED", "FULL", "BASIC"
+                            "CONVERSATION_VIEW_UNSPECIFIED",
+                            "FULL",
+                            "BASIC",
+                            "FULL_WITH_STRUCTURED_TRANSCRIPT",
                         ]
                         | None = ...,
                         **kwargs: typing.Any,
@@ -1680,7 +1658,6 @@ class ContactcenterinsightsResource(googleapiclient.discovery.Resource):
             ) -> GoogleCloudContactcenterinsightsV1SettingsHttpRequest: ...
             def analysisRules(self) -> AnalysisRulesResource: ...
             def assessmentRules(self) -> AssessmentRulesResource: ...
-            def assistantSessions(self) -> AssistantSessionsResource: ...
             def authorizedViewSets(self) -> AuthorizedViewSetsResource: ...
             def autoLabelingRules(self) -> AutoLabelingRulesResource: ...
             def conversations(self) -> ConversationsResource: ...
@@ -1750,16 +1727,6 @@ class GoogleCloudContactcenterinsightsV1AssessmentRuleHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudContactcenterinsightsV1AssessmentRule: ...
-
-@typing.type_check_only
-class GoogleCloudContactcenterinsightsV1AssistantSessionHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> GoogleCloudContactcenterinsightsV1AssistantSession: ...
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1AuthorizedViewHttpRequest(
@@ -1960,16 +1927,6 @@ class GoogleCloudContactcenterinsightsV1ListAssessmentsResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudContactcenterinsightsV1ListAssessmentsResponse: ...
-
-@typing.type_check_only
-class GoogleCloudContactcenterinsightsV1ListAssistantSessionsResponseHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> GoogleCloudContactcenterinsightsV1ListAssistantSessionsResponse: ...
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1ListAuthorizedViewSetsResponseHttpRequest(
@@ -2220,16 +2177,6 @@ class GoogleCloudContactcenterinsightsV1SettingsHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudContactcenterinsightsV1Settings: ...
-
-@typing.type_check_only
-class GoogleCloudContactcenterinsightsV1StreamChatResponseHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> GoogleCloudContactcenterinsightsV1StreamChatResponse: ...
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1TestAutoLabelingRuleResponseHttpRequest(

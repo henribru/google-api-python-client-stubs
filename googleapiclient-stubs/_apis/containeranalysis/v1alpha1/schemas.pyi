@@ -525,7 +525,8 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1BuildOptions(
     ]
     pool: ContaineranalysisGoogleDevtoolsCloudbuildV1BuildOptionsPoolOption
     pubsubTopic: str
-    requestedVerifyOption: typing.Literal["NOT_VERIFIED", "VERIFIED"]
+    requestedVerifyOption: typing.Literal["NOT_VERIFIED", "VERIFIED", "BEST_EFFORT"]
+    resolvedWorkerRelease: str
     secretEnv: _list[str]
     sourceProvenanceHash: _list[
         typing.Literal[
@@ -535,12 +536,25 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1BuildOptions(
     substitutionOption: typing.Literal["MUST_MATCH", "ALLOW_LOOSE"]
     volumes: _list[ContaineranalysisGoogleDevtoolsCloudbuildV1Volume]
     workerPool: str
+    workerRelease: str
 
 @typing.type_check_only
 class ContaineranalysisGoogleDevtoolsCloudbuildV1BuildOptionsPoolOption(
     typing.TypedDict, total=False
 ):
     name: str
+    resolvedWorkerRelease: str
+    workerRelease: str
+
+@typing.type_check_only
+class ContaineranalysisGoogleDevtoolsCloudbuildV1BuildResourceUsage(
+    typing.TypedDict, total=False
+):
+    averageCpuUtilization: float
+    averageMemoryUtilization: float
+    peakCpuUtilization: float
+    peakMemoryUtilization: float
+    totalCpuDuration: str
 
 @typing.type_check_only
 class ContaineranalysisGoogleDevtoolsCloudbuildV1BuildStep(
@@ -633,6 +647,7 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1DependencyGitSourceDependency(
 ):
     depth: str
     destPath: str
+    fetchTags: bool
     recurseSubmodules: bool
     repository: ContaineranalysisGoogleDevtoolsCloudbuildV1DependencyGitSourceRepository
     revision: str
@@ -725,6 +740,7 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1Results(typing.TypedDict, total
     pythonPackages: _list[
         ContaineranalysisGoogleDevtoolsCloudbuildV1UploadedPythonPackage
     ]
+    resourceUsage: ContaineranalysisGoogleDevtoolsCloudbuildV1BuildResourceUsage
 
 @typing.type_check_only
 class ContaineranalysisGoogleDevtoolsCloudbuildV1Secret(typing.TypedDict, total=False):
@@ -1332,7 +1348,9 @@ class Location(typing.TypedDict, total=False):
 @typing.type_check_only
 class MaliciousContentLLMResult(typing.TypedDict, total=False):
     maxSeverity: typing.Literal["SEVERITY_UNSPECIFIED", "CRITICAL", "HIGH"]
+    modelId: str
     scanState: typing.Literal["SCAN_STATE_UNSPECIFIED", "PERFORMED", "NOT_PERFORMED"]
+    tokenUsage: TokenUsage
 
 @typing.type_check_only
 class MaliciousContentStaticResult(typing.TypedDict, total=False):
@@ -1912,6 +1930,14 @@ class TestIamPermissionsResponse(typing.TypedDict, total=False):
 class TimeSpan(typing.TypedDict, total=False):
     endTime: str
     startTime: str
+
+@typing.type_check_only
+class TokenUsage(typing.TypedDict, total=False):
+    cacheCount: str
+    candidateCount: str
+    promptCount: str
+    thinkingCount: str
+    toolUsePromptCount: str
 
 @typing.type_check_only
 class URI(typing.TypedDict, total=False):

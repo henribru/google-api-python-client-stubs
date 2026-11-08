@@ -5,6 +5,7 @@ _list = list
 @typing.type_check_only
 class Assignment(typing.TypedDict, total=False):
     assignee: str
+    condition: Expr
     enableGeminiInBigquery: bool
     jobType: typing.Literal[
         "JOB_TYPE_UNSPECIFIED",
@@ -19,6 +20,7 @@ class Assignment(typing.TypedDict, total=False):
         "AUTOMATIC_MATERIALIZED_VIEW_REFRESH",
     ]
     name: str
+    precedence: str
     principal: str
     schedulingPolicy: SchedulingPolicy
     state: typing.Literal["STATE_UNSPECIFIED", "PENDING", "ACTIVE"]
@@ -177,8 +179,10 @@ class Reservation(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class ReservationGroup(typing.TypedDict, total=False):
+    creationTime: str
     name: str
     parentGroup: str
+    updateTime: str
 
 @typing.type_check_only
 class SchedulingPolicy(typing.TypedDict, total=False):

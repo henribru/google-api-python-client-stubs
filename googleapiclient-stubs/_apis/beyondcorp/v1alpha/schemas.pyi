@@ -362,14 +362,6 @@ class GoogleCloudBeyondcorpAppconnectorsV1alphaRemoteAgentDetails(
 ): ...
 
 @typing.type_check_only
-class GoogleCloudBeyondcorpAppconnectorsV1alphaReportStatusRequest(
-    typing.TypedDict, total=False
-):
-    requestId: str
-    resourceInfo: GoogleCloudBeyondcorpAppconnectorsV1alphaResourceInfo
-    validateOnly: bool
-
-@typing.type_check_only
 class GoogleCloudBeyondcorpAppconnectorsV1alphaResolveInstanceConfigResponse(
     typing.TypedDict, total=False
 ):
@@ -873,12 +865,6 @@ class PrincipalInfo(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class RemoteAgentDetails(typing.TypedDict, total=False): ...
-
-@typing.type_check_only
-class ReportStatusRequest(typing.TypedDict, total=False):
-    requestId: str
-    resourceInfo: ResourceInfo
-    validateOnly: bool
 
 @typing.type_check_only
 class ResolveConnectionsResponse(typing.TypedDict, total=False):

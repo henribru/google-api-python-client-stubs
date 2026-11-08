@@ -179,6 +179,16 @@ class AdBlockingConfiguration(typing.TypedDict, total=False):
     enabled: bool
 
 @typing.type_check_only
+class AdditionalAsset(typing.TypedDict, total=False):
+    callToActions: _list[str]
+    coverImages: _list[CreativeAsset]
+    descriptions: _list[str]
+    displayUrl: str
+    headlines: _list[str]
+    longDescriptions: _list[str]
+    longHeadlines: _list[str]
+
+@typing.type_check_only
 class AdsListResponse(typing.TypedDict, total=False):
     ads: _list[Ad]
     kind: str
@@ -663,6 +673,7 @@ class Creative(typing.TypedDict, total=False):
     active: bool
     adParameters: str
     adTagKeys: _list[str]
+    additionalAsset: AdditionalAsset
     additionalSizes: _list[Size]
     advertiserId: str
     allowScriptAccess: bool
@@ -1001,6 +1012,12 @@ class CreativeAsset(typing.TypedDict, total=False):
         "ALTERNATE_VIDEO",
         "PARENT_AUDIO",
         "TRANSCODED_AUDIO",
+        "COVER_IMAGE",
+        "HEADLINE",
+        "LONG_HEADLINE",
+        "DESCRIPTION",
+        "LONG_DESCRIPTION",
+        "CALL_TO_ACTION",
     ]
     size: Size
     sslCompliant: bool

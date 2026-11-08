@@ -13,23 +13,6 @@ _list = list
 @typing.type_check_only
 class AssuredworkloadsResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
-    class AssuredworkloadsResource(googleapiclient.discovery.Resource):
-        def archiveResourceEvents(
-            self,
-            *,
-            body: GoogleCloudAssuredworkloadsV1ArchiveResourceEventsRequest,
-            **kwargs: typing.Any,
-        ) -> GoogleCloudAssuredworkloadsV1ArchiveResourceEventsResponseHttpRequest: ...
-        def revertArchivedResourceEvents(
-            self,
-            *,
-            body: GoogleCloudAssuredworkloadsV1RevertArchivedResourceEventsRequest,
-            **kwargs: typing.Any,
-        ) -> (
-            GoogleCloudAssuredworkloadsV1RevertArchivedResourceEventsResponseHttpRequest
-        ): ...
-
-    @typing.type_check_only
     class FoldersResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
@@ -296,7 +279,16 @@ class AssuredworkloadsResource(googleapiclient.discovery.Resource):
                         **kwargs: typing.Any,
                     ) -> GoogleCloudAssuredworkloadsV1AcknowledgeViolationResponseHttpRequest: ...
                     def get(
-                        self, *, name: str, **kwargs: typing.Any
+                        self,
+                        *,
+                        name: str,
+                        view: typing.Literal[
+                            "VIOLATION_VIEW_UNSPECIFIED",
+                            "VIOLATION_VIEW_ASSURED_WORKLOADS",
+                            "VIOLATION_VIEW_DATA_BOUNDARY",
+                        ]
+                        | None = ...,
+                        **kwargs: typing.Any,
                     ) -> GoogleCloudAssuredworkloadsV1ViolationHttpRequest: ...
                     def list(
                         self,
@@ -308,6 +300,12 @@ class AssuredworkloadsResource(googleapiclient.discovery.Resource):
                         orderBy: str | None = ...,
                         pageSize: int | None = ...,
                         pageToken: str | None = ...,
+                        view: typing.Literal[
+                            "VIOLATION_VIEW_UNSPECIFIED",
+                            "VIOLATION_VIEW_ASSURED_WORKLOADS",
+                            "VIOLATION_VIEW_DATA_BOUNDARY",
+                        ]
+                        | None = ...,
                         **kwargs: typing.Any,
                     ) -> (
                         GoogleCloudAssuredworkloadsV1ListViolationsResponseHttpRequest
@@ -535,7 +533,6 @@ class AssuredworkloadsResource(googleapiclient.discovery.Resource):
         ]
         | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
-    def assuredworkloads(self) -> AssuredworkloadsResource: ...
     def folders(self) -> FoldersResource: ...
     def organizations(self) -> OrganizationsResource: ...
     def projects(self) -> ProjectsResource: ...
@@ -569,16 +566,6 @@ class GoogleCloudAssuredworkloadsV1AnalyzeWorkloadMoveResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudAssuredworkloadsV1AnalyzeWorkloadMoveResponse: ...
-
-@typing.type_check_only
-class GoogleCloudAssuredworkloadsV1ArchiveResourceEventsResponseHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> GoogleCloudAssuredworkloadsV1ArchiveResourceEventsResponse: ...
 
 @typing.type_check_only
 class GoogleCloudAssuredworkloadsV1EnableComplianceUpdatesResponseHttpRequest(
@@ -679,16 +666,6 @@ class GoogleCloudAssuredworkloadsV1RestrictAllowedResourcesResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudAssuredworkloadsV1RestrictAllowedResourcesResponse: ...
-
-@typing.type_check_only
-class GoogleCloudAssuredworkloadsV1RevertArchivedResourceEventsResponseHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> GoogleCloudAssuredworkloadsV1RevertArchivedResourceEventsResponse: ...
 
 @typing.type_check_only
 class GoogleCloudAssuredworkloadsV1ViolationHttpRequest(

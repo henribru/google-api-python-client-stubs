@@ -62,6 +62,7 @@ class DataPolicy(typing.TypedDict, total=False):
     ]
     etag: str
     grantees: _list[str]
+    matchingCondition: str
     name: str
     policyTag: str
     version: typing.Literal["VERSION_UNSPECIFIED", "V1", "V2"]

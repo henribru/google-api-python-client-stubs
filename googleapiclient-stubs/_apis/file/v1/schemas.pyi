@@ -356,6 +356,7 @@ class PromoteReplicaRequest(typing.TypedDict, total=False):
 @typing.type_check_only
 class PscConfig(typing.TypedDict, total=False):
     endpointProject: str
+    requestedIpAddress: str
 
 @typing.type_check_only
 class ReplicaConfig(typing.TypedDict, total=False):

@@ -22,11 +22,13 @@ class AwsAccessRole(typing.TypedDict, total=False):
 @typing.type_check_only
 class AwsProperties(typing.TypedDict, total=False):
     accessRole: AwsAccessRole
+    crossCloudCacheOptions: CrossCloudCacheOptions
 
 @typing.type_check_only
 class AzureProperties(typing.TypedDict, total=False):
     application: str
     clientId: str
+    crossCloudCacheOptions: CrossCloudCacheOptions
     customerTenantId: str
     federatedApplicationClientId: str
     identity: str
@@ -154,6 +156,10 @@ class ConnectorConfigurationUsernamePassword(typing.TypedDict, total=False):
     username: str
 
 @typing.type_check_only
+class CrossCloudCacheOptions(typing.TypedDict, total=False):
+    enabled: bool
+
+@typing.type_check_only
 class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -189,6 +195,7 @@ class Policy(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class SalesforceDataCloudProperties(typing.TypedDict, total=False):
+    crossCloudCacheOptions: CrossCloudCacheOptions
     identity: str
     instanceUri: str
     tenantId: str

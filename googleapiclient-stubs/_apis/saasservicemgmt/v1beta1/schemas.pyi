@@ -55,7 +55,16 @@ class Dependency(typing.TypedDict, total=False):
 class Deprovision(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
+class DurationLimits(typing.TypedDict, total=False):
+    unitOperationTimeout: str
+
+@typing.type_check_only
 class Empty(typing.TypedDict, total=False): ...
+
+@typing.type_check_only
+class Engine(typing.TypedDict, total=False):
+    engineId: str
+    location: str
 
 @typing.type_check_only
 class ErrorBudget(typing.TypedDict, total=False):
@@ -74,7 +83,9 @@ class EvaluationRule(typing.TypedDict, total=False):
 class EvaluationSpec(typing.TypedDict, total=False):
     allocations: _list[Allocation]
     attributes: _list[str]
+    defaultAllocation: str
     defaultTarget: str
+    defaultVariant: str
     rules: _list[EvaluationRule]
     variants: _list[Variant]
 
@@ -141,6 +152,10 @@ class FlagAttribute(typing.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class FlagNameList(typing.TypedDict, total=False):
+    flags: _list[str]
+
+@typing.type_check_only
 class FlagRelease(typing.TypedDict, total=False):
     allFlags: bool
     allFlagsRelease: bool
@@ -148,6 +163,7 @@ class FlagRelease(typing.TypedDict, total=False):
     createTime: str
     effectiveFlagRevisions: _list[str]
     etag: str
+    flagNamesRelease: FlagNameList
     flagRevisions: _list[str]
     flagRevisionsRelease: FlagRevisionList
     flagSets: _list[str]
@@ -255,12 +271,6 @@ class ListRolloutsResponse(typing.TypedDict, total=False):
     unreachable: _list[str]
 
 @typing.type_check_only
-class ListSaasReleasesResponse(typing.TypedDict, total=False):
-    nextPageToken: str
-    saasReleases: _list[SaasRelease]
-    unreachable: _list[str]
-
-@typing.type_check_only
 class ListSaasResponse(typing.TypedDict, total=False):
     nextPageToken: str
     saas: _list[Saas]
@@ -365,6 +375,7 @@ class Rollout(typing.TypedDict, total=False):
         "ROLLOUT_STATE_CANCELLING",
         "ROLLOUT_STATE_RESUMING",
         "ROLLOUT_STATE_PAUSING",
+        "ROLLOUT_STATE_AWAITING_APPROVAL",
     ]
     stateMessage: str
     stateTransitionTime: str
@@ -425,7 +436,11 @@ class Saas(typing.TypedDict, total=False):
     locations: _list[Location]
     name: str
     state: typing.Literal[
-        "STATE_TYPE_UNSPECIFIED", "STATE_ACTIVE", "STATE_RUNNING", "STATE_FAILED"
+        "STATE_UNSPECIFIED",
+        "STATE_TYPE_UNSPECIFIED",
+        "STATE_ACTIVE",
+        "STATE_RUNNING",
+        "STATE_FAILED",
     ]
     uid: str
     updateTime: str
@@ -439,16 +454,6 @@ class SaasCondition(typing.TypedDict, total=False):
         "STATUS_UNSPECIFIED", "STATUS_UNKNOWN", "STATUS_TRUE", "STATUS_FALSE"
     ]
     type: typing.Literal["TYPE_UNSPECIFIED", "TYPE_READY", "TYPE_SYNCHRONIZED"]
-
-@typing.type_check_only
-class SaasRelease(typing.TypedDict, total=False):
-    annotations: dict[str, typing.Any]
-    createTime: str
-    etag: str
-    labels: dict[str, typing.Any]
-    name: str
-    uid: str
-    updateTime: str
 
 @typing.type_check_only
 class Schedule(typing.TypedDict, total=False):
@@ -490,6 +495,7 @@ class Unit(typing.TypedDict, total=False):
     createTime: str
     dependencies: _list[UnitDependency]
     dependents: _list[UnitDependency]
+    engine: Engine
     etag: str
     flagConfigName: str
     flagRevisions: _list[str]
@@ -567,6 +573,7 @@ class UnitGroup(typing.TypedDict, total=False):
 class UnitGroupOperation(typing.TypedDict, total=False):
     annotations: dict[str, typing.Any]
     createTime: str
+    deleteTime: str
     etag: str
     labels: dict[str, typing.Any]
     name: str
@@ -586,7 +593,9 @@ class UnitKind(typing.TypedDict, total=False):
     createTime: str
     defaultFlagRevisions: _list[str]
     defaultRelease: str
+    deleteTime: str
     dependencies: _list[Dependency]
+    durationLimits: DurationLimits
     etag: str
     inputVariableMappings: _list[VariableMapping]
     labels: dict[str, typing.Any]
@@ -604,6 +613,7 @@ class UnitOperation(typing.TypedDict, total=False):
     createTime: str
     deleteTime: str
     deprovision: Deprovision
+    durationLimits: DurationLimits
     engineState: str
     errorCategory: typing.Literal[
         "UNIT_OPERATION_ERROR_CATEGORY_UNSPECIFIED",

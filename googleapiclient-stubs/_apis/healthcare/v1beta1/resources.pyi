@@ -861,6 +861,17 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                         x_type: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> HttpBodyHttpRequest: ...
+                    def bulk_export_group_post(
+                        self,
+                        *,
+                        name: str,
+                        body: HttpBody,
+                        organizeOutputBy: str | None = ...,
+                        outputFormat: str | None = ...,
+                        x_since: str | None = ...,
+                        x_type: str | None = ...,
+                        **kwargs: typing.Any,
+                    ) -> HttpBodyHttpRequest: ...
                     def bulkDelete(
                         self,
                         *,
@@ -893,6 +904,13 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                     def delete(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> EmptyHttpRequest: ...
+                    def executeCohort(
+                        self,
+                        *,
+                        name: str,
+                        body: ExecuteCohortRequest,
+                        **kwargs: typing.Any,
+                    ) -> OperationHttpRequest: ...
                     def explainDataAccess(
                         self,
                         *,

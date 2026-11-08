@@ -995,6 +995,10 @@ class Origin(typing.TypedDict, total=False):
 class PauseRolloutRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
+class PerStageSoakDurationOverrides(typing.TypedDict, total=False):
+    stageOverrides: dict[str, typing.Any]
+
+@typing.type_check_only
 class Policy(typing.TypedDict, total=False):
     auditConfigs: _list[AuditConfig]
     bindings: _list[Binding]
@@ -1169,16 +1173,21 @@ class Rollout(typing.TypedDict, total=False):
     deleteTime: str
     displayName: str
     etag: str
+    ignoreClusterDisruptionBudgets: bool
+    ignoreMaintenancePolicies: bool
     intent: typing.Literal[
         "ROLLOUT_INTENT_UNSPECIFIED",
         "REGULAR_UPGRADE",
         "CONTROL_PLANE_PATCH_ENFORCEMENT",
         "END_OF_SUPPORT_ENFORCEMENT",
+        "PARTIAL_PATCH",
     ]
     labels: dict[str, typing.Any]
     membershipStates: dict[str, typing.Any]
     name: str
+    prioritized: bool
     rolloutSequence: str
+    stageSoakDurationOverrides: dict[str, typing.Any]
     stages: _list[RolloutStage]
     state: typing.Literal[
         "STATE_UNSPECIFIED", "RUNNING", "PAUSED", "CANCELLED", "COMPLETED"
@@ -1357,6 +1366,7 @@ class ServiceMeshCondition(typing.TypedDict, total=False):
         "MODERNIZATION_INCOMPATIBLE_POD_ANNOTATION",
         "MODERNIZATION_INCOMPATIBLE_CONFIG",
         "MODERNIZATION_INCOMPATIBLE_GATEWAY_POD_SCALE",
+        "MODERNIZATION_REQUIRES_MANUAL_WORKLOAD_RESTART",
         "MODERNIZATION_SCHEDULED",
         "MODERNIZATION_IN_PROGRESS",
         "MODERNIZATION_COMPLETED",
@@ -1366,6 +1376,7 @@ class ServiceMeshCondition(typing.TypedDict, total=False):
         "MODERNIZATION_PREPARED",
         "MODERNIZATION_MIGRATING_WORKLOADS",
         "MODERNIZATION_ROLLING_BACK_CLUSTER",
+        "MODERNIZATION_AWAITING_MANUAL_WORKLOAD_RESTART",
         "MODERNIZATION_WILL_BE_SCHEDULED",
         "MODERNIZATION_MANUAL",
         "MODERNIZATION_ELIGIBLE",
@@ -1374,6 +1385,7 @@ class ServiceMeshCondition(typing.TypedDict, total=False):
         "MODERNIZATION_FINALIZED",
         "MODERNIZATION_ROLLING_BACK_FLEET",
         "MODERNIZATION_MODERNIZED",
+        "MODERNIZATION_REQUIRES_CUSTOMER_TRIGGER",
         "MODERNIZATION_COMPATIBLE",
         "MODERNIZATION_INCOMPATIBLE",
         "MODERNIZATION_INCOMPATIBLE_FLEET_SCALE",
@@ -1463,6 +1475,7 @@ class ServiceMeshFeatureCondition(typing.TypedDict, total=False):
         "MODERNIZATION_INCOMPATIBLE_POD_ANNOTATION",
         "MODERNIZATION_INCOMPATIBLE_CONFIG",
         "MODERNIZATION_INCOMPATIBLE_GATEWAY_POD_SCALE",
+        "MODERNIZATION_REQUIRES_MANUAL_WORKLOAD_RESTART",
         "MODERNIZATION_SCHEDULED",
         "MODERNIZATION_IN_PROGRESS",
         "MODERNIZATION_COMPLETED",
@@ -1472,6 +1485,7 @@ class ServiceMeshFeatureCondition(typing.TypedDict, total=False):
         "MODERNIZATION_PREPARED",
         "MODERNIZATION_MIGRATING_WORKLOADS",
         "MODERNIZATION_ROLLING_BACK_CLUSTER",
+        "MODERNIZATION_AWAITING_MANUAL_WORKLOAD_RESTART",
         "MODERNIZATION_WILL_BE_SCHEDULED",
         "MODERNIZATION_MANUAL",
         "MODERNIZATION_ELIGIBLE",
@@ -1480,6 +1494,7 @@ class ServiceMeshFeatureCondition(typing.TypedDict, total=False):
         "MODERNIZATION_FINALIZED",
         "MODERNIZATION_ROLLING_BACK_FLEET",
         "MODERNIZATION_MODERNIZED",
+        "MODERNIZATION_REQUIRES_CUSTOMER_TRIGGER",
         "MODERNIZATION_COMPATIBLE",
         "MODERNIZATION_INCOMPATIBLE",
         "MODERNIZATION_INCOMPATIBLE_FLEET_SCALE",
@@ -1562,6 +1577,12 @@ class TypeMeta(typing.TypedDict, total=False):
 @typing.type_check_only
 class UpgradeRolloutSequenceRequest(typing.TypedDict, total=False):
     force: bool
+    ignoreClusterDisruptionBudgets: bool
+    ignoreMaintenancePolicies: bool
+    patchOnly: bool
+    prioritized: bool
+    soakDurationOverrideAllStages: str
+    soakDurationOverridePerStage: PerStageSoakDurationOverrides
     upgradeType: typing.Literal["UPGRADE_TYPE_UNSPECIFIED", "CONTROL_PLANE", "NODE"]
     version: str
 

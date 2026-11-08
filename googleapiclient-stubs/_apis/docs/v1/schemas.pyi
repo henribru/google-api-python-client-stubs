@@ -3,6 +3,20 @@ import typing
 _list = list
 
 @typing.type_check_only
+class AcceptSuggestionRequest(typing.TypedDict, total=False):
+    suggestionId: str
+
+@typing.type_check_only
+class AddCommentReplyRequest(typing.TypedDict, total=False):
+    commentId: str
+    post: Post
+    suggestionId: str
+
+@typing.type_check_only
+class AddCommentReplyResponse(typing.TypedDict, total=False):
+    post: Post
+
+@typing.type_check_only
 class AddDocumentTabRequest(typing.TypedDict, total=False):
     tabProperties: TabProperties
 
@@ -33,8 +47,15 @@ class BatchUpdateDocumentRequest(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class BatchUpdateDocumentResponse(typing.TypedDict, total=False):
+    commentUpdateState: typing.Literal[
+        "COMMENT_UPDATE_STATE_UNSPECIFIED",
+        "NO_UPDATES_REQUESTED",
+        "ALL_SAVED",
+        "ALL_FAILED_UNKNOWN_REASON",
+    ]
     documentId: str
     replies: _list[Response]
+    suggestionResponses: _list[SuggestionResponse]
     writeControl: WriteControl
 
 @typing.type_check_only
@@ -68,6 +89,29 @@ class ColumnBreak(typing.TypedDict, total=False):
     suggestedInsertionIds: _list[str]
     suggestedTextStyleChanges: dict[str, typing.Any]
     textStyle: TextStyle
+
+@typing.type_check_only
+class CommentAnchor(typing.TypedDict, total=False):
+    anchorId: str
+    ranges: _list[Range]
+
+@typing.type_check_only
+class CommentThread(typing.TypedDict, total=False):
+    anchorId: str
+    commentId: str
+    headPost: Post
+    plainTextQuote: str
+    replies: _list[Post]
+    status: typing.Literal["STATUS_UNSPECIFIED", "OPEN", "RESOLVED"]
+
+@typing.type_check_only
+class CreateDropdownDefinitionRequest(typing.TypedDict, total=False):
+    dropdownDefinition: DropdownDefinition
+    tabId: str
+
+@typing.type_check_only
+class CreateDropdownDefinitionResponse(typing.TypedDict, total=False):
+    dropdownDefinition: DropdownDefinition
 
 @typing.type_check_only
 class CreateFooterRequest(typing.TypedDict, total=False):
@@ -183,8 +227,23 @@ class DateElementPropertiesSuggestionState(typing.TypedDict, total=False):
     timestampSuggested: bool
 
 @typing.type_check_only
+class DeleteCommentReplyRequest(typing.TypedDict, total=False):
+    commentId: str
+    postId: str
+    suggestionId: str
+
+@typing.type_check_only
+class DeleteCommentRequest(typing.TypedDict, total=False):
+    commentId: str
+
+@typing.type_check_only
 class DeleteContentRangeRequest(typing.TypedDict, total=False):
     range: Range
+
+@typing.type_check_only
+class DeleteDropdownDefinitionRequest(typing.TypedDict, total=False):
+    dropdownDefinitionId: str
+    tabId: str
 
 @typing.type_check_only
 class DeleteFooterRequest(typing.TypedDict, total=False):
@@ -212,6 +271,10 @@ class DeletePositionedObjectRequest(typing.TypedDict, total=False):
     tabId: str
 
 @typing.type_check_only
+class DeleteSuggestionRequest(typing.TypedDict, total=False):
+    suggestionId: str
+
+@typing.type_check_only
 class DeleteTabRequest(typing.TypedDict, total=False):
     tabId: str
 
@@ -231,6 +294,13 @@ class Dimension(typing.TypedDict, total=False):
 @typing.type_check_only
 class Document(typing.TypedDict, total=False):
     body: Body
+    comments: _list[CommentThread]
+    commentsViewMode: typing.Literal[
+        "COMMENTS_VIEW_MODE_UNSPECIFIED",
+        "COMMENTS_VIEW_MODE_DEFAULT_FOR_CURRENT_ACCESS",
+        "COMMENTS_VIEW_MODE_OMITTED",
+        "COMMENTS_VIEW_MODE_INCLUDED",
+    ]
     documentId: str
     documentStyle: DocumentStyle
     footers: dict[str, typing.Any]
@@ -244,6 +314,7 @@ class Document(typing.TypedDict, total=False):
     revisionId: str
     suggestedDocumentStyleChanges: dict[str, typing.Any]
     suggestedNamedStylesChanges: dict[str, typing.Any]
+    suggestions: _list[SuggestionThread]
     suggestionsViewMode: typing.Literal[
         "DEFAULT_FOR_CURRENT_ACCESS",
         "SUGGESTIONS_INLINE",
@@ -305,7 +376,9 @@ class DocumentStyleSuggestionState(typing.TypedDict, total=False):
 @typing.type_check_only
 class DocumentTab(typing.TypedDict, total=False):
     body: Body
+    commentAnchors: dict[str, typing.Any]
     documentStyle: DocumentStyle
+    dropdownDefinitions: dict[str, typing.Any]
     footers: dict[str, typing.Any]
     footnotes: dict[str, typing.Any]
     headers: dict[str, typing.Any]
@@ -316,6 +389,50 @@ class DocumentTab(typing.TypedDict, total=False):
     positionedObjects: dict[str, typing.Any]
     suggestedDocumentStyleChanges: dict[str, typing.Any]
     suggestedNamedStylesChanges: dict[str, typing.Any]
+
+@typing.type_check_only
+class Dropdown(typing.TypedDict, total=False):
+    dropdownId: str
+    dropdownProperties: DropdownProperties
+    suggestedDeletionIds: _list[str]
+    suggestedDropdownPropertiesChanges: dict[str, typing.Any]
+    suggestedInsertionIds: _list[str]
+    suggestedTextStyleChanges: dict[str, typing.Any]
+    textStyle: TextStyle
+
+@typing.type_check_only
+class DropdownDefinition(typing.TypedDict, total=False):
+    dropdownDefinitionId: str
+    dropdownDefinitionProperties: DropdownDefinitionProperties
+    suggestedDeletionId: str
+    suggestedDropdownDefinitionPropertiesChanges: dict[str, typing.Any]
+    suggestedInsertionId: str
+
+@typing.type_check_only
+class DropdownDefinitionProperties(typing.TypedDict, total=False):
+    options: _list[DropdownOption]
+    title: str
+
+@typing.type_check_only
+class DropdownDefinitionPropertiesSuggestionState(typing.TypedDict, total=False):
+    optionsSuggested: bool
+    titleSuggested: bool
+
+@typing.type_check_only
+class DropdownOption(typing.TypedDict, total=False):
+    displayValue: str
+    optionId: str
+    textStyle: TextStyle
+
+@typing.type_check_only
+class DropdownProperties(typing.TypedDict, total=False):
+    displayValue: str
+    dropdownDefinitionId: str
+    selectedOptionId: str
+
+@typing.type_check_only
+class DropdownPropertiesSuggestionState(typing.TypedDict, total=False):
+    selectedOptionIdSuggested: bool
 
 @typing.type_check_only
 class EmbeddedDrawingProperties(typing.TypedDict, total=False): ...
@@ -456,10 +573,31 @@ class InlineObjectPropertiesSuggestionState(typing.TypedDict, total=False):
     embeddedObjectSuggestionState: EmbeddedObjectSuggestionState
 
 @typing.type_check_only
+class InsertCommentRequest(typing.TypedDict, total=False):
+    assigneeEmailAddress: str
+    content: str
+    range: Range
+
+@typing.type_check_only
+class InsertCommentResponse(typing.TypedDict, total=False):
+    commentThread: CommentThread
+
+@typing.type_check_only
 class InsertDateRequest(typing.TypedDict, total=False):
     dateElementProperties: DateElementProperties
     endOfSegmentLocation: EndOfSegmentLocation
     location: Location
+
+@typing.type_check_only
+class InsertDropdownRequest(typing.TypedDict, total=False):
+    dropdownDefinitionId: str
+    endOfSegmentLocation: EndOfSegmentLocation
+    location: Location
+    selectedOptionId: str
+
+@typing.type_check_only
+class InsertDropdownResponse(typing.TypedDict, total=False):
+    dropdown: Dropdown
 
 @typing.type_check_only
 class InsertInlineImageRequest(typing.TypedDict, total=False):
@@ -687,6 +825,7 @@ class ParagraphElement(typing.TypedDict, total=False):
     autoText: AutoText
     columnBreak: ColumnBreak
     dateElement: DateElement
+    dropdown: Dropdown
     endIndex: int
     equation: Equation
     footnoteReference: FootnoteReference
@@ -822,11 +961,48 @@ class PositionedObjectPropertiesSuggestionState(typing.TypedDict, total=False):
     positioningSuggestionState: PositionedObjectPositioningSuggestionState
 
 @typing.type_check_only
+class Post(typing.TypedDict, total=False):
+    assigneeEmail: str
+    author: PostAuthor
+    commentAction: typing.Literal[
+        "COMMENT_ACTION_TYPE_UNSPECIFIED",
+        "NO_COMMENT_ACTION_CHANGE",
+        "RESOLVE",
+        "REOPEN",
+    ]
+    content: str
+    contentHtml: str
+    createTime: str
+    deleted: bool
+    fromCopiedDocument: bool
+    fromDocumentComparison: bool
+    fromImportedDocument: bool
+    postId: str
+    suggestionAction: typing.Literal[
+        "SUGGESTION_ACTION_TYPE_UNSPECIFIED",
+        "NO_SUGGESTION_ACTION_CHANGE",
+        "ACCEPT",
+        "REJECT",
+    ]
+    updateTime: str
+
+@typing.type_check_only
+class PostAuthor(typing.TypedDict, total=False):
+    anonymous: bool
+    displayName: str
+    me: bool
+    user: str
+
+@typing.type_check_only
 class Range(typing.TypedDict, total=False):
     endIndex: int
     segmentId: str
     startIndex: int
     tabId: str
+
+@typing.type_check_only
+class RejectSuggestionRequest(typing.TypedDict, total=False):
+    suggestionId: str
 
 @typing.type_check_only
 class ReplaceAllTextRequest(typing.TypedDict, total=False):
@@ -856,22 +1032,31 @@ class ReplaceNamedRangeContentRequest(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class Request(typing.TypedDict, total=False):
+    acceptSuggestion: AcceptSuggestionRequest
+    addCommentReply: AddCommentReplyRequest
     addDocumentTab: AddDocumentTabRequest
+    createDropdownDefinition: CreateDropdownDefinitionRequest
     createFooter: CreateFooterRequest
     createFootnote: CreateFootnoteRequest
     createHeader: CreateHeaderRequest
     createNamedRange: CreateNamedRangeRequest
     createParagraphBullets: CreateParagraphBulletsRequest
+    deleteComment: DeleteCommentRequest
+    deleteCommentReply: DeleteCommentReplyRequest
     deleteContentRange: DeleteContentRangeRequest
+    deleteDropdownDefinition: DeleteDropdownDefinitionRequest
     deleteFooter: DeleteFooterRequest
     deleteHeader: DeleteHeaderRequest
     deleteNamedRange: DeleteNamedRangeRequest
     deleteParagraphBullets: DeleteParagraphBulletsRequest
     deletePositionedObject: DeletePositionedObjectRequest
+    deleteSuggestion: DeleteSuggestionRequest
     deleteTab: DeleteTabRequest
     deleteTableColumn: DeleteTableColumnRequest
     deleteTableRow: DeleteTableRowRequest
+    insertComment: InsertCommentRequest
     insertDate: InsertDateRequest
+    insertDropdown: InsertDropdownRequest
     insertInlineImage: InsertInlineImageRequest
     insertPageBreak: InsertPageBreakRequest
     insertPerson: InsertPersonRequest
@@ -883,12 +1068,16 @@ class Request(typing.TypedDict, total=False):
     insertText: InsertTextRequest
     mergeTableCells: MergeTableCellsRequest
     pinTableHeaderRows: PinTableHeaderRowsRequest
+    rejectSuggestion: RejectSuggestionRequest
     replaceAllText: ReplaceAllTextRequest
     replaceImage: ReplaceImageRequest
     replaceNamedRangeContent: ReplaceNamedRangeContentRequest
     unmergeTableCells: UnmergeTableCellsRequest
+    updateCommentPost: UpdateCommentPostRequest
     updateDocumentStyle: UpdateDocumentStyleRequest
     updateDocumentTabProperties: UpdateDocumentTabPropertiesRequest
+    updateDropdownDefinitionProperties: UpdateDropdownDefinitionPropertiesRequest
+    updateDropdownProperties: UpdateDropdownPropertiesRequest
     updateNamedStyle: UpdateNamedStyleRequest
     updateParagraphStyle: UpdateParagraphStyleRequest
     updateSectionStyle: UpdateSectionStyleRequest
@@ -899,11 +1088,15 @@ class Request(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class Response(typing.TypedDict, total=False):
+    addCommentReply: AddCommentReplyResponse
     addDocumentTab: AddDocumentTabResponse
+    createDropdownDefinition: CreateDropdownDefinitionResponse
     createFooter: CreateFooterResponse
     createFootnote: CreateFootnoteResponse
     createHeader: CreateHeaderResponse
     createNamedRange: CreateNamedRangeResponse
+    insertComment: InsertCommentResponse
+    insertDropdown: InsertDropdownResponse
     insertInlineImage: InsertInlineImageResponse
     insertInlineSheetsChart: InsertInlineSheetsChartResponse
     replaceAllText: ReplaceAllTextResponse
@@ -1025,6 +1218,18 @@ class SuggestedDocumentStyle(typing.TypedDict, total=False):
     documentStyleSuggestionState: DocumentStyleSuggestionState
 
 @typing.type_check_only
+class SuggestedDropdownDefinitionProperties(typing.TypedDict, total=False):
+    dropdownDefinitionProperties: DropdownDefinitionProperties
+    dropdownDefinitionPropertiesSuggestionState: (
+        DropdownDefinitionPropertiesSuggestionState
+    )
+
+@typing.type_check_only
+class SuggestedDropdownProperties(typing.TypedDict, total=False):
+    dropdownProperties: DropdownProperties
+    dropdownPropertiesSuggestionState: DropdownPropertiesSuggestionState
+
+@typing.type_check_only
 class SuggestedInlineObjectProperties(typing.TypedDict, total=False):
     inlineObjectProperties: InlineObjectProperties
     inlineObjectPropertiesSuggestionState: InlineObjectPropertiesSuggestionState
@@ -1063,6 +1268,23 @@ class SuggestedTableRowStyle(typing.TypedDict, total=False):
 class SuggestedTextStyle(typing.TypedDict, total=False):
     textStyle: TextStyle
     textStyleSuggestionState: TextStyleSuggestionState
+
+@typing.type_check_only
+class SuggestionResponse(typing.TypedDict, total=False):
+    acceptedSuggestionIds: _list[str]
+    createdSuggestionIds: _list[str]
+    deletedSuggestionIds: _list[str]
+    rejectedSuggestionIds: _list[str]
+    updatedSummarySuggestionIds: _list[str]
+
+@typing.type_check_only
+class SuggestionThread(typing.TypedDict, total=False):
+    headPost: Post
+    replies: _list[Post]
+    status: typing.Literal["STATUS_UNSPECIFIED", "OPEN", "ACCEPTED", "REJECTED"]
+    suggestionId: str
+    summaryHtml: str
+    summaryText: str
 
 @typing.type_check_only
 class Tab(typing.TypedDict, total=False):
@@ -1243,6 +1465,13 @@ class UnmergeTableCellsRequest(typing.TypedDict, total=False):
     tableRange: TableRange
 
 @typing.type_check_only
+class UpdateCommentPostRequest(typing.TypedDict, total=False):
+    commentId: str
+    content: str
+    postId: str
+    suggestionId: str
+
+@typing.type_check_only
 class UpdateDocumentStyleRequest(typing.TypedDict, total=False):
     documentStyle: DocumentStyle
     fields: str
@@ -1252,6 +1481,21 @@ class UpdateDocumentStyleRequest(typing.TypedDict, total=False):
 class UpdateDocumentTabPropertiesRequest(typing.TypedDict, total=False):
     fields: str
     tabProperties: TabProperties
+
+@typing.type_check_only
+class UpdateDropdownDefinitionPropertiesRequest(typing.TypedDict, total=False):
+    dropdownDefinitionId: str
+    dropdownDefinitionProperties: DropdownDefinitionProperties
+    fields: str
+    selectedOptionIdReplacements: dict[str, typing.Any]
+    tabId: str
+
+@typing.type_check_only
+class UpdateDropdownPropertiesRequest(typing.TypedDict, total=False):
+    dropdownId: str
+    dropdownProperties: DropdownProperties
+    fields: str
+    tabId: str
 
 @typing.type_check_only
 class UpdateNamedStyleRequest(typing.TypedDict, total=False):
@@ -1307,3 +1551,4 @@ class WeightedFontFamily(typing.TypedDict, total=False):
 class WriteControl(typing.TypedDict, total=False):
     requiredRevisionId: str
     targetRevisionId: str
+    writeMode: typing.Literal["WRITE_MODE_UNSPECIFIED", "EDIT", "SUGGEST"]
