@@ -350,6 +350,11 @@ class Link(typing.TypedDict, total=False):
     url: str
 
 @typing.type_check_only
+class ListAddOnAttachmentStudentSubmissionsResponse(typing.TypedDict, total=False):
+    addOnAttachmentStudentSubmissions: _list[AddOnAttachmentStudentSubmission]
+    nextPageToken: str
+
+@typing.type_check_only
 class ListAddOnAttachmentsResponse(typing.TypedDict, total=False):
     addOnAttachments: _list[AddOnAttachment]
     nextPageToken: str

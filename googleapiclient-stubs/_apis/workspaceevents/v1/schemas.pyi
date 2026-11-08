@@ -3,60 +3,13 @@ import typing
 _list = list
 
 @typing.type_check_only
-class Artifact(typing.TypedDict, total=False):
-    artifactId: str
-    description: str
-    extensions: _list[str]
-    metadata: dict[str, typing.Any]
-    name: str
-    parts: _list[Part]
-
-@typing.type_check_only
-class AuthenticationInfo(typing.TypedDict, total=False):
-    credentials: str
-    schemes: _list[str]
-
-@typing.type_check_only
-class CancelTaskRequest(typing.TypedDict, total=False):
-    tenant: str
-
-@typing.type_check_only
-class DataPart(typing.TypedDict, total=False):
-    data: dict[str, typing.Any]
-
-@typing.type_check_only
 class DriveOptions(typing.TypedDict, total=False):
     includeDescendants: bool
-
-@typing.type_check_only
-class Empty(typing.TypedDict, total=False): ...
-
-@typing.type_check_only
-class FilePart(typing.TypedDict, total=False):
-    fileWithBytes: str
-    fileWithUri: str
-    mimeType: str
-    name: str
 
 @typing.type_check_only
 class ListSubscriptionsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     subscriptions: _list[Subscription]
-
-@typing.type_check_only
-class ListTaskPushNotificationConfigResponse(typing.TypedDict, total=False):
-    configs: _list[TaskPushNotificationConfig]
-    nextPageToken: str
-
-@typing.type_check_only
-class Message(typing.TypedDict, total=False):
-    content: _list[Part]
-    contextId: str
-    extensions: _list[str]
-    messageId: str
-    metadata: dict[str, typing.Any]
-    role: typing.Literal["ROLE_UNSPECIFIED", "ROLE_USER", "ROLE_AGENT"]
-    taskId: str
 
 @typing.type_check_only
 class NotificationEndpoint(typing.TypedDict, total=False):
@@ -71,53 +24,18 @@ class Operation(typing.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
-class Part(typing.TypedDict, total=False):
-    data: DataPart
-    file: FilePart
-    metadata: dict[str, typing.Any]
-    text: str
-
-@typing.type_check_only
 class PayloadOptions(typing.TypedDict, total=False):
     fieldMask: str
     includeResource: bool
 
 @typing.type_check_only
-class PushNotificationConfig(typing.TypedDict, total=False):
-    authentication: AuthenticationInfo
-    id: str
-    token: str
-    url: str
-
-@typing.type_check_only
 class ReactivateSubscriptionRequest(typing.TypedDict, total=False): ...
-
-@typing.type_check_only
-class SendMessageConfiguration(typing.TypedDict, total=False):
-    acceptedOutputModes: _list[str]
-    blocking: bool
-    historyLength: int
-    pushNotification: PushNotificationConfig
-
-@typing.type_check_only
-class SendMessageRequest(typing.TypedDict, total=False):
-    configuration: SendMessageConfiguration
-    message: Message
-    metadata: dict[str, typing.Any]
-    tenant: str
 
 @typing.type_check_only
 class Status(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
-
-@typing.type_check_only
-class StreamResponse(typing.TypedDict, total=False):
-    artifactUpdate: TaskArtifactUpdateEvent
-    message: Message
-    statusUpdate: TaskStatusUpdateEvent
-    task: Task
 
 @typing.type_check_only
 class Subscription(typing.TypedDict, total=False):
@@ -150,50 +68,3 @@ class Subscription(typing.TypedDict, total=False):
     uid: str
     updateTime: str
     userAuthority: str
-
-@typing.type_check_only
-class Task(typing.TypedDict, total=False):
-    artifacts: _list[Artifact]
-    contextId: str
-    history: _list[Message]
-    id: str
-    metadata: dict[str, typing.Any]
-    status: TaskStatus
-
-@typing.type_check_only
-class TaskArtifactUpdateEvent(typing.TypedDict, total=False):
-    append: bool
-    artifact: Artifact
-    contextId: str
-    lastChunk: bool
-    metadata: dict[str, typing.Any]
-    taskId: str
-
-@typing.type_check_only
-class TaskPushNotificationConfig(typing.TypedDict, total=False):
-    name: str
-    pushNotificationConfig: PushNotificationConfig
-
-@typing.type_check_only
-class TaskStatus(typing.TypedDict, total=False):
-    message: Message
-    state: typing.Literal[
-        "TASK_STATE_UNSPECIFIED",
-        "TASK_STATE_SUBMITTED",
-        "TASK_STATE_WORKING",
-        "TASK_STATE_COMPLETED",
-        "TASK_STATE_FAILED",
-        "TASK_STATE_CANCELLED",
-        "TASK_STATE_INPUT_REQUIRED",
-        "TASK_STATE_REJECTED",
-        "TASK_STATE_AUTH_REQUIRED",
-    ]
-    timestamp: str
-
-@typing.type_check_only
-class TaskStatusUpdateEvent(typing.TypedDict, total=False):
-    contextId: str
-    final: bool
-    metadata: dict[str, typing.Any]
-    status: TaskStatus
-    taskId: str

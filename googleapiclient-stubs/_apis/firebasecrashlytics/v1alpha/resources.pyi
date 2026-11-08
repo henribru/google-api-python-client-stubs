@@ -30,6 +30,7 @@ class FirebaseCrashlyticsResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
+                    filterExpression: str | None = ...,
                     filter_browser_displayNames: str | _list[str] | None = ...,
                     filter_device_displayNames: str | _list[str] | None = ...,
                     filter_device_formFactors: typing.Literal[
@@ -156,6 +157,7 @@ class FirebaseCrashlyticsResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
+                    filterExpression: str | None = ...,
                     filter_browser_displayNames: str | _list[str] | None = ...,
                     filter_device_displayNames: str | _list[str] | None = ...,
                     filter_device_formFactors: typing.Literal[
@@ -228,15 +230,36 @@ class FirebaseCrashlyticsResource(googleapiclient.discovery.Resource):
                         "TIME_GRANULARITY_DAY",
                     ]
                     | None = ...,
+                    metricsMode: typing.Literal[
+                        "METRICS_MODE_UNSPECIFIED",
+                        "METRICS_MODE_OBSERVED",
+                        "METRICS_MODE_EXTRAPOLATED",
+                    ]
+                    | None = ...,
                     pageSize: int | None = ...,
                     pageToken: str | None = ...,
+                    view: typing.Literal[
+                        "REPORT_VIEW_UNSPECIFIED",
+                        "REPORT_VIEW_BASIC",
+                        "REPORT_VIEW_FULL",
+                    ]
+                    | None = ...,
                     **kwargs: typing.Any,
                 ) -> ReportHttpRequest: ...
                 def get_next(
                     self, previous_request: ReportHttpRequest, previous_response: Report
                 ) -> ReportHttpRequest | None: ...
                 def list(
-                    self, *, parent: str, **kwargs: typing.Any
+                    self,
+                    *,
+                    parent: str,
+                    view: typing.Literal[
+                        "REPORT_VIEW_UNSPECIFIED",
+                        "REPORT_VIEW_BASIC",
+                        "REPORT_VIEW_FULL",
+                    ]
+                    | None = ...,
+                    **kwargs: typing.Any,
                 ) -> ListReportsResponseHttpRequest: ...
 
             @typing.type_check_only
@@ -245,6 +268,13 @@ class FirebaseCrashlyticsResource(googleapiclient.discovery.Resource):
                     self, *, name: str, **kwargs: typing.Any
                 ) -> DeleteUserCrashReportsResponseHttpRequest: ...
 
+            def generateAlertPolicy(
+                self,
+                *,
+                name: str,
+                body: GenerateAlertPolicyRequest,
+                **kwargs: typing.Any,
+            ) -> GenerateAlertPolicyResponseHttpRequest: ...
             def events(self) -> EventsResource: ...
             def issues(self) -> IssuesResource: ...
             def reports(self) -> ReportsResource: ...
@@ -297,6 +327,14 @@ class EmptyHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Empty: ...
+
+@typing.type_check_only
+class GenerateAlertPolicyResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GenerateAlertPolicyResponse: ...
 
 @typing.type_check_only
 class IssueHttpRequest(googleapiclient.http.HttpRequest):

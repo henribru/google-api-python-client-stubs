@@ -331,6 +331,34 @@ class ExploitPredictionScoringSystem(typing.TypedDict, total=False):
     score: float
 
 @typing.type_check_only
+class Exploitability(typing.TypedDict, total=False):
+    signals: _list[ExploitabilitySignal]
+    summary: ExploitabilitySummary
+
+@typing.type_check_only
+class ExploitabilitySignal(typing.TypedDict, total=False):
+    rationale: str
+    source: str
+    vexJustification: typing.Literal[
+        "JUSTIFICATION_TYPE_UNSPECIFIED",
+        "COMPONENT_NOT_PRESENT",
+        "VULNERABLE_CODE_NOT_PRESENT",
+        "VULNERABLE_CODE_NOT_IN_EXECUTE_PATH",
+        "VULNERABLE_CODE_CANNOT_BE_CONTROLLED_BY_ADVERSARY",
+        "INLINE_MITIGATIONS_ALREADY_EXIST",
+    ]
+    vexStatus: typing.Literal[
+        "STATE_UNSPECIFIED", "AFFECTED", "NOT_AFFECTED", "FIXED", "UNDER_INVESTIGATION"
+    ]
+
+@typing.type_check_only
+class ExploitabilitySummary(typing.TypedDict, total=False):
+    rationale: str
+    vexStatus: typing.Literal[
+        "STATE_UNSPECIFIED", "AFFECTED", "NOT_AFFECTED", "FIXED", "UNDER_INVESTIGATION"
+    ]
+
+@typing.type_check_only
 class File(typing.TypedDict, total=False):
     digest: dict[str, typing.Any]
     name: str
@@ -507,7 +535,13 @@ class Layer(typing.TypedDict, total=False):
     directive: str
 
 @typing.type_check_only
+class LayerAttribute(typing.TypedDict, total=False):
+    plugin: str
+    value: str
+
+@typing.type_check_only
 class LayerDetails(typing.TypedDict, total=False):
+    attributes: _list[LayerAttribute]
     baseImages: _list[BaseImage]
     chainId: str
     command: str
@@ -546,7 +580,9 @@ class Maintainer(typing.TypedDict, total=False):
 @typing.type_check_only
 class MaliciousContentLLMResult(typing.TypedDict, total=False):
     maxSeverity: typing.Literal["SEVERITY_UNSPECIFIED", "CRITICAL", "HIGH"]
+    modelId: str
     scanStatus: typing.Literal["SCAN_STATUS_UNSPECIFIED", "PERFORMED", "NOT_PERFORMED"]
+    tokenUsage: TokenUsage
 
 @typing.type_check_only
 class MaliciousContentStaticResult(typing.TypedDict, total=False):
@@ -669,6 +705,7 @@ class PackageIssue(typing.TypedDict, total=False):
     effectiveSeverity: typing.Literal[
         "SEVERITY_UNSPECIFIED", "MINIMAL", "LOW", "MEDIUM", "HIGH", "CRITICAL"
     ]
+    exploitability: Exploitability
     fileLocation: _list[GrafeasV1FileLocation]
     fixAvailable: bool
     fixedCpeUri: str
@@ -905,6 +942,14 @@ class Subject(typing.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
+class TokenUsage(typing.TypedDict, total=False):
+    cacheCount: str
+    candidateCount: str
+    promptCount: str
+    thinkingCount: str
+    toolUsePromptCount: str
+
+@typing.type_check_only
 class UpgradeDistribution(typing.TypedDict, total=False):
     classification: str
     cpeUri: str
@@ -952,6 +997,7 @@ class VulnerabilityOccurrence(typing.TypedDict, total=False):
     effectiveSeverity: typing.Literal[
         "SEVERITY_UNSPECIFIED", "MINIMAL", "LOW", "MEDIUM", "HIGH", "CRITICAL"
     ]
+    exploitability: Exploitability
     extraDetails: str
     fixAvailable: bool
     longDescription: str

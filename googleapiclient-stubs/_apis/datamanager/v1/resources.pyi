@@ -225,6 +225,15 @@ class DataManagerResource(googleapiclient.discovery.Resource):
             self, *, requestId: str | None = ..., **kwargs: typing.Any
         ) -> RetrieveRequestStatusResponseHttpRequest: ...
 
+    @typing.type_check_only
+    class UsersResource(googleapiclient.discovery.Resource):
+        def ingest(
+            self, *, body: IngestUsersRequest, **kwargs: typing.Any
+        ) -> IngestUsersResponseHttpRequest: ...
+        def remove(
+            self, *, body: RemoveUsersRequest, **kwargs: typing.Any
+        ) -> RemoveUsersResponseHttpRequest: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[
@@ -242,6 +251,7 @@ class DataManagerResource(googleapiclient.discovery.Resource):
     def audienceMembers(self) -> AudienceMembersResource: ...
     def events(self) -> EventsResource: ...
     def requestStatus(self) -> RequestStatusResource: ...
+    def users(self) -> UsersResource: ...
 
 @typing.type_check_only
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):
@@ -274,6 +284,14 @@ class IngestEventsResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> IngestEventsResponse: ...
+
+@typing.type_check_only
+class IngestUsersResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> IngestUsersResponse: ...
 
 @typing.type_check_only
 class ListUserListDirectLicensesResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -332,6 +350,14 @@ class RemoveAudienceMembersResponseHttpRequest(googleapiclient.http.HttpRequest)
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> RemoveAudienceMembersResponse: ...
+
+@typing.type_check_only
+class RemoveUsersResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> RemoveUsersResponse: ...
 
 @typing.type_check_only
 class RetrieveInsightsResponseHttpRequest(googleapiclient.http.HttpRequest):

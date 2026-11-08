@@ -139,6 +139,52 @@ class ChromeManagementResource(googleapiclient.discovery.Resource):
             def operations(self) -> OperationsResource: ...
 
         @typing.type_check_only
+        class ChromeBrowsersResource(googleapiclient.discovery.Resource):
+            def delete(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleProtobufEmptyHttpRequest: ...
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleChromeManagementVersionsV1ChromeBrowserHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                filter: str | None = ...,
+                orderBy: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
+                **kwargs: typing.Any,
+            ) -> (
+                GoogleChromeManagementVersionsV1ListChromeBrowsersResponseHttpRequest
+            ): ...
+            def list_next(
+                self,
+                previous_request: GoogleChromeManagementVersionsV1ListChromeBrowsersResponseHttpRequest,
+                previous_response: GoogleChromeManagementVersionsV1ListChromeBrowsersResponse,
+            ) -> (
+                GoogleChromeManagementVersionsV1ListChromeBrowsersResponseHttpRequest
+                | None
+            ): ...
+            def move(
+                self,
+                *,
+                parent: str,
+                body: GoogleChromeManagementVersionsV1MoveChromeBrowsersRequest,
+                **kwargs: typing.Any,
+            ) -> (
+                GoogleChromeManagementVersionsV1MoveChromeBrowsersResponseHttpRequest
+            ): ...
+            def patch(
+                self,
+                *,
+                name: str,
+                body: GoogleChromeManagementVersionsV1ChromeBrowser,
+                updateMask: str | None = ...,
+                **kwargs: typing.Any,
+            ) -> GoogleChromeManagementVersionsV1ChromeBrowserHttpRequest: ...
+
+        @typing.type_check_only
         class ConnectorConfigsResource(googleapiclient.discovery.Resource):
             def create(
                 self,
@@ -180,6 +226,46 @@ class ChromeManagementResource(googleapiclient.discovery.Resource):
                 updateMask: str | None = ...,
                 **kwargs: typing.Any,
             ) -> GoogleChromeManagementVersionsV1ConnectorConfigHttpRequest: ...
+
+        @typing.type_check_only
+        class EnrollmentTokensResource(googleapiclient.discovery.Resource):
+            def create(
+                self,
+                *,
+                parent: str,
+                body: GoogleChromeManagementVersionsV1EnrollmentToken,
+                enrollmentTokenId: str | None = ...,
+                **kwargs: typing.Any,
+            ) -> GoogleChromeManagementVersionsV1EnrollmentTokenHttpRequest: ...
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleChromeManagementVersionsV1EnrollmentTokenHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                filter: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
+                **kwargs: typing.Any,
+            ) -> (
+                GoogleChromeManagementVersionsV1ListEnrollmentTokensResponseHttpRequest
+            ): ...
+            def list_next(
+                self,
+                previous_request: GoogleChromeManagementVersionsV1ListEnrollmentTokensResponseHttpRequest,
+                previous_response: GoogleChromeManagementVersionsV1ListEnrollmentTokensResponse,
+            ) -> (
+                GoogleChromeManagementVersionsV1ListEnrollmentTokensResponseHttpRequest
+                | None
+            ): ...
+            def revoke(
+                self,
+                *,
+                name: str,
+                body: GoogleChromeManagementVersionsV1RevokeEnrollmentTokenRequest,
+                **kwargs: typing.Any,
+            ) -> GoogleChromeManagementVersionsV1EnrollmentTokenHttpRequest: ...
 
         @typing.type_check_only
         class EnterpriseResource(googleapiclient.discovery.Resource):
@@ -607,6 +693,59 @@ class ChromeManagementResource(googleapiclient.discovery.Resource):
                 GoogleChromeManagementV1FindInstalledAppProfilesResponseHttpRequest
                 | None
             ): ...
+            def findSaasUsage(
+                self,
+                *,
+                customer: str,
+                filter: str | None = ...,
+                orderBy: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
+                **kwargs: typing.Any,
+            ) -> GoogleChromeManagementV1FindSaasUsageReportsResponseHttpRequest: ...
+            def findSaasUsage_next(
+                self,
+                previous_request: GoogleChromeManagementV1FindSaasUsageReportsResponseHttpRequest,
+                previous_response: GoogleChromeManagementV1FindSaasUsageReportsResponse,
+            ) -> (
+                GoogleChromeManagementV1FindSaasUsageReportsResponseHttpRequest | None
+            ): ...
+            def findSaasUsageBrowsers(
+                self,
+                *,
+                customer: str,
+                app: str | None = ...,
+                filter: str | None = ...,
+                orderBy: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
+                **kwargs: typing.Any,
+            ) -> GoogleChromeManagementV1FindSaasUsageBrowsersResponseHttpRequest: ...
+            def findSaasUsageBrowsers_next(
+                self,
+                previous_request: GoogleChromeManagementV1FindSaasUsageBrowsersResponseHttpRequest,
+                previous_response: GoogleChromeManagementV1FindSaasUsageBrowsersResponse,
+            ) -> (
+                GoogleChromeManagementV1FindSaasUsageBrowsersResponseHttpRequest | None
+            ): ...
+            def findSaasUsageProfiles(
+                self,
+                *,
+                customer: str,
+                app: str | None = ...,
+                filter: str | None = ...,
+                orderBy: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
+                **kwargs: typing.Any,
+            ) -> GoogleChromeManagementV1FindSaasUsageProfilesResponseHttpRequest: ...
+            def findSaasUsageProfiles_next(
+                self,
+                previous_request: GoogleChromeManagementV1FindSaasUsageProfilesResponseHttpRequest,
+                previous_response: GoogleChromeManagementV1FindSaasUsageProfilesResponse,
+            ) -> (
+                GoogleChromeManagementV1FindSaasUsageProfilesResponseHttpRequest | None
+            ): ...
 
         @typing.type_check_only
         class TelemetryResource(googleapiclient.discovery.Resource):
@@ -728,7 +867,9 @@ class ChromeManagementResource(googleapiclient.discovery.Resource):
         def certificateProvisioningProcesses(
             self,
         ) -> CertificateProvisioningProcessesResource: ...
+        def chromeBrowsers(self) -> ChromeBrowsersResource: ...
         def connectorConfigs(self) -> ConnectorConfigsResource: ...
+        def enrollmentTokens(self) -> EnrollmentTokensResource: ...
         def enterprise(self) -> EnterpriseResource: ...
         def profiles(self) -> ProfilesResource: ...
         def reports(self) -> ReportsResource: ...
@@ -979,6 +1120,36 @@ class GoogleChromeManagementV1FindInstalledAppProfilesResponseHttpRequest(
     ) -> GoogleChromeManagementV1FindInstalledAppProfilesResponse: ...
 
 @typing.type_check_only
+class GoogleChromeManagementV1FindSaasUsageBrowsersResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleChromeManagementV1FindSaasUsageBrowsersResponse: ...
+
+@typing.type_check_only
+class GoogleChromeManagementV1FindSaasUsageProfilesResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleChromeManagementV1FindSaasUsageProfilesResponse: ...
+
+@typing.type_check_only
+class GoogleChromeManagementV1FindSaasUsageReportsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleChromeManagementV1FindSaasUsageReportsResponse: ...
+
+@typing.type_check_only
 class GoogleChromeManagementV1ListTelemetryDevicesResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -1069,6 +1240,16 @@ class GoogleChromeManagementVersionsV1CheckEnablementStatusResponseHttpRequest(
     ) -> GoogleChromeManagementVersionsV1CheckEnablementStatusResponse: ...
 
 @typing.type_check_only
+class GoogleChromeManagementVersionsV1ChromeBrowserHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleChromeManagementVersionsV1ChromeBrowser: ...
+
+@typing.type_check_only
 class GoogleChromeManagementVersionsV1ChromeBrowserProfileHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -1131,6 +1312,16 @@ class GoogleChromeManagementVersionsV1EnableInsightsResponseHttpRequest(
     ) -> GoogleChromeManagementVersionsV1EnableInsightsResponse: ...
 
 @typing.type_check_only
+class GoogleChromeManagementVersionsV1EnrollmentTokenHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleChromeManagementVersionsV1EnrollmentToken: ...
+
+@typing.type_check_only
 class GoogleChromeManagementVersionsV1ListChromeBrowserProfileCommandsResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -1151,6 +1342,16 @@ class GoogleChromeManagementVersionsV1ListChromeBrowserProfilesResponseHttpReque
     ) -> GoogleChromeManagementVersionsV1ListChromeBrowserProfilesResponse: ...
 
 @typing.type_check_only
+class GoogleChromeManagementVersionsV1ListChromeBrowsersResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleChromeManagementVersionsV1ListChromeBrowsersResponse: ...
+
+@typing.type_check_only
 class GoogleChromeManagementVersionsV1ListConnectorConfigsResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -1159,6 +1360,26 @@ class GoogleChromeManagementVersionsV1ListConnectorConfigsResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleChromeManagementVersionsV1ListConnectorConfigsResponse: ...
+
+@typing.type_check_only
+class GoogleChromeManagementVersionsV1ListEnrollmentTokensResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleChromeManagementVersionsV1ListEnrollmentTokensResponse: ...
+
+@typing.type_check_only
+class GoogleChromeManagementVersionsV1MoveChromeBrowsersResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleChromeManagementVersionsV1MoveChromeBrowsersResponse: ...
 
 @typing.type_check_only
 class GoogleChromeManagementVersionsV1MoveThirdPartyProfileUserResponseHttpRequest(

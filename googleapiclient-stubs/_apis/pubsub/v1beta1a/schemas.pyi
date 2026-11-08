@@ -48,9 +48,18 @@ class PublishBatchResponse(typing.TypedDict, total=False):
     messageIds: _list[str]
 
 @typing.type_check_only
+class PublishOperation(typing.TypedDict, total=False):
+    hedgedAttemptCount: int
+    publishStartTime: str
+
+@typing.type_check_only
 class PublishRequest(typing.TypedDict, total=False):
     message: PubsubMessage
     topic: str
+
+@typing.type_check_only
+class PubsubClientTelemetry(typing.TypedDict, total=False):
+    publishOperation: PublishOperation
 
 @typing.type_check_only
 class PubsubEvent(typing.TypedDict, total=False):

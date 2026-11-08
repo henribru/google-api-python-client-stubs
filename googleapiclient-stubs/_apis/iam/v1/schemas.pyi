@@ -333,6 +333,7 @@ class OauthClientCredential(typing.TypedDict, total=False):
 @typing.type_check_only
 class Oidc(typing.TypedDict, total=False):
     allowedAudiences: _list[str]
+    discoveryUri: str
     issuerUri: str
     jwksJson: str
 
@@ -429,6 +430,9 @@ class ReconciliationOperationMetadata(typing.TypedDict, total=False):
 @typing.type_check_only
 class RemoveAttestationRuleRequest(typing.TypedDict, total=False):
     attestationRule: AttestationRule
+
+@typing.type_check_only
+class RevokeWorkforcePoolSubjectSessionsRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
 class Role(typing.TypedDict, total=False):
@@ -615,8 +619,22 @@ class WorkforcePoolProvider(typing.TypedDict, total=False):
     name: str
     oidc: GoogleIamAdminV1WorkforcePoolProviderOidc
     saml: GoogleIamAdminV1WorkforcePoolProviderSaml
-    scimUsage: typing.Literal["SCIM_USAGE_UNSPECIFIED", "ENABLED_FOR_GROUPS"]
+    scimUsage: typing.Literal[
+        "SCIM_USAGE_UNSPECIFIED", "ENABLED_FOR_GROUPS", "ENABLED_FOR_USERS_GROUPS"
+    ]
     state: typing.Literal["STATE_UNSPECIFIED", "ACTIVE", "DELETED"]
+    vendorType: typing.Literal[
+        "VENDOR_TYPE_UNSPECIFIED",
+        "ENTRA_ID",
+        "OKTA",
+        "PING_FEDERATE",
+        "ADFS",
+        "KEYCLOAK",
+        "FORGE_ROCK",
+        "JUMP_CLOUD",
+        "ONE_LOGIN",
+        "GENERIC",
+    ]
 
 @typing.type_check_only
 class WorkforcePoolProviderKey(typing.TypedDict, total=False):
@@ -680,6 +698,7 @@ class WorkloadIdentityPoolOperationMetadata(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
 class WorkloadIdentityPoolProvider(typing.TypedDict, total=False):
+    actorProviders: _list[str]
     attributeCondition: str
     attributeMapping: dict[str, typing.Any]
     aws: Aws

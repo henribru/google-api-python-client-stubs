@@ -208,6 +208,48 @@ class DatabaseMigrationServiceResource(googleapiclient.discovery.Resource):
                     previous_request: DescribeDatabaseEntitiesResponseHttpRequest,
                     previous_response: DescribeDatabaseEntitiesResponse,
                 ) -> DescribeDatabaseEntitiesResponseHttpRequest | None: ...
+                def fetchEntitiesStatusView(
+                    self,
+                    *,
+                    conversionWorkspace: str,
+                    fetchView: typing.Literal[
+                        "FETCH_VIEW_UNSPECIFIED",
+                        "FULL",
+                        "SUMMARY",
+                        "FULL_WITH_DEPENDENCIES",
+                    ]
+                    | None = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    tree: typing.Literal[
+                        "DB_TREE_TYPE_UNSPECIFIED", "SOURCE_TREE", "DRAFT_TREE"
+                    ]
+                    | None = ...,
+                    **kwargs: typing.Any,
+                ) -> FetchEntitiesStatusViewResponseHttpRequest: ...
+                def fetchEntitiesStatusView_next(
+                    self,
+                    previous_request: FetchEntitiesStatusViewResponseHttpRequest,
+                    previous_response: FetchEntitiesStatusViewResponse,
+                ) -> FetchEntitiesStatusViewResponseHttpRequest | None: ...
+                def fetchIssues(
+                    self,
+                    *,
+                    conversionWorkspace: str,
+                    allIssues: bool | None = ...,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    tree: typing.Literal["DB_TREE_TYPE_UNSPECIFIED", "SOURCE", "DRAFT"]
+                    | None = ...,
+                    **kwargs: typing.Any,
+                ) -> FetchIssuesResponseHttpRequest: ...
+                def fetchIssues_next(
+                    self,
+                    previous_request: FetchIssuesResponseHttpRequest,
+                    previous_response: FetchIssuesResponse,
+                ) -> FetchIssuesResponseHttpRequest | None: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> ConversionWorkspaceHttpRequest: ...
@@ -264,6 +306,13 @@ class DatabaseMigrationServiceResource(googleapiclient.discovery.Resource):
                     body: SeedConversionWorkspaceRequest,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
+                def setDraftEntityDdl(
+                    self,
+                    *,
+                    conversionWorkspace: str,
+                    body: SetDraftEntityDdlRequest,
+                    **kwargs: typing.Any,
+                ) -> SetDraftEntityDdlResponseHttpRequest: ...
                 def setIamPolicy(
                     self,
                     *,
@@ -650,6 +699,22 @@ class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     ) -> Empty: ...
 
 @typing.type_check_only
+class FetchEntitiesStatusViewResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> FetchEntitiesStatusViewResponse: ...
+
+@typing.type_check_only
+class FetchIssuesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> FetchIssuesResponse: ...
+
+@typing.type_check_only
 class FetchStaticIpsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -784,6 +849,14 @@ class SearchBackgroundJobsResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> SearchBackgroundJobsResponse: ...
+
+@typing.type_check_only
+class SetDraftEntityDdlResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> SetDraftEntityDdlResponse: ...
 
 @typing.type_check_only
 class SshScriptHttpRequest(googleapiclient.http.HttpRequest):

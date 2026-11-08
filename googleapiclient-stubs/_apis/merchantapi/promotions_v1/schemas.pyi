@@ -71,6 +71,7 @@ class Attributes(typing.TypedDict, total=False):
             "VEHICLE_ADS",
             "CLOUD_RETAIL",
             "LOCAL_CLOUD_RETAIL",
+            "RENTAL_ADS",
         ]
     ]
     promotionDisplayTimePeriod: Interval
@@ -83,6 +84,7 @@ class Attributes(typing.TypedDict, total=False):
         "SIGNUP_FOR_EMAIL",
         "SIGNUP_FOR_TEXT",
         "CUSTOM",
+        "FORMS_OF_PAYMENT",
     ]
     regionIdInclusion: _list[str]
     storeApplicability: typing.Literal[
@@ -120,6 +122,7 @@ class DestinationStatus(typing.TypedDict, total=False):
         "PRODUCT_REVIEWS",
         "MERCHANT_REVIEWS",
         "YOUTUBE_CHECKOUT",
+        "RENTAL_ADS",
     ]
     status: typing.Literal[
         "STATE_UNSPECIFIED",
@@ -170,6 +173,7 @@ class ItemLevelIssue(typing.TypedDict, total=False):
         "PRODUCT_REVIEWS",
         "MERCHANT_REVIEWS",
         "YOUTUBE_CHECKOUT",
+        "RENTAL_ADS",
     ]
     resolution: str
     severity: typing.Literal[
@@ -212,6 +216,7 @@ class ProductChange(typing.TypedDict, total=False):
         "PRODUCT_REVIEWS",
         "MERCHANT_REVIEWS",
         "YOUTUBE_CHECKOUT",
+        "RENTAL_ADS",
     ]
 
 @typing.type_check_only

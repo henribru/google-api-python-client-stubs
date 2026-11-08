@@ -487,7 +487,6 @@ class PropertyValue(typing.TypedDict, total=False):
     durationValue: str
     intValue: str
     stringValue: str
-    timestampValue: str
 
 @typing.type_check_only
 class RecallToken(typing.TypedDict, total=False):

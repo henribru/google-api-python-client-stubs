@@ -3,6 +3,20 @@ import typing
 _list = list
 
 @typing.type_check_only
+class AdminAccessBinding(typing.TypedDict, total=False):
+    name: str
+    organizationRoles: _list[
+        typing.Literal[
+            "ORGANIZATION_ROLE_UNSPECIFIED",
+            "ORG_ADMIN_ROLE",
+            "USER_ADMIN_ROLE",
+            "BILLING_ADMIN_ROLE",
+        ]
+    ]
+    userEmail: str
+    userGroup: str
+
+@typing.type_check_only
 class AnalyticsAccountLink(typing.TypedDict, total=False):
     analyticsAccount: str
     displayName: str
@@ -44,6 +58,11 @@ class FindSalesPartnerManagedClientsResponse(typing.TypedDict, total=False):
     clientData: _list[ClientData]
 
 @typing.type_check_only
+class ListAdminAccessBindingsResponse(typing.TypedDict, total=False):
+    adminAccessBindings: _list[AdminAccessBinding]
+    nextPageToken: str
+
+@typing.type_check_only
 class ListAnalyticsAccountLinksResponse(typing.TypedDict, total=False):
     analyticsAccountLinks: _list[AnalyticsAccountLink]
     nextPageToken: str
@@ -52,6 +71,16 @@ class ListAnalyticsAccountLinksResponse(typing.TypedDict, total=False):
 class ListOrganizationsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     organizations: _list[Organization]
+
+@typing.type_check_only
+class ListUserGroupMembersResponse(typing.TypedDict, total=False):
+    nextPageToken: str
+    userGroupMembers: _list[UserGroupMember]
+
+@typing.type_check_only
+class ListUserGroupsResponse(typing.TypedDict, total=False):
+    nextPageToken: str
+    userGroups: _list[UserGroup]
 
 @typing.type_check_only
 class Money(typing.TypedDict, total=False):
@@ -103,3 +132,18 @@ class SetPropertyServiceLevelRequest(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class SetPropertyServiceLevelResponse(typing.TypedDict, total=False): ...
+
+@typing.type_check_only
+class UserGroup(typing.TypedDict, total=False):
+    description: str
+    displayName: str
+    name: str
+
+@typing.type_check_only
+class UserGroupMember(typing.TypedDict, total=False):
+    membershipRole: typing.Literal[
+        "MEMBERSHIP_ROLE_UNSPECIFIED", "MEMBERSHIP_ROLE_OWNER", "MEMBERSHIP_ROLE_MEMBER"
+    ]
+    name: str
+    userEmail: str
+    userGroup: str

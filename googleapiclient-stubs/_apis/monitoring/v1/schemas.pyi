@@ -590,6 +590,11 @@ class Tile(typing.TypedDict, total=False):
     yPos: int
 
 @typing.type_check_only
+class TimeRange(typing.TypedDict, total=False):
+    absoluteWindow: Interval
+    relativeDuration: str
+
+@typing.type_check_only
 class TimeSeriesFilter(typing.TypedDict, total=False):
     aggregation: Aggregation
     filter: str
@@ -675,6 +680,7 @@ class Widget(typing.TypedDict, total=False):
     sectionHeader: SectionHeader
     singleViewGroup: SingleViewGroup
     text: Text
+    timeRange: TimeRange
     timeSeriesTable: TimeSeriesTable
     title: str
     treemap: Treemap

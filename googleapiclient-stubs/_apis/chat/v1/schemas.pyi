@@ -10,6 +10,7 @@ class AccessPermissionSetting(typing.TypedDict, total=False):
 class AccessPermissionSettings(typing.TypedDict, total=False):
     discoverSpaceSetting: AccessPermissionSetting
     joinSpaceSetting: AccessPermissionSetting
+    viewSpaceMembershipSetting: AccessPermissionSetting
 
 @typing.type_check_only
 class AccessSettings(typing.TypedDict, total=False):
@@ -156,6 +157,7 @@ class CardHeader(typing.TypedDict, total=False):
 class CardWithId(typing.TypedDict, total=False):
     card: GoogleAppsCardV1Card
     cardId: str
+    ownerUser: User
 
 @typing.type_check_only
 class ChatAppLogEntry(typing.TypedDict, total=False):
@@ -172,6 +174,18 @@ class ChatSpaceLinkData(typing.TypedDict, total=False):
     message: str
     space: str
     thread: str
+
+@typing.type_check_only
+class Citation(typing.TypedDict, total=False):
+    citedSources: _list[CitedSource]
+    id: str
+
+@typing.type_check_only
+class CitedSource(typing.TypedDict, total=False):
+    footer: Footer
+    snippet: Snippet
+    title: str
+    uri: str
 
 @typing.type_check_only
 class Color(typing.TypedDict, total=False):
@@ -306,6 +320,15 @@ class DriveLinkData(typing.TypedDict, total=False):
     mimeType: str
 
 @typing.type_check_only
+class Elements(typing.TypedDict, total=False):
+    citations: _list[Citation]
+    citedSources: _list[CitedSource]
+
+@typing.type_check_only
+class ElementsImage(typing.TypedDict, total=False):
+    imageUri: str
+
+@typing.type_check_only
 class Emoji(typing.TypedDict, total=False):
     customEmoji: CustomEmoji
     unicode: str
@@ -322,6 +345,10 @@ class Empty(typing.TypedDict, total=False): ...
 class FindGroupChatsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     spaces: _list[Space]
+
+@typing.type_check_only
+class Footer(typing.TypedDict, total=False):
+    text: str
 
 @typing.type_check_only
 class FormAction(typing.TypedDict, total=False):
@@ -855,6 +882,11 @@ class ListMembershipsResponse(typing.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
+class ListMessagePinsResponse(typing.TypedDict, total=False):
+    messagePins: _list[MessagePin]
+    nextPageToken: str
+
+@typing.type_check_only
 class ListMessagesResponse(typing.TypedDict, total=False):
     messages: _list[Message]
     nextPageToken: str
@@ -976,6 +1008,7 @@ class Message(typing.TypedDict, total=False):
     createTime: str
     deleteTime: str
     deletionMetadata: DeletionMetadata
+    elements: Elements
     emojiReactionSummaries: _list[EmojiReactionSummary]
     fallbackText: str
     formattedText: str
@@ -1016,6 +1049,11 @@ class MessageDeletedEventData(typing.TypedDict, total=False):
     message: Message
 
 @typing.type_check_only
+class MessagePin(typing.TypedDict, total=False):
+    message: str
+    name: str
+
+@typing.type_check_only
 class MessageUpdatedEventData(typing.TypedDict, total=False):
     message: Message
 
@@ -1052,6 +1090,7 @@ class PermissionSettings(typing.TypedDict, total=False):
     replyMessages: PermissionSetting
     toggleHistory: PermissionSetting
     useAtMentionAll: PermissionSetting
+    viewSpaceMembership: PermissionSetting
 
 @typing.type_check_only
 class PositionSectionRequest(typing.TypedDict, total=False):
@@ -1103,6 +1142,13 @@ class ReactionCreatedEventData(typing.TypedDict, total=False):
 @typing.type_check_only
 class ReactionDeletedEventData(typing.TypedDict, total=False):
     reaction: Reaction
+
+@typing.type_check_only
+class ReplaceMessageCardsRequest(typing.TypedDict, total=False):
+    cardsV2: _list[CardWithId]
+
+@typing.type_check_only
+class ReplaceMessageCardsResponse(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
 class RichLinkMetadata(typing.TypedDict, total=False):
@@ -1188,6 +1234,11 @@ class SlashCommandMetadata(typing.TypedDict, total=False):
     commandName: str
     triggersDialog: bool
     type: typing.Literal["TYPE_UNSPECIFIED", "ADD", "INVOKE"]
+
+@typing.type_check_only
+class Snippet(typing.TypedDict, total=False):
+    imagePreview: ElementsImage
+    text: str
 
 @typing.type_check_only
 class Space(typing.TypedDict, total=False):
@@ -1338,8 +1389,10 @@ class UploadAttachmentResponse(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class User(typing.TypedDict, total=False):
+    avatarUrl: str
     displayName: str
     domainId: str
+    email: str
     isAnonymous: bool
     name: str
     type: typing.Literal["TYPE_UNSPECIFIED", "HUMAN", "BOT"]

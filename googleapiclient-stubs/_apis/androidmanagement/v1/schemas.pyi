@@ -239,7 +239,9 @@ class ApplicationPolicy(typing.TypedDict, total=False):
         "CONNECTED_WORK_AND_PERSONAL_APP_ALLOWED",
     ]
     credentialProviderPolicy: typing.Literal[
-        "CREDENTIAL_PROVIDER_POLICY_UNSPECIFIED", "CREDENTIAL_PROVIDER_ALLOWED"
+        "CREDENTIAL_PROVIDER_POLICY_UNSPECIFIED",
+        "CREDENTIAL_PROVIDER_ALLOWED",
+        "CREDENTIAL_PROVIDER_DISALLOWED",
     ]
     customAppConfig: CustomAppConfig
     defaultPermissionPolicy: typing.Literal[
@@ -498,6 +500,11 @@ class CrossDevicePolicies(typing.TypedDict, total=False):
         "NEARBY_NOTIFICATION_STREAMING_USER_CHOICE",
         "NEARBY_NOTIFICATION_STREAMING_DISABLED",
         "NEARBY_NOTIFICATION_STREAMING_USER_CHOICE_SAME_MANAGED_ACCOUNT",
+    ]
+    taskContinuityHandoff: typing.Literal[
+        "TASK_CONTINUITY_HANDOFF_UNSPECIFIED",
+        "TASK_CONTINUITY_HANDOFF_ALLOWED",
+        "TASK_CONTINUITY_HANDOFF_DISALLOWED",
     ]
 
 @typing.type_check_only
@@ -899,6 +906,14 @@ class ExternalData(typing.TypedDict, total=False):
     url: str
 
 @typing.type_check_only
+class ExtraCapabilities(typing.TypedDict, total=False):
+    localDeviceWipeCommand: typing.Literal[
+        "LOCAL_DEVICE_WIPE_COMMAND_UNSPECIFIED",
+        "LOCAL_DEVICE_WIPE_COMMAND_DISALLOWED",
+        "LOCAL_DEVICE_WIPE_COMMAND_ALLOWED",
+    ]
+
+@typing.type_check_only
 class FilePulledEvent(typing.TypedDict, total=False):
     filePath: str
 
@@ -1282,6 +1297,7 @@ class NonComplianceDetail(typing.TypedDict, total=False):
         "PENDING",
         "APP_INCOMPATIBLE",
         "APP_NOT_UPDATED",
+        "OS_NOT_PERMITTED",
         "DEVICE_INCOMPATIBLE",
         "APP_SIGNING_CERT_MISMATCH",
         "PROJECT_NOT_PERMITTED",
@@ -1305,6 +1321,7 @@ class NonComplianceDetail(typing.TypedDict, total=False):
         "DEFAULT_APPLICATION_SETTING_UNSUPPORTED_SCOPES",
         "DEFAULT_APPLICATION_SETTING_FAILED_FOR_SCOPE",
         "PRIVATE_DNS_HOST_NOT_SERVING",
+        "USER_NOT_UNLOCKED",
     ]
 
 @typing.type_check_only
@@ -1321,6 +1338,7 @@ class NonComplianceDetailCondition(typing.TypedDict, total=False):
         "PENDING",
         "APP_INCOMPATIBLE",
         "APP_NOT_UPDATED",
+        "OS_NOT_PERMITTED",
         "DEVICE_INCOMPATIBLE",
         "APP_SIGNING_CERT_MISMATCH",
         "PROJECT_NOT_PERMITTED",
@@ -1355,6 +1373,12 @@ class OsStartupEvent(typing.TypedDict, total=False):
     ]
     verityMode: typing.Literal[
         "DM_VERITY_MODE_UNSPECIFIED", "ENFORCING", "IO_ERROR", "DISABLED"
+    ]
+
+@typing.type_check_only
+class Outcome(typing.TypedDict, total=False):
+    outcomeType: typing.Literal[
+        "OUTCOME_TYPE_UNSPECIFIED", "FORCE", "USER_PROMPT", "BLOCK"
     ]
 
 @typing.type_check_only
@@ -1431,6 +1455,14 @@ class PersonalApplicationPolicy(typing.TypedDict, total=False):
     packageName: str
 
 @typing.type_check_only
+class PersonalCrossDevicePolicies(typing.TypedDict, total=False):
+    taskContinuityHandoff: typing.Literal[
+        "TASK_CONTINUITY_HANDOFF_UNSPECIFIED",
+        "TASK_CONTINUITY_HANDOFF_ALLOWED",
+        "TASK_CONTINUITY_HANDOFF_DISALLOWED",
+    ]
+
+@typing.type_check_only
 class PersonalUsagePolicies(typing.TypedDict, total=False):
     accountTypesWithManagementDisabled: _list[str]
     bluetoothSharing: typing.Literal[
@@ -1439,6 +1471,7 @@ class PersonalUsagePolicies(typing.TypedDict, total=False):
         "BLUETOOTH_SHARING_DISALLOWED",
     ]
     cameraDisabled: bool
+    crossDevicePolicies: PersonalCrossDevicePolicies
     maxDaysWithWorkOff: int
     personalApplications: _list[PersonalApplicationPolicy]
     personalPlayStoreMode: typing.Literal[
@@ -1486,6 +1519,11 @@ class Policy(typing.TypedDict, total=False):
     autofillPolicy: typing.Literal[
         "AUTOFILL_POLICY_UNSPECIFIED", "AUTOFILL_USER_CHOICE", "AUTOFILL_DISABLED"
     ]
+    backupService: typing.Literal[
+        "BACKUP_SERVICE_UNSPECIFIED",
+        "BACKUP_SERVICE_DISABLED",
+        "BACKUP_SERVICE_USER_CHOICE",
+    ]
     blockApplicationsEnabled: bool
     bluetoothConfigDisabled: bool
     bluetoothContactSharingDisabled: bool
@@ -1505,6 +1543,7 @@ class Policy(typing.TypedDict, total=False):
         "CREDENTIAL_PROVIDER_POLICY_DEFAULT_UNSPECIFIED",
         "CREDENTIAL_PROVIDER_DEFAULT_DISALLOWED",
         "CREDENTIAL_PROVIDER_DEFAULT_DISALLOWED_EXCEPT_SYSTEM",
+        "CREDENTIAL_PROVIDER_DEFAULT_ALLOWED",
     ]
     credentialsConfigDisabled: bool
     crossDevicePolicies: CrossDevicePolicies
@@ -1621,6 +1660,7 @@ class Policy(typing.TypedDict, total=False):
     ]
     systemUpdate: SystemUpdate
     tetheringConfigDisabled: bool
+    unifiedUpdatePolicy: UnifiedUpdatePolicy
     uninstallAppsDisabled: bool
     unmuteMicrophoneDisabled: bool
     usageLog: UsageLog
@@ -1663,6 +1703,27 @@ class PowerManagementEvent(typing.TypedDict, total=False):
         "BOOT_COMPLETED",
         "SHUTDOWN",
     ]
+
+@typing.type_check_only
+class Predicate(typing.TypedDict, total=False):
+    dateLowerBound: Date
+    dateUpperBound: Date
+    daysOfWeek: _list[
+        typing.Literal[
+            "DAY_OF_WEEK_UNSPECIFIED",
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY",
+        ]
+    ]
+    timeOfDayLowerBound: TimeOfDay
+    timeOfDayUpperBound: TimeOfDay
+    updateAgeLowerBound: str
+    updateAgeUpperBound: str
 
 @typing.type_check_only
 class PreferentialNetworkServiceConfig(typing.TypedDict, total=False):
@@ -1769,6 +1830,7 @@ class RequestDeviceInfoStatus(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class Role(typing.TypedDict, total=False):
+    extraCapabilities: ExtraCapabilities
     roleType: typing.Literal[
         "ROLE_TYPE_UNSPECIFIED",
         "COMPANION_APP",
@@ -1776,6 +1838,14 @@ class Role(typing.TypedDict, total=False):
         "MOBILE_THREAT_DEFENSE_ENDPOINT_DETECTION_RESPONSE",
         "SYSTEM_HEALTH_MONITORING",
     ]
+
+@typing.type_check_only
+class Rule(typing.TypedDict, total=False):
+    id: str
+    outcome: Outcome
+    predicate: Predicate
+    stages: _list[typing.Literal["STAGE_UNSPECIFIED", "STAGE_DOWNLOAD", "STAGE_APPLY"]]
+    targets: _list[Target]
 
 @typing.type_check_only
 class ScreenBrightnessSettings(typing.TypedDict, total=False):
@@ -1838,6 +1908,10 @@ class SigninDetailGoogleAuthenticationOptions(typing.TypedDict, total=False):
 class SignupUrl(typing.TypedDict, total=False):
     name: str
     url: str
+
+@typing.type_check_only
+class SingleApp(typing.TypedDict, total=False):
+    packageName: str
 
 @typing.type_check_only
 class SoftwareInfo(typing.TypedDict, total=False):
@@ -1930,6 +2004,18 @@ class SystemUpdateInfo(typing.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class Target(typing.TypedDict, total=False):
+    singleApp: SingleApp
+    targetType: typing.Literal[
+        "TARGET_TYPE_UNSPECIFIED",
+        "SINGLE_APP",
+        "GOOGLE_SYSTEM_SERVICES",
+        "GOOGLE_PLAY_SYSTEM_UPDATE",
+        "OS_UPDATE_WITHOUT_API_LEVEL_CHANGE",
+        "OS_UPDATE_WITH_API_LEVEL_CHANGE",
+    ]
+
+@typing.type_check_only
 class TelephonyInfo(typing.TypedDict, total=False):
     activationState: typing.Literal[
         "ACTIVATION_STATE_UNSPECIFIED", "ACTIVATED", "NOT_ACTIVATED"
@@ -1945,6 +2031,17 @@ class TelephonyInfo(typing.TypedDict, total=False):
 class TermsAndConditions(typing.TypedDict, total=False):
     content: UserFacingMessage
     header: UserFacingMessage
+
+@typing.type_check_only
+class TimeOfDay(typing.TypedDict, total=False):
+    hours: int
+    minutes: int
+    nanos: int
+    seconds: int
+
+@typing.type_check_only
+class UnifiedUpdatePolicy(typing.TypedDict, total=False):
+    rules: _list[Rule]
 
 @typing.type_check_only
 class UsageLog(typing.TypedDict, total=False):

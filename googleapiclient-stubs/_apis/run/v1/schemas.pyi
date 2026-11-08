@@ -187,6 +187,7 @@ class ExecutionReference(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class ExecutionSpec(typing.TypedDict, total=False):
+    delayExecution: bool
     parallelism: int
     taskCount: int
     template: TaskTemplateSpec
@@ -348,7 +349,16 @@ class GoogleDevtoolsCloudbuildV1BuildOptions(typing.TypedDict, total=False):
     ]
     pool: GoogleDevtoolsCloudbuildV1PoolOption
     pubsubTopic: str
-    requestedVerifyOption: typing.Literal["NOT_VERIFIED", "VERIFIED"]
+    rankedMachineSeries: _list[
+        typing.Literal[
+            "MACHINE_SERIES_UNSPECIFIED",
+            "MACHINE_SERIES_E",
+            "MACHINE_SERIES_N",
+            "MACHINE_SERIES_C",
+        ]
+    ]
+    requestedVerifyOption: typing.Literal["NOT_VERIFIED", "VERIFIED", "BEST_EFFORT"]
+    resolvedWorkerRelease: str
     secretEnv: _list[str]
     sourceProvenanceHash: _list[
         typing.Literal[
@@ -358,6 +368,15 @@ class GoogleDevtoolsCloudbuildV1BuildOptions(typing.TypedDict, total=False):
     substitutionOption: typing.Literal["MUST_MATCH", "ALLOW_LOOSE"]
     volumes: _list[GoogleDevtoolsCloudbuildV1Volume]
     workerPool: str
+    workerRelease: str
+
+@typing.type_check_only
+class GoogleDevtoolsCloudbuildV1BuildResourceUsage(typing.TypedDict, total=False):
+    averageCpuUtilization: float
+    averageMemoryUtilization: float
+    peakCpuUtilization: float
+    peakMemoryUtilization: float
+    totalCpuDuration: str
 
 @typing.type_check_only
 class GoogleDevtoolsCloudbuildV1BuildStep(typing.TypedDict, total=False):
@@ -467,6 +486,7 @@ class GoogleDevtoolsCloudbuildV1GitSource(typing.TypedDict, total=False):
 class GoogleDevtoolsCloudbuildV1GitSourceDependency(typing.TypedDict, total=False):
     depth: str
     destPath: str
+    fetchTags: bool
     recurseSubmodules: bool
     repository: GoogleDevtoolsCloudbuildV1GitSourceRepository
     revision: str
@@ -524,6 +544,8 @@ class GoogleDevtoolsCloudbuildV1Oci(typing.TypedDict, total=False):
 @typing.type_check_only
 class GoogleDevtoolsCloudbuildV1PoolOption(typing.TypedDict, total=False):
     name: str
+    resolvedWorkerRelease: str
+    workerRelease: str
 
 @typing.type_check_only
 class GoogleDevtoolsCloudbuildV1PythonPackage(typing.TypedDict, total=False):
@@ -555,6 +577,7 @@ class GoogleDevtoolsCloudbuildV1Results(typing.TypedDict, total=False):
     npmPackages: _list[GoogleDevtoolsCloudbuildV1UploadedNpmPackage]
     numArtifacts: str
     pythonPackages: _list[GoogleDevtoolsCloudbuildV1UploadedPythonPackage]
+    resourceUsage: GoogleDevtoolsCloudbuildV1BuildResourceUsage
 
 @typing.type_check_only
 class GoogleDevtoolsCloudbuildV1Secret(typing.TypedDict, total=False):
@@ -709,6 +732,7 @@ class InstanceSpec(typing.TypedDict, total=False):
     containers: _list[Container]
     nodeSelector: dict[str, typing.Any]
     restartPolicy: str
+    sandboxes: SandboxConfiguration
     serviceAccountName: str
     volumes: _list[Volume]
 
@@ -894,6 +918,7 @@ class ObjectMeta(typing.TypedDict, total=False):
 @typing.type_check_only
 class Overrides(typing.TypedDict, total=False):
     containerOverrides: _list[ContainerOverride]
+    delayExecution: bool
     taskCount: int
     timeoutSeconds: int
 
@@ -952,6 +977,7 @@ class RevisionSpec(typing.TypedDict, total=False):
     imagePullSecrets: _list[LocalObjectReference]
     nodeSelector: dict[str, typing.Any]
     runtimeClassName: str
+    sandboxes: SandboxConfiguration
     serviceAccountName: str
     timeoutSeconds: int
     volumes: _list[Volume]
@@ -993,6 +1019,20 @@ class RouteStatus(typing.TypedDict, total=False):
 @typing.type_check_only
 class RunJobRequest(typing.TypedDict, total=False):
     overrides: Overrides
+
+@typing.type_check_only
+class SandboxConfiguration(typing.TypedDict, total=False):
+    templates: _list[SandboxTemplate]
+
+@typing.type_check_only
+class SandboxTemplate(typing.TypedDict, total=False):
+    args: _list[str]
+    command: _list[str]
+    env: _list[EnvVar]
+    image: str
+    name: str
+    volumeMounts: _list[VolumeMount]
+    workingDir: str
 
 @typing.type_check_only
 class SecretEnvSource(typing.TypedDict, total=False):
@@ -1102,6 +1142,7 @@ class TaskSpec(typing.TypedDict, total=False):
     containers: _list[Container]
     maxRetries: int
     nodeSelector: dict[str, typing.Any]
+    sandboxes: SandboxConfiguration
     serviceAccountName: str
     timeoutSeconds: str
     volumes: _list[Volume]

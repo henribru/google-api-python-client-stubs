@@ -148,7 +148,9 @@ class AutonomousDatabaseProperties(typing.TypedDict, total=False):
         "DATABASE_EDITION_UNSPECIFIED", "STANDARD_EDITION", "ENTERPRISE_EDITION"
     ]
     dbVersion: str
-    dbWorkload: typing.Literal["DB_WORKLOAD_UNSPECIFIED", "OLTP", "DW", "AJD", "APEX"]
+    dbWorkload: typing.Literal[
+        "DB_WORKLOAD_UNSPECIFIED", "OLTP", "DW", "AJD", "APEX", "LH"
+    ]
     disasterRecoveryRoleChangedTime: str
     encryptionKey: EncryptionKey
     encryptionKeyHistoryEntries: _list[EncryptionKeyHistoryEntry]
@@ -289,7 +291,9 @@ class AutonomousDatabaseStandbySummary(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class AutonomousDbVersion(typing.TypedDict, total=False):
-    dbWorkload: typing.Literal["DB_WORKLOAD_UNSPECIFIED", "OLTP", "DW", "AJD", "APEX"]
+    dbWorkload: typing.Literal[
+        "DB_WORKLOAD_UNSPECIFIED", "OLTP", "DW", "AJD", "APEX", "LH"
+    ]
     name: str
     version: str
     workloadUri: str
@@ -391,6 +395,7 @@ class CloudVmCluster(typing.TypedDict, total=False):
     labels: dict[str, typing.Any]
     name: str
     network: str
+    odbDnsZone: str
     odbNetwork: str
     odbSubnet: str
     properties: CloudVmClusterProperties
@@ -458,6 +463,11 @@ class CloudVmClusterProperties(typing.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class Column(typing.TypedDict, total=False):
+    name: str
+    type: str
+
+@typing.type_check_only
 class ConfigureExascaleCloudExadataInfrastructureRequest(typing.TypedDict, total=False):
     requestId: str
     totalStorageSizeGb: int
@@ -520,6 +530,23 @@ class DatabaseCharacterSet(typing.TypedDict, total=False):
         "CHARACTER_SET_TYPE_UNSPECIFIED", "DATABASE", "NATIONAL"
     ]
     name: str
+
+@typing.type_check_only
+class DatabaseConnection(typing.TypedDict, total=False):
+    connectionString: str
+    createTime: str
+    displayName: str
+    labels: dict[str, typing.Any]
+    lifecycleDetails: str
+    name: str
+    odbNetwork: str
+    passwordSecretVersion: str
+    state: typing.Literal[
+        "STATE_UNSPECIFIED", "CREATING", "ACTIVE", "FAILED", "DELETING"
+    ]
+    updateTime: str
+    username: str
+    walletSecretVersion: str
 
 @typing.type_check_only
 class DatabaseConnectionStringProfile(typing.TypedDict, total=False):
@@ -931,6 +958,23 @@ class ExascaleDbStorageVaultProperties(typing.TypedDict, total=False):
     timeZone: TimeZone
     vmClusterCount: int
     vmClusterIds: _list[str]
+
+@typing.type_check_only
+class ExecuteSqlMetadata(typing.TypedDict, total=False):
+    executionDuration: str
+    message: str
+    partialResult: bool
+    status: typing.Literal["STATUS_UNSPECIFIED", "OK", "PARTIAL", "ERROR"]
+
+@typing.type_check_only
+class ExecuteSqlRequest(typing.TypedDict, total=False):
+    params: _list[SqlParameter]
+    sqlStatement: str
+
+@typing.type_check_only
+class ExecuteSqlResponse(typing.TypedDict, total=False):
+    metadata: ExecuteSqlMetadata
+    sqlResults: _list[SqlResult]
 
 @typing.type_check_only
 class FailoverAutonomousDatabaseRequest(typing.TypedDict, total=False):
@@ -1840,6 +1884,12 @@ class ListDatabaseCharacterSetsResponse(typing.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
+class ListDatabaseConnectionsResponse(typing.TypedDict, total=False):
+    databaseConnections: _list[DatabaseConnection]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
 class ListDatabasesResponse(typing.TypedDict, total=False):
     databases: _list[Database]
     nextPageToken: str
@@ -1950,6 +2000,12 @@ class ListMinorVersionsResponse(typing.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
+class ListOdbDnsZonesResponse(typing.TypedDict, total=False):
+    nextPageToken: str
+    odbDnsZones: _list[OdbDnsZone]
+    unreachable: _list[str]
+
+@typing.type_check_only
 class ListOdbNetworksResponse(typing.TypedDict, total=False):
     nextPageToken: str
     odbNetworks: _list[OdbNetwork]
@@ -2044,6 +2100,21 @@ class NessieIcebergCatalog(typing.TypedDict, total=False):
     uri: str
 
 @typing.type_check_only
+class OdbDnsZone(typing.TypedDict, total=False):
+    createTime: str
+    domain: str
+    labels: dict[str, typing.Any]
+    name: str
+    state: typing.Literal[
+        "STATE_UNSPECIFIED",
+        "PROVISIONING",
+        "AVAILABLE",
+        "INACTIVE",
+        "TERMINATING",
+        "FAILED",
+    ]
+
+@typing.type_check_only
 class OdbNetwork(typing.TypedDict, total=False):
     createTime: str
     entitlementId: str
@@ -2051,6 +2122,8 @@ class OdbNetwork(typing.TypedDict, total=False):
     labels: dict[str, typing.Any]
     name: str
     network: str
+    reconciling: bool
+    serviceConnectivityConfig: ServiceConnectivityConfig
     state: typing.Literal[
         "STATE_UNSPECIFIED", "PROVISIONING", "AVAILABLE", "TERMINATING", "FAILED"
     ]
@@ -2158,6 +2231,10 @@ class PolarisIcebergCatalog(typing.TypedDict, total=False):
     uri: str
 
 @typing.type_check_only
+class PscInterfaceConfig(typing.TypedDict, total=False):
+    networkAttachment: str
+
+@typing.type_check_only
 class RefreshAutonomousDatabaseRequest(typing.TypedDict, total=False):
     refreshCutoffTime: str
 
@@ -2179,6 +2256,10 @@ class RestoreAutonomousDatabaseRequest(typing.TypedDict, total=False):
     restoreTime: str
 
 @typing.type_check_only
+class Row(typing.TypedDict, total=False):
+    values: _list[Value]
+
+@typing.type_check_only
 class ScheduledOperationDetails(typing.TypedDict, total=False):
     dayOfWeek: typing.Literal[
         "DAY_OF_WEEK_UNSPECIFIED",
@@ -2192,6 +2273,10 @@ class ScheduledOperationDetails(typing.TypedDict, total=False):
     ]
     startTime: TimeOfDay
     stopTime: TimeOfDay
+
+@typing.type_check_only
+class ServiceConnectivityConfig(typing.TypedDict, total=False):
+    pscInterfaceConfig: PscInterfaceConfig
 
 @typing.type_check_only
 class SourceConfig(typing.TypedDict, total=False):
@@ -2215,6 +2300,17 @@ class SourceConfig(typing.TypedDict, total=False):
         "BACKUP_FROM_TIMESTAMP",
     ]
     useLatestAvailableBackup: bool
+
+@typing.type_check_only
+class SqlParameter(typing.TypedDict, total=False):
+    name: str
+    typeName: str
+    value: typing.Any
+
+@typing.type_check_only
+class SqlResult(typing.TypedDict, total=False):
+    columns: _list[Column]
+    rows: _list[Row]
 
 @typing.type_check_only
 class StartAutonomousDatabaseRequest(typing.TypedDict, total=False): ...
@@ -2251,6 +2347,14 @@ class TestConnectionAssignmentError(typing.TypedDict, total=False):
     message: str
 
 @typing.type_check_only
+class TestDatabaseConnectionRequest(typing.TypedDict, total=False): ...
+
+@typing.type_check_only
+class TestDatabaseConnectionResponse(typing.TypedDict, total=False):
+    errorMessage: str
+    success: bool
+
+@typing.type_check_only
 class TestGoldengateConnectionAssignmentRequest(typing.TypedDict, total=False):
     type: typing.Literal["TEST_TYPE_UNSPECIFIED", "DEFAULT"]
 
@@ -2273,3 +2377,8 @@ class TimeOfDay(typing.TypedDict, total=False):
 class TimeZone(typing.TypedDict, total=False):
     id: str
     version: str
+
+@typing.type_check_only
+class Value(typing.TypedDict, total=False):
+    nullValue: bool
+    value: str

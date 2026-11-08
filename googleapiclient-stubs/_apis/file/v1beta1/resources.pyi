@@ -254,6 +254,116 @@ class CloudFilestoreResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any,
                 ) -> ReleaseShareResponseHttpRequest: ...
 
+            @typing.type_check_only
+            class VolumePoolsResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class VolumesResource(googleapiclient.discovery.Resource):
+                    def create(
+                        self,
+                        *,
+                        parent: str,
+                        body: Volume,
+                        volumeId: str | None = ...,
+                        **kwargs: typing.Any,
+                    ) -> VolumeHttpRequest: ...
+                    def createFromSource(
+                        self,
+                        *,
+                        parent: str,
+                        body: CreateFromSourceRequest,
+                        **kwargs: typing.Any,
+                    ) -> OperationHttpRequest: ...
+                    def delete(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> EmptyHttpRequest: ...
+                    def directCreate(
+                        self,
+                        *,
+                        parent: str,
+                        body: Volume,
+                        volumeId: str | None = ...,
+                        **kwargs: typing.Any,
+                    ) -> VolumeHttpRequest: ...
+                    def directDelete(
+                        self,
+                        *,
+                        name: str,
+                        body: DeleteVolumeRequest,
+                        **kwargs: typing.Any,
+                    ) -> EmptyHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> VolumeHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        filter: str | None = ...,
+                        orderBy: str | None = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
+                        **kwargs: typing.Any,
+                    ) -> ListVolumesResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListVolumesResponseHttpRequest,
+                        previous_response: ListVolumesResponse,
+                    ) -> ListVolumesResponseHttpRequest | None: ...
+                    def patch(
+                        self,
+                        *,
+                        name: str,
+                        body: Volume,
+                        updateMask: str | None = ...,
+                        **kwargs: typing.Any,
+                    ) -> VolumeHttpRequest: ...
+                    def unfreeze(
+                        self,
+                        *,
+                        name: str,
+                        body: UnfreezeVolumeRequest,
+                        **kwargs: typing.Any,
+                    ) -> OperationHttpRequest: ...
+
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: VolumePool,
+                    volumePoolId: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> VolumePoolHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str | None = ...,
+                    orderBy: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> ListVolumePoolsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListVolumePoolsResponseHttpRequest,
+                    previous_response: ListVolumePoolsResponse,
+                ) -> ListVolumePoolsResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: VolumePool,
+                    updateMask: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def volumes(self) -> VolumesResource: ...
+
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> LocationHttpRequest: ...
@@ -276,6 +386,7 @@ class CloudFilestoreResource(googleapiclient.discovery.Resource):
             def instances(self) -> InstancesResource: ...
             def operations(self) -> OperationsResource: ...
             def sharePools(self) -> SharePoolsResource: ...
+            def volumePools(self) -> VolumePoolsResource: ...
 
         def locations(self) -> LocationsResource: ...
 
@@ -374,6 +485,22 @@ class ListSnapshotsResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListSnapshotsResponse: ...
 
 @typing.type_check_only
+class ListVolumePoolsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListVolumePoolsResponse: ...
+
+@typing.type_check_only
+class ListVolumesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListVolumesResponse: ...
+
+@typing.type_check_only
 class LocationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -412,3 +539,19 @@ class SnapshotHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Snapshot: ...
+
+@typing.type_check_only
+class VolumeHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> Volume: ...
+
+@typing.type_check_only
+class VolumePoolHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> VolumePool: ...

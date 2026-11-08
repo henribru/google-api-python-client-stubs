@@ -13,6 +13,83 @@ _list = list
 @typing.type_check_only
 class CloudNumberRegistryResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
+    class OrganizationsResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
+        class LocationsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class OperationsResource(googleapiclient.discovery.Resource):
+                def cancel(
+                    self,
+                    *,
+                    name: str,
+                    body: CancelOperationRequest,
+                    **kwargs: typing.Any,
+                ) -> EmptyHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> EmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    name: str,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    returnPartialSuccess: bool | None = ...,
+                    **kwargs: typing.Any,
+                ) -> ListOperationsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListOperationsResponseHttpRequest,
+                    previous_response: ListOperationsResponse,
+                ) -> ListOperationsResponseHttpRequest | None: ...
+
+            @typing.type_check_only
+            class OrgNumberRegistriesResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: OrgNumberRegistry,
+                    orgNumberRegistryId: str | None = ...,
+                    requestId: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self,
+                    *,
+                    name: str,
+                    requestId: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> OrgNumberRegistryHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str | None = ...,
+                    orderBy: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> ListOrgNumberRegistriesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListOrgNumberRegistriesResponseHttpRequest,
+                    previous_response: ListOrgNumberRegistriesResponse,
+                ) -> ListOrgNumberRegistriesResponseHttpRequest | None: ...
+
+            def operations(self) -> OperationsResource: ...
+            def orgNumberRegistries(self) -> OrgNumberRegistriesResource: ...
+
+        def locations(self) -> LocationsResource: ...
+
+    @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
@@ -374,6 +451,7 @@ class CloudNumberRegistryResource(googleapiclient.discovery.Resource):
         ]
         | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
+    def organizations(self) -> OrganizationsResource: ...
     def projects(self) -> ProjectsResource: ...
 
 @typing.type_check_only
@@ -477,6 +555,14 @@ class ListOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListOperationsResponse: ...
 
 @typing.type_check_only
+class ListOrgNumberRegistriesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListOrgNumberRegistriesResponse: ...
+
+@typing.type_check_only
 class ListRealmsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -507,6 +593,14 @@ class OperationHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Operation: ...
+
+@typing.type_check_only
+class OrgNumberRegistryHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> OrgNumberRegistry: ...
 
 @typing.type_check_only
 class RealmHttpRequest(googleapiclient.http.HttpRequest):
