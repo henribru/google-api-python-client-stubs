@@ -246,14 +246,6 @@ class GoogleCloudBeyondcorpAppconnectorsV1RemoteAgentDetails(
 ): ...
 
 @typing.type_check_only
-class GoogleCloudBeyondcorpAppconnectorsV1ReportStatusRequest(
-    typing.TypedDict, total=False
-):
-    requestId: str
-    resourceInfo: GoogleCloudBeyondcorpAppconnectorsV1ResourceInfo
-    validateOnly: bool
-
-@typing.type_check_only
 class GoogleCloudBeyondcorpAppconnectorsV1ResolveInstanceConfigResponse(
     typing.TypedDict, total=False
 ):

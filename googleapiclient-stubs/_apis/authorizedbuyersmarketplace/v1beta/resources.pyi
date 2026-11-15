@@ -121,6 +121,19 @@ class AuthorizedBuyersMarketplaceResource(googleapiclient.discovery.Resource):
             previous_request: ListMediaPlannersResponseHttpRequest,
             previous_response: ListMediaPlannersResponse,
         ) -> ListMediaPlannersResponseHttpRequest | None: ...
+        def search(
+            self,
+            *,
+            dspSeatId: str | None = ...,
+            pageSize: int | None = ...,
+            pageToken: str | None = ...,
+            **kwargs: typing.Any,
+        ) -> SearchMediaPlannersResponseHttpRequest: ...
+        def search_next(
+            self,
+            previous_request: SearchMediaPlannersResponseHttpRequest,
+            previous_response: SearchMediaPlannersResponse,
+        ) -> SearchMediaPlannersResponseHttpRequest | None: ...
 
     def new_batch_http_request(
         self,
@@ -176,3 +189,11 @@ class ListMediaPlannersResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListMediaPlannersResponse: ...
+
+@typing.type_check_only
+class SearchMediaPlannersResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> SearchMediaPlannersResponse: ...

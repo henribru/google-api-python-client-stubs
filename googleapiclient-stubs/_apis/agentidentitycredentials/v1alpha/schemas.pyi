@@ -8,6 +8,28 @@ class GoogleCloudAgentidentitycredentialsV1alpha_ConsentRejected(
 ): ...
 
 @typing.type_check_only
+class GoogleCloudAgentidentitycredentialsV1alpha_ExchangeCredentialsRequest(
+    typing.TypedDict, total=False
+):
+    scopes: _list[str]
+    sourceCredential: str
+    targetTokenType: typing.Literal[
+        "TARGET_TOKEN_TYPE_UNSPECIFIED",
+        "TARGET_TOKEN_TYPE_ACCESS_TOKEN",
+        "TARGET_TOKEN_TYPE_ID_JAG",
+    ]
+    tokenBinding: GoogleCloudAgentidentitycredentialsV1alpha_TokenBinding
+
+@typing.type_check_only
+class GoogleCloudAgentidentitycredentialsV1alpha_ExchangeCredentialsResponse(
+    typing.TypedDict, total=False
+):
+    acquireTime: str
+    expireTime: str
+    scopes: _list[str]
+    token: str
+
+@typing.type_check_only
 class GoogleCloudAgentidentitycredentialsV1alpha_FinalizeCredentialsRequest(
     typing.TypedDict, total=False
 ):
@@ -49,6 +71,12 @@ class GoogleCloudAgentidentitycredentialsV1alpha_Success(typing.TypedDict, total
     header: str
     scopes: _list[str]
     token: str
+
+@typing.type_check_only
+class GoogleCloudAgentidentitycredentialsV1alpha_TokenBinding(
+    typing.TypedDict, total=False
+):
+    certificateFingerprint: str
 
 @typing.type_check_only
 class GoogleCloudAgentidentitycredentialsV1alpha_UriConsentRequired(

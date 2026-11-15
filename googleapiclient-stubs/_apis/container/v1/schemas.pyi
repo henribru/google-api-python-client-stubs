@@ -60,6 +60,7 @@ class AddonsConfig(typing.TypedDict, total=False):
     sliceControllerConfig: SliceControllerConfig
     slurmOperatorConfig: SlurmOperatorConfig
     statefulHaConfig: StatefulHAConfig
+    wizSensorConfig: WizSensorConfig
 
 @typing.type_check_only
 class AdvancedDatapathObservabilityConfig(typing.TypedDict, total=False):
@@ -82,6 +83,10 @@ class AdvancedMachineFeatures(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class AgentSandboxConfig(typing.TypedDict, total=False):
+    enabled: bool
+
+@typing.type_check_only
+class AmbientNetworkingConfig(typing.TypedDict, total=False):
     enabled: bool
 
 @typing.type_check_only
@@ -144,6 +149,13 @@ class AutoprovisioningNodePoolDefaults(typing.TypedDict, total=False):
     serviceAccount: str
     shieldedInstanceConfig: ShieldedInstanceConfig
     upgradeSettings: UpgradeSettings
+
+@typing.type_check_only
+class AutoprovisioningRestrictionConfig(typing.TypedDict, total=False):
+    authorizedServiceAccounts: _list[str]
+    serviceAccountPermissionCheck: typing.Literal[
+        "PERMISSION_CHECK_MODE_UNSPECIFIED", "DISABLED", "ENABLED"
+    ]
 
 @typing.type_check_only
 class AutoscaledRolloutPolicy(typing.TypedDict, total=False):
@@ -349,6 +361,7 @@ class ClusterAutoscaling(typing.TypedDict, total=False):
     ]
     autoprovisioningLocations: _list[str]
     autoprovisioningNodePoolDefaults: AutoprovisioningNodePoolDefaults
+    autoprovisioningRestrictionConfig: AutoprovisioningRestrictionConfig
     autoscalingProfile: typing.Literal[
         "PROFILE_UNSPECIFIED", "OPTIMIZE_UTILIZATION", "BALANCED"
     ]
@@ -372,6 +385,7 @@ class ClusterUpdate(typing.TypedDict, total=False):
     additionalPodRangesConfig: AdditionalPodRangesConfig
     desiredAdditionalIpRangesConfig: DesiredAdditionalIPRangesConfig
     desiredAddonsConfig: AddonsConfig
+    desiredAmbientNetworkingConfig: AmbientNetworkingConfig
     desiredAnonymousAuthenticationConfig: AnonymousAuthenticationConfig
     desiredAuthenticatorGroupsConfig: AuthenticatorGroupsConfig
     desiredAutoIpamConfig: AutoIpamConfig
@@ -386,7 +400,11 @@ class ClusterUpdate(typing.TypedDict, total=False):
     desiredCostManagementConfig: CostManagementConfig
     desiredDatabaseEncryption: DatabaseEncryption
     desiredDatapathProvider: typing.Literal[
-        "DATAPATH_PROVIDER_UNSPECIFIED", "LEGACY_DATAPATH", "ADVANCED_DATAPATH"
+        "DATAPATH_PROVIDER_UNSPECIFIED",
+        "LEGACY_DATAPATH",
+        "ADVANCED_DATAPATH",
+        "MIGRATE_TO_ADVANCED_DATAPATH",
+        "MIGRATE_TO_LEGACY_DATAPATH",
     ]
     desiredDefaultEnablePrivateNodes: bool
     desiredDefaultSnatStatus: DefaultSnatStatus
@@ -700,7 +718,13 @@ class EphemeralLocalSsdProfile(typing.TypedDict, total=False):
 @typing.type_check_only
 class EphemeralStorageLocalSsdConfig(typing.TypedDict, total=False):
     dataCacheCount: int
+    ephemeralCapacityGb: str
     localSsdCount: int
+
+@typing.type_check_only
+class EtcHostsEntry(typing.TypedDict, total=False):
+    host: str
+    ip: str
 
 @typing.type_check_only
 class EvictionGracePeriod(typing.TypedDict, total=False):
@@ -769,8 +793,13 @@ class GPUDirectConfig(typing.TypedDict, total=False):
 @typing.type_check_only
 class GPUDriverInstallationConfig(typing.TypedDict, total=False):
     gpuDriverVersion: typing.Literal[
-        "GPU_DRIVER_VERSION_UNSPECIFIED", "INSTALLATION_DISABLED", "DEFAULT", "LATEST"
+        "GPU_DRIVER_VERSION_UNSPECIFIED",
+        "INSTALLATION_DISABLED",
+        "DEFAULT",
+        "LATEST",
+        "SPECIFIC",
     ]
+    specificVersion: str
 
 @typing.type_check_only
 class GPUSharingConfig(typing.TypedDict, total=False):
@@ -942,6 +971,18 @@ class K8sBetaAPIConfig(typing.TypedDict, total=False):
     enabledApis: _list[str]
 
 @typing.type_check_only
+class KernelCommandlineOverrides(typing.TypedDict, total=False):
+    initOnAlloc: typing.Literal["INIT_ON_ALLOC_UNSPECIFIED", "INIT_ON_ALLOC_OFF"]
+    specRstackOverflow: typing.Literal[
+        "SPEC_RSTACK_OVERFLOW_UNSPECIFIED", "SPEC_RSTACK_OVERFLOW_OFF"
+    ]
+
+@typing.type_check_only
+class KernelOverrides(typing.TypedDict, total=False):
+    kernelCommandlineOverrides: KernelCommandlineOverrides
+    lruGen: LRUGen
+
+@typing.type_check_only
 class KubeletCertInfo(typing.TypedDict, total=False):
     nonTpmBootstrapCertExpireTime: str
     tpmBootstrapCertExpireTime: str
@@ -951,22 +992,32 @@ class KubernetesDashboard(typing.TypedDict, total=False):
     disabled: bool
 
 @typing.type_check_only
+class LRUGen(typing.TypedDict, total=False):
+    enabled: bool
+    minTtlMs: int
+
+@typing.type_check_only
 class LegacyAbac(typing.TypedDict, total=False):
     enabled: bool
 
 @typing.type_check_only
 class LinuxNodeConfig(typing.TypedDict, total=False):
     accurateTimeConfig: AccurateTimeConfig
+    additionalEtcHosts: _list[EtcHostsEntry]
+    additionalEtcResolvConf: _list[ResolvedConfEntry]
+    additionalEtcSystemdResolvedConf: _list[ResolvedConfEntry]
     cgroupMode: typing.Literal[
         "CGROUP_MODE_UNSPECIFIED", "CGROUP_MODE_V1", "CGROUP_MODE_V2"
     ]
     customNodeInit: CustomNodeInit
     diskIoScheduler: DiskIoScheduler
     hugepages: HugepagesConfig
+    kernelOverrides: KernelOverrides
     nodeKernelModuleLoading: NodeKernelModuleLoading
     nodeVfioConfig: NodeVfioConfig
     swapConfig: SwapConfig
     sysctls: dict[str, typing.Any]
+    timeZone: str
     transparentHugepageDefrag: typing.Literal[
         "TRANSPARENT_HUGEPAGE_DEFRAG_UNSPECIFIED",
         "TRANSPARENT_HUGEPAGE_DEFRAG_ALWAYS",
@@ -1138,8 +1189,13 @@ class MonitoringConfig(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class NetworkConfig(typing.TypedDict, total=False):
+    ambientNetworkingConfig: AmbientNetworkingConfig
     datapathProvider: typing.Literal[
-        "DATAPATH_PROVIDER_UNSPECIFIED", "LEGACY_DATAPATH", "ADVANCED_DATAPATH"
+        "DATAPATH_PROVIDER_UNSPECIFIED",
+        "LEGACY_DATAPATH",
+        "ADVANCED_DATAPATH",
+        "MIGRATE_TO_ADVANCED_DATAPATH",
+        "MIGRATE_TO_LEGACY_DATAPATH",
     ]
     dataplaneV2Config: DataplaneV2Config
     defaultEnablePrivateNodes: bool
@@ -1290,6 +1346,8 @@ class NodeKubeletConfig(typing.TypedDict, total=False):
     allowedUnsafeSysctls: _list[str]
     containerLogMaxFiles: int
     containerLogMaxSize: str
+    containerLogMaxWorkers: int
+    containerLogMonitorInterval: str
     cpuCfsQuota: bool
     cpuCfsQuotaPeriod: str
     cpuManagerPolicy: str
@@ -1306,6 +1364,8 @@ class NodeKubeletConfig(typing.TypedDict, total=False):
     maxParallelImagePulls: int
     memoryManager: MemoryManager
     podPidsLimit: str
+    reservedResourcesConfig: ReservedResourcesConfig
+    reservedSystemCpus: str
     shutdownGracePeriodCriticalPodsSeconds: int
     shutdownGracePeriodSeconds: int
     singleProcessOomKill: bool
@@ -1327,6 +1387,13 @@ class NodeNetworkConfig(typing.TypedDict, total=False):
     additionalNodeNetworkConfigs: _list[AdditionalNodeNetworkConfig]
     additionalPodNetworkConfigs: _list[AdditionalPodNetworkConfig]
     createPodRange: bool
+    datapathProvider: typing.Literal[
+        "DATAPATH_PROVIDER_UNSPECIFIED",
+        "LEGACY_DATAPATH",
+        "ADVANCED_DATAPATH",
+        "MIGRATE_TO_ADVANCED_DATAPATH",
+        "MIGRATE_TO_LEGACY_DATAPATH",
+    ]
     enablePrivateNodes: bool
     network: str
     networkPerformanceConfig: NetworkPerformanceConfig
@@ -1623,6 +1690,7 @@ class ReleaseChannelConfig(typing.TypedDict, total=False):
     channel: typing.Literal["UNSPECIFIED", "RAPID", "REGULAR", "STABLE", "EXTENDED"]
     customVersions: _list[str]
     defaultVersion: str
+    previewVersions: _list[str]
     upgradeTargetVersion: str
     validVersions: _list[str]
 
@@ -1637,6 +1705,18 @@ class ReservationAffinity(typing.TypedDict, total=False):
     ]
     key: str
     values: _list[str]
+
+@typing.type_check_only
+class ReservedResourcesConfig(typing.TypedDict, total=False):
+    cpuReservedMillicore: str
+    effectiveCpuReservedMillicore: str
+    effectiveMemoryReservedMib: str
+    memoryReservedMib: str
+
+@typing.type_check_only
+class ResolvedConfEntry(typing.TypedDict, total=False):
+    key: str
+    value: _list[str]
 
 @typing.type_check_only
 class ResourceLabels(typing.TypedDict, total=False):
@@ -1684,7 +1764,7 @@ class RotationConfig(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class SandboxConfig(typing.TypedDict, total=False):
-    type: typing.Literal["UNSPECIFIED", "GVISOR"]
+    type: typing.Literal["UNSPECIFIED", "GVISOR", "MICROVM"]
 
 @typing.type_check_only
 class ScheduleUpgradeConfig(typing.TypedDict, total=False):
@@ -2012,6 +2092,9 @@ class UpdateNodePoolRequest(typing.TypedDict, total=False):
     maintenancePolicy: NodePoolMaintenancePolicy
     maxRunDuration: str
     name: str
+    nodeConfigUpdateMode: typing.Literal[
+        "NODE_CONFIG_UPDATE_MODE_UNSPECIFIED", "LIVE_UPDATE_WITHOUT_DRAIN"
+    ]
     nodeDrainConfig: NodeDrainConfig
     nodeNetworkConfig: NodeNetworkConfig
     nodePoolId: str
@@ -2144,6 +2227,13 @@ class WindowsNodeConfig(typing.TypedDict, total=False):
     osVersion: typing.Literal[
         "OS_VERSION_UNSPECIFIED", "OS_VERSION_LTSC2019", "OS_VERSION_LTSC2022"
     ]
+
+@typing.type_check_only
+class WizSensorConfig(typing.TypedDict, total=False):
+    apiKeySecretUri: str
+    enabled: bool
+    proxySecretUri: str
+    registrySecretUri: str
 
 @typing.type_check_only
 class WorkloadIdentityConfig(typing.TypedDict, total=False):

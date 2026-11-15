@@ -20,6 +20,8 @@ class GoogleIdentityStsV1AccessBoundaryRule(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class GoogleIdentityStsV1ExchangeTokenRequest(typing.TypedDict, total=False):
+    actorToken: str
+    actorTokenType: str
     audience: str
     grantType: str
     options: str

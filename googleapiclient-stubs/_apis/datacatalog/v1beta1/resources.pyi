@@ -27,312 +27,9 @@ class DataCatalogResource(googleapiclient.discovery.Resource):
         ) -> GoogleCloudDatacatalogV1beta1SearchCatalogResponseHttpRequest | None: ...
 
     @typing.type_check_only
-    class EntriesResource(googleapiclient.discovery.Resource):
-        def lookup(
-            self,
-            *,
-            linkedResource: str | None = ...,
-            sqlResource: str | None = ...,
-            **kwargs: typing.Any,
-        ) -> GoogleCloudDatacatalogV1beta1EntryHttpRequest: ...
-
-    @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
-            @typing.type_check_only
-            class EntryGroupsResource(googleapiclient.discovery.Resource):
-                @typing.type_check_only
-                class EntriesResource(googleapiclient.discovery.Resource):
-                    @typing.type_check_only
-                    class TagsResource(googleapiclient.discovery.Resource):
-                        def create(
-                            self,
-                            *,
-                            parent: str,
-                            body: GoogleCloudDatacatalogV1beta1Tag,
-                            **kwargs: typing.Any,
-                        ) -> GoogleCloudDatacatalogV1beta1TagHttpRequest: ...
-                        def delete(
-                            self, *, name: str, **kwargs: typing.Any
-                        ) -> EmptyHttpRequest: ...
-                        def list(
-                            self,
-                            *,
-                            parent: str,
-                            pageSize: int | None = ...,
-                            pageToken: str | None = ...,
-                            **kwargs: typing.Any,
-                        ) -> (
-                            GoogleCloudDatacatalogV1beta1ListTagsResponseHttpRequest
-                        ): ...
-                        def list_next(
-                            self,
-                            previous_request: GoogleCloudDatacatalogV1beta1ListTagsResponseHttpRequest,
-                            previous_response: GoogleCloudDatacatalogV1beta1ListTagsResponse,
-                        ) -> (
-                            GoogleCloudDatacatalogV1beta1ListTagsResponseHttpRequest
-                            | None
-                        ): ...
-                        def patch(
-                            self,
-                            *,
-                            name: str,
-                            body: GoogleCloudDatacatalogV1beta1Tag,
-                            updateMask: str | None = ...,
-                            **kwargs: typing.Any,
-                        ) -> GoogleCloudDatacatalogV1beta1TagHttpRequest: ...
-
-                    def create(
-                        self,
-                        *,
-                        parent: str,
-                        body: GoogleCloudDatacatalogV1beta1Entry,
-                        entryId: str | None = ...,
-                        **kwargs: typing.Any,
-                    ) -> GoogleCloudDatacatalogV1beta1EntryHttpRequest: ...
-                    def delete(
-                        self, *, name: str, **kwargs: typing.Any
-                    ) -> EmptyHttpRequest: ...
-                    def get(
-                        self, *, name: str, **kwargs: typing.Any
-                    ) -> GoogleCloudDatacatalogV1beta1EntryHttpRequest: ...
-                    def getIamPolicy(
-                        self,
-                        *,
-                        resource: str,
-                        body: GetIamPolicyRequest,
-                        **kwargs: typing.Any,
-                    ) -> PolicyHttpRequest: ...
-                    def list(
-                        self,
-                        *,
-                        parent: str,
-                        pageSize: int | None = ...,
-                        pageToken: str | None = ...,
-                        readMask: str | None = ...,
-                        **kwargs: typing.Any,
-                    ) -> (
-                        GoogleCloudDatacatalogV1beta1ListEntriesResponseHttpRequest
-                    ): ...
-                    def list_next(
-                        self,
-                        previous_request: GoogleCloudDatacatalogV1beta1ListEntriesResponseHttpRequest,
-                        previous_response: GoogleCloudDatacatalogV1beta1ListEntriesResponse,
-                    ) -> (
-                        GoogleCloudDatacatalogV1beta1ListEntriesResponseHttpRequest
-                        | None
-                    ): ...
-                    def patch(
-                        self,
-                        *,
-                        name: str,
-                        body: GoogleCloudDatacatalogV1beta1Entry,
-                        updateMask: str | None = ...,
-                        **kwargs: typing.Any,
-                    ) -> GoogleCloudDatacatalogV1beta1EntryHttpRequest: ...
-                    def testIamPermissions(
-                        self,
-                        *,
-                        resource: str,
-                        body: TestIamPermissionsRequest,
-                        **kwargs: typing.Any,
-                    ) -> TestIamPermissionsResponseHttpRequest: ...
-                    def tags(self) -> TagsResource: ...
-
-                @typing.type_check_only
-                class TagsResource(googleapiclient.discovery.Resource):
-                    def create(
-                        self,
-                        *,
-                        parent: str,
-                        body: GoogleCloudDatacatalogV1beta1Tag,
-                        **kwargs: typing.Any,
-                    ) -> GoogleCloudDatacatalogV1beta1TagHttpRequest: ...
-                    def delete(
-                        self, *, name: str, **kwargs: typing.Any
-                    ) -> EmptyHttpRequest: ...
-                    def list(
-                        self,
-                        *,
-                        parent: str,
-                        pageSize: int | None = ...,
-                        pageToken: str | None = ...,
-                        **kwargs: typing.Any,
-                    ) -> GoogleCloudDatacatalogV1beta1ListTagsResponseHttpRequest: ...
-                    def list_next(
-                        self,
-                        previous_request: GoogleCloudDatacatalogV1beta1ListTagsResponseHttpRequest,
-                        previous_response: GoogleCloudDatacatalogV1beta1ListTagsResponse,
-                    ) -> (
-                        GoogleCloudDatacatalogV1beta1ListTagsResponseHttpRequest | None
-                    ): ...
-                    def patch(
-                        self,
-                        *,
-                        name: str,
-                        body: GoogleCloudDatacatalogV1beta1Tag,
-                        updateMask: str | None = ...,
-                        **kwargs: typing.Any,
-                    ) -> GoogleCloudDatacatalogV1beta1TagHttpRequest: ...
-
-                def create(
-                    self,
-                    *,
-                    parent: str,
-                    body: GoogleCloudDatacatalogV1beta1EntryGroup,
-                    entryGroupId: str | None = ...,
-                    **kwargs: typing.Any,
-                ) -> GoogleCloudDatacatalogV1beta1EntryGroupHttpRequest: ...
-                def delete(
-                    self, *, name: str, force: bool | None = ..., **kwargs: typing.Any
-                ) -> EmptyHttpRequest: ...
-                def get(
-                    self, *, name: str, readMask: str | None = ..., **kwargs: typing.Any
-                ) -> GoogleCloudDatacatalogV1beta1EntryGroupHttpRequest: ...
-                def getIamPolicy(
-                    self,
-                    *,
-                    resource: str,
-                    body: GetIamPolicyRequest,
-                    **kwargs: typing.Any,
-                ) -> PolicyHttpRequest: ...
-                def list(
-                    self,
-                    *,
-                    parent: str,
-                    pageSize: int | None = ...,
-                    pageToken: str | None = ...,
-                    **kwargs: typing.Any,
-                ) -> (
-                    GoogleCloudDatacatalogV1beta1ListEntryGroupsResponseHttpRequest
-                ): ...
-                def list_next(
-                    self,
-                    previous_request: GoogleCloudDatacatalogV1beta1ListEntryGroupsResponseHttpRequest,
-                    previous_response: GoogleCloudDatacatalogV1beta1ListEntryGroupsResponse,
-                ) -> (
-                    GoogleCloudDatacatalogV1beta1ListEntryGroupsResponseHttpRequest
-                    | None
-                ): ...
-                def patch(
-                    self,
-                    *,
-                    name: str,
-                    body: GoogleCloudDatacatalogV1beta1EntryGroup,
-                    updateMask: str | None = ...,
-                    **kwargs: typing.Any,
-                ) -> GoogleCloudDatacatalogV1beta1EntryGroupHttpRequest: ...
-                def setIamPolicy(
-                    self,
-                    *,
-                    resource: str,
-                    body: SetIamPolicyRequest,
-                    **kwargs: typing.Any,
-                ) -> PolicyHttpRequest: ...
-                def testIamPermissions(
-                    self,
-                    *,
-                    resource: str,
-                    body: TestIamPermissionsRequest,
-                    **kwargs: typing.Any,
-                ) -> TestIamPermissionsResponseHttpRequest: ...
-                def entries(self) -> EntriesResource: ...
-                def tags(self) -> TagsResource: ...
-
-            @typing.type_check_only
-            class TagTemplatesResource(googleapiclient.discovery.Resource):
-                @typing.type_check_only
-                class FieldsResource(googleapiclient.discovery.Resource):
-                    @typing.type_check_only
-                    class EnumValuesResource(googleapiclient.discovery.Resource):
-                        def rename(
-                            self,
-                            *,
-                            name: str,
-                            body: GoogleCloudDatacatalogV1beta1RenameTagTemplateFieldEnumValueRequest,
-                            **kwargs: typing.Any,
-                        ) -> (
-                            GoogleCloudDatacatalogV1beta1TagTemplateFieldHttpRequest
-                        ): ...
-
-                    def create(
-                        self,
-                        *,
-                        parent: str,
-                        body: GoogleCloudDatacatalogV1beta1TagTemplateField,
-                        tagTemplateFieldId: str | None = ...,
-                        **kwargs: typing.Any,
-                    ) -> GoogleCloudDatacatalogV1beta1TagTemplateFieldHttpRequest: ...
-                    def delete(
-                        self,
-                        *,
-                        name: str,
-                        force: bool | None = ...,
-                        **kwargs: typing.Any,
-                    ) -> EmptyHttpRequest: ...
-                    def patch(
-                        self,
-                        *,
-                        name: str,
-                        body: GoogleCloudDatacatalogV1beta1TagTemplateField,
-                        updateMask: str | None = ...,
-                        **kwargs: typing.Any,
-                    ) -> GoogleCloudDatacatalogV1beta1TagTemplateFieldHttpRequest: ...
-                    def rename(
-                        self,
-                        *,
-                        name: str,
-                        body: GoogleCloudDatacatalogV1beta1RenameTagTemplateFieldRequest,
-                        **kwargs: typing.Any,
-                    ) -> GoogleCloudDatacatalogV1beta1TagTemplateFieldHttpRequest: ...
-                    def enumValues(self) -> EnumValuesResource: ...
-
-                def create(
-                    self,
-                    *,
-                    parent: str,
-                    body: GoogleCloudDatacatalogV1beta1TagTemplate,
-                    tagTemplateId: str | None = ...,
-                    **kwargs: typing.Any,
-                ) -> GoogleCloudDatacatalogV1beta1TagTemplateHttpRequest: ...
-                def delete(
-                    self, *, name: str, force: bool | None = ..., **kwargs: typing.Any
-                ) -> EmptyHttpRequest: ...
-                def get(
-                    self, *, name: str, **kwargs: typing.Any
-                ) -> GoogleCloudDatacatalogV1beta1TagTemplateHttpRequest: ...
-                def getIamPolicy(
-                    self,
-                    *,
-                    resource: str,
-                    body: GetIamPolicyRequest,
-                    **kwargs: typing.Any,
-                ) -> PolicyHttpRequest: ...
-                def patch(
-                    self,
-                    *,
-                    name: str,
-                    body: GoogleCloudDatacatalogV1beta1TagTemplate,
-                    updateMask: str | None = ...,
-                    **kwargs: typing.Any,
-                ) -> GoogleCloudDatacatalogV1beta1TagTemplateHttpRequest: ...
-                def setIamPolicy(
-                    self,
-                    *,
-                    resource: str,
-                    body: SetIamPolicyRequest,
-                    **kwargs: typing.Any,
-                ) -> PolicyHttpRequest: ...
-                def testIamPermissions(
-                    self,
-                    *,
-                    resource: str,
-                    body: TestIamPermissionsRequest,
-                    **kwargs: typing.Any,
-                ) -> TestIamPermissionsResponseHttpRequest: ...
-                def fields(self) -> FieldsResource: ...
-
             @typing.type_check_only
             class TaxonomiesResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
@@ -478,8 +175,6 @@ class DataCatalogResource(googleapiclient.discovery.Resource):
                 ) -> TestIamPermissionsResponseHttpRequest: ...
                 def policyTags(self) -> PolicyTagsResource: ...
 
-            def entryGroups(self) -> EntryGroupsResource: ...
-            def tagTemplates(self) -> TagTemplatesResource: ...
             def taxonomies(self) -> TaxonomiesResource: ...
 
         def locations(self) -> LocationsResource: ...
@@ -497,7 +192,6 @@ class DataCatalogResource(googleapiclient.discovery.Resource):
         | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def catalog(self) -> CatalogResource: ...
-    def entries(self) -> EntriesResource: ...
     def projects(self) -> ProjectsResource: ...
 
 @typing.type_check_only
@@ -507,24 +201,6 @@ class EmptyHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Empty: ...
-
-@typing.type_check_only
-class GoogleCloudDatacatalogV1beta1EntryHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> GoogleCloudDatacatalogV1beta1Entry: ...
-
-@typing.type_check_only
-class GoogleCloudDatacatalogV1beta1EntryGroupHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> GoogleCloudDatacatalogV1beta1EntryGroup: ...
 
 @typing.type_check_only
 class GoogleCloudDatacatalogV1beta1ExportTaxonomiesResponseHttpRequest(
@@ -547,26 +223,6 @@ class GoogleCloudDatacatalogV1beta1ImportTaxonomiesResponseHttpRequest(
     ) -> GoogleCloudDatacatalogV1beta1ImportTaxonomiesResponse: ...
 
 @typing.type_check_only
-class GoogleCloudDatacatalogV1beta1ListEntriesResponseHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> GoogleCloudDatacatalogV1beta1ListEntriesResponse: ...
-
-@typing.type_check_only
-class GoogleCloudDatacatalogV1beta1ListEntryGroupsResponseHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> GoogleCloudDatacatalogV1beta1ListEntryGroupsResponse: ...
-
-@typing.type_check_only
 class GoogleCloudDatacatalogV1beta1ListPolicyTagsResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -575,16 +231,6 @@ class GoogleCloudDatacatalogV1beta1ListPolicyTagsResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudDatacatalogV1beta1ListPolicyTagsResponse: ...
-
-@typing.type_check_only
-class GoogleCloudDatacatalogV1beta1ListTagsResponseHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> GoogleCloudDatacatalogV1beta1ListTagsResponse: ...
 
 @typing.type_check_only
 class GoogleCloudDatacatalogV1beta1ListTaxonomiesResponseHttpRequest(
@@ -615,34 +261,6 @@ class GoogleCloudDatacatalogV1beta1SearchCatalogResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudDatacatalogV1beta1SearchCatalogResponse: ...
-
-@typing.type_check_only
-class GoogleCloudDatacatalogV1beta1TagHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> GoogleCloudDatacatalogV1beta1Tag: ...
-
-@typing.type_check_only
-class GoogleCloudDatacatalogV1beta1TagTemplateHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> GoogleCloudDatacatalogV1beta1TagTemplate: ...
-
-@typing.type_check_only
-class GoogleCloudDatacatalogV1beta1TagTemplateFieldHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> GoogleCloudDatacatalogV1beta1TagTemplateField: ...
 
 @typing.type_check_only
 class GoogleCloudDatacatalogV1beta1TaxonomyHttpRequest(

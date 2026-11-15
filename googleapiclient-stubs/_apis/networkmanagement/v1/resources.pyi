@@ -232,6 +232,13 @@ class NetworkManagementResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
+                        cloudDeploymentType: typing.Literal[
+                            "CLOUD_DEPLOYMENT_TYPE_UNSPECIFIED",
+                            "TERRAFORM",
+                            "CLOUD_FORMATION",
+                            "BICEP",
+                        ]
+                        | None = ...,
                         hostname: str | None = ...,
                         monitoringPointType: typing.Literal[
                             "MONITORING_POINT_TYPE_UNSPECIFIED",

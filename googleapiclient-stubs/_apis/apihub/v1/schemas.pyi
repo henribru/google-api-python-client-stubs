@@ -29,6 +29,7 @@ class GoogleCloudApihubV1AdditionalSpecContent(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class GoogleCloudApihubV1Addon(typing.TypedDict, total=False):
+    boostSpecGeminiRegionId: str
     config: GoogleCloudApihubV1AddonConfig
     createTime: str
     dataSource: typing.Literal["DATA_SOURCE_UNSPECIFIED", "PLUGIN_INSTANCE", "ALL_DATA"]
@@ -77,6 +78,7 @@ class GoogleCloudApihubV1Api(typing.TypedDict, total=False):
     name: str
     owner: GoogleCloudApihubV1Owner
     selectedVersion: str
+    serviceType: GoogleCloudApihubV1AttributeValues
     sourceMetadata: _list[GoogleCloudApihubV1SourceMetadata]
     targetUser: GoogleCloudApihubV1AttributeValues
     team: GoogleCloudApihubV1AttributeValues
@@ -131,6 +133,7 @@ class GoogleCloudApihubV1ApiMetadataList(typing.TypedDict, total=False):
 class GoogleCloudApihubV1ApiOperation(typing.TypedDict, total=False):
     attributes: dict[str, typing.Any]
     createTime: str
+    deployments: _list[str]
     details: GoogleCloudApihubV1OperationDetails
     name: str
     sourceMetadata: _list[GoogleCloudApihubV1SourceMetadata]
@@ -367,6 +370,7 @@ class GoogleCloudApihubV1DependencyErrorDetail(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class GoogleCloudApihubV1Deployment(typing.TypedDict, total=False):
+    apiOperations: _list[str]
     apiVersions: _list[str]
     attributes: dict[str, typing.Any]
     createTime: str
@@ -383,7 +387,9 @@ class GoogleCloudApihubV1Deployment(typing.TypedDict, total=False):
     sourceEnvironment: str
     sourceMetadata: _list[GoogleCloudApihubV1SourceMetadata]
     sourceProject: str
+    sourceRevision: str
     sourceUri: GoogleCloudApihubV1AttributeValues
+    specs: _list[str]
     updateTime: str
 
 @typing.type_check_only
@@ -518,6 +524,36 @@ class GoogleCloudApihubV1GatewayPluginConfig(typing.TypedDict, total=False):
     apigeeOpdkConfig: GoogleCloudApihubV1ApigeeOPDKConfig
     apigeeXHybridConfig: GoogleCloudApihubV1ApigeeXHybridConfig
     pluginInstance: str
+
+@typing.type_check_only
+class GoogleCloudApihubV1GenerateSpecRequest(typing.TypedDict, total=False):
+    observationWindow: GoogleTypeInterval
+
+@typing.type_check_only
+class GoogleCloudApihubV1GenerateSpecResponse(typing.TypedDict, total=False):
+    generatedSpec: GoogleCloudApihubV1SpecContents
+
+@typing.type_check_only
+class GoogleCloudApihubV1GeneratedSpecApi(typing.TypedDict, total=False):
+    api: str
+    createTime: str
+    deployment: str
+    displayName: str
+    lastSpecGeneratedTime: str
+    name: str
+    source: GoogleCloudApihubV1GeneratedSpecApiSource
+    spec: str
+    state: typing.Literal[
+        "STATE_UNSPECIFIED", "SPEC_API_REGISTERED", "SPEC_GENERATED", "SPEC_ASSOCIATED"
+    ]
+    updateTime: str
+    version: str
+
+@typing.type_check_only
+class GoogleCloudApihubV1GeneratedSpecApiSource(typing.TypedDict, total=False):
+    sourceDisplayName: str
+    type: typing.Literal["TYPE_UNSPECIFIED", "APIGEE_X"]
+    typeDisplayName: str
 
 @typing.type_check_only
 class GoogleCloudApihubV1GoogleServiceAccountConfig(typing.TypedDict, total=False):
@@ -677,6 +713,11 @@ class GoogleCloudApihubV1ListDiscoveredApiOperationsResponse(
 @typing.type_check_only
 class GoogleCloudApihubV1ListExternalApisResponse(typing.TypedDict, total=False):
     externalApis: _list[GoogleCloudApihubV1ExternalApi]
+    nextPageToken: str
+
+@typing.type_check_only
+class GoogleCloudApihubV1ListGeneratedSpecApisResponse(typing.TypedDict, total=False):
+    generatedSpecApis: _list[GoogleCloudApihubV1GeneratedSpecApi]
     nextPageToken: str
 
 @typing.type_check_only
@@ -1019,6 +1060,7 @@ class GoogleCloudApihubV1Spec(typing.TypedDict, total=False):
     attributes: dict[str, typing.Any]
     contents: GoogleCloudApihubV1SpecContents
     createTime: str
+    deployments: _list[str]
     details: GoogleCloudApihubV1SpecDetails
     displayName: str
     documentation: GoogleCloudApihubV1Documentation
@@ -1042,6 +1084,7 @@ class GoogleCloudApihubV1SpecDetails(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class GoogleCloudApihubV1SpecMetadata(typing.TypedDict, total=False):
+    deploymentResourceUris: _list[str]
     originalCreateTime: str
     originalId: str
     originalUpdateTime: str
@@ -1160,3 +1203,8 @@ class GoogleRpcStatus(typing.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
+
+@typing.type_check_only
+class GoogleTypeInterval(typing.TypedDict, total=False):
+    endTime: str
+    startTime: str

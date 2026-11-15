@@ -14,6 +14,7 @@ class DailyMetricTimeSeries(typing.TypedDict, total=False):
         "BUSINESS_DIRECTION_REQUESTS",
         "CALL_CLICKS",
         "WEBSITE_CLICKS",
+        "MESSAGING_CLICKS",
         "BUSINESS_BOOKINGS",
         "BUSINESS_FOOD_ORDERS",
         "BUSINESS_FOOD_MENU_CLICKS",

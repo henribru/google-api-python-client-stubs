@@ -117,6 +117,7 @@ class BlobStorageSettings(typing.TypedDict, total=False):
 @typing.type_check_only
 class BulkDeleteResourcesRequest(typing.TypedDict, total=False):
     gcsDestination: GoogleCloudHealthcareV1FhirGcsDestination
+    gcsSource: GoogleCloudHealthcareV1FhirGcsSource
     type: str
     until: str
     validateOnly: bool
@@ -227,6 +228,11 @@ class CreateMessageRequest(typing.TypedDict, total=False):
 class CryptoHashConfig(typing.TypedDict, total=False):
     cryptoKey: str
     kmsWrapped: KmsWrappedCryptoKey
+
+@typing.type_check_only
+class CustomRegex(typing.TypedDict, total=False):
+    groupIndexes: _list[int]
+    pattern: str
 
 @typing.type_check_only
 class Dataset(typing.TypedDict, total=False):
@@ -400,6 +406,7 @@ class ExplainDataAccessResponse(typing.TypedDict, total=False):
 @typing.type_check_only
 class ExportDicomDataRequest(typing.TypedDict, total=False):
     bigqueryDestination: GoogleCloudHealthcareV1DicomBigQueryDestination
+    filterConfig: DicomFilterConfig
     gcsDestination: GoogleCloudHealthcareV1DicomGcsDestination
 
 @typing.type_check_only
@@ -628,6 +635,7 @@ class Image(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class ImageConfig(typing.TypedDict, total=False):
+    customRegexes: _list[CustomRegex]
     textRedactionMode: typing.Literal[
         "TEXT_REDACTION_MODE_UNSPECIFIED",
         "REDACT_ALL_TEXT",

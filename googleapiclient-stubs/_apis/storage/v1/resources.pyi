@@ -270,12 +270,6 @@ class StorageResource(googleapiclient.discovery.Resource):
         ) -> BucketHttpRequest: ...
 
     @typing.type_check_only
-    class ChannelsResource(googleapiclient.discovery.Resource):
-        def stop(
-            self, *, body: Channel, **kwargs: typing.Any
-        ) -> googleapiclient.http.HttpRequest: ...
-
-    @typing.type_check_only
     class DefaultObjectAccessControlsResource(googleapiclient.discovery.Resource):
         def delete(
             self,
@@ -860,6 +854,16 @@ class StorageResource(googleapiclient.discovery.Resource):
             userProject: str | None = ...,
             **kwargs: typing.Any,
         ) -> ObjectHttpRequest: ...
+        def viewFullContext(
+            self,
+            *,
+            bucket: str,
+            object: str,
+            contextKey: str,
+            generation: str | None = ...,
+            userProject: str | None = ...,
+            **kwargs: typing.Any,
+        ) -> ObjectFullContextHttpRequest: ...
 
     @typing.type_check_only
     class OperationsResource(googleapiclient.discovery.Resource):
@@ -1007,7 +1011,6 @@ class StorageResource(googleapiclient.discovery.Resource):
     def anywhereCaches(self) -> AnywhereCachesResource: ...
     def bucketAccessControls(self) -> BucketAccessControlsResource: ...
     def buckets(self) -> BucketsResource: ...
-    def channels(self) -> ChannelsResource: ...
     def defaultObjectAccessControls(self) -> DefaultObjectAccessControlsResource: ...
     def folders(self) -> FoldersResource: ...
     def managedFolders(self) -> ManagedFoldersResource: ...
@@ -1187,6 +1190,14 @@ class ObjectAccessControlsHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ObjectAccessControls: ...
+
+@typing.type_check_only
+class ObjectFullContextHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ObjectFullContext: ...
 
 @typing.type_check_only
 class ObjectsHttpRequest(googleapiclient.http.HttpRequest):

@@ -236,6 +236,11 @@ class PutObjectHold(typing.TypedDict, total=False):
     temporaryHold: typing.Literal["HOLD_STATUS_UNSPECIFIED", "SET", "UNSET"]
 
 @typing.type_check_only
+class ReconciliationOperationMetadata(typing.TypedDict, total=False):
+    deleteResource: bool
+    exclusiveAction: typing.Literal["UNKNOWN_REPAIR_ACTION", "DELETE", "RETRY"]
+
+@typing.type_check_only
 class RewriteObject(typing.TypedDict, total=False):
     kmsKey: str
     storageClass: typing.Literal[

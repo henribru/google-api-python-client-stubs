@@ -50,6 +50,108 @@ class AgentRegistryResource(googleapiclient.discovery.Resource):
                 ) -> SearchAgentsResponseHttpRequest | None: ...
 
             @typing.type_check_only
+            class AiApplicationsResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class AgentsResource(googleapiclient.discovery.Resource):
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> AgentHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
+                        **kwargs: typing.Any,
+                    ) -> ListAiApplicationAgentsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListAiApplicationAgentsResponseHttpRequest,
+                        previous_response: ListAiApplicationAgentsResponse,
+                    ) -> ListAiApplicationAgentsResponseHttpRequest | None: ...
+
+                @typing.type_check_only
+                class EndpointsResource(googleapiclient.discovery.Resource):
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> EndpointHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
+                        **kwargs: typing.Any,
+                    ) -> ListAiApplicationEndpointsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListAiApplicationEndpointsResponseHttpRequest,
+                        previous_response: ListAiApplicationEndpointsResponse,
+                    ) -> ListAiApplicationEndpointsResponseHttpRequest | None: ...
+
+                @typing.type_check_only
+                class McpServersResource(googleapiclient.discovery.Resource):
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> McpServerHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
+                        **kwargs: typing.Any,
+                    ) -> ListAiApplicationMcpServersResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListAiApplicationMcpServersResponseHttpRequest,
+                        previous_response: ListAiApplicationMcpServersResponse,
+                    ) -> ListAiApplicationMcpServersResponseHttpRequest | None: ...
+
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> AiApplicationHttpRequest: ...
+                def getIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    options_requestedPolicyVersion: int | None = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleIamV1PolicyHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str | None = ...,
+                    orderBy: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> ListAiApplicationsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListAiApplicationsResponseHttpRequest,
+                    previous_response: ListAiApplicationsResponse,
+                ) -> ListAiApplicationsResponseHttpRequest | None: ...
+                def setIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    body: GoogleIamV1SetIamPolicyRequest,
+                    **kwargs: typing.Any,
+                ) -> GoogleIamV1PolicyHttpRequest: ...
+                def testIamPermissions(
+                    self,
+                    *,
+                    resource: str,
+                    body: GoogleIamV1TestIamPermissionsRequest,
+                    **kwargs: typing.Any,
+                ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
+                def agents(self) -> AgentsResource: ...
+                def endpoints(self) -> EndpointsResource: ...
+                def mcpServers(self) -> McpServersResource: ...
+
+            @typing.type_check_only
             class BindingsResource(googleapiclient.discovery.Resource):
                 def create(
                     self,
@@ -129,6 +231,27 @@ class AgentRegistryResource(googleapiclient.discovery.Resource):
                     previous_request: ListEndpointsResponseHttpRequest,
                     previous_response: ListEndpointsResponse,
                 ) -> ListEndpointsResponseHttpRequest | None: ...
+
+            @typing.type_check_only
+            class FindingsResource(googleapiclient.discovery.Resource):
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> FindingHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str | None = ...,
+                    orderBy: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> ListFindingsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListFindingsResponseHttpRequest,
+                    previous_response: ListFindingsResponse,
+                ) -> ListFindingsResponseHttpRequest | None: ...
 
             @typing.type_check_only
             class McpServersResource(googleapiclient.discovery.Resource):
@@ -318,6 +441,16 @@ class AgentRegistryResource(googleapiclient.discovery.Resource):
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> SkillHttpRequest: ...
+                def get_media(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> BytesHttpRequest: ...
+                def getIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    options_requestedPolicyVersion: int | None = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleIamV1PolicyHttpRequest: ...
                 def list(
                     self,
                     *,
@@ -361,6 +494,20 @@ class AgentRegistryResource(googleapiclient.discovery.Resource):
                     previous_request: SearchSkillsResponseHttpRequest,
                     previous_response: SearchSkillsResponse,
                 ) -> SearchSkillsResponseHttpRequest | None: ...
+                def setIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    body: GoogleIamV1SetIamPolicyRequest,
+                    **kwargs: typing.Any,
+                ) -> GoogleIamV1PolicyHttpRequest: ...
+                def testIamPermissions(
+                    self,
+                    *,
+                    resource: str,
+                    body: GoogleIamV1TestIamPermissionsRequest,
+                    **kwargs: typing.Any,
+                ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
                 def revisions(self) -> RevisionsResource: ...
 
             def get(
@@ -382,8 +529,10 @@ class AgentRegistryResource(googleapiclient.discovery.Resource):
                 previous_response: ListLocationsResponse,
             ) -> ListLocationsResponseHttpRequest | None: ...
             def agents(self) -> AgentsResource: ...
+            def aiApplications(self) -> AiApplicationsResource: ...
             def bindings(self) -> BindingsResource: ...
             def endpoints(self) -> EndpointsResource: ...
+            def findings(self) -> FindingsResource: ...
             def mcpServers(self) -> McpServersResource: ...
             def operations(self) -> OperationsResource: ...
             def publishers(self) -> PublishersResource: ...
@@ -413,6 +562,14 @@ class AgentHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Agent: ...
+
+@typing.type_check_only
+class AiApplicationHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> AiApplication: ...
 
 @typing.type_check_only
 class BindingHttpRequest(googleapiclient.http.HttpRequest):
@@ -447,12 +604,70 @@ class FetchAvailableBindingsResponseHttpRequest(googleapiclient.http.HttpRequest
     ) -> FetchAvailableBindingsResponse: ...
 
 @typing.type_check_only
+class FindingHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> Finding: ...
+
+@typing.type_check_only
+class GoogleIamV1PolicyHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleIamV1Policy: ...
+
+@typing.type_check_only
+class GoogleIamV1TestIamPermissionsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleIamV1TestIamPermissionsResponse: ...
+
+@typing.type_check_only
 class ListAgentsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListAgentsResponse: ...
+
+@typing.type_check_only
+class ListAiApplicationAgentsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListAiApplicationAgentsResponse: ...
+
+@typing.type_check_only
+class ListAiApplicationEndpointsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListAiApplicationEndpointsResponse: ...
+
+@typing.type_check_only
+class ListAiApplicationMcpServersResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListAiApplicationMcpServersResponse: ...
+
+@typing.type_check_only
+class ListAiApplicationsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListAiApplicationsResponse: ...
 
 @typing.type_check_only
 class ListBindingsResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -469,6 +684,14 @@ class ListEndpointsResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListEndpointsResponse: ...
+
+@typing.type_check_only
+class ListFindingsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListFindingsResponse: ...
 
 @typing.type_check_only
 class ListLocationsResponseHttpRequest(googleapiclient.http.HttpRequest):

@@ -28,6 +28,13 @@ class DocsResource(googleapiclient.discovery.Resource):
             self,
             *,
             documentId: str,
+            commentsViewMode: typing.Literal[
+                "COMMENTS_VIEW_MODE_UNSPECIFIED",
+                "COMMENTS_VIEW_MODE_DEFAULT_FOR_CURRENT_ACCESS",
+                "COMMENTS_VIEW_MODE_OMITTED",
+                "COMMENTS_VIEW_MODE_INCLUDED",
+            ]
+            | None = ...,
             includeTabsContent: bool | None = ...,
             suggestionsViewMode: typing.Literal[
                 "DEFAULT_FOR_CURRENT_ACCESS",

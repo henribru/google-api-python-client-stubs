@@ -31,6 +31,7 @@ class Calendar(typing.TypedDict, total=False):
     location: str
     summary: str
     timeZone: str
+    workingHours: dict[str, typing.Any]
 
 @typing.type_check_only
 class CalendarList(typing.TypedDict, total=False):

@@ -150,6 +150,7 @@ class IssueSeverityPerReportingContext(typing.TypedDict, total=False):
         "PRODUCT_REVIEWS",
         "MERCHANT_REVIEWS",
         "YOUTUBE_CHECKOUT",
+        "RENTAL_ADS",
     ]
 
 @typing.type_check_only
@@ -254,6 +255,7 @@ class ProductChange(typing.TypedDict, total=False):
         "PRODUCT_REVIEWS",
         "MERCHANT_REVIEWS",
         "YOUTUBE_CHECKOUT",
+        "RENTAL_ADS",
     ]
 
 @typing.type_check_only
@@ -278,7 +280,21 @@ class ProductPerformanceView(typing.TypedDict, total=False):
     date: Date
     impressions: str
     marketingMethod: typing.Literal[
-        "MARKETING_METHOD_ENUM_UNSPECIFIED", "ORGANIC", "ADS"
+        "MARKETING_METHOD_ENUM_UNSPECIFIED", "ORGANIC", "ADS", "AFFILIATE"
+    ]
+    network: typing.Literal[
+        "NETWORK_ENUM_UNSPECIFIED",
+        "UNKNOWN",
+        "SEARCH",
+        "SEARCH_PARTNERS",
+        "CONTENT",
+        "MIXED",
+        "YOUTUBE",
+        "GOOGLE_TV",
+        "GOOGLE_OWNED_CHANNELS",
+        "GMAIL",
+        "DISCOVER",
+        "MAPS",
     ]
     offerId: str
     productTypeL1: str
@@ -362,6 +378,7 @@ class ProductView(typing.TypedDict, total=False):
         "PRODUCT_REVIEWS",
         "MERCHANT_REVIEWS",
         "YOUTUBE_CHECKOUT",
+        "RENTAL_ADS",
     ]
     shippingLabel: str
     statusPerReportingContext: _list[StatusPerReportingContext]
@@ -418,4 +435,5 @@ class StatusPerReportingContext(typing.TypedDict, total=False):
         "PRODUCT_REVIEWS",
         "MERCHANT_REVIEWS",
         "YOUTUBE_CHECKOUT",
+        "RENTAL_ADS",
     ]

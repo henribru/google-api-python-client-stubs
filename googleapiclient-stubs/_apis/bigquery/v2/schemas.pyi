@@ -618,6 +618,7 @@ class ExternalRuntimeOptions(typing.TypedDict, total=False):
     maxBatchingRows: str
     runtimeConnection: str
     runtimeVersion: str
+    volumeMounts: _list[ExternalVolumeMount]
 
 @typing.type_check_only
 class ExternalServiceCost(typing.TypedDict, total=False):
@@ -627,6 +628,11 @@ class ExternalServiceCost(typing.TypedDict, total=False):
     externalService: str
     reservedSlotCount: str
     slotMs: str
+
+@typing.type_check_only
+class ExternalVolumeMount(typing.TypedDict, total=False):
+    mountPath: str
+    sourcePath: str
 
 @typing.type_check_only
 class FeatureValue(typing.TypedDict, total=False):
@@ -912,7 +918,9 @@ class JobConfigurationExtract(typing.TypedDict, total=False):
     destinationUris: _list[str]
     fieldDelimiter: str
     modelExtractOptions: ModelExtractOptions
+    nativeGeographyExportEnabled: bool
     printHeader: bool
+    secureContext: SecureContext
     sourceModel: ModelReference
     sourceTable: TableReference
     useAvroLogicalTypes: bool
@@ -998,6 +1006,7 @@ class JobConfigurationQuery(typing.TypedDict, total=False):
     rangePartitioning: RangePartitioning
     schemaUpdateOptions: _list[str]
     scriptOptions: ScriptOptions
+    secureContext: SecureContext
     systemVariables: SystemVariables
     tableDefinitions: dict[str, typing.Any]
     timePartitioning: TimePartitioning
@@ -1103,6 +1112,7 @@ class JobStatistics2(typing.TypedDict, total=False):
     performanceInsights: PerformanceInsights
     queryInfo: QueryInfo
     queryPlan: _list[ExplainQueryStage]
+    referencedLogicalViews: _list[TableReference]
     referencedPropertyGraphs: _list[PropertyGraphReference]
     referencedRoutines: _list[RoutineReference]
     referencedTables: _list[TableReference]
@@ -1497,6 +1507,7 @@ class QueryRequest(typing.TypedDict, total=False):
     ]
     requestId: str
     reservation: str
+    secureContext: SecureContext
     timeoutMs: int
     useLegacySql: bool
     useQueryCache: bool
@@ -1701,6 +1712,10 @@ class SearchStatistics(typing.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class SecureContext(typing.TypedDict, total=False):
+    secureParameterEntries: dict[str, typing.Any]
+
+@typing.type_check_only
 class SerDeInfo(typing.TypedDict, total=False):
     name: str
     parameters: dict[str, typing.Any]
@@ -1792,6 +1807,7 @@ class StandardSqlDataType(typing.TypedDict, total=False):
         "ARRAY",
         "STRUCT",
         "RANGE",
+        "UUID",
     ]
 
 @typing.type_check_only

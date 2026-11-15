@@ -3671,6 +3671,31 @@ class GoogleCloudDialogflowV2ClearSuggestionFeatureConfigOperationMetadata(
     ]
 
 @typing.type_check_only
+class GoogleCloudDialogflowV2CompanionSuggestion(typing.TypedDict, total=False):
+    guidances: _list[GoogleCloudDialogflowV2CompanionSuggestionGuidance]
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2CompanionSuggestionGuidance(typing.TypedDict, total=False):
+    explanation: str
+    groundingMetadata: GoogleCloudDialogflowV2GroundingMetadata
+    instructionSource: GoogleCloudDialogflowV2GuidanceInstruction
+    knowledgeSources: _list[
+        GoogleCloudDialogflowV2CompanionSuggestionGuidanceKnowledgeSource
+    ]
+    suggestedAction: str
+    suggestedReply: str
+    toolCalls: _list[GoogleCloudDialogflowV2ToolCallSuggestion]
+    triggeringToolCallAnswerRecords: _list[str]
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2CompanionSuggestionGuidanceKnowledgeSource(
+    typing.TypedDict, total=False
+):
+    knowledgeArticleTitle: str
+    knowledgeArticleUrl: str
+    knowledgeSnippet: str
+
+@typing.type_check_only
 class GoogleCloudDialogflowV2Context(typing.TypedDict, total=False):
     lifespanCount: int
     name: str
@@ -3831,6 +3856,15 @@ class GoogleCloudDialogflowV2GcsDestination(typing.TypedDict, total=False):
     uri: str
 
 @typing.type_check_only
+class GoogleCloudDialogflowV2GenerateCompanionSuggestionsResponse(
+    typing.TypedDict, total=False
+):
+    answerRecord: str
+    companionSuggestion: GoogleCloudDialogflowV2CompanionSuggestion
+    latestMessage: str
+    suggestionIndex: int
+
+@typing.type_check_only
 class GoogleCloudDialogflowV2GenerateSuggestionsResponse(typing.TypedDict, total=False):
     generatorSuggestionAnswers: _list[
         GoogleCloudDialogflowV2GenerateSuggestionsResponseGeneratorSuggestionAnswer
@@ -3858,6 +3892,55 @@ class GoogleCloudDialogflowV2GeneratorSuggestionToolCallInfo(
 ):
     toolCall: GoogleCloudDialogflowV2ToolCall
     toolCallResult: GoogleCloudDialogflowV2ToolCallResult
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2GroundingChunk(typing.TypedDict, total=False):
+    retrievedContext: GoogleCloudDialogflowV2GroundingChunkRetrievedContext
+    web: GoogleCloudDialogflowV2GroundingChunkWeb
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2GroundingChunkRetrievedContext(
+    typing.TypedDict, total=False
+):
+    text: str
+    title: str
+    uri: str
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2GroundingChunkWeb(typing.TypedDict, total=False):
+    domain: str
+    title: str
+    uri: str
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2GroundingMetadata(typing.TypedDict, total=False):
+    groundingChunks: _list[GoogleCloudDialogflowV2GroundingChunk]
+    groundingSupports: _list[GoogleCloudDialogflowV2GroundingSupport]
+    searchEntryPoint: GoogleCloudDialogflowV2SearchEntryPoint
+    webSearchQueries: _list[str]
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2GroundingSupport(typing.TypedDict, total=False):
+    groundingChunkIndices: _list[int]
+    segment: GoogleCloudDialogflowV2Segment
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2GuidanceInstruction(typing.TypedDict, total=False):
+    actions: _list[GoogleCloudDialogflowV2GuidanceInstructionAction]
+    condition: str
+    disableSuggestedReply: bool
+    displayDetails: str
+    displayName: str
+    triggerEvent: typing.Literal[
+        "TRIGGER_EVENT_UNSPECIFIED",
+        "END_OF_UTTERANCE",
+        "CUSTOMER_MESSAGE",
+        "AGENT_MESSAGE",
+    ]
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2GuidanceInstructionAction(typing.TypedDict, total=False):
+    description: str
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2HumanAgentAssistantEvent(typing.TypedDict, total=False):
@@ -4380,6 +4463,7 @@ class GoogleCloudDialogflowV2Message(typing.TypedDict, total=False):
     participantRole: typing.Literal[
         "ROLE_UNSPECIFIED", "HUMAN_AGENT", "AUTOMATED_AGENT", "END_USER"
     ]
+    responseMessages: _list[GoogleCloudDialogflowV2ResponseMessage]
     sendTime: str
     sentimentAnalysis: GoogleCloudDialogflowV2SentimentAnalysisResult
 
@@ -4414,6 +4498,59 @@ class GoogleCloudDialogflowV2QueryResult(typing.TypedDict, total=False):
     webhookSource: str
 
 @typing.type_check_only
+class GoogleCloudDialogflowV2ResponseMessage(typing.TypedDict, total=False):
+    endInteraction: GoogleCloudDialogflowV2ResponseMessageEndInteraction
+    liveAgentHandoff: GoogleCloudDialogflowV2ResponseMessageLiveAgentHandoff
+    mixedAudio: GoogleCloudDialogflowV2ResponseMessageMixedAudio
+    payload: dict[str, typing.Any]
+    telephonyTransferCall: GoogleCloudDialogflowV2ResponseMessageTelephonyTransferCall
+    text: GoogleCloudDialogflowV2ResponseMessageText
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2ResponseMessageEndInteraction(
+    typing.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2ResponseMessageLiveAgentHandoff(
+    typing.TypedDict, total=False
+):
+    metadata: dict[str, typing.Any]
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2ResponseMessageMixedAudio(typing.TypedDict, total=False):
+    segments: _list[GoogleCloudDialogflowV2ResponseMessageMixedAudioSegment]
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2ResponseMessageMixedAudioSegment(
+    typing.TypedDict, total=False
+):
+    allowPlaybackInterruption: bool
+    audio: str
+    uri: str
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2ResponseMessageTelephonyTransferCall(
+    typing.TypedDict, total=False
+):
+    phoneNumber: str
+    sipUri: str
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2ResponseMessageText(typing.TypedDict, total=False):
+    text: _list[str]
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2SearchEntryPoint(typing.TypedDict, total=False):
+    renderedContent: str
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2Segment(typing.TypedDict, total=False):
+    endIndex: int
+    startIndex: int
+    text: str
+
+@typing.type_check_only
 class GoogleCloudDialogflowV2Sentiment(typing.TypedDict, total=False):
     magnitude: float
     score: float
@@ -4421,6 +4558,7 @@ class GoogleCloudDialogflowV2Sentiment(typing.TypedDict, total=False):
 @typing.type_check_only
 class GoogleCloudDialogflowV2SentimentAnalysisResult(typing.TypedDict, total=False):
     queryTextSentiment: GoogleCloudDialogflowV2Sentiment
+    status: GoogleRpcStatus
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2ServiceLatency(typing.TypedDict, total=False):
@@ -4537,6 +4675,9 @@ class GoogleCloudDialogflowV2SuggestSmartRepliesResponse(typing.TypedDict, total
 @typing.type_check_only
 class GoogleCloudDialogflowV2SuggestionResult(typing.TypedDict, total=False):
     error: GoogleRpcStatus
+    generateCompanionSuggestionsResponse: (
+        GoogleCloudDialogflowV2GenerateCompanionSuggestionsResponse
+    )
     generateSuggestionsResponse: GoogleCloudDialogflowV2GenerateSuggestionsResponse
     suggestArticlesResponse: GoogleCloudDialogflowV2SuggestArticlesResponse
     suggestFaqAnswersResponse: GoogleCloudDialogflowV2SuggestFaqAnswersResponse
@@ -4586,6 +4727,12 @@ class GoogleCloudDialogflowV2ToolCallResult(typing.TypedDict, total=False):
 @typing.type_check_only
 class GoogleCloudDialogflowV2ToolCallResultError(typing.TypedDict, total=False):
     message: str
+    retryable: bool
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2ToolCallSuggestion(typing.TypedDict, total=False):
+    textUpdate: str
+    toolCallInfo: GoogleCloudDialogflowV2GeneratorSuggestionToolCallInfo
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2UndeployConversationModelOperationMetadata(
@@ -4751,6 +4898,33 @@ class GoogleCloudDialogflowV2beta1ClearSuggestionFeatureConfigOperationMetadata(
     ]
 
 @typing.type_check_only
+class GoogleCloudDialogflowV2beta1CompanionSuggestion(typing.TypedDict, total=False):
+    guidances: _list[GoogleCloudDialogflowV2beta1CompanionSuggestionGuidance]
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1CompanionSuggestionGuidance(
+    typing.TypedDict, total=False
+):
+    explanation: str
+    groundingMetadata: GoogleCloudDialogflowV2beta1GroundingMetadata
+    instructionSource: GoogleCloudDialogflowV2beta1GuidanceInstruction
+    knowledgeSources: _list[
+        GoogleCloudDialogflowV2beta1CompanionSuggestionGuidanceKnowledgeSource
+    ]
+    suggestedAction: str
+    suggestedReply: str
+    toolCalls: _list[GoogleCloudDialogflowV2beta1ToolCallSuggestion]
+    triggeringToolCallAnswerRecords: _list[str]
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1CompanionSuggestionGuidanceKnowledgeSource(
+    typing.TypedDict, total=False
+):
+    knowledgeArticleTitle: str
+    knowledgeArticleUrl: str
+    knowledgeSnippet: str
+
+@typing.type_check_only
 class GoogleCloudDialogflowV2beta1Context(typing.TypedDict, total=False):
     lifespanCount: int
     name: str
@@ -4834,6 +5008,15 @@ class GoogleCloudDialogflowV2beta1GcsDestination(typing.TypedDict, total=False):
     uri: str
 
 @typing.type_check_only
+class GoogleCloudDialogflowV2beta1GenerateCompanionSuggestionsResponse(
+    typing.TypedDict, total=False
+):
+    answerRecord: str
+    companionSuggestion: GoogleCloudDialogflowV2beta1CompanionSuggestion
+    latestMessage: str
+    suggestionIndex: int
+
+@typing.type_check_only
 class GoogleCloudDialogflowV2beta1GenerateSuggestionsResponse(
     typing.TypedDict, total=False
 ):
@@ -4863,6 +5046,57 @@ class GoogleCloudDialogflowV2beta1GeneratorSuggestionToolCallInfo(
 ):
     toolCall: GoogleCloudDialogflowV2beta1ToolCall
     toolCallResult: GoogleCloudDialogflowV2beta1ToolCallResult
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1GroundingChunk(typing.TypedDict, total=False):
+    retrievedContext: GoogleCloudDialogflowV2beta1GroundingChunkRetrievedContext
+    web: GoogleCloudDialogflowV2beta1GroundingChunkWeb
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1GroundingChunkRetrievedContext(
+    typing.TypedDict, total=False
+):
+    text: str
+    title: str
+    uri: str
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1GroundingChunkWeb(typing.TypedDict, total=False):
+    domain: str
+    title: str
+    uri: str
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1GroundingMetadata(typing.TypedDict, total=False):
+    groundingChunks: _list[GoogleCloudDialogflowV2beta1GroundingChunk]
+    groundingSupports: _list[GoogleCloudDialogflowV2beta1GroundingSupport]
+    searchEntryPoint: GoogleCloudDialogflowV2beta1SearchEntryPoint
+    webSearchQueries: _list[str]
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1GroundingSupport(typing.TypedDict, total=False):
+    groundingChunkIndices: _list[int]
+    segment: GoogleCloudDialogflowV2beta1Segment
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1GuidanceInstruction(typing.TypedDict, total=False):
+    actions: _list[GoogleCloudDialogflowV2beta1GuidanceInstructionAction]
+    condition: str
+    disableSuggestedReply: bool
+    displayDetails: str
+    displayName: str
+    triggerEvent: typing.Literal[
+        "TRIGGER_EVENT_UNSPECIFIED",
+        "END_OF_UTTERANCE",
+        "CUSTOMER_MESSAGE",
+        "AGENT_MESSAGE",
+    ]
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1GuidanceInstructionAction(
+    typing.TypedDict, total=False
+):
+    description: str
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2beta1HumanAgentAssistantEvent(
@@ -5625,6 +5859,16 @@ class GoogleCloudDialogflowV2beta1ResponseMessageText(typing.TypedDict, total=Fa
     text: _list[str]
 
 @typing.type_check_only
+class GoogleCloudDialogflowV2beta1SearchEntryPoint(typing.TypedDict, total=False):
+    renderedContent: str
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1Segment(typing.TypedDict, total=False):
+    endIndex: int
+    startIndex: int
+    text: str
+
+@typing.type_check_only
 class GoogleCloudDialogflowV2beta1Sentiment(typing.TypedDict, total=False):
     magnitude: float
     score: float
@@ -5634,6 +5878,7 @@ class GoogleCloudDialogflowV2beta1SentimentAnalysisResult(
     typing.TypedDict, total=False
 ):
     queryTextSentiment: GoogleCloudDialogflowV2beta1Sentiment
+    status: GoogleRpcStatus
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2beta1ServiceLatency(typing.TypedDict, total=False):
@@ -5761,6 +6006,9 @@ class GoogleCloudDialogflowV2beta1SuggestSmartRepliesResponse(
 @typing.type_check_only
 class GoogleCloudDialogflowV2beta1SuggestionResult(typing.TypedDict, total=False):
     error: GoogleRpcStatus
+    generateCompanionSuggestionsResponse: (
+        GoogleCloudDialogflowV2beta1GenerateCompanionSuggestionsResponse
+    )
     generateSuggestionsResponse: GoogleCloudDialogflowV2beta1GenerateSuggestionsResponse
     suggestArticlesResponse: GoogleCloudDialogflowV2beta1SuggestArticlesResponse
     suggestDialogflowAssistsResponse: (
@@ -5840,6 +6088,12 @@ class GoogleCloudDialogflowV2beta1ToolCallResult(typing.TypedDict, total=False):
 @typing.type_check_only
 class GoogleCloudDialogflowV2beta1ToolCallResultError(typing.TypedDict, total=False):
     message: str
+    retryable: bool
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1ToolCallSuggestion(typing.TypedDict, total=False):
+    textUpdate: str
+    toolCallInfo: GoogleCloudDialogflowV2beta1GeneratorSuggestionToolCallInfo
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2beta1WebhookRequest(typing.TypedDict, total=False):

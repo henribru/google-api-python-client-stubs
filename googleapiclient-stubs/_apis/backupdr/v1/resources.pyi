@@ -69,6 +69,133 @@ class BackupdrResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
+            class AppliedAutoProtectionPoliciesResource(
+                googleapiclient.discovery.Resource
+            ):
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str | None = ...,
+                    orderBy: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> ListAppliedAutoProtectionPoliciesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListAppliedAutoProtectionPoliciesResponseHttpRequest,
+                    previous_response: ListAppliedAutoProtectionPoliciesResponse,
+                ) -> ListAppliedAutoProtectionPoliciesResponseHttpRequest | None: ...
+
+            @typing.type_check_only
+            class AutoProtectionPoliciesResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class BindingsResource(googleapiclient.discovery.Resource):
+                    @typing.type_check_only
+                    class MatchingResourcesResource(googleapiclient.discovery.Resource):
+                        def get(
+                            self, *, name: str, **kwargs: typing.Any
+                        ) -> BindingMatchingResourceHttpRequest: ...
+                        def list(
+                            self,
+                            *,
+                            parent: str,
+                            filter: str | None = ...,
+                            orderBy: str | None = ...,
+                            pageSize: int | None = ...,
+                            pageToken: str | None = ...,
+                            **kwargs: typing.Any,
+                        ) -> ListBindingMatchingResourcesResponseHttpRequest: ...
+                        def list_next(
+                            self,
+                            previous_request: ListBindingMatchingResourcesResponseHttpRequest,
+                            previous_response: ListBindingMatchingResourcesResponse,
+                        ) -> ListBindingMatchingResourcesResponseHttpRequest | None: ...
+
+                    def create(
+                        self,
+                        *,
+                        parent: str,
+                        body: AutoProtectionPolicyBinding,
+                        autoProtectionPolicyBindingId: str | None = ...,
+                        requestId: str | None = ...,
+                        **kwargs: typing.Any,
+                    ) -> OperationHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> AutoProtectionPolicyBindingHttpRequest: ...
+                    def initiateDelete(
+                        self,
+                        *,
+                        name: str,
+                        body: InitiateDeleteAutoProtectionPolicyBindingRequest,
+                        **kwargs: typing.Any,
+                    ) -> OperationHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        filter: str | None = ...,
+                        orderBy: str | None = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
+                        **kwargs: typing.Any,
+                    ) -> ListAutoProtectionPolicyBindingsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListAutoProtectionPolicyBindingsResponseHttpRequest,
+                        previous_response: ListAutoProtectionPolicyBindingsResponse,
+                    ) -> ListAutoProtectionPolicyBindingsResponseHttpRequest | None: ...
+                    def matchingResources(self) -> MatchingResourcesResource: ...
+
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: AutoProtectionPolicy,
+                    autoProtectionPolicyId: str | None = ...,
+                    requestId: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self,
+                    *,
+                    name: str,
+                    etag: str | None = ...,
+                    requestId: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> AutoProtectionPolicyHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str | None = ...,
+                    orderBy: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> ListAutoProtectionPoliciesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListAutoProtectionPoliciesResponseHttpRequest,
+                    previous_response: ListAutoProtectionPoliciesResponse,
+                ) -> ListAutoProtectionPoliciesResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: AutoProtectionPolicy,
+                    requestId: str | None = ...,
+                    updateMask: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def bindings(self) -> BindingsResource: ...
+
+            @typing.type_check_only
             class BackupPlanAssociationsResource(googleapiclient.discovery.Resource):
                 def create(
                     self,
@@ -83,6 +210,7 @@ class BackupdrResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
+                    autoProtectionPolicyBinding: str | None = ...,
                     requestId: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -617,6 +745,176 @@ class BackupdrResource(googleapiclient.discovery.Resource):
                 ) -> ListResourceBackupConfigsResponseHttpRequest | None: ...
 
             @typing.type_check_only
+            class RestoreTemplatesResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class ExecutionsResource(googleapiclient.discovery.Resource):
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> RestoreTemplateExecutionHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        filter: str | None = ...,
+                        orderBy: str | None = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
+                        **kwargs: typing.Any,
+                    ) -> ListRestoreTemplateExecutionsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListRestoreTemplateExecutionsResponseHttpRequest,
+                        previous_response: ListRestoreTemplateExecutionsResponse,
+                    ) -> ListRestoreTemplateExecutionsResponseHttpRequest | None: ...
+                    def triggerRestoreCleanup(
+                        self,
+                        *,
+                        name: str,
+                        body: TriggerRestoreCleanupRequest,
+                        **kwargs: typing.Any,
+                    ) -> OperationHttpRequest: ...
+
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: RestoreTemplate,
+                    requestId: str | None = ...,
+                    restoreTemplateId: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self,
+                    *,
+                    name: str,
+                    force: bool | None = ...,
+                    requestId: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> RestoreTemplateHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str | None = ...,
+                    orderBy: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> ListRestoreTemplatesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListRestoreTemplatesResponseHttpRequest,
+                    previous_response: ListRestoreTemplatesResponse,
+                ) -> ListRestoreTemplatesResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: RestoreTemplate,
+                    requestId: str | None = ...,
+                    updateMask: str | None = ...,
+                    validateOnly: bool | None = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def run(
+                    self,
+                    *,
+                    name: str,
+                    body: RunRestoreTemplateRequest,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def executions(self) -> ExecutionsResource: ...
+
+            @typing.type_check_only
+            class RestoreVerificationPlansResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class AssociationsResource(googleapiclient.discovery.Resource):
+                    def create(
+                        self,
+                        *,
+                        parent: str,
+                        body: RestoreVerificationPlanAssociation,
+                        requestId: str | None = ...,
+                        restoreVerificationPlanAssociationId: str | None = ...,
+                        **kwargs: typing.Any,
+                    ) -> OperationHttpRequest: ...
+                    def delete(
+                        self,
+                        *,
+                        name: str,
+                        requestId: str | None = ...,
+                        **kwargs: typing.Any,
+                    ) -> OperationHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> RestoreVerificationPlanAssociationHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        filter: str | None = ...,
+                        orderBy: str | None = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
+                        **kwargs: typing.Any,
+                    ) -> ListRestoreVerificationPlanAssociationsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListRestoreVerificationPlanAssociationsResponseHttpRequest,
+                        previous_response: ListRestoreVerificationPlanAssociationsResponse,
+                    ) -> (
+                        ListRestoreVerificationPlanAssociationsResponseHttpRequest
+                        | None
+                    ): ...
+                    def triggerRestoreVerification(
+                        self,
+                        *,
+                        name: str,
+                        body: TriggerRestoreVerificationRequest,
+                        **kwargs: typing.Any,
+                    ) -> OperationHttpRequest: ...
+
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: RestoreVerificationPlan,
+                    requestId: str | None = ...,
+                    restoreVerificationPlanId: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self,
+                    *,
+                    name: str,
+                    force: bool | None = ...,
+                    requestId: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> RestoreVerificationPlanHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str | None = ...,
+                    orderBy: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> ListRestoreVerificationPlansResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListRestoreVerificationPlansResponseHttpRequest,
+                    previous_response: ListRestoreVerificationPlansResponse,
+                ) -> ListRestoreVerificationPlansResponseHttpRequest | None: ...
+                def associations(self) -> AssociationsResource: ...
+
+            @typing.type_check_only
             class ServiceConfigResource(googleapiclient.discovery.Resource):
                 def initialize(
                     self,
@@ -660,6 +958,10 @@ class BackupdrResource(googleapiclient.discovery.Resource):
                 previous_request: ListLocationsResponseHttpRequest,
                 previous_response: ListLocationsResponse,
             ) -> ListLocationsResponseHttpRequest | None: ...
+            def appliedAutoProtectionPolicies(
+                self,
+            ) -> AppliedAutoProtectionPoliciesResource: ...
+            def autoProtectionPolicies(self) -> AutoProtectionPoliciesResource: ...
             def backupPlanAssociations(self) -> BackupPlanAssociationsResource: ...
             def backupPlans(self) -> BackupPlansResource: ...
             def backupVaults(self) -> BackupVaultsResource: ...
@@ -667,6 +969,8 @@ class BackupdrResource(googleapiclient.discovery.Resource):
             def managementServers(self) -> ManagementServersResource: ...
             def operations(self) -> OperationsResource: ...
             def resourceBackupConfigs(self) -> ResourceBackupConfigsResource: ...
+            def restoreTemplates(self) -> RestoreTemplatesResource: ...
+            def restoreVerificationPlans(self) -> RestoreVerificationPlansResource: ...
             def serviceConfig(self) -> ServiceConfigResource: ...
             def trial(self) -> TrialResource: ...
 
@@ -687,6 +991,22 @@ class BackupdrResource(googleapiclient.discovery.Resource):
     def folders(self) -> FoldersResource: ...
     def organizations(self) -> OrganizationsResource: ...
     def projects(self) -> ProjectsResource: ...
+
+@typing.type_check_only
+class AutoProtectionPolicyHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> AutoProtectionPolicy: ...
+
+@typing.type_check_only
+class AutoProtectionPolicyBindingHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> AutoProtectionPolicyBinding: ...
 
 @typing.type_check_only
 class BackupHttpRequest(googleapiclient.http.HttpRequest):
@@ -727,6 +1047,14 @@ class BackupVaultHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> BackupVault: ...
+
+@typing.type_check_only
+class BindingMatchingResourceHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> BindingMatchingResource: ...
 
 @typing.type_check_only
 class DataSourceHttpRequest(googleapiclient.http.HttpRequest):
@@ -821,6 +1149,34 @@ class InitiateBackupResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> InitiateBackupResponse: ...
 
 @typing.type_check_only
+class ListAppliedAutoProtectionPoliciesResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListAppliedAutoProtectionPoliciesResponse: ...
+
+@typing.type_check_only
+class ListAutoProtectionPoliciesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListAutoProtectionPoliciesResponse: ...
+
+@typing.type_check_only
+class ListAutoProtectionPolicyBindingsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListAutoProtectionPolicyBindingsResponse: ...
+
+@typing.type_check_only
 class ListBackupPlanAssociationsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -859,6 +1215,14 @@ class ListBackupsResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListBackupsResponse: ...
+
+@typing.type_check_only
+class ListBindingMatchingResourcesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListBindingMatchingResourcesResponse: ...
 
 @typing.type_check_only
 class ListDataSourceReferencesResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -909,6 +1273,42 @@ class ListResourceBackupConfigsResponseHttpRequest(googleapiclient.http.HttpRequ
     ) -> ListResourceBackupConfigsResponse: ...
 
 @typing.type_check_only
+class ListRestoreTemplateExecutionsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListRestoreTemplateExecutionsResponse: ...
+
+@typing.type_check_only
+class ListRestoreTemplatesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListRestoreTemplatesResponse: ...
+
+@typing.type_check_only
+class ListRestoreVerificationPlanAssociationsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListRestoreVerificationPlanAssociationsResponse: ...
+
+@typing.type_check_only
+class ListRestoreVerificationPlansResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListRestoreVerificationPlansResponse: ...
+
+@typing.type_check_only
 class LocationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -939,6 +1339,38 @@ class PolicyHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Policy: ...
+
+@typing.type_check_only
+class RestoreTemplateHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> RestoreTemplate: ...
+
+@typing.type_check_only
+class RestoreTemplateExecutionHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> RestoreTemplateExecution: ...
+
+@typing.type_check_only
+class RestoreVerificationPlanHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> RestoreVerificationPlan: ...
+
+@typing.type_check_only
+class RestoreVerificationPlanAssociationHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> RestoreVerificationPlanAssociation: ...
 
 @typing.type_check_only
 class TestIamPermissionsResponseHttpRequest(googleapiclient.http.HttpRequest):

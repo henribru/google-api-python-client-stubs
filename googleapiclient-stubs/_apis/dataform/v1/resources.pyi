@@ -124,6 +124,13 @@ class DataformResource(googleapiclient.discovery.Resource):
                         body: CompilationResult,
                         **kwargs: typing.Any,
                     ) -> CompilationResultHttpRequest: ...
+                    def createLongRunning(
+                        self,
+                        *,
+                        parent: str,
+                        body: CompilationResult,
+                        **kwargs: typing.Any,
+                    ) -> OperationHttpRequest: ...
                     def get(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> CompilationResultHttpRequest: ...

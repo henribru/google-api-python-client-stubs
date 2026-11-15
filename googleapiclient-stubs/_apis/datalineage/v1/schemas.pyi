@@ -227,6 +227,7 @@ class GoogleCloudDatacatalogLineageV1SearchLineageStreamingRequestSearchFilters(
         typing.Literal["DEPENDENCY_TYPE_UNSPECIFIED", "EXACT_COPY", "OTHER"]
     ]
     entitySet: typing.Literal["ENTITY_SET_UNSPECIFIED", "ENTITIES"]
+    projects: _list[str]
     timeRange: GoogleTypeInterval
 
 @typing.type_check_only

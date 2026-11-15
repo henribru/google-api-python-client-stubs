@@ -1043,6 +1043,7 @@ class VmwareNodePool(typing.TypedDict, total=False):
     status: ResourceStatus
     uid: str
     updateTime: str
+    validationCheck: ValidationCheck
 
 @typing.type_check_only
 class VmwareNodePoolAutoscalingConfig(typing.TypedDict, total=False):

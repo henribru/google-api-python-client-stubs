@@ -38,7 +38,7 @@ class Binding(typing.TypedDict, total=False):
     role: str
 
 @typing.type_check_only
-class CloudSQLSingleUserCredentials(typing.TypedDict, total=False):
+class CloudSqlSingleUserCredentials(typing.TypedDict, total=False):
     instanceId: str
     password: str
     username: str
@@ -64,7 +64,7 @@ class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
 class EnableManagedRotationRequest(typing.TypedDict, total=False):
-    cloudSqlSingleUserCredentials: CloudSQLSingleUserCredentials
+    cloudSqlSingleUserCredentials: CloudSqlSingleUserCredentials
 
 @typing.type_check_only
 class EnableSecretVersionRequest(typing.TypedDict, total=False):

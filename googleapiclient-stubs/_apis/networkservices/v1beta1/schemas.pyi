@@ -9,7 +9,7 @@ class AgentConnectivityTemplate(typing.TypedDict, total=False):
     ]
     accessTypes: _list[typing.Literal["ACCESS_TYPE_UNSPECIFIED", "PUBLIC", "PRIVATE"]]
     agentCompute: typing.Literal[
-        "AGENT_COMPUTE_UNSPECIFIED", "GKE", "CLOUD_RUN", "BORG"
+        "AGENT_COMPUTE_UNSPECIFIED", "GKE", "CLOUD_RUN", "BORG", "GCE_VM"
     ]
     createTime: str
     deploymentModel: typing.Literal[
@@ -95,18 +95,41 @@ class AuthzExtension(typing.TypedDict, total=False):
 class CancelOperationRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
+class CdnEdgeExtension(typing.TypedDict, total=False):
+    createTime: str
+    description: str
+    extensionChains: _list[ExtensionChain]
+    labels: dict[str, typing.Any]
+    name: str
+    target: CdnEdgeExtensionTarget
+    updateTime: str
+
+@typing.type_check_only
+class CdnEdgeExtensionTarget(typing.TypedDict, total=False):
+    resources: _list[str]
+
+@typing.type_check_only
 class DnsPeeringConfig(typing.TypedDict, total=False):
     domain: str
+    domains: _list[str]
     targetNetwork: str
 
 @typing.type_check_only
 class EgressNetworkConfig(typing.TypedDict, total=False):
     dnsPeeringConfig: DnsPeeringConfig
     networkAttachment: str
+    tlsConfig: EgressNetworkConfigTlsConfig
     trustConfig: str
     vpcEgress: typing.Literal[
         "VPC_EGRESS_UNSPECIFIED", "ALL_TRAFFIC", "PRIVATE_RANGES_ONLY"
     ]
+
+@typing.type_check_only
+class EgressNetworkConfigTlsConfig(typing.TypedDict, total=False):
+    additionalRoots: typing.Literal[
+        "ADDITIONAL_ROOTS_UNSPECIFIED", "NO_ADDITIONAL_ROOTS", "PUBLICLY_TRUSTED_ROOTS"
+    ]
+    trustConfig: str
 
 @typing.type_check_only
 class Empty(typing.TypedDict, total=False): ...
@@ -131,6 +154,104 @@ class EndpointPolicy(typing.TypedDict, total=False):
         "ENDPOINT_POLICY_TYPE_UNSPECIFIED", "SIDECAR_PROXY", "GRPC_SERVER"
     ]
     updateTime: str
+
+@typing.type_check_only
+class ExpressLink(typing.TypedDict, total=False):
+    cloudRunSecurityInfo: ExpressLinkCloudRunSecurityInfo
+    cloudRunSourceInfo: ExpressLinkCloudRunSourceInfo
+    connectionStatus: _list[ExpressLinkConnectionStatus]
+    createTime: str
+    description: str
+    destination: ExpressLinkDestination
+    etag: str
+    forwardingRuleInfo: ExpressLinkForwardingRuleInfo
+    labels: dict[str, typing.Any]
+    matches: _list[ExpressLinkMatch]
+    name: str
+    pscEndpointInfo: ExpressLinkPscEndpointInfo
+    source: ExpressLinkSource
+    updateTime: str
+
+@typing.type_check_only
+class ExpressLinkAuthenticationMethod(typing.TypedDict, total=False):
+    credentialType: typing.Literal[
+        "CREDENTIAL_TYPE_UNSPECIFIED",
+        "GCP_ACCESS_TOKEN",
+        "JWT",
+        "BOUND_GCP_ACCESS_TOKEN",
+        "BOUND_JWT",
+        "MTLS",
+    ]
+    identityType: typing.Literal[
+        "IDENTITY_TYPE_UNSPECIFIED",
+        "SERVICE_ACCOUNT",
+        "AGENT_IDENTITY",
+        "WORKLOAD_IDENTITY",
+        "OAUTH",
+    ]
+
+@typing.type_check_only
+class ExpressLinkCloudRunSecurityInfo(typing.TypedDict, total=False):
+    mtlsTier: typing.Literal["MTLS_TIER_UNSPECIFIED", "STRICT", "PERMISSIVE"]
+    serverAuthenticationMethods: _list[ExpressLinkAuthenticationMethod]
+
+@typing.type_check_only
+class ExpressLinkCloudRunSourceInfo(typing.TypedDict, total=False):
+    workloads: _list[ExpressLinkCloudRunSourceInfoWorkloadInfo]
+
+@typing.type_check_only
+class ExpressLinkCloudRunSourceInfoWorkloadInfo(typing.TypedDict, total=False):
+    clientAuthenticationMethods: _list[ExpressLinkAuthenticationMethod]
+    vpcNetwork: str
+    workloadUri: str
+
+@typing.type_check_only
+class ExpressLinkConnectionStatus(typing.TypedDict, total=False):
+    credentialType: typing.Literal[
+        "CREDENTIAL_TYPE_UNSPECIFIED",
+        "GCP_ACCESS_TOKEN",
+        "JWT",
+        "BOUND_GCP_ACCESS_TOKEN",
+        "BOUND_JWT",
+        "MTLS",
+    ]
+    error: typing.Literal["CODE_UNSPECIFIED", "NOT_FOUND", "PARTIAL_RESOLUTION_ERROR"]
+    errorMessage: str
+    hostnames: _list[ExpressLinkConnectionStatusHostnameInfo]
+    routeType: typing.Literal["ROUTE_TYPE_UNSPECIFIED", "HTTP", "TCP", "GRPC"]
+    workloadUri: str
+
+@typing.type_check_only
+class ExpressLinkConnectionStatusHostnameInfo(typing.TypedDict, total=False):
+    hostname: str
+
+@typing.type_check_only
+class ExpressLinkDestination(typing.TypedDict, total=False):
+    services: _list[str]
+
+@typing.type_check_only
+class ExpressLinkForwardingRuleInfo(typing.TypedDict, total=False):
+    ipAddress: str
+    port: str
+
+@typing.type_check_only
+class ExpressLinkMatch(typing.TypedDict, total=False):
+    hostname: str
+
+@typing.type_check_only
+class ExpressLinkPscEndpointInfo(typing.TypedDict, total=False):
+    pscEndpoints: _list[ExpressLinkPscEndpointInfoPscEndpoint]
+
+@typing.type_check_only
+class ExpressLinkPscEndpointInfoPscEndpoint(typing.TypedDict, total=False):
+    allowGlobalAccess: bool
+    forwardingRule: str
+    pscEndpointAddress: str
+    vpcNetwork: str
+
+@typing.type_check_only
+class ExpressLinkSource(typing.TypedDict, total=False):
+    services: _list[str]
 
 @typing.type_check_only
 class ExtensionBinding(typing.TypedDict, total=False):
@@ -564,8 +685,20 @@ class ListAuthzExtensionsResponse(typing.TypedDict, total=False):
     unreachable: _list[str]
 
 @typing.type_check_only
+class ListCdnEdgeExtensionsResponse(typing.TypedDict, total=False):
+    cdnEdgeExtensions: _list[CdnEdgeExtension]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
 class ListEndpointPoliciesResponse(typing.TypedDict, total=False):
     endpointPolicies: _list[EndpointPolicy]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
+class ListExpressLinksResponse(typing.TypedDict, total=False):
+    expressLinks: _list[ExpressLink]
     nextPageToken: str
     unreachable: _list[str]
 
@@ -671,6 +804,12 @@ class ListTcpRoutesResponse(typing.TypedDict, total=False):
     unreachable: _list[str]
 
 @typing.type_check_only
+class ListTelemetryPoliciesResponse(typing.TypedDict, total=False):
+    nextPageToken: str
+    telemetryPolicies: _list[TelemetryPolicy]
+    unreachable: _list[str]
+
+@typing.type_check_only
 class ListTlsRoutesResponse(typing.TypedDict, total=False):
     nextPageToken: str
     tlsRoutes: _list[TlsRoute]
@@ -741,6 +880,10 @@ class MetadataLabelMatcher(typing.TypedDict, total=False):
 class MetadataLabels(typing.TypedDict, total=False):
     labelName: str
     labelValue: str
+
+@typing.type_check_only
+class MetricsConfiguration(typing.TypedDict, total=False):
+    enabled: bool
 
 @typing.type_check_only
 class Operation(typing.TypedDict, total=False):
@@ -873,6 +1016,26 @@ class TcpRouteRouteRule(typing.TypedDict, total=False):
     matches: _list[TcpRouteRouteMatch]
 
 @typing.type_check_only
+class TelemetryPolicy(typing.TypedDict, total=False):
+    annotations: dict[str, typing.Any]
+    createTime: str
+    deleteTime: str
+    displayName: str
+    etag: str
+    labels: dict[str, typing.Any]
+    metricsConfiguration: MetricsConfiguration
+    name: str
+    reconciling: bool
+    telemetryTarget: TelemetryTarget
+    tracingConfiguration: TracingConfiguration
+    uid: str
+    updateTime: str
+
+@typing.type_check_only
+class TelemetryTarget(typing.TypedDict, total=False):
+    resources: _list[str]
+
+@typing.type_check_only
 class TlsRoute(typing.TypedDict, total=False):
     createTime: str
     description: str
@@ -904,6 +1067,23 @@ class TlsRouteRouteMatch(typing.TypedDict, total=False):
 class TlsRouteRouteRule(typing.TypedDict, total=False):
     action: TlsRouteRouteAction
     matches: _list[TlsRouteRouteMatch]
+
+@typing.type_check_only
+class TracingConfiguration(typing.TypedDict, total=False):
+    customSpanAttributes: _list[TracingConfigurationCustomSpanAttribute]
+    parentBasedSampling: TracingConfigurationParentBasedSampling
+    samplingRate: float
+
+@typing.type_check_only
+class TracingConfigurationCustomSpanAttribute(typing.TypedDict, total=False):
+    attributeName: str
+    fromHeaderValue: str
+    literalValue: str
+
+@typing.type_check_only
+class TracingConfigurationParentBasedSampling(typing.TypedDict, total=False):
+    enabled: bool
+    samplingRate: float
 
 @typing.type_check_only
 class TrafficPortSelector(typing.TypedDict, total=False):

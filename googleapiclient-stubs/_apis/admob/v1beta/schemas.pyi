@@ -299,6 +299,7 @@ class MediationReportSpec(typing.TypedDict, total=False):
             "MATCHED_REQUESTS",
             "MATCH_RATE",
             "OBSERVED_ECPM",
+            "AD_LOAD_LATENCY",
         ]
     ]
     sortConditions: _list[MediationReportSpecSortCondition]
@@ -356,6 +357,7 @@ class MediationReportSpecSortCondition(typing.TypedDict, total=False):
         "MATCHED_REQUESTS",
         "MATCH_RATE",
         "OBSERVED_ECPM",
+        "AD_LOAD_LATENCY",
     ]
     order: typing.Literal["SORT_ORDER_UNSPECIFIED", "ASCENDING", "DESCENDING"]
 

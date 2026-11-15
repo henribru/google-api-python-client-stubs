@@ -1408,6 +1408,7 @@ class WeeklyMaintenanceWindow(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class ZoneDistributionConfig(typing.TypedDict, total=False):
+    activeZones: _list[str]
     mode: typing.Literal[
         "ZONE_DISTRIBUTION_MODE_UNSPECIFIED", "MULTI_ZONE", "SINGLE_ZONE"
     ]

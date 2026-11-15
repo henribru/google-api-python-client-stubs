@@ -13,6 +13,11 @@ class GoogleCloudAssuredworkloadsV1AcknowledgeViolationRequest(
     ]
     comment: str
     nonCompliantOrgPolicy: str
+    view: typing.Literal[
+        "VIOLATION_VIEW_UNSPECIFIED",
+        "VIOLATION_VIEW_ASSURED_WORKLOADS",
+        "VIOLATION_VIEW_DATA_BOUNDARY",
+    ]
 
 @typing.type_check_only
 class GoogleCloudAssuredworkloadsV1AcknowledgeViolationResponse(
@@ -62,23 +67,6 @@ class GoogleCloudAssuredworkloadsV1ApplyWorkloadUpdateResponse(
     appliedUpdate: GoogleCloudAssuredworkloadsV1WorkloadUpdate
 
 @typing.type_check_only
-class GoogleCloudAssuredworkloadsV1ArchiveResourceEventsRequest(
-    typing.TypedDict, total=False
-):
-    archiveTime: str
-    batchSize: int
-    eventCutoffTime: str
-    maxEventsMove: int
-    organizationId: str
-    region: str
-
-@typing.type_check_only
-class GoogleCloudAssuredworkloadsV1ArchiveResourceEventsResponse(
-    typing.TypedDict, total=False
-):
-    movedEventsCount: int
-
-@typing.type_check_only
 class GoogleCloudAssuredworkloadsV1AssetMoveAnalysis(typing.TypedDict, total=False):
     analysisGroups: _list[GoogleCloudAssuredworkloadsV1MoveAnalysisGroup]
     asset: str
@@ -100,6 +88,8 @@ class GoogleCloudAssuredworkloadsV1CloudControlAssessmentDetails(
         "EVALUATION_STATE_NOT_ASSESSED",
     ]
     findingsCount: int
+    orgPolicyFindingCount: str
+    resourceFindingCount: str
 
 @typing.type_check_only
 class GoogleCloudAssuredworkloadsV1CloudControlReport(typing.TypedDict, total=False):
@@ -214,12 +204,14 @@ class GoogleCloudAssuredworkloadsV1DbControlComplianceSummary(
     displayName: str
     isFakeControl: bool
     name: str
+    orgPolicyFindingCount: str
     overallEvaluationState: typing.Literal[
         "EVALUATION_STATE_UNSPECIFIED",
         "EVALUATION_STATE_PASSED",
         "EVALUATION_STATE_FAILED",
         "EVALUATION_STATE_NOT_ASSESSED",
     ]
+    resourceFindingCount: str
     similarControls: _list[GoogleCloudAssuredworkloadsV1SimilarControls]
     totalFindingsCount: int
 
@@ -432,23 +424,6 @@ class GoogleCloudAssuredworkloadsV1RestrictAllowedResourcesResponse(
 ): ...
 
 @typing.type_check_only
-class GoogleCloudAssuredworkloadsV1RevertArchivedResourceEventsRequest(
-    typing.TypedDict, total=False
-):
-    archiveEndTime: str
-    archiveStartTime: str
-    batchSize: int
-    maxEventsMove: int
-    organizationId: str
-    region: str
-
-@typing.type_check_only
-class GoogleCloudAssuredworkloadsV1RevertArchivedResourceEventsResponse(
-    typing.TypedDict, total=False
-):
-    movedEventsCount: int
-
-@typing.type_check_only
 class GoogleCloudAssuredworkloadsV1Rule(typing.TypedDict, total=False):
     celExpression: GoogleCloudAssuredworkloadsV1CELExpression
     description: str
@@ -493,10 +468,12 @@ class GoogleCloudAssuredworkloadsV1UpdateDetails(typing.TypedDict, total=False):
 class GoogleCloudAssuredworkloadsV1Violation(typing.TypedDict, total=False):
     acknowledged: bool
     acknowledgementTime: str
+    affectedFrameworks: _list[str]
     associatedOrgPolicyViolationId: str
     auditLogLink: str
     beginTime: str
     category: str
+    childResourceViolationCount: int
     description: str
     exceptionAuditLogLink: str
     exceptionContexts: _list[GoogleCloudAssuredworkloadsV1ViolationExceptionContext]
@@ -505,6 +482,7 @@ class GoogleCloudAssuredworkloadsV1Violation(typing.TypedDict, total=False):
     orgPolicyConstraint: str
     parentProjectNumber: str
     remediation: GoogleCloudAssuredworkloadsV1ViolationRemediation
+    remediationMarkdown: str
     resolveTime: str
     resourceName: str
     resourceType: str

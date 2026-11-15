@@ -50,6 +50,9 @@ class AbortInfo(typing.TypedDict, total=False):
         "IP_VERSION_PROTOCOL_MISMATCH",
         "GKE_POD_UNKNOWN_ENDPOINT_LOCATION",
         "RESPONSE_TOO_LARGE",
+        "DESTINATION_CLOUD_RUN_SERVICE_REVISION_UNSUPPORTED",
+        "DESTINATION_CLOUD_RUN_VPC_CONNECTOR_UNSUPPORTED",
+        "CLOUD_RUN_RESOURCE_NOT_CONNECTED_TO_VPC",
     ]
     ipAddress: str
     projectsMissingPermission: _list[str]
@@ -112,9 +115,11 @@ class CloudRunRevisionEndpoint(typing.TypedDict, total=False):
 @typing.type_check_only
 class CloudRunRevisionInfo(typing.TypedDict, total=False):
     displayName: str
+    ipAddress: str
     location: str
     serviceUri: str
     uri: str
+    workerPoolUri: str
 
 @typing.type_check_only
 class CloudSQLInstanceInfo(typing.TypedDict, total=False):
@@ -327,6 +332,11 @@ class EffectiveVpcFlowLogsConfig(typing.TypedDict, total=False):
         "INTERVAL_5_MIN",
         "INTERVAL_10_MIN",
         "INTERVAL_15_MIN",
+    ]
+    connectionLogging: typing.Literal[
+        "CONNECTION_LOGGING_UNSPECIFIED",
+        "CONNECTION_LOGGING_ENABLED",
+        "CONNECTION_LOGGING_DISABLED",
     ]
     crossProjectMetadata: typing.Literal[
         "CROSS_PROJECT_METADATA_UNSPECIFIED",
@@ -1001,6 +1011,7 @@ class Step(typing.TypedDict, total=False):
         "VIEWER_PERMISSION_MISSING",
     ]
     storageBucket: StorageBucketInfo
+    viewerPermissionMissingInfo: ViewerPermissionMissingInfo
     vpcConnector: VpcConnectorInfo
     vpnGateway: VpnGatewayInfo
     vpnTunnel: VpnTunnelInfo
@@ -1024,6 +1035,14 @@ class Trace(typing.TypedDict, total=False):
     steps: _list[Step]
 
 @typing.type_check_only
+class ViewerPermissionMissingInfo(typing.TypedDict, total=False):
+    resourceTypes: _list[
+        typing.Literal[
+            "RESOURCE_TYPE_UNSPECIFIED", "FIREWALL", "INSTANCE", "FORWARDING_RULE"
+        ]
+    ]
+
+@typing.type_check_only
 class VpcConnectorInfo(typing.TypedDict, total=False):
     displayName: str
     location: str
@@ -1039,6 +1058,11 @@ class VpcFlowLogsConfig(typing.TypedDict, total=False):
         "INTERVAL_5_MIN",
         "INTERVAL_10_MIN",
         "INTERVAL_15_MIN",
+    ]
+    connectionLogging: typing.Literal[
+        "CONNECTION_LOGGING_UNSPECIFIED",
+        "CONNECTION_LOGGING_ENABLED",
+        "CONNECTION_LOGGING_DISABLED",
     ]
     createTime: str
     crossProjectMetadata: typing.Literal[

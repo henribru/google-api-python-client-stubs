@@ -557,6 +557,7 @@ class Instance(typing.TypedDict, total=False):
     processingUnits: int
     replicaComputeCapacity: _list[ReplicaComputeCapacity]
     state: typing.Literal["STATE_UNSPECIFIED", "CREATING", "READY"]
+    tags: dict[str, typing.Any]
     updateTime: str
 
 @typing.type_check_only

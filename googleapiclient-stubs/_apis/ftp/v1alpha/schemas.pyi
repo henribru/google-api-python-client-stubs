@@ -61,6 +61,16 @@ class Location(typing.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
+class LoggingConfig(typing.TypedDict, total=False):
+    enabled: bool
+    verbosity: typing.Literal[
+        "LOG_VERBOSITY_UNSPECIFIED",
+        "ALL_EVENTS",
+        "TRANSFERS_AND_AUTH_ONLY",
+        "ERRORS_ONLY",
+    ]
+
+@typing.type_check_only
 class Operation(typing.TypedDict, total=False):
     done: bool
     error: Status
@@ -93,7 +103,10 @@ class Server(typing.TypedDict, total=False):
     googleManagedServerCredential: ServerCredential
     internalConfig: InternalServerConfig
     labels: dict[str, typing.Any]
+    loggingConfig: LoggingConfig
     name: str
+    satisfiesPzi: bool
+    satisfiesPzs: bool
     serviceAgent: str
     state: typing.Literal[
         "STATE_UNSPECIFIED",

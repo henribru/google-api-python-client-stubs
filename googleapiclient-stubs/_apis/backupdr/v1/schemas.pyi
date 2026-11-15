@@ -70,6 +70,19 @@ class AlloyDbPitrWindow(typing.TypedDict, total=False):
     startTime: str
 
 @typing.type_check_only
+class AppliedAutoProtectionPolicy(typing.TypedDict, total=False):
+    backupPlanDetails: _list[BackupPlanDetail]
+    bindingEvaluationSummary: BindingEvaluationSummary
+    createTime: str
+    criteria: Criteria
+    name: str
+    sourceBinding: str
+    status: typing.Literal[
+        "STATE_UNSPECIFIED", "CREATING", "ACTIVE", "DELETION_INITIATED"
+    ]
+    updateTime: str
+
+@typing.type_check_only
 class AttachedDisk(typing.TypedDict, total=False):
     autoDelete: bool
     boot: bool
@@ -104,6 +117,47 @@ class AuditLogConfig(typing.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class AutoProtectionDetails(typing.TypedDict, total=False):
+    backupPlanAssociation: str
+    dataSource: str
+    error: Status
+    state: typing.Literal[
+        "STATE_UNSPECIFIED",
+        "PROTECTED",
+        "PROTECTION_FAILED",
+        "UNPROTECTING",
+        "UNPROTECTION_FAILED",
+    ]
+
+@typing.type_check_only
+class AutoProtectionPolicy(typing.TypedDict, total=False):
+    backupPlanDetails: _list[BackupPlanDetail]
+    bindingSummary: BindingSummary
+    createTime: str
+    criteria: Criteria
+    description: str
+    etag: str
+    name: str
+    policyEvaluationSummary: PolicyEvaluationSummary
+    state: typing.Literal[
+        "STATE_UNSPECIFIED", "CREATING", "ACTIVE", "UPDATING", "DELETING"
+    ]
+    updateTime: str
+
+@typing.type_check_only
+class AutoProtectionPolicyBinding(typing.TypedDict, total=False):
+    bindingEvaluationSummary: BindingEvaluationSummary
+    createTime: str
+    description: str
+    etag: str
+    name: str
+    scope: str
+    state: typing.Literal[
+        "STATE_UNSPECIFIED", "CREATING", "ACTIVE", "DELETION_INITIATED"
+    ]
+    updateTime: str
+
+@typing.type_check_only
 class Backup(typing.TypedDict, total=False):
     alloyDbBackupProperties: AlloyDbClusterBackupProperties
     backupApplianceBackupProperties: BackupApplianceBackupProperties
@@ -131,6 +185,7 @@ class Backup(typing.TypedDict, total=False):
     kmsKeyVersions: _list[str]
     labels: dict[str, typing.Any]
     name: str
+    netappVolumeBackupProperties: NetAppVolumeBackupProperties
     resourceSizeBytes: str
     satisfiesPzi: bool
     satisfiesPzs: bool
@@ -139,6 +194,7 @@ class Backup(typing.TypedDict, total=False):
         "STATE_UNSPECIFIED", "CREATING", "ACTIVE", "DELETING", "ERROR", "UPLOADING"
     ]
     updateTime: str
+    verificationSummary: VerificationSummary
 
 @typing.type_check_only
 class BackupApplianceBackupConfig(typing.TypedDict, total=False):
@@ -259,6 +315,7 @@ class BackupPlanAssociation(typing.TypedDict, total=False):
     alloydbClusterBackupPlanAssociationProperties: (
         AlloyDBClusterBackupPlanAssociationProperties
     )
+    autoProtectionPolicyBinding: str
     backupPlan: str
     backupPlanRevisionId: str
     backupPlanRevisionName: str
@@ -271,13 +328,27 @@ class BackupPlanAssociation(typing.TypedDict, total=False):
         FilestoreInstanceBackupPlanAssociationProperties
     )
     name: str
+    netappVolumeBackupPlanAssociationProperties: (
+        NetAppVolumeBackupPlanAssociationProperties
+    )
     resource: str
     resourceType: str
     rulesConfigInfo: _list[RuleConfigInfo]
     state: typing.Literal[
-        "STATE_UNSPECIFIED", "CREATING", "ACTIVE", "DELETING", "INACTIVE", "UPDATING"
+        "STATE_UNSPECIFIED",
+        "CREATING",
+        "ACTIVE",
+        "DELETING",
+        "INACTIVE",
+        "UPDATING",
+        "PAUSED",
     ]
     updateTime: str
+
+@typing.type_check_only
+class BackupPlanDetail(typing.TypedDict, total=False):
+    backupPlan: str
+    resourceType: str
 
 @typing.type_check_only
 class BackupPlanRevision(typing.TypedDict, total=False):
@@ -294,6 +365,10 @@ class BackupRule(typing.TypedDict, total=False):
     backupRetentionDays: int
     ruleId: str
     standardSchedule: StandardSchedule
+
+@typing.type_check_only
+class BackupSelectionConfig(typing.TypedDict, total=False):
+    dataSource: str
 
 @typing.type_check_only
 class BackupVault(typing.TypedDict, total=False):
@@ -340,7 +415,44 @@ class Binding(typing.TypedDict, total=False):
     role: str
 
 @typing.type_check_only
+class BindingEvaluationSummary(typing.TypedDict, total=False):
+    failedResourceCount: str
+    matchingResourceCount: str
+    protectedResourceCount: str
+
+@typing.type_check_only
+class BindingMatchingResource(typing.TypedDict, total=False):
+    autoProtectionDetails: AutoProtectionDetails
+    lastEvaluationTime: str
+    name: str
+    resource: str
+
+@typing.type_check_only
+class BindingSummary(typing.TypedDict, total=False):
+    projectCount: str
+
+@typing.type_check_only
 class CancelOperationRequest(typing.TypedDict, total=False): ...
+
+@typing.type_check_only
+class CleanupPhaseInfo(typing.TypedDict, total=False):
+    cleanupDuration: str
+    cleanupTime: str
+    endTime: str
+    error: Status
+    failureCleanupRule: RestoreVerificationCleanupRule
+    phaseState: typing.Literal[
+        "PHASE_STATE_UNSPECIFIED",
+        "PENDING",
+        "RUNNING",
+        "SUCCEEDED",
+        "FAILED",
+        "TIMED_OUT",
+        "SKIPPED",
+        "WAITING",
+    ]
+    startTime: str
+    successCleanupRule: RestoreVerificationCleanupRule
 
 @typing.type_check_only
 class CloudSqlInstanceBackupPlanAssociationProperties(typing.TypedDict, total=False):
@@ -455,6 +567,10 @@ class ConfidentialInstanceConfig(typing.TypedDict, total=False):
     enableConfidentialCompute: bool
 
 @typing.type_check_only
+class Criteria(typing.TypedDict, total=False):
+    matchingConditions: _list[MatchingCondition]
+
+@typing.type_check_only
 class CustomerEncryptionKey(typing.TypedDict, total=False):
     kmsKeyName: str
     kmsKeyServiceAccount: str
@@ -466,7 +582,9 @@ class DataSource(typing.TypedDict, total=False):
     backupBlockedByVaultAccessRestriction: bool
     backupConfigInfo: BackupConfigInfo
     backupCount: str
-    configState: typing.Literal["BACKUP_CONFIG_STATE_UNSPECIFIED", "ACTIVE", "PASSIVE"]
+    configState: typing.Literal[
+        "BACKUP_CONFIG_STATE_UNSPECIFIED", "ACTIVE", "PASSIVE", "PAUSED"
+    ]
     createTime: str
     dataSourceBackupApplianceApplication: DataSourceBackupApplianceApplication
     dataSourceGcpResource: DataSourceGcpResource
@@ -509,6 +627,7 @@ class DataSourceGcpResource(typing.TypedDict, total=False):
     filestoreInstanceDatasourceProperties: FilestoreInstanceDataSourceProperties
     gcpResourcename: str
     location: str
+    netappVolumeDatasourceProperties: NetAppVolumeDataSourceProperties
     type: str
 
 @typing.type_check_only
@@ -518,6 +637,7 @@ class DataSourceGcpResourceInfo(typing.TypedDict, total=False):
     filestoreInstanceProperties: FilestoreInstanceDataSourceReferenceProperties
     gcpResourcename: str
     location: str
+    netappVolumeProperties: NetAppVolumeDataSourceReferenceProperties
     type: str
 
 @typing.type_check_only
@@ -526,7 +646,7 @@ class DataSourceReference(typing.TypedDict, total=False):
     dataSource: str
     dataSourceBackupConfigInfo: DataSourceBackupConfigInfo
     dataSourceBackupConfigState: typing.Literal[
-        "BACKUP_CONFIG_STATE_UNSPECIFIED", "ACTIVE", "PASSIVE"
+        "BACKUP_CONFIG_STATE_UNSPECIFIED", "ACTIVE", "PASSIVE", "PAUSED"
     ]
     dataSourceBackupCount: str
     dataSourceGcpResourceInfo: DataSourceGcpResourceInfo
@@ -577,6 +697,7 @@ class DiskRestoreProperties(typing.TypedDict, total=False):
     diskEncryptionKey: CustomerEncryptionKey
     enableConfidentialCompute: bool
     guestOsFeature: _list[GuestOsFeature]
+    instanceBackupSource: RestoreDiskFromInstanceOptions
     labels: dict[str, typing.Any]
     licenses: _list[str]
     name: str
@@ -614,6 +735,13 @@ class EndTrialRequest(typing.TypedDict, total=False):
 class Entry(typing.TypedDict, total=False):
     key: str
     value: str
+
+@typing.type_check_only
+class ExecutionSummary(typing.TypedDict, total=False):
+    lastExecution: str
+    lastExecutionState: typing.Literal[
+        "EXECUTION_STATE_UNSPECIFIED", "RUNNING", "SUCCEEDED", "FAILED", "DELETING"
+    ]
 
 @typing.type_check_only
 class Expr(typing.TypedDict, total=False):
@@ -704,6 +832,7 @@ class GCPBackupPlanInfo(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class GcpBackupConfig(typing.TypedDict, total=False):
+    autoProtectionPolicyBinding: str
     backupPlan: str
     backupPlanAssociation: str
     backupPlanDescription: str
@@ -773,13 +902,41 @@ class InitiateBackupResponse(typing.TypedDict, total=False):
     newBackupGenerationId: int
 
 @typing.type_check_only
+class InitiateDeleteAutoProtectionPolicyBindingRequest(typing.TypedDict, total=False):
+    etag: str
+    requestId: str
+
+@typing.type_check_only
 class InstanceParams(typing.TypedDict, total=False):
     resourceManagerTags: dict[str, typing.Any]
+
+@typing.type_check_only
+class KeyValuePair(typing.TypedDict, total=False):
+    key: str
+    values: _list[str]
 
 @typing.type_check_only
 class LabelKeyValPair(typing.TypedDict, total=False):
     key: str
     value: str
+
+@typing.type_check_only
+class ListAppliedAutoProtectionPoliciesResponse(typing.TypedDict, total=False):
+    appliedAutoProtectionPolicies: _list[AppliedAutoProtectionPolicy]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
+class ListAutoProtectionPoliciesResponse(typing.TypedDict, total=False):
+    autoProtectionPolicies: _list[AutoProtectionPolicy]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
+class ListAutoProtectionPolicyBindingsResponse(typing.TypedDict, total=False):
+    autoProtectionPolicyBindings: _list[AutoProtectionPolicyBinding]
+    nextPageToken: str
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListBackupPlanAssociationsResponse(typing.TypedDict, total=False):
@@ -810,6 +967,11 @@ class ListBackupsResponse(typing.TypedDict, total=False):
     backups: _list[Backup]
     nextPageToken: str
     unreachable: _list[str]
+
+@typing.type_check_only
+class ListBindingMatchingResourcesResponse(typing.TypedDict, total=False):
+    matchingResources: _list[BindingMatchingResource]
+    nextPageToken: str
 
 @typing.type_check_only
 class ListDataSourceReferencesResponse(typing.TypedDict, total=False):
@@ -846,6 +1008,30 @@ class ListResourceBackupConfigsResponse(typing.TypedDict, total=False):
     resourceBackupConfigs: _list[ResourceBackupConfig]
 
 @typing.type_check_only
+class ListRestoreTemplateExecutionsResponse(typing.TypedDict, total=False):
+    nextPageToken: str
+    restoreTemplateExecutions: _list[RestoreTemplateExecution]
+    unreachable: _list[str]
+
+@typing.type_check_only
+class ListRestoreTemplatesResponse(typing.TypedDict, total=False):
+    nextPageToken: str
+    restoreTemplates: _list[RestoreTemplate]
+    unreachable: _list[str]
+
+@typing.type_check_only
+class ListRestoreVerificationPlanAssociationsResponse(typing.TypedDict, total=False):
+    nextPageToken: str
+    restoreVerificationPlanAssociations: _list[RestoreVerificationPlanAssociation]
+    unreachable: _list[str]
+
+@typing.type_check_only
+class ListRestoreVerificationPlansResponse(typing.TypedDict, total=False):
+    nextPageToken: str
+    restoreVerificationPlans: _list[RestoreVerificationPlan]
+    unreachable: _list[str]
+
+@typing.type_check_only
 class Location(typing.TypedDict, total=False):
     displayName: str
     labels: dict[str, typing.Any]
@@ -866,6 +1052,7 @@ class LocationMetadata(typing.TypedDict, total=False):
             "ALLOY_DB",
             "FILESTORE",
             "BV_AF",
+            "GOOGLE_CLOUD_NETAPP_VOLUME",
             "CEP_MONITORING_COMPUTE_INSTANCE",
             "CEP_MONITORING_DISK",
             "BV_CUSTOM_PROBERS",
@@ -907,8 +1094,30 @@ class ManagementURI(typing.TypedDict, total=False):
     webUi: str
 
 @typing.type_check_only
+class MatchingCondition(typing.TypedDict, total=False):
+    labelCondition: KeyValuePair
+
+@typing.type_check_only
 class Metadata(typing.TypedDict, total=False):
     items: _list[Entry]
+
+@typing.type_check_only
+class NetAppVolumeBackupPlanAssociationProperties(typing.TypedDict, total=False):
+    sourceResourceCreateTime: str
+
+@typing.type_check_only
+class NetAppVolumeBackupProperties(typing.TypedDict, total=False):
+    sourceResource: str
+
+@typing.type_check_only
+class NetAppVolumeDataSourceProperties(typing.TypedDict, total=False):
+    sourceResource: str
+    sourceResourceCreateTime: str
+
+@typing.type_check_only
+class NetAppVolumeDataSourceReferenceProperties(typing.TypedDict, total=False):
+    sourceResource: str
+    sourceResourceCreateTime: str
 
 @typing.type_check_only
 class NetworkConfig(typing.TypedDict, total=False):
@@ -953,17 +1162,6 @@ class Operation(typing.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
-class OperationMetadata(typing.TypedDict, total=False):
-    additionalInfo: dict[str, typing.Any]
-    apiVersion: str
-    createTime: str
-    endTime: str
-    requestedCancellation: bool
-    statusMessage: str
-    target: str
-    verb: str
-
-@typing.type_check_only
 class PitrSettings(typing.TypedDict, total=False):
     retentionDays: int
 
@@ -973,6 +1171,78 @@ class Policy(typing.TypedDict, total=False):
     bindings: _list[Binding]
     etag: str
     version: int
+
+@typing.type_check_only
+class PolicyEvaluationSummary(typing.TypedDict, total=False):
+    failedResourceCount: str
+    matchingResourceCount: str
+    protectedResourceCount: str
+
+@typing.type_check_only
+class PostRestoreConfig(typing.TypedDict, total=False):
+    cloudRunJob: str
+    timeout: str
+
+@typing.type_check_only
+class PostRestorePhaseInfo(typing.TypedDict, total=False):
+    cloudRunExecution: str
+    endTime: str
+    error: Status
+    phaseState: typing.Literal[
+        "PHASE_STATE_UNSPECIFIED",
+        "PENDING",
+        "RUNNING",
+        "SUCCEEDED",
+        "FAILED",
+        "TIMED_OUT",
+        "SKIPPED",
+        "WAITING",
+    ]
+    postRestoreConfig: PostRestoreConfig
+    startTime: str
+
+@typing.type_check_only
+class PreRestoreConfig(typing.TypedDict, total=False):
+    cloudRunJob: str
+    timeout: str
+
+@typing.type_check_only
+class PreRestorePhaseInfo(typing.TypedDict, total=False):
+    cloudRunExecution: str
+    endTime: str
+    error: Status
+    phaseState: typing.Literal[
+        "PHASE_STATE_UNSPECIFIED",
+        "PENDING",
+        "RUNNING",
+        "SUCCEEDED",
+        "FAILED",
+        "TIMED_OUT",
+        "SKIPPED",
+        "WAITING",
+    ]
+    preRestoreConfig: PreRestoreConfig
+    startTime: str
+
+@typing.type_check_only
+class PreparePhaseInfo(typing.TypedDict, total=False):
+    backup: str
+    backupSelectionConfig: BackupSelectionConfig
+    endTime: str
+    error: Status
+    isBackupExplicitlyPassed: bool
+    phaseState: typing.Literal[
+        "PHASE_STATE_UNSPECIFIED",
+        "PENDING",
+        "RUNNING",
+        "SUCCEEDED",
+        "FAILED",
+        "TIMED_OUT",
+        "SKIPPED",
+        "WAITING",
+    ]
+    restoreVerificationPlanAssociation: str
+    startTime: str
 
 @typing.type_check_only
 class RegionDiskTargetEnvironment(typing.TypedDict, total=False):
@@ -1019,6 +1289,122 @@ class RestoreBackupResponse(typing.TypedDict, total=False):
     targetResource: TargetResource
 
 @typing.type_check_only
+class RestoreDiskFromInstanceOptions(typing.TypedDict, total=False):
+    bootDisk: bool
+    sourceDeviceName: str
+
+@typing.type_check_only
+class RestorePhaseInfo(typing.TypedDict, total=False):
+    endTime: str
+    error: Status
+    phaseState: typing.Literal[
+        "PHASE_STATE_UNSPECIFIED",
+        "PENDING",
+        "RUNNING",
+        "SUCCEEDED",
+        "FAILED",
+        "TIMED_OUT",
+        "SKIPPED",
+        "WAITING",
+    ]
+    restoreDuration: str
+    restoreProperties: dict[str, typing.Any]
+    restoreResource: str
+    startTime: str
+
+@typing.type_check_only
+class RestoreTemplate(typing.TypedDict, total=False):
+    backupSelectionConfig: BackupSelectionConfig
+    createTime: str
+    description: str
+    etag: str
+    executionSummary: ExecutionSummary
+    labels: dict[str, typing.Any]
+    name: str
+    postRestoreConfig: PostRestoreConfig
+    preRestoreConfig: PreRestoreConfig
+    resourceType: str
+    restoreProperties: dict[str, typing.Any]
+    state: typing.Literal[
+        "STATE_UNSPECIFIED", "CREATING", "ACTIVE", "UPDATING", "DELETING"
+    ]
+    updateTime: str
+    verificationConfig: VerificationConfig
+
+@typing.type_check_only
+class RestoreTemplateExecution(typing.TypedDict, total=False):
+    cleanupPhaseInfo: CleanupPhaseInfo
+    createTime: str
+    name: str
+    phase: typing.Literal[
+        "EXECUTION_PHASE_UNSPECIFIED",
+        "PREPARING",
+        "EXECUTING_PRE_RESTORE_ACTION",
+        "RESTORING",
+        "EXECUTING_POST_RESTORE_ACTION",
+        "VERIFYING",
+        "CLEANING_UP",
+        "COMPLETED",
+    ]
+    postRestorePhaseInfo: PostRestorePhaseInfo
+    preRestorePhaseInfo: PreRestorePhaseInfo
+    preparePhaseInfo: PreparePhaseInfo
+    resourceType: str
+    restorePhaseInfo: RestorePhaseInfo
+    state: typing.Literal[
+        "EXECUTION_STATE_UNSPECIFIED", "RUNNING", "SUCCEEDED", "FAILED", "DELETING"
+    ]
+    type: typing.Literal["EXECUTION_TYPE_UNSPECIFIED", "SCHEDULED", "ON_DEMAND"]
+    updateTime: str
+    verificationPhaseInfo: VerificationPhaseInfo
+
+@typing.type_check_only
+class RestoreVerificationCleanupRule(typing.TypedDict, total=False):
+    cleanupDelay: str
+    skipCleanup: bool
+
+@typing.type_check_only
+class RestoreVerificationPlan(typing.TypedDict, total=False):
+    createTime: str
+    description: str
+    failureCleanupRule: RestoreVerificationCleanupRule
+    labels: dict[str, typing.Any]
+    name: str
+    schedule: str
+    state: typing.Literal[
+        "STATE_UNSPECIFIED",
+        "CREATING",
+        "ACTIVE",
+        "DELETING",
+        "INACTIVE",
+        "UPDATING",
+        "ERROR",
+    ]
+    successCleanupRule: RestoreVerificationCleanupRule
+    timeZone: str
+    updateTime: str
+
+@typing.type_check_only
+class RestoreVerificationPlanAssociation(typing.TypedDict, total=False):
+    createTime: str
+    description: str
+    labels: dict[str, typing.Any]
+    name: str
+    resourceType: str
+    restoreTemplate: str
+    state: typing.Literal[
+        "STATE_UNSPECIFIED",
+        "CREATING",
+        "ACTIVE",
+        "DELETING",
+        "INACTIVE",
+        "UPDATING",
+        "ERROR",
+    ]
+    triggerSummary: TriggerSummary
+    updateTime: str
+
+@typing.type_check_only
 class RuleConfigInfo(typing.TypedDict, total=False):
     lastBackupError: Status
     lastBackupState: typing.Literal[
@@ -1030,6 +1416,11 @@ class RuleConfigInfo(typing.TypedDict, total=False):
     ]
     lastSuccessfulBackupConsistencyTime: str
     ruleId: str
+
+@typing.type_check_only
+class RunRestoreTemplateRequest(typing.TypedDict, total=False):
+    backup: str
+    requestId: str
 
 @typing.type_check_only
 class Scheduling(typing.TypedDict, total=False):
@@ -1070,7 +1461,7 @@ class SetIamPolicyRequest(typing.TypedDict, total=False):
 @typing.type_check_only
 class SetInternalStatusRequest(typing.TypedDict, total=False):
     backupConfigState: typing.Literal[
-        "BACKUP_CONFIG_STATE_UNSPECIFIED", "ACTIVE", "PASSIVE"
+        "BACKUP_CONFIG_STATE_UNSPECIFIED", "ACTIVE", "PASSIVE", "PAUSED"
     ]
     requestId: str
     value: str
@@ -1164,6 +1555,50 @@ class TriggerBackupRequest(typing.TypedDict, total=False):
     labels: dict[str, typing.Any]
     requestId: str
     ruleId: str
+
+@typing.type_check_only
+class TriggerRestoreCleanupRequest(typing.TypedDict, total=False):
+    requestId: str
+
+@typing.type_check_only
+class TriggerRestoreVerificationRequest(typing.TypedDict, total=False):
+    requestId: str
+
+@typing.type_check_only
+class TriggerSummary(typing.TypedDict, total=False):
+    lastTriggerError: Status
+    lastTriggerTime: str
+    lastVerificationExecution: str
+    nextTriggerTime: str
+
+@typing.type_check_only
+class VerificationConfig(typing.TypedDict, total=False):
+    cloudRunJob: str
+    timeout: str
+
+@typing.type_check_only
+class VerificationPhaseInfo(typing.TypedDict, total=False):
+    cloudRunExecution: str
+    endTime: str
+    error: Status
+    phaseState: typing.Literal[
+        "PHASE_STATE_UNSPECIFIED",
+        "PENDING",
+        "RUNNING",
+        "SUCCEEDED",
+        "FAILED",
+        "TIMED_OUT",
+        "SKIPPED",
+        "WAITING",
+    ]
+    startTime: str
+    verificationConfig: VerificationConfig
+
+@typing.type_check_only
+class VerificationSummary(typing.TypedDict, total=False):
+    lastVerificationExecution: str
+    lastVerificationState: typing.Literal["STATE_UNSPECIFIED", "SUCCEEDED", "FAILED"]
+    lastVerificationTime: str
 
 @typing.type_check_only
 class WeekDayOfMonth(typing.TypedDict, total=False):

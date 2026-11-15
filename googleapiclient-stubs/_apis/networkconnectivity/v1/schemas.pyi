@@ -209,6 +209,11 @@ class DnsAutomationStatus(typing.TypedDict, total=False):
 class Empty(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
+class ExportPscConfig(typing.TypedDict, total=False):
+    globalGoogleApis: bool
+    publishedServicesAndRegionalGoogleApis: bool
+
+@typing.type_check_only
 class Expr(typing.TypedDict, total=False):
     description: str
     expression: str
@@ -312,6 +317,7 @@ class Hub(typing.TypedDict, total=False):
     createTime: str
     description: str
     exportPsc: bool
+    exportPscConfig: ExportPscConfig
     labels: dict[str, typing.Any]
     name: str
     policyMode: typing.Literal["POLICY_MODE_UNSPECIFIED", "PRESET"]
@@ -367,6 +373,10 @@ class InternalRange(typing.TypedDict, total=False):
     ]
     peering: typing.Literal["PEERING_UNSPECIFIED", "FOR_SELF", "FOR_PEER", "NOT_SHARED"]
     prefixLength: int
+    purpose: typing.Literal["PURPOSE_UNSPECIFIED", "VPC_SUBNET", "INTERNAL_ADDRESS"]
+    rangeStatus: typing.Literal[
+        "RANGE_STATUS_UNSPECIFIED", "ACTIVE", "OBSOLETE", "CREATING", "DELETING"
+    ]
     targetCidrRange: _list[str]
     updateTime: str
     usage: typing.Literal[
@@ -384,6 +394,10 @@ class LinkedInterconnectAttachments(typing.TypedDict, total=False):
     excludeImportRanges: _list[str]
     includeExportRanges: _list[str]
     includeImportRanges: _list[str]
+    proposedExcludeExportRanges: _list[str]
+    proposedExcludeImportRanges: _list[str]
+    proposedIncludeExportRanges: _list[str]
+    proposedIncludeImportRanges: _list[str]
     siteToSiteDataTransfer: bool
     uris: _list[str]
     vpcNetwork: str
@@ -406,6 +420,10 @@ class LinkedRouterApplianceInstances(typing.TypedDict, total=False):
     includeExportRanges: _list[str]
     includeImportRanges: _list[str]
     instances: _list[RouterApplianceInstance]
+    proposedExcludeExportRanges: _list[str]
+    proposedExcludeImportRanges: _list[str]
+    proposedIncludeExportRanges: _list[str]
+    proposedIncludeImportRanges: _list[str]
     siteToSiteDataTransfer: bool
     vpcNetwork: str
 
@@ -424,6 +442,10 @@ class LinkedVpnTunnels(typing.TypedDict, total=False):
     excludeImportRanges: _list[str]
     includeExportRanges: _list[str]
     includeImportRanges: _list[str]
+    proposedExcludeExportRanges: _list[str]
+    proposedExcludeImportRanges: _list[str]
+    proposedIncludeExportRanges: _list[str]
+    proposedIncludeImportRanges: _list[str]
     siteToSiteDataTransfer: bool
     uris: _list[str]
     vpcNetwork: str
@@ -849,6 +871,7 @@ class Route(typing.TypedDict, total=False):
         "VPC_PRIMARY_SUBNET",
         "VPC_SECONDARY_SUBNET",
         "DYNAMIC_ROUTE",
+        "PSC_GLOBAL_GAPI",
     ]
     uid: str
     updateTime: str
@@ -1079,6 +1102,7 @@ class TestIamPermissionsResponse(typing.TypedDict, total=False):
 @typing.type_check_only
 class Transport(typing.TypedDict, total=False):
     advertisedRoutes: _list[str]
+    autoAccept: bool
     bandwidth: typing.Literal[
         "BANDWIDTH_UNSPECIFIED",
         "BPS_50M",
@@ -1098,12 +1122,14 @@ class Transport(typing.TypedDict, total=False):
     createTime: str
     description: str
     generatedActivationKey: str
+    hub: str
     labels: dict[str, typing.Any]
     mtuLimit: int
     name: str
     network: str
     peeringNetwork: str
     providedActivationKey: str
+    pscRoutingEnabled: bool
     remoteAccountId: str
     remoteProfile: str
     stackType: typing.Literal["STACK_TYPE_UNSPECIFIED", "IPV4_ONLY", "IPV4_IPV6"]
@@ -1115,6 +1141,7 @@ class Transport(typing.TypedDict, total=False):
         "ACTIVE",
         "DELETING",
         "DEPROVISIONED",
+        "SUSPENDED",
     ]
     updateTime: str
 

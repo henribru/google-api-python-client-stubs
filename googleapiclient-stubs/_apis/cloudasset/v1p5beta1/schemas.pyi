@@ -260,6 +260,7 @@ class GoogleIdentityAccesscontextmanagerV1OsConstraint(typing.TypedDict, total=F
         "DESKTOP_WINDOWS",
         "DESKTOP_LINUX",
         "DESKTOP_CHROME_OS",
+        "GOOGLEBOOK_OS",
         "ANDROID",
         "IOS",
     ]

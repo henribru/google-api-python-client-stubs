@@ -262,6 +262,10 @@ class CloudLoggingEntry(typing.TypedDict, total=False):
     timestamp: str
 
 @typing.type_check_only
+class CloudRun(typing.TypedDict, total=False):
+    revisions: _list[str]
+
+@typing.type_check_only
 class Compliance(typing.TypedDict, total=False):
     ids: _list[str]
     standard: str
@@ -550,6 +554,7 @@ class Finding(typing.TypedDict, total=False):
     cloudArmor: CloudArmor
     cloudDlpDataProfile: CloudDlpDataProfile
     cloudDlpInspection: CloudDlpInspection
+    cloudRun: CloudRun
     complianceDetails: ComplianceDetails
     compliances: _list[Compliance]
     connections: _list[Connection]
@@ -670,6 +675,7 @@ class GetPolicyOptions(typing.TypedDict, total=False):
 class GoogleCloudSecuritycenterV1BigQueryExport(typing.TypedDict, total=False):
     createTime: str
     dataset: str
+    deletionNotificationsEnabled: bool
     description: str
     filter: str
     mostRecentEditor: str
@@ -758,6 +764,7 @@ class GoogleCloudSecuritycenterV1MuteConfig(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV1NotificationMessage(typing.TypedDict, total=False):
+    deletedFinding: bool
     finding: Finding
     notificationConfigName: str
     resource: GoogleCloudSecuritycenterV1Resource
@@ -1169,6 +1176,7 @@ class GoogleCloudSecuritycenterV2BigQueryExport(typing.TypedDict, total=False):
     createTime: str
     cryptoKeyName: str
     dataset: str
+    deletionNotificationsEnabled: bool
     description: str
     filter: str
     mostRecentEditor: str
@@ -1227,6 +1235,10 @@ class GoogleCloudSecuritycenterV2CloudLoggingEntry(typing.TypedDict, total=False
     logId: str
     resourceContainer: str
     timestamp: str
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV2CloudRun(typing.TypedDict, total=False):
+    revisions: _list[str]
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV2Compliance(typing.TypedDict, total=False):
@@ -1515,6 +1527,7 @@ class GoogleCloudSecuritycenterV2Finding(typing.TypedDict, total=False):
     cloudArmor: GoogleCloudSecuritycenterV2CloudArmor
     cloudDlpDataProfile: GoogleCloudSecuritycenterV2CloudDlpDataProfile
     cloudDlpInspection: GoogleCloudSecuritycenterV2CloudDlpInspection
+    cloudRun: GoogleCloudSecuritycenterV2CloudRun
     complianceDetails: GoogleCloudSecuritycenterV2ComplianceDetails
     compliances: _list[GoogleCloudSecuritycenterV2Compliance]
     connections: _list[GoogleCloudSecuritycenterV2Connection]
@@ -2291,6 +2304,7 @@ class GoogleCloudSecuritycenterV2Notebook(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV2NotificationMessage(typing.TypedDict, total=False):
+    deletedFinding: bool
     finding: GoogleCloudSecuritycenterV2Finding
     notificationConfigName: str
     resource: GoogleCloudSecuritycenterV2Resource
