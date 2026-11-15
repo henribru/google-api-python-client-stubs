@@ -2713,7 +2713,9 @@ class ApigeeResource(googleapiclient.discovery.Resource):
             self,
             *,
             name: str,
-            retention: typing.Literal["DELETION_RETENTION_UNSPECIFIED", "MINIMUM"]
+            retention: typing.Literal[
+                "DELETION_RETENTION_UNSPECIFIED", "MINIMUM", "NO_RETENTION"
+            ]
             | None = ...,
             **kwargs: typing.Any,
         ) -> GoogleLongrunningOperationHttpRequest: ...
@@ -2731,6 +2733,9 @@ class ApigeeResource(googleapiclient.discovery.Resource):
             | None = ...,
             **kwargs: typing.Any,
         ) -> GoogleCloudApigeeV1IngressConfigHttpRequest: ...
+        def getMcpServerConfig(
+            self, *, name: str, **kwargs: typing.Any
+        ) -> GoogleCloudApigeeV1McpServerConfigHttpRequest: ...
         def getProjectMapping(
             self, *, name: str, **kwargs: typing.Any
         ) -> GoogleCloudApigeeV1OrganizationProjectMappingHttpRequest: ...
@@ -3824,6 +3829,14 @@ class GoogleCloudApigeeV1ListTraceConfigOverridesResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudApigeeV1ListTraceConfigOverridesResponse: ...
+
+@typing.type_check_only
+class GoogleCloudApigeeV1McpServerConfigHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudApigeeV1McpServerConfig: ...
 
 @typing.type_check_only
 class GoogleCloudApigeeV1NatAddressHttpRequest(googleapiclient.http.HttpRequest):

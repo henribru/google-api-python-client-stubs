@@ -25,12 +25,54 @@ class ChromewebstoreResource(googleapiclient.discovery.Resource):
             def cancelSubmission(
                 self, *, name: str, body: CancelSubmissionRequest, **kwargs: typing.Any
             ) -> CancelSubmissionResponseHttpRequest: ...
+            def fetchReviews(
+                self,
+                *,
+                name: str,
+                filter: str | None = ...,
+                orderBy: str | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
+                **kwargs: typing.Any,
+            ) -> FetchItemReviewsResponseHttpRequest: ...
+            def fetchReviews_next(
+                self,
+                previous_request: FetchItemReviewsResponseHttpRequest,
+                previous_response: FetchItemReviewsResponse,
+            ) -> FetchItemReviewsResponseHttpRequest | None: ...
             def fetchStatus(
                 self, *, name: str, **kwargs: typing.Any
             ) -> FetchItemStatusResponseHttpRequest: ...
+            def getRatingSummary(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> RatingSummaryHttpRequest: ...
             def publish(
                 self, *, name: str, body: PublishItemRequest, **kwargs: typing.Any
             ) -> PublishItemResponseHttpRequest: ...
+            def queryMetrics(
+                self,
+                *,
+                name: str,
+                dimensions: str | _list[str] | None = ...,
+                metrics: str | _list[str] | None = ...,
+                pageSize: int | None = ...,
+                pageToken: str | None = ...,
+                timeSpec_firstDate_day: int | None = ...,
+                timeSpec_firstDate_month: int | None = ...,
+                timeSpec_firstDate_year: int | None = ...,
+                timeSpec_lastDate_day: int | None = ...,
+                timeSpec_lastDate_month: int | None = ...,
+                timeSpec_lastDate_year: int | None = ...,
+                **kwargs: typing.Any,
+            ) -> QueryItemMetricsResponseHttpRequest: ...
+            def queryMetrics_next(
+                self,
+                previous_request: QueryItemMetricsResponseHttpRequest,
+                previous_response: QueryItemMetricsResponse,
+            ) -> QueryItemMetricsResponseHttpRequest | None: ...
+            def rollback(
+                self, *, name: str, body: RollbackItemRequest, **kwargs: typing.Any
+            ) -> RollbackItemResponseHttpRequest: ...
             def setPublishedDeployPercentage(
                 self,
                 *,
@@ -65,6 +107,14 @@ class CancelSubmissionResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> CancelSubmissionResponse: ...
 
 @typing.type_check_only
+class FetchItemReviewsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> FetchItemReviewsResponse: ...
+
+@typing.type_check_only
 class FetchItemStatusResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -79,6 +129,30 @@ class PublishItemResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> PublishItemResponse: ...
+
+@typing.type_check_only
+class QueryItemMetricsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> QueryItemMetricsResponse: ...
+
+@typing.type_check_only
+class RatingSummaryHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> RatingSummary: ...
+
+@typing.type_check_only
+class RollbackItemResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> RollbackItemResponse: ...
 
 @typing.type_check_only
 class SetPublishedDeployPercentageResponseHttpRequest(googleapiclient.http.HttpRequest):

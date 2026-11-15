@@ -51,6 +51,13 @@ class AgentIdentityResource(googleapiclient.discovery.Resource):
                     def get(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> AuthorizationHttpRequest: ...
+                    def getIamPolicy(
+                        self,
+                        *,
+                        resource: str,
+                        options_requestedPolicyVersion: int | None = ...,
+                        **kwargs: typing.Any,
+                    ) -> PolicyHttpRequest: ...
                     def list(
                         self,
                         *,
@@ -66,6 +73,20 @@ class AgentIdentityResource(googleapiclient.discovery.Resource):
                         previous_request: ListAuthorizationsResponseHttpRequest,
                         previous_response: ListAuthorizationsResponse,
                     ) -> ListAuthorizationsResponseHttpRequest | None: ...
+                    def setIamPolicy(
+                        self,
+                        *,
+                        resource: str,
+                        body: SetIamPolicyRequest,
+                        **kwargs: typing.Any,
+                    ) -> PolicyHttpRequest: ...
+                    def testIamPermissions(
+                        self,
+                        *,
+                        resource: str,
+                        body: TestIamPermissionsRequest,
+                        **kwargs: typing.Any,
+                    ) -> TestIamPermissionsResponseHttpRequest: ...
 
                 def create(
                     self,
@@ -159,6 +180,13 @@ class AgentIdentityResource(googleapiclient.discovery.Resource):
                     previous_request: QueryWorkloadsResponseHttpRequest,
                     previous_response: QueryWorkloadsResponse,
                 ) -> QueryWorkloadsResponseHttpRequest | None: ...
+                def resolveAuthorization(
+                    self,
+                    *,
+                    name: str,
+                    body: ResolveAuthorizationRequest,
+                    **kwargs: typing.Any,
+                ) -> ResolveAuthorizationResponseHttpRequest: ...
                 def revokeAuthorization(
                     self,
                     *,
@@ -321,6 +349,14 @@ class QueryWorkloadsResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> QueryWorkloadsResponse: ...
+
+@typing.type_check_only
+class ResolveAuthorizationResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ResolveAuthorizationResponse: ...
 
 @typing.type_check_only
 class RevokeAuthorizationResponseHttpRequest(googleapiclient.http.HttpRequest):

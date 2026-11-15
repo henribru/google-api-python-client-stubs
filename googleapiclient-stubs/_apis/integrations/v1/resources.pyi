@@ -409,7 +409,10 @@ class IntegrationsResource(googleapiclient.discovery.Resource):
                             *,
                             name: str,
                             fileFormat: typing.Literal[
-                                "FILE_FORMAT_UNSPECIFIED", "JSON", "YAML"
+                                "FILE_FORMAT_UNSPECIFIED",
+                                "JSON",
+                                "YAML",
+                                "WORKFLOW_TEXTPROTO",
                             ]
                             | None = ...,
                             **kwargs: typing.Any,
@@ -492,7 +495,10 @@ class IntegrationsResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         fileFormat: typing.Literal[
-                            "FILE_FORMAT_UNSPECIFIED", "JSON", "YAML"
+                            "FILE_FORMAT_UNSPECIFIED",
+                            "JSON",
+                            "YAML",
+                            "WORKFLOW_TEXTPROTO",
                         ]
                         | None = ...,
                         files: typing.Literal[
@@ -879,7 +885,10 @@ class IntegrationsResource(googleapiclient.discovery.Resource):
                             *,
                             name: str,
                             fileFormat: typing.Literal[
-                                "FILE_FORMAT_UNSPECIFIED", "JSON", "YAML"
+                                "FILE_FORMAT_UNSPECIFIED",
+                                "JSON",
+                                "YAML",
+                                "WORKFLOW_TEXTPROTO",
                             ]
                             | None = ...,
                             files: typing.Literal[
@@ -1197,7 +1206,7 @@ class IntegrationsResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     fileFormat: typing.Literal[
-                        "FILE_FORMAT_UNSPECIFIED", "JSON", "YAML"
+                        "FILE_FORMAT_UNSPECIFIED", "JSON", "YAML", "WORKFLOW_TEXTPROTO"
                     ]
                     | None = ...,
                     **kwargs: typing.Any,

@@ -52,10 +52,14 @@ class Parameter(typing.TypedDict, total=False):
     labels: dict[str, typing.Any]
     name: str
     policyMember: ResourcePolicyMember
+    tags: dict[str, typing.Any]
     updateTime: str
 
 @typing.type_check_only
 class ParameterVersion(typing.TypedDict, total=False):
+    checksumSource: typing.Literal[
+        "CHECKSUM_SOURCE_UNSPECIFIED", "SERVER_GENERATED", "USER_SPECIFIED"
+    ]
     createTime: str
     disabled: bool
     kmsKeyVersion: str
@@ -66,6 +70,7 @@ class ParameterVersion(typing.TypedDict, total=False):
 @typing.type_check_only
 class ParameterVersionPayload(typing.TypedDict, total=False):
     data: str
+    dataCrc32c: str
 
 @typing.type_check_only
 class RenderParameterVersionResponse(typing.TypedDict, total=False):

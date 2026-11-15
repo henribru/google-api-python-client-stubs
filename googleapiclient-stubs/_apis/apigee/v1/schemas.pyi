@@ -565,6 +565,7 @@ class GoogleCloudApigeeV1ControlPlaneAccess(typing.TypedDict, total=False):
     analyticsPublisherIdentities: _list[str]
     name: str
     synchronizerIdentities: _list[str]
+    watcherIdentities: _list[str]
 
 @typing.type_check_only
 class GoogleCloudApigeeV1Credential(typing.TypedDict, total=False):
@@ -1499,6 +1500,14 @@ class GoogleCloudApigeeV1MaintenanceUpdatePolicyMaintenanceWindow(
     startTime: GoogleTypeTimeOfDay
 
 @typing.type_check_only
+class GoogleCloudApigeeV1McpServerConfig(typing.TypedDict, total=False):
+    mcpServerConfigDataLocation: str
+    name: str
+    revisionCreateTime: str
+    revisionId: str
+    uid: str
+
+@typing.type_check_only
 class GoogleCloudApigeeV1Metadata(typing.TypedDict, total=False):
     errors: _list[str]
     notices: _list[str]
@@ -1932,6 +1941,7 @@ class GoogleCloudApigeeV1RuntimeAddonsConfig(typing.TypedDict, total=False):
     apiSecurityConfig: GoogleCloudApigeeV1RuntimeApiSecurityConfig
     name: str
     revisionId: str
+    specGenerationConfig: GoogleCloudApigeeV1RuntimeSpecGenerationAddonConfig
     uid: str
 
 @typing.type_check_only
@@ -1951,6 +1961,16 @@ class GoogleCloudApigeeV1RuntimeConfig(typing.TypedDict, total=False):
     traceBucket: str
 
 @typing.type_check_only
+class GoogleCloudApigeeV1RuntimeSpecGenerationAddonConfig(
+    typing.TypedDict, total=False
+):
+    apiObservationsPubsubTopic: str
+    enabled: bool
+    enabledUntil: str
+    rawObservationsPubsubTopic: str
+    samplingRate: float
+
+@typing.type_check_only
 class GoogleCloudApigeeV1RuntimeTraceConfig(typing.TypedDict, total=False):
     endpoint: str
     exporter: typing.Literal[
@@ -1960,14 +1980,26 @@ class GoogleCloudApigeeV1RuntimeTraceConfig(typing.TypedDict, total=False):
         "OPEN_TELEMETRY_COLLECTOR",
         "OPEN_TELEMETRY_CLOUD_TRACE",
     ]
+    mTlsConfig: GoogleCloudApigeeV1RuntimeTraceConfigOtelMtlsConfig
     name: str
     openTelemetryProtocolEnabled: bool
+    otelCollectorSecurityScheme: typing.Literal[
+        "OTEL_COLLECTOR_SECURITY_SCHEME_UNSPECIFIED", "NONE", "MTLS"
+    ]
     overrides: _list[GoogleCloudApigeeV1RuntimeTraceConfigOverride]
     revisionCreateTime: str
     revisionId: str
     samplingConfig: GoogleCloudApigeeV1RuntimeTraceSamplingConfig
     spanSemantics: typing.Literal["SPAN_SEMANTICS_UNSPECIFIED", "LEGACY", "OTEL"]
     traceProtocol: typing.Literal["TRACE_PROTOCOL_UNSPECIFIED", "OPEN_CENSUS", "OTLP"]
+
+@typing.type_check_only
+class GoogleCloudApigeeV1RuntimeTraceConfigOtelMtlsConfig(
+    typing.TypedDict, total=False
+):
+    keyAlias: str
+    keyAliasReference: GoogleCloudApigeeV1KeyAliasReference
+    trustStore: str
 
 @typing.type_check_only
 class GoogleCloudApigeeV1RuntimeTraceConfigOverride(typing.TypedDict, total=False):
@@ -2516,9 +2548,19 @@ class GoogleCloudApigeeV1TraceConfig(typing.TypedDict, total=False):
         "OPEN_TELEMETRY_COLLECTOR",
         "OPEN_TELEMETRY_CLOUD_TRACE",
     ]
+    mtlsConfig: GoogleCloudApigeeV1TraceConfigOtelMtlsConfig
+    otelCollectorSecurityScheme: typing.Literal[
+        "OTEL_COLLECTOR_SECURITY_SCHEME_UNSPECIFIED", "NONE", "MTLS"
+    ]
     samplingConfig: GoogleCloudApigeeV1TraceSamplingConfig
     spanSemantics: typing.Literal["SPAN_SEMANTICS_UNSPECIFIED", "LEGACY", "OTEL"]
     traceProtocol: typing.Literal["TRACE_PROTOCOL_UNSPECIFIED", "OPEN_CENSUS", "OTLP"]
+
+@typing.type_check_only
+class GoogleCloudApigeeV1TraceConfigOtelMtlsConfig(typing.TypedDict, total=False):
+    keyAlias: str
+    keyStore: str
+    trustStore: str
 
 @typing.type_check_only
 class GoogleCloudApigeeV1TraceConfigOverride(typing.TypedDict, total=False):

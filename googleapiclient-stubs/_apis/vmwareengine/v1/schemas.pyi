@@ -58,6 +58,14 @@ class Binding(typing.TypedDict, total=False):
     role: str
 
 @typing.type_check_only
+class CapacityAllocation(typing.TypedDict, total=False):
+    allocatedCapacityCount: int
+    consumedCapacityCount: int
+    machineFamily: str
+    name: str
+    privateClouds: _list[str]
+
+@typing.type_check_only
 class Cluster(typing.TypedDict, total=False):
     autoscalingSettings: AutoscalingSettings
     createTime: str
@@ -65,6 +73,7 @@ class Cluster(typing.TypedDict, total=False):
     management: bool
     name: str
     nodeTypeConfigs: dict[str, typing.Any]
+    placementGroup: str
     state: typing.Literal[
         "STATE_UNSPECIFIED", "ACTIVE", "CREATING", "UPDATING", "DELETING", "REPAIRING"
     ]
@@ -228,6 +237,12 @@ class ListAnnouncementsResponse(typing.TypedDict, total=False):
     unreachable: _list[str]
 
 @typing.type_check_only
+class ListCapacityAllocationsResponse(typing.TypedDict, total=False):
+    capacityAllocations: _list[CapacityAllocation]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
 class ListClustersResponse(typing.TypedDict, total=False):
     clusters: _list[Cluster]
     nextPageToken: str
@@ -370,6 +385,7 @@ class LoggingServer(typing.TypedDict, total=False):
 class ManagementCluster(typing.TypedDict, total=False):
     clusterId: str
     nodeTypeConfigs: dict[str, typing.Any]
+    placementGroup: str
     stretchedClusterConfig: StretchedClusterConfig
 
 @typing.type_check_only
@@ -641,7 +657,9 @@ class Status(typing.TypedDict, total=False):
 @typing.type_check_only
 class StretchedClusterConfig(typing.TypedDict, total=False):
     preferredLocation: str
+    preferredLocationPlacementGroup: str
     secondaryLocation: str
+    secondaryLocationPlacementGroup: str
 
 @typing.type_check_only
 class Subnet(typing.TypedDict, total=False):

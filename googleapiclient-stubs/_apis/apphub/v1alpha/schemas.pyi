@@ -4,6 +4,8 @@ _list = list
 
 @typing.type_check_only
 class Application(typing.TypedDict, total=False):
+    applicationProperties: ApplicationProperties
+    applicationType: ApplicationType
     attributes: Attributes
     createTime: str
     description: str
@@ -13,6 +15,14 @@ class Application(typing.TypedDict, total=False):
     state: typing.Literal["STATE_UNSPECIFIED", "CREATING", "ACTIVE", "DELETING"]
     uid: str
     updateTime: str
+
+@typing.type_check_only
+class ApplicationProperties(typing.TypedDict, total=False):
+    extendedMetadata: dict[str, typing.Any]
+
+@typing.type_check_only
+class ApplicationType(typing.TypedDict, total=False):
+    type: typing.Literal["TYPE_UNSPECIFIED", "AI_APPLICATION"]
 
 @typing.type_check_only
 class Attributes(typing.TypedDict, total=False):

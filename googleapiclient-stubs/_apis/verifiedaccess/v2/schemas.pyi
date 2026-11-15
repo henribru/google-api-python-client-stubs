@@ -45,6 +45,8 @@ class DeviceSignals(typing.TypedDict, total=False):
         "WINDOWS",
         "MAC_OS_X",
         "LINUX",
+        "IOS",
+        "ANDROID",
     ]
     osFirewall: typing.Literal[
         "OS_FIREWALL_UNSPECIFIED",

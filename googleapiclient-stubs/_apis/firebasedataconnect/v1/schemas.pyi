@@ -168,6 +168,12 @@ class GraphqlResponseExtensions(typing.TypedDict, total=False):
     dataConnect: _list[DataConnectProperties]
 
 @typing.type_check_only
+class HttpBody(typing.TypedDict, total=False):
+    contentType: str
+    data: str
+    extensions: _list[dict[str, typing.Any]]
+
+@typing.type_check_only
 class HttpGraphql(typing.TypedDict, total=False):
     timeout: str
     uri: str
@@ -220,6 +226,23 @@ class Location(typing.TypedDict, total=False):
     locationId: str
     metadata: dict[str, typing.Any]
     name: str
+
+@typing.type_check_only
+class MigrateSchemaRequest(typing.TypedDict, total=False):
+    executionMode: typing.Literal[
+        "EXECUTION_MODE_UNSPECIFIED",
+        "EXECUTE_AND_RECORD",
+        "EXECUTE_ONLY",
+        "RECORD_ONLY",
+    ]
+    migrationSteps: _list[MigrationStep]
+    validateOnly: bool
+
+@typing.type_check_only
+class MigrationStep(typing.TypedDict, total=False):
+    name: str
+    sql: str
+    version: str
 
 @typing.type_check_only
 class Operation(typing.TypedDict, total=False):
@@ -279,11 +302,13 @@ class Service(typing.TypedDict, total=False):
     createTime: str
     displayName: str
     etag: str
+    graphqlSource: Source
     labels: dict[str, typing.Any]
     name: str
     reconciling: bool
     schemas: _list[Schema]
     source: Source
+    sqlSource: Source
     uid: str
     updateTime: str
 

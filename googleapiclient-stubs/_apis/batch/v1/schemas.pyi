@@ -113,6 +113,7 @@ class AgentTimingInfo(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class AllocationPolicy(typing.TypedDict, total=False):
+    instanceFlexibilityPolicy: InstanceFlexibilityPolicy
     instances: _list[InstancePolicyOrTemplate]
     labels: dict[str, typing.Any]
     location: LocationPolicy
@@ -182,6 +183,10 @@ class GCS(typing.TypedDict, total=False):
     remotePath: str
 
 @typing.type_check_only
+class InstanceFlexibilityPolicy(typing.TypedDict, total=False):
+    instanceSelections: dict[str, typing.Any]
+
+@typing.type_check_only
 class InstancePolicy(typing.TypedDict, total=False):
     accelerators: _list[Accelerator]
     bootDisk: Disk
@@ -205,6 +210,11 @@ class InstancePolicyOrTemplate(typing.TypedDict, total=False):
     installOpsAgent: bool
     instanceTemplate: str
     policy: InstancePolicy
+
+@typing.type_check_only
+class InstanceSelection(typing.TypedDict, total=False):
+    machineTypes: _list[str]
+    rank: int
 
 @typing.type_check_only
 class InstanceStatus(typing.TypedDict, total=False):

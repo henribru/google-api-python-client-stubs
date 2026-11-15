@@ -104,6 +104,9 @@ class OperationMetadata(typing.TypedDict, total=False):
     verb: str
 
 @typing.type_check_only
+class ReprovisionBucketRequest(typing.TypedDict, total=False): ...
+
+@typing.type_check_only
 class Scope(typing.TypedDict, total=False):
     logScope: str
     name: str

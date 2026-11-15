@@ -115,6 +115,7 @@ class ApplicationVerifyResponse(typing.TypedDict, total=False):
 class BatchRecordEventsRequest(typing.TypedDict, total=False):
     droidGuardBlob: str
     events: _list[PlayerGameEvent]
+    integrityVerdicts: _list[DeveloperIntegrityVerdict]
     packageName: str
     requestTime: str
     salt: str
@@ -134,6 +135,20 @@ class CategoryListResponse(typing.TypedDict, total=False):
     items: _list[Category]
     kind: str
     nextPageToken: str
+
+@typing.type_check_only
+class DeveloperIntegrityVerdict(typing.TypedDict, total=False):
+    category: typing.Literal[
+        "CATEGORY_UNSPECIFIED",
+        "DEVICE_UNTRUSTED",
+        "APP_UNRECOGNIZED",
+        "ACCOUNT_UNLICENSED",
+        "ENVIRONMENT_RISK",
+        "IMPOSSIBLE_GAMEPLAY",
+        "OTHER",
+    ]
+    description: str
+    source: typing.Literal["SOURCE_UNSPECIFIED", "DEVELOPER_INTERNAL", "PLAY_INTEGRITY"]
 
 @typing.type_check_only
 class EndPoint(typing.TypedDict, total=False):
@@ -487,7 +502,6 @@ class PropertyValue(typing.TypedDict, total=False):
     durationValue: str
     intValue: str
     stringValue: str
-    timestampValue: str
 
 @typing.type_check_only
 class RecallToken(typing.TypedDict, total=False):

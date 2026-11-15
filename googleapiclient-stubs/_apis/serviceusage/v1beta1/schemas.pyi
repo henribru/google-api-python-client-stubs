@@ -324,9 +324,7 @@ class EnableFailure(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class EnableRule(typing.TypedDict, total=False):
-    enableType: typing.Literal[
-        "ENABLE_TYPE_UNSPECIFIED", "CLIENT", "RESOURCE", "V1_COMPATIBLE"
-    ]
+    catalogs: _list[str]
     services: _list[str]
     values: _list[str]
 
@@ -583,6 +581,7 @@ class GoogleApiServiceusageV2betaConsumerPolicy(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class GoogleApiServiceusageV2betaEnableRule(typing.TypedDict, total=False):
+    catalogs: _list[str]
     services: _list[str]
 
 @typing.type_check_only

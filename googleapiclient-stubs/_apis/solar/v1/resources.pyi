@@ -18,15 +18,27 @@ class SolarResource(googleapiclient.discovery.Resource):
             self,
             *,
             additionalInsights: typing.Literal[
-                "ADDITIONAL_INSIGHTS_UNSPECIFIED", "DETECTED_ARRAYS"
+                "ADDITIONAL_INSIGHTS_UNSPECIFIED", "ROOF_GEOMETRY", "DETECTED_ARRAYS"
             ]
             | _list[
-                typing.Literal["ADDITIONAL_INSIGHTS_UNSPECIFIED", "DETECTED_ARRAYS"]
+                typing.Literal[
+                    "ADDITIONAL_INSIGHTS_UNSPECIFIED",
+                    "ROOF_GEOMETRY",
+                    "DETECTED_ARRAYS",
+                ]
             ]
             | None = ...,
             exactQualityRequired: bool | None = ...,
-            experiments: typing.Literal["EXPERIMENT_UNSPECIFIED", "EXPANDED_COVERAGE"]
-            | _list[typing.Literal["EXPERIMENT_UNSPECIFIED", "EXPANDED_COVERAGE"]]
+            experiments: typing.Literal[
+                "EXPERIMENT_UNSPECIFIED", "EXPANDED_COVERAGE", "ROOF_GEOMETRY_INSIGHTS"
+            ]
+            | _list[
+                typing.Literal[
+                    "EXPERIMENT_UNSPECIFIED",
+                    "EXPANDED_COVERAGE",
+                    "ROOF_GEOMETRY_INSIGHTS",
+                ]
+            ]
             | None = ...,
             location_latitude: float | None = ...,
             location_longitude: float | None = ...,
@@ -43,8 +55,16 @@ class SolarResource(googleapiclient.discovery.Resource):
             self,
             *,
             exactQualityRequired: bool | None = ...,
-            experiments: typing.Literal["EXPERIMENT_UNSPECIFIED", "EXPANDED_COVERAGE"]
-            | _list[typing.Literal["EXPERIMENT_UNSPECIFIED", "EXPANDED_COVERAGE"]]
+            experiments: typing.Literal[
+                "EXPERIMENT_UNSPECIFIED", "EXPANDED_COVERAGE", "ROOF_GEOMETRY_INSIGHTS"
+            ]
+            | _list[
+                typing.Literal[
+                    "EXPERIMENT_UNSPECIFIED",
+                    "EXPANDED_COVERAGE",
+                    "ROOF_GEOMETRY_INSIGHTS",
+                ]
+            ]
             | None = ...,
             location_latitude: float | None = ...,
             location_longitude: float | None = ...,

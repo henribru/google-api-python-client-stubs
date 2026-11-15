@@ -841,7 +841,10 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                             | None = ...,
                             languageCode: str | None = ...,
                             modelInfoView: typing.Literal[
-                                "MODEL_INFO_VIEW_UNSPECIFIED", "END_USER_WEB", "ADMIN"
+                                "MODEL_INFO_VIEW_UNSPECIFIED",
+                                "END_USER_WEB",
+                                "ADMIN",
+                                "END_USER_MOBILE",
                             ]
                             | None = ...,
                             **kwargs: typing.Any,
@@ -885,6 +888,13 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                     def get(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> GoogleCloudDiscoveryengineV1DataStoreHttpRequest: ...
+                    def getIamPolicy(
+                        self,
+                        *,
+                        resource: str,
+                        options_requestedPolicyVersion: int | None = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleIamV1PolicyHttpRequest: ...
                     def getSiteSearchEngine(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> GoogleCloudDiscoveryengineV1SiteSearchEngineHttpRequest: ...
@@ -915,6 +925,13 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                         updateMask: str | None = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudDiscoveryengineV1DataStoreHttpRequest: ...
+                    def setIamPolicy(
+                        self,
+                        *,
+                        resource: str,
+                        body: GoogleIamV1SetIamPolicyRequest,
+                        **kwargs: typing.Any,
+                    ) -> GoogleIamV1PolicyHttpRequest: ...
                     def trainCustomModel(
                         self,
                         *,
@@ -1411,7 +1428,10 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                             | None = ...,
                             languageCode: str | None = ...,
                             modelInfoView: typing.Literal[
-                                "MODEL_INFO_VIEW_UNSPECIFIED", "END_USER_WEB", "ADMIN"
+                                "MODEL_INFO_VIEW_UNSPECIFIED",
+                                "END_USER_WEB",
+                                "ADMIN",
+                                "END_USER_MOBILE",
                             ]
                             | None = ...,
                             **kwargs: typing.Any,
@@ -1514,6 +1534,20 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                 def getDataConnector(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> GoogleCloudDiscoveryengineV1DataConnectorHttpRequest: ...
+                def getIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    options_requestedPolicyVersion: int | None = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleIamV1PolicyHttpRequest: ...
+                def setIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    body: GoogleIamV1SetIamPolicyRequest,
+                    **kwargs: typing.Any,
+                ) -> GoogleIamV1PolicyHttpRequest: ...
                 def updateDataConnector(
                     self,
                     *,
@@ -2147,7 +2181,10 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                         | None = ...,
                         languageCode: str | None = ...,
                         modelInfoView: typing.Literal[
-                            "MODEL_INFO_VIEW_UNSPECIFIED", "END_USER_WEB", "ADMIN"
+                            "MODEL_INFO_VIEW_UNSPECIFIED",
+                            "END_USER_WEB",
+                            "ADMIN",
+                            "END_USER_MOBILE",
                         ]
                         | None = ...,
                         **kwargs: typing.Any,
@@ -2189,6 +2226,13 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> GoogleCloudDiscoveryengineV1DataStoreHttpRequest: ...
+                def getIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    options_requestedPolicyVersion: int | None = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleIamV1PolicyHttpRequest: ...
                 def getSiteSearchEngine(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> GoogleCloudDiscoveryengineV1SiteSearchEngineHttpRequest: ...
@@ -2216,6 +2260,13 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                     updateMask: str | None = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudDiscoveryengineV1DataStoreHttpRequest: ...
+                def setIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    body: GoogleIamV1SetIamPolicyRequest,
+                    **kwargs: typing.Any,
+                ) -> GoogleIamV1PolicyHttpRequest: ...
                 def branches(self) -> BranchesResource: ...
                 def completionConfig(self) -> CompletionConfigResource: ...
                 def completionSuggestions(self) -> CompletionSuggestionsResource: ...

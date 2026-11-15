@@ -109,6 +109,30 @@ class ConcatenateExpression(typing.TypedDict, total=False):
     dimensionNames: _list[str]
 
 @typing.type_check_only
+class DataTruncationDateRange(typing.TypedDict, total=False):
+    endDate: str
+    startDate: str
+
+@typing.type_check_only
+class DataTruncationReason(typing.TypedDict, total=False):
+    dataTruncationDate: str
+    dataTruncationDateRanges: _list[DataTruncationDateRange]
+    dataTruncationMessage: str
+    dataTruncationType: typing.Literal[
+        "DATA_TRUNCATION_TYPE_UNSPECIFIED",
+        "DATA_TRUNCATION_TYPE_RULES_BASED_MODELS",
+        "DATA_TRUNCATION_TYPE_DATA_DRIVEN_ATTRIBUTION",
+        "DATA_TRUNCATION_TYPE_DV360",
+        "DATA_TRUNCATION_TYPE_CM360",
+        "DATA_TRUNCATION_TYPE_ITEM_SCOPED_ECOMMERCE_METRICS",
+        "DATA_TRUNCATION_TYPE_EVENT_SCOPED_ECOMMERCE_METRICS",
+        "DATA_TRUNCATION_TYPE_DATE_RANGE",
+        "DATA_TRUNCATION_TYPE_PROPERTY",
+        "DATA_TRUNCATION_TYPE_CONVERSIONS",
+        "DATA_TRUNCATION_TYPE_GOOGLE_ADS",
+    ]
+
+@typing.type_check_only
 class DateRange(typing.TypedDict, total=False):
     endDate: str
     name: str
@@ -367,6 +391,7 @@ class QuotaStatus(typing.TypedDict, total=False):
 class ResponseMetaData(typing.TypedDict, total=False):
     currencyCode: str
     dataLossFromOtherRow: bool
+    dataTruncationReasons: _list[DataTruncationReason]
     emptyReason: str
     samplingMetadatas: _list[SamplingMetadata]
     schemaRestrictionResponse: SchemaRestrictionResponse

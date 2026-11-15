@@ -417,56 +417,6 @@ class SaaSServiceManagementResource(googleapiclient.discovery.Resource):
                 ) -> SaasHttpRequest: ...
 
             @typing.type_check_only
-            class SaasReleasesResource(googleapiclient.discovery.Resource):
-                def create(
-                    self,
-                    *,
-                    parent: str,
-                    body: SaasRelease,
-                    requestId: str | None = ...,
-                    saasReleaseId: str | None = ...,
-                    validateOnly: bool | None = ...,
-                    **kwargs: typing.Any,
-                ) -> SaasReleaseHttpRequest: ...
-                def delete(
-                    self,
-                    *,
-                    name: str,
-                    etag: str | None = ...,
-                    requestId: str | None = ...,
-                    validateOnly: bool | None = ...,
-                    **kwargs: typing.Any,
-                ) -> EmptyHttpRequest: ...
-                def get(
-                    self, *, name: str, **kwargs: typing.Any
-                ) -> SaasReleaseHttpRequest: ...
-                def list(
-                    self,
-                    *,
-                    parent: str,
-                    filter: str | None = ...,
-                    orderBy: str | None = ...,
-                    pageSize: int | None = ...,
-                    pageToken: str | None = ...,
-                    **kwargs: typing.Any,
-                ) -> ListSaasReleasesResponseHttpRequest: ...
-                def list_next(
-                    self,
-                    previous_request: ListSaasReleasesResponseHttpRequest,
-                    previous_response: ListSaasReleasesResponse,
-                ) -> ListSaasReleasesResponseHttpRequest | None: ...
-                def patch(
-                    self,
-                    *,
-                    name: str,
-                    body: SaasRelease,
-                    requestId: str | None = ...,
-                    updateMask: str | None = ...,
-                    validateOnly: bool | None = ...,
-                    **kwargs: typing.Any,
-                ) -> SaasReleaseHttpRequest: ...
-
-            @typing.type_check_only
             class TenantsResource(googleapiclient.discovery.Resource):
                 def create(
                     self,
@@ -518,25 +468,6 @@ class SaaSServiceManagementResource(googleapiclient.discovery.Resource):
 
             @typing.type_check_only
             class UnitGroupOperationsResource(googleapiclient.discovery.Resource):
-                def create(
-                    self,
-                    *,
-                    parent: str,
-                    body: UnitGroupOperation,
-                    requestId: str | None = ...,
-                    unitGroupOperationId: str | None = ...,
-                    validateOnly: bool | None = ...,
-                    **kwargs: typing.Any,
-                ) -> UnitGroupOperationHttpRequest: ...
-                def delete(
-                    self,
-                    *,
-                    name: str,
-                    etag: str | None = ...,
-                    requestId: str | None = ...,
-                    validateOnly: bool | None = ...,
-                    **kwargs: typing.Any,
-                ) -> EmptyHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> UnitGroupOperationHttpRequest: ...
@@ -555,38 +486,9 @@ class SaaSServiceManagementResource(googleapiclient.discovery.Resource):
                     previous_request: ListUnitGroupOperationsResponseHttpRequest,
                     previous_response: ListUnitGroupOperationsResponse,
                 ) -> ListUnitGroupOperationsResponseHttpRequest | None: ...
-                def patch(
-                    self,
-                    *,
-                    name: str,
-                    body: UnitGroupOperation,
-                    requestId: str | None = ...,
-                    updateMask: str | None = ...,
-                    validateOnly: bool | None = ...,
-                    **kwargs: typing.Any,
-                ) -> UnitGroupOperationHttpRequest: ...
 
             @typing.type_check_only
             class UnitGroupsResource(googleapiclient.discovery.Resource):
-                def create(
-                    self,
-                    *,
-                    parent: str,
-                    body: UnitGroup,
-                    requestId: str | None = ...,
-                    unitGroupId: str | None = ...,
-                    validateOnly: bool | None = ...,
-                    **kwargs: typing.Any,
-                ) -> UnitGroupHttpRequest: ...
-                def delete(
-                    self,
-                    *,
-                    name: str,
-                    etag: str | None = ...,
-                    requestId: str | None = ...,
-                    validateOnly: bool | None = ...,
-                    **kwargs: typing.Any,
-                ) -> EmptyHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> UnitGroupHttpRequest: ...
@@ -605,16 +507,6 @@ class SaaSServiceManagementResource(googleapiclient.discovery.Resource):
                     previous_request: ListUnitGroupsResponseHttpRequest,
                     previous_response: ListUnitGroupsResponse,
                 ) -> ListUnitGroupsResponseHttpRequest | None: ...
-                def patch(
-                    self,
-                    *,
-                    name: str,
-                    body: UnitGroup,
-                    requestId: str | None = ...,
-                    updateMask: str | None = ...,
-                    validateOnly: bool | None = ...,
-                    **kwargs: typing.Any,
-                ) -> UnitGroupHttpRequest: ...
 
             @typing.type_check_only
             class UnitKindsResource(googleapiclient.discovery.Resource):
@@ -792,7 +684,6 @@ class SaaSServiceManagementResource(googleapiclient.discovery.Resource):
             def rolloutKinds(self) -> RolloutKindsResource: ...
             def rollouts(self) -> RolloutsResource: ...
             def saas(self) -> SaasResource: ...
-            def saasReleases(self) -> SaasReleasesResource: ...
             def tenants(self) -> TenantsResource: ...
             def unitGroupOperations(self) -> UnitGroupOperationsResource: ...
             def unitGroups(self) -> UnitGroupsResource: ...
@@ -929,14 +820,6 @@ class ListRolloutsResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListRolloutsResponse: ...
 
 @typing.type_check_only
-class ListSaasReleasesResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> ListSaasReleasesResponse: ...
-
-@typing.type_check_only
 class ListSaasResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -1023,14 +906,6 @@ class SaasHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Saas: ...
-
-@typing.type_check_only
-class SaasReleaseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> SaasRelease: ...
 
 @typing.type_check_only
 class TenantHttpRequest(googleapiclient.http.HttpRequest):

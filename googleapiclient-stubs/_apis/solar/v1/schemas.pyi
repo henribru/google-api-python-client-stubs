@@ -21,6 +21,7 @@ class BuildingInsights(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class BuildingInsightsDetectedArrays(typing.TypedDict, total=False):
+    arrays: _list[BuildingInsightsDetectedArraysSolarArray]
     detectionStatus: typing.Literal[
         "DETECTION_STATUS_UNSPECIFIED",
         "DETECTION_STATUS_DATA_UNAVAILABLE",
@@ -28,6 +29,10 @@ class BuildingInsightsDetectedArrays(typing.TypedDict, total=False):
         "DETECTION_STATUS_NO_ARRAYS_DETECTED",
     ]
     latestCaptureDate: Date
+
+@typing.type_check_only
+class BuildingInsightsDetectedArraysSolarArray(typing.TypedDict, total=False):
+    polygonGeojson: dict[str, typing.Any]
 
 @typing.type_check_only
 class CashPurchaseSavings(typing.TypedDict, total=False):
@@ -118,12 +123,17 @@ class Money(typing.TypedDict, total=False):
     units: str
 
 @typing.type_check_only
+class Obstacle(typing.TypedDict, total=False):
+    polygonGeojson: dict[str, typing.Any]
+
+@typing.type_check_only
 class RoofSegmentSizeAndSunshineStats(typing.TypedDict, total=False):
     azimuthDegrees: float
     boundingBox: LatLngBox
     center: LatLng
     pitchDegrees: float
     planeHeightAtCenterMeters: float
+    polygonGeojson: dict[str, typing.Any]
     stats: SizeAndSunshineStats
 
 @typing.type_check_only
@@ -172,6 +182,7 @@ class SolarPotential(typing.TypedDict, total=False):
     maxArrayAreaMeters2: float
     maxArrayPanelsCount: int
     maxSunshineHoursPerYear: float
+    obstacles: _list[Obstacle]
     panelCapacityWatts: float
     panelHeightMeters: float
     panelLifetimeYears: int

@@ -48,6 +48,7 @@ class DataSegment(typing.TypedDict, total=False):
     name: str
     state: typing.Literal["STATE_UNSPECIFIED", "ACTIVE", "INACTIVE", "SUSPENDED"]
     updateTime: str
+    userListId: str
 
 @typing.type_check_only
 class DeactivateCuratedPackageRequest(typing.TypedDict, total=False): ...
@@ -210,6 +211,11 @@ class PackageVideoTargeting(typing.TypedDict, total=False):
     ]
     minimumPredictedCompletionRatePercentage: str
     plcmtTargeting: VideoPlcmtTargeting
+
+@typing.type_check_only
+class SearchMediaPlannersResponse(typing.TypedDict, total=False):
+    mediaPlanners: _list[MediaPlanner]
+    nextPageToken: str
 
 @typing.type_check_only
 class StringTargetingDimension(typing.TypedDict, total=False):

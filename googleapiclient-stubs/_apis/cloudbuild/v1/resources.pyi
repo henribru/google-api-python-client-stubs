@@ -249,79 +249,6 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                 ) -> OperationHttpRequest: ...
 
             @typing.type_check_only
-            class GitLabConfigsResource(googleapiclient.discovery.Resource):
-                @typing.type_check_only
-                class ConnectedRepositoriesResource(googleapiclient.discovery.Resource):
-                    def batchCreate(
-                        self,
-                        *,
-                        parent: str,
-                        body: BatchCreateGitLabConnectedRepositoriesRequest,
-                        **kwargs: typing.Any,
-                    ) -> OperationHttpRequest: ...
-
-                @typing.type_check_only
-                class ReposResource(googleapiclient.discovery.Resource):
-                    def list(
-                        self,
-                        *,
-                        parent: str,
-                        pageSize: int | None = ...,
-                        pageToken: str | None = ...,
-                        **kwargs: typing.Any,
-                    ) -> ListGitLabRepositoriesResponseHttpRequest: ...
-                    def list_next(
-                        self,
-                        previous_request: ListGitLabRepositoriesResponseHttpRequest,
-                        previous_response: ListGitLabRepositoriesResponse,
-                    ) -> ListGitLabRepositoriesResponseHttpRequest | None: ...
-
-                def create(
-                    self,
-                    *,
-                    parent: str,
-                    body: GitLabConfig,
-                    gitlabConfigId: str | None = ...,
-                    **kwargs: typing.Any,
-                ) -> OperationHttpRequest: ...
-                def delete(
-                    self, *, name: str, **kwargs: typing.Any
-                ) -> OperationHttpRequest: ...
-                def get(
-                    self, *, name: str, **kwargs: typing.Any
-                ) -> GitLabConfigHttpRequest: ...
-                def list(
-                    self,
-                    *,
-                    parent: str,
-                    pageSize: int | None = ...,
-                    pageToken: str | None = ...,
-                    **kwargs: typing.Any,
-                ) -> ListGitLabConfigsResponseHttpRequest: ...
-                def list_next(
-                    self,
-                    previous_request: ListGitLabConfigsResponseHttpRequest,
-                    previous_response: ListGitLabConfigsResponse,
-                ) -> ListGitLabConfigsResponseHttpRequest | None: ...
-                def patch(
-                    self,
-                    *,
-                    name: str,
-                    body: GitLabConfig,
-                    updateMask: str | None = ...,
-                    **kwargs: typing.Any,
-                ) -> OperationHttpRequest: ...
-                def removeGitLabConnectedRepository(
-                    self,
-                    *,
-                    config: str,
-                    body: RemoveGitLabConnectedRepositoryRequest,
-                    **kwargs: typing.Any,
-                ) -> EmptyHttpRequest: ...
-                def connectedRepositories(self) -> ConnectedRepositoriesResource: ...
-                def repos(self) -> ReposResource: ...
-
-            @typing.type_check_only
             class GithubEnterpriseConfigsResource(googleapiclient.discovery.Resource):
                 def create(
                     self,
@@ -496,7 +423,6 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
             ) -> DefaultServiceAccountHttpRequest: ...
             def bitbucketServerConfigs(self) -> BitbucketServerConfigsResource: ...
             def builds(self) -> BuildsResource: ...
-            def gitLabConfigs(self) -> GitLabConfigsResource: ...
             def githubEnterpriseConfigs(self) -> GithubEnterpriseConfigsResource: ...
             def operations(self) -> OperationsResource: ...
             def triggers(self) -> TriggersResource: ...
@@ -649,14 +575,6 @@ class GitHubEnterpriseConfigHttpRequest(googleapiclient.http.HttpRequest):
     ) -> GitHubEnterpriseConfig: ...
 
 @typing.type_check_only
-class GitLabConfigHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> GitLabConfig: ...
-
-@typing.type_check_only
 class ListBitbucketServerConfigsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -689,22 +607,6 @@ class ListBuildsResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListBuildsResponse: ...
-
-@typing.type_check_only
-class ListGitLabConfigsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> ListGitLabConfigsResponse: ...
-
-@typing.type_check_only
-class ListGitLabRepositoriesResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> ListGitLabRepositoriesResponse: ...
 
 @typing.type_check_only
 class ListGithubEnterpriseConfigsResponseHttpRequest(googleapiclient.http.HttpRequest):

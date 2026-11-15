@@ -60,6 +60,9 @@ class WebContentPublisherResource(googleapiclient.discovery.Resource):
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> PublicationHttpRequest: ...
+            def getSurveyQuestionCatalog(
+                self, *, name: str, languageCode: str | None = ..., **kwargs: typing.Any
+            ) -> SurveyQuestionCatalogHttpRequest: ...
             def list(
                 self,
                 *,
@@ -96,6 +99,14 @@ class WebContentPublisherResource(googleapiclient.discovery.Resource):
             uri: str | None = ...,
             **kwargs: typing.Any,
         ) -> CheckFreeAccessResponseHttpRequest: ...
+        def checkProgramAccess(
+            self,
+            *,
+            name: str,
+            productId: str | None = ...,
+            swgUserToken: str | None = ...,
+            **kwargs: typing.Any,
+        ) -> CheckProgramAccessResponseHttpRequest: ...
 
     @typing.type_check_only
     class UsersResource(googleapiclient.discovery.Resource):
@@ -130,6 +141,14 @@ class CheckFreeAccessResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> CheckFreeAccessResponse: ...
+
+@typing.type_check_only
+class CheckProgramAccessResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> CheckProgramAccessResponse: ...
 
 @typing.type_check_only
 class CtaHttpRequest(googleapiclient.http.HttpRequest):
@@ -170,3 +189,11 @@ class PublicationHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Publication: ...
+
+@typing.type_check_only
+class SurveyQuestionCatalogHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> SurveyQuestionCatalog: ...

@@ -19,6 +19,15 @@ class AddChartResponse(typing.TypedDict, total=False):
     chart: EmbeddedChart
 
 @typing.type_check_only
+class AddCommentReplyRequest(typing.TypedDict, total=False):
+    commentId: str
+    post: Post
+
+@typing.type_check_only
+class AddCommentReplyResponse(typing.TypedDict, total=False):
+    post: Post
+
+@typing.type_check_only
 class AddConditionalFormatRuleRequest(typing.TypedDict, total=False):
     index: int
     rule: ConditionalFormatRule
@@ -284,6 +293,12 @@ class BatchGetValuesResponse(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class BatchUpdateSpreadsheetRequest(typing.TypedDict, total=False):
+    commentsViewMode: typing.Literal[
+        "COMMENTS_VIEW_MODE_UNSPECIFIED",
+        "COMMENTS_VIEW_MODE_DEFAULT_FOR_CURRENT_ACCESS",
+        "COMMENTS_VIEW_MODE_OMITTED",
+        "COMMENTS_VIEW_MODE_INCLUDED",
+    ]
     includeSpreadsheetInResponse: bool
     requests: _list[Request]
     responseIncludeGridData: bool
@@ -291,6 +306,12 @@ class BatchUpdateSpreadsheetRequest(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class BatchUpdateSpreadsheetResponse(typing.TypedDict, total=False):
+    commentUpdateState: typing.Literal[
+        "COMMENT_UPDATE_STATE_UNSPECIFIED",
+        "NO_UPDATES_REQUESTED",
+        "ALL_SAVED",
+        "ALL_FAILED_UNKNOWN_REASON",
+    ]
     replies: _list[Response]
     spreadsheetId: str
     updatedSpreadsheet: Spreadsheet
@@ -663,6 +684,20 @@ class ColorStyle(typing.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class CommentAnchor(typing.TypedDict, total=False):
+    anchorId: str
+    range: GridRange
+
+@typing.type_check_only
+class CommentThread(typing.TypedDict, total=False):
+    anchorId: str
+    commentId: str
+    headPost: Post
+    plainTextQuote: str
+    replies: _list[Post]
+    status: typing.Literal["STATUS_UNSPECIFIED", "OPEN", "RESOLVED"]
+
+@typing.type_check_only
 class ConditionValue(typing.TypedDict, total=False):
     relativeDate: typing.Literal[
         "RELATIVE_DATE_UNSPECIFIED",
@@ -928,6 +963,15 @@ class DeleteBandingRequest(typing.TypedDict, total=False):
     bandedRangeId: int
 
 @typing.type_check_only
+class DeleteCommentReplyRequest(typing.TypedDict, total=False):
+    commentId: str
+    postId: str
+
+@typing.type_check_only
+class DeleteCommentRequest(typing.TypedDict, total=False):
+    commentId: str
+
+@typing.type_check_only
 class DeleteConditionalFormatRuleRequest(typing.TypedDict, total=False):
     index: int
     sheetId: int
@@ -1179,6 +1223,12 @@ class FindReplaceResponse(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class GetSpreadsheetByDataFilterRequest(typing.TypedDict, total=False):
+    commentsViewMode: typing.Literal[
+        "COMMENTS_VIEW_MODE_UNSPECIFIED",
+        "COMMENTS_VIEW_MODE_DEFAULT_FOR_CURRENT_ACCESS",
+        "COMMENTS_VIEW_MODE_OMITTED",
+        "COMMENTS_VIEW_MODE_INCLUDED",
+    ]
     dataFilters: _list[DataFilter]
     excludeTablesInBandedRanges: bool
     includeGridData: bool
@@ -1248,6 +1298,16 @@ class HistogramSeries(typing.TypedDict, total=False):
     barColor: Color
     barColorStyle: ColorStyle
     data: ChartData
+
+@typing.type_check_only
+class InsertCommentRequest(typing.TypedDict, total=False):
+    assigneeEmailAddress: str
+    content: str
+    coordinate: GridCoordinate
+
+@typing.type_check_only
+class InsertCommentResponse(typing.TypedDict, total=False):
+    commentThread: CommentThread
 
 @typing.type_check_only
 class InsertDimensionRequest(typing.TypedDict, total=False):
@@ -1535,6 +1595,32 @@ class PointStyle(typing.TypedDict, total=False):
     size: float
 
 @typing.type_check_only
+class Post(typing.TypedDict, total=False):
+    assigneeEmail: str
+    author: PostAuthor
+    commentAction: typing.Literal[
+        "COMMENT_ACTION_TYPE_UNSPECIFIED",
+        "NO_COMMENT_ACTION_CHANGE",
+        "RESOLVE",
+        "REOPEN",
+    ]
+    content: str
+    contentHtml: str
+    createTime: str
+    deleted: bool
+    fromCopiedSpreadsheet: bool
+    fromImportedSpreadsheet: bool
+    postId: str
+    updateTime: str
+
+@typing.type_check_only
+class PostAuthor(typing.TypedDict, total=False):
+    anonymous: bool
+    displayName: str
+    me: bool
+    user: str
+
+@typing.type_check_only
 class ProtectedRange(typing.TypedDict, total=False):
     description: str
     editors: Editors
@@ -1590,6 +1676,7 @@ class RepeatCellRequest(typing.TypedDict, total=False):
 class Request(typing.TypedDict, total=False):
     addBanding: AddBandingRequest
     addChart: AddChartRequest
+    addCommentReply: AddCommentReplyRequest
     addConditionalFormatRule: AddConditionalFormatRuleRequest
     addDataSource: AddDataSourceRequest
     addDimensionGroup: AddDimensionGroupRequest
@@ -1609,6 +1696,8 @@ class Request(typing.TypedDict, total=False):
     createDeveloperMetadata: CreateDeveloperMetadataRequest
     cutPaste: CutPasteRequest
     deleteBanding: DeleteBandingRequest
+    deleteComment: DeleteCommentRequest
+    deleteCommentReply: DeleteCommentReplyRequest
     deleteConditionalFormatRule: DeleteConditionalFormatRuleRequest
     deleteDataSource: DeleteDataSourceRequest
     deleteDeveloperMetadata: DeleteDeveloperMetadataRequest
@@ -1625,6 +1714,7 @@ class Request(typing.TypedDict, total=False):
     duplicateFilterView: DuplicateFilterViewRequest
     duplicateSheet: DuplicateSheetRequest
     findReplace: FindReplaceRequest
+    insertComment: InsertCommentRequest
     insertDimension: InsertDimensionRequest
     insertRange: InsertRangeRequest
     mergeCells: MergeCellsRequest
@@ -1643,6 +1733,7 @@ class Request(typing.TypedDict, total=False):
     updateBorders: UpdateBordersRequest
     updateCells: UpdateCellsRequest
     updateChartSpec: UpdateChartSpecRequest
+    updateCommentPost: UpdateCommentPostRequest
     updateConditionalFormatRule: UpdateConditionalFormatRuleRequest
     updateDataSource: UpdateDataSourceRequest
     updateDeveloperMetadata: UpdateDeveloperMetadataRequest
@@ -1662,6 +1753,7 @@ class Request(typing.TypedDict, total=False):
 class Response(typing.TypedDict, total=False):
     addBanding: AddBandingResponse
     addChart: AddChartResponse
+    addCommentReply: AddCommentReplyResponse
     addDataSource: AddDataSourceResponse
     addDimensionGroup: AddDimensionGroupResponse
     addFilterView: AddFilterViewResponse
@@ -1679,6 +1771,7 @@ class Response(typing.TypedDict, total=False):
     duplicateFilterView: DuplicateFilterViewResponse
     duplicateSheet: DuplicateSheetResponse
     findReplace: FindReplaceResponse
+    insertComment: InsertCommentResponse
     refreshDataSource: RefreshDataSourceResponse
     trimWhitespace: TrimWhitespaceResponse
     updateConditionalFormatRule: UpdateConditionalFormatRuleResponse
@@ -1740,6 +1833,7 @@ class Sheet(typing.TypedDict, total=False):
     basicFilter: BasicFilter
     charts: _list[EmbeddedChart]
     columnGroups: _list[DimensionGroup]
+    commentAnchors: _list[CommentAnchor]
     conditionalFormats: _list[ConditionalFormatRule]
     data: _list[GridData]
     developerMetadata: _list[DeveloperMetadata]
@@ -1807,6 +1901,13 @@ class SourceAndDestination(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class Spreadsheet(typing.TypedDict, total=False):
+    comments: _list[CommentThread]
+    commentsViewMode: typing.Literal[
+        "COMMENTS_VIEW_MODE_UNSPECIFIED",
+        "COMMENTS_VIEW_MODE_DEFAULT_FOR_CURRENT_ACCESS",
+        "COMMENTS_VIEW_MODE_OMITTED",
+        "COMMENTS_VIEW_MODE_INCLUDED",
+    ]
     dataSourceSchedules: _list[DataSourceRefreshSchedule]
     dataSources: _list[DataSource]
     developerMetadata: _list[DeveloperMetadata]
@@ -2006,6 +2107,12 @@ class UpdateCellsRequest(typing.TypedDict, total=False):
 class UpdateChartSpecRequest(typing.TypedDict, total=False):
     chartId: int
     spec: ChartSpec
+
+@typing.type_check_only
+class UpdateCommentPostRequest(typing.TypedDict, total=False):
+    commentId: str
+    content: str
+    postId: str
 
 @typing.type_check_only
 class UpdateConditionalFormatRuleRequest(typing.TypedDict, total=False):

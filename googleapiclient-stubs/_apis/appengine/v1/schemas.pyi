@@ -716,6 +716,7 @@ class Version(typing.TypedDict, total=False):
     threadsafe: bool
     versionUrl: str
     vm: bool
+    vpcAccess: VpcAccess
     vpcAccessConnector: VpcAccessConnector
     zones: _list[str]
 
@@ -726,11 +727,24 @@ class Volume(typing.TypedDict, total=False):
     volumeType: str
 
 @typing.type_check_only
+class VpcAccess(typing.TypedDict, total=False):
+    networkInterfaces: _list[VpcNetworkInterface]
+    vpcEgress: typing.Literal[
+        "VPC_EGRESS_UNSPECIFIED", "ALL_TRAFFIC", "PRIVATE_IP_RANGES"
+    ]
+
+@typing.type_check_only
 class VpcAccessConnector(typing.TypedDict, total=False):
     egressSetting: typing.Literal[
         "EGRESS_SETTING_UNSPECIFIED", "ALL_TRAFFIC", "PRIVATE_IP_RANGES"
     ]
     name: str
+
+@typing.type_check_only
+class VpcNetworkInterface(typing.TypedDict, total=False):
+    network: str
+    subnet: str
+    tags: _list[str]
 
 @typing.type_check_only
 class ZipInfo(typing.TypedDict, total=False):

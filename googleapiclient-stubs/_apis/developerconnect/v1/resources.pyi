@@ -141,6 +141,20 @@ class DeveloperConnectResource(googleapiclient.discovery.Resource):
             class ConnectionsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class GitRepositoryLinksResource(googleapiclient.discovery.Resource):
+                    def addPullRequestComment(
+                        self,
+                        *,
+                        name: str,
+                        body: AddGitRepositoryLinkPullRequestCommentRequest,
+                        **kwargs: typing.Any,
+                    ) -> PullRequestCommentHttpRequest: ...
+                    def addPullRequestReviewComment(
+                        self,
+                        *,
+                        name: str,
+                        body: AddGitRepositoryLinkPullRequestReviewCommentRequest,
+                        **kwargs: typing.Any,
+                    ) -> PullRequestReviewCommentHttpRequest: ...
                     def create(
                         self,
                         *,
@@ -160,6 +174,51 @@ class DeveloperConnectResource(googleapiclient.discovery.Resource):
                         validateOnly: bool | None = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
+                    def diffCommit(
+                        self,
+                        *,
+                        name: str,
+                        baseSha: str | None = ...,
+                        headSha: str | None = ...,
+                        pathFilters: str | _list[str] | None = ...,
+                        **kwargs: typing.Any,
+                    ) -> DiffGitRepositoryLinkCommitResponseHttpRequest: ...
+                    def fetchCommit(
+                        self,
+                        *,
+                        name: str,
+                        commitSha: str | None = ...,
+                        pathFilters: str | _list[str] | None = ...,
+                        view: typing.Literal["COMMIT_VIEW_UNSPECIFIED", "BASIC", "FULL"]
+                        | None = ...,
+                        **kwargs: typing.Any,
+                    ) -> FetchGitRepositoryLinkCommitResponseHttpRequest: ...
+                    def fetchCommitList(
+                        self,
+                        *,
+                        name: str,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
+                        ref: str | None = ...,
+                        view: typing.Literal["COMMIT_VIEW_UNSPECIFIED", "BASIC", "FULL"]
+                        | None = ...,
+                        **kwargs: typing.Any,
+                    ) -> FetchGitRepositoryLinkCommitListResponseHttpRequest: ...
+                    def fetchCommitList_next(
+                        self,
+                        previous_request: FetchGitRepositoryLinkCommitListResponseHttpRequest,
+                        previous_response: FetchGitRepositoryLinkCommitListResponse,
+                    ) -> FetchGitRepositoryLinkCommitListResponseHttpRequest | None: ...
+                    def fetchFileBlame(
+                        self,
+                        *,
+                        name: str,
+                        firstLine: int | None = ...,
+                        lastLine: int | None = ...,
+                        path: str | None = ...,
+                        ref: str | None = ...,
+                        **kwargs: typing.Any,
+                    ) -> FetchGitRepositoryLinkFileBlameResponseHttpRequest: ...
                     def fetchGitRefs(
                         self,
                         *,
@@ -175,6 +234,29 @@ class DeveloperConnectResource(googleapiclient.discovery.Resource):
                         previous_request: FetchGitRefsResponseHttpRequest,
                         previous_response: FetchGitRefsResponse,
                     ) -> FetchGitRefsResponseHttpRequest | None: ...
+                    def fetchPullRequest(
+                        self,
+                        *,
+                        name: str,
+                        pullRequestId: str | None = ...,
+                        **kwargs: typing.Any,
+                    ) -> PullRequestHttpRequest: ...
+                    def fetchPullRequestList(
+                        self,
+                        *,
+                        name: str,
+                        filter: str | None = ...,
+                        pageSize: int | None = ...,
+                        pageToken: str | None = ...,
+                        **kwargs: typing.Any,
+                    ) -> FetchGitRepositoryLinkPullRequestListResponseHttpRequest: ...
+                    def fetchPullRequestList_next(
+                        self,
+                        previous_request: FetchGitRepositoryLinkPullRequestListResponseHttpRequest,
+                        previous_response: FetchGitRepositoryLinkPullRequestListResponse,
+                    ) -> (
+                        FetchGitRepositoryLinkPullRequestListResponseHttpRequest | None
+                    ): ...
                     def fetchReadToken(
                         self,
                         *,
@@ -207,6 +289,20 @@ class DeveloperConnectResource(googleapiclient.discovery.Resource):
                         previous_request: ListGitRepositoryLinksResponseHttpRequest,
                         previous_response: ListGitRepositoryLinksResponse,
                     ) -> ListGitRepositoryLinksResponseHttpRequest | None: ...
+                    def modifyPullRequest(
+                        self,
+                        *,
+                        name: str,
+                        body: ModifyGitRepositoryLinkPullRequestRequest,
+                        **kwargs: typing.Any,
+                    ) -> PullRequestHttpRequest: ...
+                    def openPullRequest(
+                        self,
+                        *,
+                        name: str,
+                        body: OpenGitRepositoryLinkPullRequestRequest,
+                        **kwargs: typing.Any,
+                    ) -> PullRequestHttpRequest: ...
                     def processBitbucketCloudWebhook(
                         self,
                         *,
@@ -475,6 +571,14 @@ class DeploymentEventHttpRequest(googleapiclient.http.HttpRequest):
     ) -> DeploymentEvent: ...
 
 @typing.type_check_only
+class DiffGitRepositoryLinkCommitResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> DiffGitRepositoryLinkCommitResponse: ...
+
+@typing.type_check_only
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -505,6 +609,44 @@ class FetchGitRefsResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> FetchGitRefsResponse: ...
+
+@typing.type_check_only
+class FetchGitRepositoryLinkCommitListResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> FetchGitRepositoryLinkCommitListResponse: ...
+
+@typing.type_check_only
+class FetchGitRepositoryLinkCommitResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> FetchGitRepositoryLinkCommitResponse: ...
+
+@typing.type_check_only
+class FetchGitRepositoryLinkFileBlameResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> FetchGitRepositoryLinkFileBlameResponse: ...
+
+@typing.type_check_only
+class FetchGitRepositoryLinkPullRequestListResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> FetchGitRepositoryLinkPullRequestListResponse: ...
 
 @typing.type_check_only
 class FetchLinkableGitRepositoriesResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -641,6 +783,30 @@ class OperationHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Operation: ...
+
+@typing.type_check_only
+class PullRequestHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> PullRequest: ...
+
+@typing.type_check_only
+class PullRequestCommentHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> PullRequestComment: ...
+
+@typing.type_check_only
+class PullRequestReviewCommentHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> PullRequestReviewComment: ...
 
 @typing.type_check_only
 class StartOAuthResponseHttpRequest(googleapiclient.http.HttpRequest):

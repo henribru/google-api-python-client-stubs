@@ -274,18 +274,12 @@ class GoogleCloudDatacatalogV1Entry(typing.TypedDict, total=False):
         "FEATURE_VIEW",
         "FEATURE_GROUP",
         "GRAPH",
+        "NODE",
+        "EDGE",
     ]
     usageSignal: GoogleCloudDatacatalogV1UsageSignal
     userSpecifiedSystem: str
     userSpecifiedType: str
-
-@typing.type_check_only
-class GoogleCloudDatacatalogV1EntryGroup(typing.TypedDict, total=False):
-    dataCatalogTimestamps: GoogleCloudDatacatalogV1SystemTimestamps
-    description: str
-    displayName: str
-    name: str
-    transferredToDataplex: bool
 
 @typing.type_check_only
 class GoogleCloudDatacatalogV1EntryOverview(typing.TypedDict, total=False):
@@ -298,26 +292,6 @@ class GoogleCloudDatacatalogV1ExportTaxonomiesResponse(typing.TypedDict, total=F
 @typing.type_check_only
 class GoogleCloudDatacatalogV1FeatureOnlineStoreSpec(typing.TypedDict, total=False):
     storageType: typing.Literal["STORAGE_TYPE_UNSPECIFIED", "BIGTABLE", "OPTIMIZED"]
-
-@typing.type_check_only
-class GoogleCloudDatacatalogV1FieldType(typing.TypedDict, total=False):
-    enumType: GoogleCloudDatacatalogV1FieldTypeEnumType
-    primitiveType: typing.Literal[
-        "PRIMITIVE_TYPE_UNSPECIFIED",
-        "DOUBLE",
-        "STRING",
-        "BOOL",
-        "TIMESTAMP",
-        "RICHTEXT",
-    ]
-
-@typing.type_check_only
-class GoogleCloudDatacatalogV1FieldTypeEnumType(typing.TypedDict, total=False):
-    allowedValues: _list[GoogleCloudDatacatalogV1FieldTypeEnumTypeEnumValue]
-
-@typing.type_check_only
-class GoogleCloudDatacatalogV1FieldTypeEnumTypeEnumValue(typing.TypedDict, total=False):
-    displayName: str
 
 @typing.type_check_only
 class GoogleCloudDatacatalogV1FilesetSpec(typing.TypedDict, total=False):
@@ -393,11 +367,6 @@ class GoogleCloudDatacatalogV1ImportEntriesMetadata(typing.TypedDict, total=Fals
     ]
 
 @typing.type_check_only
-class GoogleCloudDatacatalogV1ImportEntriesRequest(typing.TypedDict, total=False):
-    gcsBucketPath: str
-    jobId: str
-
-@typing.type_check_only
 class GoogleCloudDatacatalogV1ImportEntriesResponse(typing.TypedDict, total=False):
     deletedEntriesCount: str
     upsertedEntriesCount: str
@@ -416,24 +385,9 @@ class GoogleCloudDatacatalogV1InlineSource(typing.TypedDict, total=False):
     taxonomies: _list[GoogleCloudDatacatalogV1SerializedTaxonomy]
 
 @typing.type_check_only
-class GoogleCloudDatacatalogV1ListEntriesResponse(typing.TypedDict, total=False):
-    entries: _list[GoogleCloudDatacatalogV1Entry]
-    nextPageToken: str
-
-@typing.type_check_only
-class GoogleCloudDatacatalogV1ListEntryGroupsResponse(typing.TypedDict, total=False):
-    entryGroups: _list[GoogleCloudDatacatalogV1EntryGroup]
-    nextPageToken: str
-
-@typing.type_check_only
 class GoogleCloudDatacatalogV1ListPolicyTagsResponse(typing.TypedDict, total=False):
     nextPageToken: str
     policyTags: _list[GoogleCloudDatacatalogV1PolicyTag]
-
-@typing.type_check_only
-class GoogleCloudDatacatalogV1ListTagsResponse(typing.TypedDict, total=False):
-    nextPageToken: str
-    tags: _list[GoogleCloudDatacatalogV1Tag]
 
 @typing.type_check_only
 class GoogleCloudDatacatalogV1ListTaxonomiesResponse(typing.TypedDict, total=False):
@@ -466,14 +420,6 @@ class GoogleCloudDatacatalogV1MigrationConfig(typing.TypedDict, total=False):
 @typing.type_check_only
 class GoogleCloudDatacatalogV1ModelSpec(typing.TypedDict, total=False):
     vertexModelSpec: GoogleCloudDatacatalogV1VertexModelSpec
-
-@typing.type_check_only
-class GoogleCloudDatacatalogV1ModifyEntryContactsRequest(typing.TypedDict, total=False):
-    contacts: GoogleCloudDatacatalogV1Contacts
-
-@typing.type_check_only
-class GoogleCloudDatacatalogV1ModifyEntryOverviewRequest(typing.TypedDict, total=False):
-    entryOverview: GoogleCloudDatacatalogV1EntryOverview
 
 @typing.type_check_only
 class GoogleCloudDatacatalogV1OrganizationConfig(typing.TypedDict, total=False):
@@ -541,28 +487,10 @@ class GoogleCloudDatacatalogV1ReconcileTagsMetadata(typing.TypedDict, total=Fals
     ]
 
 @typing.type_check_only
-class GoogleCloudDatacatalogV1ReconcileTagsRequest(typing.TypedDict, total=False):
-    forceDeleteMissing: bool
-    tagTemplate: str
-    tags: _list[GoogleCloudDatacatalogV1Tag]
-
-@typing.type_check_only
 class GoogleCloudDatacatalogV1ReconcileTagsResponse(typing.TypedDict, total=False):
     createdTagsCount: str
     deletedTagsCount: str
     updatedTagsCount: str
-
-@typing.type_check_only
-class GoogleCloudDatacatalogV1RenameTagTemplateFieldEnumValueRequest(
-    typing.TypedDict, total=False
-):
-    newEnumValueDisplayName: str
-
-@typing.type_check_only
-class GoogleCloudDatacatalogV1RenameTagTemplateFieldRequest(
-    typing.TypedDict, total=False
-):
-    newTagTemplateFieldId: str
 
 @typing.type_check_only
 class GoogleCloudDatacatalogV1ReplaceTaxonomyRequest(typing.TypedDict, total=False):
@@ -708,12 +636,6 @@ class GoogleCloudDatacatalogV1SqlDatabaseSystemSpec(typing.TypedDict, total=Fals
     sqlEngine: str
 
 @typing.type_check_only
-class GoogleCloudDatacatalogV1StarEntryRequest(typing.TypedDict, total=False): ...
-
-@typing.type_check_only
-class GoogleCloudDatacatalogV1StarEntryResponse(typing.TypedDict, total=False): ...
-
-@typing.type_check_only
 class GoogleCloudDatacatalogV1StorageProperties(typing.TypedDict, total=False):
     filePattern: _list[str]
     fileType: str
@@ -755,25 +677,6 @@ class GoogleCloudDatacatalogV1TagFieldEnumValue(typing.TypedDict, total=False):
     displayName: str
 
 @typing.type_check_only
-class GoogleCloudDatacatalogV1TagTemplate(typing.TypedDict, total=False):
-    dataplexTransferStatus: typing.Literal[
-        "DATAPLEX_TRANSFER_STATUS_UNSPECIFIED", "MIGRATED", "TRANSFERRED"
-    ]
-    displayName: str
-    fields: dict[str, typing.Any]
-    isPubliclyReadable: bool
-    name: str
-
-@typing.type_check_only
-class GoogleCloudDatacatalogV1TagTemplateField(typing.TypedDict, total=False):
-    description: str
-    displayName: str
-    isRequired: bool
-    name: str
-    order: int
-    type: GoogleCloudDatacatalogV1FieldType
-
-@typing.type_check_only
 class GoogleCloudDatacatalogV1TaggedEntry(typing.TypedDict, total=False):
     absentTags: _list[GoogleCloudDatacatalogV1Tag]
     presentTags: _list[GoogleCloudDatacatalogV1Tag]
@@ -799,12 +702,6 @@ class GoogleCloudDatacatalogV1TaxonomyService(typing.TypedDict, total=False):
         "MANAGING_SYSTEM_DATAPLEX",
         "MANAGING_SYSTEM_OTHER",
     ]
-
-@typing.type_check_only
-class GoogleCloudDatacatalogV1UnstarEntryRequest(typing.TypedDict, total=False): ...
-
-@typing.type_check_only
-class GoogleCloudDatacatalogV1UnstarEntryResponse(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
 class GoogleCloudDatacatalogV1UsageSignal(typing.TypedDict, total=False):

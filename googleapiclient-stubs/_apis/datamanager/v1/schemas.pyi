@@ -75,6 +75,7 @@ class AdEvent(typing.TypedDict, total=False):
     eventType: typing.Literal[
         "EVENT_TYPE_UNSPECIFIED", "EVENT_TYPE_VIEW", "EVENT_TYPE_CLICK"
     ]
+    ipAddress: str
     measurementAllowed: bool
     medium: str
     mobileDeviceId: str
@@ -117,9 +118,12 @@ class AdIdentifiers(typing.TypedDict, total=False):
     gclid: str
     impressionId: str
     landingPageDeviceInfo: DeviceInfo
+    leadId: str
     matchId: str
     mobileDeviceId: str
+    ppid: str
     sessionAttributes: str
+    visitorPpid: str
     wbraid: str
 
 @typing.type_check_only
@@ -156,6 +160,10 @@ class AwsWrappedKeyInfo(typing.TypedDict, total=False):
 class Baseline(typing.TypedDict, total=False):
     baselineLocation: Location
     locationAutoDetectionEnabled: bool
+
+@typing.type_check_only
+class CallInfo(typing.TypedDict, total=False):
+    startTimestamp: str
 
 @typing.type_check_only
 class CartData(typing.TypedDict, total=False):
@@ -305,8 +313,14 @@ class ErrorCount(typing.TypedDict, total=False):
         "PROCESSING_ERROR_REASON_INVALID_OPERATING_ACCOUNT_FOR_CLICK",
         "PROCESSING_ERROR_REASON_CLICK_NOT_FOUND",
         "PROCESSING_ERROR_REASON_EXTERNAL_ATTRIBUTION_DATA_MISSING",
+        "PROCESSING_ERROR_REASON_DESTINATION_TOO_RECENTLY_CREATED",
+        "PROCESSING_ERROR_REASON_EXPIRED_CLICK",
+        "PROCESSING_ERROR_REASON_TOO_RECENT_CALL",
+        "PROCESSING_ERROR_REASON_EXPIRED_CALL",
+        "PROCESSING_ERROR_REASON_INVALID_CALL",
     ]
     recordCount: str
+    recordIndices: _list[int]
 
 @typing.type_check_only
 class ErrorInfo(typing.TypedDict, total=False):
@@ -317,6 +331,7 @@ class Event(typing.TypedDict, total=False):
     adIdentifiers: AdIdentifiers
     additionalEventParameters: _list[EventParameter]
     appInstanceId: str
+    callInfo: CallInfo
     cartData: CartData
     clientId: str
     consent: Consent
@@ -385,6 +400,17 @@ class FieldWarning(typing.TypedDict, total=False):
         "WARNING_REASON_INVALID_DEVICE_CATEGORY",
         "WARNING_REASON_INVALID_DEVICE_SCREEN_RESOLUTION",
         "WARNING_REASON_INVALID_MERCHANT_ID",
+        "WARNING_REASON_INVALID_NUMBER_FORMAT",
+        "WARNING_REASON_INVALID_SHA256_FORMAT",
+        "WARNING_REASON_INVALID_MERCHANT_FEED_LANGUAGE_CODE",
+        "WARNING_REASON_FIELD_VALUE_TOO_LONG",
+        "WARNING_REASON_FIELD_VALUE_TOO_SHORT",
+        "WARNING_REASON_VALUE_TOO_HIGH",
+        "WARNING_REASON_VALUE_TOO_LOW",
+        "WARNING_REASON_TOO_MANY_ELEMENTS",
+        "WARNING_REASON_DUPLICATE_ELEMENTS",
+        "WARNING_REASON_CUSTOM_VARIABLES_NOT_SUPPORTED_WITH_GBRAID_OR_WBRAID",
+        "WARNING_REASON_ADIDENTIFIER_NOT_USED",
     ]
 
 @typing.type_check_only
@@ -518,6 +544,18 @@ class IngestUserIdDataStatus(typing.TypedDict, total=False):
     userIdCount: str
 
 @typing.type_check_only
+class IngestUsersRequest(typing.TypedDict, total=False):
+    destinations: _list[Destination]
+    encoding: typing.Literal["ENCODING_UNSPECIFIED", "HEX", "BASE64"]
+    encryptionInfo: EncryptionInfo
+    users: _list[User]
+    validateOnly: bool
+
+@typing.type_check_only
+class IngestUsersResponse(typing.TypedDict, total=False):
+    requestId: str
+
+@typing.type_check_only
 class IngestedUserListInfo(typing.TypedDict, total=False):
     contactIdInfo: ContactIdInfo
     mobileIdInfo: MobileIdInfo
@@ -637,6 +675,12 @@ class MobileIdInfo(typing.TypedDict, total=False):
     keySpace: typing.Literal["KEY_SPACE_UNSPECIFIED", "IOS", "ANDROID"]
 
 @typing.type_check_only
+class Money(typing.TypedDict, total=False):
+    currencyCode: str
+    nanos: int
+    units: str
+
+@typing.type_check_only
 class PairData(typing.TypedDict, total=False):
     pairIds: _list[str]
 
@@ -683,6 +727,43 @@ class PartnerLinkMetadata(typing.TypedDict, total=False):
     implicitAccounts: _list[PartnerCustomerAccount]
 
 @typing.type_check_only
+class PartnerMatchAdGroup(typing.TypedDict, total=False):
+    adGroupId: str
+    displayName: str
+
+@typing.type_check_only
+class PartnerMatchAdvertiserAccount(typing.TypedDict, total=False):
+    accountId: str
+    accountType: str
+    displayName: str
+
+@typing.type_check_only
+class PartnerMatchCampaign(typing.TypedDict, total=False):
+    campaignId: str
+    displayName: str
+
+@typing.type_check_only
+class PartnerMatchLineItem(typing.TypedDict, total=False):
+    displayName: str
+    lineItemId: str
+
+@typing.type_check_only
+class PartnerMatchReportEntry(typing.TypedDict, total=False):
+    adGroup: PartnerMatchAdGroup
+    advertiserAccount: PartnerMatchAdvertiserAccount
+    campaign: PartnerMatchCampaign
+    dataFees: Money
+    impressionCount: str
+    lineItem: PartnerMatchLineItem
+    mediaCost: Money
+    userList: PartnerMatchUserList
+
+@typing.type_check_only
+class PartnerMatchUserList(typing.TypedDict, total=False):
+    displayName: str
+    userListId: str
+
+@typing.type_check_only
 class PartnerProvidedIdData(typing.TypedDict, total=False):
     partnerProvidedIds: _list[str]
 
@@ -702,6 +783,7 @@ class ProductAccount(typing.TypedDict, total=False):
         "GOOGLE_ANALYTICS_PROPERTY",
         "GOOGLE_AD_MANAGER_AUDIENCE_LINK",
         "FLOODLIGHT_CONFIG",
+        "GOOGLE_AD_MANAGER",
     ]
     product: typing.Literal[
         "PRODUCT_UNSPECIFIED",
@@ -795,6 +877,18 @@ class RemoveUserIdDataStatus(typing.TypedDict, total=False):
     userIdCount: str
 
 @typing.type_check_only
+class RemoveUsersRequest(typing.TypedDict, total=False):
+    destinations: _list[Destination]
+    encoding: typing.Literal["ENCODING_UNSPECIFIED", "HEX", "BASE64"]
+    encryptionInfo: EncryptionInfo
+    userData: _list[UserData]
+    validateOnly: bool
+
+@typing.type_check_only
+class RemoveUsersResponse(typing.TypedDict, total=False):
+    requestId: str
+
+@typing.type_check_only
 class RequestStatusPerDestination(typing.TypedDict, total=False):
     audienceMembersIngestionStatus: IngestAudienceMembersStatus
     audienceMembersRemovalStatus: RemoveAudienceMembersStatus
@@ -815,6 +909,11 @@ class RetrieveInsightsRequest(typing.TypedDict, total=False):
 @typing.type_check_only
 class RetrieveInsightsResponse(typing.TypedDict, total=False):
     marketingDataInsights: _list[MarketingDataInsight]
+
+@typing.type_check_only
+class RetrievePartnerMatchReportResponse(typing.TypedDict, total=False):
+    nextPageToken: str
+    partnerMatchReportEntries: _list[PartnerMatchReportEntry]
 
 @typing.type_check_only
 class RetrieveRequestStatusResponse(typing.TypedDict, total=False):
@@ -848,6 +947,11 @@ class TermsOfService(typing.TypedDict, total=False):
     customerMatchTermsOfServiceStatus: typing.Literal[
         "TERMS_OF_SERVICE_STATUS_UNSPECIFIED", "ACCEPTED", "REJECTED"
     ]
+
+@typing.type_check_only
+class User(typing.TypedDict, total=False):
+    mobileData: MobileData
+    userData: UserData
 
 @typing.type_check_only
 class UserData(typing.TypedDict, total=False):
@@ -1046,8 +1150,11 @@ class WarningCount(typing.TypedDict, total=False):
         "PROCESSING_WARNING_REASON_USER_IDENTIFIER_DECRYPTION_ERROR",
         "PROCESSING_WARNING_REASON_INTERNAL_ERROR",
         "PROCESSING_WARNING_REASON_AWS_AUTH_FAILED",
+        "PROCESSING_WARNING_REASON_CUSTOM_VARIABLE_NOT_ENABLED",
+        "PROCESSING_WARNING_REASON_CUSTOM_VARIABLE_NOT_PREDEFINED",
     ]
     recordCount: str
+    recordIndices: _list[int]
 
 @typing.type_check_only
 class WarningInfo(typing.TypedDict, total=False):

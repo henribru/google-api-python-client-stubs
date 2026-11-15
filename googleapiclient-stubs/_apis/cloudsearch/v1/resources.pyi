@@ -246,6 +246,7 @@ class CloudSearchResource(googleapiclient.discovery.Resource):
                 requestOptions_countryCode: str | None = ...,
                 requestOptions_debugOptions_enableDebugging: bool | None = ...,
                 requestOptions_languageCode: str | None = ...,
+                requestOptions_queryLanguageCode: str | None = ...,
                 requestOptions_searchApplicationId: str | None = ...,
                 requestOptions_timeZone: str | None = ...,
                 **kwargs: typing.Any,

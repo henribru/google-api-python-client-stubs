@@ -8,6 +8,7 @@ class AddOnAttachment(typing.TypedDict, total=False):
     courseId: str
     dueDate: Date
     dueTime: TimeOfDay
+    gradeSyncEnabled: bool
     id: str
     itemId: str
     maxPoints: float
@@ -348,6 +349,11 @@ class Link(typing.TypedDict, total=False):
     thumbnailUrl: str
     title: str
     url: str
+
+@typing.type_check_only
+class ListAddOnAttachmentStudentSubmissionsResponse(typing.TypedDict, total=False):
+    addOnAttachmentStudentSubmissions: _list[AddOnAttachmentStudentSubmission]
+    nextPageToken: str
 
 @typing.type_check_only
 class ListAddOnAttachmentsResponse(typing.TypedDict, total=False):

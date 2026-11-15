@@ -43,6 +43,7 @@ class Destination(typing.TypedDict, total=False):
         "VEHICLE_ADS",
         "CLOUD_RETAIL",
         "LOCAL_CLOUD_RETAIL",
+        "RENTAL_ADS",
     ]
     state: typing.Literal["STATE_UNSPECIFIED", "ENABLED", "DISABLED"]
 
@@ -123,6 +124,9 @@ class MerchantReviewDataSource(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
 class PrimaryProductDataSource(typing.TypedDict, total=False):
+    channel: typing.Literal[
+        "CHANNEL_UNSPECIFIED", "ONLINE_PRODUCTS", "LOCAL_PRODUCTS", "PRODUCTS"
+    ]
     contentLanguage: str
     countries: _list[str]
     defaultRule: DefaultRule
@@ -156,6 +160,7 @@ class ProductChange(typing.TypedDict, total=False):
         "PRODUCT_REVIEWS",
         "MERCHANT_REVIEWS",
         "YOUTUBE_CHECKOUT",
+        "RENTAL_ADS",
     ]
 
 @typing.type_check_only

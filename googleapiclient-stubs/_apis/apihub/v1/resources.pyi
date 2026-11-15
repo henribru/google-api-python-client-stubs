@@ -514,6 +514,35 @@ class APIHubResource(googleapiclient.discovery.Resource):
                 ) -> GoogleCloudApihubV1ExternalApiHttpRequest: ...
 
             @typing.type_check_only
+            class GeneratedSpecApisResource(googleapiclient.discovery.Resource):
+                def generateSpec(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudApihubV1GenerateSpecRequest,
+                    **kwargs: typing.Any,
+                ) -> GoogleCloudApihubV1GenerateSpecResponseHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleCloudApihubV1GeneratedSpecApiHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str | None = ...,
+                    pageSize: int | None = ...,
+                    pageToken: str | None = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleCloudApihubV1ListGeneratedSpecApisResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleCloudApihubV1ListGeneratedSpecApisResponseHttpRequest,
+                    previous_response: GoogleCloudApihubV1ListGeneratedSpecApisResponse,
+                ) -> (
+                    GoogleCloudApihubV1ListGeneratedSpecApisResponseHttpRequest | None
+                ): ...
+
+            @typing.type_check_only
             class HostProjectRegistrationsResource(googleapiclient.discovery.Resource):
                 def create(
                     self,
@@ -829,6 +858,7 @@ class APIHubResource(googleapiclient.discovery.Resource):
                 self,
             ) -> DiscoveredApiObservationsResource: ...
             def externalApis(self) -> ExternalApisResource: ...
+            def generatedSpecApis(self) -> GeneratedSpecApisResource: ...
             def hostProjectRegistrations(self) -> HostProjectRegistrationsResource: ...
             def operations(self) -> OperationsResource: ...
             def plugins(self) -> PluginsResource: ...
@@ -972,6 +1002,24 @@ class GoogleCloudApihubV1FetchAdditionalSpecContentResponseHttpRequest(
     ) -> GoogleCloudApihubV1FetchAdditionalSpecContentResponse: ...
 
 @typing.type_check_only
+class GoogleCloudApihubV1GenerateSpecResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudApihubV1GenerateSpecResponse: ...
+
+@typing.type_check_only
+class GoogleCloudApihubV1GeneratedSpecApiHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudApihubV1GeneratedSpecApi: ...
+
+@typing.type_check_only
 class GoogleCloudApihubV1HostProjectRegistrationHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -1078,6 +1126,16 @@ class GoogleCloudApihubV1ListExternalApisResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudApihubV1ListExternalApisResponse: ...
+
+@typing.type_check_only
+class GoogleCloudApihubV1ListGeneratedSpecApisResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudApihubV1ListGeneratedSpecApisResponse: ...
 
 @typing.type_check_only
 class GoogleCloudApihubV1ListHostProjectRegistrationsResponseHttpRequest(

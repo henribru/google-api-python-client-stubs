@@ -29,6 +29,7 @@ class Binding(typing.TypedDict, total=False):
 class BoostConfig(typing.TypedDict, total=False):
     accelerators: _list[Accelerator]
     bootDiskSizeGb: int
+    enableAutomaticFailover: bool
     enableNestedVirtualization: bool
     id: str
     machineType: str
@@ -70,6 +71,7 @@ class Expr(typing.TypedDict, total=False):
 
 @typing.type_check_only
 class GatewayConfig(typing.TypedDict, total=False):
+    directAccessPorts: _list[int]
     http2Enabled: bool
 
 @typing.type_check_only
@@ -80,6 +82,8 @@ class GceConfidentialInstanceConfig(typing.TypedDict, total=False):
 class GceHyperdiskBalancedHighAvailability(typing.TypedDict, total=False):
     archiveTimeout: str
     maxSizeGb: int
+    provisionedIops: str
+    provisionedThroughput: str
     reclaimPolicy: typing.Literal["RECLAIM_POLICY_UNSPECIFIED", "DELETE", "RETAIN"]
     sizeGb: int
     sourceSnapshot: str
@@ -343,6 +347,7 @@ class WorkstationBoostConfig(typing.TypedDict, total=False):
 class WorkstationCluster(typing.TypedDict, total=False):
     annotations: dict[str, typing.Any]
     conditions: _list[Status]
+    consoleBaseUrl: str
     controlPlaneIp: str
     createTime: str
     degraded: bool

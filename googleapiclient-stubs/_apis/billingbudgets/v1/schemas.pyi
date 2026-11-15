@@ -13,6 +13,7 @@ class GoogleCloudBillingBudgetsV1Budget(typing.TypedDict, total=False):
     ownershipScope: typing.Literal[
         "OWNERSHIP_SCOPE_UNSPECIFIED", "ALL_USERS", "BILLING_ACCOUNT"
     ]
+    spendCap: GoogleCloudBillingBudgetsV1SpendCap
     thresholdRules: _list[GoogleCloudBillingBudgetsV1ThresholdRule]
 
 @typing.type_check_only
@@ -59,6 +60,16 @@ class GoogleCloudBillingBudgetsV1NotificationsRule(typing.TypedDict, total=False
     monitoringNotificationChannels: _list[str]
     pubsubTopic: str
     schemaVersion: str
+
+@typing.type_check_only
+class GoogleCloudBillingBudgetsV1SpendCap(typing.TypedDict, total=False):
+    inputState: typing.Literal[
+        "STATE_UNSPECIFIED", "CONFIGURED", "ENFORCED", "AWAITING_NEXT_PERIOD"
+    ]
+    outputState: typing.Literal[
+        "STATE_UNSPECIFIED", "CONFIGURED", "ENFORCED", "AWAITING_NEXT_PERIOD"
+    ]
+    reconciling: bool
 
 @typing.type_check_only
 class GoogleCloudBillingBudgetsV1ThresholdRule(typing.TypedDict, total=False):

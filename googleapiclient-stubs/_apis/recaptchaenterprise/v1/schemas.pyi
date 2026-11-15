@@ -538,7 +538,10 @@ class GoogleCloudRecaptchaenterpriseV1RiskAnalysis(typing.TypedDict, total=False
     challenge: typing.Literal["CHALLENGE_UNSPECIFIED", "NOCAPTCHA", "PASSED", "FAILED"]
     extendedVerdictReasons: _list[str]
     lastChallengeType: typing.Literal[
-        "CHALLENGE_TYPE_UNSPECIFIED", "CHALLENGE_TYPE_VISUAL", "CHALLENGE_TYPE_AUDIO"
+        "CHALLENGE_TYPE_UNSPECIFIED",
+        "CHALLENGE_TYPE_VISUAL",
+        "CHALLENGE_TYPE_AUDIO",
+        "CHALLENGE_TYPE_QR_CODE",
     ]
     reasons: _list[
         typing.Literal[
@@ -602,6 +605,8 @@ class GoogleCloudRecaptchaenterpriseV1TestingOptions(typing.TypedDict, total=Fal
 class GoogleCloudRecaptchaenterpriseV1TokenProperties(typing.TypedDict, total=False):
     action: str
     androidPackageName: str
+    clientProperties: GoogleCloudRecaptchaenterpriseV1TokenPropertiesClientProperties
+    clientSignalsFailed: bool
     createTime: str
     hostname: str
     invalidReason: typing.Literal[
@@ -618,6 +623,13 @@ class GoogleCloudRecaptchaenterpriseV1TokenProperties(typing.TypedDict, total=Fa
     ]
     iosBundleId: str
     valid: bool
+
+@typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1TokenPropertiesClientProperties(
+    typing.TypedDict, total=False
+):
+    userAgent: str
+    userIpAddress: str
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1TransactionData(typing.TypedDict, total=False):

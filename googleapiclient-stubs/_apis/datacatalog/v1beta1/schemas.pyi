@@ -270,6 +270,8 @@ class GoogleCloudDatacatalogV1Entry(typing.TypedDict, total=False):
         "FEATURE_VIEW",
         "FEATURE_GROUP",
         "GRAPH",
+        "NODE",
+        "EDGE",
     ]
     usageSignal: GoogleCloudDatacatalogV1UsageSignal
     userSpecifiedSystem: str
@@ -599,93 +601,10 @@ class GoogleCloudDatacatalogV1ViewSpec(typing.TypedDict, total=False):
     viewQuery: str
 
 @typing.type_check_only
-class GoogleCloudDatacatalogV1beta1BigQueryDateShardedSpec(
-    typing.TypedDict, total=False
-):
-    dataset: str
-    shardCount: str
-    tablePrefix: str
-
-@typing.type_check_only
-class GoogleCloudDatacatalogV1beta1BigQueryTableSpec(typing.TypedDict, total=False):
-    tableSourceType: typing.Literal[
-        "TABLE_SOURCE_TYPE_UNSPECIFIED",
-        "BIGQUERY_VIEW",
-        "BIGQUERY_TABLE",
-        "BIGQUERY_MATERIALIZED_VIEW",
-    ]
-    tableSpec: GoogleCloudDatacatalogV1beta1TableSpec
-    viewSpec: GoogleCloudDatacatalogV1beta1ViewSpec
-
-@typing.type_check_only
-class GoogleCloudDatacatalogV1beta1ColumnSchema(typing.TypedDict, total=False):
-    column: str
-    description: str
-    mode: str
-    subcolumns: _list[GoogleCloudDatacatalogV1beta1ColumnSchema]
-    type: str
-
-@typing.type_check_only
-class GoogleCloudDatacatalogV1beta1Entry(typing.TypedDict, total=False):
-    bigqueryDateShardedSpec: GoogleCloudDatacatalogV1beta1BigQueryDateShardedSpec
-    bigqueryTableSpec: GoogleCloudDatacatalogV1beta1BigQueryTableSpec
-    description: str
-    displayName: str
-    gcsFilesetSpec: GoogleCloudDatacatalogV1beta1GcsFilesetSpec
-    integratedSystem: typing.Literal[
-        "INTEGRATED_SYSTEM_UNSPECIFIED", "BIGQUERY", "CLOUD_PUBSUB"
-    ]
-    linkedResource: str
-    name: str
-    schema: GoogleCloudDatacatalogV1beta1Schema
-    sourceSystemTimestamps: GoogleCloudDatacatalogV1beta1SystemTimestamps
-    type: typing.Literal[
-        "ENTRY_TYPE_UNSPECIFIED", "TABLE", "MODEL", "DATA_STREAM", "FILESET"
-    ]
-    usageSignal: GoogleCloudDatacatalogV1beta1UsageSignal
-    userSpecifiedSystem: str
-    userSpecifiedType: str
-
-@typing.type_check_only
-class GoogleCloudDatacatalogV1beta1EntryGroup(typing.TypedDict, total=False):
-    dataCatalogTimestamps: GoogleCloudDatacatalogV1beta1SystemTimestamps
-    description: str
-    displayName: str
-    name: str
-
-@typing.type_check_only
 class GoogleCloudDatacatalogV1beta1ExportTaxonomiesResponse(
     typing.TypedDict, total=False
 ):
     taxonomies: _list[GoogleCloudDatacatalogV1beta1SerializedTaxonomy]
-
-@typing.type_check_only
-class GoogleCloudDatacatalogV1beta1FieldType(typing.TypedDict, total=False):
-    enumType: GoogleCloudDatacatalogV1beta1FieldTypeEnumType
-    primitiveType: typing.Literal[
-        "PRIMITIVE_TYPE_UNSPECIFIED", "DOUBLE", "STRING", "BOOL", "TIMESTAMP"
-    ]
-
-@typing.type_check_only
-class GoogleCloudDatacatalogV1beta1FieldTypeEnumType(typing.TypedDict, total=False):
-    allowedValues: _list[GoogleCloudDatacatalogV1beta1FieldTypeEnumTypeEnumValue]
-
-@typing.type_check_only
-class GoogleCloudDatacatalogV1beta1FieldTypeEnumTypeEnumValue(
-    typing.TypedDict, total=False
-):
-    displayName: str
-
-@typing.type_check_only
-class GoogleCloudDatacatalogV1beta1GcsFileSpec(typing.TypedDict, total=False):
-    filePath: str
-    gcsTimestamps: GoogleCloudDatacatalogV1beta1SystemTimestamps
-    sizeBytes: str
-
-@typing.type_check_only
-class GoogleCloudDatacatalogV1beta1GcsFilesetSpec(typing.TypedDict, total=False):
-    filePatterns: _list[str]
-    sampleGcsFileSpecs: _list[GoogleCloudDatacatalogV1beta1GcsFileSpec]
 
 @typing.type_check_only
 class GoogleCloudDatacatalogV1beta1ImportTaxonomiesRequest(
@@ -704,28 +623,11 @@ class GoogleCloudDatacatalogV1beta1InlineSource(typing.TypedDict, total=False):
     taxonomies: _list[GoogleCloudDatacatalogV1beta1SerializedTaxonomy]
 
 @typing.type_check_only
-class GoogleCloudDatacatalogV1beta1ListEntriesResponse(typing.TypedDict, total=False):
-    entries: _list[GoogleCloudDatacatalogV1beta1Entry]
-    nextPageToken: str
-
-@typing.type_check_only
-class GoogleCloudDatacatalogV1beta1ListEntryGroupsResponse(
-    typing.TypedDict, total=False
-):
-    entryGroups: _list[GoogleCloudDatacatalogV1beta1EntryGroup]
-    nextPageToken: str
-
-@typing.type_check_only
 class GoogleCloudDatacatalogV1beta1ListPolicyTagsResponse(
     typing.TypedDict, total=False
 ):
     nextPageToken: str
     policyTags: _list[GoogleCloudDatacatalogV1beta1PolicyTag]
-
-@typing.type_check_only
-class GoogleCloudDatacatalogV1beta1ListTagsResponse(typing.TypedDict, total=False):
-    nextPageToken: str
-    tags: _list[GoogleCloudDatacatalogV1beta1Tag]
 
 @typing.type_check_only
 class GoogleCloudDatacatalogV1beta1ListTaxonomiesResponse(
@@ -741,22 +643,6 @@ class GoogleCloudDatacatalogV1beta1PolicyTag(typing.TypedDict, total=False):
     displayName: str
     name: str
     parentPolicyTag: str
-
-@typing.type_check_only
-class GoogleCloudDatacatalogV1beta1RenameTagTemplateFieldEnumValueRequest(
-    typing.TypedDict, total=False
-):
-    newEnumValueDisplayName: str
-
-@typing.type_check_only
-class GoogleCloudDatacatalogV1beta1RenameTagTemplateFieldRequest(
-    typing.TypedDict, total=False
-):
-    newTagTemplateFieldId: str
-
-@typing.type_check_only
-class GoogleCloudDatacatalogV1beta1Schema(typing.TypedDict, total=False):
-    columns: _list[GoogleCloudDatacatalogV1beta1ColumnSchema]
 
 @typing.type_check_only
 class GoogleCloudDatacatalogV1beta1SearchCatalogRequest(typing.TypedDict, total=False):
@@ -815,50 +701,6 @@ class GoogleCloudDatacatalogV1beta1SystemTimestamps(typing.TypedDict, total=Fals
     updateTime: str
 
 @typing.type_check_only
-class GoogleCloudDatacatalogV1beta1TableSpec(typing.TypedDict, total=False):
-    groupedEntry: str
-
-@typing.type_check_only
-class GoogleCloudDatacatalogV1beta1Tag(typing.TypedDict, total=False):
-    column: str
-    fields: dict[str, typing.Any]
-    name: str
-    template: str
-    templateDisplayName: str
-
-@typing.type_check_only
-class GoogleCloudDatacatalogV1beta1TagField(typing.TypedDict, total=False):
-    boolValue: bool
-    displayName: str
-    doubleValue: float
-    enumValue: GoogleCloudDatacatalogV1beta1TagFieldEnumValue
-    order: int
-    stringValue: str
-    timestampValue: str
-
-@typing.type_check_only
-class GoogleCloudDatacatalogV1beta1TagFieldEnumValue(typing.TypedDict, total=False):
-    displayName: str
-
-@typing.type_check_only
-class GoogleCloudDatacatalogV1beta1TagTemplate(typing.TypedDict, total=False):
-    dataplexTransferStatus: typing.Literal[
-        "DATAPLEX_TRANSFER_STATUS_UNSPECIFIED", "MIGRATED"
-    ]
-    displayName: str
-    fields: dict[str, typing.Any]
-    name: str
-
-@typing.type_check_only
-class GoogleCloudDatacatalogV1beta1TagTemplateField(typing.TypedDict, total=False):
-    description: str
-    displayName: str
-    isRequired: bool
-    name: str
-    order: int
-    type: GoogleCloudDatacatalogV1beta1FieldType
-
-@typing.type_check_only
 class GoogleCloudDatacatalogV1beta1Taxonomy(typing.TypedDict, total=False):
     activatedPolicyTypes: _list[
         typing.Literal["POLICY_TYPE_UNSPECIFIED", "FINE_GRAINED_ACCESS_CONTROL"]
@@ -878,22 +720,6 @@ class GoogleCloudDatacatalogV1beta1TaxonomyService(typing.TypedDict, total=False
         "MANAGING_SYSTEM_DATAPLEX",
         "MANAGING_SYSTEM_OTHER",
     ]
-
-@typing.type_check_only
-class GoogleCloudDatacatalogV1beta1UsageSignal(typing.TypedDict, total=False):
-    updateTime: str
-    usageWithinTimeRange: dict[str, typing.Any]
-
-@typing.type_check_only
-class GoogleCloudDatacatalogV1beta1UsageStats(typing.TypedDict, total=False):
-    totalCancellations: float
-    totalCompletions: float
-    totalExecutionTimeForCompletionsMillis: float
-    totalFailures: float
-
-@typing.type_check_only
-class GoogleCloudDatacatalogV1beta1ViewSpec(typing.TypedDict, total=False):
-    viewQuery: str
 
 @typing.type_check_only
 class Policy(typing.TypedDict, total=False):

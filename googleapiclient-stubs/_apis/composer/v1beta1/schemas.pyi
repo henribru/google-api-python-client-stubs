@@ -117,11 +117,18 @@ class Environment(typing.TypedDict, total=False):
     config: EnvironmentConfig
     createTime: str
     labels: dict[str, typing.Any]
+    mode: typing.Literal["MODE_UNSPECIFIED", "DEVELOPMENT"]
     name: str
     satisfiesPzi: bool
     satisfiesPzs: bool
     state: typing.Literal[
-        "STATE_UNSPECIFIED", "CREATING", "RUNNING", "UPDATING", "DELETING", "ERROR"
+        "STATE_UNSPECIFIED",
+        "CREATING",
+        "RUNNING",
+        "UPDATING",
+        "HIBERNATED",
+        "DELETING",
+        "ERROR",
     ]
     storageConfig: StorageConfig
     updateTime: str
@@ -141,6 +148,7 @@ class EnvironmentConfig(typing.TypedDict, total=False):
         "ENVIRONMENT_SIZE_MEDIUM",
         "ENVIRONMENT_SIZE_LARGE",
         "ENVIRONMENT_SIZE_EXTRA_LARGE",
+        "ENVIRONMENT_SIZE_X_EXTRA_LARGE",
     ]
     gkeCluster: str
     maintenanceWindow: MaintenanceWindow
@@ -150,6 +158,7 @@ class EnvironmentConfig(typing.TypedDict, total=False):
     privateEnvironmentConfig: PrivateEnvironmentConfig
     recoveryConfig: RecoveryConfig
     resilienceMode: typing.Literal["RESILIENCE_MODE_UNSPECIFIED", "HIGH_RESILIENCE"]
+    scheduledHibernationConfig: ScheduledHibernationConfig
     softwareConfig: SoftwareConfig
     webServerConfig: WebServerConfig
     webServerNetworkAccessControl: WebServerNetworkAccessControl
@@ -180,6 +189,9 @@ class FetchDatabasePropertiesResponse(typing.TypedDict, total=False):
     secondaryGceZone: str
 
 @typing.type_check_only
+class HibernateEnvironmentRequest(typing.TypedDict, total=False): ...
+
+@typing.type_check_only
 class IPAllocationPolicy(typing.TypedDict, total=False):
     clusterIpv4CidrBlock: str
     clusterSecondaryRangeName: str
@@ -190,11 +202,17 @@ class IPAllocationPolicy(typing.TypedDict, total=False):
 @typing.type_check_only
 class ImageVersion(typing.TypedDict, total=False):
     creationDisabled: bool
+    devModeSupported: bool
     imageVersionId: str
     isDefault: bool
     releaseDate: Date
     supportedPythonVersions: _list[str]
     upgradeDisabled: bool
+
+@typing.type_check_only
+class ImageVersionRollbackTarget(typing.TypedDict, total=False):
+    imageVersion: str
+    lastActiveTime: str
 
 @typing.type_check_only
 class Line(typing.TypedDict, total=False):
@@ -299,6 +317,8 @@ class OperationMetadata(typing.TypedDict, total=False):
         "LOAD_SNAPSHOT",
         "DATABASE_FAILOVER",
         "MIGRATE",
+        "HIBERNATE",
+        "RESUME",
     ]
     resource: str
     resourceUuid: str
@@ -348,12 +368,22 @@ class RecoveryConfig(typing.TypedDict, total=False):
 class RestartWebServerRequest(typing.TypedDict, total=False): ...
 
 @typing.type_check_only
+class ResumeEnvironmentRequest(typing.TypedDict, total=False): ...
+
+@typing.type_check_only
 class SaveSnapshotRequest(typing.TypedDict, total=False):
     snapshotLocation: str
 
 @typing.type_check_only
 class SaveSnapshotResponse(typing.TypedDict, total=False):
     snapshotPath: str
+
+@typing.type_check_only
+class ScheduledHibernationConfig(typing.TypedDict, total=False):
+    enabled: bool
+    hibernationSchedules: _list[str]
+    resumptionSchedules: _list[str]
+    timeZone: str
 
 @typing.type_check_only
 class ScheduledSnapshotsConfig(typing.TypedDict, total=False):
@@ -380,6 +410,7 @@ class SoftwareConfig(typing.TypedDict, total=False):
     cloudDataLineageIntegration: CloudDataLineageIntegration
     envVariables: dict[str, typing.Any]
     imageVersion: str
+    imageVersionRollbackTargets: _list[ImageVersionRollbackTarget]
     pypiPackages: dict[str, typing.Any]
     pythonVersion: str
     schedulerCount: int

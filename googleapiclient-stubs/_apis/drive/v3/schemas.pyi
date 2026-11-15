@@ -80,6 +80,7 @@ class AppList(typing.TypedDict, total=False):
 @typing.type_check_only
 class Approval(typing.TypedDict, total=False):
     approvalId: str
+    approvedRevisionId: str
     completeTime: str
     createTime: str
     dueTime: str

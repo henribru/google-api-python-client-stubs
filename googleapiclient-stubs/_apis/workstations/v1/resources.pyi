@@ -145,6 +145,13 @@ class CloudWorkstationsResource(googleapiclient.discovery.Resource):
                             body: StopWorkstationRequest,
                             **kwargs: typing.Any,
                         ) -> OperationHttpRequest: ...
+                        def suspend(
+                            self,
+                            *,
+                            name: str,
+                            body: SuspendWorkstationRequest,
+                            **kwargs: typing.Any,
+                        ) -> OperationHttpRequest: ...
                         def testIamPermissions(
                             self,
                             *,

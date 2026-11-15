@@ -1347,6 +1347,7 @@ class RequestOptions(typing.TypedDict, total=False):
     countryCode: str
     debugOptions: DebugOptions
     languageCode: str
+    queryLanguageCode: str
     searchApplicationId: str
     timeZone: str
 
